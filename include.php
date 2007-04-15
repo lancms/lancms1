@@ -4,7 +4,7 @@ require 'config.php';
 
 
 # Start DB-connection
-global $sql_type;
+
 switch ($sql_type)
 {
 	case "mysql":
@@ -20,6 +20,7 @@ switch ($sql_type)
 
 ## Includes etc.
 require 'inc/shared_functions.php';
+require 'inc/shared_session.php';
 
 
 ## Set up Smarty-stuff

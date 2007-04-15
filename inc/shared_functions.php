@@ -4,13 +4,14 @@
 function db_query($query)
 {
 /* Function to do queries to/from DBs */
+	global $sql_type;
 	switch ($sql_type)
 	{
 		case "mysql":
 			$q = mysql_query($query) or die("MYSQL Error with query (".$query.") because of: ".mysql_error());
 			break;
 		default:
-			die("Something seriously wrong with variable sql_type in function db_query");
+			die("Something seriously wrong with variable sql_type in function db_query. The reported sql_type is '$sql_type'");
 
 	} // end switch ($sql_type)
 
@@ -19,6 +20,7 @@ function db_query($query)
 
 ######################################################
 function db_fetch($query) {
+	global $sql_type;
 /* Function to fetch results from db_query */
 	switch ($sql_type)
 	{
@@ -36,6 +38,7 @@ function db_fetch($query) {
 ######################################################
 function db_escape($var)
 {
+	global $sql_type;
 /* Function to escape strings before they are inserted to the DB. Should avoid some haxxoring, so should probably use it... */
 	switch ($sql_type)
 	{
@@ -53,13 +56,14 @@ function db_escape($var)
 ######################################################
 function db_num ($q)
 {
+	global $sql_type;
 	switch ($sql_type)
 	{
 		case "mysql":
 			$return = mysql_num_rows($q);
 			break;
 		default:
-			die("Something seriously wrong with variable sql_type in function db_escape");
+			die("Something seriously wrong with variable sql_type in function db_num");
 	} // End switch ($sql_type)
 
 	return $return;
