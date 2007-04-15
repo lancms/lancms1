@@ -11,9 +11,9 @@ function db_query($query)
 			break;
 		default:
 			die("Something seriously wrong with variable sql_type in function db_query");
-			
+
 	} // end switch ($sql_type)
-	
+
 	return $q;
 } // End function db_query()
 
@@ -28,7 +28,7 @@ function db_fetch($query) {
 		default:
 			die("Something seriously wrong with variable sql_type in function db_fetch");
 	} // End switch ($sql_type)
-	
+
 	return $return;
 } // End function db_fetch
 
@@ -40,14 +40,14 @@ function db_escape($var)
 	switch ($sql_type)
 	{
 		case "mysql":
-			$return = mysql_real_escape_string($var)
+			$return = mysql_real_escape_string($var);
 			break;
 		default:
 			die("Something seriously wrong with variable sql_type in function db_escape");
 	} // End switch ($sql_type)
-	
+
 	return $return;
-	
+
 } // End function db_escape
 
 ######################################################
@@ -56,12 +56,12 @@ function db_num ($q)
 	switch ($sql_type)
 	{
 		case "mysql":
-			$return = mysql_num_rows($q)
+			$return = mysql_num_rows($q);
 			break;
 		default:
 			die("Something seriously wrong with variable sql_type in function db_escape");
 	} // End switch ($sql_type)
-	
+
 	return $return;
 }
 

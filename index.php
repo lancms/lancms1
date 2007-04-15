@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.php';
+require_once 'include.php';
 $module = $_GET['module'];
 
 // FIXME: error and hack-checking
