@@ -1,7 +1,7 @@
 <?php
 # This should probably depend on... register?
 
-db_query("CREATE TABLE IF NOT EXISTS $sql_prefix.groups (
+db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_groups (
 	ID int(11) auto_increment primary key,
 	groupname varchar(40),
 	grouppassword varchar(50) default '',
@@ -9,7 +9,7 @@ db_query("CREATE TABLE IF NOT EXISTS $sql_prefix.groups (
 	created_timestamp int(10) default 0
 	)");
 
-db_query("CREATE TABLE IF NOT EXISTS $sql_prefix.group_members (
+db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_group_members (
 	groupID int(11),
 	userID int(11),
 	admin tinyint(1) default 0,
