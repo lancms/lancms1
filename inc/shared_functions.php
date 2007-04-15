@@ -25,7 +25,8 @@ function db_fetch($query) {
 	switch ($sql_type)
 	{
 		case "mysql":
-			$return = mysql_fetch_object($query) or die ("MYSQL Error with fetch because of: ".mysql_error());
+
+			$return = mysql_fetch_object($query); // Memo to self: can not die, as it should return false if nothing there
 			break;
 		default:
 			die("Something seriously wrong with variable sql_type in function db_fetch");

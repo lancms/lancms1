@@ -42,3 +42,6 @@ if($do == "create_session")
 } // End if do == create_session
 
 
+
+$query_session = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
+$sessioninfo = db_fetch($query_session);
