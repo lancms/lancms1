@@ -7,7 +7,7 @@ $sql_host = "localhost"; // SQL Host
 $sql_user = "OSGL"; // SQL username
 $sql_pass = "ComPuterParty"; // Very very secret, if you read this, you should probably go shoot yourself, just to be safe
 $sql_base = "OSGL"; // The database to use
-$sql_prefix = "osgl_"; // Someone asked for this a while back. 
+$sql_prefix = "osgl_"; // Someone asked for this a while back.
 
 
 ## All other settings should be done in some kind of installer....
@@ -16,7 +16,7 @@ $sql_prefix = "osgl_"; // Someone asked for this a while back.
 
 # Start DB-connection
 global $sql_type;
-switch ($sql_type) 
+switch ($sql_type)
 {
 	case "mysql":
 		mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
@@ -34,7 +34,7 @@ require 'inc/shared_functions.php';
 
 
 ## Set up Smarty-stuff
-require 'inc/libs/Smarty.class.php';
+require 'inc/smarty/libs/Smarty.class.php';
 $smarty = new Smarty();
 
 $smarty->template_dir = 'templates/';
