@@ -38,6 +38,8 @@ else {
 	$design_userinfo .= "You are a luser!";
 }
 
+if(acl_access("mojo")) $design_userinfo .= "<br>You have mojo!";
+
 $smarty->assign("userinfo", $design_userinfo);
 
 

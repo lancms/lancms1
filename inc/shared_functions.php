@@ -110,3 +110,14 @@ function config($config, $value = "NOTSET")
 
 
 ######################################################
+function acl_access($module, $subcategory=0, $event=0, $user = "CHECK")
+{
+	// This function outputs if user has rights to something
+	// FIXME: This might have to be extended to something....
+	return TRUE;
+}
+
+
+
+
+######################################################
