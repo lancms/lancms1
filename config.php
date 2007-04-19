@@ -19,3 +19,4 @@ $osgl_session_cookie = "OSGL2-cake";
 
 global $sql_type;
 global $osgl_session_cookie;
+global $sql_prefix;

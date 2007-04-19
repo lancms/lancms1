@@ -6,7 +6,14 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_users (
 	nick varchar(35) NOT NULL,
 	password varchar(50) default '',
 	EMail varchar(50),
-	globaladmin tinyint(1) default 0
+	globaladmin tinyint(1) default 0,
+	MSNAddress varchar(35),
+	ICQAddress int(12) default '',
+	postNumber int(5) default '',
+	postPlace varchar(35) default '',
+	registerTime int(11) default 0,
+	registerIP varchar(15) default '000.000.000.000',
+	EMailVerifyCode varchar(25) default ''
 	)");
 
 
@@ -29,5 +36,32 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_events (
 	ID int(11) PRIMARY KEY auto_increment,
 	eventname varchar(35) default '',
 	createdByTime int(11) default 0,
-	createdByUser int(11) default 0
+	createdByUser int(11) default 0,
+	eventClosed tinyint(1) default 0,
+	eventPublic tinyint(1) default 0
+	)");
+
+db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_groups (
+	ID int(11) auto_increment primary key,
+	groupname varchar(40),
+	grouppassword varchar(50) default '',
+	created_by int(11) default 0,
+	created_timestamp int(10) default 0,
+	groupType enum('access', 'clan') default 'clan'
+	)");
+
+db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_group_members (
+	groupID int(11),
+	userID int(11),
+	admin tinyint(1) default 0,
+	primary key (groupID, userID)
+	)");
+
+
+db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_ACLs (
+	groupID int(11),
+	eventID int(11),
+	accessmodule varchar(25),
+	access enum('No', 'Read', 'Write', 'Admin') default 'No',
+	primary key (groupID, eventID, accessmodule)
 	)");

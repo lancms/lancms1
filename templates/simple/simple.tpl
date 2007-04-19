@@ -13,6 +13,16 @@
 
 <br><br><hr><br><br>
 {$menu}
+<br><hr><br>
+{$eventmenu}
 
-</td><td>{$content}</td></tr>
+</td><td>{$content}</td>
+<td width=10%>
+{$eventlist}
+<br><br><hr><br><br>
+{$grouplist}
+
+</td>
+
+</tr>
 </table>

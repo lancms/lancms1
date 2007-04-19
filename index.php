@@ -16,10 +16,16 @@ else
 }
 
 
-$menu = "<a href=index.php>Main page</a>";
-$menu .= "<br><a href=index.php?module=register>Register user</a>";
+$design_menu = "<a href=index.php>Main page</a>";
+$design_menu .= "<br><a href=index.php?module=register>Register user</a>";
 
-$smarty->assign("menu", $menu);
+
+if($sessioninfo->eventID > 0)
+{
+	$design_eventmenu .= "y0";
+}
+
+$smarty->assign("menu", $design_menu);
 
 
 if($sessioninfo->userID == 0)
@@ -40,8 +46,23 @@ else {
 
 if(acl_access("mojo")) $design_userinfo .= "<br>You have mojo!";
 
-$smarty->assign("userinfo", $design_userinfo);
+// This should probably be a function that checks what events you have access to
+$qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");
+while($rEventList = db_fetch($qEventList))
+{
+	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<br><a href=?module=events&action=setCurrentEvent&eventID=$rEventList->ID>
+	$rEventList->eventname</a>";
+	else $design_eventlist .= "<br>$rEventList->eventname\n";
+}
 
+// This should probably list something... What groups you are member of?
+$design_grouplist .= "You might be a member of something... I do not know";
+
+
+$smarty->assign("grouplist", $design_grouplist);
+$smarty->assign("eventlist", $design_eventlist);
+$smarty->assign("userinfo", $design_userinfo);
+$smarty->assign("eventmenu", $design_eventmenu);
 
 $smarty->assign("content", $content);
 

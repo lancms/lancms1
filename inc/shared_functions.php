@@ -110,11 +110,79 @@ function config($config, $value = "NOTSET")
 
 
 ######################################################
-function acl_access($module, $subcategory=0, $event=0, $user = "CHECK")
+function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 {
-	// This function outputs if user has rights to something
-	// FIXME: This might have to be extended to something....
-	return TRUE;
+	/* Check what rights the user has to a module or event. */
+	
+	/* subcategory is not yet in use, but Im thinking of using */
+	/* it to access to ie. accounts in economy-module */
+	global $sql_prefix;
+	global $sessioninfo;
+	if($userID == "MYSELF")
+		$userID = $sessioninfo->userID; // Use current user
+		
+	// Check if user is anonymous (and don't give access to anything)
+	if(!$sessioninfo->userID)
+	{
+		return "No";
+		break;
+	}
+	
+	// Check if user is global admin
+	$qGlobalAdmin = db_query("SELECT globaladmin FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
+	$rGlobalAdmin = db_fetch($qGlobalAdmin);
+	if($rGlobalAdmin->globaladmin == 1) 
+	{
+		return "Admin";
+		break;
+	}
+	
+	// Check what groups the user is a member of
+	$qCheckGroups = db_query("SELECT groupID FROM ".$sql_prefix."_group_members 
+		WHERE userID = ".db_escape($userID));
+	$addComma = FALSE; // 
+	$groupList = FALSE; // List of groups a user is member of
+	while($rCheckGroups = db_fetch($qCheckGroups))
+	{
+		if($addComma == TRUE) $groupList .= " ,";
+		$groupList .= $rCheckGroups->groupID;
+	} // End while CheckGroups
+	
+	// Check what the highest ACL-right you have on event
+	if($event != 0) // Event-ID 0 is used on things that are not event-specific.
+	{
+		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
+			WHERE eventID = '".db_escape($event)."'
+			AND groupID IN ($groupList),
+			AND accessmodule = 'eventadmin'
+			ORDER BY access = 'Admin' DESC,
+			access = 'Write' DESC,
+			access = 'Read' DESC,
+			access = 'No' DESC
+			LIMIT 0,1
+			");
+		$rCheckEventRight = db_fetch($qCheckEventRight);
+		if(isset($rCheckEventRight->access))
+		{
+			return $rCheckEventRight->access;
+			break;
+		}
+		
+	} // End if event != 0/check eventACL.
+	// Not admin, check what rights the group has
+	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
+		WHERE eventID = '".db_escape($event)."',
+		AND groupID IN ($groupList),
+		AND accessmodule = '".db_escape($module)."'
+		ORDER BY access = 'Admin' DESC,
+		access = 'Write' DESC,
+		access = 'Read' DESC,
+		access = 'No' DESC
+		LIMIT 0,1
+		");
+	$rCheckModuleRight = db_fetch($qCheckModuleRight);
+	return $rCheckModuleRight;
+	break;
 }
 
 
