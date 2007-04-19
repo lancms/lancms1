@@ -17,7 +17,11 @@ if($action == "finduser")
 		$content .= "Sorry, no such user found";
 
 	}
-
+	elseif(db_num($finduser) == 1)
+	{
+		$row = db_fetch($finduser);
+		header("Location: index.php?module=login&action=password&userID=$row->ID");
+	}
 	else
 	{
 		// The search found more than 0 and less then 20 users
