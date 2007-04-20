@@ -65,3 +65,12 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_ACLs (
 	access enum('No', 'Read', 'Write', 'Admin') default 'No',
 	primary key (groupID, eventID, accessmodule)
 	)");
+	
+db_query("CREATE TABLE ".$sql_prefix."_lang (
+	ID int(11) NOT NULL auto_increment,
+	string text,
+	language varchar(30) NOT NULL default 'english',
+	module varchar(30) default NULL,
+	translated text,
+	PRIMARY KEY  (ID)
+	)");

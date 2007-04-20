@@ -189,3 +189,44 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 
 
 ######################################################
+
+function lang($string, $module = "index")
+{
+	global $language; // Get default/current language
+	global $sql_prefix;
+	
+	// Check to see if that string exists
+	$q = db_query("SELECT * FROM ".$sql_prefix."_lang 
+		WHERE string = '".db_escape($string)."' 
+		AND language = '".db_escape($language)."' 
+		AND module = '".db_escape($module)."'");
+	
+	// How many occurences of string
+	$num = db_num($q);
+	if ($num == 0)
+	{
+		/* The string does not exist in the database, add it */
+		db_query("INSERT INTO ".$sql_prefix."_lang 
+			SET string = '".db_escape($string)."', 
+			language = '".db_escape($language)."', 
+			module = '".db_escape($module)."'");
+		return $string;
+	} // End not exists
+
+	elseif ($num >= 2)
+	{
+		die("There is an error in the lang()-function, more than one existance of string: '".$string."' in module: '".$module."' for language: '".$language."'. FIX IT!");
+	}
+	else // String should have returned a result of one row
+	{
+		$r = db_fetch($q);
+		if ((empty($r->translated)) || (!isset($r->translated)))
+		{
+			return $string; // String has not been translated
+		}
+		else
+		{
+			return $r->translated; // String has been translated.
+		}
+	}
+}
