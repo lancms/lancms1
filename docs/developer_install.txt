@@ -1,0 +1,14 @@
+1)
+
+in MySQL :
+
+CREATE DATABASE OSGL;
+GRANT ALL PRIVILEGES ON OSGL.* TO 'OSGL'@'localhost' IDENTIFIED BY 'ComPuterParty';
+
+
+In webbrowser:
+adds or resets the DB
+http://xxx/installer/devel_recreate_db.php 
+
+
+Default username/pwd to login: admin/admin
