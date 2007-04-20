@@ -65,6 +65,7 @@ $smarty->assign("userinfo", $design_userinfo);
 $smarty->assign("eventmenu", $design_eventmenu);
 
 $smarty->assign("content", $content);
+$smarty->assign("title", $design_title);
 
 
 
