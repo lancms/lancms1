@@ -1,11 +1,15 @@
-1)
+0)
+You've probably already done this, but:
+Check out https://osglobelan.svn.sourceforge.net/svnroot/osglobelan/trunk/OSGL2 from SVN to a folder on your disc.
 
+
+1)
 in MySQL :
 
 CREATE DATABASE OSGL;
 GRANT ALL PRIVILEGES ON OSGL.* TO 'OSGL'@'localhost' IDENTIFIED BY 'ComPuterParty';
 
-
+2)
 In webbrowser:
 adds or resets the DB
 http://xxx/installer/devel_recreate_db.php 
