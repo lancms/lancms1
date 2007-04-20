@@ -12,6 +12,7 @@ $sql_prefix = "osgl"; // Someone asked for this a while back. prefix, and _ is a
 
 
 $osgl_session_cookie = "OSGL2-cake";
+$language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
 
 ## All other settings should be done in some kind of installer....
 

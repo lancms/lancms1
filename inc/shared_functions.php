@@ -74,11 +74,12 @@ function db_num ($q)
 ######################################################
 function config($config, $value = "NOTSET")
 {
-	$query = db_query("SELECT * FROM config WHERE config = '".db_escape($config)."'");
+	global $sql_prefix;
+	$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config = '".db_escape($config)."'");
 	$num = db_num($query);
 	if ($value == "NOTSET") // No value is set. We should only SELECT to find out what the value is.
 	{
-		$object = fetch($query);
+		$object = db_fetch($query);
 
 		if ($num == 0) // No such value exists. That probably means that noone has activated it yet, and therefor, it is false, or turned off
 		{
@@ -98,11 +99,11 @@ function config($config, $value = "NOTSET")
 	{
 		if ($num == 0) // That config doesn't exists yet. Insert it
 		{
-			query("INSERT INTO config SET config = '".db_escape($config)."', value = '".db_escape($value)."'");
+			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."', value = '".db_escape($value)."'");
 		}
 		else // That config exists. Update the existsing
 		{
-			query("UPDATE config SET value = '".db_escape($value)."' WHERE config = '".db_escape($config)."'");
+			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."' WHERE config = '".db_escape($config)."'");
 		}
 	} // End else
 
@@ -147,7 +148,7 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 		if($addComma == TRUE) $groupList .= " ,";
 		$groupList .= $rCheckGroups->groupID;
 	} // End while CheckGroups
-	
+	if($groupList == FALSE) $groupList = "''";
 	// Check what the highest ACL-right you have on event
 	if($event != 0) // Event-ID 0 is used on things that are not event-specific.
 	{
@@ -171,8 +172,8 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 	} // End if event != 0/check eventACL.
 	// Not admin, check what rights the group has
 	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
-		WHERE eventID = '".db_escape($event)."',
-		AND groupID IN ($groupList),
+		WHERE eventID = '".db_escape($event)."'
+		AND groupID IN ($groupList)
 		AND accessmodule = '".db_escape($module)."'
 		ORDER BY access = 'Admin' DESC,
 		access = 'Write' DESC,

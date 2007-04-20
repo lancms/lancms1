@@ -44,7 +44,7 @@ else {
 	$design_userinfo .= "You are a luser!";
 }
 
-if(acl_access("mojo")) $design_userinfo .= "<br>You have mojo!";
+if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
 
 // This should probably be a function that checks what events you have access to
 $qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");

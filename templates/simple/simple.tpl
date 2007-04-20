@@ -1,7 +1,8 @@
 <html>
 
 <head><title>{$title}</title>
-
+{$head}
+</head>
 <body>
 <h1>Header</h1>
 
