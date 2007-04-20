@@ -7,13 +7,16 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_users (
 	password varchar(50) default '',
 	EMail varchar(50),
 	globaladmin tinyint(1) default 0,
+	firstName varchar(40),
+	lastName varchar(40),
 	MSNAddress varchar(35),
 	ICQAddress int(12) default '',
 	postNumber int(5) default '',
 	postPlace varchar(35) default '',
 	registerTime int(11) default 0,
 	registerIP varchar(15) default '000.000.000.000',
-	EMailVerifyCode varchar(25) default ''
+	EMailVerifyCode varchar(25) default '',
+	userInfoVerified tinyint(1) default 0
 	)");
 
 

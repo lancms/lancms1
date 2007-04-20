@@ -42,3 +42,6 @@ db_query("INSERT INTO ".$sql_prefix."_events SET
 db_query("INSERT INTO ".$sql_prefix."_events SET
 	eventname = 'DemoParty 7'
 	");
+	
+config("register_firstname_required", 1);
+config("register_lastname_required", 1);

@@ -5,7 +5,12 @@ if($action == "finduser")
 {
 	$user = db_escape($_GET['username']);
 
-	$finduser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE nick OR EMail LIKE '%".$user."%'");
+	$finduser = db_query("SELECT * FROM ".$sql_prefix."_users 
+	WHERE nick LIKE '%".$user."%'
+	OR EMail LIKE '%".$user."%'
+	OR firstName LIKE '%".$user."%'
+	OR lastName LIKE '%".$user."%'
+	");
 
 	if(db_num($finduser) >= 20)
 	{
@@ -31,7 +36,7 @@ if($action == "finduser")
 			$content .= "<tr><td><a href=?module=login&action=password&userID=$row->ID>$row->nick</a></td></tr>";
 		} // End while row = db_fetch;
 
-
+		$content .= "</table>";
 
 	} // End else
 
