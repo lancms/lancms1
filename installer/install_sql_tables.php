@@ -64,6 +64,7 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_group_members (
 db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_ACLs (
 	groupID int(11),
 	eventID int(11),
+	subcategory varchar(35) default 0,
 	accessmodule varchar(25),
 	access enum('No', 'Read', 'Write', 'Admin') default 'No',
 	primary key (groupID, eventID, accessmodule)

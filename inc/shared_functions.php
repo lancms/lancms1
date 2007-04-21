@@ -115,8 +115,6 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 {
 	/* Check what rights the user has to a module or event. */
 	
-	/* subcategory is not yet in use, but Im thinking of using */
-	/* it to access to ie. accounts in economy-module */
 	global $sql_prefix;
 	global $sessioninfo;
 	if($userID == "MYSELF")
@@ -154,8 +152,9 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 	{
 		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
 			WHERE eventID = '".db_escape($event)."'
-			AND groupID IN ($groupList),
+			AND groupID IN ($groupList)
 			AND accessmodule = 'eventadmin'
+			AND subcategory = '".db_escape($subcategory)."'
 			ORDER BY access = 'Admin' DESC,
 			access = 'Write' DESC,
 			access = 'Read' DESC,
@@ -175,6 +174,7 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 		WHERE eventID = '".db_escape($event)."'
 		AND groupID IN ($groupList)
 		AND accessmodule = '".db_escape($module)."'
+		AND subcategory = '".db_escape($subcategory)."'
 		ORDER BY access = 'Admin' DESC,
 		access = 'Write' DESC,
 		access = 'Read' DESC,
