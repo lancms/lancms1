@@ -56,7 +56,23 @@ while($rEventList = db_fetch($qEventList))
 }
 
 // This should probably list something... What groups you are member of?
-$design_grouplist .= "You might be a member of something... I do not know";
+//$design_grouplist .= "You might be a member of something... I do not know";
+if($sessioninfo->userID != 0)
+{
+	// User is logged in, display what groups you are member of
+	$qListGroups = db_query("SELECT ".$sql_prefix."_groups.groupname,
+		".$sql_prefix."_group_members.groupID FROM 
+		".$sql_prefix."_group_members INNER JOIN
+		".$sql_prefix."_groups ON
+		".$sql_prefix."_group_members.groupID =
+		".$sql_prefix."_groups.ID
+		WHERE ".$sql_prefix."_group_members.userID = $sessioninfo->userID");
+	while($rListGroups = db_fetch($qListGroups))
+	{
+		$design_grouplist .= "<br><a href=?module=groups&action=listGroup&groupID=$rListGroups->groupID>";
+		$design_grouplist .= $rListGroups->groupname."</a>\n\n";
+	} // End rListGroups
+} // end if sessioninfo->userID != 0
 
 
 $smarty->assign("grouplist", $design_grouplist);

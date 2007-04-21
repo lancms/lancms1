@@ -6,6 +6,14 @@ db_query("INSERT INTO ".$sql_prefix."_users SET
 	EMail = 'admin@admin.net',
 	globaladmin = 1
 	");
+db_query("INSERT INTO ".$sql_prefix."_users SET
+	nick = 'Lak',
+	password = '21232f297a57a5a743894a0e4a801fc3',
+	EMail = 'laaknor@users.sourceforge.net',
+	globaladmin = 0,
+	firstName = 'Laaknor',
+	lastName = 'TestUser'
+	");
 
 db_query("INSERT INTO ".$sql_prefix."_events SET
 	eventname = 'DemoParty 1',
@@ -42,6 +50,24 @@ db_query("INSERT INTO ".$sql_prefix."_events SET
 db_query("INSERT INTO ".$sql_prefix."_events SET
 	eventname = 'DemoParty 7'
 	");
-	
+
+db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'Lak roxx i CS', grouppassword = 'suxx'");
+
+db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'WoW suxx0rz', grouppassword = 'y0'");
+
+db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 Admins', groupType = 'access'");
+
+db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 Crew', groupType = 'access'");
+
+db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 dassvaskere', groupType = 'access'");
+
+db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '1', userID = '2', access = 'Admin'");
+
+db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '2', userID = '2', access = 'Write'");
+
+db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '3', userID = '1', access = 'Admin'");
+
+
+
 config("register_firstname_required", 1);
 config("register_lastname_required", 1);

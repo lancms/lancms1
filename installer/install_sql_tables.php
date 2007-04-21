@@ -56,7 +56,7 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_groups (
 db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_group_members (
 	groupID int(11),
 	userID int(11),
-	admin tinyint(1) default 0,
+	access enum('No', 'Read', 'Write', 'Admin') default 'No',
 	primary key (groupID, userID)
 	)");
 
