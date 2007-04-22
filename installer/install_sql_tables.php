@@ -78,3 +78,16 @@ db_query("CREATE TABLE ".$sql_prefix."_lang (
 	translated text,
 	PRIMARY KEY  (ID)
 	)");
+	
+db_query("CREATE TABLE ".$sql_prefix."_static (
+	ID int(11) NOT NULL auto_increment,
+	eventID int(11) default 0,
+	header varchar(35),
+	page text,
+	created_by int(11) default 0,
+	created_timestamp int(10) default 0,
+	modified_by int(11) default 0,
+	modified_timestamp int(10) default 0,
+	pageViews int(15) default 0,
+	PRIMARY KEY (ID)
+	)");

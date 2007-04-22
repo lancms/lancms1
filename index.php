@@ -22,7 +22,16 @@ $design_menu .= "<br><a href=index.php?module=register>Register user</a>";
 
 if($sessioninfo->eventID > 0)
 {
-	$design_eventmenu .= "y0";
+	// Should probably have some sort of event-config for enabled modules.
+	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID'");
+	while($rListStaticPages = db_fetch($qListStaticPages))
+	{
+		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
+		{
+			$design_eventmenu .= "<br><a href=?module=static&action=viewPage&page=$rListStaticPages->ID>$rListStaticPages->header</a>";
+		} // End if acl_access to page is allowed
+		
+	} // End while db_fetch()
 }
 
 $smarty->assign("menu", $design_menu);

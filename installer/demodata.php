@@ -67,6 +67,14 @@ db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '2', userID = 
 
 db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '3', userID = '1', access = 'Admin'");
 
+db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 3, eventID = 5, accessmodule = 'eventadmin', access = 'Admin'");
+
+db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 5, page = 'Testside', header = 'SideTest'");
+
+db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 5, page = 'Crew suxx', header = 'Admins Notes'");
+
+db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 0, eventID = 5, subcategory = 1, accessmodule = 'static', access = 'Read'");
+
 
 
 config("register_firstname_required", 1);
