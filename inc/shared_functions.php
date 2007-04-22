@@ -72,10 +72,10 @@ function db_num ($q)
 
 
 ######################################################
-function config($config, $value = "NOTSET")
+function config($config, $event = 0, $value = "NOTSET")
 {
 	global $sql_prefix;
-	$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config = '".db_escape($config)."'");
+	$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config = '".db_escape($config)."' AND eventID = '".db_escape($event)."'");
 	$num = db_num($query);
 	if ($value == "NOTSET") // No value is set. We should only SELECT to find out what the value is.
 	{
@@ -99,11 +99,15 @@ function config($config, $value = "NOTSET")
 	{
 		if ($num == 0) // That config doesn't exists yet. Insert it
 		{
-			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."', value = '".db_escape($value)."'");
+			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."', 
+				value = '".db_escape($value)."',
+				eventID = '".db_escape($event)."'");
 		}
 		else // That config exists. Update the existsing
 		{
-			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."' WHERE config = '".db_escape($config)."'");
+			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."' 
+				WHERE config = '".db_escape($config)."',
+				eventID = '".db_escape($event)."'");
 		}
 	} // End else
 
@@ -188,7 +192,7 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 	$rCheckModuleRight = db_fetch($qCheckModuleRight);
 	if(!empty($rCheckModuleRight))
 		return $rCheckModuleRight->access;
-	else 
+	else // None of the above has matched. Return No access
 		return 'No';
 }
 

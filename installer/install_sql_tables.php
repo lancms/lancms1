@@ -22,7 +22,8 @@ db_query("CREATE TABLE IF NOT EXISTS ".$sql_prefix."_users (
 
 db_query('CREATE TABLE IF NOT EXISTS '.$sql_prefix.'_config (
 	config varchar(32) NOT NULL primary key,
-	value varchar(32) NOT NULL
+	value varchar(32) NOT NULL,
+	eventID int(11) default 0
 	)');
 
 

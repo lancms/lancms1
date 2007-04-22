@@ -1,0 +1,40 @@
+## Important functions:
+
+acl_access($module,$subcategory=0, $event=0,$userID=CURRENT)
+
+	returns what rights the user has to current module (or if he has eventadmin-rights).
+
+	Example:
+	acl_access("static", "", 5) -- will return what rights the user has to "all static" pages, in event 5
+	acl_access("static", 3, 0) -- will return what rights the user has to a specific page, in global event
+
+
+
+lang($string, $module = "index")
+	returns translated $string 
+
+
+db_query($query) -- mysql_query()
+
+db_fetch($query) -- mysql_fetch_object()
+
+db_num($query) -- mysql_num_rows()
+
+db_escape($string) -- mysql_real_escape_string()
+
+config($config, $event, $value = "NOTSET")
+	Reads config, event = global. If value si not set, it will return the current value, if it is set, it will set config to value.
+
+## Important IDs
+
+eventID = 0 -- global, or what is not event-specific
+groupID = 0 -- public/all users (but logged in)
+userID = 0 -- anonymous/not logged in
+
+
+
+
+## Predefined variables
+
+$sessioninfo -- users info in session-table (ie: $sessioninfo->userID)
+$_COOKIE[$osgl_cookie_cookie] -- users session-ID
