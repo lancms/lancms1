@@ -58,6 +58,8 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 	$clanname = $_POST['clanname'];
 	$clanpwd = $_POST['clanpassword'];
 	
+	$qrCheckName = db_fetch(db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_groups WHERE groupname LIKE '".db_escape($clanname)."'"));
+	
 	if(empty($clanname))
 	{
 		// Clanname is not specified
@@ -68,15 +70,13 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 		// Clan password is not specified
 	//	header("Location: ?module=groups&action=createClan&clanname=$clanname&errormsg=".lang("Please provide a password for the clan!", "groups"));
 	} // End if empty clanpwd
-	/*
-	$qrCheckName = db_fetch(db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_groups WHERE groupname LIKE '".db_escape($clanname)."'"));
-		
+	
 	elseif($qrCheckName->amount > 0)
 	{
 		// If clanname already exists
 		header("Location: ?module=groups&action=createClan&clanname&$clanname&clanpassword=$clanpwd&errormsg=".lang("Clanname is already in use. Please choose another name", "groups"));
 	} // End if clanname alreaddy exists
-	*/
+	
 	else
 	{
 		// The clan name and password is accepted. INSERT to DB
