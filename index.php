@@ -16,8 +16,11 @@ else
 }
 
 
-$design_menu = "<a href=index.php>Main page</a>";
-$design_menu .= "<br><a href=index.php?module=register>Register user</a>";
+$design_menu = "<a href=index.php>Main page</a>\n";
+$design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
+if(config("users_may_create_clan") && $sessioninfo->userID != 0)
+	$design_menu .= "<br><a href=index.php?module=groups&action=createClan>".lang("Create clan", "index")."</a>\n";
+
 
 
 if($sessioninfo->eventID > 0)

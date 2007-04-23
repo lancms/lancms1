@@ -77,5 +77,6 @@ db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 0, eventID = 5, subcate
 
 
 
-config("register_firstname_required", 1);
-config("register_lastname_required", 1);
+config("register_firstname_required", "" , 1);
+config("register_lastname_required", "" , 1);
+config("users_may_create_clan", "" , 1);
