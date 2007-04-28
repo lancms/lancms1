@@ -37,8 +37,6 @@ if($sessioninfo->eventID > 0)
 	} // End while db_fetch()
 }
 
-$smarty->assign("menu", $design_menu);
-
 
 if($sessioninfo->userID == 0)
 {
@@ -54,6 +52,7 @@ if($sessioninfo->userID == 0)
 else {
 	// User actually is logged in!
 	$design_userinfo .= "You are a luser!";
+	$design_menu .= "<br><a href=?module=login&action=logout>".lang("Logout", "index")."</a>\n";
 }
 
 if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
@@ -91,6 +90,7 @@ $smarty->assign("grouplist", $design_grouplist);
 $smarty->assign("eventlist", $design_eventlist);
 $smarty->assign("userinfo", $design_userinfo);
 $smarty->assign("eventmenu", $design_eventmenu);
+$smarty->assign("menu", $design_menu);
 
 $smarty->assign("content", $content);
 $smarty->assign("title", $design_title);
