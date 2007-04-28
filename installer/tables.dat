@@ -1,0 +1,24 @@
+# tables.dat
+# This files holds all SQL tables, and SHALL be updated. If any changes are to be made to the database,
+# please do them in this file, and then run the database installer/update utility to change the database.
+
+TABLE [prefix]_users
+{
+#	NAME				TYPE			KEY		NULL	DEFAULT				EXTRA
+	ID,					int(11), 		PRI, 	   ,	  ,					auto_increment
+	nick,				varchar(35),	   ,	   ,	NOT NULL,	
+	password, 			varchar(50),	   ,	YES,	  ,	
+	EMail, 				varchar(50),	   ,	YES,	  ,	
+	globaladmin, 		tinyint(1),		   ,	YES,	 0,	
+	firstName, 			varchar(40),	   ,	YES,	  ,	
+	lastName, 			varchar(40),	   ,	YES,	  ,	
+	MSNAddress, 		varchar(35),	   ,	YES,	  ,	
+	ICQAddress, 		int(12),		   ,	YES,	  ,	
+	postNumber, 		int(5),			   ,	YES,	  ,	
+	postPlace, 			varchar(35),	   ,	YES,	  ,	
+	registerTime, 		int(11),		   ,	YES,	 0,	
+	registerIP, 		varchar(15),	   ,	YES,	000.000.000.000,
+	EMailVerifyCode, 	varchar(25),	   ,	YES,	  ,	
+	userInfoVerified, 	tinyint(1),		   ,	YES,	 0,	
+}
+
