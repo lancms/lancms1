@@ -19,7 +19,7 @@ else
 $design_menu = "<a href=index.php>Main page</a>\n";
 $design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
 if(config("users_may_create_clan") && $sessioninfo->userID != 0)
-	$design_menu .= "<br><a href=index.php?module=groups&action=createClan>".lang("Create clan", "index")."</a>\n";
+	$design_menu .= "<br><a href=index.php?module=groups&amp;action=createClan>".lang("Create clan", "index")."</a>\n";
 
 
 
@@ -31,7 +31,7 @@ if($sessioninfo->eventID > 0)
 	{
 		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
 		{
-			$design_eventmenu .= "<br><a href=?module=static&action=viewPage&page=$rListStaticPages->ID>$rListStaticPages->header</a>";
+			$design_eventmenu .= "<br><a href=?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID>$rListStaticPages->header</a>";
 		} // End if acl_access to page is allowed
 		
 	} // End while db_fetch()
@@ -52,7 +52,7 @@ if($sessioninfo->userID == 0)
 else {
 	// User actually is logged in!
 	$design_userinfo .= "You are a luser!";
-	$design_menu .= "<br><a href=?module=login&action=logout>".lang("Logout", "index")."</a>\n";
+	$design_menu .= "<br><a href=?module=login&amp;action=logout>".lang("Logout", "index")."</a>\n";
 }
 
 if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
@@ -61,7 +61,7 @@ if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo
 $qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");
 while($rEventList = db_fetch($qEventList))
 {
-	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<br><a href=?module=events&action=setCurrentEvent&eventID=$rEventList->ID>
+	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<br><a href=?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID>
 	$rEventList->eventname</a>";
 	else $design_eventlist .= "<br>$rEventList->eventname\n";
 }
@@ -80,7 +80,7 @@ if($sessioninfo->userID != 0)
 		WHERE ".$sql_prefix."_group_members.userID = $sessioninfo->userID");
 	while($rListGroups = db_fetch($qListGroups))
 	{
-		$design_grouplist .= "<br><a href=?module=groups&action=listGroup&groupID=$rListGroups->groupID>";
+		$design_grouplist .= "<br><a href=?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->groupID>";
 		$design_grouplist .= $rListGroups->groupname."</a>\n\n";
 	} // End rListGroups
 } // end if sessioninfo->userID != 0

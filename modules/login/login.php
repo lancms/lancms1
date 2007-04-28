@@ -33,7 +33,7 @@ if($action == "finduser")
 		$content .= "<table>";
 
 		while($row = db_fetch($finduser)) {
-			$content .= "<tr><td><a href=?module=login&action=password&userID=$row->ID>$row->nick</a></td></tr>";
+			$content .= "<tr><td><a href=?module=login&amp;action=password&amp;userID=$row->ID>$row->nick</a></td></tr>";
 		} // End while row = db_fetch;
 
 		$content .= "</table>";
@@ -55,7 +55,7 @@ elseif($action == "password" && !empty($_GET['userID']))
 	$userinfo = db_fetch($get_user);
 
 	$content .= "Logging in as: ".$userinfo->nick."<br>\n";
-	$content .= "<form method=POST action=?module=login&action=login&userID=$userID>\n";
+	$content .= "<form method=POST action=?module=login&amp;action=login&amp;userID=$userID>\n";
 	$content .= "<input type=password name=password><br>\n";
 	$content .= "<input type=submit value=Login>\n";
 }

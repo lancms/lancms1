@@ -77,7 +77,7 @@ if(!isset($action) || $hide_register == FALSE)
 	
 	if($register_invalid) echo "<font color=red>$register_invalid</font><br><br>";
 
-	$content .= "<form method=POST action=?module=register&action=register>\n";
+	$content .= "<form method=POST action=?module=register&amp;action=register>\n";
 	$content .= "<input type=text name=username value='$username'> ".lang("Username", "register");
 	$content .= "<br><input type=password name=pass1 value='$pass1'> ".lang("Password", "register");
 	$content .= "<br><input type=password name=pass2 value='$pass2'> ".lang("Password again", "register");
@@ -89,6 +89,7 @@ if(!isset($action) || $hide_register == FALSE)
 		$content .= "<br><input type=text name=lastName value='$lastName'> ".
 		lang("Last name", "register");
 	$content .= "<br><input type=submit value='".lang("Create user", "register")."'>";
+	$content .= "</form>\n";
 		
 	// Here we should do config()-checks to see if we should ask the user about these stuff...
 	if(config("register_ask_postnumber") && config("register_postnumber_AJAX")) 

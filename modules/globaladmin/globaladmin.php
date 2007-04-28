@@ -7,7 +7,7 @@ if(acl_access("globaladmin", "", 0) != "Admin") die("You do not have propper rig
 if(!isset($action))
 {
 	/* List of global admin-options */
-	$content .= "<br><a href=?module=globaladmin&action=addEvent>".lang("Add new event", "globaladmin")."</a>";
+	$content .= "<br><a href=?module=globaladmin&amp;action=addEvent>".lang("Add new event", "globaladmin")."</a>";
 	
 } // End if !isset($action)
 
@@ -18,7 +18,7 @@ elseif($action == "addEvent")
 	
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
 	
-	$content .= "<form method=POST action=?module=globaladmin&action=doAddEvent>\n";
+	$content .= "<form method=POST action=?module=globaladmin&amp;action=doAddEvent>\n";
 	$content .= "<input type=text name=eventname value='".$_GET['eventname']."'>\n".lang("Name of event", "globaladmin");
 	$content .= "<br><input type=submit value='".lang("Add event", "globaladmin")."'>";
 	

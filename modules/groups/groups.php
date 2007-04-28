@@ -45,10 +45,11 @@ elseif($action == "createClan" && config("users_may_create_clan") && $sessioninf
 {
 	// Form to display to create clans (global groups, groupType = clan)
 	if(!empty($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
-	$content .= "<form method=POST action=index.php?module=groups&action=doCreateClan>\n";
+	$content .= "<form method=POST action=index.php?module=groups&amp;action=doCreateClan>\n";
 	$content .= "<input type=text name=clanname value='".$_GET['clanname']."'> ".lang("Clan name", "groups");
 	$content .= "<br><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
 	$content .= "<br><input type=submit value='".lang("Create clan", "groups")."'>\n";
+	$content .= "</form>\n";
 	
 	
 } // end if action == createClan

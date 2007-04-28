@@ -9,7 +9,7 @@ if(acl_access("eventadmin", "", $eventID) != "Admin")
 if(!isset($action))
 {
 	// No action specified. List all eventadmin tasks
-	$content .= "<br><a href=?module=eventadmin&action=groupACLs>".lang("Accessrights", "eventadmin")."</a>\n";
+	$content .= "<br><a href=?module=eventadmin&amp;action=groupACLs>".lang("Accessrights", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
