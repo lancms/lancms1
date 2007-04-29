@@ -56,6 +56,7 @@ TABLE [prefix]_groups
 {
 #	NAME			TYPE			KEY	NULL	DEFAULT			EXTRA
 	ID,			int(11),		PRI,	,	,			auto_increment
+	eventID,		int(11),		,	,	0,
 	groupname,		varchar(40),		,	,	,
 	grouppassword,		varchar(50),		,	,	,
 	createdByUser,		int(11),		,	,	0,
@@ -78,7 +79,7 @@ TABLE [prefix]_ACLs
 	eventID,	int(11),				PRI,	,	,
 	subcategory,	int(11),				PRI,	,	0,
 	accessmodule,	varchar(35),				,	,	,
-	access,		enum('No', 'Read', 'Write', 'Admin'),	,	,	,
+	access,		enum('No', 'Read', 'Write', 'Admin'),	,	,	No,
 }
 
 TABLE [prefix]_lang
