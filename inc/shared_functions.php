@@ -241,3 +241,33 @@ function lang($string, $module = "index")
 		}
 	}
 }
+
+
+######################################################
+
+function option_rights($default = 'No')
+{
+	/* This function returns <options> for use where you select what rights a group shall have */
+	// Display No-rights
+	$return .= "<option value='No'";
+	if($default == 'No') $return .= ' selected';
+	$return .= ">".lang("No", "functions")."</option>\n";
+	
+	// Display Read-rights
+	$return .= "<option value='Read'";
+	if($default == 'Read') $return .= ' selected';
+	$return .= ">".lang("Read", "functions")."</option>\n";
+
+	// Display Write-rights
+	$return .= "<option value='Write'";
+	if($default == 'Write') $return .= ' selected';
+	$return .= ">".lang("Write", "functions")."</option>\n";
+
+	// Display Admin-rights
+	$return .= "<option value='Admin'";
+	if($default == 'Admin') $return .= ' selected';
+	$return .= ">".lang("Admin", "functions")."</option>\n";
+	
+	return $return;
+} // End function option_rights
+			
