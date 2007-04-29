@@ -4,9 +4,16 @@ $action = $_GET['action'];
 $groupID = $_GET['groupID'];
 
 
-if($action == "listGroup" && !empty($groupID))
+
+
+if(($action == 'listGroup') || ($action == 'addGroupMember') && !empty($groupID))
 {
 	/* this action list the "group main page" */
+	// FIXME: ACL...
+	$searchUser = $_POST['searchUser'];
+	
+	// Display errormsg if it is set
+	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
 	
 	// First, check what info we have about this group
 	$qShowGroupInfo = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = ".db_escape($groupID));
@@ -37,6 +44,44 @@ if($action == "listGroup" && !empty($groupID))
 	} // End while $rListMembers
 	
 	$content .= "</table>";
+	
+	$content .= "<form method=POST action=?module=groups&amp;action=addGroupMember&amp;groupID=$groupID>\n";
+	$content .= "<input type=text name=searchUser value='".$searchUser."'>";
+	$content .= "<input type=submit value='".lang("Search user", "groups")."'>";
+	$content .= "</form>";
+	
+	// If we're searching for a new user; display it
+	if($action == "addGroupMember")
+	{
+		
+		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users 
+			WHERE ID LIKE '%".$searchUser."%'
+			OR nick LIKE '%".$searchUser."%'
+			OR EMail LIKE '%".$searchUser."%'
+			OR firstName LIKE '%".$searchUser."%'
+			OR lastName LIKE '%".$searchUser."%'
+		");
+		// Check how many results we found, give error if to few or to many
+		if(db_num($qFindUser) == 0)
+			$content .= lang("No users found", "groups");
+		elseif(db_num($qFindUser) > 20)
+			$content .= lang("Too many users found, please specify", "groups");
+		else // We probably got between one and 20 results
+		{
+			$content .= '<br><table>';
+			while($rFindUser = db_fetch($qFindUser))
+			{
+				$content .= "<tr><td>";
+				$content .= "<a href=?module=groups&amp;action=doAddMember&amp;userID=$rFindUser->ID&groupID=$groupID>";
+				$content .= $rFindUser->firstName." ".$rFindUser->lastName." (".$rFindUser->nick.")";
+				$content .= "</td></tr>";
+			} // End while rFindUser
+			
+			$content .= "</table>";
+		} // End else
+		
+	} // End action == addGroupMember
+		
 	
 } // End if action = ListGroup
 
@@ -99,3 +144,27 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 		header("Location: ?module=groups&action=listGroups&groupID=$rLastGroupID->ID");
 	} // End else (clan name and pwd accepted)
 } // End elseif action == doCreateClan
+
+
+elseif($action == "doAddMember" && isset($_GET['userID']))
+{
+	// FIXME: ACL....
+	$userID = $_GET['userID'];
+	
+	$qCheckUser = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_group_members 
+		WHERE userID = '".db_escape($userID)."'
+		AND groupID = ".db_escape($groupID));
+	$rCheckUser = db_fetch($qCheckUser);
+	
+	if($rCheckUser->count != 0)
+		header("Location: ?module=groups&action=addGroupMember&groupID=$groupID&errormsg=".lang("User already member of group", "groups"));
+	else
+	{
+		db_query("INSERT INTO ".$sql_prefix."_group_members SET
+			groupID = ".db_escape($groupID).",
+			userID = ".db_escape($userID).",
+			access = 'Read'");
+		header("Location: ?module=groups&action=listGroup&groupID=$groupID");
+	} // End else
+	
+} // end action = doAddGroupMember
