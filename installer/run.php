@@ -17,7 +17,7 @@ if(!isset($_GET["demodata"]))
 	$tblq = db_query("SHOW TABLES");
 	while($table = mysql_fetch_array($tblq))
 	{
-		$db_tables[$table[0]] = new table($table[0], true);
+		$db_tables[strtolower($table[0])] = new table($table[0], true);
 	}
 	
 	
@@ -79,13 +79,13 @@ if(!isset($_GET["demodata"]))
 			$curtbl->add_column(trim($col[0]), trim($col[1]), trim($col[2]), trim($col[3]), trim($col[4]), trim($col[5]));
 		}
 	}
-	
+
 	foreach($file_tables as $key => $file_tbl)
 	{
-		if(array_key_exists($key, $db_tables))
+		if(array_key_exists(strtolower($key), $db_tables))
 		{
 			// Table exists in db
-			$db_tables[$key]->cmp($file_tbl);
+			$db_tables[strtolower($key)]->cmp($file_tbl);
 		}
 		else
 		{
@@ -96,9 +96,9 @@ if(!isset($_GET["demodata"]))
 	
 	foreach($db_tables as $key => $dbtbl)
 	{
-		if(!array_key_exists($key, $file_tables))
+		if(!array_key_exists($dbtbl->name, $file_tables))
 		{
-			db_query("DROP TABLE `$key`");
+			db_query("DROP TABLE `".$dbtbl->name."`");
 		}
 	}
 ?>
