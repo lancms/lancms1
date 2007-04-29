@@ -22,3 +22,85 @@ TABLE [prefix]_users
 	userInfoVerified, 	tinyint(1),		   ,	YES,	 0,	
 }
 
+TABLE [prefix]_config
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
+	config,		varchar(32), 	PRI, 	,	,		
+	value,		varchar(32),	,	NOT NULL,
+	eventID,	int(11),	,	,	0,
+}
+
+
+TABLE [prefix]_session
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
+	sID,		varchar(35),	PRI,	,	,
+	userIP,		varchar(15),	,	,	000.000.000.000,
+	userID,		int(11),	,	,	0,
+	eventID,	int(11),	,	,	0,
+	lastVisit,	int(11),		,	,	0,
+}
+
+TABLE [prefix]_events
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
+	ID,		int(11),	PRI,	,	,			auto_increment
+	eventname,	varchar(35),	,	,	,
+	createdByTime,	int(11),	,	,	0,
+	createdByUser,	int(11),	,	,	0,
+	eventClosed,	tinyint(1),	,	,	0,
+	eventPublic,	tinyint(1),	,	,	0,
+}
+
+TABLE [prefix]_groups
+{
+#	NAME			TYPE			KEY	NULL	DEFAULT			EXTRA
+	ID,			int(11),		PRI,	,	,			auto_increment
+	groupname,		varchar(40),		,	,	,
+	grouppassword,		varchar(50),		,	,	,
+	createdByUser,		int(11),		,	,	0,
+	createdTimestamp,	int(10),		,	,	0,
+	groupType,		enum('access', 'clan'),	,	,	clan,
+}
+
+TABLE [prefix]_group_members
+{
+#	NAME		TYPE					KEY	NULL	DEFAULT			EXTRA
+	groupID,	int(11),				PRI,	,	,
+	userID,		int(11),				PRI,	,	,
+	access,		enum('No', 'Read', 'Write', 'Admin'),	,	,	No,
+}
+
+TABLE [prefix]_ACLs
+{
+#	NAME		TYPE					KEY	NULL	DEFAULT			EXTRA
+	groupID,	int(11),				PRI,	,	,
+	eventID,	int(11),				PRI,	,	,
+	subcategory,	int(11),				PRI,	,	0,
+	accessmodule,	varchar(35),				,	,	,
+	access,		enum('No', 'Read', 'Write', 'Admin'),	,	,	,
+}
+
+TABLE [prefix]_lang
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
+	ID,		int(11),	PRI,	,	,			auto_increment
+	string,		text,		,	,	,
+	language,	varchar(30),	,	,	english,
+	module,		varchar(30),	,	,	,
+	translated,	text,		,	,	,
+}
+
+TABLE [prefix]_static
+{
+#	NAME			TYPE		KEY	NULL	DEFAULT			EXTRA
+	ID,			int(11),	PRI,	,	,			auto_increment
+	eventID,		int(11),	,	,	0,
+	header,			varchar(35),	,	,	,
+	page,			text,		,	,	,
+	createdByUser,		int(11),	,	,	0,
+	createdTimestamp,	int(10),	,	,	0,
+	modifiedByUser,		int(11),	,	,	0,
+	modifiedTimestamp,	int(10),	,	,	0,
+	pageViews,		int(15),	,	,	0,
+}
