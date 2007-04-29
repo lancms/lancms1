@@ -97,6 +97,8 @@ class table
 	{
 		$query = "CREATE TABLE ".$this->name." (";
 		$rawquery = array();
+		$keys["pri"] = array();
+		$keys["uni"] = array();
 		
 		foreach($this->columns as $index => $col)
 		{			
@@ -105,9 +107,9 @@ class table
 			if($col->key)
 			{
 				if(!strcasecmp($col->key, "PRI"))
-					$primary_key = $col->name;
+					$keys["pri"][] = $col->name;
 				if(!strcasecmp($col->key, "UNI"))
-					$unique_key = $col->name;
+					$keys["uni"][] = $col->name;
 			}
 		}
 		
@@ -119,10 +121,31 @@ class table
 				$query .= ",";
 		}
 		
-		if(isset($primary_key))
-			$query .= ", PRIMARY KEY($primary_key)";
-		if(isset($unique_key))
-			$query .= ", UNIQUE KEY($unique_key)";
+		if($numkeys = count($keys["pri"]))
+		{
+			$query .= ", PRIMARY KEY(";
+			for($i=0; $i < $numkeys; $i++)
+			{
+				$query .= $keys["pri"][$i];
+				
+				if($i < $numkeys - 1)
+					$query .= ", ";
+			}
+			$query .= ")";
+		}
+		if($numkeys = count($keys["uni"]))
+		{
+			$query .= ", UNIQUE KEY(";
+			for($i=0; $i < $numkeys; $i++)
+			{
+				$query .= $keys["uni"][$i];
+				
+				if($i < $numkeys - 1)
+					$query .= ", ";
+			}
+			$query .= ")";
+		}
+		
 		
 		$query .= ")";
 		
