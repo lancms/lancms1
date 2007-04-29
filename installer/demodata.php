@@ -67,7 +67,7 @@ db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '2', userID = 
 
 db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '3', userID = '1', access = 'Admin'");
 
-db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 3, eventID = 5, accessmodule = 'eventadmin', access = 'Admin'");
+db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 3, eventID = 6, accessmodule = 'eventadmin', access = 'Admin'");
 
 db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 5, page = 'Testside', header = 'SideTest'");
 

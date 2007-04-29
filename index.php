@@ -34,7 +34,19 @@ if($sessioninfo->eventID > 0)
 			$design_eventmenu .= "<br><a href=?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID>$rListStaticPages->header</a>";
 		} // End if acl_access to page is allowed
 		
-	} // End while db_fetch()
+	} // End while db_fetch(staticPages)
+	
+	
+	
+	
+	
+	
+	// User has eventadmin-rights?
+	$eventadmin = acl_access("eventadmin", "", $sessioninfo->eventID);
+	if($eventadmin == "Admin" || $eventadmin == "Write") 
+		$design_eventmenu .= "<br><a href=?module=eventadmin>".lang("Event Admin", "index")."</a>";
+	
+	
 }
 
 
@@ -55,7 +67,7 @@ else {
 	$design_menu .= "<br><a href=?module=login&amp;action=logout>".lang("Logout", "index")."</a>\n";
 }
 
-if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
+#if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
 
 // This should probably be a function that checks what events you have access to
 $qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");
