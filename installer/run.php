@@ -53,6 +53,32 @@ foreach($file as $line)
 		}
 		
 		$col = preg_split("/([,]+)/", $line);
+		
+		if(strstr($col[1], "(") && !strstr($col[1], ")"))
+		{
+			$i = 1;
+			$newcol = $col[1];
+			
+			while(1)
+			{
+				$newcol .= ",".$col[1+$i];
+				$i++;
+				if(strstr($newcol, ")"))
+					break;
+				
+				
+			}
+			
+			$col[1] = $newcol;
+			$col[2] = $col[2+$i];
+			$col[3] = $col[3+$i];
+			$col[4] = $col[4+$i];
+			$col[5] = $col[5+$i];
+			echo "<pre>";
+			print_r($col);
+			echo "</pre>";
+		}
+			
 		$curtbl->add_column(trim($col[0]), trim($col[1]), trim($col[2]), trim($col[3]), trim($col[4]), trim($col[5]));
 	}
 }
