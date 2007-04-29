@@ -64,9 +64,11 @@ if(!isset($_GET["demodata"]))
 				while(1)
 				{
 					$newcol .= ",".$col[1+$i];
-					$i++;
+					
 					if(strstr($newcol, ")"))
-						break;	
+						break;
+						
+					$i++;
 				}
 				
 				$col[1] = $newcol;
@@ -74,6 +76,8 @@ if(!isset($_GET["demodata"]))
 				$col[3] = $col[3+$i];
 				$col[4] = $col[4+$i];
 				$col[5] = $col[5+$i];
+				
+				//echo "Name: ".$col[0]." Type: ".$col[1]." Key: ".$col[2]." Null: ".$col[3]." Default: ".$col[4]." Extra: ".$col[5]."<br>";
 			}
 				
 			$curtbl->add_column(trim($col[0]), trim($col[1]), trim($col[2]), trim($col[3]), trim($col[4]), trim($col[5]));

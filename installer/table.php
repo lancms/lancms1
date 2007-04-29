@@ -149,6 +149,8 @@ class table
 		
 		$query .= ")";
 		
+		echo $query;
+		
 		if(count($rawquery))
 			db_query($query);
 	}
@@ -225,8 +227,11 @@ class table_column
 			$query .= " UNIQUE KEY";
 		*/
 		
-		if($this->default && !empty($this->default))
+		if(($this->default && !empty($this->default)) || (is_numeric($this->default) && $this->default == 0))
+		{
+			//echo $this->default."<br>";
 			$query .= " DEFAULT '".$this->default."'";
+		}
 		
 		if($this->extra && !empty($this->extra))
 			$query .= " ".$this->extra;
