@@ -40,7 +40,7 @@ if(!isset($_GET["demodata"]))
 				$tblname = $tblname[1];
 				$pr_tbl = str_replace("[prefix]", $sql_prefix, $tblname);
 				$curtbl = & new table($pr_tbl);
-				$file_tables[$pr_tbl] = &$curtbl;
+				$file_tables[strtolower($pr_tbl)] = &$curtbl;
 				continue;
 			}
 		}
@@ -96,7 +96,7 @@ if(!isset($_GET["demodata"]))
 	
 	foreach($db_tables as $key => $dbtbl)
 	{
-		if(!array_key_exists($dbtbl->name, $file_tables))
+		if(!array_key_exists(strtolower($dbtbl->name), $file_tables))
 		{
 			db_query("DROP TABLE `".$dbtbl->name."`");
 		}
