@@ -13,6 +13,7 @@ if(!isset($action))
 {
 	// No action specified. List all eventadmin tasks
 	$content .= "<br><a href=?module=eventadmin&amp;action=groupACLs>".lang("Accessrights", "eventadmin")."</a>\n";
+	$content .= "<br><a href=?module=eventadmin&amp;action=groupManagement>".lang("Group Management", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
@@ -40,7 +41,7 @@ elseif($action == "groupACLs" || $action == "changeGroupAccess")
 		// If changeGroupAccess is set, show select to change access
 		if($action == 'changeGroupAccess' && $_GET['groupID'] == $rListGroups->groupID) 
 		{
-			$content .= "<td><form method=POST action=?module=eventadmin&action=doChangeGroupAccess&groupID=".$_GET['groupID'].">\n";
+			$content .= "<td><form method=POST action=?module=eventadmin&amp;action=doChangeGroupAccess&amp;groupID=".$_GET['groupID'].">\n";
 			$content .= "<select name=groupRights>\n";
 			$content .= option_rights($rListGroups->access);
 			$content .= "</select><input type=submit value='".lang("Save", "eventadmin")."'>";
@@ -48,7 +49,7 @@ elseif($action == "groupACLs" || $action == "changeGroupAccess")
 		} // End if action != changeGroupAccess
 		else
 		{
-			$content .= "<td><a href=?module=eventadmin&action=changeGroupAccess&groupID=$rListGroups->groupID>";
+			$content .= "<td><a href=?module=eventadmin&amp;action=changeGroupAccess&amp;groupID=$rListGroups->groupID>";
 			$content .= lang($rListGroups->access, "eventadmin")."</a></td>";
 			
 		} // End else
@@ -57,7 +58,7 @@ elseif($action == "groupACLs" || $action == "changeGroupAccess")
 	
 	$content .= "</table>";
 	
-	$content .= "<form method=POST action=?module=eventadmin&action=addGroupACL>\n";
+	$content .= "<form method=POST action=?module=eventadmin&amp;action=addGroupACL>\n";
 	$content .= "<select name=groupID>\n";
 	$qNoAccessGroups = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE eventID IN (0, $eventID) 
 		AND groupType = 'access' ORDER BY groupname ASC");
@@ -83,7 +84,7 @@ elseif($action == "groupACLs" || $action == "changeGroupAccess")
 		{
 			
 			// group does not have eventadmin yet, list it
-			$content .= "ELSE $rNoAccessGroups->groupname ! \n";
+			#$content .= "ELSE $rNoAccessGroups->groupname ! \n";
 			$content .= "<option value=$rNoAccessGroups->ID>$rNoAccessGroups->groupname</option>\n";
 		} // End else
 			
@@ -144,3 +145,60 @@ elseif($action == "doChangeGroupAccess" && isset($_GET['groupID']))
 		AND eventID = '".$eventID."'");
 	header("Location: ?module=eventadmin&action=groupACLs");
 } // End action = doChangeGroupAccess
+
+elseif($action == "groupManagement")
+{
+	// Action to manage groups
+	$qListGroups = db_query("SELECT * FROM ".$sql_prefix."_groups
+		WHERE eventID = '$eventID' ORDER BY groupname ASC");
+	// If error is set; display error.
+	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br><br>\n";
+	
+	$content .= '<table>';
+	while($rListGroups = db_fetch($qListGroups))
+	{
+		// list up all groups associated with this event
+		$content .= "<tr><td><a href=?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID>";
+		$content .= $rListGroups->groupname."</a></td></tr>";
+	} // End while
+	
+	$content .= '</table>';
+	
+	// Display form to add new groups
+	$content .= "<form method=POST action=?module=eventadmin&amp;action=addGroup>\n";
+	$content .= "<input type=text name='groupname'>\n";
+	$content .= "<input type=submit value='".lang("Add group", "eventadmin")."'>";
+	$content .= "</form>";
+} // End action = groupManagement
+
+
+elseif($action == "addGroup" && !empty($_POST['groupname']))
+{
+	// Action to do add of groups
+	$groupname = $_POST['groupname'];
+	
+	if(acl_access("eventadmin", "", $eventID) != 'Admin')
+		die("Sorry, you have to be eventadmin to create event groups");
+	
+	$qCheckGroupName = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_groups
+		WHERE groupname LIKE '".db_escape($groupname)."'");
+	$rCheckGroupName = db_fetch($qCheckGroupName);
+	
+	if($rCheckGroupName->count == 0)
+	{
+		// Name does not exist. Add the group
+		db_query("INSERT INTO ".$sql_prefix."_groups SET
+			eventID = '$eventID',
+			groupname = '".db_escape($groupname)."',
+			createdByUser = '$sessioninfo->userID',
+			createdTimestamp = '".time()."',
+			groupType = 'access'");
+		header("Location: ?module=eventadmin&action=groupManagement");
+	} // End if count = 0
+	else
+	{
+		// Name exists, fail back to groupList
+		header("Location: ?module=eventadmin&action=groupManagement&errormsg=".lang("Group name already exists", "eventadmin"));
+	} // end else
+	
+} // end if action == addGroup
