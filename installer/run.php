@@ -6,7 +6,16 @@ require('../inc/shared_functions.php');
 
 mysql_connect($sql_host, $sql_user, $sql_pass);
 mysql_select_db($sql_base);
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
 
+<head>
+<title>OSGL2 Installer / Updater</title>
+<link rel="stylesheet" type="text/css" href="installer.css">
+</head>
+<body>
+<?php
 if(!isset($_GET["demodata"]))
 {
 	$db_file = "tables.dat";
@@ -106,15 +115,20 @@ if(!isset($_GET["demodata"]))
 		}
 	}
 ?>
+
 <h1>Finito!</h1>
+<div id="content">
 <p>Your database should now be up to date with the current codebase.</p>
-<p>Would you like adding some demo data to your database? <br><a href="run.php?demodata=1">Yes, please</a></p>
+<p>Would you like to add some demo data to your database? <br><a href="run.php?demodata=1">Yes, please</a></p>
+</div>
 <?php
 }
 else
 {
 	include("demodata.php");
 	
-	echo "<h1>Like that!</h1>\n<p>Your database should now be filled with sweet demo data</p>\n";
+	echo "<h1>Like that!</h1>\n<div id='content'><p>Your database should now be filled with sweet demo data</p></div>\n";
 }
 ?>
+</body>
+</html>

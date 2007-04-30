@@ -149,8 +149,6 @@ class table
 		
 		$query .= ")";
 		
-		echo $query;
-		
 		if(count($rawquery))
 			db_query($query);
 	}

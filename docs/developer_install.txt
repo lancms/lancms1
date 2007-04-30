@@ -11,8 +11,8 @@ GRANT ALL PRIVILEGES ON OSGL.* TO 'OSGL'@'localhost' IDENTIFIED BY 'ComPuterPart
 
 2)
 In webbrowser:
-adds or resets the DB
-http://xxx/installer/devel_recreate_db.php 
+installs or updates the database
+http://xxx/installer/
 
-
+3)
 Default username/pwd to login: admin/admin
