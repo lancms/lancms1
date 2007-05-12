@@ -64,13 +64,13 @@ db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'Lak roxx i CS', gr
 
 db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'WoW suxx0rz', grouppassword = 'y0'");
 
-db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 Admins', groupType = 'access'");
+db_query("INSERT INTO ".$sql_prefix."_groups SET eventID = 7, groupname = 'DemoParty 6 Admins', groupType = 'access'");
 
-db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 Crew', groupType = 'access'");
+db_query("INSERT INTO ".$sql_prefix."_groups SET eventID = 7, groupname = 'DemoParty 6 Crew', groupType = 'access'");
 
-db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 6 dassvaskere', groupType = 'access'");
+db_query("INSERT INTO ".$sql_prefix."_groups SET eventID = 7, groupname = 'DemoParty 6 dassvaskere', groupType = 'access'");
 
-db_query("INSERT INTO ".$sql_prefix."_groups SET groupname = 'DemoParty 5 Admins', groupType = 'access'");
+db_query("INSERT INTO ".$sql_prefix."_groups SET eventID = 6, groupname = 'DemoParty 5 Admins', groupType = 'access'");
 
 db_query("INSERT INTO ".$sql_prefix."_group_members SET groupID = '2', userID = '3', access = 'Admin'");
 
