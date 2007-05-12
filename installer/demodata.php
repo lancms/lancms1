@@ -86,9 +86,11 @@ db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 4, eventID = 7, accessm
 
 db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 6, page = 'Testside', header = 'SideTest'");
 
-db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 6, page = 'Crew suxx', header = 'Admins Notes'");
+db_query("INSERT INTO ".$sql_prefix."_static SET eventID = 7, page = 'Crew suxx', header = 'Admins Notes'");
 
-db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 1, eventID = 6, subcategory = 1, accessmodule = 'static', access = 'Read'");
+db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 7, eventID = 6, subcategory = 1, accessmodule = 'static', access = 'Read'");
+
+db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 4, eventID = 7, subcategory = 2, accessmodule = 'static', access = 'Read'");
 
 
 

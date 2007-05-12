@@ -90,7 +90,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 elseif($action == "logout")
 {
 	db_query("UPDATE ".$sql_prefix."_session 
-		SET userID = 0 
+		SET userID = 1 
 		WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
 	// FIXME: Should probably return to referrer.
 	header("Location: index.php");

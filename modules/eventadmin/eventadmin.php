@@ -12,8 +12,12 @@ if($acl_eventadmin == 'No')
 if(!isset($action))
 {
 	// No action specified. List all eventadmin tasks
-	$content .= "<br><a href=?module=eventadmin&amp;action=groupACLs>".lang("Accessrights", "eventadmin")."</a>\n";
-	$content .= "<br><a href=?module=eventadmin&amp;action=groupManagement>".lang("Group Management", "eventadmin")."</a>\n";
+	if(acl_access("eventadmin", "", $eventID) != 'No')
+		$content .= "<br><a href=?module=eventadmin&amp;action=groupACLs>".lang("Accessrights", "eventadmin")."</a>\n";
+	if(acl_access("eventadmin", "", $sessioninfo->eventID) != 'No')
+		$content .= "<br><a href=?module=eventadmin&amp;action=groupManagement>".lang("Group Management", "eventadmin")."</a>\n";
+	if(acl_access("static", "", $eventID) != 'No')
+		$content .= "<br><a href=?module=static&amp;action=listEventPages>".lang("Edit static pages", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
