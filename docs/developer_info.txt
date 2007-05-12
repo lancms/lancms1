@@ -38,3 +38,43 @@ userID = 0 -- anonymous/not logged in
 
 $sessioninfo -- users info in session-table (ie: $sessioninfo->userID)
 $_COOKIE[$osgl_cookie_cookie] -- users session-ID
+
+
+
+## ACLs
+
+### Global ACLs (eventID = 0)
+
+* globaladmin (set in users-table)
+-- Access to everything. Just returns admin on whatever you try to do
+* useradmin (read, write, admin)
+ -- Read is not used!
+ -- Write (SecCrew -- access to change users basic info)
+ -- Admin (Change all users info)
+* eventadmin
+-- Global on event. All rights in this event, and eventgroups
+* Groupadmin
+-- Info/party/gamecrew, access to change global groups (clans)
+
+
+### Module-specific ACLs (eventID != 0)
+
+* wannabe
+-- Read (may read applications)
+-- Write (may comment on applications
+-- Admin (may create new questions)
+* static (subcategory)
+-- Subcategory contains ID of static page if it is only one page.
+-- Read (May read page)
+-- Write (may write on page)
+-- Admin (may create new (if subcategory = 0), and change ACL on page(s)
+* economy (subcategory)
+-- subcategory is 0 for every account, or just specific accounts
+-- Read (read access)
+-- Write (may add new post to accounts)
+-- Admin (may add new accounts)
+* economy_user (subcategory)
+-- Subcategory shows which accounts the user may add posts for
+-- Read (no effect)
+-- Write (may add request for new posts)
+-- Admin (may approve posts)
