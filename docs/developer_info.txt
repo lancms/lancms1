@@ -27,9 +27,9 @@ config($config, $event, $value = "NOTSET")
 
 ## Important IDs
 
-eventID = 0 -- global, or what is not event-specific
-groupID = 0 -- public/all users (but logged in)
-userID = 0 -- anonymous/not logged in
+eventID = 1 -- global, or what is not event-specific
+groupID = 1 -- public/all users (but logged in)
+userID = 1 -- anonymous/not logged in
 
 
 

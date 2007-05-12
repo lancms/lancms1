@@ -5,7 +5,7 @@ $eventID = $sessioninfo->eventID;
 
 $acl_eventadmin = acl_access("eventadmin", "", $eventID);
 
-if($acl_eventadmin != ("Admin" || 'Write' || 'Read'))
+if($acl_eventadmin == 'No')
 	die("You are not admin!");
 
 	

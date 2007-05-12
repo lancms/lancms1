@@ -115,7 +115,7 @@ function config($config, $event = 0, $value = "NOTSET")
 
 
 ######################################################
-function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
+function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 {
 	/* Check what rights the user has to a module or event. */
 	
@@ -144,7 +144,7 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 	$qCheckGroups = db_query("SELECT groupID FROM ".$sql_prefix."_group_members 
 		WHERE userID = ".db_escape($userID));
 	$groupList = FALSE; // List of groups a user is member of
-	$groupList = '0';
+	$groupList = '1';
 	while($rCheckGroups = db_fetch($qCheckGroups))
 	{
 		$groupList .= " ,";
@@ -153,7 +153,7 @@ function acl_access($module, $subcategory=0, $event=0, $userID = "MYSELF")
 	} // End while CheckGroups
 		
 	// Check what the highest ACL-right you have on event
-	if($event != 0) // Event-ID 0 is used on things that are not event-specific.
+	if($event != 1) // Event-ID 1 is used on things that are not event-specific.
 	{
 		
 		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs

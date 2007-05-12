@@ -18,12 +18,12 @@ else
 
 $design_menu = "<a href=index.php>Main page</a>\n";
 $design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
-if(config("users_may_create_clan") && $sessioninfo->userID != 0)
+if(config("users_may_create_clan") && $sessioninfo->userID != 1)
 	$design_menu .= "<br><a href=index.php?module=groups&amp;action=createClan>".lang("Create clan", "index")."</a>\n";
 
 
 
-if($sessioninfo->eventID > 0)
+if($sessioninfo->eventID > 1)
 {
 	// Should probably have some sort of event-config for enabled modules.
 	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID'");
@@ -50,7 +50,7 @@ if($sessioninfo->eventID > 0)
 }
 
 
-if($sessioninfo->userID == 0)
+if($sessioninfo->userID == 1)
 {
 	// User is not logged in
 	$design_userinfo .= "<form method=GET action=index.php>\n";
@@ -80,7 +80,7 @@ while($rEventList = db_fetch($qEventList))
 
 // This should probably list something... What groups you are member of?
 //$design_grouplist .= "You might be a member of something... I do not know";
-if($sessioninfo->userID != 0)
+if($sessioninfo->userID != 1)
 {
 	// User is logged in, display what groups you are member of
 	$qListGroups = db_query("SELECT ".$sql_prefix."_groups.groupname,
