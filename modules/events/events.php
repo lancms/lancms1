@@ -13,6 +13,9 @@ if($action == "setCurrentEvent" && isset($eventID))
 		eventID = '$escape' 
 		WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
 		
-	// FIXME: This should probably be a function to return to referer
-	header("Location: index.php");
+	// Return to referer if it exists
+	if(!empty($_SERVER['HTTP_REFERER']))
+		header("Location: ".$_SERVER['HTTP_REFERER']);
+	else // If no referer, go back to index. Should probably never happen...
+		header("Location: index.php");
 }
