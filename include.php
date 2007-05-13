@@ -35,5 +35,5 @@ $smarty->cache_dir = 'tmp/templates_cache/';
 
 
 ## This should be fixed to something... dynamic
-$smarty_display = 'simple/simple.tpl';
-
+#$smarty_display = 'simple/simple.tpl';
+$smarty_display = 'GlobeLAN11/GlobeLAN11.tpl';
