@@ -97,3 +97,4 @@ db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 4, eventID = 7, subcate
 config("register_firstname_required", "" , 1);
 config("register_lastname_required", "" , 1);
 config("users_may_create_clan", "" , 1);
+config("enable_FAQ", 6, 1);

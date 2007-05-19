@@ -105,3 +105,12 @@ TABLE [prefix]_static
 	modifiedTimestamp,	int(10),	,	,	0,
 	pageViews,		int(15),	,	,	0,
 }
+
+TABLE [prefix]_FAQ
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	eventID,	int(11),	,	,	1,
+	question,	text,		,	NOT NULL,	,
+	answer,		text,		,	NOT NULL,	we have no idea,
+}

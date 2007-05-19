@@ -39,6 +39,8 @@ if($sessioninfo->eventID > 1)
 		
 	} // End while db_fetch(staticPages)
 	
+	if(config("enable_FAQ", $sessioninfo->eventID))
+		$design_eventmenu .= "<br><a href=?module=FAQ&amp;action=read>".lang("FAQ", "index")."</a>";
 	
 	
 	
