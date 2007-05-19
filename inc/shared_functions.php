@@ -176,6 +176,15 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 		
 	} // End if event != 0/check eventACL.
 	// Not admin, check what rights the group has
+	elseif($module == "grouprights" && $subcategory != 0)
+	{
+		// What rights does this user has for the group in subcategory
+		$qCheckGroupRights = db_query("SELECT access FROM ".$sql_prefix."_group_members
+			WHERE groupID = '".db_escape($subcategory)."'
+			AND userID = '".db_escape($userID)."'");
+		$rCheckGroupRights = db_fetch($qCheckGroupRights);
+		return $rCheckGroupRights->access;
+	} // End elseif module = grouprights
 	
 	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
 		WHERE eventID = '".db_escape($event)."'

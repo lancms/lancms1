@@ -6,7 +6,7 @@ $groupID = $_GET['groupID'];
 
 
 
-if(($action == 'listGroup') || ($action == 'addGroupMember') && !empty($groupID))
+if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'changeGroupRights') && !empty($groupID))
 {
 	/* this action list the "group main page" */
 	// FIXME: ACL...
@@ -39,50 +39,68 @@ if(($action == 'listGroup') || ($action == 'addGroupMember') && !empty($groupID)
 		$rUserInfo = db_fetch($qUserInfo);
 		$content .= $rUserInfo->nick;
 		$content .= "</td><td>";
-		$content .= $rListMembers->access;
+		if(acl_access("grouprights", $groupID, $eventID) == 'Admin' && $action != 'changeGroupRights')
+		{
+			$content .= "<a href=?module=groups&action=changeGroupRights&groupID=$groupID&userID=$rListMembers->userID>";
+			$content .= $rListMembers->access;
+			$content .= "</a>\n";
+		} // End acl_access(grouprights) == admin & action != 'changeGroupRights'
+		elseif(acl_access("grouprights", $groupID, $eventID) == 'Admin' && $action == 'changeGroupRights' && !empty($_GET['userID']))
+		{
+			$content .= "<form method=POST action=?module=groups&amp;action=doChangeGroupRights&amp;groupID=$groupID&amp;userID=".$_GET['userID'].">\n";
+			$content .= "<select name=groupRights>\n";
+			$content .= option_rights($rListMembers->access);
+			$content .= "</select><input type=submit value='".lang("Save", "group")."'>";
+			$content .= "</form>";			
+		} // end acl_access(grouprights == Admin & action == changeGroupRights
+		else
+			$content .= $rListMembers->access;
+		
 		$content .= "</td></tr>\n\n";
 	} // End while $rListMembers
 	
 	$content .= "</table>";
+	// Do test of users group-rights. If admin, display add members-form
+	if(acl_access("grouprights", $groupID, $eventID) == 'Admin')
+	{	
+		$content .= "<form method=POST action=?module=groups&amp;action=addGroupMember&amp;groupID=$groupID>\n";
+		$content .= "<input type=text name=searchUser value='".$searchUser."'>";
+		$content .= "<input type=submit value='".lang("Search user", "groups")."'>";
+		$content .= "</form>";
 	
-	$content .= "<form method=POST action=?module=groups&amp;action=addGroupMember&amp;groupID=$groupID>\n";
-	$content .= "<input type=text name=searchUser value='".$searchUser."'>";
-	$content .= "<input type=submit value='".lang("Search user", "groups")."'>";
-	$content .= "</form>";
-	
-	// If we're searching for a new user; display it
-	if($action == "addGroupMember")
-	{
-		
-		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users 
-			WHERE ID LIKE '%".$searchUser."%'
-			OR nick LIKE '%".$searchUser."%'
-			OR EMail LIKE '%".$searchUser."%'
-			OR firstName LIKE '%".$searchUser."%'
-			OR lastName LIKE '%".$searchUser."%'
-		");
-		// Check how many results we found, give error if to few or to many
-		if(db_num($qFindUser) == 0)
-			$content .= lang("No users found", "groups");
-		elseif(db_num($qFindUser) > 20)
-			$content .= lang("Too many users found, please specify", "groups");
-		else // We probably got between one and 20 results
+		// If we're searching for a new user; display it
+		if($action == "addGroupMember")
 		{
-			$content .= '<br><table>';
-			while($rFindUser = db_fetch($qFindUser))
-			{
-				$content .= "<tr><td>";
-				$content .= "<a href=?module=groups&amp;action=doAddMember&amp;userID=$rFindUser->ID&groupID=$groupID>";
-				$content .= $rFindUser->firstName." ".$rFindUser->lastName." (".$rFindUser->nick.")";
-				$content .= "</td></tr>";
-			} // End while rFindUser
 			
-			$content .= "</table>";
-		} // End else
+			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users 
+				WHERE ID LIKE '%".$searchUser."%'
+				OR nick LIKE '%".$searchUser."%'
+				OR EMail LIKE '%".$searchUser."%'
+				OR firstName LIKE '%".$searchUser."%'
+				OR lastName LIKE '%".$searchUser."%'
+			");
+			// Check how many results we found, give error if to few or to many
+			if(db_num($qFindUser) == 0)
+				$content .= lang("No users found", "groups");
+			elseif(db_num($qFindUser) > 20)
+				$content .= lang("Too many users found, please specify", "groups");
+			else // We probably got between one and 20 results
+			{
+				$content .= '<br><table>';
+				while($rFindUser = db_fetch($qFindUser))
+				{
+					$content .= "<tr><td>";
+					$content .= "<a href=?module=groups&amp;action=doAddMember&amp;userID=$rFindUser->ID&groupID=$groupID>";
+					$content .= $rFindUser->firstName." ".$rFindUser->lastName." (".$rFindUser->nick.")";
+					$content .= "</td></tr>";
+				} // End while rFindUser
+			
+				$content .= "</table>";
+			} // End else
 		
-	} // End action == addGroupMember
+		} // End action == addGroupMember
 		
-	
+	} // Enf if acl_access(grouprights) == Admin
 } // End if action = ListGroup
 
 
@@ -148,7 +166,10 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 
 elseif($action == "doAddMember" && isset($_GET['userID']))
 {
-	// FIXME: ACL....
+	// Do test of users group-rights
+	if(acl_access("grouprights", $groupID, $eventID) != 'Admin')
+		die("Sorry, you need admin-rights to do this!");
+		
 	$userID = $_GET['userID'];
 	
 	$qCheckUser = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_group_members 
@@ -168,3 +189,19 @@ elseif($action == "doAddMember" && isset($_GET['userID']))
 	} // End else
 	
 } // end action = doAddGroupMember
+
+
+elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['userID']))
+{
+	// Do test of users group-rights
+	if(acl_access("grouprights", $groupID, $eventID) != 'Admin')
+		die("Sorry, you need admin-rights to do this!");
+	
+	$access = $_POST['groupRights'];
+	
+	db_query("UPDATE ".$sql_prefix."_group_members
+		SET access = '".db_escape($access)."'
+		WHERE groupID = '".db_escape($groupID)."'
+		AND userID = '".db_escape($_GET['userID'])."'");
+	header("Location: ?module=groups&action=listGroup&groupID=$groupID");
+} // End if action == doChangeGroupRights
