@@ -20,6 +20,8 @@ if(!isset($action))
 		$content .= "<br><a href=?module=static&amp;action=listEventPages>".lang("Edit static pages", "eventadmin")."</a>\n";
 	if(acl_access("FAQ", "", $eventID) == 'Admin')
 		$content .= "<br><a href=?module=FAQ&amp;action=adminFAQs>".lang("Edit FAQs", "eventadmin")."</a>\n";
+	if(acl_access("wannabeadmin", "", $eventID) != 'No')
+		$content .= "<br><a href=?module=wannabe&amp;action=adminWannabe>".lang("WannabeCrew", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
