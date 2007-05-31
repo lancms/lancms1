@@ -112,7 +112,7 @@ TABLE [prefix]_FAQ
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	1,
 	question,	text,		,	NOT NULL,	,
-	answer,		text,		,	NOT NULL,	'we have no idea',
+	answer,		text,		,	NOT NULL,	,
 }
 
 TABLE [prefix]_wannabeCrews
@@ -129,7 +129,7 @@ TABLE [prefix]_wannabeQuestions
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	,
 	question,	text,		,	,	,
-	questionType,	enum('text', 'dropdown'), , ,	,
+	questionType,	enum('text', 'select', 'radio', 'checkbox'), , ,	,
 }
 
 TABLE [prefix]_wannabeQuestionInfo
@@ -137,5 +137,6 @@ TABLE [prefix]_wannabeQuestionInfo
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
 	ID,		int(11),	PRI,	,	,		auto_increment
 	questionID,	int(11),	,	,	,
-	response,	varchar(35),	,	,	,
+	response,	text,		,	,	,
+	extra,		text,		,	,	,
 }
