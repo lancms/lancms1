@@ -112,5 +112,30 @@ TABLE [prefix]_FAQ
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	1,
 	question,	text,		,	NOT NULL,	,
-	answer,		text,		,	NOT NULL,	we have no idea,
+	answer,		text,		,	NOT NULL,	'we have no idea',
+}
+
+TABLE [prefix]_wannabeCrews
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	eventID,	int(11),	,	,	1,
+	crewname,	varchar(25),	,	,	,
+}
+
+TABLE [prefix]_wannabeQuestions
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	eventID,	int(11),	,	,	,
+	question,	text,		,	,	,
+	questionType,	enum('text', 'dropdown'), , ,	,
+}
+
+TABLE [prefix]_wannabeQuestionInfo
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	questionID,	int(11),	,	,	,
+	response,	varchar(35),	,	,	,
 }
