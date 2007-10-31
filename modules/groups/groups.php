@@ -11,14 +11,14 @@ if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'cha
 	/* this action list the "group main page" */
 	// FIXME: ACL...
 	$searchUser = $_POST['searchUser'];
-	
+
 	// Display errormsg if it is set
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
-	
+
 	// First, check what info we have about this group
 	$qShowGroupInfo = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = ".db_escape($groupID));
 	$rShowGroupInfo = db_fetch($qShowGroupInfo);
-	
+
 	$content .= lang("Group: ", "groups");
 	$content .= $rShowGroupInfo->groupname;
 	$content .= "<br><br>";
@@ -26,53 +26,53 @@ if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'cha
 	$content .= "<tr><th>".lang("Nick", "groups");
 	$content .= "</th><th>".lang("Access", "groups");
 	$content .= "</th></tr>\n\n";
-	
+
 	// Show a list of all members of this group, and their rights
-	$qListMembers = db_query("SELECT * FROM ".$sql_prefix."_group_members 
+	$qListMembers = db_query("SELECT * FROM ".$sql_prefix."_group_members
 		WHERE groupID = ".db_escape($groupID));
 	while($rListMembers = db_fetch($qListMembers))
 	{
 		$content .= "<tr><td>";
 		// Get info about this user
-		$qUserInfo = db_query("SELECT nick FROM ".$sql_prefix."_users 
+		$qUserInfo = db_query("SELECT nick FROM ".$sql_prefix."_users
 			WHERE ID = '$rListMembers->userID'");
 		$rUserInfo = db_fetch($qUserInfo);
 		$content .= $rUserInfo->nick;
 		$content .= "</td><td>";
-		if(acl_access("grouprights", $groupID, $eventID) == 'Admin' && $action != 'changeGroupRights')
+		if(acl_access("grouprights", $groupID, 1) == 'Admin' && $action != 'changeGroupRights')
 		{
 			$content .= "<a href=?module=groups&action=changeGroupRights&groupID=$groupID&userID=$rListMembers->userID>";
 			$content .= $rListMembers->access;
 			$content .= "</a>\n";
 		} // End acl_access(grouprights) == admin & action != 'changeGroupRights'
-		elseif(acl_access("grouprights", $groupID, $eventID) == 'Admin' && $action == 'changeGroupRights' && !empty($_GET['userID']))
+		elseif(acl_access("grouprights", $groupID, 1) == 'Admin' && $action == 'changeGroupRights' && $_GET['userID'] == $rListMembers->userID)
 		{
 			$content .= "<form method=POST action=?module=groups&amp;action=doChangeGroupRights&amp;groupID=$groupID&amp;userID=".$_GET['userID'].">\n";
 			$content .= "<select name=groupRights>\n";
 			$content .= option_rights($rListMembers->access);
 			$content .= "</select><input type=submit value='".lang("Save", "group")."'>";
-			$content .= "</form>";			
+			$content .= "</form>";
 		} // end acl_access(grouprights == Admin & action == changeGroupRights
 		else
 			$content .= $rListMembers->access;
-		
+
 		$content .= "</td></tr>\n\n";
 	} // End while $rListMembers
-	
+
 	$content .= "</table>";
 	// Do test of users group-rights. If admin, display add members-form
-	if(acl_access("grouprights", $groupID, $eventID) == 'Admin')
-	{	
+	if(acl_access("grouprights", $groupID, 1) == 'Admin')
+	{
 		$content .= "<form method=POST action=?module=groups&amp;action=addGroupMember&amp;groupID=$groupID>\n";
 		$content .= "<input type=text name=searchUser value='".$searchUser."'>";
 		$content .= "<input type=submit value='".lang("Search user", "groups")."'>";
 		$content .= "</form>";
-	
+
 		// If we're searching for a new user; display it
 		if($action == "addGroupMember")
 		{
-			
-			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users 
+
+			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users
 				WHERE ID LIKE '%".$searchUser."%'
 				OR nick LIKE '%".$searchUser."%'
 				OR EMail LIKE '%".$searchUser."%'
@@ -94,12 +94,12 @@ if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'cha
 					$content .= $rFindUser->firstName." ".$rFindUser->lastName." (".$rFindUser->nick.")";
 					$content .= "</td></tr>";
 				} // End while rFindUser
-			
+
 				$content .= "</table>";
 			} // End else
-		
+
 		} // End action == addGroupMember
-		
+
 	} // Enf if acl_access(grouprights) == Admin
 } // End if action = ListGroup
 
@@ -113,17 +113,17 @@ elseif($action == "createClan" && config("users_may_create_clan") && $sessioninf
 	$content .= "<br><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
 	$content .= "<br><input type=submit value='".lang("Create clan", "groups")."'>\n";
 	$content .= "</form>\n";
-	
-	
+
+
 } // end if action == createClan
 
 elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioninfo->userID != 0)
 {
 	$clanname = $_POST['clanname'];
 	$clanpwd = $_POST['clanpassword'];
-	
+
 	$qrCheckName = db_fetch(db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_groups WHERE groupname LIKE '".db_escape($clanname)."'"));
-	
+
 	if(empty($clanname))
 	{
 		// Clanname is not specified
@@ -134,18 +134,18 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 		// Clan password is not specified
 	//	header("Location: ?module=groups&action=createClan&clanname=$clanname&errormsg=".lang("Please provide a password for the clan!", "groups"));
 	} // End if empty clanpwd
-	
+
 	elseif($qrCheckName->amount > 0)
 	{
 		// If clanname already exists
 		header("Location: ?module=groups&action=createClan&clanname&$clanname&clanpassword=$clanpwd&errormsg=".lang("Clanname is already in use. Please choose another name", "groups"));
 	} // End if clanname alreaddy exists
-	
+
 	else
 	{
 		// The clan name and password is accepted. INSERT to DB
-		db_query("INSERT INTO ".$sql_prefix."_groups SET 
-			groupname = '".db_escape($clanname)."', 
+		db_query("INSERT INTO ".$sql_prefix."_groups SET
+			groupname = '".db_escape($clanname)."',
 			grouppassword = '".$clanpwd."',
 			created_by = '".$sessioninfo->userID."',
 			created_timestamp = ".time()
@@ -153,11 +153,11 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 		// Fetch whatever was just inserted into DB, as Ive never got mysql_insert_id() to work properly
 		$qLastGroupID = db_query("SELECT ID FROM ".$sql_prefix."_groups WHERE created_by = ".$sessioninfo->userID." ORDER BY ID DESC LIMIT 0,1");
 		$rLastGroupID = db_fetch($qLastGroupID);
-		
+
 		// Give the user admin-rights to his own group
-		db_query("INSERT INTO ".$sql_prefix."_group_members SET 
-			groupID = '$rLastGroupID->ID', 
-			userID = '".$sessioninfo->userID."', 
+		db_query("INSERT INTO ".$sql_prefix."_group_members SET
+			groupID = '$rLastGroupID->ID',
+			userID = '".$sessioninfo->userID."',
 			access = 'Admin'");
 		header("Location: ?module=groups&action=listGroups&groupID=$rLastGroupID->ID");
 	} // End else (clan name and pwd accepted)
@@ -167,16 +167,16 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 elseif($action == "doAddMember" && isset($_GET['userID']))
 {
 	// Do test of users group-rights
-	if(acl_access("grouprights", $groupID, $eventID) != 'Admin')
+	if(acl_access("grouprights", $groupID, 1) != 'Admin')
 		die("Sorry, you need admin-rights to do this!");
-		
+
 	$userID = $_GET['userID'];
-	
-	$qCheckUser = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_group_members 
+
+	$qCheckUser = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_group_members
 		WHERE userID = '".db_escape($userID)."'
 		AND groupID = ".db_escape($groupID));
 	$rCheckUser = db_fetch($qCheckUser);
-	
+
 	if($rCheckUser->count != 0)
 		header("Location: ?module=groups&action=addGroupMember&groupID=$groupID&errormsg=".lang("User already member of group", "groups"));
 	else
@@ -187,18 +187,18 @@ elseif($action == "doAddMember" && isset($_GET['userID']))
 			access = 'Read'");
 		header("Location: ?module=groups&action=listGroup&groupID=$groupID");
 	} // End else
-	
+
 } // end action = doAddGroupMember
 
 
 elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['userID']))
 {
 	// Do test of users group-rights
-	if(acl_access("grouprights", $groupID, $eventID) != 'Admin')
+	if(acl_access("grouprights", $groupID, 1) != 'Admin')
 		die("Sorry, you need admin-rights to do this!");
-	
+
 	$access = $_POST['groupRights'];
-	
+
 	db_query("UPDATE ".$sql_prefix."_group_members
 		SET access = '".db_escape($access)."'
 		WHERE groupID = '".db_escape($groupID)."'
