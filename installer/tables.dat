@@ -129,7 +129,8 @@ TABLE [prefix]_wannabeQuestions
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	,
 	question,	text,		,	,	,
-	questionType,	enum('text', 'select', 'radio', 'checkbox'), , ,	,
+	questionType,	enum('text', 'select', 'radio', 'checkbox'), , , ,
+	questionOrder,	int(2)		,	,	0,		
 }
 
 TABLE [prefix]_wannabeQuestionInfo
@@ -139,4 +140,5 @@ TABLE [prefix]_wannabeQuestionInfo
 	questionID,	int(11),	,	,	,
 	response,	text,		,	,	,
 	extra,		text,		,	,	,
+	answerOrder,	int(2),		,	,	0,
 }

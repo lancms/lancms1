@@ -34,7 +34,7 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 
 	// First. List up all the questions that exists
 	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
-		WHERE eventID = '".db_escape($eventID)."'");
+		WHERE eventID = '".db_escape($eventID)."' ORDER BY questionOrder ASC, ID ASC");
 
 	$content .= '<table>';
 
@@ -118,7 +118,7 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 
 		// Get the answers
 		$qGetAnswers = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestionInfo
-			WHERE questionID = $rGetQuestion->ID");
+			WHERE questionID = $rGetQuestion->ID ORDER BY answerOrder ASC, ID ASC");
 		while($rGetAnswers = db_fetch($qGetAnswers)) {
 			if (!empty($_GET['answerID'])) $answerID = $_GET['answerID'];
 
