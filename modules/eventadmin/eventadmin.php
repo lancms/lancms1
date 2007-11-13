@@ -35,6 +35,7 @@ elseif($action == "groupACLs" || $action == "changeGroupAccess")
 	// Check what groups exists
 	$qListGroups = db_query("SELECT groupID,access FROM ".$sql_prefix."_ACLs
 		WHERE eventID IN ($eventID, 0)
+		AND accessmodule = 'eventadmin'
 		ORDER BY access = 'Admin' DESC,
 		access = 'Write' DESC,
 		access = 'Read' DESC,
@@ -152,7 +153,8 @@ elseif($action == "doChangeGroupAccess" && isset($_GET['groupID']))
 
 	db_query("UPDATE ".$sql_prefix."_ACLs SET access = '".db_escape($access)."'
 		WHERE groupID = '".db_escape($groupID)."'
-		AND eventID = '".$eventID."'");
+		AND eventID = '".$eventID."'
+		AND accessmodule = 'eventadmin'");
 	header("Location: ?module=eventadmin&action=groupACLs");
 } // End action = doChangeGroupAccess
 
