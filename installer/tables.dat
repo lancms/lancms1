@@ -142,3 +142,14 @@ TABLE [prefix]_wannabeQuestionInfo
 	extra,		text,		,	,	,
 	answerOrder,	int(2),		,	,	0,
 }
+
+TABLE [prefix]_seatReg
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	eventID,	int(11),	PRI,	NOT NULL, ,
+	seatX,		int(4),		PRI,	NOT NULL, ,
+	seatY,		int(4),		PRI,	NOT NULL, ,
+	type,		enum('d','p','g','t','b','w','o','a'), , NOT NULL, b ,
+	name,		varchar(25),	,	NULL,	,
+	color,		enum('black','green','yellow','orange','red','white','blue','purple'), , , white,
+}

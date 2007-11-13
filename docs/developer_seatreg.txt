@@ -1,0 +1,10 @@
+These are the "seattypes" (in SQL: [prefix]_seatReg.type):
+
+d - open seat
+p - password protected seat
+g - group protected seat
+t - text (for writing text in the seatmap)
+b - blank/white/open space
+w - wall
+o - door/opening
+a - area (kiosk-area, security-area, infomationdesk-area, gamecrew-area)
