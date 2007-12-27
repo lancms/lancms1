@@ -36,8 +36,8 @@ if($do == "create_session")
 	// User is not logged in; generate a new seed
 	$generate = md5(rand(0,9999999).microtime());
 
-	db_query("INSERT INTO ".$sql_prefix."_session SET 
-		sID = '$generate', 
+	db_query("INSERT INTO ".$sql_prefix."_session SET
+		sID = '$generate',
 		userIP = '".$_SERVER['REMOTE_ADDR']."',
 		lastVisit = '".time()."'");
 	setcookie($osgl_session_cookie, $generate);
@@ -49,3 +49,6 @@ if($do == "create_session")
 $query_session = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
 $sessioninfo = db_fetch($query_session);
 global $sessioninfo;
+
+if(empty($sessioninfo->userID)) // Session is empty
+	$sessioninfo->userID = 1; // Set session user to anonymous.
