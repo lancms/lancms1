@@ -92,6 +92,8 @@ db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 7, eventID = 6, subcate
 
 db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = 4, eventID = 7, subcategory = 2, accessmodule = 'static', access = 'Read'");
 
+db_query("INSERT INTO ".$sql_prefix."_seatreg SET eventID = 6, seatX = 0, seatY = 0, type = 'w', color= 'black'");
+
 
 
 config("register_firstname_required", "" , 1);

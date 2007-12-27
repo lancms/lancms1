@@ -7,10 +7,51 @@ $type = $_POST['type'];
 if($acl_access != 'Admin') {
 	die("Sorry, you do not have access to this!");
 }
+
 if($action == "updateSeat") {
-	if($type == "d" OR $type == "w" OR $type == "o" OR $type = "b") {
+	if($type == "d" OR $type == "w" OR $type == "o" OR $type == "b") {
 		$action = "doUpdateSeat";
 	} // End if type = "normal"
+
+	elseif($type == "a") { // type is area, we need to do something about this
+		/* FIXME */
+	} // End if type = a (area)
+
+	elseif($type == "p" && !isset($_POST['seatpassword'])) { // type is password-protected seat
+//		$seatcontent .= "<form method=POST action=?module=seatadmin&amp;action=doUpdateSeat>\n";
+		$seatcontent .= "<input type=text name=seatpassword>\n";
+		$seatcontent .= "<input type=submit value='".lang("Set password", "seatadmin")."'>";
+//		$seatcontent .= "</form>";
+
+	} // End if type = p (password)
+
+	elseif($type == "p" && isset($_POST['seatpassword'])) {
+		$action = "doUpdateSeat";
+	}
+
+	elseif($type == "g" && !isset($_POST['group'])) { // type is group-protected
+		$seatcontent .= "<select name=group>\n";
+		$qGroups = db_query("SELECT ID,groupname,groupType FROM ".$sql_prefix."_groups
+			WHERE
+			(eventID = 1 AND groupType = 'clan')
+			OR
+			(eventID = $sessioninfo->eventID AND groupType = 'access')
+			ORDER BY groupname ASC
+			");
+		while($rGroups = db_fetch($qGroups)) {
+			$seatcontent .= "<option value='$rGroups->ID'>";
+			$seatcontent .= $rGroups->groupname." (".$rGroups->groupType.")";
+			$seatcontent .= "</option>\n";
+
+
+		} // End while rGroups
+		$seatcontent .= "</select>\n\n\n";
+		$seatcontent .= "<input type=submit value='".lang("Set groupaccess", "seatadmin")."'>";
+	} // End group-protected
+
+	elseif($type == "g" && isset($_POST['group'])) { // type is group, and group is set
+		$action = "doUpdateSeat";
+	} // End isset(group)
 } // End if action == "updateSeat"
 
 if(!isset($action) || $action == "updateSeat") {
@@ -25,7 +66,9 @@ if(!isset($action) || $action == "updateSeat") {
 	$content .= "<form method=POST action=?module=seatadmin&amp;action=updateSeat>\n";
 
 
+
 	while($rGetSeatY = db_fetch($qGetSeatY)) {
+		$seatY = $rGetSeatY->seatY;
 		// Start a new row
 		$content .= "<tr>\n";
 
@@ -36,9 +79,12 @@ if(!isset($action) || $action == "updateSeat") {
 			ORDER BY seatX ASC");
 
 		while($rGetSeatX = db_fetch($qGetSeatX)) {
+			$seatX = $rGetSeatX->seatX;
 			$content .= "<td style='height: 25px; width: 25px' bgcolor=".$rGetSeatX->color;
 			$content .= ">";
-			$content .= "<input type=checkbox value=1 name=x".$rGetSeatX->seatX."y".$rGetSeatY->seatY.">";
+			$content .= "<input type=checkbox value=1 name=x".$seatX."y".$seatY;
+			if($_POST['x'.$seatX.'y'.$seatY] == 1) $content .= " CHECKED";
+			$content .= ">";
 			$content .= "</td>\n\n";
 		} // End while (rGetSeatX)
 
@@ -52,10 +98,15 @@ if(!isset($action) || $action == "updateSeat") {
 	// Here we display changes we can make to what we have just selected
 	$content .= "<select name=type>";
 	foreach($seattype AS $key => $value) {
-		$content .= "<option value=$key>$value</option>\n";
+		$content .= "<option value='$key'";
+		if($key == $type) $content .= " selected='selected'";
+		$content .= ">$value</option>\n";
 	} // End foreach
 	$content .= "</select>";
 	$content .= "<br><input type=submit value='".lang("Change seats", "seatadmin")."'>";
+	$content .= "<br>";
+	$content .= $seatcontent; // Add post-seat-content to content
+
 	$content .= "</form>";
 	$content .= "</td><td>";
 	// Add row
@@ -70,6 +121,8 @@ if(!isset($action) || $action == "updateSeat") {
 
 	$content .= "</td></tr>";
 	$content .= "</table>";
+
+
 
 } // End if(!isset($action))
 
@@ -126,6 +179,7 @@ elseif($action == "addcolumn") {
 
 
 elseif($action == "doUpdateSeat") {
+	$extra = NULL;
 	// Define what action is to be done with these seats
 	switch ($type) {
 		case "d":
@@ -136,9 +190,11 @@ elseif($action == "doUpdateSeat") {
 			break;
 		case "p":
 			$color = 'red';
+			$extra = $_POST['seatpassword'];
 			break;
 		case "g":
 			$color = 'green';
+			$extra = $_POST['group'];
 			break;
 		case "t":
 			$color = 'white';
@@ -152,6 +208,9 @@ elseif($action == "doUpdateSeat") {
 		case "b":
 			$color = 'white';
 			break;
+		default:
+			$color = 'purple';
+			break;
 	} // End switch
 
 
@@ -162,7 +221,8 @@ elseif($action == "doUpdateSeat") {
 		if($_POST['x'.$rFindSeats->seatX.'y'.$rFindSeats->seatY] == 1) {
 			db_query("UPDATE ".$sql_prefix."_seatReg SET
 				type = '".db_escape($type)."',
-				color = '$color'
+				color = '$color',
+				extra = '$extra'
 				WHERE seatX = $rFindSeats->seatX
 				AND seatY = $rFindSeats->seatY
 				AND eventID = $sessioninfo->eventID
