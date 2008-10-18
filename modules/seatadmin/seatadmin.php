@@ -118,7 +118,9 @@ if(!isset($action) || $action == "updateSeat") {
 	$content .= "<form method=POST action=?module=seatadmin&amp;action=addcolumn>\n";
 	$content .= "<input type=submit value='".lang("Add column", "seatadmin")."'>\n";
 	$content .= "</form>\n\n";
-
+	$content .= "<form method=POST action=?module=seatadmin&amp;action=resetmap>\n";
+	$content .= "<input type=submit value='".lang("Reset map", "seatadmin")."'>\n";
+	$content .= "</form>\n\n";
 	$content .= "</td></tr>";
 	$content .= "</table>";
 
@@ -134,6 +136,7 @@ elseif($action == "addrow") {
 		WHERE eventID = ".$sessioninfo->eventID);
 	$rCheckColumns = db_fetch($qCheckColumns);
 	$newColumn = $rCheckColumns->newColumn;
+
 
 	// Second, check how many rows exists, and add a column pr. new cell
 	// Probably some better way of doing this, buuut..
@@ -234,3 +237,20 @@ elseif($action == "doUpdateSeat") {
 	header("Location: ?module=seatadmin");
 } // End if action == updateSeat
 
+elseif ($action == "resetmap") {
+      // ask if the user really wants to delete all map fields, and add one field.
+      $content .= "<form method=POST action=?module=seatadmin&amp;action=doresetmap>";
+      $content .= "<input type=submit value='".lang("Confirm map reset")."'>\n";
+      $content .= "</form>";
+}
+
+elseif($action == "doresetmap") {
+      // Delete all map fields on this event
+      db_query("DELETE FROM ".$sql_prefix."_seatReg WHERE eventID = ".$sessioninfo->eventID);
+      // Add a single field to the map
+      db_query("INSERT INTO ".$sql_prefix."_seatReg SET eventID = ".$sessioninfo->eventID.", seatX = 1, seatY = 1");
+
+
+      // Go back to seatadmin
+      header("Location: ?module=seatadmin");
+}
