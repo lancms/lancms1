@@ -24,10 +24,10 @@ TABLE [prefix]_users
 
 TABLE [prefix]_config
 {
-#	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
-	config,		varchar(32), 	PRI, 	,	,		
-	value,		varchar(32),	,	NOT NULL,
-	eventID,	int(11),	,	,	1,
+#	NAME	TYPE	KEY	NULL	DEFAULT	EXTRA
+        config,	varchar(32), PRI, 	,	,		
+        value,	varchar(32),	NOT NULL,	,
+        eventID,	int(11),	PRI,	,	1,
 }
 
 
@@ -180,6 +180,7 @@ TABLE [prefix]_tickets
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
 	ticketID,	int(11),	PRI,	NOT NULL, ,		auto_increment
 	ticketType,	int(11),	,	,	,
+	eventID,	int(11),	,	,	,
 	owner,		int(11),	,	,	,
 	createTime,	int(11),	,	,	0,
 	creator,	int(11),	,	,	,

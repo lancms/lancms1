@@ -51,3 +51,5 @@ $seattype['w'] = 'Wall';
 $seattype['o'] = 'Door';
 $seattype['a'] = 'Area';
 
+
+$maxTicketsPrUser = 5;
