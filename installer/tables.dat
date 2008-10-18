@@ -154,3 +154,33 @@ TABLE [prefix]_seatReg
 	color,		enum('black','green','yellow','orange','red','white','blue','purple'), , , white,
 	extra,		varchar(15),	,	NULL,	,
 }
+
+TABLE [prefix]_seatReg_seatings
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	seatingID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	eventID,	int(11),	,	NOT NULL, ,
+	seatX,		int(4),		,	,	,
+	seatY,		int(4),		,	,	,
+	userID,		int(11),	,	,	,
+}
+
+TABLE [prefix]_ticketTypes
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ticketTypeID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	eventID	,	int(11),	,	NOT NULL, ,
+	name,		varchar(25),	,	,	,
+	type,		enum('onsite','prepaid','preorder'), , , preorder,
+	price,		int(5),		,	,	0,
+}
+
+TABLE [prefix]_tickets
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ticketID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	ticketType,	int(11),	,	,	,
+	owner,		int(11),	,	,	,
+	createTime,	int(11),	,	,	0,
+	creator,	int(11),	,	,	,
+}
