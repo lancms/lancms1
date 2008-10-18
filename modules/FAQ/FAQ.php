@@ -1,7 +1,7 @@
 <?php
 
 $eventID = $sessioninfo->eventID;
-$acl_access = acl_access("FAQ", "", $eventÌD);
+$acl_access = acl_access("FAQ", "", $eventID);
 $action = $_GET['action'];
 $faqID = $_GET['faqID'];
 
