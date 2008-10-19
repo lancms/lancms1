@@ -24,6 +24,8 @@ if(!isset($action))
 		$content .= "<br><a href=?module=wannabeadmin&amp;action=adminWannabe>".lang("WannabeCrew", "eventadmin")."</a>\n";
 	if(acl_access("seatadmin", "", $eventID) == 'Admin')
 		$content .= "<br><a href=?module=seatadmin>".lang("Seatreg Admin", "eventadmin")."</a>\n";
+	if(acl_access("ticketadmin", "", $eventID) == 'Admin')
+		$content .= "<br><a href=?module=ticketadmin>".lang("Ticket Admin", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
