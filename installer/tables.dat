@@ -179,10 +179,11 @@ TABLE [prefix]_ticketTypes
 TABLE [prefix]_tickets
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
-	ticketID,	int(11),	PRI,	NOT NULL, ,		auto_increment
-	ticketType,	int(11),	,	,	,
-	eventID,	int(11),	,	,	,
-	owner,		int(11),	,	,	,
-	createTime,	int(11),	,	,	0,
-	creator,	int(11),	,	,	,
+	ticketID,		int(11),		PRI,	NOT NULL, ,		auto_increment
+	ticketType,		int(11),		,	,	,
+	eventID,		int(11),		,	,	,
+	owner,		int(11),		,	,	,
+	createTime,		int(11),		,	,	0,
+	creator,		int(11),		,	,	,
+	status,		enum('notpaid','notused','used'), , ,	notused,
 }

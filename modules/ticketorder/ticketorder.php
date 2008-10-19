@@ -27,7 +27,7 @@ if(!isset($action)) {
         $content .= "</table>";
     } // End if(db_num != 0);
     
-    $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID'");
+    $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID' AND type NOT LIKE 'onsite%' AND active = 1");
     if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
@@ -50,16 +50,23 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
     $tickettype = $_GET['tickettype'];
     if($numTickets > $maxTicketsPrUser) $numTickets = $maxTicketsPrUser;
     while($numTickets) {
+        // Check what type the ticket has
+        $qTicketType = db_query("SELECT type FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = ".db_escape($tickettype));
+        $rTicketType = db_fetch($qTicketType);
+        // Check how many tickets the user already has
         $qUserNumTickets = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' 
 	AND (owner = '$sessioninfo->userID' OR creator = '$sessioninfo->userID')");
         $rUserNumTickets = db_fetch($qUserNumTickets);
         if($rUserNumTickets->count >= $maxTicketsPrUser); // Do noting if we've maxed maxTicketsPrUser
         else { // If we have not yet reached maxTicketsPrUser, add the ticket
+	if($rTicketType->type == "prepaid") $status = 'notpaid';
+	elseif($rTicketType->type == 'preorder') $status = 'notused';
 	db_query("INSERT INTO ".$sql_prefix."_tickets SET 
 	    owner = '$sessioninfo->userID',
 	    creator = '$sessioninfo->userID',
 	    eventID = '$eventID',
-	    ticketType = '$tickettype',
+	    ticketType = '".db_escape($tickettype)."',
+	    status = '$status',
 	    createTime = ".time());
         } // End else (maxTicketsPrUser)
         $numTickets--; // Decrease numTickets
