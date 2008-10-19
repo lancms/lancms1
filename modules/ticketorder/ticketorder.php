@@ -18,14 +18,17 @@ if(!isset($action)) {
 	$content .= "<tr><td>";
 	$content .= $rDisplayTickets->ticketID;
 	$content .= "</td><td>";
-	$content .= $rDisplayTickets->ticketType;
+	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID ='$eventID' 
+	    AND ticketTypeID = '$rDisplayTickets->ticketType'");
+	$rCheckTicketType = db_fetch($qCheckTicketType);
+	$content .= $rCheckTicketType->name;
 	$content .= "</td></tr>";
         } // End while
         $content .= "</table>";
     } // End if(db_num != 0);
     
     $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID'");
-    if(db_num($qListBuyTickets) != 0) {
+    if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
 	$content .= "<tr><td>";
