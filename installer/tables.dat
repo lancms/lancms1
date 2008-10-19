@@ -168,11 +168,12 @@ TABLE [prefix]_seatReg_seatings
 TABLE [prefix]_ticketTypes
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
-	ticketTypeID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	ticketTypeID,	int(11),		PRI,	NOT NULL, 	,		auto_increment
 	eventID	,	int(11),	,	NOT NULL, ,
-	name,		varchar(25),	,	,	,
-	type,		enum('onsite','prepaid','preorder'), , , preorder,
+	name,		varchar(35),	,	,	,
+	type,		enum('onsite-computer','onsite-visitor','prepaid','preorder'), , , preorder,
 	price,		int(5),		,	,	0,
+	active,		tinyint(1),		,	,	1,
 }
 
 TABLE [prefix]_tickets
