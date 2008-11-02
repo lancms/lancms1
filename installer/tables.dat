@@ -185,5 +185,7 @@ TABLE [prefix]_tickets
 	owner,		int(11),		,	,	,
 	createTime,		int(11),		,	,	0,
 	creator,		int(11),		,	,	,
+	user,		int(11),		,	,	,
 	status,		enum('notpaid','notused','used'), , ,	notused,
+	paid,		enum('yes','no'),	,	,	no
 }

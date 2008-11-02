@@ -22,6 +22,17 @@ if(!isset($action)) {
 	    AND ticketTypeID = '$rDisplayTickets->ticketType'");
 	$rCheckTicketType = db_fetch($qCheckTicketType);
 	$content .= $rCheckTicketType->name;
+	$content .= "</td><td>";
+	$content .= lang($rDisplayTickets->status, "ticketorder");
+	$content .= "</td><td>";
+	if($rDisplayTickets->status == 'notused') {
+	    $content .= "<a href=?module=seating&ticketID=$rDisplayTickets->ticketID>";
+	    $content .= lang("Place on map", "ticketorder");
+	    $content .= "</a>";
+	} else {
+	    $content .= lang("Can't place on map", "ticketorder");
+	}
+
 	$content .= "</td></tr>";
         } // End while
         $content .= "</table>";

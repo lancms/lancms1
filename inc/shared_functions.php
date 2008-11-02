@@ -106,7 +106,7 @@ function config($config, $event = 0, $value = "NOTSET")
 		else // That config exists. Update the existsing
 		{
 			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."' 
-				WHERE config = '".db_escape($config)."',
+				WHERE config = '".db_escape($config)."' AND
 				eventID = '".db_escape($event)."'");
 		}
 	} // End else
