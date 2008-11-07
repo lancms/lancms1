@@ -163,6 +163,7 @@ TABLE [prefix]_seatReg_seatings
 	seatX,		int(4),		,	,	,
 	seatY,		int(4),		,	,	,
 	userID,		int(11),	,	,	,
+	ticketID,		int(11),	,	,	,
 }
 
 TABLE [prefix]_ticketTypes

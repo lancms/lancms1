@@ -279,4 +279,49 @@ function option_rights($default = 'No')
 	
 	return $return;
 } // End function option_rights
-			
+
+
+function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
+    global $sql_prefix;
+    $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' 
+        AND seatX = '$seatX' AND seatY = '$seatY'");
+    $rSeatInfo = db_fetch($qSeatInfo);
+    
+    $returncode = FALSE;
+    // Check event-rights
+    $acl_event_seating = acl_access("seating", "", $eventID);
+    // Check if the seat is already taken
+    $qCheckAlreadySeated = db_query("SELECT seatingID FROM ".$sql_prefix."_seatReg_seatings WHERE
+        eventID = '$eventID' AND seatX = '$seatX' AND seatY = '$seatY'");
+    if(db_num($qCheckAlreadySeated) != 0) $returncode = FALSE;
+    elseif($acl_event_seating == 'Admin' || $acl_event_seating == 'Write') $returncode = TRUE;
+    
+    elseif(config("seating_enabled", $sessioninfo->eventID)) {
+        // Seating is enabled for this event?
+
+        // Get info about the ticket
+        $qTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND
+	ticketID = '$ticketID'");
+        $rTicketInfo = db_fetch($qTicketInfo);
+
+        if($rTicketInfo->owner == $sessioninfo->userID || $rTicketInfo->user == $sessioninfo->userID) {
+	$type = $rSeatInfo->type;
+	switch ($type) {
+	    case 'd':
+	        // Seat is a normal seat
+	        $returncode = TRUE;
+	        break;
+	    case 'g':
+	        // Groupprotected. Check if access to group
+	        if(acl_access("grouprights", $rSeatInfo->extra, "", $sessioninfo->userID) != 'No') $returncode = TRUE;
+	        break;
+	    case 'p':
+	        // Password-protected. Check if password correct
+	        if($extra == $rSeatInfo->extra) $returncode = TRUE;
+	        break;
+	    } // End switch($type)
+        } // End if rTicketInfo->owner || user == session-userID
+    } // End elseif(config(seating_enabled))
+
+    return $returncode;
+} // End function seating_rights			

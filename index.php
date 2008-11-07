@@ -113,6 +113,7 @@ $smarty->assign("menu", $design_menu);
 
 $smarty->assign("content", $content);
 $smarty->assign("title", $design_title);
+$smarty->assign("head", $design_head);
 
 
 

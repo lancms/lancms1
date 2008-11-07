@@ -28,3 +28,36 @@ if(!isset($action)) {
     include_once 'modules/seatmap/seatmap.php';
 
 } // End if(!isset($action))
+
+
+elseif($_GET['action'] == "takeseat") {
+    $seatX = $_GET['seatX'];
+    $seatY = $_GET['seatY'];
+    $ticketID = $_GET['ticketID'];
+    $eventID = $sessioninfo->eventID;
+    $password = $_POST['password'];
+
+    if(seating_rights($seatX, $seatY, $ticketID, $eventID, $password)) {
+        // We have rights to seat that ticket. Update DB
+        
+        // Check if that ticket is already used
+        $qCheckUsedTicket = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticketID)."'");
+        if(db_num($qCheckUsedTicket) == 0) {
+	// Ticket has never been used. Insert it
+	db_query("INSERT INTO ".$sql_prefix."_seatReg_seatings SET
+	    eventID = '".db_escape($eventID)."',
+	    ticketID = '".db_escape($ticketID)."',
+	    seatX = '".db_escape($seatX)."',
+	    seatY = '".db_escape($seatY)."'");
+	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'used' 
+	    WHERE ticketID = '".db_escape($ticketID)."'");
+        } // End if ticket does not exist
+        else {
+	db_query("UPDATE ".$sql_prefix."_seatReg_seatings SET
+	    seatX = '".db_escape($seatX)."',
+	    seatY = '".db_escape($seatY)."'
+	    WHERE ticketID = '".db_escape($ticketID)."'");
+        } // End else
+    } // End if(seating_rights)
+    header("Location: ?module=seating&seatX=$seatX&seatY=$seatY");
+} // End if action == "takeseat"
