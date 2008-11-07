@@ -1,7 +1,8 @@
 <?php
 
 require("table.php");
-require('../config.php');
+if(file_exists('../SVN_OverrideConfig.php')) require('../SVN_OverrideConfig.php');
+else require('../config.php');
 require('../inc/shared_functions.php');
 
 mysql_connect($sql_host, $sql_user, $sql_pass);
