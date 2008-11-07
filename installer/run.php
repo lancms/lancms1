@@ -115,6 +115,8 @@ if(!isset($_GET["demodata"]))
 			db_query("DROP TABLE `".$dbtbl->name."`");
 		}
 	}
+
+include_once 'add_default_content.php';
 ?>
 
 <h1>Finito!</h1>
