@@ -1,4 +1,5 @@
 <?php
+config("seating_enabled", $sessioninfo->eventID, 1);
 $action = $_GET['action'];
 $ticketID = $_GET['ticketID'];
 
@@ -37,8 +38,11 @@ elseif($_GET['action'] == "takeseat") {
     $eventID = $sessioninfo->eventID;
     $password = $_POST['password'];
 
+
     if(seating_rights($seatX, $seatY, $ticketID, $eventID, $password)) {
         // We have rights to seat that ticket. Update DB
+        $qTicketInfo = db_query("SELECT owner FROM ".$sql_prefix."_tickets WHERE ticketID = ".db_escape($ticketID));
+        $rTicketInfo = db_fetch($qTicketInfo);
         
         // Check if that ticket is already used
         $qCheckUsedTicket = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticketID)."'");
@@ -48,6 +52,7 @@ elseif($_GET['action'] == "takeseat") {
 	    eventID = '".db_escape($eventID)."',
 	    ticketID = '".db_escape($ticketID)."',
 	    seatX = '".db_escape($seatX)."',
+	    userID = '".db_escape($rTicketInfo->owner)."',
 	    seatY = '".db_escape($seatY)."'");
 	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'used' 
 	    WHERE ticketID = '".db_escape($ticketID)."'");
@@ -55,9 +60,10 @@ elseif($_GET['action'] == "takeseat") {
         else {
 	db_query("UPDATE ".$sql_prefix."_seatReg_seatings SET
 	    seatX = '".db_escape($seatX)."',
-	    seatY = '".db_escape($seatY)."'
+	    seatY = '".db_escape($seatY)."',
+	    userID = '".db_escape($rTicketInfo->owner)."'
 	    WHERE ticketID = '".db_escape($ticketID)."'");
         } // End else
     } // End if(seating_rights)
-    header("Location: ?module=seating&seatX=$seatX&seatY=$seatY");
+    header("Location: ?module=seating&ticketID=$ticketID&seatX=$seatX&seatY=$seatY");
 } // End if action == "takeseat"

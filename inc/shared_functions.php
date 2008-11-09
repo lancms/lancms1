@@ -91,7 +91,8 @@ function config($config, $event = 0, $value = "NOTSET")
 			return FALSE;
 		}
 		else // If it exists, and it is not turned off; just output it
-		{
+		{	
+//			echo "config: ".$config.", event = ".$event.", value = ".$object->value;
 			return $object->value;
 		}
 	} // End if value == NOTSET
@@ -286,6 +287,7 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' 
         AND seatX = '$seatX' AND seatY = '$seatY'");
     $rSeatInfo = db_fetch($qSeatInfo);
+    $seating_enabled = config("seating_enabled", $sessioninfo->eventID);
     
     $returncode = FALSE;
     // Check event-rights
@@ -296,7 +298,7 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     if(db_num($qCheckAlreadySeated) != 0) $returncode = FALSE;
     elseif($acl_event_seating == 'Admin' || $acl_event_seating == 'Write') $returncode = TRUE;
     
-    elseif(config("seating_enabled", $sessioninfo->eventID)) {
+    elseif($seating_enabled == 1) {
         // Seating is enabled for this event?
 
         // Get info about the ticket
@@ -317,11 +319,12 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
 	        break;
 	    case 'p':
 	        // Password-protected. Check if password correct
-	        if($extra == $rSeatInfo->extra) $returncode = TRUE;
+	        if($password == $rSeatInfo->extra) $returncode = TRUE;
+	        die("password entered: $password, password in DB: $rSeatInfo->extra");
 	        break;
 	    } // End switch($type)
         } // End if rTicketInfo->owner || user == session-userID
     } // End elseif(config(seating_enabled))
-
+    else die("WTF in seating_rights: ".$seating_enabled);
     return $returncode;
 } // End function seating_rights			
