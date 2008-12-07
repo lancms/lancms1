@@ -75,7 +75,7 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
 	db_query("INSERT INTO ".$sql_prefix."_tickets SET
 	    owner = '$sessioninfo->userID',
 	    creator = '$sessioninfo->userID',
-	    userID = '$sessioninfo->userID',
+	    user = '$sessioninfo->userID',
 	    eventID = '$eventID',
 	    ticketType = '".db_escape($tickettype)."',
 	    status = '$status',

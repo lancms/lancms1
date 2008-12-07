@@ -27,27 +27,16 @@ while($rGetSeats = db_fetch($qGetSeats)) {
         // If we're beginning a new row, end the last row, and begin it
         $content .= "</tr><tr>";
     } // End if seatY == 1 and $seatX != 1
-<<<<<<< .mine
 
+// SELECT osgl_users.nick FROM osgl_users,osgl_seatReg_seatings WHERE osgl_users.ID = osgl_seatReg_seatings.userID AND (osgl_seatReg_seatings.seatX = 3 AND osgl_seatReg_seatings.seatY = );
 
-
-
-
-
-
-
-
-=======
-// SELECT osgl_users.nick FROM osgl_users,osgl_seatReg_seatings WHERE osgl_users.ID = osgl_seatReg_seatings.userID AND (osgl_seatReg_seatings.seatX = 3 AND osgl_seatReg_seatings.seatY = ); 
-
-    $qGetSeatedUser = db_query("SELECT ".$sql_prefix."_users.nick FROM ".$sql_prefix."_users, ".$sql_prefix."_seatReg_seatings WHERE 
-        ".$sql_prefix."_users.ID = ".$sql_prefix."_seatReg_seatings.userID AND 
+    $qGetSeatedUser = db_query("SELECT ".$sql_prefix."_users.nick FROM ".$sql_prefix."_users, ".$sql_prefix."_seatReg_seatings WHERE
+        ".$sql_prefix."_users.ID = ".$sql_prefix."_seatReg_seatings.userID AND
         (eventID = '$sessioninfo->eventID' AND
         seatX = '$seatX' AND
         seatY = '$seatY')");
     $GetSeatedUser = db_fetch($qGetSeatedUser);
-    
->>>>>>> .theirs
+
     if($seatX == $place_seatX && $seatY == $place_seatY) {
         $content .= "<td class=seatCurrentSelected>$GetSeatedUser->nick</td>";
     } // End if currently selected
@@ -58,13 +47,9 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    // Type is normal seat
 	    $content .= "<td class=seatNormalUser>";
 	    $content .= "<a href=?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY>";
-<<<<<<< .mine
-	    if(db_num($qGetSeatedUser) == 0) $content .= "User";
-	    else $content .= $GetSeatedUser->nick;
-=======
-	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
+		if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 	    else $content .= "User";
->>>>>>> .theirs
+
 	    $content .= "</a>";
 	    $content .= "</td>";
 	    break;
@@ -117,7 +102,7 @@ if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioni
         seatY = '$place_seatY'");
     if(db_num($qSeatInfo) == 0) {
         // Noone has taken this seat; take it?
-        $qGetSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg 
+        $qGetSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg
 	WHERE eventID = '$sessioninfo->eventID' AND
 	seatX = '$place_seatX' AND
 	seatY = '$place_seatY'");
