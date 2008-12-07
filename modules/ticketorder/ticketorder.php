@@ -29,8 +29,15 @@ if(!isset($action)) {
 	    $content .= "<a href=?module=seating&ticketID=$rDisplayTickets->ticketID>";
 	    $content .= lang("Place on map", "ticketorder");
 	    $content .= "</a>";
+	} elseif($rDisplayTickets->status == 'notpaid') {
+		$content .= lang("Not paid", "ticketorder");
 	} else {
-	    $content .= lang("Can't place on map", "ticketorder");
+	    $qTicketUsedWhere = db_query("SELECT seatX,seatY FROM ".$sql_prefix."_seatReg_seatings
+	    	WHERE ticketID = ".$rDisplayTickets->ticketID);
+	    $rTicketUsedWhere = db_fetch($qTicketUsedWhere);
+	    $content .= "<a href=?module=seating&ticketID=$rDisplayTickets->ticketID&amp;seatX=$rTicketUsedWhere->seatX&amp;seatY=$rTicketUsedWhere->seatY>";
+	    $content .= lang("Update map", "ticketorder");
+	    $content .= "</a>";
 	}
 
 	$content .= "</td></tr>";
