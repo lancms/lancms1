@@ -10,7 +10,7 @@ if(!isset($action)) {
     // No action set, display tickets
 
     $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND owner = '$userID'");
-    
+
     if(db_num($qDisplayTickets) != 0) {
         // The user has tickets to this event, display them
         $content .= "<table>";
@@ -18,7 +18,7 @@ if(!isset($action)) {
 	$content .= "<tr><td>";
 	$content .= $rDisplayTickets->ticketID;
 	$content .= "</td><td>";
-	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID ='$eventID' 
+	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID ='$eventID'
 	    AND ticketTypeID = '$rDisplayTickets->ticketType'");
 	$rCheckTicketType = db_fetch($qCheckTicketType);
 	$content .= $rCheckTicketType->name;
@@ -37,7 +37,7 @@ if(!isset($action)) {
         } // End while
         $content .= "</table>";
     } // End if(db_num != 0);
-    
+
     $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID' AND type NOT LIKE 'onsite%' AND active = 1");
     if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
@@ -57,7 +57,7 @@ if(!isset($action)) {
 
 elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['numTickets'])) {
     // Buy tickets
-    $numTickets = $_POST['numTickets']; 
+    $numTickets = $_POST['numTickets'];
     $tickettype = $_GET['tickettype'];
     if($numTickets > $maxTicketsPrUser) $numTickets = $maxTicketsPrUser;
     while($numTickets) {
@@ -65,16 +65,17 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
         $qTicketType = db_query("SELECT type FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = ".db_escape($tickettype));
         $rTicketType = db_fetch($qTicketType);
         // Check how many tickets the user already has
-        $qUserNumTickets = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' 
+        $qUserNumTickets = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID'
 	AND (owner = '$sessioninfo->userID' OR creator = '$sessioninfo->userID')");
         $rUserNumTickets = db_fetch($qUserNumTickets);
         if($rUserNumTickets->count >= $maxTicketsPrUser); // Do noting if we've maxed maxTicketsPrUser
         else { // If we have not yet reached maxTicketsPrUser, add the ticket
 	if($rTicketType->type == "prepaid") $status = 'notpaid';
 	elseif($rTicketType->type == 'preorder') $status = 'notused';
-	db_query("INSERT INTO ".$sql_prefix."_tickets SET 
+	db_query("INSERT INTO ".$sql_prefix."_tickets SET
 	    owner = '$sessioninfo->userID',
 	    creator = '$sessioninfo->userID',
+	    userID = '$sessioninfo->userID',
 	    eventID = '$eventID',
 	    ticketType = '".db_escape($tickettype)."',
 	    status = '$status',
