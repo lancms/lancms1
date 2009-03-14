@@ -34,6 +34,8 @@ if(!isset($action))
 	/* List of global admin-options */
 	$content .= "<br><a href=?module=globaladmin&amp;action=addEvent>".lang("Add new event", "globaladmin")."</a>";
 
+	$content .= "<br><br><a href=?module=globaladmin&amp;action=config>".lang("Change global options", "globaladmin")."</a>";
+
 } // End if !isset($action)
 
 
@@ -90,4 +92,37 @@ elseif($action == "setPrivate") {
 elseif($action == "setPublic") {
     db_query("UPDATE ".$sql_prefix."_events SET eventPublic = 1 WHERE ID = '".db_escape($_GET['eventID'])."'");
     header("Location: ?module=globaladmin");
+}
+
+elseif($action == "config") {
+
+	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
+
+	$content .= "<form method=POST action='?module=globaladmin&amp;action=doConfig'>\n";
+	for($i=0;$i<count($globalconfig['checkbox']);$i++) {
+		$cfg_current = config($globalconfig['checkbox'][$i], 1);
+		$content .= "<input type=checkbox name='".$globalconfig['checkbox'][$i]."'";
+		if($cfg_current) $content .= " CHECKED";
+		$content .= "> ".lang($globalconfig['checkbox'][$i], "globalconfigoption")."<br>\n";
+	} // End for
+
+	$content .= "<input type=submit value='".lang("Save", "globaladmin_config")."'></form>";
+
+
+} // end action == config
+
+
+elseif($action == "doConfig") {
+
+	for($i=0;$i<count($globalconfig['checkbox']);$i++) {
+		$glbcfg = $globalconfig['checkbox'][$i];
+
+		$post = $_POST[$glbcfg];
+		if($post == "on") $post = 1;
+		else $post = "disable";
+		#echo $evtcfg.": ".$post;
+		config($globalconfig['checkbox'][$i], 1, $post);
+	} // End for
+
+	header("Location: ?module=globaladmin&action=config&action=config&saved=OK");
 }
