@@ -58,7 +58,10 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    $content .= "<td class=seatPassword>";
 	    $content .= "<a href=?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY>";
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
-	    else $content .= "Password";
+	    else {
+		if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
+		else $content .= "Password";
+	    }
 	    $content .= "</a>";
 	    $content .= "</td>";
 	    break;
@@ -67,7 +70,10 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    $content .= "<td class=seatGroup>";
 	    $content .= "<a href=?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY>";
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
-	    else $content .= "Group";
+	    else {
+	    	if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
+		else $content .= "Group";
+	    }
 	    $content .= "</a>";
 	    $content .= "</td>";
 	    break;
