@@ -4,22 +4,29 @@
 
 TABLE [prefix]_users
 {
-#	NAME				TYPE			KEY		NULL	DEFAULT				EXTRA
-	ID,					int(11), 		PRI, 	   ,	  ,					auto_increment
-	nick,				varchar(35),	   ,	   ,	NOT NULL,	
-	password, 			varchar(50),	   ,	YES,	  ,	
-	EMail, 				varchar(50),	   ,	YES,	  ,	
-	globaladmin, 		tinyint(1),		   ,	YES,	 0,	
-	firstName, 			varchar(40),	   ,	YES,	  ,	
-	lastName, 			varchar(40),	   ,	YES,	  ,	
-	MSNAddress, 		varchar(35),	   ,	YES,	  ,	
-	ICQAddress, 		int(12),		   ,	YES,	  ,	
-	postNumber, 		int(5),			   ,	YES,	  ,	
-	postPlace, 			varchar(35),	   ,	YES,	  ,	
-	registerTime, 		int(11),		   ,	YES,	 0,	
-	registerIP, 		varchar(15),	   ,	YES,	000.000.000.000,
-	EMailVerifyCode, 	varchar(25),	   ,	YES,	  ,	
-	userInfoVerified, 	tinyint(1),		   ,	YES,	 0,	
+#	NAME			TYPE			KEY		NULL	DEFAULT		EXTRA
+	ID,			int(11), 		PRI, 	   	,	  ,		auto_increment
+	nick,			varchar(35),	  	,	  	 ,	NOT NULL,	
+	password, 		varchar(50),	   	,		YES,	  ,	
+	EMail, 			varchar(50),	   	,		YES,	  ,	
+	globaladmin, 		tinyint(1),		,		YES,	 0,	
+	firstName, 		varchar(40),	   	,		YES,	  ,	
+	lastName, 		varchar(40),	   	,		YES,	  ,	
+	MSNAddress, 		varchar(35),	   	,		YES,	  ,	
+	ICQAddress, 		int(12),		,		YES,	  ,	
+	postNumber, 		int(5),			,		YES,	  ,	
+	postPlace, 		varchar(35),	   	,		YES,	  ,	
+	street,			varchar(50),		,		YES,
+	registerTime, 		int(11),		,		YES,	 0,	
+	registerIP, 		varchar(15),	   	,		YES,	000.000.000.000,
+	EMailVerifyCode, 	varchar(25),	   	,		YES,	  ,	
+	userInfoVerified, 	tinyint(1),		,		YES,	 0,	
+	gender,			enum('Male', 'Female'),	,		NO,	,
+	cellphone,		varchar(20),		,		YES,	0,
+	birthYear,		int(4),			,		YES,	0,
+	birthMonth,		int(2),			,		YES,	0,
+	birthDay,		int(2),			,		YES,	0,
+	
 }
 
 TABLE [prefix]_config
