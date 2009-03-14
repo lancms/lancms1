@@ -91,22 +91,23 @@ function config($config, $event = 0, $value = "NOTSET")
 			return FALSE;
 		}
 		else // If it exists, and it is not turned off; just output it
-		{	
+		{
 //			echo "config: ".$config.", event = ".$event.", value = ".$object->value;
 			return $object->value;
 		}
 	} // End if value == NOTSET
 	else // $value IS set, so we should write/update that config
 	{
+		if($value == "disable") $value = 0;
 		if ($num == 0) // That config doesn't exists yet. Insert it
 		{
-			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."', 
+			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."',
 				value = '".db_escape($value)."',
 				eventID = '".db_escape($event)."'");
 		}
 		else // That config exists. Update the existsing
 		{
-			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."' 
+			db_query("UPDATE ".$sql_prefix."_config SET value = '".db_escape($value)."'
 				WHERE config = '".db_escape($config)."' AND
 				eventID = '".db_escape($event)."'");
 		}
@@ -119,30 +120,30 @@ function config($config, $event = 0, $value = "NOTSET")
 function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 {
 	/* Check what rights the user has to a module or event. */
-	
+
 	global $sql_prefix;
 	global $sessioninfo;
 	if($userID == "MYSELF")
 		$userID = $sessioninfo->userID; // Use current user
-	/* Biiip. Not the correct way of doing it!		
+	/* Biiip. Not the correct way of doing it!
 	// Check if user is anonymous (and don't give access to anything)
 	if(!$sessioninfo->userID)
 	{
 		return "No";
 		break;
 	}
-	*/	
+	*/
 	// Check if user is global admin
 	$qGlobalAdmin = db_query("SELECT globaladmin FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
 	$rGlobalAdmin = db_fetch($qGlobalAdmin);
-	if($rGlobalAdmin->globaladmin == 1) 
+	if($rGlobalAdmin->globaladmin == 1)
 	{
 		return "Admin";
 		break;
 	}
-	
+
 	// Check what groups the user is a member of
-	$qCheckGroups = db_query("SELECT groupID FROM ".$sql_prefix."_group_members 
+	$qCheckGroups = db_query("SELECT groupID FROM ".$sql_prefix."_group_members
 		WHERE userID = ".db_escape($userID));
 	$groupList = FALSE; // List of groups a user is member of
 	$groupList = '1';
@@ -150,13 +151,13 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 	{
 		$groupList .= " ,";
 		$groupList .= $rCheckGroups->groupID;
-		
+
 	} // End while CheckGroups
-		
+
 	// Check what the highest ACL-right you have on event
 	if($event != 1) // Event-ID 1 is used on things that are not event-specific.
 	{
-		
+
 		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
 			WHERE eventID = '".db_escape($event)."'
 			AND groupID IN ($groupList)
@@ -174,7 +175,7 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 			return $rCheckEventRight->access;
 			break;
 		}
-		
+
 	} // End if event != 0/check eventACL.
 	// Not admin, check what rights the group has
 	elseif($module == "grouprights" && $subcategory != 0)
@@ -186,7 +187,7 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 		$rCheckGroupRights = db_fetch($qCheckGroupRights);
 		return $rCheckGroupRights->access;
 	} // End elseif module = grouprights
-	
+
 	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
 		WHERE eventID = '".db_escape($event)."'
 		AND groupID IN ($groupList)
@@ -198,7 +199,7 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 		access = 'No' DESC
 		LIMIT 0,1
 		");
-	
+
 	$rCheckModuleRight = db_fetch($qCheckModuleRight);
 	if(!empty($rCheckModuleRight))
 		return $rCheckModuleRight->access;
@@ -215,21 +216,21 @@ function lang($string, $module = "index")
 {
 	global $language; // Get default/current language
 	global $sql_prefix;
-	
+
 	// Check to see if that string exists
-	$q = db_query("SELECT * FROM ".$sql_prefix."_lang 
-		WHERE string = '".db_escape($string)."' 
-		AND language = '".db_escape($language)."' 
+	$q = db_query("SELECT * FROM ".$sql_prefix."_lang
+		WHERE string = '".db_escape($string)."'
+		AND language = '".db_escape($language)."'
 		AND module = '".db_escape($module)."'");
-	
+
 	// How many occurences of string
 	$num = db_num($q);
 	if ($num == 0)
 	{
 		/* The string does not exist in the database, add it */
-		db_query("INSERT INTO ".$sql_prefix."_lang 
-			SET string = '".db_escape($string)."', 
-			language = '".db_escape($language)."', 
+		db_query("INSERT INTO ".$sql_prefix."_lang
+			SET string = '".db_escape($string)."',
+			language = '".db_escape($language)."',
 			module = '".db_escape($module)."'");
 		return $string;
 	} // End not exists
@@ -262,7 +263,7 @@ function option_rights($default = 'No')
 	$return .= "<option value='No'";
 	if($default == 'No') $return .= ' selected';
 	$return .= ">".lang("No", "functions")."</option>\n";
-	
+
 	// Display Read-rights
 	$return .= "<option value='Read'";
 	if($default == 'Read') $return .= ' selected';
@@ -277,18 +278,18 @@ function option_rights($default = 'No')
 	$return .= "<option value='Admin'";
 	if($default == 'Admin') $return .= ' selected';
 	$return .= ">".lang("Admin", "functions")."</option>\n";
-	
+
 	return $return;
 } // End function option_rights
 
 
 function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     global $sql_prefix;
-    $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' 
+    $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID'
         AND seatX = '$seatX' AND seatY = '$seatY'");
     $rSeatInfo = db_fetch($qSeatInfo);
     $seating_enabled = config("seating_enabled", $sessioninfo->eventID);
-    
+
     $returncode = FALSE;
     // Check event-rights
     $acl_event_seating = acl_access("seating", "", $eventID);
@@ -297,7 +298,7 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
         eventID = '$eventID' AND seatX = '$seatX' AND seatY = '$seatY'");
     if(db_num($qCheckAlreadySeated) != 0) $returncode = FALSE;
     elseif($acl_event_seating == 'Admin' || $acl_event_seating == 'Write') $returncode = TRUE;
-    
+
     elseif($seating_enabled == 1) {
         // Seating is enabled for this event?
 
@@ -327,4 +328,4 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     } // End elseif(config(seating_enabled))
     else die("WTF in seating_rights: ".$seating_enabled);
     return $returncode;
-} // End function seating_rights			
+} // End function seating_rights

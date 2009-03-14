@@ -21,6 +21,7 @@ switch ($sql_type)
 ## Includes etc.
 require 'inc/shared_functions.php';
 require 'inc/shared_session.php';
+require 'inc/shared_config.php';
 
 
 ## Set up Smarty-stuff

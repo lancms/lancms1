@@ -216,3 +216,36 @@ elseif($action == "addGroup" && !empty($_POST['groupname']))
 	} // end else
 
 } // end if action == addGroup
+
+elseif($action == "config") {
+
+	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
+
+	$content .= "<form method=POST action='?module=eventadmin&amp;action=doConfig'>\n";
+	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
+		$cfg_current = config($eventconfig['checkbox'][$i], $eventID);
+		$content .= "<input type=checkbox name='".$eventconfig['checkbox'][$i]."'";
+		if($cfg_current) $content .= " CHECKED";
+		$content .= "> ".lang($eventconfig['checkbox'][$i], "eventconfigoption")."<br>\n";
+	} // End for
+
+	$content .= "<input type=submit value='".lang("Save", "eventadmin_config")."'></form>";
+
+
+} // end action == config
+
+
+elseif($action == "doConfig") {
+
+	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
+		$evtcfg = $eventconfig['checkbox'][$i];
+
+		$post = $_POST[$evtcfg];
+		if($post == "on") $post = 1;
+		else $post = "disable";
+		#echo $evtcfg.": ".$post;
+		config($eventconfig['checkbox'][$i], $eventID, $post);
+	} // End for
+
+	header("Location: ?module=eventadmin&action=config&action=config&saved=OK");
+}
