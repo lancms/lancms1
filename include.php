@@ -39,18 +39,3 @@ $smarty->cache_dir = 'tmp/templates_cache/';
 #$smarty_display = 'simple/simple.tpl';
 $smarty_display = 'GlobeLAN11/GlobeLAN11.tpl';
 
-
-
-
-## Define diffrent variables
-$seattype['b'] = 'Blank';
-$seattype['d'] = 'Open seat';
-$seattype['p'] = 'Password-protected seat';
-$seattype['g'] = 'Group-protected seat';
-$seattype['t'] = 'Text';
-$seattype['w'] = 'Wall';
-$seattype['o'] = 'Door';
-$seattype['a'] = 'Area';
-
-
-$maxTicketsPrUser = 5;

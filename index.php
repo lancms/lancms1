@@ -43,6 +43,8 @@ if($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<br><a href=?module=FAQ&amp;action=read>".lang("FAQ", "index")."</a>";
 	if(config("enable_ticketorder", $sessioninfo->eventID))
 		$design_eventmenu .= "<br><a href=?module=ticketorder>".lang("Order ticket", "index")."</a>";
+	if(config("enable_wannabe", $sessioninfo->eventID))
+		$design_eventmenu .= "<br><a href=?module=wannabe>".lang("Wannabe", "index")."</a>";
 
 
 
