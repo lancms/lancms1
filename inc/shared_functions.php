@@ -285,12 +285,13 @@ function option_rights($default = 'No')
 
 function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     global $sql_prefix;
+    global $sessioninfo;
     $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID'
         AND seatX = '$seatX' AND seatY = '$seatY'");
     $rSeatInfo = db_fetch($qSeatInfo);
-    $seating_enabled = config("seating_enabled", $sessioninfo->eventID);
+    $seating_enabled = config("seating_enabled", $eventID);
 
-    $returncode = FALSE;
+    $returncode = 0;
     // Check event-rights
     $acl_event_seating = acl_access("seating", "", $eventID);
     // Check if the seat is already taken
@@ -308,24 +309,28 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
         $rTicketInfo = db_fetch($qTicketInfo);
 
         if($rTicketInfo->owner == $sessioninfo->userID || $rTicketInfo->user == $sessioninfo->userID) {
-	$type = $rSeatInfo->type;
-	switch ($type) {
-	    case 'd':
-	        // Seat is a normal seat
-	        $returncode = TRUE;
-	        break;
-	    case 'g':
-	        // Groupprotected. Check if access to group
-	        if(acl_access("grouprights", $rSeatInfo->extra, "", $sessioninfo->userID) != 'No') $returncode = TRUE;
-	        break;
-	    case 'p':
-	        // Password-protected. Check if password correct
-	        if($password == $rSeatInfo->extra) $returncode = TRUE;
-	        die("password entered: $password, password in DB: $rSeatInfo->extra");
-	        break;
-	    } // End switch($type)
+			$type = $rSeatInfo->type;
+			switch ($type) {
+	 			case 'd':
+	   				// Seat is a normal seat
+	   	   			$returncode = 1;
+	        		break;
+	   		 	case 'g':
+	    	    	// Groupprotected. Check if access to group
+	    	    	if(acl_access("grouprights", $rSeatInfo->extra, "", $sessioninfo->userID) != 'No') $returncode = 1;
+	    	    	break;
+	    		case 'p':
+	    		    // Password-protected. Check if password correct
+	    		    if($password == $rSeatInfo->extra) $returncode = 1;
+	    		    #die("password: $password, matching against $rSeatInfo->extra");
+	    	    	break;
+	    	    default:
+	    	    	die("type: ".$type);
+	    	} // End switch($type)
         } // End if rTicketInfo->owner || user == session-userID
+
     } // End elseif(config(seating_enabled))
-    else die("WTF in seating_rights: ".$seating_enabled);
+
     return $returncode;
+
 } // End function seating_rights

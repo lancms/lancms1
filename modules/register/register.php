@@ -82,10 +82,10 @@ if(!isset($action) || $hide_register == FALSE)
 	$content .= "<br><input type=password name=pass1 value='$pass1'> ".lang("Password", "register");
 	$content .= "<br><input type=password name=pass2 value='$pass2'> ".lang("Password again", "register");
 	$content .= "<br><input type=text name=EMail value='$EMail'> ".lang("E-Mail", "register");
-	if(config("register_firstname_required", 0))
+	if(config("register_firstname_required"))
 		$content .= "<br><input type=text name=firstName value ='$firstName'> ".
 		lang("First name", "register");
-	if(config("register_lastname_required", 0))
+	if(config("register_lastname_required"))
 		$content .= "<br><input type=text name=lastName value='$lastName'> ".
 		lang("Last name", "register");
 	$content .= "<br><input type=submit value='".lang("Create user", "register")."'>";
