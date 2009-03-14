@@ -72,7 +72,7 @@ function db_num ($q)
 
 
 ######################################################
-function config($config, $event = 0, $value = "NOTSET")
+function config($config, $event = 1, $value = "NOTSET")
 {
 	global $sql_prefix;
 	$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config = '".db_escape($config)."' AND eventID = '".db_escape($event)."'");

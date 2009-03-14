@@ -21,8 +21,8 @@ if(acl_access("globaladmin", "", 0) == 'Admin')
 	$design_menu .= "<br><a href=?module=globaladmin>".lang("Global Admin", "index")."</a>\n";
 
 $design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
-if(config("users_may_create_clan") && $sessioninfo->userID != 1)
-	$design_menu .= "<br><a href=index.php?module=groups&amp;action=createClan>".lang("Create clan", "index")."</a>\n";
+if(config("users_may_create_clan") && $sessioninfo->userID > 1)
+	$design_menu .= "<br><a href=index.php?module=groups>".lang("My groups", "index")."</a>\n";
 
 
 
@@ -36,24 +36,24 @@ if($sessioninfo->eventID > 1)
 		{
 			$design_eventmenu .= "<br><a href=?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID>$rListStaticPages->header</a>";
 		} // End if acl_access to page is allowed
-		
+
 	} // End while db_fetch(staticPages)
-	
+
 	if(config("enable_FAQ", $sessioninfo->eventID))
 		$design_eventmenu .= "<br><a href=?module=FAQ&amp;action=read>".lang("FAQ", "index")."</a>";
 	if(config("enable_ticketorder", $sessioninfo->eventID))
 		$design_eventmenu .= "<br><a href=?module=ticketorder>".lang("Order ticket", "index")."</a>";
-	
-	
-	
-	
-	
+
+
+
+
+
 	// User has eventadmin-rights?
 	$eventadmin = acl_access("eventadmin", "", $sessioninfo->eventID);
-	if($eventadmin == "Admin" || $eventadmin == "Write") 
+	if($eventadmin == "Admin" || $eventadmin == "Write")
 		$design_eventmenu .= "<br><a href=?module=eventadmin>".lang("Event Admin", "index")."</a>";
-	
-	
+
+
 }
 
 
@@ -91,7 +91,7 @@ if($sessioninfo->userID != 1)
 {
 	// User is logged in, display what groups you are member of
 	$qListGroups = db_query("SELECT ".$sql_prefix."_groups.groupname,
-		".$sql_prefix."_group_members.groupID FROM 
+		".$sql_prefix."_group_members.groupID FROM
 		".$sql_prefix."_group_members INNER JOIN
 		".$sql_prefix."_groups ON
 		".$sql_prefix."_group_members.groupID =

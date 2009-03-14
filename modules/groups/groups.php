@@ -4,9 +4,35 @@ $action = $_GET['action'];
 $groupID = $_GET['groupID'];
 
 
+if(!isset($action)) {
+	$qListMyGroups = db_query("SELECT g.ID,g.groupname,g.groupType FROM ".$sql_prefix."_groups g
+		JOIN ".$sql_prefix."_group_members m ON g.ID=m.groupID WHERE m.userID = ".$sessioninfo->userID);
+
+	$content .= "<table>";
+	while($rListMyGroups = db_fetch($qListMyGroups)) {
+		$content .= "<tr><td><a href=?module=groups&action=listGroup&groupID=$rListMyGroups->ID>";
+		$content .= $rListMyGroups->groupname;
+		$content .= "</a></td><td>".lang($rListMyGroups->groupType, "groups")."</td></tr>";
+	} // End while(rListMyGroup);
+	$content .= "</table>";
+
+	$content .= "<br><br>";
+
+	$content .= lang("Create new clan", "groups");
+
+	// Form to display to create clans (global groups, groupType = clan)
+	if(!empty($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
+	$content .= "<form method=POST action=index.php?module=groups&amp;action=doCreateClan>\n";
+	$content .= "<input type=text name=clanname value='".$_GET['clanname']."'> ".lang("Clan name", "groups");
+	$content .= "<br><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
+	$content .= "<br><input type=submit value='".lang("Create clan", "groups")."'>\n";
+	$content .= "</form>\n";
 
 
-if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'changeGroupRights') && !empty($groupID))
+
+} // End if !isset(action)
+
+elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'changeGroupRights') && !empty($groupID))
 {
 	/* this action list the "group main page" */
 	// FIXME: ACL...
@@ -104,20 +130,9 @@ if(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 'cha
 } // End if action = ListGroup
 
 
-elseif($action == "createClan" && config("users_may_create_clan") && $sessioninfo->userID != 0)
-{
-	// Form to display to create clans (global groups, groupType = clan)
-	if(!empty($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
-	$content .= "<form method=POST action=index.php?module=groups&amp;action=doCreateClan>\n";
-	$content .= "<input type=text name=clanname value='".$_GET['clanname']."'> ".lang("Clan name", "groups");
-	$content .= "<br><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
-	$content .= "<br><input type=submit value='".lang("Create clan", "groups")."'>\n";
-	$content .= "</form>\n";
 
 
-} // end if action == createClan
-
-elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioninfo->userID != 0)
+elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioninfo->userID > 1)
 {
 	$clanname = $_POST['clanname'];
 	$clanpwd = $_POST['clanpassword'];
@@ -147,11 +162,11 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 		db_query("INSERT INTO ".$sql_prefix."_groups SET
 			groupname = '".db_escape($clanname)."',
 			grouppassword = '".$clanpwd."',
-			created_by = '".$sessioninfo->userID."',
-			created_timestamp = ".time()
+			createdByUser = '".$sessioninfo->userID."',
+			createdTimestamp = ".time()
 			);
 		// Fetch whatever was just inserted into DB, as Ive never got mysql_insert_id() to work properly
-		$qLastGroupID = db_query("SELECT ID FROM ".$sql_prefix."_groups WHERE created_by = ".$sessioninfo->userID." ORDER BY ID DESC LIMIT 0,1");
+		$qLastGroupID = db_query("SELECT ID FROM ".$sql_prefix."_groups WHERE createdByUser = ".$sessioninfo->userID." ORDER BY ID DESC LIMIT 0,1");
 		$rLastGroupID = db_fetch($qLastGroupID);
 
 		// Give the user admin-rights to his own group
@@ -159,7 +174,7 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 			groupID = '$rLastGroupID->ID',
 			userID = '".$sessioninfo->userID."',
 			access = 'Admin'");
-		header("Location: ?module=groups&action=listGroups&groupID=$rLastGroupID->ID");
+		header("Location: ?module=groups&action=listGroup&groupID=$rLastGroupID->ID");
 	} // End else (clan name and pwd accepted)
 } // End elseif action == doCreateClan
 
@@ -205,3 +220,9 @@ elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['use
 		AND userID = '".db_escape($_GET['userID'])."'");
 	header("Location: ?module=groups&action=listGroup&groupID=$groupID");
 } // End if action == doChangeGroupRights
+
+else {
+	$content .= "action == ".$action;
+	$content .= "userID == ".$sessioninfo->userID;
+	$content .= "create_clan == ".config("users_may_create_clan");
+}
