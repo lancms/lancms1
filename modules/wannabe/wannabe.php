@@ -55,7 +55,7 @@ if(!isset($action)) {
 
 
 elseif($action == "doApplication") {
-	$qFindQuestions = db_query("SELECT ID FROM ".$sql_prefix."_wannabequestions WHERE eventID = $eventID");
+	$qFindQuestions = db_query("SELECT ID FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = $eventID");
 
 	while($rFindQuestions = db_fetch($qFindQuestions)) {
 		#$appID = "appID_"$rFindQuestions->ID'

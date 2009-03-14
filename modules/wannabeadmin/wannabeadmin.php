@@ -187,3 +187,10 @@ elseif($action == "addQuestion" && $acl_access == "Admin")
 	header("Location: ?module=wannabeadmin&action=editQuestion&questionID=".$questionID);
 
 } // End if action == addQuestion
+
+
+elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access == 'Admin') {
+	$question = $_POST['question'];
+	db_query("UPDATE ".$sql_prefix."_wannabeQuestions SET question = '".db_escape($question)."' WHERE ID = '".db_escape($_GET['questionID'])."'");
+	header("Location: ?module=wannabeadmin&action=questions");
+}
