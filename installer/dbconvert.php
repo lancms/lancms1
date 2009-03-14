@@ -5,7 +5,7 @@ else require('../config.php');
 require('../inc/shared_functions.php');
 
 
-$eventID = 3; // EventID to import the DB to
+$eventID = 5; // EventID to import the DB to
 
 
 
@@ -58,16 +58,45 @@ while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 
 	$currentUser = $rFindUser->ID;
 
-
-
-
-
-
-
-
 } // End qUsers
 
+$qFromWannabeQ = mysql_query("SELECT * FROM wannabeQue", $from) or die("qFromWannabeQ: ".mysql_error());
 
+while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
+	$qFindExisting = mysql_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = '$eventID' AND question = '$rFromWannabeQ->content'", $todb);
+	if(mysql_num_rows($qFindExisting) == 0) {
+		switch($rFromWannabeQ->type) {
+			case "2":
+				// Type is text
+				mysql_query("INSERT INTO ".$sql_prefix."_wannabeQuestions SET
+					eventID = '$eventID',
+					question = '".$rFromWannabeQ->content."',
+					questionType = 'text'
+				", $todb);
+				break;
+			case "1":
+				// Type is alternatives
+				mysql_query("INSERT INTO ".$sql_prefix."_wannabeQuestions SET 
+					eventID = '$eventID',
+					question = '".$rFromWannabeQ->content."',
+					questionType = 'select'
+				", $todb);
+				$qLastID = mysql_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions WHERE question = '".$rFromWannabeQ->content."' AND eventID = '$eventID' AND questionType = 'select'", $todb);
+				$rLastID = mysql_fetch_object($qLastID);
+				$questionID = $rLastID->ID;
+				echo "QuestionID: ".$questionID;
+				$qWannabeAlt = mysql_query("SELECT * FROM wannabeAlt WHERE queID = '$rFromWannabeQ->ID'", $from);
+				echo "Found ".mysql_num_rows($qWannabeAlt)." alternatives";
+				while($rWannabeAlt = mysql_fetch_object($qWannabeAlt)) {
+					echo "WannabeAlternative: ".$rWannabeAlt->response;
+					mysql_query("INSERT INTO ".$sql_prefix."_wannabeQuestionInfo SET
+						questionID = '$questionID',
+						response = '$rWannabeAlt->content'
+					", $todb);
+				} // End while
+				break;
+		} // End switch
+	} // End if(mysql_num_rows())
+		
 
-
-
+} // End wannabeQuestions
