@@ -175,7 +175,10 @@ elseif($action == "groupManagement")
 	{
 		// list up all groups associated with this event
 		$content .= "<tr><td><a href=?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID>";
-		$content .= $rListGroups->groupname."</a></td></tr>";
+		$content .= $rListGroups->groupname."</a></td><td>";
+		$content .= "<a href=?module=eventadmin&action=groupRights&groupID=$rListGroups->ID>";
+		$content .= lang("Change group rights", "eventadmin")."</a>";
+		$content .= "</td></tr>";
 	} // End while
 
 	$content .= '</table>';
@@ -251,3 +254,13 @@ elseif($action == "doConfig") {
 
 	header("Location: ?module=eventadmin&action=config&action=config&saved=OK");
 }
+
+elseif($action == "groupRights" && !empty($_GET['groupID']) {
+	$groupID = $_GET['groupID'];
+
+	for($i=0;$i<count($eventaccess);$i++) {
+		$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID = $eventID
+			AND groupID = '".db_escape($groupID)."' AND accessmodule = '".$eventaccess[$i]."'");
+	} // End for
+
+} // End elseif action== groupRights
