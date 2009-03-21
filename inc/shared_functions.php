@@ -334,3 +334,15 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
     return $returncode;
 
 } // End function seating_rights
+
+######################################################
+
+// Displays name and nick in listings
+function display_username($userID) {
+	global $sql_prefix;
+
+	$qCheckUserinfo = db_query("SELECT nick,firstname,lastname FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
+	$rCheckUserinfo = db_fetch($qCheckUserinfo);
+
+	return $rCheckUserinfo->firstname." ".$rCheckUserinfo->lastname." (".$rCheckUserinfo->nick.")";
+} // End display_username($userID)

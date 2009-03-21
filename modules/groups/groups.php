@@ -213,11 +213,16 @@ elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['use
 		die("Sorry, you need admin-rights to do this!");
 
 	$access = $_POST['groupRights'];
-
-	db_query("UPDATE ".$sql_prefix."_group_members
-		SET access = '".db_escape($access)."'
-		WHERE groupID = '".db_escape($groupID)."'
-		AND userID = '".db_escape($_GET['userID'])."'");
+	if($access == "No") {
+		db_query("DELETE FROM ".$sql_prefix."_group_members WHERE groupID = '".db_escape($groupID)."'
+			AND userID = '".db_escape($_GET['userID'])."'");
+	} // End if access= no, delete
+	else {
+		db_query("UPDATE ".$sql_prefix."_group_members
+			SET access = '".db_escape($access)."'
+			WHERE groupID = '".db_escape($groupID)."'
+			AND userID = '".db_escape($_GET['userID'])."'");
+	} // End else
 	header("Location: ?module=groups&action=listGroup&groupID=$groupID");
 } // End if action == doChangeGroupRights
 

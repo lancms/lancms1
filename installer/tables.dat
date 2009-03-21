@@ -130,6 +130,13 @@ TABLE [prefix]_wannabeCrews
 	crewname,	varchar(25),	,	,	,
 }
 
+TABLE [prefix]_wannabeCrewResponse
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	userID,		int(11),	PRI,	,	,
+	crewID,		int(11),	PRI,	,	,
+	response,	tinyint(1)	,	,	3,
+}
 TABLE [prefix]_wannabeQuestions
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
