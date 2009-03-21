@@ -164,6 +164,16 @@ TABLE [prefix]_wannabeResponse
 	response,	text,		,	,	,
 	userID,		int(11),	,	,	,
 }
+TABLE [prefix]_wannabeComment
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	crewID,		int(11),	,	,	,
+	comment,	text,		,	,	,
+	approval,	tinyint(1),	,	,	,
+	userID,		int(11),	,	,	,
+	adminID,	int(11),	,	,	,
+}
 
 TABLE [prefix]_seatReg
 {

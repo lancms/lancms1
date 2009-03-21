@@ -213,6 +213,8 @@ elseif($action == "listApplications") {
 } // End action=listApplications
 
 elseif($action == "viewApplication" && !empty($_GET['user'])) {
+	// Add CSS for this action
+	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
 	$user = $_GET['user'];
 
 	$content .= "<table>";
@@ -260,6 +262,68 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 
 	$content .= "</table>";
 
+	$content .= "<table>\n\n";
+
+	// FIXME: Ugly way of doing this...
+	$qListCrewHeaders = db_query("SELECT crewname FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+	$content .= "<tr><td></td>";
+	while($rListCrewHeaders = db_fetch($qListCrewHeaders)) {
+		$content .= "<th>";
+		$content .= $rListCrewHeaders->crewname;
+		$content .= "</th>";
+	} // End while rListCrewHeaders
+
+
+	// List admins that has said something
+	$qListAdmins = db_query("SELECT DISTINCT u.nick,c.adminID FROM ".$sql_prefix."_users u
+		JOIN ".$sql_prefix."_wannabeComment c ON u.ID=c.adminID
+		WHERE crewID IN (SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID)");
+
+	while($rListAdmins = db_fetch($qListAdmins)) {
+		$content .= "<tr><th>";
+		$content .= $rListAdmins->nick;
+		$content .= "</th>";
+		if($rListAdmins->adminID == $sessioninfo->userID) $editcmt = TRUE; // Current user, allow changing comments
+		$qListCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+		while($rListCrews = db_fetch($qListCrews)) {
+			$crewID = $rListCrews->ID;
+
+			$qListComments = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE userID = '".db_escape($user)."'
+				AND crewID = $crewID AND adminID = $rListAdmins->adminID");
+			$rListComments = db_fetch($qListComments);
+			$content .= "<td class=wannabeCommentStyle".$rListComments->approval.">";
+			if($editcmt) {
+				$content .= "<a href=?module=wannabeadmin&action=changeComment&crewID=$crewID&user=$user>";
+				if(empty($rListComments->comment)) $content .= lang("Comment", "wannabeadmin");
+				else $content .= $rListComments->comment;
+				$content .= "</a>";
+			}
+			else $content .= $rListComments->comment;
+			$content .= "</td>\n";
+
+		} // End while rListCrews
+
+		$content .= "</tr>\n\n";
+	} // End while rListAdmins
+
+	if($acl_access != 'Read' && !$editcmt) {
+		$qGetUsernick = db_query("SELECT nick FROM ".$sql_prefix."_users WHERE ID = $sessioninfo->userID");
+		$rGetUsernick = db_fetch($qGetUsernick);
+		$content .= "<tr><th>$rGetUsernick->nick</th>";
+		$qListCrewsAppend = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+		while($rListCrewsAppend = db_fetch($qListCrewsAppend)) {
+			$content .= "<td>";
+			$content .= "<a href=?module=wannabeadmin&action=changeComment&crewID=".$rListCrewsAppend->ID."&user=$user>";
+			$content .= lang("Comment", "wannabeadmin");
+			$content .= "</a></td>";
+		} // End while rListCrewsAppend
+	} // End if acl_access != read
+
+	$content .= "</table>";
+
+
+
+
 } // End elseif action == viewApplications
 
 elseif($action == "crews") {
@@ -283,3 +347,53 @@ elseif($action == "doAddCrew") {
 	db_query("INSERT INTO ".$sql_prefix."_wannabeCrews SET crewname = '".db_escape($crewname)."', eventID = $eventID");
 	header("Location: ?module=wannabeadmin&action=crews");
 } // End action == doAddCrew
+
+elseif($action == "changeComment" && !empty($_GET['crewID']) && !empty($_GET['user'])) {
+	$user = $_GET['user'];
+	$crewID = $_GET['crewID'];
+
+	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE adminID = $sessioninfo->userID
+		AND userID = '".db_escape($user)."' AND crewID = '".db_escape($crewID)."'");
+	$rCheckExisting = db_fetch($qCheckExisting);
+
+	$content .= "<form method=POST action=?module=wannabeadmin&action=doChangeComment&user=$user&crewID=$crewID>\n";
+	$content .= "<select name=approval>";
+	for($i=0;$i<6;$i++) {
+		$content .= "<option value=$i";
+		if($i==$rCheckExisting->approval) $content .= " SELECTED";
+		$content .= ">".lang("wannabeAdminCmt".$i, "wannabeadmin_prefs")."</option>";
+	} // End for
+	$content .= "</select>";
+	$content .= "<br><textarea name=comment rows=5 cols=40>$rCheckExisting->comment</textarea>";
+	$content .= "<br><input type=submit value='".lang("Save comment", "wannabeadmin")."'>";
+	$content .= "</form>";
+} // End elseif action==changeComment
+
+
+elseif($action == "doChangeComment") {
+	$comment = $_POST['comment'];
+	$approval = $_POST['approval'];
+	$user = $_GET['user'];
+	$crewID = $_GET['crewID'];
+
+	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE adminID = $sessioninfo->userID
+		AND userID = '".db_escape($user)."' AND crewID = '".db_escape($crewID)."'");
+	if(db_num($qCheckExisting) > 0) {
+		db_query("UPDATE ".$sql_prefix."_wannabeComment
+			SET approval = '".db_escape($approval)."',
+			comment = '".db_escape($comment)."'
+			WHERE adminID = $sessioninfo->userID
+			AND userID = '".db_escape($user)."'
+			AND crewID = '".db_escape($crewID)."'");
+	} // End if db_num exists
+	else {
+		db_query(" INSERT INTO ".$sql_prefix."_wannabeComment
+			SET approval = '".db_escape($approval)."',
+			comment = '".db_escape($comment)."',
+			adminID = $sessioninfo->userID ,
+			userID = '".db_escape($user)."',
+			crewID = '".db_escape($crewID)."'");
+	} // End else
+
+	header("Location: ?module=wannabeadmin&action=viewApplication&user=$user");
+} // End elseif action == doChangeComment
