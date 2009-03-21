@@ -5,9 +5,32 @@ $action = $_GET['action'];
 
 if(!isset($action)) {
 
-	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = $eventID");
 	$content .= "<table>";
 	$content .= "<form method=POST action=?module=wannabe&action=doApplication>";
+
+	// First, list up possible crews
+	$qListCrews = db_query("SELECT crew.ID,crew.crewname,
+		(SELECT response FROM ".$sql_prefix."_wannabeCrewResponse
+			WHERE crewID=crew.ID AND userID = $sessioninfo->userID) AS response
+		FROM ".$sql_prefix."_wannabeCrews crew
+		WHERE crew.eventID = $eventID");
+	while($rListCrews = db_fetch($qListCrews)) {
+		$content .= "<tr><td>";
+		$content .= $rListCrews->crewname;
+		$content .= "</td><td>";
+		$content .= "<select name=crew".$rListCrews->ID.">\n";
+		for($i=0;$i<6;$i++) {
+			$content .= "<option value=$i";
+			if($rListCrews->response == $i) $content .= " SELECTED";
+			$content .= ">".lang("WannabeCrewListPreference".$i, "wannabe_crewprefs")."</option>\n";
+		} // End for
+		$content .= "</select>";
+	} // End while
+
+
+
+	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = $eventID");
+
 	while($rListQuestions = db_fetch($qListQuestions)) {
 		$content .= "<tr><td>";
 		$content .= $rListQuestions->question;
@@ -55,6 +78,26 @@ if(!isset($action)) {
 
 
 elseif($action == "doApplication") {
+
+	$qFindCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+	while($rFindCrews = db_fetch($qFindCrews)) {
+		$post = $_POST['crew'.$rFindCrews->ID];
+		$qCheckResponded = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrewResponse
+			WHERE crewID = '$rFindCrews->ID' AND userID = '$sessioninfo->userID'");
+		if(db_num($qCheckResponded) > 0) {
+			db_query("UPDATE ".$sql_prefix."_wannabeCrewResponse SET response = '".db_escape($post)."'
+				WHERE userID = $sessioninfo->userID
+				AND crewID = $rFindCrews->ID");
+		} // End if db_num > 0
+		else {
+			db_query("INSERT INTO ".$sql_prefix."_wannabeCrewResponse SET response = '".db_escape($post)."',
+				userID = $sessioninfo->userID,
+				crewID = $rFindCrews->ID");
+		} // End else
+	} // End while rFindCrews
+
+
+
 	$qFindQuestions = db_query("SELECT ID FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = $eventID");
 
 	while($rFindQuestions = db_fetch($qFindQuestions)) {

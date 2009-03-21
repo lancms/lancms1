@@ -4,7 +4,7 @@ $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];
 $acl_access = acl_access("wannabeadmin", "", $eventID);
 
-
+if($acl_access == 'No') die("You don't have access to this");
 
 
 if($action == "adminWannabe")
@@ -15,12 +15,14 @@ if($action == "adminWannabe")
 	{
 		// User has wannabe adminrights
 		$content .= "<br><a href=?module=wannabeadmin&amp;action=questions>".lang("Questions", "wannabeadmin")."</a>\n";
+		$content .= "<br><a href=?module=wannabeadmin&amp;action=crews>".lang("Crews", "wannabeadmin")."</a>\n";
 
 	} // End acl_access = Admin
 
 	if($acl_access == 'Write' || $acl_access == 'Admin')
 	{
 		// User has wannabe write-access (may see and write comments)
+		$content .= "<br><a href=?module=wannabeadmin&amp;action=listApplications>".lang("View Applications", "wannabeadmin")."</a>";
 
 	} // End acl_access > Write
 
@@ -194,3 +196,90 @@ elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access 
 	db_query("UPDATE ".$sql_prefix."_wannabeQuestions SET question = '".db_escape($question)."' WHERE ID = '".db_escape($_GET['questionID'])."'");
 	header("Location: ?module=wannabeadmin&action=questions");
 }
+
+elseif($action == "listApplications") {
+	$qListApplications = db_query("SELECT DISTINCT userID FROM ".$sql_prefix."_wannabeResponse res
+		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = $eventID");
+	$content .= "<table>";
+	while($rListApplications = db_fetch($qListApplications)) {
+		$content .= "<tr><td>";
+		$content .= "<a href=?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID>";
+		$content .= display_username($rListApplications->userID);
+		$content .= "</a>";
+		$content .= "</td></tr>";
+	} // End while rListApplications
+	$content .= "</table>";
+
+} // End action=listApplications
+
+elseif($action == "viewApplication" && !empty($_GET['user'])) {
+	$user = $_GET['user'];
+
+	$content .= "<table>";
+
+	$qListCrewResponses = db_query("SELECT crew.crewname,
+		(SELECT response FROM ".$sql_prefix."_wannabeCrewResponse
+			WHERE userID = '".db_escape($user)."' AND crewID=crew.ID) AS response
+		FROM ".$sql_prefix."_wannabeCrews crew WHERE eventID = $eventID");
+	while($rListCrewResponses = db_fetch($qListCrewResponses)) {
+		$content .= "<tr><td>";
+		$content .= $rListCrewResponses->crewname;
+		$content .= "</td><td>";
+		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
+		$content .= "</td></tr>";
+	} // End while rListCrewResponses
+
+
+	$qListResponse = db_query("SELECT ques.question,ques.questionType,res.response FROM ".$sql_prefix."_wannabeResponse res
+		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE res.userID = ".db_escape($user));
+
+	while($rListResponse = db_fetch($qListResponse)) {
+
+		$content .= "<tr><td>";
+		$content .= $rListResponse->question;
+		$content .= "</td><td>";
+		switch ($rListResponse->questionType) {
+			case "text":
+				$content .= $rListResponse->response;
+				break;
+			case "checkbox":
+				if($rListResponse->response == "on") $content .= lang("Yes", "wannabeadmin");
+				else $content .= lang("No", "wannabeadmin");
+				break;
+			case "select":
+				$qGetDropdownAnswer = db_query("SELECT response FROM ".$sql_prefix."_wannabeQuestionInfo WHERE ID = ".$rListResponse->response);
+				$rGetDropdownAnswer = db_fetch($qGetDropdownAnswer);
+				$content .= $rGetDropdownAnswer->response;
+				break;
+			default:
+				$content .= "WTF in viewApplications->switch->default!";
+		} // End switch
+		$content .= "</td></tr>";
+
+	} // End while rListResponse
+
+	$content .= "</table>";
+
+} // End elseif action == viewApplications
+
+elseif($action == "crews") {
+	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+	$content .= "<table>";
+	while($rListCrews = db_fetch($qListCrews)) {
+		$content .= "<tr><td>";
+		$content .= $rListCrews->crewname;
+		$content .= "</td></tr>";
+	} // End while (rListCrews)
+
+	$content .= "</table>";
+	$content .= "<form method=POST action=?module=wannabeadmin&action=doAddCrew>\n";
+	$content .= "<input type=text name=crewname>\n";
+	$content .= "<input type=submit value='".lang("Add crew", "wannabeadmin")."'>";
+	$content .= "</form>";
+}
+
+elseif($action == "doAddCrew") {
+	$crewname = $_POST['crewname'];
+	db_query("INSERT INTO ".$sql_prefix."_wannabeCrews SET crewname = '".db_escape($crewname)."', eventID = $eventID");
+	header("Location: ?module=wannabeadmin&action=crews");
+} // End action == doAddCrew
