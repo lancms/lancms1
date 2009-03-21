@@ -255,12 +255,61 @@ elseif($action == "doConfig") {
 	header("Location: ?module=eventadmin&action=config&action=config&saved=OK");
 }
 
-elseif($action == "groupRights" && !empty($_GET['groupID']) {
+elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_GET['groupID'])) {
 	$groupID = $_GET['groupID'];
+
+	$content .= "<a href=?module=eventadmin&action=groupManagement>".lang("Back to groups", "eventadmin")."</a>";
+	$content .= "<table>";
 
 	for($i=0;$i<count($eventaccess);$i++) {
 		$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID = $eventID
 			AND groupID = '".db_escape($groupID)."' AND accessmodule = '".$eventaccess[$i]."'");
-	} // End for
+		$rFindAccess = db_fetch($qFindAccess);
 
+		$access = $rFindAccess->access;
+		if(!isset($access)) $access = 'No';
+		$content .= "<tr><td>";
+		$content .= $eventaccess[$i];
+		$content .= "</td><td>";
+		if($action == "changeGroupRights" && $eventaccess[$i] == $_GET['accessmodule']) {
+			$content .= "<form method=POST action=?module=eventadmin&action=doChangeRights&groupID=$groupID&accessmodule=$eventaccess[$i]>";
+			$content .= "<select name=groupRight>";
+			$content .= option_rights($access);
+			$content .= "</select>";
+			$content .= "<input type=submit value='".lang("Save", "eventadmin")."'>";
+			$content .= "</form>";
+		} // End if
+		else {
+			$content .= "<a href=?module=eventadmin&action=changeGroupRights&groupID=$groupID&accessmodule=$eventaccess[$i]>";
+			$content .= $access;
+			$content .= "</a>";
+		} // End else
+		$content .= "</td></tr>";
+	} // End for
+	$content .= "</table>";
 } // End elseif action== groupRights
+
+elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['accessmodule'])) {
+	$newright = $_POST['groupRight'];
+	$groupID = $_GET['groupID'];
+	$accessmodule = $_GET['accessmodule'];
+
+	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_ACLs
+		WHERE groupID = '".db_escape($groupID)."'
+		AND accessmodule = '".db_escape($accessmodule)."'
+		AND eventID = $eventID");
+	if(db_num($qCheckExisting) == 0) {
+		db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = '".db_escape($groupID)."',
+			accessmodule = '".db_escape($accessmodule)."',
+			access = '".db_escape($newright)."',
+			eventID = $eventID");
+	} // end if
+	else {
+		db_query("UPDATE ".$sql_prefix."_ACLs SET access = '".db_escape($newright)."'
+			WHERE accessmodule = '".db_escape($accessmodule)."'
+			AND groupID = '".db_escape($groupID)."'
+			AND eventID = $eventID");
+	} // End else
+
+	header("Location: ?module=eventadmin&action=groupRights&groupID=$groupID");
+}

@@ -85,7 +85,7 @@ TABLE [prefix]_ACLs
 	groupID,	int(11),				PRI,	,	,
 	eventID,	int(11),				PRI,	,	,
 	subcategory,	int(11),				PRI,	,	0,
-	accessmodule,	varchar(35),				,	,	,
+	accessmodule,	varchar(35),				PRI,	,	,
 	access,		enum('No', 'Read', 'Write', 'Admin'),	,	,	No,
 }
 
