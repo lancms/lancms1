@@ -1,6 +1,6 @@
 0)
 You've probably already done this, but:
-Check out https://osglobelan.svn.sourceforge.net/svnroot/osglobelan/trunk/OSGL2 from SVN to a folder on your disc.
+Check out https://osglobelan.svn.sourceforge.net/svnroot/osglobelan/trunk/OSGL2 from SVN to a folder on your computer.
 
 
 1)
