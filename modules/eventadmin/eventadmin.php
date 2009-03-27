@@ -148,6 +148,8 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 	$content .= "<a href=?module=eventadmin&action=groupManagement>".lang("Back to groups", "eventadmin")."</a>";
 	$content .= "<table>";
 
+	// List up eventaccess-rights
+
 	for($i=0;$i<count($eventaccess);$i++) {
 		$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID = $eventID
 			AND groupID = '".db_escape($groupID)."' AND accessmodule = '".$eventaccess[$i]."'");
@@ -173,6 +175,36 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 		} // End else
 		$content .= "</td></tr>";
 	} // End for
+
+	// List up globalrights if you have globalrights
+	if(acl_access("globaladmin", "", 0) == 'Admin') {
+		$content .= "<tr></tr>";
+		for($i=0;$i<count($globalaccess);$i++) {
+			$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID = $eventID
+				AND groupID = '".db_escape($groupID)."' AND accessmodule = '".$globalaccess[$i]."'");
+			$rFindAccess = db_fetch($qFindAccess);
+
+			$access = $rFindAccess->access;
+			if(!isset($access)) $access = 'No';
+			$content .= "<tr><td>";
+			$content .= $globalaccess[$i];
+			$content .= "</td><td>";
+			if($action == "changeGroupRights" && $globalaccess[$i] == $_GET['accessmodule']) {
+				$content .= "<form method=POST action=?module=eventadmin&action=doChangeRights&groupID=$groupID&accessmodule=$globalaccess[$i]>";
+				$content .= "<select name=groupRight>";
+				$content .= option_rights($access);
+				$content .= "</select>";
+				$content .= "<input type=submit value='".lang("Save", "eventadmin")."'>";
+				$content .= "</form>";
+			} // End if
+			else {
+				$content .= "<a href=?module=eventadmin&action=changeGroupRights&groupID=$groupID&accessmodule=$globalaccess[$i]>";
+				$content .= $access;
+				$content .= "</a>";
+			} // End else
+			$content .= "</td></tr>";
+		} // End for
+	} // End if acl_access(globaladmin);
 	$content .= "</table>";
 } // End elseif action== groupRights
 
@@ -182,6 +214,8 @@ elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['
 	$accessmodule = $_GET['accessmodule'];
 	if(acl_access("eventadmin", "", $eventID) != 'Admin')
 		die("Sorry, you have to be eventadmin to give eventrights");
+	if(in_array($accessmodule, $globalaccess) && acl_access("globaladmin", "", 0) != 'Admin')
+		die("Sorry, you have to be globaladmin to give globalrights");
 
 	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_ACLs
 		WHERE groupID = '".db_escape($groupID)."'
