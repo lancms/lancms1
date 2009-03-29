@@ -52,7 +52,7 @@ while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 		$qFindToUser = mysql_query("SELECT ID FROM ".$sql_prefix."_users WHERE firstName LIKE '".$rFromUsers->firstName."'
 			AND lastName LIKE '".$rFromUsers->lastName."' AND nick LIKE '".$rFromUsers->nick."'", $todb);
 	} // End if mysql_num_rows(qFindToUser);
-	else echo "Found ".$rFromUsers->nick;
+	else echo "Found ".$rFromUsers->nick."\n";
 
 	$rFindUser = mysql_fetch_object($qFindToUser);
 
@@ -73,6 +73,7 @@ while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
 					question = '".$rFromWannabeQ->content."',
 					questionType = 'text'
 				", $todb);
+				echo "Wannabe-text inserted\n";
 				break;
 			case "1":
 				// Type is alternatives
@@ -94,9 +95,48 @@ while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
 						response = '$rWannabeAlt->content'
 					", $todb);
 				} // End while
+				echo "Wannabe-alternatives inserted\n";
 				break;
 		} // End switch
 	} // End if(mysql_num_rows())
-		
+	$qFindNewID = mysql_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = '$eventID' AND question = '".$rFromWannabeQ->content."'", $todb) or die(mysql_error());
+	$rFindNewID = mysql_fetch_object($qFindNewID);
+	#die($rFindNewID->ID);
+	$qFindUserAnswers = mysql_query("SELECT u.nick,u.firstName,u.lastName,answer.ans FROM wannabeUsers answer JOIN users u ON answer.user=u.ID WHERE answer.queID = $rFromWannabeQ->ID", $from);
+		while($rFindUserAnswers = mysql_fetch_object($qFindUserAnswers)) {
+			echo "Checking response from $rFindUserAnswers->nick \n";
+			$qFindToUser = mysql_query("SELECT ID FROM ".$sql_prefix."_users WHERE firstName LIKE '".$rFindUserAnswers->firstName."'
+				AND lastName LIKE '".$rFindUserAnswers->lastName."' AND nick LIKE '".$rFindUserAnswers->nick."'", $todb) or die(mysql_error());
+			$rFindToUser = mysql_fetch_object($qFindToUser);
+			$qFindExisting = mysql_query("SELECT * FROM ".$sql_prefix."_wannabeResponse WHERE userID = '$rFindToUser->ID' AND questionID = $rFindNewID->ID", $todb);
+			if(db_num($qFindExisting) == 0 && $rFindToUser->ID != 0) {
+				if($rFromWannabeQ->type == 2) {
+					mysql_query("INSERT INTO ".$sql_prefix."_wannabeResponse SET userID = '$rFindToUser->ID', 
+					questionID = '$rFindNewID->ID',
+					response = '".$rFindUserAnswers->ans."'
+					", $todb);
+				} elseif($rFromWannabeQ->type == 1) {
+					$qFindResponse = mysql_query("SELECT * FROM wannabeAlt WHERE ID = '$rFindUserAnswers->ans'", $from) or die(mysql_error());
+					$rFindResponse = mysql_fetch_object($qFindResponse);
+					$qFindAlternative = mysql_query("SELECT * FROM ".$sql_prefix."_wannabeQuestionInfo 
+						WHERE response = '$rFindResponse->content' 
+						AND questionID = '$rFindNewID->ID'", $todb) or die(mysql_error());
+					$rFindAlternative = mysql_fetch_object($qFindAlternative);
+#					die(print_r($rFindAlternative));
+					mysql_query("INSERT INTO ".$sql_prefix."_wannabeResponse SET userID = '$rFindToUser->ID', 
+						questionID = '$rFindNewID->ID',
+						response = '".$rFindAlternative->ID."'
+						", $todb) or die(mysql_error());
+				} // End elseif
+			echo "Added response for user\n";
+
+			} // End if db_num();
+			else {
+				echo "Found response, didn't do anything\n";
+			}
+
+		} // End while rFindUserAnswers
+
+
 
 } // End wannabeQuestions
