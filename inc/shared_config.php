@@ -27,6 +27,7 @@ $eventconfig['checkbox'][] = 'enable_wannabe';
 $globalconfig['checkbox'][] = 'users_may_create_clan';
 $globalconfig['checkbox'][] = 'register_firstname_required';
 $globalconfig['checkbox'][] = 'register_lastname_required';
+$globalconfig['checkbox'][] = 'users_may_register';
 
 
 

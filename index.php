@@ -20,7 +20,8 @@ $design_menu = "<a href=index.php>Main page</a>\n";
 if(acl_access("globaladmin", "", 0) == 'Admin')
 	$design_menu .= "<br><a href=?module=globaladmin>".lang("Global Admin", "index")."</a>\n";
 
-$design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
+if(config("users_may_register"))
+	$design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
 if(config("users_may_create_clan") && $sessioninfo->userID > 1)
 	$design_menu .= "<br><a href=index.php?module=groups>".lang("My groups", "index")."</a>\n";
 

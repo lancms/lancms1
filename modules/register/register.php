@@ -2,6 +2,8 @@
 
 $action = $_GET['action'];
 
+if(!config("users_may_register")) die("users may not register yet");
+
 
 if($action == "register")
 {
