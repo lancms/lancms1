@@ -23,7 +23,7 @@ if($action == "register")
 
 	if(empty($username))
 		$register_invalid = lang("Please provide a username", "register");
-	if(strlen($username) <=2)
+	if(strlen($username) <=1)
 		$register_invalid = lang("Please provide a username", "register");
 	if(!(strchr($email, "@")) && (strchr($email, ".")))
 		$register_invalud = lang("Please provide a valid email-address", "register");
