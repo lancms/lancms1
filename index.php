@@ -42,9 +42,9 @@ if($sessioninfo->eventID > 1)
 
 	if(config("enable_FAQ", $sessioninfo->eventID))
 		$design_eventmenu .= "<br><a href=?module=FAQ&amp;action=read>".lang("FAQ", "index")."</a>";
-	if(config("enable_ticketorder", $sessioninfo->eventID))
+	if(config("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<br><a href=?module=ticketorder>".lang("Order ticket", "index")."</a>";
-	if(config("enable_wannabe", $sessioninfo->eventID))
+	if(config("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<br><a href=?module=wannabe>".lang("Wannabe", "index")."</a>";
 
 
