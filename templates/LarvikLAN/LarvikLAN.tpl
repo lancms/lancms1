@@ -4,6 +4,7 @@
 	<title>LarvikLAN</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="templates/LarvikLAN/style.css" type="text/css" />
+	{$head}
 </head>
 <body>
 <div id="PageBackgroundSimpleGradient"></div>
@@ -108,6 +109,9 @@
                                         <div>
                                                 <ul>
 							{$eventlist}	
+                                                </ul>
+                                                <ul>
+                                                	{$grouplist}
                                                 </ul>
                                         </div>
                                 </div>
