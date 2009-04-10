@@ -49,6 +49,7 @@ $eventaccess[] = 'wannabeadmin';
 ## GlobalACLs
 $globalaccess[] = 'clanAdmin';
 $globalaccess[] = 'userAdmin';
+$globalaccess[] = 'translate';
 
 
 ## SpecialACLs
