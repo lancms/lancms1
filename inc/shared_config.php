@@ -28,6 +28,11 @@ $globalconfig['checkbox'][] = 'users_may_create_clan';
 $globalconfig['checkbox'][] = 'register_firstname_required';
 $globalconfig['checkbox'][] = 'register_lastname_required';
 $globalconfig['checkbox'][] = 'users_may_register';
+$globalconfig['checkbox'][] = 'userinfo_birthday_required';
+$globalconfig['checkbox'][] = 'userinfo_birthyear_required';
+$globalconfig['checkbox'][] = 'userinfo_gender_required';
+$globalconfig['checkbox'][] = 'userinfo_address_required';
+
 
 
 
@@ -49,3 +54,20 @@ $globalaccess[] = 'userAdmin';
 ## SpecialACLs
 $specialaccess[] = 'groupaccess'; // Used inside groups
 $specialaccess[] = 'globaladmin'; // Can do anything
+
+
+
+## Datestuff
+
+$monthname[1] = 'January';
+$monthname[2] = 'February';
+$monthname[3] = 'March';
+$monthname[4] = 'April';
+$monthname[5] = 'May';
+$monthname[6] = 'June';
+$monthname[7] = 'July';
+$monthname[8] = 'August';
+$monthname[9] = 'September';
+$monthname[10] = 'October';
+$monthname[11] = 'November';
+$monthname[12] = 'December';
