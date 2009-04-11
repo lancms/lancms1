@@ -73,7 +73,13 @@ if($sessioninfo->userID == 1)
 
 else {
 	// User actually is logged in!
-	$design_userinfo .= "You are a luser!";
+	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$sessioninfo->userID'");
+	$rGetUserinfo = db_fetch($qGetUserinfo);
+	$design_userinfo .= lang("You are logged in as:", "index");
+	$design_userinfo .= "<br>";
+	$design_userinfo .= $rGetUserinfo->firstName." ".$rGetUserinfo->lastName;
+	$design_userinfo .= " (".$rGetUserinfo->nick.")";
+	//$design_userinfo .= "You are a luser!";
 	$design_menu .= "<br><a href=?module=login&amp;action=logout>".lang("Logout", "index")."</a>\n";
 }
 
