@@ -1,10 +1,21 @@
 <?php
 
+
+// First, delete all old sessions
+$now = time();
+
+$day_ago = $now - 86400;
+
+db_query("DELETE FROM ".$sql_prefix."_session WHERE lastVisit < ".$day_ago);
+
+
 if(empty($_COOKIE[$osgl_session_cookie]))
 {
 	$do = "create_session";
 
 } // end if empty cookie
+
+// Delete all sessions older than 24 hours
 
 
 else // if cookie is set
