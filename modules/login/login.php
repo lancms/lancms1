@@ -54,10 +54,10 @@ elseif($action == "password" && !empty($_GET['userID']))
 
 	$userinfo = db_fetch($get_user);
 
-	$content .= "Logging in as: ".$userinfo->nick."<br>\n";
+	$content .= "Log in as:&nbsp;&nbsp;&nbsp;".$userinfo->nick."<br>\n";
 	$content .= "<form method=POST action=?module=login&amp;action=login&amp;userID=$userID>\n";
-	$content .= "<input type=password name=password><br>\n";
-	$content .= "<input type=submit value=Login>\n";
+	$content .= "Password: <input class='login' type=password name=password><br>\n";
+	$content .= "<input class='login' type=submit value=Login>\n";
 }
 
 
