@@ -15,12 +15,12 @@ if($action == "finduser")
 
 	if(db_num($finduser) >= 20)
 	{
-		$content .= "Sorry, to many users, to narrow down the search";
+		$content .= lang("Sorry, too many users, try to narrow down the search", "login");
 	} // End if db_num > 20
 
 	elseif(db_num($finduser) == 0)
 	{
-		$content .= "Sorry, no such user found";
+		$content .= lang("Sorry, no such user found", "login");
 
 	}
 	elseif(db_num($finduser) == 1)
@@ -55,9 +55,9 @@ elseif($action == "password" && !empty($_GET['userID']))
 
 	$userinfo = db_fetch($get_user);
 
-	$content .= "Log in as:&nbsp;&nbsp;&nbsp;".$userinfo->nick."<br>\n";
+	$content .= lang("Log in as:", "login")."&nbsp;&nbsp;&nbsp;".$userinfo->nick."<br>\n";
 	$content .= "<form method=POST action=?module=login&amp;action=login&amp;userID=$userID>\n";
-	$content .= "Password: <input class='login' type=password name=password><br>\n";
+	$content .= lang("Password:", "login")." <input class='login' type=password name=password><br>\n";
 	$content .= "<input class='login' type=submit value=Login>\n";
 }
 
@@ -82,7 +82,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 	else
 	{
 		// Passwords does not match. Fuck the user
-		$content .= "sorry, wrong password!";
+		$content .= lang("sorry, wrong password!", "login");
 	} // End else (password does not match)
 
 } // End elseif action = login
