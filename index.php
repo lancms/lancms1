@@ -66,8 +66,8 @@ if($sessioninfo->userID == 1)
 	$design_userinfo .= "<form method=GET action=index.php>\n";
 	$design_userinfo .= "<input type=hidden name=module value=login>\n";
 	$design_userinfo .= "<input type=hidden name=action value=finduser>\n";
-	$design_userinfo .= "<input type=text name=username>\n";
-	$design_userinfo .= "<input type=submit value='Login'>";
+	$design_userinfo .= "<input class='login' type=text name=username>\n";
+	$design_userinfo .= "<input class='login' type=submit value='Login'>";
 	$design_userinfo .= "</form>\n";
 } // End if sessioninfo says not logged in
 
