@@ -36,10 +36,22 @@ if($do == "create_session")
 	// User is not logged in; generate a new seed
 	$generate = md5(rand(0,9999999).microtime());
 
+	$host = $_SERVER['SERVER_NAME'];
+
+	// Find if servername matches any urls defined in eventAutoURL in events.
+	// If it matches, use this event when creating session
+	$qFindAutoEventURL = db_query("SELECT ID FROM ".$sql_prefix."_events WHERE eventAutoURL LIKE '%host%'
+		AND eventClosed = 0 AND eventPublic = 1");
+	$rFindAutoEventURL = db_fetch($qFindAutoEventURL);
+	if(is_numeric($rFindAutoEventURL->ID)) $sessioninfo->eventID = $rFindAutoEventURL->ID;
+	else $sessioninfo->eventID = 1;
+
 	db_query("INSERT INTO ".$sql_prefix."_session SET
 		sID = '$generate',
 		userIP = '".$_SERVER['REMOTE_ADDR']."',
-		lastVisit = '".time()."'");
+		lastVisit = '".time()."',
+		eventID = '$sessioninfo->eventID'");
+
 	setcookie($osgl_session_cookie, $generate);
 
 } // End if do == create_session
