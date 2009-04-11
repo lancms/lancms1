@@ -89,6 +89,7 @@ body {
 #PageBackgroundSimpleGradient {
   background-image: url('images/Page-BgSimpleGradient.jpg');
   background-repeat: repeat-x;
+  background-position: top;
   height: 250px;
 }
 
@@ -569,3 +570,10 @@ h1.logo-name, h1.logo-name a, h1.logo-name a:link, h1.logo-name a:visited, h1.lo
 }
 
 /* end Box, BlockContent */
+
+/* Login-form */
+.login {
+	margin: 5px;
+	border: 1px solid black;
+}
+/* end login-form */

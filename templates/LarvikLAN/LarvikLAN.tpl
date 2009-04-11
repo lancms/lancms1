@@ -72,7 +72,7 @@
                         <div class="BlockHeader">
                                 <div class="BlockHeader-text">
                                         {php}
-					if($sessioninfo->userID == 1) echo "LOGIN!";
+					if($sessioninfo->userID < 2) echo "LOGIN!";
 					else echo "USERINFO";
 					{/php}
                                 </div>
