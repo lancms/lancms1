@@ -6,10 +6,11 @@ if($action == "finduser")
 	$user = db_escape($_GET['username']);
 
 	$finduser = db_query("SELECT * FROM ".$sql_prefix."_users 
-	WHERE nick LIKE '%".$user."%'
+	WHERE (nick LIKE '%".$user."%'
 	OR EMail LIKE '%".$user."%'
 	OR firstName LIKE '%".$user."%'
-	OR lastName LIKE '%".$user."%'
+	OR lastName LIKE '%".$user."%')
+	AND ID!=1
 	");
 
 	if(db_num($finduser) >= 20)
