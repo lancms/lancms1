@@ -93,6 +93,11 @@ body {
   height: 250px;
 }
 
+.nopad {
+	padding: 0px;
+	margin: 0px;
+}
+
 /* begin Box, Sheet */
 #Sheet {
   margin: 0 auto;

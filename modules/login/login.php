@@ -34,7 +34,7 @@ if($action == "finduser")
 		$content .= "<table>";
 
 		while($row = db_fetch($finduser)) {
-			$content .= "<tr><td><a href=?module=login&amp;action=password&amp;userID=$row->ID>$row->nick</a></td></tr>";
+			$content .= "<tr><td><a href=\"?module=login&amp;action=password&amp;userID=$row->ID\">$row->nick</a></td></tr>";
 		} // End while row = db_fetch;
 
 		$content .= "</table>";
@@ -55,10 +55,11 @@ elseif($action == "password" && !empty($_GET['userID']))
 
 	$userinfo = db_fetch($get_user);
 
-	$content .= lang("Log in as:", "login")."&nbsp;&nbsp;&nbsp;".$userinfo->nick."<br>\n";
-	$content .= "<form method=POST action=?module=login&amp;action=login&amp;userID=$userID>\n";
-	$content .= lang("Password:", "login")." <input class='login' type=password name=password><br>\n";
-	$content .= "<input class='login' type=submit value=Login>\n";
+	$content .= "<p>".lang("Log in as:", "login")."&nbsp;&nbsp;&nbsp;".$userinfo->nick."</p>\n";
+	$content .= "<form method=\"post\" action=\"?module=login&amp;action=login&amp;userID=$userID\">\n";
+	$content .= "<p>".lang("Password:", "login")." <input class=\"login\" type=\"password\" name=\"password\" /></p>\n";
+	$content .= "<p><input class=\"login\" type=\"submit\" value=\"Login\" /></p>\n";
+	$content .= "</form>\n";
 }
 
 

@@ -39,26 +39,29 @@ elseif($action == "listEventPages")
 	$qListPages = db_query("SELECT * FROM ".$sql_prefix."_static
 		WHERE eventID = ".$sessioninfo->eventID."
 		ORDER BY header ASC");
-	$content .= '<table>';
-	while($rListPages = db_fetch($qListPages))
-	{
-		// Check that what rights you have
-		$rACL_access = acl_access("static", $rListPages->ID, $sessioninfo->eventID);
-		if($rACL_access != ("Admin" || "Write"));
-		else {
-			// You do have some sort of right. Display link
-			$content .= "<tr><td><a href=?module=static&action=editPage&page=$rListPages->ID>";
-			$content .= $rListPages->header."</a></td>\n";
-			$content .= "<td><a href=?module=static&action=editACL&page=$rListPages->ID>";
-			$content .= lang("Edit access", "static");
-			$content .= "</td></tr>";
-		} // End else
-
-	} // End while
-	$content .= "</table>\n";
-	$content .= "<form method=POST action=?module=static&action=addNew>\n";
-	$content .= "<input type=text name=name size=15>";
-	$content .= "<input type=submit value='".lang("Add new page", "static")."'>";
+		
+	if(mysql_num_rows($qListPages) != 0) {
+		$content .= '<table>';
+		while($rListPages = db_fetch($qListPages))
+		{
+			// Check that what rights you have
+			$rACL_access = acl_access("static", $rListPages->ID, $sessioninfo->eventID);
+			if($rACL_access != ("Admin" || "Write"));
+			else {
+				// You do have some sort of right. Display link
+				$content .= "<tr><td><a href=\"?module=static&action=editPage&page=$rListPages->ID\">";
+				$content .= $rListPages->header."</a></td>\n";
+				$content .= "<td><a href=\"?module=static&action=editACL&page=$rListPages->ID\">";
+				$content .= lang("Edit access", "static");
+				$content .= "</td></tr>";
+			} // End else
+		
+		} // End while
+		$content .= "</table>\n";
+	}
+	$content .= "<form method=\"post\" action=\"?module=static&amp;action=addNew\">\n";
+	$content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" size=\"15\" />";
+	$content .= "<input type=\"submit\" value='".lang("Add new page", "static")."' /></p>";
 	$content .= "</form>";
 
 } // End action = listEventPages
@@ -78,8 +81,8 @@ elseif($action == "editPage" && !empty($page))
 
 	$content .= "<form method=POST action=?module=static&action=doEditPage&page=$page>\n";
 	$content .= "<input type=text name=header value='$rStaticPage->header'>\n";
-	$content .= "<br><textarea rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
-	$content .= "<br><input type=submit value='".lang("Save", "static")."'>\n";
+	$content .= "<br /><textarea rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
+	$content .= "<br /><input type=submit value='".lang("Save", "static")."'>\n";
 	$content .= "</form>";
 
 } // End action = editPage
@@ -155,7 +158,7 @@ elseif(($action == "editACL" OR $action == "changeACL") && isset($page)) {
 		} // end action == changeACL
 		else
 		{
-			$content .= "<a href=?module=static&action=changeACL&groupID=$rGetCurrentACL->groupID&page=$page>";
+			$content .= "<a href=\"?module=static&action=changeACL&groupID=$rGetCurrentACL->groupID&page=$page\">";
 			$content .= $rGetCurrentACL->access;
 			$content .= "</a>\n";
 		} // End action != 'changeACL'

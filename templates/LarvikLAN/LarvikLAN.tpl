@@ -110,9 +110,9 @@
                                                 <ul>
 							{$eventlist}	
                                                 </ul>
-                                                <ul>
-                                                	{$grouplist}
-                                                </ul>
+                                                
+                                              	{$grouplist}
+                                                
                                         </div>
                                 </div>
                         </div>

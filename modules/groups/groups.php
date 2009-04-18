@@ -10,22 +10,22 @@ if(!isset($action)) {
 
 	$content .= "<table>";
 	while($rListMyGroups = db_fetch($qListMyGroups)) {
-		$content .= "<tr><td><a href=?module=groups&action=listGroup&groupID=$rListMyGroups->ID>";
+		$content .= "<tr><td><a href=\"?module=groups&action=listGroup&groupID=$rListMyGroups->ID\">";
 		$content .= $rListMyGroups->groupname;
 		$content .= "</a></td><td>".lang($rListMyGroups->groupType, "groups")."</td></tr>";
 	} // End while(rListMyGroup);
 	$content .= "</table>";
 
-	$content .= "<br><br>";
+	$content .= "<br /><br />";
 
 	$content .= lang("Create new clan", "groups");
 
 	// Form to display to create clans (global groups, groupType = clan)
-	if(!empty($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
+	if(!empty($_GET['errormsg'])) $content .= $_GET['errormsg']."<br />\n";
 	$content .= "<form method=POST action=index.php?module=groups&amp;action=doCreateClan>\n";
 	$content .= "<input type=text name=clanname value='".$_GET['clanname']."'> ".lang("Clan name", "groups");
-	$content .= "<br><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
-	$content .= "<br><input type=submit value='".lang("Create clan", "groups")."'>\n";
+	$content .= "<br /><input type=text name=clanpassword value='".$_GET['clanpassword']."'> ".lang("Clan password (to join the clan)", "groups");
+	$content .= "<br /><input type=submit value='".lang("Create clan", "groups")."'>\n";
 	$content .= "</form>\n";
 
 
@@ -39,7 +39,7 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 	$searchUser = $_POST['searchUser'];
 
 	// Display errormsg if it is set
-	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
+	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br />\n";
 
 	// First, check what info we have about this group
 	$qShowGroupInfo = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = ".db_escape($groupID));
@@ -47,7 +47,7 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 
 	$content .= lang("Group: ", "groups");
 	$content .= $rShowGroupInfo->groupname;
-	$content .= "<br><br>";
+	$content .= "<br /><br />";
 	$content .= "<table>";
 	$content .= "<tr><th>".lang("Nick", "groups");
 	$content .= "</th><th>".lang("Access", "groups");
@@ -67,7 +67,7 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 		$content .= "</td><td>";
 		if(acl_access("grouprights", $groupID, 1) == 'Admin' && $action != 'changeGroupRights')
 		{
-			$content .= "<a href=?module=groups&action=changeGroupRights&groupID=$groupID&userID=$rListMembers->userID>";
+			$content .= "<a href=\"?module=groups&action=changeGroupRights&groupID=$groupID&userID=$rListMembers->userID\">";
 			$content .= $rListMembers->access;
 			$content .= "</a>\n";
 		} // End acl_access(grouprights) == admin & action != 'changeGroupRights'
@@ -112,11 +112,11 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 				$content .= lang("Too many users found, please specify", "groups");
 			else // We probably got between one and 20 results
 			{
-				$content .= '<br><table>';
+				$content .= '<br /><table>';
 				while($rFindUser = db_fetch($qFindUser))
 				{
 					$content .= "<tr><td>";
-					$content .= "<a href=?module=groups&amp;action=doAddMember&amp;userID=$rFindUser->ID&groupID=$groupID>";
+					$content .= "<a href=\"?module=groups&amp;action=doAddMember&amp;userID=$rFindUser->ID&groupID=$groupID\">";
 					$content .= $rFindUser->firstName." ".$rFindUser->lastName." (".$rFindUser->nick.")";
 					$content .= "</td></tr>";
 				} // End while rFindUser

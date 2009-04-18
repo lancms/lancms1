@@ -19,8 +19,8 @@ if($action == "updateSeat") {
 
 	elseif($type == "p" && !isset($_POST['seatpassword'])) { // type is password-protected seat
 //		$seatcontent .= "<form method=POST action=?module=seatadmin&amp;action=doUpdateSeat>\n";
-		$seatcontent .= "<input type=text name=seatpassword>\n";
-		$seatcontent .= "<input type=submit value='".lang("Set password", "seatadmin")."'>";
+		$seatcontent .= "<p class=\"nopad\"><input type=\"text\" name=\"seatpassword\" />\n";
+		$seatcontent .= "<input type=\"submit\" value='".lang("Set password", "seatadmin")."'></p>";
 //		$seatcontent .= "</form>";
 
 	} // End if type = p (password)
@@ -30,7 +30,7 @@ if($action == "updateSeat") {
 	}
 
 	elseif($type == "g" && !isset($_POST['group'])) { // type is group-protected
-		$seatcontent .= "<select name=group>\n";
+		$seatcontent .= "<select name=\"group\">\n";
 		$qGroups = db_query("SELECT ID,groupname,groupType FROM ".$sql_prefix."_groups
 			WHERE
 			(eventID = 1 AND groupType = 'clan')
@@ -39,14 +39,14 @@ if($action == "updateSeat") {
 			ORDER BY groupname ASC
 			");
 		while($rGroups = db_fetch($qGroups)) {
-			$seatcontent .= "<option value='$rGroups->ID'>";
+			$seatcontent .= "<option value=\"'$rGroups->ID'\">";
 			$seatcontent .= $rGroups->groupname." (".$rGroups->groupType.")";
 			$seatcontent .= "</option>\n";
 
 
 		} // End while rGroups
 		$seatcontent .= "</select>\n\n\n";
-		$seatcontent .= "<input type=submit value='".lang("Set groupaccess", "seatadmin")."'>";
+		$seatcontent .= "<input type=\"submit\" value='".lang("Set groupaccess", "seatadmin")."' />";
 	} // End group-protected
 
 	elseif($type == "g" && isset($_POST['group'])) { // type is group, and group is set
@@ -61,68 +61,76 @@ if(!isset($action) || $action == "updateSeat") {
 	$qGetSeatY = db_query("SELECT DISTINCT seatY FROM ".$sql_prefix."_seatReg
 		WHERE eventID = '".$sessioninfo->eventID."'
 		ORDER BY seatY ASC");
+	
+	$content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=updateSeat\">\n";
+	
+	if(mysql_num_rows($qGetSeatY) != 0) {
+		$content .= "<table style=\"border: 1px solid;\">\n";
 
-	$content .= "<table border=1>\n\n";
-	$content .= "<form method=POST action=?module=seatadmin&amp;action=updateSeat>\n";
+		while($rGetSeatY = db_fetch($qGetSeatY)) {
+			$seatY = $rGetSeatY->seatY;
+			// Start a new row
+			$content .= "<tr>\n";
 
+			// Get the contents of the row; the columns
+			$qGetSeatX = db_query("SELECT * FROM ".$sql_prefix."_seatReg
+				WHERE eventID = '".$sessioninfo->eventID."'
+				AND seatY = '".$rGetSeatY->seatY."'
+				ORDER BY seatX ASC");
 
+			while($rGetSeatX = db_fetch($qGetSeatX)) {
+				$seatX = $rGetSeatX->seatX;
+				$content .= "<td style='height: 25px; width: 25px; background-color: ".$rGetSeatX->color;
+				$content .= "'>\n";
+				$content .= "<input type=\"checkbox\" value=\"1\" name=\"x".$seatX."y".$seatY;
+				if($_POST['x'.$seatX.'y'.$seatY] == 1) $content .= " CHECKED";
+				$content .= "\" />\n";
+				$content .= "</td>\n\n";
+			} // End while (rGetSeatX)
 
-	while($rGetSeatY = db_fetch($qGetSeatY)) {
-		$seatY = $rGetSeatY->seatY;
-		// Start a new row
-		$content .= "<tr>\n";
+			$content .= "</tr>\n"; // End the row
 
-		// Get the contents of the row; the columns
-		$qGetSeatX = db_query("SELECT * FROM ".$sql_prefix."_seatReg
-			WHERE eventID = '".$sessioninfo->eventID."'
-			AND seatY = '".$rGetSeatY->seatY."'
-			ORDER BY seatX ASC");
+		} // End while(rGetSeatY)
+		$content .= "</table>\n";
+	}
 
-		while($rGetSeatX = db_fetch($qGetSeatX)) {
-			$seatX = $rGetSeatX->seatX;
-			$content .= "<td style='height: 25px; width: 25px' bgcolor=".$rGetSeatX->color;
-			$content .= ">";
-			$content .= "<input type=checkbox value=1 name=x".$seatX."y".$seatY;
-			if($_POST['x'.$seatX.'y'.$seatY] == 1) $content .= " CHECKED";
-			$content .= ">";
-			$content .= "</td>\n\n";
-		} // End while (rGetSeatX)
-
-		$content .= "</tr>"; // End the row
-
-	} // End while(rGetSeatY)
-	$content .= "</table>";
-
-	$content .= "<table>";
-	$content .= "<tr><td>";
+	//$content .= "<table style=\"border: 1px solid;\">\n";
+	//$content .= "<tr><td>";
 	// Here we display changes we can make to what we have just selected
-	$content .= "<select name=type>";
+	$content .= "<div style=\"float: left; margin-top: 5px;\">\n";
+	$content .= "<p class=\"nopad\"><select name=\"type\">\n";
 	foreach($seattype AS $key => $value) {
-		$content .= "<option value='$key'";
-		if($key == $type) $content .= " selected='selected'";
+		$content .= "<option value=\"$key\"";
+		if($key == $type) $content .= " selected=\"selected\"";
 		$content .= ">$value</option>\n";
 	} // End foreach
-	$content .= "</select>";
-	$content .= "<br><input type=submit value='".lang("Change seats", "seatadmin")."'>";
-	$content .= "<br>";
+	$content .= "</select></p>\n";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Change seats", "seatadmin")."' /></p>\n";
+	//$content .= "</td></tr>\n";
+	//$content .= "<br />";
 	$content .= $seatcontent; // Add post-seat-content to content
+	$content .= "</div>\n";
 
-	$content .= "</form>";
-	$content .= "</td><td>";
+	$content .= "</form>\n";
+	//$content .= "</td>&nbsp;<td>\n";
+	$content .= "<div style=\"float: left; margin-top: 5px;\">";
+	
 	// Add row
-	$content .= "<form method=POST action=?module=seatadmin&amp;action=addrow>\n";
-	$content .= "<input type=submit value='".lang("Add row", "seatadmin")."'>\n";
+	$content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=addrow\">\n";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add row", "seatadmin")."' /></p>\n";
 	$content .= "</form>\n\n";
 
 	// Add column
-	$content .= "<form method=POST action=?module=seatadmin&amp;action=addcolumn>\n";
-	$content .= "<input type=submit value='".lang("Add column", "seatadmin")."'>\n";
+	$content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=addcolumn\">\n";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add column", "seatadmin")."' /></p>\n";
 	$content .= "</form>\n\n";
-	$content .= "<form method=POST action=?module=seatadmin&amp;action=resetmap>\n";
-	$content .= "<input type=submit value='".lang("Reset map", "seatadmin")."'>\n";
+	$content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=resetmap\">\n";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value=\"".lang("Reset map", "seatadmin")."\" /></p>\n";
 	$content .= "</form>\n\n";
-	$content .= "</td></tr>";
-	$content .= "</table>";
+	//$content .= "</td></tr>\n";
+	//$content .= "</table>\n";
+	
+	$content .= "</div>\n";
 
 
 
@@ -239,8 +247,8 @@ elseif($action == "doUpdateSeat") {
 
 elseif ($action == "resetmap") {
       // ask if the user really wants to delete all map fields, and add one field.
-      $content .= "<form method=POST action=?module=seatadmin&amp;action=doresetmap>";
-      $content .= "<input type=submit value='".lang("Confirm map reset")."'>\n";
+      $content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=doresetmap\">";
+      $content .= "<input type=\"submit\" value='".lang("Confirm map reset")."' />\n";
       $content .= "</form>";
 }
 

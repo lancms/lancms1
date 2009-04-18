@@ -18,72 +18,72 @@ if(!isset($action) || $action == "editticket") {
         $content .= '</th><th>'.lang("Sold tickets of type", "ticketadmin");
         $content .= '</th></tr>';
         while($rListTickets = db_fetch($qListTickets)) {
-	$content .= '<tr><td>';
+	$content .= "<tr><td>\n";
 	$content .= $rListTickets->ticketTypeID;
-	$content .= '</td><td>';
-	$content .= "<a href=?module=ticketadmin&action=editticket&editticket=$rListTickets->ticketTypeID>";
+	$content .= "</td><td>\n";
+	$content .= "<a href=\"?module=ticketadmin&amp;action=editticket&amp;editticket=$rListTickets->ticketTypeID\">\n";
 	$content .= $rListTickets->name;
-	$content .= '</a></td><td>';
+	$content .= "</a></td><td>\n";
 	$content .= lang($rListTickets->type, "ticketadmin");
-	$content .= '</td><td>';
+	$content .= "</td><td>\n";
 	$content .= $rListTickets->price;
-	$content .= '</td><td>';
+	$content .= "</td><td>\n";
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
 	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
 	$rNumTicketsOfType = db_fetch($qNumTicketsOfType);
 	$content .= $rNumTicketsOfType->count;
-	$content .= '</td></tr>';
+	$content .= "</td></tr>\n";
         } // End while
-        $content .= '</table>';
+        $content .= "</table>\n";
     } // End if db_num() != 0
-    $content .= "<br><br>";
+    $content .= "<br /><br />\n";
     // add form for adding tickets
-    $content .= "<table>";
+    $content .= "<table>\n";
     $content .= "<tr><td>\n";
     // If we're editing a ticket, display values of ticket, else, addticket
     if($action == "editticket" && isset($_GET['editticket'])) {
         $qGetTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
         $rGetTicketInfo = db_fetch($qGetTicketInfo);
-        $content .= "<form method=POST action=?module=ticketadmin&action=doeditticket&editticket=".$_GET['editticket'].">";
+        $content .= "<form method=\"post\" action=\"?module=ticketadmin&amp;action=doeditticket&amp;editticket=".$_GET['editticket']."\">\n";
     } // end if action = editticket
-    else $content .= "<form method=POST action=?module=ticketadmin&action=addtickettype>\n";
-    $content .= "<input type=text name=name value='$rGetTicketInfo->name'>";
+    else $content .= "<form method=\"post\" action=\"?module=ticketadmin&amp;action=addtickettype\">\n";
+    $content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" value='$rGetTicketInfo->name' /></p>\n";
     $content .= "</td><td>";
     $content .= lang("Name of ticket", "ticketadmin");
-    $content .= "</td></tr><tr><td>";
-    $content .= "<input type=text name=price value='$rGetTicketInfo->price'>";
-    $content .= "</td><td>";
+    $content .= "</td></tr><tr><td>\n";
+    $content .= "<p class=\"nopad\"><input type=\"text\" name=\"price\" value='$rGetTicketInfo->price' /></p>\n";
+    $content .= "</td><td>\n";
     $content .= lang("Price of ticket", "ticketadmin");
-    $content .= "</td></tr><tr><td>";
-    $content .= "<select name=type>";
-        $content .= "<option value=prepaid";
+    $content .= "</td></tr><tr><td>\n";
+    $content .= "<select name=\"type\">\n";
+        $content .= "<option value=\"prepaid\"";
         if($rGetTicketInfo->type == 'prepaid') $content .= " selected";
-        $content .= ">".lang("Prepaid ticket", "ticketadmin")."</option>";
+        $content .= ">".lang("Prepaid ticket", "ticketadmin")."</option>\n";
     
-        $content .= "<option value=preorder";
+        $content .= "<option value=\"preorder\"";
         if($rGetTicketInfo->type == 'preorder') $content .= " selected";
-        $content .= ">".lang("Preordered ticket", "ticketadmin")."</option>";
+        $content .= ">".lang("Preordered ticket", "ticketadmin")."</option>\n";
 
-        $content .= "<option value=onsite-computer";
+        $content .= "<option value=\"onsite-computer\"";
         if($rGetTicketInfo->type == 'onsite-computer') $content .= " selected";
-        $content .= ">".lang("Onsite ticket with computer", "ticketadmin")."</option>";
+        $content .= ">".lang("Onsite ticket with computer", "ticketadmin")."</option>\n";
 
-        $content .= "<option value=onsite-visitor";
+        $content .= "<option value=\"onsite-visitor\"";
         if($rGetTicketInfo->type == 'onsite-visitor') $content .= " selected";
-        $content .= ">".lang("Onsite ticket without computer", "ticketadmin")."</option>";
-    $content .= "</select>";
-    $content .= "</td><td>";
+        $content .= ">".lang("Onsite ticket without computer", "ticketadmin")."</option>\n";
+    $content .= "</select>\n";
+    $content .= "</td><td>\n";
     $content .= lang("Type of ticket", "ticketadmin");
-    $content .= "</td></tr><tr><td>";
-    $content .= "<input type=checkbox name=active value=1";
+    $content .= "</td></tr><tr><td>\n";
+    $content .= "<p class=\"nopad\"><input type=\"checkbox\" name=\"active\" value=\"1\"";
     if($rGetTicketInfo->active == 1) $content .= " checked";
-    $content .= ">";
-    $content .= "</td><td>";
+    $content .= " /></p>\n";
+    $content .= "</td><td>\n";
     $content .= lang("Tickettype is active?", "ticketadmin");
-    $content .= "</td></tr><tr><td>";
-    if($action == "editticket") $content .= "<input type=submit value='".lang("Edit tickettype", "ticketadmin")."'>";
-    else $content .= "<input type=submit value='".lang("Add tickettype", "ticketadmin")."'>";
-    $content .= "</form></td></tr></table>";
+    $content .= "</td></tr><tr><td>\n";
+    if($action == "editticket") $content .= "<input type=\"submit\" value='".lang("Edit tickettype", "ticketadmin")."' />\n";
+    else $content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add tickettype", "ticketadmin")."' /></p>\n";
+    $content .= "</form></td></tr></table>\n";
 
 
 } // End if !isset($action)

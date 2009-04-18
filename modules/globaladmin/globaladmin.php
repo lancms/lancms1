@@ -19,22 +19,22 @@ if(!isset($action))
 	    $content .= "<tr><td>";
 	    $content .= $rListEvents->eventname;
 	    $content .= "</td><td>";
-	    $content .= "<a href=?module=events&amp;action=setCurrentEvent&amp;eventID=$rListEvents->ID>";
+	    $content .= "<a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rListEvents->ID\">";
 	    $content .= lang("Set active", "globaladmin");
 	    $content .= "</a>";
 	    $content .= "</td><td>";
 	    if($rListEvents->eventPublic == 1) {
-	        $content .= "<a href=?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPrivate>".lang("Public", "globaladmin")."</a>";
+	        $content .= "<a href=\"?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPrivate\">".lang("Public", "globaladmin")."</a>";
 	    } else {
-	        $content .= "<a href=?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPublic>".lang("Private", "globaladmin")."</a>";
+	        $content .= "<a href=\"?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPublic\">".lang("Private", "globaladmin")."</a>";
 	    }
 	    $content .= "</td></tr>\n\n\n";
 	} // End while(rListEvents)
 	$content .= "</table>";
 	/* List of global admin-options */
-	$content .= "<br><a href=?module=globaladmin&amp;action=addEvent>".lang("Add new event", "globaladmin")."</a>";
+	$content .= "<br /><a href=\"?module=globaladmin&amp;action=addEvent\">".lang("Add new event", "globaladmin")."</a>";
 
-	$content .= "<br><br><a href=?module=globaladmin&amp;action=config>".lang("Change global options", "globaladmin")."</a>";
+	$content .= "<br /><br /><a href=\"?module=globaladmin&amp;action=config\">".lang("Change global options", "globaladmin")."</a>";
 
 } // End if !isset($action)
 
@@ -43,11 +43,12 @@ elseif($action == "addEvent")
 {
 	/* Action to add new events */
 
-	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br>\n";
+	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br />\n";
 
-	$content .= "<form method=POST action=?module=globaladmin&amp;action=doAddEvent>\n";
-	$content .= "<input type=text name=eventname value='".$_GET['eventname']."'>\n".lang("Name of event", "globaladmin");
-	$content .= "<br><input type=submit value='".lang("Add event", "globaladmin")."'>";
+	$content .= "<form method=\"post\" action=\"?module=globaladmin&amp;action=doAddEvent\">\n";
+	$content .= "<p><input type=\"text\" name=\"eventname\" value='".$_GET['eventname']."' />\n".lang("Name of event", "globaladmin")."</p>";
+	$content .= "<p><input type=\"submit\" value='".lang("Add event", "globaladmin")."' /></p>";
+	$content .= "</form>\n";
 
 
 
@@ -103,7 +104,7 @@ elseif($action == "config") {
 		$cfg_current = config($globalconfig['checkbox'][$i], 1);
 		$content .= "<input type=checkbox name='".$globalconfig['checkbox'][$i]."'";
 		if($cfg_current) $content .= " CHECKED";
-		$content .= "> ".lang($globalconfig['checkbox'][$i], "globalconfigoption")."<br>\n";
+		$content .= "> ".lang($globalconfig['checkbox'][$i], "globalconfigoption")."<br />\n";
 	} // End for
 
 	$content .= "<input type=submit value='".lang("Save", "globaladmin_config")."'></form>";

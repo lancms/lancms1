@@ -14,15 +14,15 @@ if($action == "adminWannabe")
 	if($acl_access == "Admin")
 	{
 		// User has wannabe adminrights
-		$content .= "<br><a href=?module=wannabeadmin&amp;action=questions>".lang("Questions", "wannabeadmin")."</a>\n";
-		$content .= "<br><a href=?module=wannabeadmin&amp;action=crews>".lang("Crews", "wannabeadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a>\n";
 
 	} // End acl_access = Admin
 
 	if($acl_access == 'Write' || $acl_access == 'Admin')
 	{
 		// User has wannabe write-access (may see and write comments)
-		$content .= "<br><a href=?module=wannabeadmin&amp;action=listApplications>".lang("View Applications", "wannabeadmin")."</a>";
+		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a>";
 
 	} // End acl_access > Write
 
@@ -38,55 +38,58 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
 		WHERE eventID = '".db_escape($eventID)."' ORDER BY questionOrder ASC, ID ASC");
 
-	$content .= '<table>';
+	if(mysql_num_rows($qListQuestions) != 0) {
+		$content .= '<table>';
 
-	while($rListQuestions = db_fetch($qListQuestions))
-	{
-		$content .= "<tr><td>\n";
-		$content .= "<a href=?module=wannabeadmin&amp;action=editQuestion&amp;questionID=$rListQuestions->ID>";
-		$content .= $rListQuestions->question;
-		$content .= "</a>";
-		$content .= "</td><td>\n";
-
-		// Questiontype is text. Can't edit answers
-		if($rListQuestions->questionType == "text")
+		while($rListQuestions = db_fetch($qListQuestions))
 		{
-			$content .= $rListQuestions->questionType;
-		} // End if questionType == text
+			$content .= "<tr><td>\n";
+			$content .= "<a href=\"?module=wannabeadmin&amp;action=editQuestion&amp;questionID=$rListQuestions->ID\">";
+			$content .= $rListQuestions->question;
+			$content .= "</a>";
+			$content .= "</td><td>\n";
 
-		// Questiontype can have answers
-		else
-		{
-			$content .= "<a href=?module=wannabeadmin&amp;action=editAnswers&amp;questionID=$rListQuestions->ID>";
-			$content .= $rListQuestions->questionType;
-			$content .= "</a>\n";
-		} // End else (questiontype can have answers)
-		$content .= "</td></tr>\n\n";
-	} // End while rListQuestions
+			// Questiontype is text. Can't edit answers
+			if($rListQuestions->questionType == "text")
+			{
+				$content .= $rListQuestions->questionType;
+			} // End if questionType == text
 
-	$content .= "</table>\n\n\n\n";
+			// Questiontype can have answers
+			else
+			{
+				$content .= "<a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;questionID=$rListQuestions->ID\">";
+				$content .= $rListQuestions->questionType;
+				$content .= "</a>\n";
+			} // End else (questiontype can have answers)
+			$content .= "</td></tr>\n\n";
+		} // End while rListQuestions
+
+		$content .= "</table>\n\n\n\n";
+	}
 
 	// If action == questions, we are not editing any questions.
 	// Displaying add new question-form
 	if($action == "questions")
 	{
-		$content .= "<form method=POST action=?module=wannabeadmin&amp;action=addQuestion>\n";
-		$content .= "<textarea name=question rows=10 cols=60>".lang("New question", "wannabeadmin")."</textarea>\n";
-		$content .= "<br><select name=questionType>\n";
+		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=addQuestion\">\n";
+		$content .= "<p class=\"nopad\"><textarea name=\"question\" rows=\"10\" cols=\"60\">".lang("New question", "wannabeadmin")."</textarea></p>\n";
+		$content .= "<p class=\"nopad\"><select name=\"questionType\">\n";
 		/* List up possible answer-types */
-		$content .= "<option value=text>".lang("Text answer-field", "wannabeadmin")."</option>\n";
-		$content .= "<option value=select>".lang("Dropdown", "wannabeadmin")."</option>\n";
-		$content .= "<option value=checkbox>".lang("Checkbox", "wannabeadmin")."</option>\n";
+		$content .= "<option value=\"text\">".lang("Text answer-field", "wannabeadmin")."</option>\n";
+		$content .= "<option value=\"select\">".lang("Dropdown", "wannabeadmin")."</option>\n";
+		$content .= "<option value=\"checkbox\">".lang("Checkbox", "wannabeadmin")."</option>\n";
 		/* End listing answer-types */
-		$content .= "</select>\n\n";
-		$content .= "<br><input type=submit value='".lang("Add new question", "wannabeadmin")."'>";
+		$content .= "</select></p>\n\n";
+		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add new question", "wannabeadmin")."' /></p>";
+		$content .= "</form>\n";
 	} // End if action == questions
 
 	// if action == editQuestion. Display edit-question-form
 	elseif($action == "editQuestion" && isset($_GET['questionID']))
 	{
 		// Add a link back to questionlist
-		$content .= "<br><a href=?module=wannabeadmin&amp;action=questions>".lang("Cancel edit", "wannabeadmin")."</a>\n\n";
+		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Cancel edit", "wannabeadmin")."</a>\n\n";
 
 		// Get info about the question
 		$qGetQuestion = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
@@ -94,9 +97,9 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 		$rGetQuestion = db_fetch($qGetQuestion);
 
 
-		$content .= "<br><form method=POST action=?module=wannabeadmin&amp;action=changeQuestion&amp;questionID=$rGetQuestion->ID>\n";
-		$content .= "<textarea name=question cols=60 rows=10>".$rGetQuestion->question."</textarea>\n\n";
-		$content .= "<br><input type=submit value='".lang("Change question", "wannabeadmin")."'>";
+		$content .= "<br /><form method=\"post\" action=\"?module=wannabeadmin&amp;action=changeQuestion&amp;questionID=$rGetQuestion->ID\">\n";
+		$content .= "<p class=\"nopad\"><textarea name=\"question\" cols=\"60\" rows=\"10\">".$rGetQuestion->question."</textarea></p>\n\n";
+		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Change question", "wannabeadmin")."' /></p>";
 		$content .= "</form>\n\n\n\n";
 
 	} // End if action == editQuestion
@@ -106,11 +109,11 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 	{
 		// Add a link back to questionlist
 		if(empty($_GET['answerID']))
-			$content .= "<br><a href=?module=wannabeadmin&amp;action=questions>".lang("Cancel edit", "wannabeadmin")."</a>\n\n<br>";
+			$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Cancel edit", "wannabeadmin")."</a>\n\n<br />";
 		// if in answer-mode: back to that question
 		else {
-			$content .= "<br><a href=?module=wannabeadmin&amp;action=editAnswers&amp;questionID=".$_GET['questionID'].">";
-			$content .= lang("Cancel edit", "wannabeadmin")."</a>\n\n<br>";
+			$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;questionID=".$_GET['questionID']."\">";
+			$content .= lang("Cancel edit", "wannabeadmin")."</a>\n\n<br />";
 		} // end else
 
 		// Get info about the question
@@ -127,14 +130,14 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 
 			if($rGetAnswers->ID == $answerID) {
 				// We are currently editing a answer
-				$content .= "<form method=POST action=?module=wannabeadmin&amp;action=doChangeAnswer&amp;answerID=$answerID>\n";
-				$content .= "<textarea name=response cols=60 rows=10>$rGetAnswers->response</textarea>\n";
-				$content .= "<br><input type=submit value='".lang("Change answer", "wannabeadmin")."'>\n";
+				$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doChangeAnswer&amp;answerID=$answerID\">\n";
+				$content .= "<textarea name=\"response\" cols=\"60\" rows=\"10\">$rGetAnswers->response</textarea>\n";
+				$content .= "<br /><input type=\"submit\" value='".lang("Change answer", "wannabeadmin")."' />\n";
 				$content .= "</form>\n\n\n\n";
 			} // end if rGetAnswers->ID == answerID
 
 			else {
-				$content .= "<br><a href=?module=wannabeadmin&amp;action=editAnswers&amp;answerID=$rGetAnswers->ID&amp;questionID=".$_GET['questionID'].">
+				$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;answerID=$rGetAnswers->ID&amp;questionID=".$_GET['questionID']."\">
 				$rGetAnswers->response</a>\n";
 			}
 
@@ -142,9 +145,9 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 
 		if($rGetQuestion->questionType == 'select' && empty($_GET['answerID'])) {
 			// This is a select-type question. Allow adding answers
-			$content .= "<form method=POST action=?module=wannabeadmin&amp;action=doAddAnswer&amp;questionID=".$_GET['questionID'].">";
-			$content .= "<input type=text name=response>";
-			$content .= "<br><input type=submit value='".lang("Add answer", "wannabeadmin")."'>\n";
+			$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddAnswer&amp;questionID=".$_GET['questionID']."\">";
+			$content .= "<p class=\"nopad\"><input type=\"text\" name=\"response\" /></p>";
+			$content .= "<p><input type=\"submit\" value='".lang("Add answer", "wannabeadmin")."' /></p>\n";
 			$content .= "</form>\n\n\n";
 		} // End if rGetQuestion->questionType = select
 
@@ -200,15 +203,18 @@ elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access 
 elseif($action == "listApplications") {
 	$qListApplications = db_query("SELECT DISTINCT userID FROM ".$sql_prefix."_wannabeResponse res
 		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = $eventID");
+	
+	if(mysql_num_rows($qListApplications) != 0) {
 	$content .= "<table>";
-	while($rListApplications = db_fetch($qListApplications)) {
-		$content .= "<tr><td>";
-		$content .= "<a href=?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID>";
-		$content .= display_username($rListApplications->userID);
-		$content .= "</a>";
-		$content .= "</td></tr>";
-	} // End while rListApplications
-	$content .= "</table>";
+		while($rListApplications = db_fetch($qListApplications)) {
+			$content .= "<tr><td>";
+			$content .= "<a href=\"?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID\">";
+			$content .= display_username($rListApplications->userID);
+			$content .= "</a>";
+			$content .= "</td></tr>";
+		} // End while rListApplications
+		$content .= "</table>";
+	}
 
 } // End action=listApplications
 
@@ -293,7 +299,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 			$rListComments = db_fetch($qListComments);
 			$content .= "<td class=wannabeCommentStyle".$rListComments->approval.">";
 			if($editcmt) {
-				$content .= "<a href=?module=wannabeadmin&action=changeComment&crewID=$crewID&user=$user>";
+				$content .= "<a href=\"?module=wannabeadmin&action=changeComment&crewID=$crewID&user=$user\">";
 				if(empty($rListComments->comment)) $content .= lang("Comment", "wannabeadmin");
 				else $content .= $rListComments->comment;
 				$content .= "</a>";
@@ -313,7 +319,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		$qListCrewsAppend = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 		while($rListCrewsAppend = db_fetch($qListCrewsAppend)) {
 			$content .= "<td>";
-			$content .= "<a href=?module=wannabeadmin&action=changeComment&crewID=".$rListCrewsAppend->ID."&user=$user>";
+			$content .= "<a href=\"?module=wannabeadmin&action=changeComment&crewID=".$rListCrewsAppend->ID."&user=$user\">";
 			$content .= lang("Comment", "wannabeadmin");
 			$content .= "</a></td>";
 		} // End while rListCrewsAppend
@@ -328,17 +334,20 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 
 elseif($action == "crews") {
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-	$content .= "<table>";
-	while($rListCrews = db_fetch($qListCrews)) {
-		$content .= "<tr><td>";
-		$content .= $rListCrews->crewname;
-		$content .= "</td></tr>";
-	} // End while (rListCrews)
+	
+	if(mysql_num_rows($qListCrews) != 0) {
+		$content .= "<table>";
+		while($rListCrews = db_fetch($qListCrews)) {
+			$content .= "<tr><td>";
+			$content .= $rListCrews->crewname;
+			$content .= "</td></tr>";
+		} // End while (rListCrews)
 
-	$content .= "</table>";
-	$content .= "<form method=POST action=?module=wannabeadmin&action=doAddCrew>\n";
-	$content .= "<input type=text name=crewname>\n";
-	$content .= "<input type=submit value='".lang("Add crew", "wannabeadmin")."'>";
+		$content .= "</table>";
+	}
+	$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddCrew\">\n";
+	$content .= "<p class=\"nopad\"><input type=\"text\" name=\"crewname\" />\n";
+	$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
 	$content .= "</form>";
 }
 
@@ -356,16 +365,16 @@ elseif($action == "changeComment" && !empty($_GET['crewID']) && !empty($_GET['us
 		AND userID = '".db_escape($user)."' AND crewID = '".db_escape($crewID)."'");
 	$rCheckExisting = db_fetch($qCheckExisting);
 
-	$content .= "<form method=POST action=?module=wannabeadmin&action=doChangeComment&user=$user&crewID=$crewID>\n";
-	$content .= "<select name=approval>";
+	$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doChangeComment&amp;user=$user&amp;crewID=$crewID\">\n";
+	$content .= "<select name=\"approval\">";
 	for($i=0;$i<6;$i++) {
 		$content .= "<option value=$i";
 		if($i==$rCheckExisting->approval) $content .= " SELECTED";
 		$content .= ">".lang("wannabeAdminCmt".$i, "wannabeadmin_prefs")."</option>";
 	} // End for
 	$content .= "</select>";
-	$content .= "<br><textarea name=comment rows=5 cols=40>$rCheckExisting->comment</textarea>";
-	$content .= "<br><input type=submit value='".lang("Save comment", "wannabeadmin")."'>";
+	$content .= "<br /><textarea name=\"comment\" rows=\"5\" cols=\"40\">$rCheckExisting->comment</textarea>";
+	$content .= "<br /><input type=\"submit\" value='".lang("Save comment", "wannabeadmin")."' />";
 	$content .= "</form>";
 } // End elseif action==changeComment
 

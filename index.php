@@ -16,14 +16,14 @@ else
 }
 
 
-$design_menu = "<a href=index.php>Main page</a>\n";
+$design_menu = "<li><a href=\"index.php\">Main page</a></li>\n";
 if(acl_access("globaladmin", "", 0) == 'Admin')
-	$design_menu .= "<br><a href=?module=globaladmin>".lang("Global Admin", "index")."</a>\n";
+	$design_menu .= "<li><a href=\"?module=globaladmin\">".lang("Global Admin", "index")."</a></li>\n";
 
 if(config("users_may_register"))
-	$design_menu .= "<br><a href=index.php?module=register>Register user</a>\n";
+	$design_menu .= "<li><a href=\"index.php?module=register\">Register user</a></li>\n";
 if(config("users_may_create_clan") && $sessioninfo->userID > 1)
-	$design_menu .= "<br><a href=index.php?module=groups>".lang("My groups", "index")."</a>\n";
+	$design_menu .= "<li><a href=\"index.php?module=groups\">".lang("My groups", "index")."</a></li>\n";
 
 
 
@@ -35,17 +35,17 @@ if($sessioninfo->eventID > 1)
 	{
 		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
 		{
-			$design_eventmenu .= "<br><a href=?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID>$rListStaticPages->header</a>";
+			$design_eventmenu .= "<li><a href=\"?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID\">$rListStaticPages->header</a></li>";
 		} // End if acl_access to page is allowed
 
 	} // End while db_fetch(staticPages)
 
 	if(config("enable_FAQ", $sessioninfo->eventID))
-		$design_eventmenu .= "<br><a href=?module=FAQ&amp;action=read>".lang("FAQ", "index")."</a>";
+		$design_eventmenu .= "<li><a href=\"?module=FAQ&amp;action=read\">".lang("FAQ", "index")."</a></li>";
 	if(config("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
-		$design_eventmenu .= "<br><a href=?module=ticketorder>".lang("Order ticket", "index")."</a>";
+		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>";
 	if(config("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
-		$design_eventmenu .= "<br><a href=?module=wannabe>".lang("Wannabe", "index")."</a>";
+		$design_eventmenu .= "<li><br /><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
 
 
 
@@ -54,7 +54,7 @@ if($sessioninfo->eventID > 1)
 	// User has eventadmin-rights?
 	$eventadmin = acl_access("eventadmin", "", $sessioninfo->eventID);
 	if($eventadmin == "Admin" || $eventadmin == "Write")
-		$design_eventmenu .= "<br><a href=?module=eventadmin>".lang("Event Admin", "index")."</a>";
+		$design_eventmenu .= "<li><a href=\"?module=eventadmin\">".lang("Event Admin", "index")."</a></li>";
 
 
 }
@@ -63,11 +63,11 @@ if($sessioninfo->eventID > 1)
 if($sessioninfo->userID == 1)
 {
 	// User is not logged in
-	$design_userinfo .= "<form method=GET action=index.php>\n";
-	$design_userinfo .= "<input type=hidden name=module value=login>\n";
-	$design_userinfo .= "<input type=hidden name=action value=finduser>\n";
-	$design_userinfo .= "<input class='login' type=text name=username>\n";
-	$design_userinfo .= "<input class='login' type=submit value='Login'>";
+	$design_userinfo .= "<form method=\"get\" action=\"index.php\">\n";
+	$design_userinfo .= "<p><input type=\"hidden\" name=\"module\" value=\"login\" /></p>\n";
+	$design_userinfo .= "<p><input type=\"hidden\" name=\"action\" value=\"finduser\" /></p>\n";
+	$design_userinfo .= "<p><input class=\"login\" type=\"text\" name=\"username\" /></p>\n";
+	$design_userinfo .= "<p><input class=\"login\" type=\"submit\" value=\"Login\" /></p>";
 	$design_userinfo .= "</form>\n";
 } // End if sessioninfo says not logged in
 
@@ -76,22 +76,22 @@ else {
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$sessioninfo->userID'");
 	$rGetUserinfo = db_fetch($qGetUserinfo);
 	$design_userinfo .= lang("You are logged in as:", "index");
-	$design_userinfo .= "<br>";
+	$design_userinfo .= "<br />";
 	$design_userinfo .= $rGetUserinfo->firstName." ".$rGetUserinfo->lastName;
 	$design_userinfo .= " (".$rGetUserinfo->nick.")";
 	//$design_userinfo .= "You are a luser!";
-	$design_menu .= "<br><a href=?module=login&amp;action=logout>".lang("Logout", "index")."</a>\n";
+	$design_menu .= "<li><a href=\"?module=login&amp;action=logout\">".lang("Logout", "index")."</a></li>\n";
 }
 
-#if(acl_access("mojo") == "Admin") $design_userinfo .= "<br>".lang("You have mojo!");
+#if(acl_access("mojo") == "Admin") $design_userinfo .= "<br />".lang("You have mojo!");
 
 // This should probably be a function that checks what events you have access to
 $qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");
 while($rEventList = db_fetch($qEventList))
 {
-	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<br><a href=?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID>
-	$rEventList->eventname</a>";
-	else $design_eventlist .= "<br>$rEventList->eventname\n";
+	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<li><a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID\">
+	$rEventList->eventname</a></li>";
+	else $design_eventlist .= "<li>$rEventList->eventname</li>\n";
 }
 
 // This should probably list something... What groups you are member of?
@@ -106,11 +106,16 @@ if($sessioninfo->userID != 1)
 		".$sql_prefix."_group_members.groupID =
 		".$sql_prefix."_groups.ID
 		WHERE ".$sql_prefix."_group_members.userID = $sessioninfo->userID");
-	while($rListGroups = db_fetch($qListGroups))
-	{
-		$design_grouplist .= "<br><a href=?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->groupID>";
-		$design_grouplist .= $rListGroups->groupname."</a>\n\n";
-	} // End rListGroups
+		
+	if(mysql_num_rows($qListGroups) != 0) {
+		$design_grouplist .= "<ul>";
+		while($rListGroups = db_fetch($qListGroups))
+		{
+			$design_grouplist .= "<li><a href=\"?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->groupID\">";
+			$design_grouplist .= $rListGroups->groupname."</a></li>\n";
+		} // End rListGroups
+		$design_grouplist .= "</ul>";
+	}
 } // end if sessioninfo->userID != 0
 
 

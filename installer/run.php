@@ -87,7 +87,7 @@ if(!isset($_GET["demodata"]))
 				$col[4] = $col[4+$i];
 				$col[5] = $col[5+$i];
 
-				//echo "Name: ".$col[0]." Type: ".$col[1]." Key: ".$col[2]." Null: ".$col[3]." Default: ".$col[4]." Extra: ".$col[5]."<br>";
+				//echo "Name: ".$col[0]." Type: ".$col[1]." Key: ".$col[2]." Null: ".$col[3]." Default: ".$col[4]." Extra: ".$col[5]."<br />";
 			}
 
 			$curtbl->add_column(trim($col[0]), trim($col[1]), trim($col[2]), trim($col[3]), trim($col[4]), trim($col[5]));
@@ -123,7 +123,7 @@ include_once 'language.php';
 <h1>Finito!</h1>
 <div id="content">
 <p>Your database should now be up to date with the current codebase.</p>
-<p>Would you like to add some demo data to your database? <br><a href="run.php?demodata=1">Yes, please</a></p>
+<p>Would you like to add some demo data to your database? <br /><a href="run.php?demodata=1">Yes, please</a></p>
 </div>
 <?php
 }

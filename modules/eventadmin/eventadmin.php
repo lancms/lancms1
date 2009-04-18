@@ -13,19 +13,19 @@ if(!isset($action))
 {
 	// No action specified. List all eventadmin tasks
 	if(acl_access("eventadmin", "", $eventID) != 'No')
-		$content .= "<br><a href=?module=eventadmin&amp;action=config>".lang("Event config", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=eventadmin&amp;action=config\">".lang("Event config", "eventadmin")."</a>\n";
 	if(acl_access("eventadmin", "", $sessioninfo->eventID) != 'No')
-		$content .= "<br><a href=?module=eventadmin&amp;action=groupManagement>".lang("Group Management", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Group Management", "eventadmin")."</a>\n";
 	if(acl_access("static", "", $eventID) != 'No')
-		$content .= "<br><a href=?module=static&amp;action=listEventPages>".lang("Edit static pages", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=static&amp;action=listEventPages\">".lang("Edit static pages", "eventadmin")."</a>\n";
 	if(acl_access("FAQ", "", $eventID) == 'Admin')
-		$content .= "<br><a href=?module=FAQ&amp;action=adminFAQs>".lang("Edit FAQs", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=FAQ&amp;action=adminFAQs\">".lang("Edit FAQs", "eventadmin")."</a>\n";
 	if(acl_access("wannabeadmin", "", $eventID) != 'No')
-		$content .= "<br><a href=?module=wannabeadmin&amp;action=adminWannabe>".lang("WannabeCrew", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=adminWannabe\">".lang("WannabeCrew", "eventadmin")."</a>\n";
 	if(acl_access("seatadmin", "", $eventID) == 'Admin')
-		$content .= "<br><a href=?module=seatadmin>".lang("Seatreg Admin", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=seatadmin\">".lang("Seatreg Admin", "eventadmin")."</a>\n";
 	if(acl_access("ticketadmin", "", $eventID) == 'Admin')
-		$content .= "<br><a href=?module=ticketadmin>".lang("Ticket Admin", "eventadmin")."</a>\n";
+		$content .= "<br /><a href=\"?module=ticketadmin\">".lang("Ticket Admin", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
@@ -53,25 +53,27 @@ elseif($action == "groupManagement")
 	$qListGroups = db_query("SELECT * FROM ".$sql_prefix."_groups
 		WHERE eventID = '$eventID' ORDER BY groupname ASC");
 	// If error is set; display error.
-	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br><br>\n";
-
-	$content .= '<table>';
-	while($rListGroups = db_fetch($qListGroups))
-	{
-		// list up all groups associated with this event
-		$content .= "<tr><td><a href=?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID>";
-		$content .= $rListGroups->groupname."</a></td><td>";
-		$content .= "<a href=?module=eventadmin&action=groupRights&groupID=$rListGroups->ID>";
-		$content .= lang("Change group rights", "eventadmin")."</a>";
-		$content .= "</td></tr>";
-	} // End while
-
-	$content .= '</table>';
+	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br /><br />\n";
+	
+	if(mysql_num_rows($qListGroups) != 0) {
+		$content .= '<table>';
+		while($rListGroups = db_fetch($qListGroups))
+		{
+			// list up all groups associated with this event
+			$content .= "<tr><td><a href=\"?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID\">";
+			$content .= $rListGroups->groupname."</a></td><td>";
+			$content .= "<a href=\"?module=eventadmin&amp;action=groupRights&amp;groupID=$rListGroups->ID\">";
+			$content .= lang("Change group rights", "eventadmin")."</a>";
+			$content .= "</td></tr>";
+		} // End while
+		
+		$content .= '</table>';
+	}
 
 	// Display form to add new groups
-	$content .= "<form method=POST action=?module=eventadmin&amp;action=addGroup>\n";
-	$content .= "<input type=text name='groupname'>\n";
-	$content .= "<input type=submit value='".lang("Add group", "eventadmin")."'>";
+	$content .= "<form method=\"post\" action=\"?module=eventadmin&amp;action=addGroup\">\n";
+	$content .= "<p><input type=\"text\" name=\"groupname\" />\n";
+	$content .= "<input type=\"submit\" value='".lang("Add group", "eventadmin")."' /></p>";
 	$content .= "</form>";
 } // End action = groupManagement
 
@@ -111,15 +113,15 @@ elseif($action == "config") {
 
 	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
 
-	$content .= "<form method=POST action='?module=eventadmin&amp;action=doConfig'>\n";
+	$content .= "<form method=\"post\" action='?module=eventadmin&amp;action=doConfig'>\n";
 	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
 		$cfg_current = config($eventconfig['checkbox'][$i], $eventID);
-		$content .= "<input type=checkbox name='".$eventconfig['checkbox'][$i]."'";
+		$content .= "<p class=\"nopad\"><input type=\"checkbox\" name='".$eventconfig['checkbox'][$i]."'";
 		if($cfg_current) $content .= " CHECKED";
-		$content .= "> ".lang($eventconfig['checkbox'][$i], "eventconfigoption")."<br>\n";
+		$content .= " /> ".lang($eventconfig['checkbox'][$i], "eventconfigoption")."</p>\n";
 	} // End for
 
-	$content .= "<input type=submit value='".lang("Save", "eventadmin_config")."'></form>";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Save", "eventadmin_config")."' /></p></form>";
 
 
 } // end action == config
@@ -145,7 +147,7 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 		die("Sorry, you have to be eventadmin to give eventrights");
 	$groupID = $_GET['groupID'];
 
-	$content .= "<a href=?module=eventadmin&action=groupManagement>".lang("Back to groups", "eventadmin")."</a>";
+	$content .= "<a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Back to groups", "eventadmin")."</a>\n";
 	$content .= "<table>";
 
 	// List up eventaccess-rights
@@ -161,17 +163,17 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 		$content .= $eventaccess[$i];
 		$content .= "</td><td>";
 		if($action == "changeGroupRights" && $eventaccess[$i] == $_GET['accessmodule']) {
-			$content .= "<form method=POST action=?module=eventadmin&action=doChangeRights&groupID=$groupID&accessmodule=$eventaccess[$i]>";
+			$content .= "<form method=POST action=?module=eventadmin&amp;action=doChangeRights&amp;groupID=$groupID&amp;accessmodule=$eventaccess[$i]>";
 			$content .= "<select name=groupRight>";
 			$content .= option_rights($access);
 			$content .= "</select>";
-			$content .= "<input type=submit value='".lang("Save", "eventadmin")."'>";
+			$content .= "<input type=submit value='".lang("Save", "eventadmin")."' />";
 			$content .= "</form>";
 		} // End if
 		else {
-			$content .= "<a href=?module=eventadmin&action=changeGroupRights&groupID=$groupID&accessmodule=$eventaccess[$i]>";
+			$content .= "<a href=\"?module=eventadmin&amp;action=changeGroupRights&amp;groupID=$groupID&amp;accessmodule=$eventaccess[$i]\">";
 			$content .= $access;
-			$content .= "</a>";
+			$content .= "</a>\n";
 		} // End else
 		$content .= "</td></tr>";
 	} // End for
@@ -190,7 +192,7 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 			$content .= $globalaccess[$i];
 			$content .= "</td><td>";
 			if($action == "changeGroupRights" && $globalaccess[$i] == $_GET['accessmodule']) {
-				$content .= "<form method=POST action=?module=eventadmin&action=doChangeRights&groupID=$groupID&accessmodule=$globalaccess[$i]>";
+				$content .= "<form method=\"post\" action=\"?module=eventadmin&amp;action=doChangeRights&amp;groupID=$groupID&amp;accessmodule=$globalaccess[$i]>";
 				$content .= "<select name=groupRight>";
 				$content .= option_rights($access);
 				$content .= "</select>";
@@ -198,9 +200,9 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 				$content .= "</form>";
 			} // End if
 			else {
-				$content .= "<a href=?module=eventadmin&action=changeGroupRights&groupID=$groupID&accessmodule=$globalaccess[$i]>";
+				$content .= "<a href=\"?module=eventadmin&amp;action=changeGroupRights&amp;groupID=$groupID&amp;accessmodule=$globalaccess[$i]\">";
 				$content .= $access;
-				$content .= "</a>";
+				$content .= "</a>\n";
 			} // End else
 			$content .= "</td></tr>";
 		} // End for

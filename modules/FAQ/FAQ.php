@@ -17,14 +17,14 @@ if($action == "read")
 	
 	while($rFAQs = db_fetch($qFAQs))
 	{
-		$content .= "<br><a name=#".$rFAQs->ID." href=?module=FAQ&action=read&faqID=$rFAQs->ID>";
+		$content .= "<br /><a name=#".$rFAQs->ID." href=?module=FAQ&action=read&faqID=$rFAQs->ID>";
 		$content .= $rFAQs->question;
 		$content .= "</a>\n\n";
 		
 		if($faqID == $rFAQs->ID)
 		{
 			// The user has requested to view the current FAQ-ID
-			$content .= "<br><br>$rFAQs->answer";
+			$content .= "<br /><br />$rFAQs->answer";
 		 } // End if $faqID == $rFAQs->ID
 		 
 		 
@@ -43,24 +43,26 @@ elseif($action == "adminFAQs")
 	$qFAQs = db_query("SELECT * FROM ".$sql_prefix."_FAQ
 		WHERE eventID = '".db_escape($eventID)."'");
 	
-	$content .= '<table>';
-	while($rFAQs = db_fetch($qFAQs))
-	{
-		// List FAQs
-		$content .= "<tr><td><a name=#".$rFAQs->ID."></a>$rFAQs->question</td>";
-		$content .= "<td><a href=?module=FAQ&amp;action=editFAQ&amp;faqID=$rFAQs->ID>";
-		$content .= lang("Edit FAQ", "FAQ");
-		$content .= "</td><td>";
-		$content .= "<a href=?module=FAQ&amp;action=deleteFAQ&amp;faqID=$rFAQs->ID>";
-		$content .= lang("Delete FAQ", "FAQ");
-		$content .= "</td></tr>";
-	} // End while
-	$content .= '</table>';
+	if(mysql_num_rows($qFAQs) != 0) {
+		$content .= '<table>';
+		while($rFAQs = db_fetch($qFAQs))
+		{
+			// List FAQs
+			$content .= "<tr><td><a name=#".$rFAQs->ID."></a>$rFAQs->question</td>";
+			$content .= "<td><a href=\"?module=FAQ&amp;action=editFAQ&amp;faqID=$rFAQs->ID\">";
+			$content .= lang("Edit FAQ", "FAQ");
+			$content .= "</td><td>";
+			$content .= "<a href=\"?module=FAQ&amp;action=deleteFAQ&amp;faqID=$rFAQs->ID\">";
+			$content .= lang("Delete FAQ", "FAQ");
+			$content .= "</td></tr>";
+		} // End while
+		$content .= '</table>';
+	}
 	
-	$content .= '<form method=POST action=?module=FAQ&action=addFAQ>';
-	$content .= '<textarea rows=2 cols=50 name=question>'.lang("Question", "FAQ").'</textarea>';
-	$content .= "<br><input type=submit value='".lang("Add question", "FAQ")."'>";
-	$content .= '</form>';
+	$content .= "<form method=\"post\" action=\"?module=FAQ&amp;action=addFAQ\">";
+	$content .= "<p class=\"nopad\"><textarea rows=\"2\" cols=\"50\" name=\"question\">".lang("Question", "FAQ")."</textarea></p>";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add question", "FAQ")."' /></p>";
+	$content .= "</form>";
 
 } // End elseif $action = adminFAQs
 
@@ -77,8 +79,8 @@ elseif($action == "editFAQ" && !empty($faqID))
 	
 	$content .= '<form method=POST action=?module=FAQ&action=doEditFAQ&faqID='.$rFAQ->ID.'>';
 	$content .= '<textarea name=question rows=2 cols=50>'.$rFAQ->question.'</textarea>';
-	$content .= '<br><textarea name=answer rows=10 cols=50>'.$rFAQ->answer.'</textarea>';
-	$content .= '<br><input type=submit value='.lang("Save", "FAQ").'>';
+	$content .= '<br /><textarea name=answer rows=10 cols=50>'.$rFAQ->answer.'</textarea>';
+	$content .= '<br /><input type=submit value='.lang("Save", "FAQ").'>';
 } // End elseif($action == editFAQ)
 
 
