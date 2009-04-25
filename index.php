@@ -16,7 +16,7 @@ else
 }
 
 
-$design_menu = "<li><a href=\"index.php\">Main page</a></li>\n";
+$design_menu = "<li><a href=\"index.php\">".lang("Main page", "index")."</a></li>\n";
 if(acl_access("globaladmin", "", 0) == 'Admin')
 	$design_menu .= "<li><a href=\"?module=globaladmin\">".lang("Global Admin", "index")."</a></li>\n";
 
@@ -45,7 +45,7 @@ if($sessioninfo->eventID > 1)
 	if(config("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>";
 	if(config("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
-		$design_eventmenu .= "<li><br /><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
 
 
 
