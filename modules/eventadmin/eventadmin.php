@@ -26,6 +26,8 @@ if(!isset($action))
 		$content .= "<br /><a href=\"?module=seatadmin\">".lang("Seatreg Admin", "eventadmin")."</a>\n";
 	if(acl_access("ticketadmin", "", $eventID) == 'Admin')
 		$content .= "<br /><a href=\"?module=ticketadmin\">".lang("Ticket Admin", "eventadmin")."</a>\n";
+	if(acl_access("economy", "", $eventID) != 'No')
+		$content .= "<br /><a href='?module=economy'>".lang("Economy", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 
@@ -54,7 +56,7 @@ elseif($action == "groupManagement")
 		WHERE eventID = '$eventID' ORDER BY groupname ASC");
 	// If error is set; display error.
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br /><br />\n";
-	
+
 	if(mysql_num_rows($qListGroups) != 0) {
 		$content .= '<table>';
 		while($rListGroups = db_fetch($qListGroups))
@@ -66,7 +68,7 @@ elseif($action == "groupManagement")
 			$content .= lang("Change group rights", "eventadmin")."</a>";
 			$content .= "</td></tr>";
 		} // End while
-		
+
 		$content .= '</table>';
 	}
 

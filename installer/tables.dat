@@ -223,3 +223,13 @@ TABLE [prefix]_tickets
 	status,		enum('notpaid','notused','used'), , ,	notused,
 	paid,		enum('yes','no'),	,	,	no
 }
+
+TABLE [prefix]_economy_accounts
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	eventID,	int(11),	PRI,	NOT NULL,	,	,
+	accountnumber,	int(5),		PRI,	,	,		,
+	mainAccountNumber, int(5),	,	,	0,		,
+	budget,		int(8),		,	,	0,		,
+	accountText,	varchar(35),	,	,	,		,
+}

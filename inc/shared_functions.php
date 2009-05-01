@@ -162,7 +162,7 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 			WHERE eventID = '".db_escape($event)."'
 			AND groupID IN ($groupList)
 			AND accessmodule = 'eventadmin'
-			AND subcategory = '".db_escape($subcategory)."'
+			AND subcategory = ('".db_escape($subcategory)."' OR 0)
 			ORDER BY access = 'Admin' DESC,
 			access = 'Write' DESC,
 			access = 'Read' DESC,
