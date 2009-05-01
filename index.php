@@ -5,6 +5,13 @@ $module = $_GET['module'];
 $action = $_GET['action'];
 
 // FIXME: error and hack-checking
+if(empty($module)) {
+	$module = "static";
+	$qFindIndexID = db_query("SELECT ID FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
+	$rFindIndexID = db_fetch($qFindIndexID);
+	$page = $rFindIndexID->ID;
+}
+
 if(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
 {
 	include 'modules/'.$module.'/'.$module.'.php';
@@ -30,7 +37,7 @@ if(config("users_may_create_clan") && $sessioninfo->userID > 1)
 if($sessioninfo->eventID > 1)
 {
 	// Should probably have some sort of event-config for enabled modules.
-	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID'");
+	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND header != 'index'");
 	while($rListStaticPages = db_fetch($qListStaticPages))
 	{
 		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
@@ -106,7 +113,7 @@ if($sessioninfo->userID != 1)
 		".$sql_prefix."_group_members.groupID =
 		".$sql_prefix."_groups.ID
 		WHERE ".$sql_prefix."_group_members.userID = $sessioninfo->userID");
-		
+
 	if(mysql_num_rows($qListGroups) != 0) {
 		$design_grouplist .= "<ul>";
 		while($rListGroups = db_fetch($qListGroups))

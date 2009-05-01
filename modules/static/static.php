@@ -1,8 +1,9 @@
 <?php
 
 $action = $_GET['action'];
-$page = $_GET['page'];
+if(empty($page)) $page = $_GET['page'];
 
+if(empty($action)) $action = "viewPage";
 
 $acl_access = acl_access("static", $page, $sessioninfo->eventID);
 
@@ -39,7 +40,7 @@ elseif($action == "listEventPages")
 	$qListPages = db_query("SELECT * FROM ".$sql_prefix."_static
 		WHERE eventID = ".$sessioninfo->eventID."
 		ORDER BY header ASC");
-		
+
 	if(mysql_num_rows($qListPages) != 0) {
 		$content .= '<table>';
 		while($rListPages = db_fetch($qListPages))
@@ -55,7 +56,7 @@ elseif($action == "listEventPages")
 				$content .= lang("Edit access", "static");
 				$content .= "</td></tr>";
 			} // End else
-		
+
 		} // End while
 		$content .= "</table>\n";
 	}
