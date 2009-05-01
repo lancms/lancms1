@@ -300,3 +300,84 @@ WHERE language = 'norwegian' AND module = 'login' AND string = 'Log in as:'");
 db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Passord:'
 WHERE language = 'norwegian' AND module = 'login' AND string = 'Password:'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Beklager, ingen slik bruker funnet'
+WHERE language = 'norwegian' AND module = 'login' AND string = 'Sorry, no such user found'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Spørsmål'
+WHERE language = 'norwegian' AND module = 'FAQ' AND string = 'Question'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Legg til spørsmål'
+WHERE language = 'norwegian' AND module = 'FAQ' AND string = 'Add question'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukere kan opprette klaner'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'users_may_create_clan'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Registrering, fornavn påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'register_firstname_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Registrering, etternavn påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'register_lastname_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukere kan registrere seg'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'users_may_register'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukerinformasjon, fødselsdag påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'userinfo_birthday_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukerinfo, fødselsår påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'userinfo_birthyear_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukerinfo, kjønn påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'userinfo_gender_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Brukerinfo, adresse påkrevd'
+WHERE language = 'norwegian' AND module = 'globalconfigoption' AND string = 'userinfo_address_required'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Lagre'
+WHERE language = 'norwegian' AND module = 'globaladmin_config' AND string = 'Save'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'For mange brukere funnet, vennligst spesifiser'
+WHERE language = 'norwegian' AND module = 'groups' AND string = 'Too many users found, please specify'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Beklager, feil passord!'
+WHERE language = 'norwegian' AND module = 'login' AND string = 'sorry, wrong password!'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Januar'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'January'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Februar'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'February'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Mars'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'March'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'April'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'April'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Mai'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'May'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Juni'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'June'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Juli'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'July'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'August'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'August'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'September'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'September'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Oktober'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'October'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'November'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'November'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Desember'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'December'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Hovedsiden'
+WHERE language = 'norwegian' AND module = 'index' AND string = 'Main page'");
+
