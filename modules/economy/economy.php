@@ -9,7 +9,7 @@ if($acl_access == 'No') die("You do not have access to economy!");
 
 $acl = acl_access("economy", "", $sessioninfo->eventID);
 
-if(empty($action)) {
+if(empty($action) || $action == "editAccount") {
 	$qGetAccounts = db_query("SELECT * FROM ".$sql_prefix."_economy_accounts
 		WHERE eventID = $sessioninfo->eventID ORDER BY accountnumber ASC");
 	$content .= '<table>';
@@ -23,12 +23,23 @@ if(empty($action)) {
 			$rTotalBudget = db_fetch($qTotalBudget);
 			$total_budget = $total_budget + $rTotalBudget->sum;
 		} else {
-			$content .= "<tr><td></td><td>$rGetAccounts->accountnumber</td>";
+			$content .= "<tr><td></td><td><a href=?module=economy&action=editAccount&account=$rGetAccounts->accountnumber>";
+			$content .= $rGetAccounts->accountnumber."</a></td>";
 		}
 
-		$content .= "<td>$rGetAccounts->accountText</td><td>";
-		if($rGetAccounts->mainAccountNumber == 0) $content .= $rTotalBudget->sum;
-		else $content .= $rGetAccounts->budget;
+		if($action == "editAccount" && $account == $rGetAccounts->accountnumber && $acl == 'Admin') {
+			$content .= "<td><form method=POST action=?module=economy&action=doEditAccount&account=$account>";
+			$content .= "<input type=text name=accountText size=25 value='$rGetAccounts->accountText'>";
+			$content .= "</td><td>";
+			$content .= "<input type=text size=5 name=budget value='$rGetAccounts->budget'>";
+			$content .= "</td><td>";
+			$content .= "<input type=submit value='".lang("Save changes", "economy")."'>";
+			$content .= "</form>";
+		} else {
+			$content .= "<td>$rGetAccounts->accountText</td><td>";
+			if($rGetAccounts->mainAccountNumber == 0) $content .= $rTotalBudget->sum;
+			else $content .= $rGetAccounts->budget;
+		}
 		$content .= "</td></tr>";
 	} // End while rGetAccounts
 	$content .= "<tr><td></td><td></td><td></td><td><b>$total_budget</b></td></tr>";
@@ -79,3 +90,16 @@ elseif($action == "addAccount") {
 	} // End else
 
 }
+
+elseif($action == "doEditAccount" && $acl == 'Admin' && !empty($account)) {
+	$accountText = $_POST['accountText'];
+	$budget = $_POST['budget'];
+
+
+	db_query("UPDATE ".$sql_prefix."_economy_accounts
+		SET accountText = '".db_escape($accountText)."',
+		budget = '".db_escape($budget)."'
+		WHERE eventID = '$sessioninfo->eventID'
+		AND accountnumber = '".db_escape($account)."'");
+	header("Location: ?module=economy");
+} // End elseif action == doEditAccount
