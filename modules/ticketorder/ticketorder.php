@@ -4,16 +4,24 @@ $userID = $sessioninfo->userID;
 
 if(!config("enable_ticketorder", $eventID)) die("Ticketorder not enabled");
 $action = $_GET['action'];
+$ticket = $_GET['ticket'];
 
-
-if(!isset($action)) {
+if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $action == "findOwner" || $action == "findUser") {
     // No action set, display tickets
 
-    $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND owner = '$userID'");
+    $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND (owner = '$userID' OR user = '$userID')");
 
     if(db_num($qDisplayTickets) != 0) {
         // The user has tickets to this event, display them
         $content .= "<table>";
+	$content .= "<tr><th>".lang("Ticketnumber", "ticketorder");
+	$content .= "</th><th>".lang("Tickettype", "ticketorder");
+	$content .= "</th><th>".lang("Status", "ticketorder");
+	$content .= "</th><th>".lang("Map placement", "ticketorder");
+	$content .= "</th><th>".lang("User", "ticketorder");
+	$content .= "</th><th>".lang("Owner", "ticketorder");
+
+
         while($rDisplayTickets = db_fetch($qDisplayTickets)) {
 	$content .= "<tr><td>";
 	$content .= $rDisplayTickets->ticketID;
@@ -39,7 +47,72 @@ if(!isset($action)) {
 	    $content .= lang("Update map", "ticketorder");
 	    $content .= "</a>";
 	}
+	$content .= "</td><td>";
 
+	if(($action == "changeUser" || $action == "findUser") && $ticket == $rDisplayTickets->ticketID && ($rDisplayTickets->owner == $sessioninfo->userID || acl_access("seating", "", $sessioninfo->eventID) == 'Admin')) {
+		$content .= "<form method=POST action=?module=ticketorder&action=findUser&ticket=$ticket>\n";
+		$content .= "<input type=text name=searchUser value='".$_POST['searchUser']."'>\n";
+		$content .= "<br><input type=submit value='".lang("Search user", "ticketorder")."'>\n";
+		$content .= "</form>\n";
+		if($action== "findUser") {
+			$search = db_escape($_POST['searchUser']);
+			$qFindUser = db_query("SELECT ID FROM ".$sql_prefix."_users
+				WHERE nick LIKE '%$search%'
+				OR firstName LIKE '%$search%'
+				OR lastName LIKE '%$search%'
+			");
+			if(db_num($qFindUser) > 30 ) {
+				$content .= lang("Found to many users matching, please specify", "ticketorder");
+			} // Found to many matches on search
+			else {
+				$content .= "<ul>";
+				while($rFindUser = db_fetch($qFindUser)) {
+					$content .= "<li><a href=?module=ticketorder&action=doChangeUser&ticket=$ticket&toUser=$rFindUser->ID>";
+					$content .= display_username($rFindUser->ID);
+					$content .= "</a></li>";
+				} // End while rFindUser
+				$content .= '</ul>';
+			} // End else (db_num())
+		} // End if action== FindUser
+	} elseif($rDisplayTickets->owner == $sessioninfo->userID && empty($action)) {
+		$content .= "<a href=?module=ticketorder&action=changeUser&ticket=$rDisplayTickets->ticketID>";
+		$content .= display_username($rDisplayTickets->user);
+		$content .= "</a>";
+	} else {
+		$content .= display_username($rDisplayTickets->user);
+	}
+	$content .= "</td><td>";
+	if(($action == "changeOwner" || $action == "findOwner") && $ticket == $rDisplayTickets->ticketID && ($rDisplayTickets->owner == $sessioninfo->userID || acl_access("seating", "", $sessioninfo->eventID) == 'Admin')) {
+		$content .= "<form method=POST action=?module=ticketorder&action=findOwner&ticket=$ticket>\n";
+		$content .= "<input type=text name=searchOwner value='".$_POST['searchOwner']."'>\n";
+		$content .= "<br><input type=submit value='".lang("Search owner", "ticketorder")."'>\n";
+		$content .= "</form>\n";
+		if($action== "findOwner") {
+			$search = db_escape($_POST['searchOwner']);
+			$qFindOwner = db_query("SELECT ID FROM ".$sql_prefix."_users
+				WHERE nick LIKE '%$search%'
+				OR firstName LIKE '%$search%'
+				OR lastName LIKE '%$search%'
+			");
+			if(db_num($qFindOwner) > 30) {
+				$content .= lang("Found to many users matching, please specify", "ticketorder");
+			} // Found to many matches on search
+			else {
+				$content .= "<ul>";
+				while($rFindOwner = db_fetch($qFindOwner)) {
+					$content .= "<li><a href=?module=ticketorder&action=doChangeOwner&ticket=$ticket&toOwner=$rFindOwner->ID>";
+					$content .= display_username($rFindOwner->ID);
+					$content .= "</a></li>";
+				} // End while rFindOwner
+			} // End else (db_num())
+		} // End if action== FindOwner
+	} elseif($rDisplayTickets->owner == $sessioninfo->userID && empty($action)) {
+		$content .= "<a href=?module=ticketorder&action=changeOwner&ticket=$rDisplayTickets->ticketID>";
+		$content .= display_username($rDisplayTickets->owner);
+		$content .= "</a>";
+	} else {
+		$content .= display_username($rDisplayTickets->owner);
+	}
 	$content .= "</td></tr>";
         } // End while
         $content .= "</table>";
@@ -92,3 +165,33 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
     } // End while(numtickets
     header("Location: ?module=ticketorder");
 } // End action = buyticket
+
+elseif($action == "doChangeOwner") {
+    $toOwner = $_GET['toOwner'];
+    $ticket = $_GET['ticket'];
+
+    
+    $qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+    $rFindTicket = db_fetch($qFindTicket);
+
+    if($sessioninfo->userID != $rFindTicket->owner && acl_access("seating", "", $sessioninfo->eventID) != 'Admin');
+    else {
+        db_query("UPDATE ".$sql_prefix."_tickets SET owner = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
+    }
+    header("Location: ?module=ticketorder");
+} // End elseif(action == doChangeOwner)
+
+elseif($action == "doChangeUser") {
+    $toOwner = $_GET['toUser'];
+    $ticket = $_GET['ticket'];
+
+    
+    $qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+    $rFindTicket = db_fetch($qFindTicket);
+
+    if($sessioninfo->userID != $rFindTicket->owner && acl_access("seating", "", $sessioninfo->eventID) != 'Admin');
+    else {
+        db_query("UPDATE ".$sql_prefix."_tickets SET user = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
+    }
+    header("Location: ?module=ticketorder");
+} // End elseif(action == doChangeOwner)
