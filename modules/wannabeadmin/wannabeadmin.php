@@ -223,6 +223,9 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
 	$user = $_GET['user'];
 
+	$content .= "<h2>".lang ("Application from:", "wannabeadmin")." ".display_username ($user)."</h2>";
+	$content .= "<a href=\"?module=wannabeadmin&action=listApplications\">".lang ("Back to list", "wannabeadmin")."</a>";
+
 	$content .= "<table>";
 
 	$qListCrewResponses = db_query("SELECT crew.crewname,
@@ -230,7 +233,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 			WHERE userID = '".db_escape($user)."' AND crewID=crew.ID) AS response
 		FROM ".$sql_prefix."_wannabeCrews crew WHERE eventID = $eventID");
 	while($rListCrewResponses = db_fetch($qListCrewResponses)) {
-		$content .= "<tr><td>";
+		$content .= "<tr><td> <i>Crew:</i> ";
 		$content .= $rListCrewResponses->crewname;
 		$content .= "</td><td>";
 		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
