@@ -271,13 +271,13 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 
 	$content .= "</table>";
 
-	$content .= "<table>\n\n";
+	$content .= "<table class='wannabecomments'>\n\n";
 
 	// FIXME: Ugly way of doing this...
 	$qListCrewHeaders = db_query("SELECT crewname FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-	$content .= "<tr><td></td>";
+	$content .= "<tr><td class='wannabecomments'></td>";
 	while($rListCrewHeaders = db_fetch($qListCrewHeaders)) {
-		$content .= "<th>";
+		$content .= "<th class='wannabecomments'>";
 		$content .= $rListCrewHeaders->crewname;
 		$content .= "</th>";
 	} // End while rListCrewHeaders
@@ -289,7 +289,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		WHERE crewID IN (SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID)");
 
 	while($rListAdmins = db_fetch($qListAdmins)) {
-		$content .= "<tr><th>";
+		$content .= "<tr><th class='wannabecomments'>";
 		$content .= $rListAdmins->nick;
 		$content .= "</th>";
 		if($rListAdmins->adminID == $sessioninfo->userID) $editcmt = TRUE; // Current user, allow changing comments

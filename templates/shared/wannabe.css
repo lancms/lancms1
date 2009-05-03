@@ -1,18 +1,22 @@
-.wannabeCommentStyle0 {
-//   background-color: red;
+td.wannabeCommentStyle0 {
+//	background-color: red;
 }
-.wannabeCommentStyle1 {
+td.wannabeCommentStyle1 {
     background-color: red;
 }
-.wannabeCommentStyle2 {
+td.wannabeCommentStyle2 {
     background-color: orange;
 }
-.wannabeCommentStyle3 {
+td.wannabeCommentStyle3 {
     background-color: grey;
 }
-.wannabeCommentStyle4 {
+td.wannabeCommentStyle4 {
     background-color: yellow;
+	 color: black;
 }
-.wannabeCommentStyle5 {
+td.wannabeCommentStyle5 {
     background-color: green;
+}
+th.wannabecomments {
+	border: solid 1px black;
 }
