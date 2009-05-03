@@ -4,6 +4,7 @@ $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];
 
 if(!isset($action)) {
+	$content .= "<h2>".lang ("Apply as crew", "wannabe")."</h2>";
 
 	$content .= "<table>";
 	$content .= "<form method=POST action=?module=wannabe&action=doApplication>";
