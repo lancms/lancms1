@@ -23,8 +23,11 @@ if(empty($action) || $action == "editAccount") {
 			$rTotalBudget = db_fetch($qTotalBudget);
 			$total_budget = $total_budget + $rTotalBudget->sum;
 		} else {
-			$content .= "<tr><td></td><td><a href=?module=economy&action=editAccount&account=$rGetAccounts->accountnumber>";
-			$content .= $rGetAccounts->accountnumber."</a></td>";
+			$content .= "<tr><td></td><td>";
+			if($acl == 'Admin') $content .= "<a href=?module=economy&action=editAccount&account=$rGetAccounts->accountnumber>";
+			$content .= $rGetAccounts->accountnumber;
+			if($acl == 'Admin') $content .= "</a>";
+			$content .= "</td>";
 		}
 
 		if($action == "editAccount" && $account == $rGetAccounts->accountnumber && $acl == 'Admin') {

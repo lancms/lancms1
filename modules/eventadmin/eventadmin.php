@@ -64,7 +64,7 @@ elseif($action == "groupManagement")
 			// list up all groups associated with this event
 			$content .= "<tr><td><a href=\"?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID\">";
 			$content .= $rListGroups->groupname."</a>";
-			if(acl_access("eventadmin", "", $sessioninfo->eventID") == 'Admin') {
+			if(acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin') {
 				$content .= "</td><td><a href=\"?module=eventadmin&amp;action=groupRights&amp;groupID=$rListGroups->ID\">";
 				$content .= lang("Change group rights", "eventadmin")."</a>";
 			}
