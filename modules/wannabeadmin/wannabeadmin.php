@@ -292,7 +292,11 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		$content .= "<tr><th class='wannabecomments'>";
 		$content .= $rListAdmins->nick;
 		$content .= "</th>";
-		if($rListAdmins->adminID == $sessioninfo->userID) $editcmt = TRUE; // Current user, allow changing comments
+		if($rListAdmins->adminID == $sessioninfo->userID) {
+			$editcmt = TRUE; // Current user, allow changing comments
+			$admincmdused = TRUE; // User has commented, don't display in extra list below
+		}
+		else $editcmt = FALSE;
 		$qListCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 		while($rListCrews = db_fetch($qListCrews)) {
 			$crewID = $rListCrews->ID;
@@ -315,7 +319,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		$content .= "</tr>\n\n";
 	} // End while rListAdmins
 
-	if($acl_access != 'Read' && !$editcmt) {
+	if($acl_access != 'Read' && !$admincmdused) {
 		$qGetUsernick = db_query("SELECT nick FROM ".$sql_prefix."_users WHERE ID = $sessioninfo->userID");
 		$rGetUsernick = db_fetch($qGetUsernick);
 		$content .= "<tr><th>$rGetUsernick->nick</th>";
