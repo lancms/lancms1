@@ -250,14 +250,16 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	} // End while rListCrewResponses
 	
 	$content .= "</table>";
-	$content .= "<table>";
+	$content .= "<table class='wannabeResponse'>";
+	$content .= "<tr><th>".lang ("Question", "wannabeadmin")."</th><th>".lang ("Answer", "wannabeadmin")."</th></tr>";
 
 	$qListResponse = db_query("SELECT ques.question,ques.questionType,res.response FROM ".$sql_prefix."_wannabeResponse res
 		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE res.userID = ".db_escape($user));
 
+	$rListResponseLoopCount = 1;
 	while($rListResponse = db_fetch($qListResponse)) {
 
-		$content .= "<tr><td>";
+		$content .= "<tr class='wannabeResponse".$rListResponseLoopCount."'><td>";
 		$content .= $rListResponse->question;
 		$content .= "</td><td>";
 		switch ($rListResponse->questionType) {
@@ -277,6 +279,12 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 				$content .= "WTF in viewApplications->switch->default!";
 		} // End switch
 		$content .= "</td></tr>";
+		
+		$rListResponseLoopCount++;
+		if ($rListResponseLoopCount == 3)
+		{
+			$rListResponseLoopCount = 1;
+		}
 
 	} // End while rListResponse
 

@@ -20,6 +20,9 @@ td.wannabeCommentStyle5 {
 th.wannabecomments {
 	border: solid 1px black;
 }
+table.wannabecomments {
+	width: 100%;
+}
 
 tr.wannabeCrewResponse1
 {
@@ -29,3 +32,14 @@ tr.wannabeCrewResponse2
 {
 	background-color: #777;
 }
+
+table.wannabeResponse {
+	width: 100%;
+}
+tr.wannabeResponse1
+{
+	background-color: #555;
+}
+tr.wannabeResponse2
+{
+	background-color: #777;
