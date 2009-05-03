@@ -7,9 +7,9 @@ $action = $_GET['action'];
 // FIXME: error and hack-checking
 if(empty($module)) {
 	$module = "static";
-	$qFindIndexID = db_query("SELECT ID FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
-	$rFindIndexID = db_fetch($qFindIndexID);
-	$page = $rFindIndexID->ID;
+	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
+	$rFindStatic = db_fetch($qFindStatic);
+	$content .= $rFindStatic->page;
 }
 
 if(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
