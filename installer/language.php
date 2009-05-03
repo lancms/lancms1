@@ -381,3 +381,60 @@ WHERE language = 'norwegian' AND module = 'register' AND string = 'December'");
 db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Hovedsiden'
 WHERE language = 'norwegian' AND module = 'index' AND string = 'Main page'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Økonomi'
+WHERE language = 'norwegian' AND module = 'eventadmin' AND string = 'Economy'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Hovedkonto'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'Main account'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Kontonummer'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'Accountnumber'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Beløp'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'Amount'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Kontobeskrivelse'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'Account description'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Ny konto'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'New account'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Lagre endringer'
+WHERE language = 'norwegian' AND module = 'economy' AND string = 'Save changes'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Nytt spørsmål'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'New question'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Tekstspørsmålsfelt'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Text answer-field'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Nedtrekksmeny'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Dropdown'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Avkrysningsboks'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Checkbox'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Legg til nytt spørsmål'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Add new question'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Søknad fra:'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Application from:'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Tilbake til listen'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Back to list'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Søk crew'
+WHERE language = 'norwegian' AND module = 'wannabe' AND string = 'Apply as crew'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Crew'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Crew'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Svar'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Response'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Spørsmål'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Question'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Svar'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Answer'");
+
