@@ -227,19 +227,30 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	$content .= "<a href=\"?module=wannabeadmin&action=listApplications\">".lang ("Back to list", "wannabeadmin")."</a>";
 
 	$content .= "<table>";
+	$content .= "<tr><th>".lang ("Crew", "wannabeadmin")."</th><th>".lang ("Response", "wannabeadmin")."</th></tr>";
 
 	$qListCrewResponses = db_query("SELECT crew.crewname,
 		(SELECT response FROM ".$sql_prefix."_wannabeCrewResponse
 			WHERE userID = '".db_escape($user)."' AND crewID=crew.ID) AS response
 		FROM ".$sql_prefix."_wannabeCrews crew WHERE eventID = $eventID");
+	
+	$rListCrewResponseLoopCount = 1;
 	while($rListCrewResponses = db_fetch($qListCrewResponses)) {
-		$content .= "<tr><td> <i>Crew:</i> ";
+		$content .= "<tr class='wannabeCrewResponse".$rListCrewResponseLoopCount."'><td>";
 		$content .= $rListCrewResponses->crewname;
-		$content .= "</td><td>";
+		$content .= ":</td><td>";
 		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
 		$content .= "</td></tr>";
-	} // End while rListCrewResponses
 
+		$rListCrewResponseLoopCount++;
+		if ($rListCrewResponseLoopCount == 3)
+		{
+			$rListCrewResponseLoopCount = 1;
+		}
+	} // End while rListCrewResponses
+	
+	$content .= "</table>";
+	$content .= "<table>";
 
 	$qListResponse = db_query("SELECT ques.question,ques.questionType,res.response FROM ".$sql_prefix."_wannabeResponse res
 		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE res.userID = ".db_escape($user));

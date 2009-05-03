@@ -20,3 +20,12 @@ td.wannabeCommentStyle5 {
 th.wannabecomments {
 	border: solid 1px black;
 }
+
+tr.wannabeCrewResponse1
+{
+	background-color: #555;
+}
+tr.wannabeCrewResponse2
+{
+	background-color: #777;
+}
