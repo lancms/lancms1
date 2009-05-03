@@ -6,13 +6,13 @@ $action = $_GET['action'];
 
 // FIXME: error and hack-checking
 if(empty($module)) {
-	$module = "static";
+#	$module = "static";
 	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
 	$rFindStatic = db_fetch($qFindStatic);
 	$content .= $rFindStatic->page;
 }
 
-if(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
+elseif(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
 {
 	include 'modules/'.$module.'/'.$module.'.php';
 } // End if isset module
