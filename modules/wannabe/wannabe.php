@@ -3,6 +3,8 @@
 $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];
 
+if($sessioninfo->userID == 1) die(lang("Please login to apply for crew", "wannabe"));
+
 if(!isset($action)) {
 	$content .= "<h2>".lang ("Apply as crew", "wannabe")."</h2>";
 
