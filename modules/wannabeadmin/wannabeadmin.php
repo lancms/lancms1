@@ -201,17 +201,34 @@ elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access 
 }
 
 elseif($action == "listApplications") {
+	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
+	$content .= "<table><tr>";
+	$content .= "<th>".lang("Applicant", "wannabeadmin")."</th>";
+	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = '$sessioninfo->eventID'");
+	while($rListCrews = db_fetch($qListCrews)) {
+	    $content .= "<th>$rListCrews->crewname</th>\n";
+	    $crewlist[] = $rListCrews->ID;
+	}
+
 	$qListApplications = db_query("SELECT DISTINCT userID FROM ".$sql_prefix."_wannabeResponse res
 		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = $eventID");
 	
 	if(mysql_num_rows($qListApplications) != 0) {
-	$content .= "<table>";
+	
 		while($rListApplications = db_fetch($qListApplications)) {
 			$content .= "<tr><td>";
 			$content .= "<a href=\"?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID\">";
 			$content .= display_username($rListApplications->userID);
-			$content .= "</a>";
-			$content .= "</td></tr>";
+			$content .= "</a></td>";
+			for($i=0;$i<count($crewlist);$i++) {
+			    
+			    $qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
+if(db_num($qListMyComment) != 0) echo "Hei!";
+			    $rListMyComment = db_fetch($qListMyComment);
+			    $content .= "<td class=wannabeCommentStyle".$rListMyComment->approval.">";
+			    $content .= "</td>\n";
+			} // End for 
+			$content .= "</tr>";
 		} // End while rListApplications
 		$content .= "</table>";
 	}
