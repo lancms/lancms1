@@ -45,6 +45,7 @@ $eventaccess[] = 'static';
 $eventaccess[] = 'seating'; // Access to seat any other users
 $eventaccess[] = 'wannabeadmin';
 $eventaccess[] = 'economy';
+$eventaccess[] = 'crewlist';
 
 
 ## GlobalACLs
