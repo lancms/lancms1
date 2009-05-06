@@ -54,15 +54,15 @@ if($do == "create_session")
 	$qFindAutoEventURL = db_query("SELECT ID FROM ".$sql_prefix."_events WHERE eventAutoURL LIKE '%host%'
 		AND eventClosed = 0 AND eventPublic = 1");
 	$rFindAutoEventURL = db_fetch($qFindAutoEventURL);
-	if(is_numeric($rFindAutoEventURL->ID)) $sessioninfo->eventID = $rFindAutoEventURL->ID;
-	else $sessioninfo->eventID = 1;
+	if(!empty($rFindAutoEventURL->ID)) $sess_eventID = $rFindAutoEventURL->ID;
+	else $sess_eventID = 1;
 
 	db_query("INSERT INTO ".$sql_prefix."_session SET
 		sID = '$generate',
 		userIP = '".$_SERVER['REMOTE_ADDR']."',
 		lastVisit = '".time()."',
-		eventID = '$sessioninfo->eventID'");
-
+		eventID = '$sess_eventID'");
+	
 	setcookie($osgl_session_cookie, $generate);
 
 } // End if do == create_session

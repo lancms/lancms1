@@ -155,30 +155,30 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 	} // End while CheckGroups
 
 	// Check what the highest ACL-right you have on event
-	if($event != 1) // Event-ID 1 is used on things that are not event-specific.
-	{
+#	if($event != 1) // Event-ID 1 is used on things that are not event-specific.
+#	{
 
-		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
-			WHERE eventID = '".db_escape($event)."'
-			AND groupID IN ($groupList)
-			AND accessmodule = 'eventadmin'
-			AND subcategory = ('".db_escape($subcategory)."' OR 0)
-			ORDER BY access = 'Admin' DESC,
-			access = 'Write' DESC,
-			access = 'Read' DESC,
-			access = 'No' DESC
-			LIMIT 0,1
-			");
-		$rCheckEventRight = db_fetch($qCheckEventRight);
-		if(isset($rCheckEventRight->access))
-		{
-			return $rCheckEventRight->access;
-			break;
-		}
+#		$qCheckEventRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
+#			WHERE eventID = '".db_escape($event)."'
+#			AND groupID IN ($groupList)
+#			AND accessmodule = 'eventadmin'
+#			AND subcategory = ('".db_escape($subcategory)."' OR 0)
+#			ORDER BY access = 'Admin' DESC,
+#			access = 'Write' DESC,
+#			access = 'Read' DESC,
+#			access = 'No' DESC
+#			LIMIT 0,1
+#			");
+#		$rCheckEventRight = db_fetch($qCheckEventRight);
+#		if(isset($rCheckEventRight->access))
+#		{
+#			return $rCheckEventRight->access;
+#			break;
+#		}
 
-	} // End if event != 0/check eventACL.
+#	} // End if event != 0/check eventACL.
 	// Not admin, check what rights the group has
-	elseif($module == "grouprights" && $subcategory != 0)
+	if($module == "grouprights" && $subcategory != 0)
 	{
 		// What rights does this user has for the group in subcategory
 		$qCheckGroupRights = db_query("SELECT access FROM ".$sql_prefix."_group_members
