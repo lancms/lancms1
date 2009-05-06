@@ -216,7 +216,9 @@ elseif($action == "listApplications") {
 	if(mysql_num_rows($qListApplications) != 0) {
 	
 		while($rListApplications = db_fetch($qListApplications)) {
-			$content .= "<tr><td>";
+			$content .= "<tr><td";
+			if(acl_access("crewlist", "", $sessioninfo->eventID, $rListApplications->userID) != 'No') $content .= " class='wannabeCommentStyle5'";
+			$content .= ">";
 			$content .= "<a href=\"?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID\">";
 			$content .= display_username($rListApplications->userID);
 			$content .= "</a></td>";
