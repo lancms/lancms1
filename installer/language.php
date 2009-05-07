@@ -438,3 +438,114 @@ WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Question'
 db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Svar'
 WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Answer'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettnummer'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Ticketnumber'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettnavn'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Ticketname'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettype'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Tickettype'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Pris'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Price'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Solgte billetter'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Sold tickets of type'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'forhåndsbestilt'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'preorder'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Rediger billettype'
+WHERE language = 'norwegian' AND module = 'ticketadmin' AND string = 'Edit tickettype'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Beklager, for mange brukere. Forsøk å begrense søket ditt mer'
+WHERE language = 'norwegian' AND module = 'login' AND string = 'Sorry, too many users, try to narrow down the search'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Ikke besvart'
+WHERE language = 'norwegian' AND module = 'wannabe_crewprefs' AND string = 'WannabeCrewListPreference'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Fødselsår må settes'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'Birthyear has to be set'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Fødselsdag må settes'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'Birthday has to be set'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Fødselsmåned må settes'
+WHERE language = 'norwegian' AND module = 'register' AND string = 'Birthmonth has to be set'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Vennligst logg inn for å søke som crew'
+WHERE language = 'norwegian' AND module = 'wannabe' AND string = 'Please login to apply for crew'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Søker'
+WHERE language = 'norwegian' AND module = 'wannabeadmin' AND string = 'Applicant'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Lagre'
+WHERE language = 'norwegian' AND module = 'FAQ' AND string = 'Save'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Rediger FAQ'
+WHERE language = 'norwegian' AND module = 'FAQ' AND string = 'Edit FAQ'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Slett FAQ'
+WHERE language = 'norwegian' AND module = 'FAQ' AND string = 'Delete FAQ'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'FAQ'
+WHERE language = 'norwegian' AND module = 'index' AND string = 'FAQ'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Crewliste'
+WHERE language = 'norwegian' AND module = 'index' AND string = 'Crewlist'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Sett passord'
+WHERE language = 'norwegian' AND module = 'seatadmin' AND string = 'Set password'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettbestilling'
+WHERE language = 'norwegian' AND module = 'index' AND string = 'Order ticket'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Kjøp billett'
+WHERE language = 'norwegian' AND module = 'index' AND string = 'Buy ticket'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettnummer'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Ticketnumber'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Billettype'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Tickettype'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Status'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Status'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Kartplassering'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Map placement'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Bruker'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'User'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Eier'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Owner'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'ikke brukt'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'notused'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Plasser på kartet'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Place on map'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Oppdater kart'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Update map'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Plassregistrering ikke aktivert ennå'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Seating not enabled yet'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Søk etter bruker'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Search user'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Avbestill billett'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Cancel ticket'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Er du sikker på at du vil avbestille denne billetten?'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Are you sure you wish to delete this ticket?'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Nei, det ville blitt en feil'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'No, this would be a mistake'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = 'Ja, jeg trenger den ikke'
+WHERE language = 'norwegian' AND module = 'ticketorder' AND string = 'Yes, I don't need it'");
+
