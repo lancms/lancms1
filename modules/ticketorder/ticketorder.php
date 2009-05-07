@@ -115,6 +115,10 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 	} else {
 		$content .= display_username($rDisplayTickets->owner);
 	}
+	$content .= "</td><td>";
+	$content .= "<a href=\"?module=ticketorder&action=cancelTicket&ticket=$rDisplayTickets->ticketID\">";
+	$content .= lang("Cancel ticket", "ticketorder");
+	$content .= "</a>";
 	$content .= "</td></tr>";
         } // End while
         $content .= "</table>";
@@ -197,3 +201,28 @@ elseif($action == "doChangeUser") {
     }
     header("Location: ?module=ticketorder");
 } // End elseif(action == doChangeOwner)
+
+elseif(($action == "cancelTicket" || $action == "doCancelTicket") && isset($_GET['ticket'])) {
+	$ticket = $_GET['ticket'];
+
+	$qGetTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+	$rGetTicketInfo = db_fetch($qGetTicketInfo);
+
+	$allow_cancel = false;
+	
+	if(acl_access("ticketadmin", "", $sessioninfo->eventID) == ('Admin' || 'Write')) $allow_cancel = true;
+	elseif($sessioninfo->userID == $rGetTicketInfo->owner) $allow_cancel = true;
+
+	if($action == "cancelTicket" && $allow_cancel == true) {
+		$content .= lang("Are you sure you wish to delete this ticket?", "ticketorder");
+		$content .= "<br><a href=?module=ticketorder>".lang("No, this would be a mistake", "ticketorder")."</a> - ";
+		$content .= "<a href=?module=ticketorder&action=doCancelTicket&ticket=$ticket>".lang("Yes, I don't need it", "ticketorder")."</a>";
+	} elseif($action == "doCancelTicket" && $allow_cancel == true) {
+		// Delete the ticket
+		db_query("DELETE FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+		// Delete the seating for this ticket
+		db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+		header("Location: ?module=ticketorder");
+	}
+
+} // End elseif action == cancelTicket || action = doCancelTicket
