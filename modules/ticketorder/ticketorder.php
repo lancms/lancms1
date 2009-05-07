@@ -33,7 +33,7 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 	$content .= "</td><td>";
 	$content .= lang($rDisplayTickets->status, "ticketorder");
 	$content .= "</td><td>";
-	if($rDisplayTickets->status == 'notused') {
+	if($rDisplayTickets->status == 'notused' && config("seating_enabled", $sessioninfo->eventID)) {
 	    $content .= "<a href=\"?module=seating&ticketID=$rDisplayTickets->ticketID\">";
 	    $content .= lang("Place on map", "ticketorder");
 	    $content .= "</a>";
