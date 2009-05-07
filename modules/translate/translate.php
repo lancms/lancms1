@@ -57,8 +57,8 @@ elseif($action == "syncTranslate") {
 	$qFindTranslations = db_query("SELECT * FROM ".$sql_prefix."_lang WHERE translated IS NOT NULL");
 	while($rFindTranslations = db_fetch($qFindTranslations)) {
 // Doesn't look good, but we're printing it to an outfile
-$data .= 'db_query("UPDATE ".$sql_prefix."_lang SET translated = \''.$rFindTranslations->translated.'\'
-WHERE language = \''.$rFindTranslations->language.'\' AND module = \''.$rFindTranslations->module.'\' AND string = \''.$rFindTranslations->string.'\'");'."\n\n";
+$data .= 'db_query("UPDATE ".$sql_prefix."_lang SET translated = \'".db_escape("'.$rFindTranslations->translated.'")."\'
+WHERE language = \'".db_escape("'.$rFindTranslations->language.'")."\' AND module = \'".db_escape("'.$rFindTranslations->module.'")."\' AND string = \'".db_escape("'.$rFindTranslations->string.'")."\'");'."\n\n";
 	} // End while
 
 	fwrite($file, $data);
