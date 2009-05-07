@@ -39,6 +39,8 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 	    $content .= "</a>";
 	} elseif($rDisplayTickets->status == 'notpaid') {
 		$content .= lang("Not paid", "ticketorder");
+	} elseif(!config("seating_enabled", $sessioninfo->eventID)) {
+		$content .= lang("Seating not enabled yet", "ticketorder");
 	} else {
 	    $qTicketUsedWhere = db_query("SELECT seatX,seatY FROM ".$sql_prefix."_seatReg_seatings
 	    	WHERE ticketID = ".$rDisplayTickets->ticketID);
