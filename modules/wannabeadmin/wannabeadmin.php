@@ -225,7 +225,6 @@ elseif($action == "listApplications") {
 			for($i=0;$i<count($crewlist);$i++) {
 			    
 			    $qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
-if(db_num($qListMyComment) != 0) echo "Hei!";
 			    $rListMyComment = db_fetch($qListMyComment);
 			    $content .= "<td class=wannabeCommentStyle".$rListMyComment->approval.">";
 			    $content .= "</td>\n";
