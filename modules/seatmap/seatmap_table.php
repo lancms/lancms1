@@ -134,3 +134,6 @@ if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioni
     } // End if db_num() == 0
 
 }
+$content .= "<br /><br />";
+$content .= display_systemstatic("seatmap");
+

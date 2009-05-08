@@ -62,7 +62,7 @@ $specialaccess[] = 'globaladmin'; // Can do anything
 ## Static system-messages
 $systemstatic[] = 'index'; // Main page
 $systemstatic[] = 'ticketorder'; // Text to display below ticketorder-page
-
+$systemstatic[] = 'seatmap'; // Text to display in the bottom of seatmap
 
 
 ## Datestuff
