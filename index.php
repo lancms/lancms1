@@ -7,9 +7,10 @@ $action = $_GET['action'];
 // FIXME: error and hack-checking
 if(empty($module)) {
 #	$module = "static";
-	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
-	$rFindStatic = db_fetch($qFindStatic);
-	$content .= $rFindStatic->page;
+#	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
+#	$rFindStatic = db_fetch($qFindStatic);
+#	$content .= $rFindStatic->page;
+	$content .= display_systemstatic("index");
 }
 
 elseif(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
@@ -37,7 +38,7 @@ if(config("users_may_create_clan") && $sessioninfo->userID > 1)
 if($sessioninfo->eventID > 1)
 {
 	// Should probably have some sort of event-config for enabled modules.
-	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND header != 'index'");
+	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND type = 'static'");
 	while($rListStaticPages = db_fetch($qListStaticPages))
 	{
 		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')

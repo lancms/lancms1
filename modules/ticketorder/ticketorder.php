@@ -139,6 +139,8 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
         } // End while
         $content .= "</table>";
     } // End if(db_num(qListBuyTickets)
+	$content .= "<br /><br />";
+	$content .= display_systemstatic("ticketorder");
 } // End if !isset($action)
 
 elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['numTickets'])) {

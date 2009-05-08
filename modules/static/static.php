@@ -60,28 +60,51 @@ elseif($action == "listEventPages")
 		} // End while
 		$content .= "</table>\n";
 	}
+
 	$content .= "<form method=\"post\" action=\"?module=static&amp;action=addNew\">\n";
 	$content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" size=\"15\" />";
 	$content .= "<input type=\"submit\" value='".lang("Add new page", "static")."' /></p>";
 	$content .= "</form>";
 
+       if(acl_access("globaladmin", "", 0) == 'Admin') {
+                // User has globaladmin-access, give access to editing system messages
+                $content .= "<br /><form method=GET>";
+                $content .= "<input type=hidden name=action value=editPage>\n";
+                $content .= "<input type=hidden name=module value=static>\n";
+                $content .= "<select name=page>\n";
+                for($i=0;$i<count($systemstatic);$i++) {
+                        $content .= "<option value='$systemstatic[$i]'>$systemstatic[$i]</option>";
+                }
+                $content .= "</select>\n";
+                $content .= "<input type=submit value='".lang("Edit system message", "static")."'>";
+                $content .= "</form>";
+        } // End if acl_access(globaladmin)
+
 } // End action = listEventPages
 
 elseif($action == "editPage" && !empty($page))
 {
-	$acl_access = acl_access("static", $page, $sessioninfo->eventID);
+	if(is_numeric($page)) {
+		$acl_access = acl_access("static", $page, $sessioninfo->eventID);
 
-	// Die if user does not have access at all
-	if($acl_access != ("Admin" || "Write") || empty($acl_access))
-		die("Sorry, you do not have access to this! (access is $acl_access)");
+		// Die if user does not have access at all
+		if($acl_access != ("Admin" || "Write") || empty($acl_access))
+			die("Sorry, you do not have access to this! (access is $acl_access)");
+	$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE ID = '".db_escape($page)."'");
 
+	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
+		$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = '".db_escape($page)."' AND type = 'system' AND eventID = 1");
+	} else {
+		die("Something went wrong... hacking?");
+	} // End else
+		
 	/* Edit that page */
 	// FIXME: This should be a HTML-editor!
-	$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE ID = ".db_escape($page));
 	$rStaticPage = db_fetch($qStaticPage);
 
 	$content .= "<form method=POST action=?module=static&action=doEditPage&page=$page>\n";
-	$content .= "<input type=text name=header value='$rStaticPage->header'>\n";
+	if($rStaticPage->type == 'static') $content .= "<input type=text name=header value='$rStaticPage->header'>\n";
+	else $content .= $page."\n";
 	$content .= "<br /><textarea rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
 	$content .= "<br /><input type=submit value='".lang("Save", "static")."'>\n";
 	$content .= "</form>";
@@ -90,24 +113,45 @@ elseif($action == "editPage" && !empty($page))
 
 elseif($action == "doEditPage" && !empty($page))
 {
+	$header = $_POST['header'];
+	$pageContent = $_POST['staticPage'];
 	/* Submit changes to DB */
 	// First, check ACL-access
-	$acl_access = acl_access("static", $page, $sessioninfo->eventID);
+	if(is_numeric($page)) {
+		$acl_access = acl_access("static", $page, $sessioninfo->eventID);
 
-	// Die if user does not have access at all
-	if($acl_access != ("Admin" || "Write") || empty($acl_access))
-		die("Sorry, you do not have access to this!");
+		// Die if user does not have access at all
+		if($acl_access != ("Admin" || "Write") || empty($acl_access))
+			die("Sorry, you do not have access to this!");
+		
 
-	$header = $_POST['header'];
-	$content = $_POST['staticPage'];
-
-	db_query("UPDATE ".$sql_prefix."_static
-		SET page = '".db_escape($content)."',
-		header = '".db_escape($header)."',
-		modifiedByUser = ".$sessioninfo->userID.",
-		modifiedTimestamp = ".time()."
-		WHERE ID = ".db_escape($page));
-	header("Location: ?module=static&action=viewPage&page=$page");
+		db_query("UPDATE ".$sql_prefix."_static
+			SET page = '".db_escape($pageContent)."',
+			header = '".db_escape($header)."',
+			modifiedByUser = ".$sessioninfo->userID.",
+			modifiedTimestamp = ".time()."
+			WHERE ID = ".db_escape($page));
+		header("Location: ?module=static&action=viewPage&page=$page");
+	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
+		$qFindExisting = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type='system' AND header = '".db_escape($page)."'");
+		if(db_num($qFindExisting) == 0) {
+			db_query("INSERT INTO ".$sql_prefix."_static SET 
+				header = '".db_escape($page)."',
+				page = '".db_escape($pageContent)."',
+				eventID = 1,
+				type='system',
+				createdByUser = ".$sessioninfo->userID.",
+				createdTimestamp = ".time());
+		} else {
+			db_query("UPDATE ".$sql_prefix."_static
+				SET page = '".db_escape($pageContent)."',
+	                        modifiedByUser = ".$sessioninfo->userID.",
+         	                modifiedTimestamp = ".time()."
+				WHERE header = '".db_escape($page)."'
+				AND type = 'system'");
+		} // End else
+		header("Location: ?module=static&action=listEventPages");
+	} // End elseif acl_access globaladmin
 }
 
 elseif($action == "addNew") {

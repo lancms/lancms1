@@ -59,6 +59,11 @@ $specialaccess[] = 'groupaccess'; // Used inside groups
 $specialaccess[] = 'globaladmin'; // Can do anything
 
 
+## Static system-messages
+$systemstatic[] = 'index'; // Main page
+$systemstatic[] = 'ticketorder'; // Text to display below ticketorder-page
+
+
 
 ## Datestuff
 

@@ -112,6 +112,7 @@ TABLE [prefix]_static
 	modifiedByUser,		int(11),	,	,	1,
 	modifiedTimestamp,	int(10),	,	,	0,
 	pageViews,		int(15),	,	,	0,
+	type,			enum('static', 'system'), , ,	static,
 }
 
 TABLE [prefix]_FAQ
