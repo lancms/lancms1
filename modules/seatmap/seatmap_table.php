@@ -95,7 +95,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 
 $content .= "</table>";
 
-if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioninfo->eventID) == 1) {
+if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioninfo->eventID) == 1 && !empty($ticketID)) {
     $qSeatInfo = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE
         eventID = '$sessioninfo->eventID' AND
         seatX = '$place_seatX' AND
