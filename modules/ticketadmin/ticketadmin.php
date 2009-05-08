@@ -31,7 +31,7 @@ if(!isset($action) || $action == "editticket") {
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
 	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
 	$rNumTicketsOfType = db_fetch($qNumTicketsOfType);
-	$content .= $rNumTicketsOfType->count;
+	$content .= "<a href=?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID>".$rNumTicketsOfType->count."</a>";
 	$content .= "</td></tr>\n";
         } // End while
         $content .= "</table>\n";
@@ -122,3 +122,35 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
 
     header("Location: ?module=ticketadmin");
 } // End if action = doeditticket
+
+elseif($action == "listTickets") {
+	if(empty($_GET['tickettype'])) $where = '1';
+	else $where = 'ticketType = '.$_GET['tickettype'];
+
+	$qGetTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$sessioninfo->eventID' AND $where");
+	$content .= "<table>\n";
+        $content .= "<tr><th>".lang("Ticketnumber", "ticketorder");
+        $content .= "</th><th>".lang("Owner", "ticketorder");
+        $content .= "</th><th>".lang("User", "ticketorder");
+        $content .= "</th><th>".lang("Status", "ticketorder");
+        $content .= "</th><th>".lang("Map placement", "ticketorder");
+	$content .= "</th><th>".lang("Paid?", "ticketorder");
+	$content .= "</th></tr>\n\n";
+	
+	while($rGetTickets = db_fetch($qGetTickets)) {
+		$content .= "<tr><td>";
+		$content .= $rGetTickets->ticketID;
+		$content .= "</td><td>";
+		$content .= display_username($rGetTickets->owner);
+		$content .= "</td><td>";
+		$content .= display_username($rGetTickets->user);
+		$content .= "</td><td>";
+		$content .= lang($rGetTickets->status, "ticketorder");
+		$content .= "</td><td>";
+		// FIXME: Display link to this seat on map
+		$content .= "</td><td>";
+		$content .= $rGetTickets->paid;
+		$content .= "</td></tr>\n\n";
+	} // End while rGetTickets
+	$content .= "</table>";
+}
