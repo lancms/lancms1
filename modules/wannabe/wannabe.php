@@ -74,7 +74,10 @@ if(!isset($action)) {
 
 
 	} // End while rListQuestions
-	$content .= "<tr><td></td><td><input type=submit value='".lang("Save", "wannabe")."'></form></td></tr>";
+	$content .= "<tr><td></td><td><input type=submit value='".lang("Save", "wannabe")."'></form>";
+	$content .= "<form method=POST action=?module=wannabe&action=removeApplication>\n";
+	$content .= "<input type=submit value='".lang("Delete application", "wannabe")."'></form>";
+	$content .= "</td></tr>";
 	$content .= "</table>";
 
 } // End if(!isset($action))
@@ -123,3 +126,16 @@ elseif($action == "doApplication") {
 	} // End while
 	header("Location: ?module=wannabe");
 } // End doApplication
+
+elseif($action == "removeApplication" ) {
+	$content .= lang("Are you sure you want to delete your crewapplication?", "wannabe");
+	$content .= "<br><a href=?module=wannabe&action=doRemoveApplication>".lang("Yes, I'm sure", "wannabe")."</a> - ";
+	$content .= "<a href=?module=wannabe>".lang("No, I still wish to apply for crew", "wannabe")."</a>";
+}
+
+elseif($action == "doRemoveApplication") {
+
+	db_query("DELETE FROM ".$sql_prefix."_wannabeResponse WHERE questionID IN (SELECT ID FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = '$sessioninfo->eventID') AND userID = '$sessioninfo->userID'");
+	db_query("DELETE FROM ".$sql_prefix."_wannabeCrewResponse WHERE crewID IN (SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = '$sessioninfo->eventID') AND userID = '$sessioninfo->userID'");
+	header("Location: ?module=wannabe");
+}
