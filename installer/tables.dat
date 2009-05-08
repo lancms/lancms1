@@ -196,7 +196,7 @@ TABLE [prefix]_seatReg_seatings
 	eventID,	int(11),	,	NOT NULL, ,
 	seatX,		int(4),		,	,	,
 	seatY,		int(4),		,	,	,
-	userID,		int(11),	,	,	,
+#	userID,		int(11),	,	,	,
 	ticketID,		int(11),	,	,	,
 }
 

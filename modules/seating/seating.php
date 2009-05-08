@@ -52,7 +52,6 @@ elseif($_GET['action'] == "takeseat") {
 			    eventID = '".db_escape($eventID)."',
 			    ticketID = '".db_escape($ticketID)."',
 		    seatX = '".db_escape($seatX)."',
-		    userID = '".db_escape($rTicketInfo->owner)."',
 		    seatY = '".db_escape($seatY)."'");
 			db_query("UPDATE ".$sql_prefix."_tickets SET status = 'used'
 		    WHERE ticketID = '".db_escape($ticketID)."'");
@@ -60,8 +59,7 @@ elseif($_GET['action'] == "takeseat") {
         else {
 			db_query("UPDATE ".$sql_prefix."_seatReg_seatings SET
 		    seatX = '".db_escape($seatX)."',
-		    seatY = '".db_escape($seatY)."',
-		    userID = '".$rTicketInfo->user."'
+		    seatY = '".db_escape($seatY)."'
 		    WHERE ticketID = '".db_escape($ticketID)."'");
         } // End else
     } // End if(seating_rights)
