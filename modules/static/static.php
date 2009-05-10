@@ -51,9 +51,11 @@ elseif($action == "listEventPages")
 			else {
 				// You do have some sort of right. Display link
 				$content .= "<tr><td><a href=\"?module=static&action=editPage&page=$rListPages->ID\">";
-				$content .= $rListPages->header."</a></td>\n";
-				$content .= "<td><a href=\"?module=static&action=editACL&page=$rListPages->ID\">";
-				$content .= lang("Edit access", "static");
+				$content .= $rListPages->header."</a>\n";
+				if($rACL_access == 'Admin') {
+					$content .= "</td><td><a href=\"?module=static&action=editACL&page=$rListPages->ID\">";
+					$content .= lang("Edit access", "static");
+				} // End if rACL_access = 'Admin'
 				$content .= "</td></tr>";
 			} // End else
 
