@@ -54,6 +54,8 @@ if($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>";
 	if(config("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
+	if(config("enable_composystem", $sessioninfo->eventID))
+		$design_eventmenu .= "<li><a href=\"?module=compos\">".lang("Composignup", "index")."</a></li>";
 	if(acl_access("crewlist", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>";
 
