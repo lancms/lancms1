@@ -57,7 +57,7 @@ TABLE [prefix]_events
 	createdByUser,	int(11),	,	,	0,
 	eventClosed,	tinyint(1),	,	,	0,
 	eventPublic,	tinyint(1),	,	,	0,
-	eventAutoURL,	varchar(50),	,	,	,
+	eventAutoURL,	varchar(100),	,	,	,
 }
 
 TABLE [prefix]_groups
