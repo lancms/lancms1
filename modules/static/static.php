@@ -62,12 +62,12 @@ elseif($action == "listEventPages")
 		} // End while
 		$content .= "</table>\n";
 	}
-
-	$content .= "<form method=\"post\" action=\"?module=static&amp;action=addNew\">\n";
-	$content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" size=\"15\" />";
-	$content .= "<input type=\"submit\" value='".lang("Add new page", "static")."' /></p>";
-	$content .= "</form>";
-
+	if(acl_access("static", "", $sessioninfo->eventID) == 'Admin') {
+		$content .= "<form method=\"post\" action=\"?module=static&amp;action=addNew\">\n";
+		$content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" size=\"15\" />";
+		$content .= "<input type=\"submit\" value='".lang("Add new page", "static")."' /></p>";
+		$content .= "</form>";
+	} //
        if(acl_access("globaladmin", "", 0) == 'Admin') {
                 // User has globaladmin-access, give access to editing system messages
                 $content .= "<br /><form method=GET>";
@@ -157,6 +157,7 @@ elseif($action == "doEditPage" && !empty($page))
 }
 
 elseif($action == "addNew") {
+	if(acl_access("static", "", $sessioninfo->eventID) != 'Admin') die("You don't have access to create new pages");
 	$name = $_POST['name'];
 
 	$qCheckName = db_query("SELECT * FROM ".$sql_prefix."_static WHERE eventID = $sessioninfo->eventID
