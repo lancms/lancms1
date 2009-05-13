@@ -30,13 +30,16 @@ table#seatRegTable {
 
 .seatPassword {
     background-color: orange;
+    font-size: 12px;
 }
 
 .seatGroup {
     background-color: purple;
+    font-size: 12px;
 }
 
 .seatCurrentSelected {
     background-color: yellow;
     color: black;
+    font-size: 12px;
 }
