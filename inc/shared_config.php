@@ -46,6 +46,7 @@ $eventaccess[] = 'seating'; // Access to seat any other users
 $eventaccess[] = 'wannabeadmin';
 $eventaccess[] = 'economy';
 $eventaccess[] = 'crewlist';
+$eventaccess[] = 'compoadmin';
 
 
 ## GlobalACLs
@@ -79,3 +80,8 @@ $monthname[9] = 'September';
 $monthname[10] = 'October';
 $monthname[11] = 'November';
 $monthname[12] = 'December';
+
+
+## Compotypes
+$compotype[] = 'FFA';
+$compotype[] = 'clan';
