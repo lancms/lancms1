@@ -21,6 +21,7 @@ $eventconfig['checkbox'][] = 'enable_ticketorder';
 $eventconfig['checkbox'][] = 'enable_FAQ';
 $eventconfig['checkbox'][] = 'seating_enabled';
 $eventconfig['checkbox'][] = 'enable_wannabe';
+$eventconfig['checkbox'][] = 'enable_composystem';
 
 
 ## Globalconfigs
@@ -85,3 +86,4 @@ $monthname[12] = 'December';
 ## Compotypes
 $compotype[] = 'FFA';
 $compotype[] = 'clan';
+$compotype[] = '1on1';

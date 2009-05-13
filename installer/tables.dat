@@ -241,6 +241,15 @@ TABLE [prefix]_compos
 	ID,		int(11),	PRI,	NOT NULL, ,		auto_increment
 	eventID,	int(11),	,	,	,		,
 	componame,	varchar(35),	,	,	,		,
-	players,	int(2),		,	,	,		,
-	type,		enum('clan', 'FFA'), ,	,	,		,
+	playersClan,	int(2),		,	,	,		,
+	playersRound,	int(2),		,	,	,		,
+	type,		enum('clan', 'FFA', '1on1'), ,	,	,		,
+}
+
+TABLE [prefix]_compoSignup
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	compoID,	int(11),	PRI,	NOT NULL, ,		
+	clanID,		int(11),	PRI,	,	1,
+	userID,		int(11),	PRI,	,	1,
 }
