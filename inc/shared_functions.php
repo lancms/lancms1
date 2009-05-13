@@ -185,7 +185,8 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 			WHERE groupID = '".db_escape($subcategory)."'
 			AND userID = '".db_escape($userID)."'");
 		$rCheckGroupRights = db_fetch($qCheckGroupRights);
-		return $rCheckGroupRights->access;
+		if($rCheckGroupRights->access) return $rCheckGroupRights->access;
+		else return "No";
 	} // End elseif module = grouprights
 
 	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
