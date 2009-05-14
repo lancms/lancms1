@@ -9,7 +9,8 @@ if($action == "finduser")
 	WHERE (nick LIKE '%".$user."%'
 	OR EMail LIKE '%".$user."%'
 	OR firstName LIKE '%".$user."%'
-	OR lastName LIKE '%".$user."%')
+	OR lastName LIKE '%".$user."%'
+	OR ID = '$user')
 	AND ID!=1
 	");
 
