@@ -19,6 +19,7 @@ if($action == "register")
 	$birthYear = $_POST['birthYear'];
 	$address = $_POST['address'];
 	$postnumber = $_POST['postnumber'];
+	$cellphone = $_POST['cellphone'];
 
 
 	if(empty($username))
@@ -88,6 +89,20 @@ if($action == "register")
 		if(strlen($address) <=3) $register_invalid = lang("Please specify your address", "registert");
 	} // End if config(userinfo_address_required)
 
+	// FIXME? Cellphone is optional, we may need some code to 1) make it required, 2) hide it completely or 3) something else
+	if (!empty($cellphone))
+	{
+		if (!is_numeric ($cellphone))
+		{
+			$register_invalid = lang ("Cellphone is supposed to be a number", "register");
+		}
+		// FIXME? Hardcoded lenght of cellphone numbers
+		if (strlen ($cellphone) != 8)
+		{
+			$register_invalid = lang ("Cellphone is supposed to be eight digits", "register");
+		}
+
+	}
 
 	// If something went wrong in the registration;
 	// view the registration-page once more, with all fields marked.
@@ -109,6 +124,7 @@ if($action == "register")
 			birthYear = '".db_escape($birthYear)."',
 			street = '".db_escape($address)."',
 			postnumber = '".db_escape($postnumber)."',
+			cellphone = '".db_escape ($cellphone)."',
 			registerIP = '".$_SERVER['REMOTE_ADDR']."',
 			registerTime = '".time()."'
 		");
@@ -183,6 +199,9 @@ if(!isset($action) || $hide_register == FALSE)
 
 	} // End if config(userinfo_birthyear_required)
 
+	// FIXME? Cellphone is optional
+	$content .= "<br />";
+	$content .= "<input type='text' name='cellphone' value='".$cellphone."' /> ".lang ("Cellphone", "register")." (".lang ("optional", "register").")";
 
 
 	$content .= "<br><input type=submit value='".lang("Create user", "register")."'>";
