@@ -356,3 +356,58 @@ function display_systemstatic($message) {
 
 	return $rFindMessage->page;
 }
+
+#############
+
+// adding logentry:
+function log_add ($logtype, $lognew=0, $logold=0, $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
+{
+
+	global $sql_prefix;
+	global $sessioninfo;
+
+	if ($lognew == 0)
+	{
+		$lognew = 'NULL';
+	}
+	else
+	{
+		$lognew = "\"$lognew\"";
+	}
+	if ($logold == 0)
+	{
+		$logold = 'NULL';
+	}
+	else
+	{
+		$logold = "\"$logold\"";
+	}
+	if ($userid == 0)
+	{
+		$userid = $sessioninfo->userID;
+	}
+	if ($eventid == 0)
+	{
+		$eventid = $sessioninfo->eventID;
+	}
+	if ($userip == 0)
+	{
+		$userip = $_SERVER['REMOTE_ADDR'];
+	}
+	if ($userhost == 0)
+	{
+		$userhost = $_SERVER['REMOTE_HOST'];
+		if (empty ($userhost))
+		{
+			$userhost = 'NULL';
+		}
+	}
+	if ($logurl == 0)
+	{
+		$logurl = $_SERVER['REQUEST_URI'];
+	}
+	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, %s, %s, %s, "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logtype), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
+
+	db_query ($query);
+
+}

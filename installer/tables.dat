@@ -253,3 +253,17 @@ TABLE [prefix]_compoSignup
 	clanID,		int(11),	PRI,	,	1,
 	userID,		int(11),	PRI,	,	1,
 }
+
+TABLE [prefix]_logs
+{
+#	NAME			TYPE			KEY	NULL	DEFAULT		EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	userID,		int(11),			,	,	,
+	eventID,		int(11),			,	,	,
+	userIP,		int unsigned,	,	,	,
+	userHost,	text,				,	,	,
+	logType,		int(11),			,	,	,
+	logTextNew,	text,				,	,	,	
+	logTextOld,	text,				,	,	,
+	logURL,		text,				,	,	,
+}
