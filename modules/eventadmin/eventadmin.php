@@ -198,7 +198,7 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 			$content .= $globalaccess[$i];
 			$content .= "</td><td>";
 			if($action == "changeGroupRights" && $globalaccess[$i] == $_GET['accessmodule']) {
-				$content .= "<form method=\"post\" action=\"?module=eventadmin&amp;action=doChangeRights&amp;groupID=$groupID&amp;accessmodule=$globalaccess[$i]>";
+				$content .= "<form method=\"post\" action=\"?module=eventadmin&amp;action=doChangeRights&amp;groupID=$groupID&amp;accessmodule=$globalaccess[$i]\">";
 				$content .= "<select name=groupRight>";
 				$content .= option_rights($access);
 				$content .= "</select>";
