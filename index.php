@@ -5,58 +5,64 @@ $module = $_GET['module'];
 $action = $_GET['action'];
 
 // FIXME: error and hack-checking
-if(empty($module)) {
+if (empty($module))
+{
 #	$module = "static";
 #	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
 #	$rFindStatic = db_fetch($qFindStatic);
 #	$content .= $rFindStatic->page;
-	$content .= display_systemstatic("index");
+	$content .= display_systemstatic ("index");
 }
-
-elseif(isset($module) && file_exists('modules/'.$module.'/'.$module.'.php'))
+elseif (isset ($module) && file_exists ('modules/'.$module.'/'.$module.'.php'))
 {
-	include 'modules/'.$module.'/'.$module.'.php';
+	include ('modules/'.$module.'/'.$module.'.php');
 } // End if isset module
-
 else
 {
 	$content = "Hello World!";
 }
 
 
-$design_menu = "<li><a href=\"index.php\">".lang("Main page", "index")."</a></li>\n";
-if(acl_access("globaladmin", "", 0) == 'Admin')
-	$design_menu .= "<li><a href=\"?module=globaladmin\">".lang("Global Admin", "index")."</a></li>\n";
+$design_menu = "<li><a href=\"index.php\">".lang ("Main page", "index")."</a></li>\n";
 
-if(config("users_may_register"))
-	$design_menu .= "<li><a href=\"index.php?module=register\">Register user</a></li>\n";
-if(config("users_may_create_clan") && $sessioninfo->userID > 1)
+if (acl_access ("globaladmin", "", 0) == 'Admin')
+{
+	$design_menu .= "<li><a href=\"?module=globaladmin\">".lang ("Global Admin", "index")."</a></li>\n";
+}
+// FIXME: this uses userAdmin as an eventACL, while it should be a global ACL.
+if (config ("users_may_register") and ($sessioninfo->userID <= 1 or acl_access ("userAdmin", "", $sessioninfo->eventID) != 'No'))
+{
+	$design_menu .= "<li><a href=\"index.php?module=register\">".lang ("Register user", "index")."</a></li>\n";
+}
+if (config ("users_may_create_clan") && $sessioninfo->userID > 1)
+{
 	$design_menu .= "<li><a href=\"index.php?module=groups\">".lang("My groups", "index")."</a></li>\n";
+}
 
 
 
-if($sessioninfo->eventID > 1)
+if ($sessioninfo->eventID > 1)
 {
 	// Should probably have some sort of event-config for enabled modules.
 	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND type = 'static'");
-	while($rListStaticPages = db_fetch($qListStaticPages))
+	while ($rListStaticPages = db_fetch($qListStaticPages))
 	{
-		if(acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
+		if (acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')
 		{
 			$design_eventmenu .= "<li><a href=\"?module=static&amp;action=viewPage&amp;page=$rListStaticPages->ID\">$rListStaticPages->header</a></li>";
 		} // End if acl_access to page is allowed
 
 	} // End while db_fetch(staticPages)
 
-	if(config("enable_FAQ", $sessioninfo->eventID))
+	if (config ("enable_FAQ", $sessioninfo->eventID))
 		$design_eventmenu .= "<li><a href=\"?module=FAQ&amp;action=read\">".lang("FAQ", "index")."</a></li>";
-	if(config("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
+	if (config ("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>";
-	if(config("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
+	if (config ("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
-	if(config("enable_composystem", $sessioninfo->eventID))
+	if (config ("enable_composystem", $sessioninfo->eventID))
 		$design_eventmenu .= "<li><a href=\"?module=compos\">".lang("Composignup", "index")."</a></li>";
-	if(acl_access("crewlist", "", $sessioninfo->eventID) != 'No')
+	if (acl_access ("crewlist", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>";
 
 
