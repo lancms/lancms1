@@ -80,7 +80,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 			WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
 
 		// logtype, 1 (login). 
-		log_add (1);
+		log_add (1, NULL, NULL, $userID);
 
 		header("Location: index.php"); // Move to index.php, should give a new userinfo-box
 	} // End if passwords match
