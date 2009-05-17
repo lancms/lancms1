@@ -2,6 +2,7 @@
 $eventID = $sessioninfo->eventID;
 $userID = $sessioninfo->userID;
 
+// quick fix for missing acl
 if ($sessioninfo->userID <= 1)
 {
 	header ('Location: index.php');
