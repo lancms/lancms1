@@ -409,5 +409,24 @@ function log_add ($logtype, $lognew=0, $logold=0, $userid=0, $eventid=0, $userip
 	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, %s, %s, %s, "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logtype), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
 
 	db_query ($query);
-
 }
+
+##### log_logtype - returns name for logtype:
+function log_logtype ($logtype)
+{
+	switch ($logtype)
+	{
+		case 1:
+			$return = 'User logged in';
+			break;
+		case 2:
+			$return = 'User logged out';
+			break;
+		
+		default:
+			$return = 'Unknown';
+			break;
+	}
+	return ($return);
+}
+
