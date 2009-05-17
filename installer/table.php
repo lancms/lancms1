@@ -227,8 +227,16 @@ class table_column
 		
 		if(($this->default && !empty($this->default)) || (is_numeric($this->default) && $this->default == 0))
 		{
-			//echo $this->default."<br>";
-			$query .= " DEFAULT '".$this->default."'";
+			// FIXME: dirty hack to get DEFAULT CURRENT_TIMESTAMP in :-P
+			if ($this->default == 'current_timestamp')
+			{
+				$query .= " DEFAULT ".$this->default;
+			}
+			else
+			{
+				//echo $this->default."<br>";
+				$query .= " DEFAULT '".$this->default."'";
+			}
 		}
 		
 		if($this->extra && !empty($this->extra))
