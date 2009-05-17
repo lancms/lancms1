@@ -9,7 +9,7 @@ if(!config("enable_composystem", $sessioninfo->eventID)) die("Composystem not en
 
 // First, find out if we should enable signup
 $signup = 0;
-$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE user = '$sessioninfo->user' 
+$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE user = '$sessioninfo->userID' 
 	AND eventID = '$sessioninfo->eventID'
 	AND status = 'used'");
 if(db_num($qFindTicket) != 0)
@@ -19,12 +19,13 @@ if(!empty($compo)) {
 	// If a compo is set, check if we're already signed up
 	$qCheckSignup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup 
 		WHERE compoID = '".db_escape($compo)."'
-		AND (userID = '$sessioninfo->userID' OR clanID IN (SELECT clanID FROM ".$sql_prefix."_group_members 
+		AND (userID = '$sessioninfo->userID' OR clanID IN (SELECT groupID FROM ".$sql_prefix."_group_members 
 			WHERE userID = '$sessioninfo->userID'))");
 	if(db_num($qCheckSignup) > 0) $signup = 2; // User has already signed up
 	$rCheckSignup = db_fetch($qCheckSignup);
 } // End if(!empty($compo))
 #die("Signup $signup".print_r($rCheckSignup));
+$design_head .= "<!-- signup: $signup -->\n";
 if(!isset($action)) {
 	$qListCompos = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE eventID = '$sessioninfo->eventID'");
 	$content .= "<table>\n";
@@ -57,6 +58,7 @@ elseif($action == "listSignedup" && isset($compo)) {
 				$content .= $rGetClaninfo->groupname;
 				break;
 			case "1on1":
+			case "FFA":
 				$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($rListSignedup->userID)."'");
 				$rGetUserinfo = db_fetch($qGetUserinfo);
 				$content .= $rGetUserinfo->nick;
