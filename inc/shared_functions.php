@@ -429,3 +429,25 @@ function log_logtype ($logtype)
 	return ($return);
 }
 
+
+
+############ log_get - returns log-object if logID exists, false if not.
+function log_get ($logid)
+{
+	global $sql_prefix;
+
+	$query = sprintf ('SELECT * FROM %s_logs WHERE ID=%s', $sql_prefix, db_escape ($logid));
+
+	$result = db_query ($query);
+
+	if (!mysql_num_rows ($result))
+	{
+		return (false);
+	}
+	else
+	{
+		$result = db_query ($query);
+		$fetch = db_fetch ($result);
+		return ($fetch);
+	}
+}
