@@ -417,10 +417,13 @@ function log_logtype ($logtype)
 	switch ($logtype)
 	{
 		case 1:
-			$return = 'User logged in';
+			$return = 'Logged in';
 			break;
 		case 2:
-			$return = 'User logged out';
+			$return = 'Logged out';
+			break;
+		case 3:
+			$return = 'Failed login';
 			break;
 		
 		default:

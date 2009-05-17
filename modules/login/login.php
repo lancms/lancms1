@@ -89,6 +89,11 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 	{
 		// Passwords does not match. Fuck the user
 		$content .= lang("sorry, wrong password!", "login");
+
+		// but log it:
+		// logtype, 3 (failed login)
+		log_add (3, NULL, NULL, $userID);
+
 	} // End else (password does not match)
 
 } // End elseif action = login
