@@ -54,7 +54,7 @@ $eventaccess[] = 'compoadmin';
 $globalaccess[] = 'clanAdmin';
 $globalaccess[] = 'userAdmin';
 $globalaccess[] = 'translate';
-
+$globalaccess[] = 'logview';
 
 ## SpecialACLs
 $specialaccess[] = 'groupaccess'; // Used inside groups
