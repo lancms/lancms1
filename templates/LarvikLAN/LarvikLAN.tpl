@@ -109,14 +109,28 @@
                                 <div class="BlockContent-body">
                                         <div>
                                                 <ul>
-							{$eventlist}	
+																	{$eventlist}	
                                                 </ul>
-                                                
-                                              	{$grouplist}
+                                        </div>
+                                </div>
+                        </div>
+								{if $grouplist}
+                        <div class="BlockHeader">
+                                <div class="BlockHeader-text">
+                                        GROUPS
+                                </div>
+                        </div>
+                        <div class="BlockContent">
+                                <div class="BlockContent-body">
+                                        <div>
+																<ul>
+	                                              	{$grouplist}
+																</ul>
                                                 
                                         </div>
                                 </div>
                         </div>
+								{/if}
                 </div>
         </div>
         <!-- SOME KINDA EVEN MENU -->
