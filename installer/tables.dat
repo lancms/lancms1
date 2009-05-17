@@ -266,4 +266,5 @@ TABLE [prefix]_logs
 	logTextNew,	text,				,	,	,	
 	logTextOld,	text,				,	,	,
 	logURL,		text,				,	,	,
+	logTime,		timestamp,		,	,	current_timestamp,
 }
