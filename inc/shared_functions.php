@@ -190,7 +190,7 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 	} // End elseif module = grouprights
 
 	$qCheckModuleRight = db_query("SELECT access FROM ".$sql_prefix."_ACLs
-		WHERE eventID = '".db_escape($event)."'
+		WHERE eventID IN ('".db_escape($event)."', 1)
 		AND groupID IN ($groupList)
 		AND accessmodule = '".db_escape($module)."'
 		AND subcategory IN(0, '".db_escape($subcategory)."')
