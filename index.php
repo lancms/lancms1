@@ -140,6 +140,7 @@ if($sessioninfo->userID != 1)
 $smarty->assign("grouplist", $design_grouplist);
 $smarty->assign("eventlist", $design_eventlist);
 $smarty->assign("userinfo", $design_userinfo);
+$smarty->assign("sessioninfo", $sessioninfo);
 $smarty->assign("eventmenu", $design_eventmenu);
 $smarty->assign("menu", $design_menu);
 

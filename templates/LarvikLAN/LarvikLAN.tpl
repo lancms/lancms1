@@ -71,10 +71,11 @@
                 <div class="Block-body">
                         <div class="BlockHeader">
                                 <div class="BlockHeader-text">
-                                        {php}
-					if($sessioninfo->userID < 2) echo "LOGIN!";
-					else echo "USERINFO";
-					{/php}
+					{if $sessioninfo->userID <= 1}
+					LOGIN!
+					{else}
+					USERINFO
+					{/if}
                                 </div>
                         </div>
                         <div class="BlockContent">
