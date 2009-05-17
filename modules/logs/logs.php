@@ -63,11 +63,19 @@ if (acl_access ("logview") != 'No')
 		else
 		{
 			$log = log_get ($logid);
+
+			$userip = long2ip ($log->userIP);
+			if (!empty ($log->userHost))
+			{
+				$userip .= " (".$log->userHost.")";
+			}
+
 			$content .= "<h2>".lang ("Details for logentry ")." #".$logid."</h2>";
 			$content .= "<a href='javascript:history.back()'>Back</a>";
 			$content .= "<table>";
 			$content .= "<tr class='logrow1'><th>".lang ("User", "logs")."</th><td>".display_username($log->userID)."</td></tr>";
 			$content .= "<tr class='logrow2'><th>".lang ("Timestamp", "logs")."</th><td>".$log->logTime."</td></tr>";
+			$content .= "<tr class='logrow2'><th>".lang ("IP", "logs")." / ".lang ("Host", "logs")."</th><td>".$userip."</td></tr>";
 			$content .= "<tr class='logrow1'><th>".lang ("URL", "logs")."</th><td>".$log->logURL."</td></tr>";
 			$content .= "<tr class='logrow2'><th>".lang ("Logtype", "logs")."</th><td>".lang (log_logtype ($log->logType), "logs")."</td></tr>";
 			$content .= "</table>";
