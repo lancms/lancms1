@@ -2,6 +2,12 @@
 $eventID = $sessioninfo->eventID;
 $userID = $sessioninfo->userID;
 
+if ($sessioninfo->userID <= 1)
+{
+	header ('Location: index.php');
+	die ();
+}
+
 if(!config("enable_ticketorder", $eventID)) die("Ticketorder not enabled");
 $action = $_GET['action'];
 $ticket = $_GET['ticket'];
