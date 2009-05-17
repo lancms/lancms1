@@ -360,27 +360,20 @@ function display_systemstatic($message) {
 #############
 
 // adding logentry:
-function log_add ($logtype, $lognew=0, $logold=0, $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
+function log_add ($logtype, $lognew="0", $logold="0", $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
 {
+
 
 	global $sql_prefix;
 	global $sessioninfo;
 
-	if ($lognew == 0)
+	if ($lognew == "0")
 	{
 		$lognew = 'NULL';
 	}
-	else
-	{
-		$lognew = "\"$lognew\"";
-	}
-	if ($logold == 0)
+	if ($logold == "0")
 	{
 		$logold = 'NULL';
-	}
-	else
-	{
-		$logold = "\"$logold\"";
 	}
 	if ($userid == 0)
 	{
@@ -406,7 +399,7 @@ function log_add ($logtype, $lognew=0, $logold=0, $userid=0, $eventid=0, $userip
 	{
 		$logurl = $_SERVER['REQUEST_URI'];
 	}
-	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, %s, %s, %s, "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logtype), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
+	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, %s, "%s", "%s", "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logtype), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
 
 	db_query ($query);
 }
@@ -424,6 +417,9 @@ function log_logtype ($logtype)
 			break;
 		case 3:
 			$return = 'Failed login';
+			break;
+		case 4:
+			$return = 'Registered user';
 			break;
 		
 		default:
