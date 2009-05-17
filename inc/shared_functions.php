@@ -424,6 +424,12 @@ function log_logtype ($logtype)
 		case 5:
 			$return = 'Registered user (useradmin)';
 			break;
+		case 6:
+			$return = 'Ticket ordered';
+			break;
+		case 7:
+			$return = 'Ticket canceled';
+			break;
 		
 		default:
 			$return = 'Unknown';

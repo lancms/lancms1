@@ -178,6 +178,9 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
         } // End else (maxTicketsPrUser)
         $numTickets--; // Decrease numTickets
     } // End while(numtickets
+    $logmsg[] = $tickettype;
+    $logmsg[] = $_POST['numTickets'];
+    log_add(6, serialize($logmsg));
     header("Location: ?module=ticketorder");
 } // End action = buyticket
 
@@ -227,10 +230,21 @@ elseif(($action == "cancelTicket" || $action == "doCancelTicket") && isset($_GET
 		$content .= "<br><a href=?module=ticketorder>".lang("No, this would be a mistake", "ticketorder")."</a> - ";
 		$content .= "<a href=?module=ticketorder&action=doCancelTicket&ticket=$ticket>".lang("Yes, I don't need it", "ticketorder")."</a>";
 	} elseif($action == "doCancelTicket" && $allow_cancel == true) {
+		
 		// Delete the ticket
 		db_query("DELETE FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+		$logmsg[] = $rGetTicketInfo->ticketID;
+		$logmsg[] = $rGetTicketInfo->ticketType;
+		$logmsg[] = $rGetTicketInfo->owner;
+		$logmsg[] = $rGetTicketInfo->user;
+		$logmsg[] = $rGetTicketInfo->status;
+		$logmsg[] = $rGetTicketInfo->paid;
 		// Delete the seating for this ticket
+		$qGetSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+		$rGetSeating = db_fetch($qGetSeating);
+		$logmsg[] = $rGetSeating->seatX."x".$rGetSeating->seatY."y";
 		db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+		log_add(7, serialize($logmsg));
 		header("Location: ?module=ticketorder");
 	}
 
