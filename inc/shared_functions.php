@@ -421,6 +421,9 @@ function log_logtype ($logtype)
 		case 4:
 			$return = 'Registered user';
 			break;
+		case 5:
+			$return = 'Registered user (useradmin)';
+			break;
 		
 		default:
 			$return = 'Unknown';

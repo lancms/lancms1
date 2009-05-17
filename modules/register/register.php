@@ -4,6 +4,11 @@ $action = $_GET['action'];
 
 if(!config("users_may_register")) die("users may not register yet");
 
+if (!($sessioninfo->userID <= 1 or acl_access ("userAdmin", "", $sessioninfo->eventID) != 'No'))
+{
+	header ('Location: index.php');
+	die ();
+}
 
 if($action == "register")
 {
@@ -144,8 +149,17 @@ if($action == "register")
 		$logmsg['street'] = $address;
 		$logmsg['postnumber'] = $postnumber;
 		$logmsg['cellphone'] = $cellphone;
-		log_add (4, serialize ($logmsg));
-
+		
+		if ($sessioninfo->userID <= 1)
+		{
+			// anonymous user registers = logtype 4
+			log_add (4, serialize ($logmsg));
+		}
+		else
+		{
+			// logged in user registers a new one = logtype 5
+			log_add (5, serialize ($logmsg));
+		}
 
 		$content .= lang("User registered", "register");
 	} // End if register_invalid = FALSE
