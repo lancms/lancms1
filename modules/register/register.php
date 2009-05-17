@@ -128,6 +128,24 @@ if($action == "register")
 			registerIP = '".$_SERVER['REMOTE_ADDR']."',
 			registerTime = '".time()."'
 		");
+		
+		$newid = mysql_insert_id ();
+
+		$logmsg['userid'] = $newid;
+		$logmsg['username'] = $username;
+		$logmsg['md5_pass'] = $md5_pass;
+		$logmsg['EMail'] = $EMail;
+		$logmsg['firstName'] = $firstName;
+		$logmsg['lastName'] = $lastName;
+		$logmsg['gender'] = $gender;
+		$logmsg['birthDay'] = $birthDay;
+		$logmsg['birthMonth'] = $birthMonth;
+		$logmsg['birthYear'] = $birthYear;
+		$logmsg['street'] = $address;
+		$logmsg['postnumber'] = $postnumber;
+		$logmsg['cellphone'] = $cellphone;
+		log_add (4, serialize ($logmsg));
+
 
 		$content .= lang("User registered", "register");
 	} // End if register_invalid = FALSE

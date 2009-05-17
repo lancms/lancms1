@@ -1,5 +1,10 @@
 # List of logtypes:
 
-1. Login
-2. Logout
-3. Failed login
+
+
+#		Name					logTextNew				logTextOld
+1		Login					N/A						N/A
+2		Logout				N/A						N/A
+3		Failed login		N/A						N/A
+4		Registered user	serialized userinfo	N/A
+
