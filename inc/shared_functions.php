@@ -430,7 +430,10 @@ function log_logtype ($logtype)
 		case 7:
 			$return = 'Ticket canceled';
 			break;
-		
+		case 8:
+			$return = 'Changed password';
+			break;
+
 		default:
 			$return = 'Unknown';
 			break;
@@ -480,5 +483,53 @@ function tickettype_getname ($typeid)
 		$result = db_query ($query);
 		$fetch = db_fetch ($result);
 		return ($fetch->name);
+	}
+}
+
+
+##### user_getpass - returns md5 of password for userid
+function user_getpass ($userid)
+{
+	global $sql_prefix;
+
+	$query = sprintf ('SELECT password FROM %s_users WHERE ID=%s', $sql_prefix, db_escape ($userid));
+	$result = db_query ($query);
+
+	// FIXME: direct mysql-function
+	if (!mysql_num_rows ($result))
+	{
+		// no such user?!
+		return (false);
+	}
+	else
+	{
+		$result = db_query ($query);
+		$fetch = db_fetch ($result);
+		return ($fetch->password);
+	}
+}
+
+######## user_setpass - takes userid and md5 as parameters and sets password for user, returns true if done and false if no such user
+function user_setpass ($userid, $md5)
+{
+	global $sql_prefix;
+
+	$oldpass = user_getpass ($userid);
+	if (!$oldpass)
+	{
+		return (false);
+	}
+	else
+	{
+		if ($oldpass == $md5)
+		{
+			return (true);
+		}
+		else
+		{
+			$query = sprintf ('UPDATE %s_users SET password="%s" WHERE ID=%s', $sql_prefix, db_escape ($md5), db_escape ($userid));
+			db_query ($query);
+			return (true);
+		}
 	}
 }

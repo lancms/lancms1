@@ -129,6 +129,14 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 				$content .= "<tr class='logrow2'><th>".lang ("Seating", "logs")."</th><td>".$seating."</td></tr>";
 				$content .= "</table>";
 			}
+			elseif ($log->logType == 8)
+			{
+				$content .= "<h3>".lang ("Password details", "logs")."</h3>";
+				$content .= "<table>";
+				$content .= "<tr class='logrow2'><th>".lang ("New MD5", "logs")."</th><td>".$log->logTextNew."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Old MD5", "logs")."</th><td>".$log->logTextOld."</td></tr>";
+				$content .= "</table>";
+			}
 		}
 	}
 }
