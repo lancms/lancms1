@@ -51,6 +51,28 @@ elseif ($action == 'savepassword')
 
 	$content .= "<h2>".lang ("Password changed", "edituserinfo")."</h2>";
 }
+
+elseif($action == "editUserinfo" && isset($_GET['user'])) {
+	// Edit userinfo
+	$user = $_GET['user'];
+	$userAdmin_acl = acl_access("userAdmin", "", 1);
+	if($user == $sessioninfo->userID);
+	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
+	else die(lang("Not access to edit userinfo"));
+
+	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
+	$rGetUserinfo = db_fetch($qGetUserinfo);
+	$content .= "<table>\n\n";
+	$content .= "<form method=POST action=edituserinfo&action=doEditUserinfo&user=$user>\n";
+	$content .= "<tr><td><input type=text name=firstName value='$rGetUserinfo->firstName'>\n";
+	$content .= "</td><td>".lang("Firstname", "edituserinfo")."</td></tr>\n";
+	$content .= "<tr><td><input type=text name=lastName value='$rGetUserinfo->lastName'>\n";
+	$content .= "</td><td>".lang("Surname", "edituserinfo")."</td></tr>\n";
+	$content .= "<tr><td><input type=submit value='".lang("Save userinfo", "edituserinfo")."'>\n";
+	$content .= "</td><td></td></tr>";
+	$content .= "</form></table>\n\n";
+
+}
 else
 {
 	// no action defined? ship user back to start.
