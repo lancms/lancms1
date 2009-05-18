@@ -11,3 +11,4 @@
 6		Ordered ticket					serialized ticketType,number of tickets	N/A
 7		Ticket Canceled				serialized TicketPaid,seatX,seatY			N/A
 8		User changed password		new md5												old md5			Changes own password
+9		Changed userinfo				serialized $_POST,			serialized SELECT * FROM users

@@ -63,7 +63,7 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
 	$rGetUserinfo = db_fetch($qGetUserinfo);
 	$content .= "<table>\n\n";
-	$content .= "<form method=POST action=edituserinfo&action=doEditUserinfo&user=$user>\n";
+	$content .= "<form method=POST action=?module=edituserinfo&action=doEditUserinfo&user=$user>\n";
 	$content .= "<tr><td><input type=text name=firstName value='$rGetUserinfo->firstName'>\n";
 	$content .= "</td><td>".lang("Firstname", "edituserinfo")."</td></tr>\n";
 	$content .= "<tr><td><input type=text name=lastName value='$rGetUserinfo->lastName'>\n";
@@ -72,7 +72,29 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 	$content .= "</td><td></td></tr>";
 	$content .= "</form></table>\n\n";
 
-}
+} // End action == editUserinfo
+
+elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
+	$user = $_GET['user'];
+	$userAdmin_acl = acl_access("userAdmin", "", 1);
+	if($user == $sessioninfo->userID);
+	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
+	else die(lang("Not access to edit userinfo", "edituserinfo"));
+
+	// Get-parameters
+	$user = $_GET['user'];
+
+	$firstName = $_POST['firstName'];
+	$lastName = $_POST['lastName'];
+
+	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
+	$rGetUserinfo = db_fetch($qGetUserinfo);
+	log_add(9, serialize($_POST), serialize($rGetUserinfo));
+
+	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
+	
+
+} // End elseif action == doEditUserinfo
 else
 {
 	// no action defined? ship user back to start.
