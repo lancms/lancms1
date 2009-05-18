@@ -137,6 +137,32 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 				$content .= "<tr class='logrow2'><th>".lang ("Old MD5", "logs")."</th><td>".$log->logTextOld."</td></tr>";
 				$content .= "</table>";
 			}
+			if ($log->logType == 9)
+			{
+				$details = unserialize ($log->logTextNew);
+				$od = unserialize ($log->logTextOld);
+				$details = unserialize ($log->logTextNew);
+				$content .= "<h3>".lang ("Info entered", "logs")."</h3>";
+
+				$content .= "<table>";
+
+				$content .= "<tr class='logrow1'><th></th><th>New</th><th>Old</th></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("UserID", "logs")."</th><td>".$details['ID']."</td><td>".$od['ID']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Username", "logs")."</th><td>".$details['nick']."</td><td>".$od['nick']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Email", "logs")."</th><td>".$details['EMail']."</td><td>".$od['EMail']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Firstname", "logs")."</th><td>".$details['firstName']."</td><td>".$od['firstName']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Lastname", "logs")."</th><td>".$details['lastName']."</td><td>".$od['lastName']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Gender", "logs")."</th><td>".$details['gender']."</td><td>".$od['gender']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Birthday", "logs")."</th><td>".$details['birthDay']."</td><td>".$od['birthDay']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Birthmonth", "logs")."</th><td>".$details['birthMonth']."</td><td>".$od['birthMonth']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Birthyear", "logs")."</th><td>".$details['birthYear']."</td><td>".$od['birthYear']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Address", "logs")."</th><td>".$details['street']."</td><td>".$od['street']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Postnumber", "logs")."</th><td>".$details['postNumber']."</td><td>".$od['postNumber']."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Cellphone", "logs")."</th><td>".$details['cellphone']."</td><td>".$od['cellphone']."</td>></tr>";
+
+				$content .= "</table>";
+				
+			}
 		}
 	}
 }

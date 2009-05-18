@@ -35,6 +35,23 @@ function db_fetch($query) {
 	return $return;
 } // End function db_fetch
 
+#### returns assoc array instead of object
+function db_fetch_assoc($query) {
+	global $sql_type;
+/* Function to fetch results from db_query */
+	switch ($sql_type)
+	{
+		case "mysql":
+
+			$return = mysql_fetch_assoc($query); // Memo to self: can not die, as it should return false if nothing there
+			break;
+		default:
+			die("Something seriously wrong with variable sql_type in function db_fetch");
+	} // End switch ($sql_type)
+
+	return $return;
+} // End function db_fetch
+
 
 ######################################################
 function db_escape($var)
@@ -432,6 +449,9 @@ function log_logtype ($logtype)
 			break;
 		case 8:
 			$return = 'Changed password';
+			break;
+		case 9:
+			$return = 'Changed userinfo';
 			break;
 
 		default:

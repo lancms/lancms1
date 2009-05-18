@@ -88,7 +88,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 	$lastName = $_POST['lastName'];
 
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
-	$rGetUserinfo = db_fetch($qGetUserinfo);
+	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
 	log_add(9, serialize($_POST), serialize($rGetUserinfo));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
