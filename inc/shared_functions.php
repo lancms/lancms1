@@ -449,6 +449,7 @@ function log_get ($logid)
 
 	$result = db_query ($query);
 
+	// FIXME: uses mysql-functions directly
 	if (!mysql_num_rows ($result))
 	{
 		return (false);
@@ -458,5 +459,26 @@ function log_get ($logid)
 		$result = db_query ($query);
 		$fetch = db_fetch ($result);
 		return ($fetch);
+	}
+}
+
+##### tickettype_getname - returns name of tickettype, false if nonexistant
+function tickettype_getname ($typeid)
+{
+	global $sql_prefix;
+
+	$query = sprintf ('SELECT name FROM %s_ticketTypes WHERE ticketTypeID=%s', $sql_prefix, db_escape ($typeid));
+	$result = db_query ($query);
+
+	// FIXME: uses mysql-functions directly
+	if (!mysql_num_rows ($result))
+	{
+		return (false);
+	}
+	else
+	{
+		$result = db_query ($query);
+		$fetch = db_fetch ($result);
+		return ($fetch->name);
 	}
 }

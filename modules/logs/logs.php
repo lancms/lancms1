@@ -105,6 +105,30 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 
 				$content .= "</table>";
 			}
+			elseif ($log->logType == 6)
+			{
+				$details = unserialize ($log->logTextNew);
+				$content .= "<h3>".lang ("Ticketdetails", "logs")."</h3>";
+				$content .= "<table>";
+				$content .= "<tr class='logrow2'><th>".lang ("Tickettype", "logs")."</th><td>".tickettype_getname ($details[0])."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Number of tickets", "logs")."</th><td>".$details[1]."</td></tr>";
+				$content .= "</table>";
+
+			}
+			elseif ($log->logType == 7)
+			{
+				$details = unserialize ($log->logTextNew);
+				$content .= "<h3>".lang ("Ticketdetails", "logs")."</h3>";
+				$content .= "<table>";
+				$content .= "<tr class='logrow2'><th>".lang ("TicketID", "logs")."</th><td>".$details[0]."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Tickettype", "logs")."</th><td>".tickettype_getname ($details[1])."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Owner", "logs")."</th><td>".display_username ($details[2])."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("User", "logs")."</th><td>".display_username ($details[3])."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Status", "logs")."</th><td>".$details[4]."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Paid", "logs")."</th><td>".$details[5]."</td></tr>";
+				$content .= "<tr class='logrow2'><th>".lang ("Seating", "logs")."</th><td>".$seating."</td></tr>";
+				$content .= "</table>";
+			}
 		}
 	}
 }
