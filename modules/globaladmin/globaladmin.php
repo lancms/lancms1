@@ -36,6 +36,7 @@ if(!isset($action))
 
 	$content .= "<br /><br /><a href=\"?module=globaladmin&amp;action=config\">".lang("Change global options", "globaladmin")."</a>";
 	$content .= "<br /><br /><a href=\"?module=logs\">".lang("View logs", "globaladmin")."</a>";
+	$content .= "<br /><br /><a href=\"?module=useradmin\">".lang("User administration", "globaladmin")."</a>";
 
 } // End if !isset($action)
 
