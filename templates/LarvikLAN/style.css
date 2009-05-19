@@ -582,3 +582,16 @@ h1.logo-name, h1.logo-name a, h1.logo-name a:link, h1.logo-name a:visited, h1.lo
 	border: 1px solid black;
 }
 /* end login-form */
+
+
+
+tr.listRow1
+{
+        background-color: #555;
+}
+
+tr.listRow2
+{
+        background-color: #777;
+}
+
