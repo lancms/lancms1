@@ -553,3 +553,38 @@ function user_setpass ($userid, $md5)
 		}
 	}
 }
+
+
+##### user_getall - returns array with all userinfo->objects
+function user_getall ()
+{
+	global $sql_prefix;
+
+	$query = sprintf ('SELECT * FROM %s_users WHERE ID>1', $sql_prefix);
+	$result = db_query ($query);
+	while ($fetch = db_fetch ($result))
+	{
+		$return[] = $fetch;
+	}
+	return ($return);
+}
+
+##### user_exists - returns true if userid exists, false if not
+function user_exists ($userid)
+{
+	global $sql_prefix;
+
+	$query = sprintf ('SELECT ID from %s_users WHERE ID=%s', $sql_prefix, db_escape ($userid));
+	$result = db_query ($query);
+
+	// FIXME: mysql-function
+	if (mysql_num_rows ($result))
+	{
+		return (true);
+	}
+	else
+	{
+		return (false);
+	}
+
+}
