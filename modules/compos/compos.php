@@ -51,8 +51,9 @@ elseif($action == "listSignedup" && isset($compo)) {
 
 	$qListSignedup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup WHERE compoID = '".db_escape($compo)."'");
 	$content .= "<table>\n";
+	$row = 1;
 	while($rListSignedup = db_fetch($qListSignedup)) {
-		$content .= "<tr><td>\n";
+		$content .= "<tr class=listRow$row><td>\n";
 		// Get info based on compotype
 		switch($rCompoInfo->type) {
 			case "clan":
@@ -68,6 +69,8 @@ elseif($action == "listSignedup" && isset($compo)) {
 				break;
 		} // End switch
 		$content .= "</td></tr>\n\n";
+		$row++;
+		if($row == 3) $row = 1;
 	} // End while
 	$content .= "</table>\n";
 
