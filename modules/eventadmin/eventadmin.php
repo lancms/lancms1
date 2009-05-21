@@ -12,9 +12,9 @@ if($acl_eventadmin == 'No')
 if(!isset($action))
 {
 	// No action specified. List all eventadmin tasks
-	if(acl_access("eventadmin", "", $eventID) != 'No')
+	if(acl_access("eventadmin", "", $eventID) == 'Admin')
 		$content .= "<br /><a href=\"?module=eventadmin&amp;action=config\">".lang("Event config", "eventadmin")."</a>\n";
-	if(acl_access("eventadmin", "", $sessioninfo->eventID) != 'No')
+	if(acl_access("eventadmin", "", $sessioninfo->eventID) = ('Admin' || 'Write'))
 		$content .= "<br /><a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Group Management", "eventadmin")."</a>\n";
 	if(acl_access("static", "", $eventID) != 'No')
 		$content .= "<br /><a href=\"?module=static&amp;action=listEventPages\">".lang("Edit static pages", "eventadmin")."</a>\n";
@@ -116,7 +116,7 @@ elseif($action == "addGroup" && !empty($_POST['groupname']))
 } // end if action == addGroup
 
 elseif($action == "config") {
-
+	if($acl_eventadmin != 'Admin') die("No access to admin event");
 	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
 
 	$content .= "<form method=\"post\" action='?module=eventadmin&amp;action=doConfig'>\n";
@@ -134,7 +134,7 @@ elseif($action == "config") {
 
 
 elseif($action == "doConfig") {
-
+	if($acl_eventadmin != 'Admin') die("No access to admin event");
 	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
 		$evtcfg = $eventconfig['checkbox'][$i];
 
