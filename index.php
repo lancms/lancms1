@@ -55,15 +55,17 @@ if ($sessioninfo->eventID > 1)
 	} // End while db_fetch(staticPages)
 
 	if (config ("enable_FAQ", $sessioninfo->eventID))
-		$design_eventmenu .= "<li><a href=\"?module=FAQ&amp;action=read\">".lang("FAQ", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=FAQ&amp;action=read\">".lang("FAQ", "index")."</a></li>\n";
 	if (config ("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
-		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>\n";
 	if (config ("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
-		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>\n";
 	if (config ("enable_composystem", $sessioninfo->eventID))
-		$design_eventmenu .= "<li><a href=\"?module=compos\">".lang("Composignup", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=compos\">".lang("Composignup", "index")."</a></li>\n";
 	if (acl_access ("crewlist", "", $sessioninfo->eventID) != 'No')
-		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>";
+		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>\n";
+	if (acl_access ("ticketadmin", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
+		$design_eventmenu .= "<li><a href=\"?module=arrival\">".lang("Arrival", "index")."</a></li>\n";
 
 
 
