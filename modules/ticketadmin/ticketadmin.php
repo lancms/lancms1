@@ -15,7 +15,7 @@ if(!isset($action) || $action == "editticket") {
         $content .= '</th><th>'.lang("Ticketname", "ticketadmin");
         $content .= '</th><th>'.lang("Tickettype", "ticketadmin");
         $content .= '</th><th>'.lang("Price", "ticketadmin");
-        $content .= '</th><th>'.lang("Sold tickets of type", "ticketadmin");
+        $content .= '</th><th>'.lang("Sold tickets of type (total/seated/paid)", "ticketadmin");
         $content .= '</th></tr>';
         while($rListTickets = db_fetch($qListTickets)) {
 	$content .= "<tr><td>\n";
@@ -27,11 +27,17 @@ if(!isset($action) || $action == "editticket") {
 	$content .= lang($rListTickets->type, "ticketadmin");
 	$content .= "</td><td>\n";
 	$content .= $rListTickets->price;
-	$content .= "</td><td>\n";
+	$content .= "</td><td onClick='location.href=\"?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID\"'>\n";
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
 	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
 	$rNumTicketsOfType = db_fetch($qNumTicketsOfType);
-	$content .= "<a href=?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID>".$rNumTicketsOfType->count."</a>";
+	$qNumTicketsUsed = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets
+		WHERE eventID = '$eventID' AND ticketType='$rListTickets->ticketTypeID' AND status = 'used'");
+	$rNumTicketsUsed = db_fetch($qNumTicketsUsed);
+	$qNumTicketsPaid = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets
+		WHERE eventID = '$eventID' AND ticketType='$rListTickets->ticketTypeID' AND paid = 'yes'");
+	$rNumTicketsPaid = db_fetch($qNumTicketsPaid);
+	$content .= $rNumTicketsOfType->count."/".$rNumTicketsUsed->count."/".$rNumTicketsPaid->count;
 	$content .= "</td></tr>\n";
         } // End while
         $content .= "</table>\n";
