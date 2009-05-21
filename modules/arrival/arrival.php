@@ -38,8 +38,9 @@ if(!isset($action) || $action == "searchUser") {
 
 			$content .= "<li><font style='background-color: $style;'>";
 			$content .= "<a href=?module=arrival&action=ticketdetail&ticket=$rFindTickets->ticketID>";
-			$content .= tickettype_getname($rFindTickets->ticketType)."</a></font>";
+			$content .= tickettype_getname($rFindTickets->ticketType)."</a></font></li>";
 		} // End while rFindTickets
+		$content .= "<li><a href=?module=arrival&action=addTicket&user=$rFindUser->ID>".lang("Add new ticket", "arrival")."</a></li>";
 		$content .= "</td></tr>";
 		
 		$listrowcount++;
@@ -157,3 +158,44 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
 
 }
 
+elseif($action == "addTicket" && isset($_GET['user'])) {
+	$user = $_GET['user'];
+
+	$qGetTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$sessioninfo->eventID'
+		AND active = 1
+		AND type LIKE 'onsite%'");
+	
+	$content .= "<form method=POST action=?module=arrival&action=doAddTicket&user=$user>";
+	$content .= "<select name=tickettype>\n";
+	while($rGetTickets = db_fetch($qGetTickets)) {
+		$content .= "<option value='$rGetTickets->ticketTypeID'>$rGetTickets->name</option>\n";
+	}
+	$content .= "</select>\n";
+	$content .= "<input type=submit value='".lang("Add ticket to user", "arrival")."'>";
+	$content .= "</form>";
+
+}
+
+elseif($action == "doAddTicket" && isset($_GET['user'])) {
+	$user = $_GET['user'];
+	$ticketType = $_POST['tickettype'];
+
+	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$sessioninfo->eventID' 
+		AND ticketTypeID = '".db_escape($ticketType)."'");
+	if(db_num($qCheckTicketType) == 1) {
+		db_query("INSERT INTO ".$sql_prefix."_tickets SET
+			ticketType = '".db_escape($ticketType)."',
+			eventID = '$sessioninfo->eventID',
+			owner = '".db_escape($user)."',
+			user = '".db_escape($user)."',
+			createTime = '".time()."',
+			creator = '$sessioninfo->userID'");
+		$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets 
+			WHERE eventID = '$sessioninfo->eventID'
+			AND user = '".db_escape($user)."'
+			ORDER BY createTime DESC LIMIT 0,1");
+		$rFindTicket = db_fetch($qFindTicket);
+		header("Location: ?module=arrival&action=ticketdetail&ticket=$rFindTicket->ticketID");
+	} // End if db_num
+
+} // End action = doAddTicket
