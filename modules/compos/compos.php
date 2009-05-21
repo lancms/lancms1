@@ -23,6 +23,9 @@ if(!empty($compo)) {
 			WHERE userID = '$sessioninfo->userID'))");
 	if(db_num($qCheckSignup) > 0) $signup = 2; // User has already signed up
 	$rCheckSignup = db_fetch($qCheckSignup);
+	$qCheckCompo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
+	$rCheckCompo = db_fetch($qCheckCompo);
+	if($rCheckCompo->signupOpen == 0) $signup = 3;
 } // End if(!empty($compo))
 #die("Signup $signup".print_r($rCheckSignup));
 $design_head .= "<!-- signup: $signup -->\n";
@@ -106,6 +109,9 @@ elseif($action == "listSignedup" && isset($compo)) {
 		$content .= "<input type=submit value='".lang("Remove me", "compos")."'>\n";
 		$content .= "</form>";
 	} // End elseif(signup == 2)
+	elseif($signup == 3) {
+		$content .= "<br /><br />".lang("Signup has closed", "compos");
+	} // End signup == 3
 } // End elseif action == listSignedup
 
 

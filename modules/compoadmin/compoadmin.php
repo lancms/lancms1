@@ -7,12 +7,18 @@ if(!isset($action)) {
 	$qListCompos = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE eventID = '$sessioninfo->eventID'");
 
 	$content .= "<table>";
+	$row = 1;
 	while($rListCompos = db_fetch($qListCompos)) {
-		$content .= "<tr><td>";
+		$content .= "<tr class=listRow$row><td>";
 		$content .= $rListCompos->componame;
 		$content .= "</td><td>\n";
 		$content .= $rListCompos->type;
+		$content .= "</td>";
+		if($rListCompos->signupOpen == 1) $content .= "<td style='background-color: green;' onClick='location.href=\"?module=compoadmin&action=disableSignup&compo=$rListCompos->ID\"'>".lang("Signup is open", "compoadmin");
+		else $content .= "<td style='background-color: red;' onClick='location.href=\"?module=compoadmin&action=enableSignup&compo=$rListCompos->ID\"'>".lang("Signup is closed", "compoadmin");
 		$content .= "</td></tr>";
+		$row++;
+		if($row == 3) $row = 1;
 	} // End while
 
 	$content .= "</table>\n";
@@ -49,4 +55,23 @@ elseif($action == "addCompo" && $acl == 'Admin') {
 		playersRound = '".db_escape($playersRound)."'
 	");
 	header("Location: ?module=compoadmin");
+}
+
+elseif($action == "enableSignup" && isset($_GET['compo']) && $acl == ('Admin' || 'Write')) {
+	$compo = $_GET['compo'];
+
+	db_query("UPDATE ".$sql_prefix."_compos SET signupOpen = 1 WHERE ID = '".db_escape($compo)."'");
+
+	header("Location: ?module=compoadmin");
+
+}
+
+elseif($action == "disableSignup" && isset($_GET['compo']) && $acl == ('Admin' || 'Write')) {
+
+	$compo = $_GET['compo'];
+
+	db_query("UPDATE ".$sql_prefix."_compos SET signupOpen = 0 WHERE ID = '".db_escape($compo)."'");
+
+	header("Location: ?module=compoadmin");
+
 }

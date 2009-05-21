@@ -244,6 +244,7 @@ TABLE [prefix]_compos
 	playersClan,	int(2),		,	,	,		,
 	playersRound,	int(2),		,	,	,		,
 	type,		enum('clan', 'FFA', '1on1'), ,	,	,		,
+	signupOpen,	tinyint(1),	,	,	0,		,
 }
 
 TABLE [prefix]_compoSignup
