@@ -113,6 +113,27 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 
 	} // End paid-status
 
+	$qFindTicketSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+	if(db_num($qFindTicketSeating) != 0 && ($acl_seating == 'Write' || $acl_seating == 'Admin')) {
+		// Ticket is seated, and user has access to seating
+		$rFindTicketSeating = db_fetch($qFindTicketSeating);
+		$seatX = $rFindTicketSeating->seatX;
+		$seatY = $rFindTicketSeating->seatY;
+		$content .= "<td style='background-color: green;' onClick='location.href=\"?module=seating&ticketID=$ticket&seatX=$seatX&seatY=$seatY\"'>";
+		$content .= lang("Seated", "arrival");
+		$content .= "</td>";
+	} elseif(db_num($qFindTicketSeating) != 0) {
+		// Ticket is seated, and does not have access to seat
+		$content .= "<td style='background-color: yellow;'>";
+		$content .= lang("Seated", "arrival");
+		$content .= "</td>";
+	} else {
+		$content .= "<td style='background-color: red;' onClick='location.href=\"?module=seating&ticketID=$ticket\"'>";
+		$content .= lang("Not seated", "arrival");
+		$content .= "</td>";
+	} // End else
+
+
 	$content .= "</tr></table>\n\n";
 }
 
