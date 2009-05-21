@@ -8,7 +8,9 @@
 3		Failed login					N/A													N/A				
 4		Registered own user			serialized userinfo								N/A				Anonymous user registers				
 5		Registered user 				serialized userinfo								N/A				Logged in user registers a new user
-6		Ordered ticket					serialized ticketType,number of tickets	N/A
+6		Ordered ticket self					serialized ticketType,number of tickets	N/A
 7		Ticket Canceled				serialized TicketPaid,seatX,seatY			N/A
 8		User changed password		new md5												old md5			Changes own password
 9		Changed userinfo				serialized $_POST,			serialized SELECT * FROM users
+10		Ordered ticket on behalf			serialized ticketadmin, tickettype			N/A
+11		Set ticket paystatus				serialized new status,ticketnumber			old status

@@ -143,9 +143,13 @@ elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
 	
 	if($acl_ticket != 'Write' AND $acl_ticket != 'Admin') die("No access to ticket");
 	db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'no' WHERE ticketID = '".db_escape($ticket)."'");
+	$newlog[] = 'notpaid';
+	$newlog[] = $ticket;
+	$oldlog[] = 'paid';
+	log_add(11, serialize($newlog), serialize($oldlog));
 
 	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
-
+	
 }
 
 elseif($action == "markpaid" && isset($_GET['ticket'])) {
@@ -153,7 +157,11 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
 
         if($acl_ticket != 'Write' AND $acl_ticket != 'Admin') die("No access to ticket");
         db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes' WHERE ticketID = '".db_escape($ticket)."'");
-
+	
+	$newlog[] = 'paid';
+	$newlog = $ticket;
+	$oldlog[] = 'notpaid';
+	log_add(11, serialize($newlog), serialize($oldlog));
         header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 
 }
@@ -195,7 +203,12 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 			AND user = '".db_escape($user)."'
 			ORDER BY createTime DESC LIMIT 0,1");
 		$rFindTicket = db_fetch($qFindTicket);
+		$newlog[] = $sessioninfo->userID;
+		$newlog[] = $user;
+		$newlog[] = $ticketType;
+
+		log_add(10, serialize($newlog));
 		header("Location: ?module=arrival&action=ticketdetail&ticket=$rFindTicket->ticketID");
 	} // End if db_num
-
+	
 } // End action = doAddTicket

@@ -453,6 +453,12 @@ function log_logtype ($logtype)
 		case 9:
 			$return = 'Changed userinfo';
 			break;
+		case 10:
+			$return = 'Onsiteticket ordered';
+			break;
+		case 11:
+			$return = 'Changed ticket paystatus';
+			break;
 
 		default:
 			$return = 'Unknown';
