@@ -32,13 +32,16 @@ $design_head .= "<!-- signup: $signup -->\n";
 if(!isset($action)) {
 	$qListCompos = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE eventID = '$sessioninfo->eventID'");
 	$content .= "<table>\n";
+	$row = 1;
 	while($rListCompos = db_fetch($qListCompos)) {
-		$content .= "<tr><td>";
+		$content .= "<tr class='listRow$row'><td>";
 		$content .= $rListCompos->componame;
 		$content .= "</td><td>";
 		$content .= "<a href=?module=compos&action=listSignedup&compo=$rListCompos->ID>";
 		$content .= lang("Signup", "compos");
 		$content .= "</a></td></tr>\n";
+		$row++;
+		if($row == 3) $row = 1;
 	} // End while
 	$content .= "</table>\n\n";
 
