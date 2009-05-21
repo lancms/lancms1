@@ -16,6 +16,15 @@ if(!isset($action)) {
 		$content .= "</td>";
 		if($rListCompos->signupOpen == 1) $content .= "<td style='background-color: green;' onClick='location.href=\"?module=compoadmin&action=disableSignup&compo=$rListCompos->ID\"'>".lang("Signup is open", "compoadmin");
 		else $content .= "<td style='background-color: red;' onClick='location.href=\"?module=compoadmin&action=enableSignup&compo=$rListCompos->ID\"'>".lang("Signup is closed", "compoadmin");
+		$content .= "</td>";
+		if($rListCompos->signupOpen == 0) {
+			// signup has closed, enable creating brackets etc.
+			$content .= "<td onClick='location.href=\"?module=compoadmin&action=matchadmin&compo=$rListCompos->ID\"'>";
+			$content .= lang("Match admin", "compoadmin");
+		} else {
+			$content .= "<td>";
+			$content .= lang("Match admin (close signup to enable)", "compoadmin");
+		}
 		$content .= "</td></tr>";
 		$row++;
 		if($row == 3) $row = 1;
@@ -75,3 +84,30 @@ elseif($action == "disableSignup" && isset($_GET['compo']) && $acl == ('Admin' |
 	header("Location: ?module=compoadmin");
 
 }
+
+elseif($action == "matchadmin" && isset($_GET['compo'])) {
+	$compo = $_GET['compo'];
+
+	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
+	$rGetCompoinfo = db_fetch($qGetCompoinfo);
+
+	$content .= "<table>";
+	$content .= "<tr>";
+	$content .= "<td onClick='location.href=\"?module=compoadmin&compo=$compo&action=randomizeMatch\"'>";
+	$content .= lang("Randomize first match", "compoadmin")."</td>";
+	$content .= "</tr></table>";
+
+}
+
+elseif($action == "randomizeMatch" && isset($_GET['compo'])) {
+	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
+	$rGetCompoinfo = db_fetch($qGetCompoinfo);
+
+	// FIXME: Should check if matches have been played, and fail if played
+	
+	$qFindSignup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup WHERE compoID = '".db_escape($compo)."'");
+	while($rFindSignup = db_fetch($qFindSignup))  {
+
+	} // End while
+
+} // End elseif action == randomizeMatch
