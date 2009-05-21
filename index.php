@@ -73,7 +73,7 @@ if ($sessioninfo->eventID > 1)
 
 	// User has eventadmin-rights?
 	$eventadmin = acl_access("eventadmin", "", $sessioninfo->eventID);
-	if($eventadmin == "Admin" || $eventadmin == "Write")
+	if($eventadmin != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=eventadmin\">".lang("Event Admin", "index")."</a></li>";
 
 
