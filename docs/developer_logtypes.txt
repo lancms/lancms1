@@ -14,3 +14,4 @@
 9		Changed userinfo				serialized $_POST,			serialized SELECT * FROM users
 10		Ordered ticket on behalf			serialized ticketadmin, tickettype			N/A
 11		Set ticket paystatus				serialized new status,ticketnumber			old status
+12		Deleted ticket					serialized ticketID 					serialized old status, seatX, seatY

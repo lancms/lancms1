@@ -459,6 +459,9 @@ function log_logtype ($logtype)
 		case 11:
 			$return = 'Changed ticket paystatus';
 			break;
+		case 12:
+			$return = 'Deleted ticket';
+			break;
 
 		default:
 			$return = 'Unknown';

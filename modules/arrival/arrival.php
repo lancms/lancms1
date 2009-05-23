@@ -15,13 +15,13 @@ if(!isset($action) || $action == "searchUser") {
 	$content .= "<input type=submit value='".lang("Search user")."'>";
 	$content .= "</form>";
 
-	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE
-		(nick LIKE '".db_escape($search)."'
-		OR firstName LIKE '".db_escape($search)."'
-		OR lastName LIKE '".db_escape($search)."'
-		OR CONCAT(firstName, ' ', lastName) LIKE '".db_escape($search)."'
-		OR EMail LIKE '".db_escape($search)."')
-		AND ID != 1");
+		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE
+			(nick LIKE '%".db_escape($search)."%'
+			OR firstName LIKE '%".db_escape($search)."%'
+			OR lastName LIKE '%".db_escape($search)."%'
+			OR CONCAT(firstName, ' ', lastName) LIKE '%".db_escape($search)."%'
+			OR EMail LIKE '%".db_escape($search)."%')
+			AND ID != 1");
 	$content .= "<table>\n";
 	$listrowcount = 1;
 	while($rFindUser = db_fetch($qFindUser)) {
@@ -133,6 +133,19 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 		$content .= lang("Not seated", "arrival");
 		$content .= "</td>";
 	} // End else
+	if($rFindTicket->status != 'deleted' && $acl_ticket == ('Write' || 'Admin')) {
+		$content .= "<td style='background-color: orange;'";
+		$content .= " onClick='location.href=\"?module=arrival&action=deleteTicket&ticketID=$ticket\"'>";
+		$content .= lang("Delete ticket", "arrival");
+		$content .= "</td>";
+	}
+
+	elseif($rFindTicket->status == 'deleted') {
+		$content .= "<td style='background-color: red;'>";
+		$content .= lang("Deleted", "arrival");
+		$content .= "</td>";
+	}
+		
 
 
 	$content .= "</tr></table>\n\n";
@@ -212,3 +225,25 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 	} // End if db_num
 	
 } // End action = doAddTicket
+
+elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == ('Write' || 'Admin')) {
+	$ticket = $_GET['ticketID'];
+
+	$qGetSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+	$rGetSeating = db_fetch($qGetSeating);
+	$qGetTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+	$rGetTicket = db_fetch($qGetTicket);
+	
+	$lognew[] = $ticket;
+
+	$logold[] = $rGetTicket->status;
+	$logold[] = $rGetSeating->seatX;
+	$logold[] = $rGetSeating->seatY;
+
+	db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
+	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'deleted' WHERE ticketID = '".db_escape($ticket)."'");
+	log_add(12, serialize($lognew), serialize($logold));
+	
+	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
+
+}
