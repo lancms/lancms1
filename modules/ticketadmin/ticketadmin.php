@@ -155,7 +155,7 @@ elseif($action == "listTickets") {
 		$content .= "</td><td>";
 		// FIXME: Display link to this seat on map
 		$content .= "</td><td>";
-		$content .= $rGetTickets->paid;
+		$content .= lang($rGetTickets->paid, "ticketadmin");
 		$content .= "</td></tr>\n\n";
 	} // End while rGetTickets
 	$content .= "</table>";
