@@ -16,7 +16,7 @@ $ticket = $_GET['ticket'];
 if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $action == "findOwner" || $action == "findUser") {
     // No action set, display tickets
 
-    $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND (owner = '$userID' OR user = '$userID')");
+    $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND (owner = '$userID' OR user = '$userID') AND status != 'deleted'");
 
     if(db_num($qDisplayTickets) != 0) {
         // The user has tickets to this event, display them
@@ -123,9 +123,14 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 		$content .= display_username($rDisplayTickets->owner);
 	}
 	$content .= "</td><td>";
-	$content .= "<a href=\"?module=ticketorder&action=cancelTicket&ticket=$rDisplayTickets->ticketID\">";
-	$content .= lang("Cancel ticket", "ticketorder");
-	$content .= "</a>";
+	if($rDisplayTickets->paid == 'no' && !in_array($rCheckTicketType->type, array('onsite-visitor', 'onsite-computer'))) {
+		$content .= "<a href=\"?module=ticketorder&action=cancelTicket&ticket=$rDisplayTickets->ticketID\">";
+		$content .= lang("Cancel ticket", "ticketorder");
+		$content .= "</a>";
+	} // End if
+	elseif($rDisplayTickets->paid == 'yes') {
+		$content .= lang("Paid", "ticketorder");
+	}
 	$content .= "</td></tr>";
         } // End while
         $content .= "</table>";
