@@ -137,6 +137,19 @@ if($sessioninfo->userID != 1)
 } // end if sessioninfo->userID != 0
 
 
+$design_head .= '<script type="text/javascript" src="inc/TinyMCE/tiny_mce.js"></script>
+
+<script type="text/javascript">
+tinyMCE.init({ 
+        mode : "textareas"
+});
+</script>
+
+';
+
+
+
+
 $smarty->assign("grouplist", $design_grouplist);
 $smarty->assign("eventlist", $design_eventlist);
 $smarty->assign("userinfo", $design_userinfo);
