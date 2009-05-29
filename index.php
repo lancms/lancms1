@@ -140,8 +140,14 @@ if($sessioninfo->userID != 1)
 $design_head .= '<script type="text/javascript" src="inc/TinyMCE/tiny_mce.js"></script>
 
 <script type="text/javascript">
-tinyMCE.init({ 
-        mode : "textareas"
+tinyMCE.init({
+	theme : "advanced",
+        mode : "textareas",
+	theme_advanced_toolbar_location : "top",
+	theme_advanced_resizing : true,
+	theme_advanced_toolbar_align : "left",
+	theme_advanced_statusbar_location : "bottom",
+
 });
 </script>
 
