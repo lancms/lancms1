@@ -123,15 +123,8 @@ include_once 'language.php';
 <h1>Finito!</h1>
 <div id="content">
 <p>Your database should now be up to date with the current codebase.</p>
-<p>Would you like to add some demo data to your database? <br /><a href="run.php?demodata=1">Yes, please</a></p>
 </div>
 <?php
-}
-else
-{
-	include("demodata.php");
-
-	echo "<h1>Like that!</h1>\n<div id='content'><p>Your database should now be filled with sweet demo data</p></div>\n";
 }
 ?>
 </body>
