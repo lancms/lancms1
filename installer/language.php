@@ -915,3 +915,27 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("compoad
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Solgte billetter av type (totalt/plassert/betalt)")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("Sold tickets of type (total/seated/paid)")."'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Påmelding er stengt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("compos")."' AND string = '".db_escape("Signup has closed")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Slett billett")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("arrival")."' AND string = '".db_escape("Delete ticket")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("ja")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("yes")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("nei")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("no")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endre billetts betaltstatus")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("Changed ticket paystatus")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("I døra-billett bestilt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("Onsiteticket ordered")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Betalt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketorder")."' AND string = '".db_escape("Paid")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Registrert bruker (useradmin)")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("Registered user (useradmin)")."'");
+
