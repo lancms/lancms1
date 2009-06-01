@@ -235,6 +235,26 @@ TABLE [prefix]_economy_accounts
 	accountText,	varchar(35),	,	,	,		,
 }
 
+TABLE [prefix]_economy_bankaccounts
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	accountID,	int(11),		PRI,	,	,		auto_increment
+	eventID,	int(11),	,	,	,		,
+	type,		enum('creditcard', 'bankaccount', 'cash'), , , , ,
+	
+}
+
+TABLE [prefix]_economy_receipt
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	ID,		int(11),	PRI,	,	,		auto_increment
+	eventID,	int(11),	,	,	1,		
+	from_location,	text,		,	,	,		
+	timestamp,	text,		,	,	,
+	description,	text,		,	,	,
+	amount,		int(6),		,	0,	,
+}
+
 TABLE [prefix]_compos
 {
 #       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
