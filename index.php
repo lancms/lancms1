@@ -66,6 +66,8 @@ if ($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>\n";
 	if (acl_access ("ticketadmin", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
 		$design_eventmenu .= "<li><a href=\"?module=arrival\">".lang("Arrival", "index")."</a></li>\n";
+	if (acl_access("reseller", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
+		$design_eventmenu .= "<li><a href=\"?module=reseller\">".lang("Reseller", "index")."</a></li>\n";
 
 
 

@@ -77,6 +77,11 @@ if(!isset($action) || $action == "editticket") {
         $content .= "<option value=\"onsite-visitor\"";
         if($rGetTicketInfo->type == 'onsite-visitor') $content .= " selected";
         $content .= ">".lang("Onsite ticket without computer", "ticketadmin")."</option>\n";
+
+        $content .= "<option value=\"reseller\"";
+        if($rGetTicketInfo->type == 'reseller') $content .= " selected";
+        $content .= ">".lang("Prepaid ticket reseller", "ticketadmin")."</option>\n";
+
     $content .= "</select>\n";
     $content .= "</td><td>\n";
     $content .= lang("Type of ticket", "ticketadmin");

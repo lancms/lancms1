@@ -136,7 +136,7 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
         $content .= "</table>";
     } // End if(db_num != 0);
 
-    $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID' AND type NOT LIKE 'onsite%' AND active = 1");
+    $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID' AND type IN ('prepaid','preorder') AND active = 1");
     if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
@@ -149,6 +149,15 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 	$content .= "</form>";
 	$content .= "</td></tr>";
         } // End while
+    if(config("enable_reseller", $sessioninfo->eventID)) {
+	$content .= "<tr><td>".lang("Ticketcode from reseller", "ticketorder")."</td>";
+	$content .= "<form method=POST action=?module=ticketorder&action=buyticket>\n";
+	$content .= "<td><input type=text name=resellercode size=10>\n";
+	$content .= "<input type=submit value='".lang("Claim ticket", "ticketorder")."'>\n";
+	$content .= "</form></td></tr>";
+
+
+    } // End config(enable_reseller)
         $content .= "</table>";
     } // End if(db_num(qListBuyTickets)
 	$content .= "<br /><br />";
@@ -188,7 +197,39 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
     log_add(6, serialize($logmsg));
     header("Location: ?module=ticketorder");
 } // End action = buyticket
+elseif($action == "buyticket" && !empty($_POST['resellercode'])) {
+	$code = $_POST['resellercode'];
 
+	$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_ticketReseller WHERE resellerTicketID = '".db_escape($code)."'");
+	$rFindTicket = db_fetch($qFindTicket);
+	if(db_num($qFindTicket) == 0) {
+		$content .= lang("Could not find that code. Are you sure you typed it correctly?", "ticketorder");
+		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
+	}
+	elseif($rFindTicket->eventID != $sessioninfo->eventID) {
+		$content .= lang("Code found, but it's not for this event. Try finding a newer piece for paper with a newer code", "ticketorder");
+		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
+	}
+	elseif($rFindTicket->used == 'yes') {
+		$content .= lang("Code found, but it has already been used", "ticketorder");
+		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
+	}	
+	else {
+		// Code can be used
+		db_query("UPDATE ".$sql_prefix."_ticketReseller SET used = 'yes' WHERE resellerTicketID = '".db_escape($code)."'");
+		db_query("INSERT INTO ".$sql_prefix."_tickets SET
+			paid= 'yes',
+			ticketType = '$rFindTicket->ticketType',
+			user = '$sessioninfo->userID',
+			owner = '$sessioninfo->userID',
+			creator = '$sessioninfo->userID',
+			eventID = '$sessioninfo->eventID',
+			status = 'notused',
+			createTime = '".time()."'");
+		header("Location: ?module=ticketorder");
+	}
+	
+} // End elseif action == buyticket && !empty(resellercode)	
 elseif($action == "doChangeOwner") {
     $toOwner = $_GET['toOwner'];
     $ticket = $_GET['ticket'];

@@ -206,11 +206,22 @@ TABLE [prefix]_ticketTypes
 	ticketTypeID,	int(11),		PRI,	NOT NULL, 	,		auto_increment
 	eventID	,	int(11),	,	NOT NULL, ,
 	name,		varchar(35),	,	,	,
-	type,		enum('onsite-computer','onsite-visitor','prepaid','preorder'), , , preorder,
+	type,		enum('onsite-computer','onsite-visitor','prepaid','preorder','reseller'), , , preorder,
 	price,		int(5),		,	,	0,
 	active,		tinyint(1),		,	,	1,
 }
 
+TABLE [prefix]_ticketReseller
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	resellerTicketID, varchar(10),	PRI,	NOT NULL,	,	,
+	eventID,	int(11),	,	,	,
+	resellerID,	int(11),	,	,	,
+	ticketType,	int(11),	,	,	,
+	used,		enum('yes','no'), ,	,	no,
+	usedBy,		int(11),	,	,	,
+	amount,		int(2),		,	,	1,
+}
 TABLE [prefix]_tickets
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
