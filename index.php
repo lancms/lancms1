@@ -144,7 +144,8 @@ $design_head .= '<script type="text/javascript" src="inc/TinyMCE/tiny_mce.js"></
 <script type="text/javascript">
 tinyMCE.init({
 	theme : "advanced",
-        mode : "textareas",
+        mode : "specific_textareas",
+	editor_selector : /(mceEditor|mceRichText)/,
 	theme_advanced_toolbar_location : "top",
 	theme_advanced_resizing : true,
 	theme_advanced_toolbar_align : "left",

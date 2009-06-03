@@ -107,7 +107,7 @@ elseif($action == "editPage" && !empty($page))
 	$content .= "<form method=POST action=?module=static&action=doEditPage&page=$page>\n";
 	if($rStaticPage->type == 'static') $content .= "<input type=text name=header value='$rStaticPage->header'>\n";
 	else $content .= $page."\n";
-	$content .= "<br /><textarea rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
+	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
 	$content .= "<br /><input type=submit value='".lang("Save", "static")."'>\n";
 	$content .= "</form>";
 
