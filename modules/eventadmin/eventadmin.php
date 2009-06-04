@@ -217,7 +217,7 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 } // End elseif action== groupRights
 
 elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['accessmodule'])) {
-	$newright = $_POST['groupRight'];
+	$newright = $_REQUEST['groupRight'];
 	$groupID = $_GET['groupID'];
 	$accessmodule = $_GET['accessmodule'];
 	if(acl_access("eventadmin", "", $eventID) != 'Admin')
@@ -242,5 +242,40 @@ elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['
 			AND eventID = $eventID");
 	} // End else
 
-	header("Location: ?module=eventadmin&action=groupRights&groupID=$groupID");
+	if($accessmodule == 'eventAttendee') {
+		header("Location: ?module=eventadmin&action=eventaccess");
+	} else {
+		header("Location: ?module=eventadmin&action=groupRights&groupID=$groupID");
+	}
 }
+
+elseif($action == "eventaccess") {
+	// if event is private, admin who can attend
+	// FIXME: Only works for accessgroups for now...
+	// Should be possible for specially invited people in clans, and all accessgroups
+	$qListGroups = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE groupType = 'access' AND ID != 1 ORDER BY eventID DESC");
+	$row = 1;
+	$content .= "<table>";
+	while($rListGroups = db_fetch($qListGroups)) {
+		$content .= "<tr class='listRow$row'><td>";
+		$content .= $rListGroups->groupname;
+		$content .= "</td><td>";
+		$qCheckAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs 
+			WHERE access != 'No' 
+			AND accessmodule = 'eventAttendee' 
+			AND eventID = '$sessioninfo->eventID' 
+			AND groupID = '$rListGroups->ID'");
+		if(db_num($qCheckAccess) == 0) {
+			$content .= "<a href=?module=eventadmin&action=doChangeRights&groupID=$rListGroups->ID&accessmodule=eventAttendee&groupRight=Read>";
+			$content .= lang("Allow attendee", "eventadmin")."</a>";
+		} else {
+			$content .= "<a href=?module=eventadmin&action=doChangeRights&groupID=$rListGroups->ID&accessmodule=eventAttendee&groupRight=No>";
+			$content .= lang("Disallow attendee", "eventadmin")."</a>";
+		}
+		$row++;
+		if($row == 3) $row = 1;
+	} // End while
+	$content .= "</table>";
+
+} // End if action == eventaccess
+		

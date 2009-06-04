@@ -10,7 +10,6 @@ if(!isset($action))
 	$content .= "<tr><th>".lang("Event name", "globaladmin");
 	$content .= "</th><th>";
 	$content .= lang("Admin this event", "globaladmin");
-	$content .= "</th><th>";
 	$content .= "</th><th>".lang("Set event public", "globaladmin");
 	$content .= "</th></tr>\n\n";
 
@@ -27,6 +26,7 @@ if(!isset($action))
 	        $content .= "<a href=\"?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPrivate\">".lang("Public", "globaladmin")."</a>";
 	    } else {
 	        $content .= "<a href=\"?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPublic\">".lang("Private", "globaladmin")."</a>";
+		if($rListEvents->ID == $sessioninfo->eventID) $content .= " <a href=\"?module=eventadmin&amp;eventID=$rListEvents->ID&amp;action=eventaccess\">".lang("Attendee-access", "globaladmin")."</a>";
 	    }
 	    $content .= "</td></tr>\n\n\n";
 	} // End while(rListEvents)

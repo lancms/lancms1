@@ -107,12 +107,22 @@ else {
 
 #if(acl_access("mojo") == "Admin") $design_userinfo .= "<br />".lang("You have mojo!");
 
-// This should probably be a function that checks what events you have access to
-$qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventPublic = 1 AND eventClosed = 0");
+// FIXME:This should probably be a function that checks what events you have access to
+$qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventClosed = 0 AND ID != 1");
 while($rEventList = db_fetch($qEventList))
 {
-	if($rEventList->ID != $sessioninfo->eventID) $design_eventlist .= "<li><a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID\">
-	$rEventList->eventname</a></li>";
+	if($rEventList->ID != $sessioninfo->eventID && $rEventList->eventPublic == 1) {
+		$design_eventlist .= "<li><a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID\">
+		$rEventList->eventname</a></li>";
+	}
+	elseif($rEventList->ID != $sessioninfo->eventID && $rEventList->eventPublic == 0) {
+		// Event is not public, check if we have access to it
+		if(acl_access("eventAttendee", "", $rEventList->ID) != 'No') {
+			$design_eventlist .= "<li><a href=\"?module=events&amp;action&setCurrentEvent&amp;eventID=$rEventList->ID\">
+			$rEventList->eventname</a></li>";
+		} // End if acl_access
+		// Else we should not do anything
+	} // End if eventPublic =0
 	else $design_eventlist .= "<li>$rEventList->eventname</li>\n";
 }
 

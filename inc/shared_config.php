@@ -61,6 +61,7 @@ $globalaccess[] = 'logview';
 ## SpecialACLs
 $specialaccess[] = 'groupaccess'; // Used inside groups
 $specialaccess[] = 'globaladmin'; // Can do anything
+$specialaccess[] = 'eventAttendee'; // May access the event, if non-public
 
 
 ## Static system-messages
