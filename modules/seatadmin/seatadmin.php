@@ -82,9 +82,9 @@ if(!isset($action) || $action == "updateSeat") {
 				$seatX = $rGetSeatX->seatX;
 				$content .= "<td style='height: 25px; width: 25px; background-color: ".$rGetSeatX->color;
 				$content .= "'>\n";
-				$content .= "<input type=\"checkbox\" value=\"1\" name=\"x".$seatX."y".$seatY;
+				$content .= "<input type=\"checkbox\" value=\"1\" name=\"x".$seatX."y".$seatY."\"";
 				if($_POST['x'.$seatX.'y'.$seatY] == 1) $content .= " CHECKED";
-				$content .= "\" />\n";
+				$content .= " />\n";
 				$content .= "</td>\n\n";
 			} // End while (rGetSeatX)
 
