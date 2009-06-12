@@ -38,5 +38,9 @@ $smarty->cache_dir = 'tmp/templates_cache/';
 ## This should be fixed to something... dynamic
 #$smarty_display = 'simple/simple.tpl';
 #$smarty_display = 'GlobeLAN11/GlobeLAN11.tpl';
-$smarty_display = 'LarvikLAN/LarvikLAN.tpl';
+if(file_exists($smarty->template_dir."/".$eventinfo->eventDesign."/".$eventinfo->eventDesign.".tpl")) {
+	$smarty_display = $eventinfo->eventDesign."/".$eventinfo->eventDesign.".tpl";
+}
+#else $smarty_display = 'LarvikLAN/LarvikLAN.tpl';
+else die("Design doesn't exists");
 

@@ -78,3 +78,7 @@ if(empty($sessioninfo->userID)) // Session is empty
 if(empty($sessioninfo->eventID) && $sess_eventID) 
 	// Event is empty and we're creating a new session
 	$sessioninfo->eventID = $sess_eventID;
+
+// Create eventinfo with info about this event
+$query_event = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID = '$sessioninfo->eventID'");
+$eventinfo = db_fetch($query_event);
