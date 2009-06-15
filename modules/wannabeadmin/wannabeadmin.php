@@ -376,25 +376,44 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 
 } // End elseif action == viewApplications
 
-elseif($action == "crews") {
+elseif($action == "crews" || $action == "editcrew") {
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 	
 	if(mysql_num_rows($qListCrews) != 0) {
 		$content .= "<table>";
 		while($rListCrews = db_fetch($qListCrews)) {
-			$content .= "<tr><td>";
-			$content .= $rListCrews->crewname;
-			$content .= "</td></tr>";
+			$content .= "<tr>";
+			if($action == "editcrew" && $_GET['crew'] == $rListCrews->ID) {
+				$content .= "<td><form method=POST action=?module=wannabeadmin&action=doEditcrew&crew=$rListCrews->ID>\n";
+				$content .= "<input type=text name=crewname value='$rListCrews->crewname'>\n";
+				$content .= "<input type=submit value='".lang("Change name", "wannabeadmin")."'>";
+				$content .= "</form>";
+			}
+			else {
+				$content .= "<td onClick='location.href=\"?module=wannabeadmin&action=editcrew&crew=$rListCrews->ID\"'>";
+				$content .= $rListCrews->crewname;
+			}
+			$content .= "</td></tr>\n";
 		} // End while (rListCrews)
 
 		$content .= "</table>";
 	}
-	$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddCrew\">\n";
-	$content .= "<p class=\"nopad\"><input type=\"text\" name=\"crewname\" />\n";
-	$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
-	$content .= "</form>";
+	if($action == "crews") {
+		// Don't display if editcrew-mode
+		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddCrew\">\n";
+		$content .= "<p class=\"nopad\"><input type=\"text\" name=\"crewname\" />\n";
+		$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
+		$content .= "</form>";
+	}
 }
 
+elseif($action == "doEditcrew" && isset($_GET['crew'])) {
+	$crew = db_escape($_GET['crew']);
+	$crewname = db_escape($_POST['crewname']);
+
+	db_query("UPDATE ".$sql_prefix."_wannabeCrews SET crewname = '$crewname' WHERE eventID = '$eventID' AND ID = '$crew'");
+	header("Location: ?module=wannabeadmin&action=crews");
+}
 elseif($action == "doAddCrew") {
 	$crewname = $_POST['crewname'];
 	db_query("INSERT INTO ".$sql_prefix."_wannabeCrews SET crewname = '".db_escape($crewname)."', eventID = $eventID");
