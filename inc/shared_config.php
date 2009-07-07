@@ -91,52 +91,62 @@ $compotype[] = 'FFA';
 $compotype[] = 'clan';
 $compotype[] = '1on1';
 
-
 $userprefs[0]['type'] = 'text';
-$userprefs[0]['name'] = 'firstName';
-$userprefs[0]['displayName'] = 'First name';
-$userprefs[0]['mandatory'] = config("register_firstname_required");
+$userprefs[0]['name'] = 'nick';
+$userprefs[0]['edit_userAdmin'] = 'Admin';
+$userprefs[0]['displayName'] = 'Username';
 
 $userprefs[1]['type'] = 'text';
-$userprefs[1]['name'] = 'lastName';
-$userprefs[1]['displayName'] = 'Last name';
-$userprefs[1]['mandatory'] = config("register_lastname_required");
+$userprefs[1]['name'] = 'firstName';
+$userprefs[1]['displayName'] = 'First name';
+$userprefs[1]['mandatory'] = config("register_firstname_required");
 
-$userprefs[2]['type'] = 'dropdown';
-$userprefs[2]['name'] = 'birthDay';
-$userprefs[2]['displayName'] = 'Birthday';
-$userprefs[2]['mandatory'] = config("userinfo_birthday_required");
-$userprefs[2]['group_pref'] = 1;
-$userprefs[2]['group_pref_begin'] = 1;
-for($i=1;$i<32;$i++) $userprefs_birthDay_values[$i] = $i;
-$userprefs[2]['dropdown_values'] = $userprefs_birthDay_values;
+$userprefs[2]['type'] = 'text';
+$userprefs[2]['name'] = 'lastName';
+$userprefs[2]['displayName'] = 'Last name';
+$userprefs[2]['mandatory'] = config("register_lastname_required");
 
 $userprefs[3]['type'] = 'dropdown';
-$userprefs[3]['name'] = 'birthMonth';
+$userprefs[3]['name'] = 'birthDay';
+$userprefs[3]['displayName'] = 'Birthday';
 $userprefs[3]['mandatory'] = config("userinfo_birthday_required");
 $userprefs[3]['group_pref'] = 1;
-$userprefs[3]['dropdown_values'] = $monthname;
+$userprefs[3]['group_pref_begin'] = 1;
+for($i=1;$i<32;$i++) $userprefs_birthDay_values[$i] = $i;
+$userprefs[3]['dropdown_values'] = $userprefs_birthDay_values;
 
 $userprefs[4]['type'] = 'dropdown';
-$userprefs[4]['name'] = 'birthYear';
-$userprefs[4]['mandatory'] = config("userinfo_birthyear_required");
+$userprefs[4]['name'] = 'birthMonth';
+$userprefs[4]['mandatory'] = config("userinfo_birthday_required");
 $userprefs[4]['group_pref'] = 1;
-$userprefs[4]['group_pref_end'] = 1;
-for($i=1950;$i<2009;$i++) $userprefs_birthYear_values[$i] = $i;
-$userprefs[4]['dropdown_values'] = $userprefs_birthYear_values;
+$userprefs[4]['dropdown_values'] = $monthname;
 
-$userprefs[5]['type'] = 'text';
-$userprefs[5]['name'] = 'street';
-$userprefs[5]['displayName'] = 'Streetadress';
-$userprefs[5]['mandatory'] = config("userinfo_address_required");
+$userprefs[5]['type'] = 'dropdown';
+$userprefs[5]['name'] = 'birthYear';
+$userprefs[5]['mandatory'] = config("userinfo_birthyear_required");
+$userprefs[5]['group_pref'] = 1;
+$userprefs[5]['group_pref_end'] = 1;
+for($i=1950;$i<2009;$i++) $userprefs_birthYear_values[$i] = $i;
+$userprefs[5]['dropdown_values'] = $userprefs_birthYear_values;
 
 $userprefs[6]['type'] = 'text';
-$userprefs[6]['name'] = 'postNumber';
-$userprefs[6]['displayName'] = 'Postnumber';
+$userprefs[6]['name'] = 'street';
+$userprefs[6]['displayName'] = 'Streetadress';
 $userprefs[6]['mandatory'] = config("userinfo_address_required");
 
-$userprefs[7]['type'] = 'dropdown';
-$userprefs[7]['name'] = 'gender';
-$userprefs[7]['displayName'] = 'Gender';
-$userprefs[7]['mandatory'] = config("userinfo_gender_required");
-$userprefs[7]['dropdown_values'] = array ('Male' => 'Male', 'Female' => 'Female');
+$userprefs[7]['type'] = 'text';
+$userprefs[7]['name'] = 'postNumber';
+$userprefs[7]['displayName'] = 'Postnumber';
+$userprefs[7]['mandatory'] = config("userinfo_address_required");
+
+$userprefs[8]['type'] = 'dropdown';
+$userprefs[8]['name'] = 'gender';
+$userprefs[8]['displayName'] = 'Gender';
+$userprefs[8]['mandatory'] = config("userinfo_gender_required");
+$userprefs[8]['edit_userAdmin'] = 'Write'; // Require Write-access in userAdmin to change this
+$userprefs[8]['dropdown_values'] = array ('Male' => 'Male', 'Female' => 'Female');
+
+$userprefs[9]['type'] = 'text';
+$userprefs[9]['name'] = 'cellphone';
+$userprefs[9]['displayName'] = 'Cellphone';
+

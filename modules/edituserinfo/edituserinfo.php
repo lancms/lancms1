@@ -72,7 +72,11 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "</td><td>";
 		
 		$name = $userprefs[$i]['name'];
-		
+		if($userprefs[$i]['edit_userAdmin'] == 'Write' && ($userAdmin_acl != 'Admin' && $userAdmin_acl != 'Write')) $edit = FALSE;
+		elseif($userprefs[$i]['edit_userAdmin'] == 'Admin' && $userAdmin_acl != 'Admin') $edit = FALSE;
+		else $edit = TRUE;
+
+		if($edit == TRUE) // Edit is enabled
 		switch($userprefs[$i]['type']) {
 			case "text":
 				$content .= "<input type=text name='$name' value='$rGetUserinfo[$name]'>\n";
@@ -90,6 +94,8 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 				$content .= "</select>";
 				break;
 		} // End switch
+		elseif($edit == FALSE)
+			$content .= $rGetUserinfo[$name];
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_end'] == 1) $content .= "</td></tr>\n\n\n";
 	} // End for
 	$content .= "<tr><td><input type=submit value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";	
