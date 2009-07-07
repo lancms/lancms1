@@ -61,15 +61,38 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 	else die(lang("Not access to edit userinfo"));
 
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
-	$rGetUserinfo = db_fetch($qGetUserinfo);
+	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
 	$content .= "<table>\n\n";
-	$content .= "<form method=POST action=?module=edituserinfo&action=doEditUserinfo&user=$user>\n";
-	$content .= "<tr><td><input type=text name=firstName value='$rGetUserinfo->firstName'>\n";
-	$content .= "</td><td>".lang("Firstname", "edituserinfo")."</td></tr>\n";
-	$content .= "<tr><td><input type=text name=lastName value='$rGetUserinfo->lastName'>\n";
-	$content .= "</td><td>".lang("Surname", "edituserinfo")."</td></tr>\n";
-	$content .= "<tr><td><input type=submit value='".lang("Save userinfo", "edituserinfo")."'>\n";
-	$content .= "</td><td></td></tr>";
+	$content .= "<form method=POST action=?module=edituserinfo&action=doEditUserinfo&user=$user>\n\n";
+	
+	for($i=0;$i<count($userprefs);$i++) {
+		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "<tr><td>";
+		$content .= lang($userprefs[$i]['displayName'], "edituserinfo_prefs");
+		if($userprefs[$i]['mandatory'] && !empty($userprefs[$i]['displayName'])) $content .= " <font color=red>*</font>";
+		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "</td><td>";
+		
+		$name = $userprefs[$i]['name'];
+		
+		switch($userprefs[$i]['type']) {
+			case "text":
+				$content .= "<input type=text name='$name' value='$rGetUserinfo[$name]'>\n";
+				break;
+			case "dropdown":
+				$content .= "<select name='$name'>\n";
+				foreach($userprefs[$i]['dropdown_values'] AS $value => $displayname) {
+					$content .= "<option value='$value'";
+					if($rGetUserinfo[$name] == $value) $content .= " SELECTED";
+					$content .= ">";
+					if(is_numeric($displayname)) $content .= $displayname;
+					else $content .= lang($displayname, "edituserinfo_prefs");
+					$content .= "</option>\n";
+				} // End foreach
+				$content .= "</select>";
+				break;
+		} // End switch
+		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_end'] == 1) $content .= "</td></tr>\n\n\n";
+	} // End for
+	$content .= "<tr><td><input type=submit value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";	
 	$content .= "</form></table>\n\n";
 
 } // End action == editUserinfo
@@ -84,12 +107,28 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 	// Get-parameters
 	$user = $_GET['user'];
 
-	$firstName = $_POST['firstName'];
-	$lastName = $_POST['lastName'];
-
+#	$firstName = $_POST['firstName'];
+#	$lastName = $_POST['lastName'];
+		
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
 	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
-	log_add(9, serialize($_POST), serialize($rGetUserinfo));
+	for($i=0;$i<count($userprefs);$i++) {
+		$name = $userprefs[$i]['name'];
+		$value = $_POST[$name];
+		if($userprefs[$i]['edit_userAdmin'] == 'Write' && ($userAdmin_acl != 'Admin' || $userAdmin_acl != 'Write'));
+		elseif($userprefs[$i]['edit_userAdmin'] == 'Admin' && $userAdmin_acl != 'Admin');
+		elseif($rGetUserinfo[$name] != $value) {
+#			die("Not same on $rGet
+			// User has changed this setting, change it in DB
+			db_query("UPDATE ".$sql_prefix."_users SET
+				$name = '$value' WHERE ID = '".db_escape($user)."'");
+			$log['old'][] = $rGetUserinfo[$name];
+			$log['new'][] = $value;
+		} // End if oldvalue != newvalue
+
+	} // End for
+		
+	log_add(9, serialize($log['new']), serialize($log['old']));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
 	
