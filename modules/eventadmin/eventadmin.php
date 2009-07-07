@@ -188,7 +188,7 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 	if(acl_access("globaladmin", "", 0) == 'Admin') {
 		$content .= "<tr></tr>";
 		for($i=0;$i<count($globalaccess);$i++) {
-			$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID = $eventID
+			$qFindAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs WHERE eventID IN (1, $eventID)
 				AND groupID = '".db_escape($groupID)."' AND accessmodule = '".$globalaccess[$i]."'");
 			$rFindAccess = db_fetch($qFindAccess);
 
@@ -224,16 +224,17 @@ elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['
 		die("Sorry, you have to be eventadmin to give eventrights");
 	if(in_array($accessmodule, $globalaccess) && acl_access("globaladmin", "", 0) != 'Admin')
 		die("Sorry, you have to be globaladmin to give globalrights");
-
+	if(in_array($accessmodule, $globalaccess)) $event = 1;
+	else $event = $eventID;
 	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_ACLs
 		WHERE groupID = '".db_escape($groupID)."'
 		AND accessmodule = '".db_escape($accessmodule)."'
-		AND eventID = $eventID");
+		AND eventID = $event");
 	if(db_num($qCheckExisting) == 0) {
 		db_query("INSERT INTO ".$sql_prefix."_ACLs SET groupID = '".db_escape($groupID)."',
 			accessmodule = '".db_escape($accessmodule)."',
 			access = '".db_escape($newright)."',
-			eventID = $eventID");
+			eventID = $event");
 	} // end if
 	else {
 		db_query("UPDATE ".$sql_prefix."_ACLs SET access = '".db_escape($newright)."'
