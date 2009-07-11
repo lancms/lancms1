@@ -37,6 +37,7 @@ if(!isset($action))
 	$content .= "<br /><br /><a href=\"?module=globaladmin&amp;action=config\">".lang("Change global options", "globaladmin")."</a>";
 	$content .= "<br /><br /><a href=\"?module=logs\">".lang("View logs", "globaladmin")."</a>";
 	$content .= "<br /><br /><a href=\"?module=useradmin\">".lang("User administration", "globaladmin")."</a>";
+	$content .= "<br /><br /><a href=\"?module=globaladmin&amp;action=listGlobalRights\">".lang("List groups with global access", "globaladmin")."</a>";
 
 } // End if !isset($action)
 
@@ -128,4 +129,29 @@ elseif($action == "doConfig") {
 	} // End for
 
 	header("Location: ?module=globaladmin&action=config&action=config&saved=OK");
+}
+
+elseif($action == "listGlobalRights") {
+	$searcharray = "'globaladmin'";
+	for($i=0;$i<count($globalaccess);$i++) {
+		$searcharray .= ", '".$globalaccess[$i]."'";
+	} // End for
+
+	$qFindGroups = db_query("SELECT groups.groupname,groups.eventID,ACLs.accessmodule,ACLs.access FROM ".$sql_prefix."_groups groups JOIN ".$sql_prefix."_ACLs ACLs ON groups.ID=ACLs.groupID WHERE ACLs.accessmodule IN ($searcharray) AND ACLs.access != 'No'");
+	$content .= "<table>";
+	while($rFindGroups = db_fetch($qFindGroups)) {
+		$qFindEventName = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID = '$rFindGroups->eventID'");
+		$rFindEventName = db_fetch($qFindEventName);
+		$content .= "<tr><td>";
+		$content .= $rFindEventName->eventname;
+		$content .= "</td><td>";
+		$content .= $rFindGroups->groupname;
+		$content .= "</td><td>";
+		$content .= $rFindGroups->accessmodule;	
+		$content .= "</td><td>";
+		$content .= $rFindGroups->access;
+		$content .= "</td></tr>\n\n\n";
+	} // End while
+	$content .= "</table>";
+
 }
