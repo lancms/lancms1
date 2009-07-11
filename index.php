@@ -118,7 +118,7 @@ while($rEventList = db_fetch($qEventList))
 	elseif($rEventList->ID != $sessioninfo->eventID && $rEventList->eventPublic == 0) {
 		// Event is not public, check if we have access to it
 		if(acl_access("eventAttendee", "", $rEventList->ID) != 'No') {
-			$design_eventlist .= "<li><a href=\"?module=events&amp;action&setCurrentEvent&amp;eventID=$rEventList->ID\">
+			$design_eventlist .= "<li><a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rEventList->ID\">
 			$rEventList->eventname</a></li>";
 		} // End if acl_access
 		// Else we should not do anything
