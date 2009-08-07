@@ -5,7 +5,7 @@
 {$head}
 </head>
 <body>
-<h1>Header</h1>
+<h1>OSGlobeLAN v2</h1>
 
 <!-- I know, I really should learn to program CSS some day... -->
 <table>
