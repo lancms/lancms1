@@ -155,7 +155,16 @@ elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
 	$ticket = $_GET['ticket'];
 	
 	if($acl_ticket != 'Write' AND $acl_ticket != 'Admin') die("No access to ticket");
-	db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'no' WHERE ticketID = '".db_escape($ticket)."'");
+	$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+	$rFindTicket = db_fetch($qFindTicket);
+	$qFindTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = '$rFindTicket->ticketType'");
+	$rFindTicketType = db_fetch($qFindTicketType);
+
+	if($rFindTicketType->type == 'prepaid') {
+		db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'no', status = 'notpaid' WHERE ticketID = '".db_escape($ticket)."'");
+	} else {
+		db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'no' WHERE ticketID = '".db_escape($ticket)."'");
+	}
 	$newlog[] = 'notpaid';
 	$newlog[] = $ticket;
 	$oldlog[] = 'paid';
@@ -169,7 +178,16 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
         $ticket = $_GET['ticket'];
 
         if($acl_ticket != 'Write' AND $acl_ticket != 'Admin') die("No access to ticket");
-        db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes' WHERE ticketID = '".db_escape($ticket)."'");
+        $qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
+        $rFindTicket = db_fetch($qFindTicket);
+        $qFindTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = '$rFindTicket->ticketType'");
+        $rFindTicketType = db_fetch($qFindTicketType);
+
+        if($rFindTicketType->type == 'prepaid') {
+                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes', status = 'notused' WHERE ticketID = '".db_escape($ticket)."'");
+        } else {
+                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes' WHERE ticketID = '".db_escape($ticket)."'");
+        }
 	
 	$newlog[] = 'paid';
 	$newlog = $ticket;
