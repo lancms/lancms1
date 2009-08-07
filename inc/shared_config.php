@@ -150,3 +150,17 @@ $userprefs[9]['type'] = 'text';
 $userprefs[9]['name'] = 'cellphone';
 $userprefs[9]['displayName'] = 'Cellphone';
 
+
+## SpecialListings
+$listingtype[0]['type'] = 'eventAttendee';
+$listingtype[0]['name'] = 'List all attendees on current event';
+$listingtype[0]['SQL'] = "SELECT u.firstName,u.lastName,u.nick FROM GO_users u JOIN GO_tickets t ON t.user=u.ID WHERE t.paid = 'yes' AND t.eventID=$sessioninfo->eventID";
+
+
+$listingtype[1]['type'] = 'yearAttendee';
+$listingtype[1]['name'] = 'List all attendees on specified year';
+$listingtype[1]['option'] = 1;
+
+
+$listingtype[2]['type'] = 'ticketsSold';
+$listingtype[2]['name'] = 'List all tickets sold';
