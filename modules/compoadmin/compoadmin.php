@@ -97,17 +97,53 @@ elseif($action == "matchadmin" && isset($_GET['compo'])) {
 	$content .= lang("Randomize first match", "compoadmin")."</td>";
 	$content .= "</tr></table>";
 
+	$content .= "<table>";
+	$qFindMatches = db_query("SELECT * FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."'");
+	while($rFindMatches = db_fetch($qFindMatches)) {
+		$content .= "<tr><td>";
+
+
+	} // End while rFindMatches
+
+	$content .= "</table>";
 }
 
 elseif($action == "randomizeMatch" && isset($_GET['compo'])) {
+	$compo = $_GET['compo'];
 	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
 	$rGetCompoinfo = db_fetch($qGetCompoinfo);
 
 	// FIXME: Should check if matches have been played, and fail if played
-	
-	$qFindSignup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup WHERE compoID = '".db_escape($compo)."'");
+	db_query("DELETE FROM ".$sql_prefix."_compoMatch_signup WHERE matchID IN (SELECT matchID FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."')");
+	db_query("DELETE FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."'");
+	$matchPlayers = 1;
+	$matchOrder = 1;
+
+	$qFindSignup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup WHERE compoID = '".db_escape($compo)."' ORDER BY RAND()");
 	while($rFindSignup = db_fetch($qFindSignup))  {
+		if($matchPlayers == 1) {
+			// We've reached enough players this round, create a new match
+			db_query("INSERT INTO ".$sql_prefix."_compoMatches SET compoID = '".db_escape($compo)."', matchOrder = $matchOrder");
+			$matchOrder++;
+		}
+		$qMatchID = db_query("SELECT MAX(matchID) AS matchID FROM ".$sql_prefix."_compoMatches");
+		$rMatchID = db_fetch($qMatchID);
+		$matchID = $rMatchID->matchID;
 
+		if($rGetCompoinfo->playersClan == 1) {
+			db_query("INSERT INTO ".$sql_prefix."_compoMatch_signup SET matchID = '$matchID',
+				clanID = 1,
+				userID = '$rFindSignup->userID'");
+		}
+		else {
+			db_query("INSERT INTO ".$sql_prefix."_compoMatch_signup SET matchID = '$matchID',
+				clanID = '$rFindSignup->clanID'");
+		}
+
+		if($matchPlayers == $rGetCompoinfo->playersRound) {
+			$matchPlayers = 1;
+		}
+		else $matchPlayers++;
 	} // End while
-
+	header("Location: ?module=compoadmin&compo=$compo&action=matchadmin");
 } // End elseif action == randomizeMatch

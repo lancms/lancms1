@@ -292,6 +292,8 @@ TABLE [prefix]_compoMatches
 #       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
 	compoID,	int(11),	,	,	,		,
 	matchID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	matchOrder,	int(3),		,	,	,		,
+	matchParent,	int(11),	,	,	0,		,
 }
 
 TABLE [prefix]_compoMatch_signup
