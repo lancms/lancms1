@@ -5,8 +5,8 @@ $acl_access = acl_access("FAQ", "", $eventID);
 $action = $_GET['action'];
 $faqID = $_GET['faqID'];
 
-if($acl_access == "No")
-	die("You do not have access to this!");
+#if($acl_access == "No")
+#	die("You do not have access to this!");
 	
 
 if($action == "read")
