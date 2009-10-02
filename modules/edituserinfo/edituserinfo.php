@@ -144,7 +144,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 elseif($action == "editPreferences" && isset($_GET['user'])) {
 	$userID = $_GET['user'];
 	$userAdmin_acl = acl_access("userAdmin", "", 1);
-	if($user == $sessioninfo->userID);
+	if($userID == $sessioninfo->userID);
 	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
 	else die(lang("Not access to edit userinfo"));
 
@@ -177,7 +177,7 @@ elseif($action == "editPreferences" && isset($_GET['user'])) {
 elseif($action == "doEditPreferences" && isset($_GET['user'])) {
 	$userID = $_GET['user'];
 	$userAdmin_acl = acl_access("userAdmin", "", 1);
-	if($user == $sessioninfo->userID);
+	if($userID == $sessioninfo->userID);
 	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
 	else die(lang("Not access to edit userinfo"));
 
