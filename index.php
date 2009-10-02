@@ -100,6 +100,7 @@ else {
 	$design_userinfo .= display_username($sessioninfo->userID);
 	$design_userinfo .= "<ul>";
 	$design_userinfo .= "<li><a href=\"?module=edituserinfo&action=editUserinfo&user=$sessioninfo->userID\">".lang("Edit userinfo", "index")."</a></li>\n";
+	$design_userinfo .= "<li><a href=\"?module=edituserinfo&action=editPreferences&user=$sessioninfo->userID\">".lang("Edit my preferences", "index")."</a></li>\n";
 	$design_userinfo .= "<li><a href=\"?module=edituserinfo&action=password\">".lang("Change password", "index")."</a></li>\n";
 	$design_userinfo .= "<li><a href=\"?module=login&amp;action=logout\">".lang("Logout", "index")."</a></li>\n";
 	$design_userinfo .= "</ul>";

@@ -321,3 +321,11 @@ TABLE [prefix]_logs
 	logURL,		text,				,	,	,
 	logTime,		timestamp,		,	,	current_timestamp,
 }
+
+TABLE [prefix]_userPreferences
+{
+#	NAME			TYPE			KEY	NULL	DEFAULT		EXTRA
+	userID,			int(11),		PRI,	,	,
+	name,			varchar(30),		PRI,	,	,
+	value,			varchar(35),		,	,	,
+}

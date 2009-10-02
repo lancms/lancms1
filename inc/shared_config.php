@@ -164,3 +164,11 @@ $listingtype[1]['option'] = 1;
 
 $listingtype[2]['type'] = 'ticketsSold';
 $listingtype[2]['name'] = 'List all tickets sold';
+
+## Personal settings
+
+$userpersonalprefs[0]['type'] = 'checkbox';
+$userpersonalprefs[0]['name'] = 'allowViewMail';
+$userpersonalprefs[0]['displayName'] = 'Allow other users to see my mailadress';
+$userpersonalprefs[0]['default_register'] = 1; // Have this enabled per default when user registers # FIXME, should not be enabled
+$userpersonalprefs[0]['required_on'] = 0; // Don't let the user disable this # FIXME, should not be enabled

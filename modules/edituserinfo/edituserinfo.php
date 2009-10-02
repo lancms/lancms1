@@ -64,13 +64,13 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
 	$content .= "<table>\n\n";
 	$content .= "<form method=POST action=?module=edituserinfo&action=doEditUserinfo&user=$user>\n\n";
-	
+
 	for($i=0;$i<count($userprefs);$i++) {
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "<tr><td>";
 		$content .= lang($userprefs[$i]['displayName'], "edituserinfo_prefs");
 		if($userprefs[$i]['mandatory'] && !empty($userprefs[$i]['displayName'])) $content .= " <font color=red>*</font>";
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "</td><td>";
-		
+
 		$name = $userprefs[$i]['name'];
 		if($userprefs[$i]['edit_userAdmin'] == 'Write' && ($userAdmin_acl != 'Admin' && $userAdmin_acl != 'Write')) $edit = FALSE;
 		elseif($userprefs[$i]['edit_userAdmin'] == 'Admin' && $userAdmin_acl != 'Admin') $edit = FALSE;
@@ -98,7 +98,7 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 			$content .= $rGetUserinfo[$name];
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_end'] == 1) $content .= "</td></tr>\n\n\n";
 	} // End for
-	$content .= "<tr><td><input type=submit value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";	
+	$content .= "<tr><td><input type=submit value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";
 	$content .= "</form></table>\n\n";
 
 } // End action == editUserinfo
@@ -115,7 +115,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 
 #	$firstName = $_POST['firstName'];
 #	$lastName = $_POST['lastName'];
-		
+
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
 	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
 	for($i=0;$i<count($userprefs);$i++) {
@@ -133,13 +133,76 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 		} // End if oldvalue != newvalue
 
 	} // End for
-		
+
 	log_add(9, serialize($log['new']), serialize($log['old']));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
-	
+
 
 } // End elseif action == doEditUserinfo
+
+elseif($action == "editPreferences" && isset($_GET['user'])) {
+	$userID = $_GET['user'];
+	$userAdmin_acl = acl_access("userAdmin", "", 1);
+	if($user == $sessioninfo->userID);
+	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
+	else die(lang("Not access to edit userinfo"));
+
+	$content .= "<table><form method=POST action=?module=edituserinfo&action=doEditPreferences&user=$userID>";
+	for($i=0;$i<count($userpersonalprefs);$i++) {
+
+		$prefname = $userpersonalprefs[$i]['name'];
+		$qFindPref = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE userID = '".db_escape($userID)."' AND name = '$prefname'");
+		$rFindPref = db_fetch($qFindPref);
+
+		$content .= "<tr><td>";
+		switch($userpersonalprefs[$i]['type']) {
+			case "checkbox":
+				$content .= "<input type='checkbox' name='$prefname'";
+				if($rFindPref->value == "on") $content .= " CHECKED";
+				if($userpersonalprefs[$i]['required_on']) $content .= " DISABLED";
+				$content .= ">";
+
+		} // End switch
+
+		$content .= "</td><td>";
+		$content .= lang($userpersonalprefs[$i]['displayName'], "edituserinfo");
+		$content .= "</td></tr>";
+
+	} // End for
+	$content .= "<tr><td></td><td><input type=submit value='".lang("Save", "edituserinfo")."'></tr>";
+	$content .= "</form></table>";
+} // end elseif action = editPreferences
+
+elseif($action == "doEditPreferences" && isset($_GET['user'])) {
+	$userID = $_GET['user'];
+	$userAdmin_acl = acl_access("userAdmin", "", 1);
+	if($user == $sessioninfo->userID);
+	elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
+	else die(lang("Not access to edit userinfo"));
+
+	for($i=0;$i<count($userpersonalprefs);$i++) {
+		$prefname = $userpersonalprefs[$i]['name'];
+		$POST = $_POST[$prefname];
+		if($userpersonalprefs[$i]['required_on'] == 1) $POST = "on";
+		$qFindPref = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE userID = '".db_escape($userID)."' AND name = '$prefname'");
+		$numFindPref = db_num($qFindPref);
+
+		if($numFindPref == 0) {
+			db_query("INSERT INTO ".$sql_prefix."_userPreferences
+				SET userID = '".db_escape($userID)."',
+				name = '$prefname',
+				value = '".db_escape($POST)."'");
+		} // End if
+		else
+			db_query("UPDATE ".$sql_prefix."_userPreferences SET value = '".db_escape($POST)."'
+				WHERE userID = '".db_escape($userID)."'
+				AND name = '$prefname'");
+
+	} // End for
+	header("Location: ?module=edituserinfo&action=editPreferences&user=$userID&change=success");
+
+}
 else
 {
 	// no action defined? ship user back to start.

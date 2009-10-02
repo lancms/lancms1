@@ -133,8 +133,28 @@ if($action == "register")
 			registerIP = '".$_SERVER['REMOTE_ADDR']."',
 			registerTime = '".time()."'
 		");
-		
+
+
+
 		$newid = mysql_insert_id ();
+
+		// Fix default preferences
+		for($i=0;$i<count($userpersonalprefs);$i++) {
+			if($userpersonalprefs[$i]['default_register'] == 1) {
+				$prefname = $userpersonalprefs[$i]['name'];
+				switch ($userpersonalprefs[$i]['type']) {
+
+					case "checkbox":
+						db_query("INSERT INTO ".$sql_prefix."_userPreferences
+							SET userID = '$newid',
+							name = '$prefname',
+							value = 'on'");
+//						echo "FOO?";
+//						die();
+						break;
+				} // End switch
+			} // End if userpersonalprefs_default_register == 1
+		} // end for
 
 		$logmsg['userid'] = $newid;
 		$logmsg['username'] = $username;
@@ -149,7 +169,7 @@ if($action == "register")
 		$logmsg['street'] = $address;
 		$logmsg['postnumber'] = $postnumber;
 		$logmsg['cellphone'] = $cellphone;
-		
+
 		if ($sessioninfo->userID <= 1)
 		{
 			// anonymous user registers = logtype 4
