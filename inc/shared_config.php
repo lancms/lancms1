@@ -57,6 +57,7 @@ $globalaccess[] = 'clanAdmin';
 $globalaccess[] = 'userAdmin';
 $globalaccess[] = 'translate';
 $globalaccess[] = 'logview';
+$globalaccess[] = 'sendSMS';
 
 ## SpecialACLs
 $specialaccess[] = 'groupaccess'; // Used inside groups

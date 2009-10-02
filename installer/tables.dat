@@ -329,3 +329,14 @@ TABLE [prefix]_userPreferences
 	name,			varchar(30),		PRI,	,	,
 	value,			varchar(35),		,	,	,
 }
+
+TABLE [prefix]_cronjobs
+{
+#	NAME			TYPE			KEY	NULL	DEFAULT		EXTRA
+	jobID,			int(11),		PRI,	,	,		auto_increment
+	cronModule,		varchar(20),		,	,	,
+	toUser,			int(11),		,	,	,
+	content,		text,			,	,	,
+	senderID,		int(11),		,	,	,
+	finishTime,		int(11),		,	0,	,
+}
