@@ -5,8 +5,8 @@ $qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule =
 
 while($rFindJobs = db_fetch($qFindJobs)) {
 
-
-	$URL = "http://gate1.sms4you.no/kundesenter/sendsms.php?user=".$SMS_user."&pass=".$SMS_pass."&fromAlpha=".$SMS_from."&destination=".$rFindJobs->toUser."&message=".$rFindJobs->content;
+	$message = str_replace(" ", "%20", $rFindJobs->content);
+	$URL = "http://gate1.sms4you.no/kundesenter/sendsms.php?user=".$SMS_user."&pass=".$SMS_pass."&fromAlpha=".$SMS_from."&destination=".$rFindJobs->toUser."&message=".$message;
 #	echo $URL;
 	$fp = fopen("$URL", "r");
 	db_query("UPDATE ".$sql_prefix."_cronjobs SET finishTime = '".time()."' WHERE jobID = '$rFindJobs->jobID'");
