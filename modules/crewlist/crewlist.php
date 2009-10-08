@@ -11,7 +11,7 @@ if(empty($action)) {
 
 	$qGetCrewMembers = db_query("SELECT DISTINCT gm.userID FROM ".$sql_prefix."_group_members gm 
 		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID 
-		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No'");
+		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No' AND acl.eventID = '$sessioninfo->eventID'");
 
 	$content .= '<table>';
 	$content .= "<tr><th>";
