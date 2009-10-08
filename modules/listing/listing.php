@@ -51,11 +51,18 @@ elseif($action == "viewlist" && isset($list)) {
 	$SQL = $listingtype[$list]['SQL'];
 	$content .= "<table>";
 	$qListing = db_query($SQL);
-
+	$column_count = db_num_fields ($qListing);
+	$content .= "<tr>";
+	for ($column_num = 0;$column_num < $column_count;$column_num++)
+	{
+	        $field_name = db_field_name($qListing, $column_num);
+		$content .= "<th>".lang($field_name, "listing")."</th>\n";
+	}
+	$content .= "</tr>";
 	while($rListing = db_fetch_assoc($qListing)) {
 		$content .= "<tr>";
-		for($i=0;$i<count($rListing);$i++) {
-			$content .= "<td>".$rListing[$i]."</td>\n";
+		foreach($rListing AS $name => $value) {
+			$content .= "<td>".$value."</td>\n";
 		} // End for
 
 		$content .= "</tr>\n\n";

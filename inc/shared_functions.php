@@ -53,6 +53,37 @@ function db_fetch_assoc($query) {
 } // End function db_fetch
 
 
+#### return db_num_fields 
+function db_num_fields($query) {
+	global $sql_type;
+
+	switch ($sql_type) {
+		case "mysql":
+			$return = mysql_num_fields($query);
+			break;
+		default:
+			die("Something seriously wrong with variable sql_type in function db_num_fields");
+	} // End switch ($sql_type)
+
+	return $return;
+} // End function db_num_fields
+
+
+### return db_num_fields
+function db_field_name($query, $column_num) {
+	global $sql_type;
+
+	switch($sql_type) {
+		case "mysql":
+			$return = mysql_field_name($query, $column_num);
+			break;
+		default:
+			die("Something seriously wrong with variable sql_type in function db_field_name");
+
+	} // End switch
+
+	return $return;
+} // End function db_field_name
 ######################################################
 function db_escape($var)
 {
