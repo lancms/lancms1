@@ -101,6 +101,7 @@ TABLE [prefix]_lang
 	language,	varchar(30),	,	,	english,
 	module,		varchar(30),	,	,	,
 	translated,	text,		,	,	,
+	ignoreExport,	tinyint(1),	,	,	0,
 }
 
 TABLE [prefix]_static

@@ -1050,3 +1050,30 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("economy
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til kvittering")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("economy")."' AND string = '".db_escape("Add receipt")."'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Forhåndsbetalt billett hos forhandler")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("Prepaid ticket reseller")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Rediger mine innstillinger")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Edit my preferences")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Tillat andre å se min e-post-adresse")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("edituserinfo")."' AND string = '".db_escape("Allow other users to see my mailadress")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ikke tilgang til å redigere brukerinformasjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Not access to edit userinfo")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Liste over grupper med globale tilganger")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("List groups with global access")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Send SMS")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("SMS")."' AND string = '".db_escape("Send SMS")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Vis liste")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("listing")."' AND string = '".db_escape("Show list")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Privat")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Private")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Deltager-tilgang")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Attendee-access")."'");
+

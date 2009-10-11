@@ -11,7 +11,7 @@ if(empty($mode)) $mode = "untranslated";
 if(!isset($action)) {
 	switch ($mode) {
 		case "untranslated":
-			$queryWhere = "language = '".db_escape($language)."' AND translated IS NULL";
+			$queryWhere = "language = '".db_escape($language)."' AND translated IS NULL AND ignoreExport = 0";
 			break;
 		default:
 			$queryWhere = "1"; // Default to anything
@@ -28,6 +28,8 @@ if(!isset($action)) {
 		$content .= "</td><td>";
 		$content .= "<textarea name=translated cols=50 rows=3>$rGetTranslateList->translated</textarea>";
 		$content .= "</td><td>";
+		$content .= "<input type=checkbox name='ignoreExport'>";
+		$content .= "</td><td>";
 		$content .= "<input type=submit value='".lang("Save", "translate")."'>\n";
 		$content .= "</form></td></tr>";
 	} // End while
@@ -39,11 +41,15 @@ elseif($action == "changeTranslation" && isset($_GET['translationID'])) {
 	$translationID = $_GET['translationID'];
 	$translated = $_POST['translated'];
 	$language = $_GET['language'];
-
+	$ignoreExport = $_POST['ignoreExport'];
+	if($ignoreExport == 'on') $ignoreExport = 1;
+	else $ignoreExport = 0;
+#	die($ignoreExport." :: ".$_POST['ignoreExport']);
 	if(empty($translation)) $translation = NULL;
 
 	db_query("UPDATE ".$sql_prefix."_lang
-		SET translated = '".db_escape($translated)."'
+		SET translated = '".db_escape($translated)."',
+		ignoreExport = '$ignoreExport'
 		WHERE ID = '".db_escape($translationID)."'");
 	header("Location: ?module=translate&language=$language");
 } // End elseif action == changeTranslation
@@ -54,7 +60,7 @@ elseif($action == "syncTranslate") {
 
 	$data = "<?php\n\n";
 
-	$qFindTranslations = db_query("SELECT * FROM ".$sql_prefix."_lang WHERE translated IS NOT NULL");
+	$qFindTranslations = db_query("SELECT * FROM ".$sql_prefix."_lang WHERE translated IS NOT NULL AND ignoreExport = 0");
 	while($rFindTranslations = db_fetch($qFindTranslations)) {
 // Doesn't look good, but we're printing it to an outfile
 $data .= 'db_query("UPDATE ".$sql_prefix."_lang SET translated = \'".db_escape("'.$rFindTranslations->translated.'")."\'
