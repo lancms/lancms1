@@ -156,6 +156,7 @@ $userprefs[9]['displayName'] = 'Cellphone';
 $listingtype[0]['type'] = 'eventAttendee';
 $listingtype[0]['name'] = 'List all attendees on current event';
 $listingtype[0]['SQL'] = "SELECT u.firstName,u.lastName,u.nick FROM GO_users u JOIN GO_tickets t ON t.user=u.ID WHERE t.paid = 'yes' AND t.eventID=$sessioninfo->eventID";
+#$listingtype[0]['displaymode'] = 'CSV';
 
 
 $listingtype[1]['type'] = 'yearAttendee';

@@ -168,19 +168,21 @@ tinyMCE.init({
 ';
 
 
+if(!$hide_smarty) {
+
+	$smarty->assign("grouplist", $design_grouplist);
+	$smarty->assign("eventlist", $design_eventlist);
+	$smarty->assign("userinfo", $design_userinfo);
+	$smarty->assign("sessioninfo", $sessioninfo);
+	$smarty->assign("eventmenu", $design_eventmenu);
+	$smarty->assign("menu", $design_menu);
+
+	$smarty->assign("content", $content);
+	$smarty->assign("title", $design_title);
+	$smarty->assign("head", $design_head);
 
 
-$smarty->assign("grouplist", $design_grouplist);
-$smarty->assign("eventlist", $design_eventlist);
-$smarty->assign("userinfo", $design_userinfo);
-$smarty->assign("sessioninfo", $sessioninfo);
-$smarty->assign("eventmenu", $design_eventmenu);
-$smarty->assign("menu", $design_menu);
 
-$smarty->assign("content", $content);
-$smarty->assign("title", $design_title);
-$smarty->assign("head", $design_head);
+	$smarty->display($smarty_display);
 
-
-
-$smarty->display($smarty_display);
+}

@@ -49,6 +49,9 @@ elseif($action == "option" && isset($list)) {
 
 elseif($action == "viewlist" && isset($list)) {
 	$SQL = $listingtype[$list]['SQL'];
+	if($listingtype[$list]['displaymode'] == 'CSV') {
+		$hide_smarty = 1;
+	}
 	$content .= "<table>";
 	$qListing = db_query($SQL);
 	$column_count = db_num_fields ($qListing);
@@ -72,5 +75,10 @@ elseif($action == "viewlist" && isset($list)) {
 	} // End while
 
 	$content .= "</table>";
+
+	if($hide_smarty == 1) {
+		## FIXME: Should add some replaces to convert tables to CSV
+		echo $content;
+	}
 
 } // End elseif
