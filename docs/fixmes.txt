@@ -1,12 +1,6 @@
 config.php:    $language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
-inc/JPGraph/jpgraph4/jpgraph_gantt.php:			// FIXME: The rounding problem needs to be solved properly ...
-inc/JPGraph/jpgraph5/jpgraph_gantt.php:			// FIXME: The rounding problem needs to be solved properly ...
 inc/shared_config.php:$userpersonalprefs[0]['default_register'] = 1; // Have this enabled per default when user registers # FIXME, should not be enabled
 inc/shared_config.php:$userpersonalprefs[0]['required_on'] = 0; // Don't let the user disable this # FIXME, should not be enabled
-inc/shared_functions.php:	// FIXME: uses mysql-functions directly
-inc/shared_functions.php:	// FIXME: uses mysql-functions directly
-inc/shared_functions.php:	// FIXME: direct mysql-function
-inc/shared_functions.php:	// FIXME: mysql-function
 index.php:// FIXME: error and hack-checking
 index.php:// FIXME: this uses userAdmin as an eventACL, while it should be a global ACL.
 index.php:// FIXME:This should probably be a function that checks what events you have access to

@@ -512,8 +512,7 @@ function log_get ($logid)
 
 	$result = db_query ($query);
 
-	// FIXME: uses mysql-functions directly
-	if (!mysql_num_rows ($result))
+	if (!db_num ($result))
 	{
 		return (false);
 	}
@@ -533,8 +532,7 @@ function tickettype_getname ($typeid)
 	$query = sprintf ('SELECT name FROM %s_ticketTypes WHERE ticketTypeID=%s', $sql_prefix, db_escape ($typeid));
 	$result = db_query ($query);
 
-	// FIXME: uses mysql-functions directly
-	if (!mysql_num_rows ($result))
+	if (!db_num ($result))
 	{
 		return (false);
 	}
@@ -555,8 +553,7 @@ function user_getpass ($userid)
 	$query = sprintf ('SELECT password FROM %s_users WHERE ID=%s', $sql_prefix, db_escape ($userid));
 	$result = db_query ($query);
 
-	// FIXME: direct mysql-function
-	if (!mysql_num_rows ($result))
+	if (!db_num ($result))
 	{
 		// no such user?!
 		return (false);
@@ -617,8 +614,7 @@ function user_exists ($userid)
 	$query = sprintf ('SELECT ID from %s_users WHERE ID=%s', $sql_prefix, db_escape ($userid));
 	$result = db_query ($query);
 
-	// FIXME: mysql-function
-	if (mysql_num_rows ($result))
+	if (db_num ($result))
 	{
 		return (true);
 	}
