@@ -184,9 +184,9 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
         $rFindTicketType = db_fetch($qFindTicketType);
 
         if($rFindTicketType->type == 'prepaid') {
-                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes', status = 'notused' WHERE ticketID = '".db_escape($ticket)."'");
+                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes', paidTime = '".time()."', status = 'notused' WHERE ticketID = '".db_escape($ticket)."'");
         } else {
-                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes' WHERE ticketID = '".db_escape($ticket)."'");
+                db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes', paidTime = '".time()."' WHERE ticketID = '".db_escape($ticket)."'");
         }
 	
 	$newlog[] = 'paid';
