@@ -11,7 +11,7 @@ if (empty($module))
 #	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
 #	$rFindStatic = db_fetch($qFindStatic);
 #	$content .= $rFindStatic->page;
-	$content .= display_systemstatic ("index");
+	$content .= display_systemstatic ("index", $sessioninfo->eventID);
 }
 elseif (isset ($module) && file_exists ('modules/'.$module.'/'.$module.'.php'))
 {

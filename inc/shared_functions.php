@@ -396,10 +396,10 @@ function display_username($userID) {
 	return $rCheckUserinfo->firstname." ".$rCheckUserinfo->lastname." (".$rCheckUserinfo->nick.")";
 } // End display_username($userID)
 
-function display_systemstatic($message) {
+function display_systemstatic($message, $eventID=1) {
 	global $sql_prefix;
 	
-	$qFindMessage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type = 'system' AND header = '".db_escape($message)."'");
+	$qFindMessage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type = 'system' AND header = '".db_escape($message)."' AND eventID = '$eventID'");
 	$rFindMessage = db_fetch($qFindMessage);
 
 	return $rFindMessage->page;

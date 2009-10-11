@@ -95,7 +95,9 @@ elseif($action == "editPage" && !empty($page))
 	$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE ID = '".db_escape($page)."'");
 
 	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
-		$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = '".db_escape($page)."' AND type = 'system' AND eventID = 1");
+		if($page == 'index') $findEvent = $sessioninfo->eventID;
+		else $findEvent = 1;
+		$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = '".db_escape($page)."' AND type = 'system' AND eventID = '$findEvent'");
 	} else {
 		die("Something went wrong... hacking?");
 	} // End else
@@ -135,12 +137,15 @@ elseif($action == "doEditPage" && !empty($page))
 			WHERE ID = ".db_escape($page));
 		header("Location: ?module=static&action=viewPage&page=$page");
 	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
-		$qFindExisting = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type='system' AND header = '".db_escape($page)."'");
+		if($page == 'index') $event = $sessioninfo->eventID;
+		else $event = 1;
+
+		$qFindExisting = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type='system' AND header = '".db_escape($page)."' AND eventID = '$event'");
 		if(db_num($qFindExisting) == 0) {
 			db_query("INSERT INTO ".$sql_prefix."_static SET 
 				header = '".db_escape($page)."',
 				page = '".db_escape($pageContent)."',
-				eventID = 1,
+				eventID = '$event',
 				type='system',
 				createdByUser = ".$sessioninfo->userID.",
 				createdTimestamp = ".time());
@@ -150,6 +155,7 @@ elseif($action == "doEditPage" && !empty($page))
 	                        modifiedByUser = ".$sessioninfo->userID.",
          	                modifiedTimestamp = ".time()."
 				WHERE header = '".db_escape($page)."'
+				AND eventID = '$event'
 				AND type = 'system'");
 		} // End else
 		header("Location: ?module=static&action=listEventPages");
