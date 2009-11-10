@@ -238,7 +238,7 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 		$newlog[] = $user;
 		$newlog[] = $ticketType;
 
-		log_add("arrival", "doAddTicket", serialize($newlog));
+		log_add("arrival", "doAddOnsiteTicket", serialize($newlog));
 		header("Location: ?module=arrival&action=ticketdetail&ticket=$rFindTicket->ticketID");
 	} // End if db_num
 	

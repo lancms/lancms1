@@ -134,7 +134,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 
 	} // End for
 
-	log_add("editinfo", "doEditUserinfo", serialize($log['new']), serialize($log['old']));
+	log_add("edituser", "doEditUserinfo", serialize($log['new']), serialize($log['old']));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
 

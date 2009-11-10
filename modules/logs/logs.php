@@ -22,7 +22,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 		$content .= "<th>".lang ("URL", "logs")."</th>";
 		$content .= "</tr>";
 
-		$logquery = sprintf ('SELECT ID, userID, INET_NTOA(userIP) as userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL, logTime FROM %s_logs ORDER BY ID DESC LIMIT %s', $sql_prefix, $num_of_rows);
+		$logquery = sprintf ('SELECT ID, userID, INET_NTOA(userIP) as userIP, userHost, eventID, logModule, logFunction, logTextNew, logTextOld, logURL, logTime FROM %s_logs ORDER BY ID DESC LIMIT %s', $sql_prefix, $num_of_rows);
 		$logresult = db_query ($logquery);
 		
 		$numrow = 1;
@@ -39,7 +39,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<td>".$log->ID."</td>";
 			$content .= "<td>".$log->logTime."</td>";
 			$content .= "<td>".display_username($log->userID)."</td>";
-			$content .= "<td>".lang (log_logtype ($log->logType), "logs")."</td>";
+			$content .= "<td>".lang ("log_".$log->logModule."__". $log->logFunction, "logs")."</td>";
 			$content .= "<td>".$userip."</td>";
 			$content .= "<td>".$log->logURL."</td>";
 			$content .= "</tr>";
@@ -77,7 +77,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<tr class='logrow2'><th>".lang ("Timestamp", "logs")."</th><td>".$log->logTime."</td></tr>";
 			$content .= "<tr class='logrow2'><th>".lang ("IP", "logs")." / ".lang ("Host", "logs")."</th><td>".$userip."</td></tr>";
 			$content .= "<tr class='logrow1'><th>".lang ("URL", "logs")."</th><td>".$log->logURL."</td></tr>";
-			$content .= "<tr class='logrow2'><th>".lang ("Logtype", "logs")."</th><td>".lang (log_logtype ($log->logType), "logs")."</td></tr>";
+			$content .= "<tr class='logrow2'><th>".lang ("Logtype", "logs")."</th><td>".lang ("log_".$log->logModule."__".$log->logFunction, "logs")."</td></tr>";
 			$content .= "</table>";
 
 			if (($log->logType == 5) or ($log->logType == 4))
