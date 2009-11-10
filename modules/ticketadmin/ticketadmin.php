@@ -113,6 +113,12 @@ elseif($action == "addtickettype") {
         active = '$active',
         eventID = '$eventID'");
 
+    $log_new[] = $name;
+    $log_new[] = $price;
+    $log_new[] = $type;
+    $log_new[] = $active;
+    log_add("ticketadmin", "addTicketType", serialize($log_new));
+
     header("Location: ?module=ticketadmin");
 
 } // end if action == addtickettype
@@ -130,7 +136,12 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
         type = '$type', 
         active = '$active'
         WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
+    $log_new[] = $name;
+    $log_new[] = $price;
+    $log_new[] = $type;
+    $log_new[] = $active;
 
+    log_add("ticketadmin", "doEditTicket", serialize($log_new));
     header("Location: ?module=ticketadmin");
 } // End if action = doeditticket
 
