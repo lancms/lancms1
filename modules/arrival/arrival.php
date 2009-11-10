@@ -168,7 +168,7 @@ elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
 	$newlog[] = 'notpaid';
 	$newlog[] = $ticket;
 	$oldlog[] = 'paid';
-	log_add(11, serialize($newlog), serialize($oldlog));
+	log_add("arrival", "marknotpaid", serialize($newlog), serialize($oldlog));
 
 	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 	
@@ -192,7 +192,7 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
 	$newlog[] = 'paid';
 	$newlog = $ticket;
 	$oldlog[] = 'notpaid';
-	log_add(11, serialize($newlog), serialize($oldlog));
+	log_add("arrival", "markpaid", serialize($newlog), serialize($oldlog));
         header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 
 }
@@ -238,7 +238,7 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 		$newlog[] = $user;
 		$newlog[] = $ticketType;
 
-		log_add(10, serialize($newlog));
+		log_add("arrival", "doAddTicket", serialize($newlog));
 		header("Location: ?module=arrival&action=ticketdetail&ticket=$rFindTicket->ticketID");
 	} // End if db_num
 	
@@ -260,7 +260,7 @@ elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == (
 
 	db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
 	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'deleted' WHERE ticketID = '".db_escape($ticket)."'");
-	log_add(12, serialize($lognew), serialize($logold));
+	log_add("arrival", "deleteTicket", serialize($lognew), serialize($logold));
 	
 	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 

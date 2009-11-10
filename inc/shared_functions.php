@@ -408,7 +408,7 @@ function display_systemstatic($message, $eventID=1) {
 #############
 
 // adding logentry:
-function log_add ($logtype, $lognew="0", $logold="0", $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
+function log_add ($logmodule, $logfunction, $lognew="0", $logold="0", $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
 {
 
 
@@ -447,7 +447,7 @@ function log_add ($logtype, $lognew="0", $logold="0", $userid=0, $eventid=0, $us
 	{
 		$logurl = $_SERVER['REQUEST_URI'];
 	}
-	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logType, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, %s, "%s", "%s", "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logtype), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
+	$query = sprintf ('INSERT INTO %s_logs (userID, userIP, userHost, eventID, logModule, logFunction, logTextNew, logTextOld, logURL) VALUES (%s, INET_ATON("%s"), %s, %s, "%s", "%s", "%s", "%s", "%s")', $sql_prefix, db_escape ($userid), db_escape ($userip), db_escape ($userhost), db_escape ($eventid), db_escape ($logmodule), db_escape($logfunction), db_escape ($lognew), db_escape ($logold), db_escape ($logurl));
 
 	db_query ($query);
 }

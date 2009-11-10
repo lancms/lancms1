@@ -173,12 +173,12 @@ if($action == "register")
 		if ($sessioninfo->userID <= 1)
 		{
 			// anonymous user registers = logtype 4
-			log_add (4, serialize ($logmsg));
+			log_add ("register", "anonymous", serialize ($logmsg));
 		}
 		else
 		{
 			// logged in user registers a new one = logtype 5
-			log_add (5, serialize ($logmsg));
+			log_add ("register", "registered", serialize ($logmsg));
 		}
 
 		$content .= lang("User registered", "register");

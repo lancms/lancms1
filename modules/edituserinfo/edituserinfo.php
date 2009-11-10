@@ -47,7 +47,7 @@ elseif ($action == 'savepassword')
 	// else, set new password:
 	$oldpass = user_getpass ($sessioninfo->userID);
 	user_setpass ($sessioninfo->userID, $md5p1);
-	log_add (8, $md5p1, $oldpass);
+	log_add ("edituser", "setNewPass", $md5p1, $oldpass);
 
 	$content .= "<h2>".lang ("Password changed", "edituserinfo")."</h2>";
 }
@@ -134,7 +134,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 
 	} // End for
 
-	log_add(9, serialize($log['new']), serialize($log['old']));
+	log_add("editinfo", "doEditUserinfo", serialize($log['new']), serialize($log['old']));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
 

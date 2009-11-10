@@ -81,7 +81,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 			WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
 
 		// logtype, 1 (login). 
-		log_add (1, NULL, NULL, $userID);
+		log_add ("login", "success", NULL, NULL, $userID);
 
 		header("Location: index.php"); // Move to index.php, should give a new userinfo-box
 	} // End if passwords match
@@ -93,7 +93,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 
 		// but log it:
 		// logtype, 3 (failed login)
-		log_add (3, NULL, NULL, $userID);
+		log_add ("login", "failed_password", NULL, NULL, $userID);
 
 	} // End else (password does not match)
 
@@ -103,7 +103,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 elseif($action == "logout")
 {
 	// logtype, 2 (logout).
-	log_add (2);
+	log_add ("login", "logout");
 
 	db_query("UPDATE ".$sql_prefix."_session 
 		SET userID = 1 

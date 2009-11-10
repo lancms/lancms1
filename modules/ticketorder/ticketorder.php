@@ -194,7 +194,7 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
     } // End while(numtickets
     $logmsg[] = $tickettype;
     $logmsg[] = $_POST['numTickets'];
-    log_add(6, serialize($logmsg));
+    log_add("ticketorder", "buyticket", serialize($logmsg));
     header("Location: ?module=ticketorder");
 } // End action = buyticket
 elseif($action == "buyticket" && !empty($_POST['resellercode'])) {
@@ -290,7 +290,7 @@ elseif(($action == "cancelTicket" || $action == "doCancelTicket") && isset($_GET
 		$rGetSeating = db_fetch($qGetSeating);
 		$logmsg[] = $rGetSeating->seatX."x".$rGetSeating->seatY."y";
 		db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
-		log_add(7, serialize($logmsg));
+		log_add("ticketorder", "cancelTicket", serialize($logmsg));
 		header("Location: ?module=ticketorder");
 	}
 
