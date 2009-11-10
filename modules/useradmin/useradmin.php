@@ -2,8 +2,10 @@
 
 $design_head .= "<link rel='stylesheet' href='templates/shared/useradmin.css' type='text/css' />";
 
-// FIXME: global acl as eventid, confused, still, am.
-if (acl_access ("userAdmin", "", $sessioninfo->eventID) == 'No')
+$acl_useradmin = acl_access("userAdmin", "", 1);
+
+// Checking if no access to useradmin
+if ($acl_useradmin == 'No')
 {
 	header ('Location: index.php?emsg="No access"');
 	die ();
@@ -100,6 +102,9 @@ elseif ($action == 'details')
 	else
 	{
 		$content .= "<h2>User details: ".display_username ($id)."</h2>";
+		if($acl_useradmin == 'Admin' || $acl_useradmin == 'Write') {
+			$content .= "<a href=?module=edituserinfo&action=editUserinfo&user=$id>".lang("Edit userinfo", "useradmin")."</a> <br />";
+		}
 		$content .= "<a href='javascript:history.back ()'>Back</a>";
 	}
 }
