@@ -34,20 +34,20 @@ if (!isset ($action) or empty ($action))
 }
 elseif ($action == 'listall')
 {
-	$content .= "<h2>List of all users</h2>";
-	$content .= "<a href='index.php?module=useradmin'>Back to user administration</a>";
+	$content .= "<h2>".lang("List of all users", "useradmin")."</h2>";
+	$content .= "<a href='index.php?module=useradmin'>".lang("Back to user administration", "useradmin")."</a>";
 	$users = user_getall ();
 
 	$content .= "<table class='userlist'>";
 	$content .= "<tr>";
-	$content .= "<th>ID</th";
-	$content .= "<th>Username</th";
-	$content .= "<th>Firstname</th";
-	$content .= "<th>Lastname</th";
-	$content .= "<th>Email</th";
-	$content .= "<th>Address</th";
-	$content .= "<th>Postnumber</th";
-	$content .= "<th>Cellphonee</th";
+	$content .= "<th>".lang("ID", "useradmin")."</th>";
+	$content .= "<th>".lang("Username", "useradmin")."</th>";
+	$content .= "<th>".lang("Firstname", "useradmin")."</th>";
+	$content .= "<th>".lang("Lastname", "useradmin")."</th>";
+	$content .= "<th>".lang("Email", "useradmin")."</th>";
+	$content .= "<th>".lang("Address", "useradmin")."</th>";
+	$content .= "<th>".lang("Postnumber", "useradmin")."</th>";
+	$content .= "<th>".lang("Cellphone", "useradmin")."</th>";
 	$content .= "</tr>";
 
 	$ucount = 1;
@@ -96,7 +96,7 @@ elseif ($action == 'details')
 	}
 	if (!user_exists ($id))
 	{
-		$content .= "<h2 class='userred'>No user with ID ".$id."</h2>";
+		$content .= "<h2 class='userred'>".lang("No user with ID", "useradmin")." ".$id."</h2>";
 
 	}
 	else
@@ -105,7 +105,7 @@ elseif ($action == 'details')
 		if($acl_useradmin == 'Admin' || $acl_useradmin == 'Write') {
 			$content .= "<a href=?module=edituserinfo&action=editUserinfo&user=$id>".lang("Edit userinfo", "useradmin")."</a> <br />";
 		}
-		$content .= "<a href='javascript:history.back ()'>Back</a>";
+		$content .= "<a href='javascript:history.back ()'>".lang("Back", "useradmin")."</a>";
 	}
 }
 else
