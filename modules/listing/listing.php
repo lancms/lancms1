@@ -51,6 +51,7 @@ elseif($action == "viewlist" && isset($list)) {
 	$SQL = $listingtype[$list]['SQL'];
 	if($listingtype[$list]['displaymode'] == 'CSV') {
 		$hide_smarty = 1;
+		$format = "CSV";
 	}
 	$content .= "<table>";
 	$qListing = db_query($SQL);
@@ -59,16 +60,16 @@ elseif($action == "viewlist" && isset($list)) {
 	for ($column_num = 0;$column_num < $column_count;$column_num++)
 	{
 	        $field_name = db_field_name($qListing, $column_num);
-		$content .= "<th>".lang($field_name, "listing")."</th>\n";
+		$content .= "<th>".lang($field_name, "listing")."</th>";
 	}
 	$content .= "</tr>";
 	while($rListing = db_fetch_assoc($qListing)) {
 		$content .= "<tr>";
 		foreach($rListing AS $name => $value) {
-			$content .= "<td>".$value."</td>\n";
+			$content .= "<td>".$value."</td>";
 		} // End for
 
-		$content .= "</tr>\n\n";
+		$content .= "</tr>";
 
 
 #		print_r($rListing);
@@ -78,6 +79,14 @@ elseif($action == "viewlist" && isset($list)) {
 
 	if($hide_smarty == 1) {
 		## FIXME: Should add some replaces to convert tables to CSV
+		$content = str_replace("<table>", "", $content);
+		$content = str_replace("</td>", "", $content);
+		$content = str_replace("</tr>", "", $content);
+		$content = str_replace("</th>", "", $content);
+		$content = str_replace("<tr>", "\n", $content);
+		$content = str_replace("<td>", ";", $content);
+		$content = str_replace("<th>", ";", $content);
+		$content = str_replace("\n;", "\n", $content);
 		echo $content;
 	}
 
