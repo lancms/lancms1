@@ -23,6 +23,7 @@ $eventconfig['checkbox'][] = 'seating_enabled';
 $eventconfig['checkbox'][] = 'enable_wannabe';
 $eventconfig['checkbox'][] = 'enable_composystem';
 $eventconfig['checkbox'][] = 'enable_reseller';
+$eventconfig['checkbox'][] = 'enable_crewlist';
 
 
 ## Globalconfigs

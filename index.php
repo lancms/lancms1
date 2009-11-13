@@ -62,7 +62,7 @@ if ($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=wannabe\">".lang("Wannabe", "index")."</a></li>\n";
 	if (config ("enable_composystem", $sessioninfo->eventID))
 		$design_eventmenu .= "<li><a href=\"?module=compos\">".lang("Composignup", "index")."</a></li>\n";
-	if (acl_access ("crewlist", "", $sessioninfo->eventID) != 'No')
+	if (config ("enable_crewlist", $sessioninfo->eventID) &&acl_access ("crewlist", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=crewlist\">".lang("Crewlist", "index")."</a></li>\n";
 	$acl_ticketadmin = acl_access("ticketadmin", "", $sessioninfo->eventID);
 	if ($acl_ticketadmin == 'Admin' || acl_ticketadmin == 'Write')
