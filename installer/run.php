@@ -118,6 +118,8 @@ if(!isset($_GET["demodata"]))
 
 include_once 'add_default_content.php';
 include_once 'language.php';
+
+log_add("installer", "install/upgrade");
 ?>
 
 <h1>Finito!</h1>

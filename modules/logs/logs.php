@@ -31,7 +31,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$userip = $log->userIP;
 			if (!empty($log->userHost))
 			{
-				$userip .= " (".$log-userHost.")";
+				$userip .= " (".$log->userHost.")";
 			}
 
 			$content .= "<tr class='logrow".$numrow."' onClick='location.href=\"index.php?module=logs&action=details&id=".$log->ID."\"' >";
