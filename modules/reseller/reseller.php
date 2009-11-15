@@ -47,4 +47,9 @@ elseif($action == "addTicket" && !empty($_GET['type'])) {
 		} // End if
 	} // End while
 
+	$log_new['type'] = $type;
+	$log_new['amount'] = $amount;
+
+	log_add("reseller", "addTicket", serialize($log_new));
+
 } // End addTicket

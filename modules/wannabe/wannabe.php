@@ -88,6 +88,7 @@ elseif($action == "doApplication") {
 	$qFindCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 	while($rFindCrews = db_fetch($qFindCrews)) {
 		$post = $_POST['crew'.$rFindCrews->ID];
+		$log_new['crew'.$rFindCrews->ID] = $post;
 		$qCheckResponded = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrewResponse
 			WHERE crewID = '$rFindCrews->ID' AND userID = '$sessioninfo->userID'");
 		if(db_num($qCheckResponded) > 0) {
@@ -109,6 +110,7 @@ elseif($action == "doApplication") {
 	while($rFindQuestions = db_fetch($qFindQuestions)) {
 		#$appID = "appID_"$rFindQuestions->ID'
 		$post = $_POST['appID_'.$rFindQuestions->ID];
+		$log_new['appID_'.$rFindQuestions->ID];
 		#die($post);
 		$qCheckResponded = db_query("SELECT * FROM ".$sql_prefix."_wannabeResponse WHERE
 			questionID = $rFindQuestions->ID AND userID = $sessioninfo->userID");
@@ -124,6 +126,7 @@ elseif($action == "doApplication") {
 				");
 
 	} // End while
+	log_add("wannabe", "doApplication", serialize($log_new));
 	header("Location: ?module=wannabe");
 } // End doApplication
 
@@ -137,5 +140,6 @@ elseif($action == "doRemoveApplication") {
 
 	db_query("DELETE FROM ".$sql_prefix."_wannabeResponse WHERE questionID IN (SELECT ID FROM ".$sql_prefix."_wannabeQuestions WHERE eventID = '$sessioninfo->eventID') AND userID = '$sessioninfo->userID'");
 	db_query("DELETE FROM ".$sql_prefix."_wannabeCrewResponse WHERE crewID IN (SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = '$sessioninfo->eventID') AND userID = '$sessioninfo->userID'");
+	log_add("wannabe", "doRemoveApplication");
 	header("Location: ?module=wannabe");
 }

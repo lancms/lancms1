@@ -165,6 +165,11 @@ elseif($action == "doAddAnswer" && $acl_access == "Admin") {
 		response = '".db_escape($response)."',
 		extra = '".db_escape($extra)."'");
 
+	$log_new['questionID'] = $questionID;
+	$log_new['response'] = $response;
+	$log_new['extra'] = $extra;
+	log_add("wannabeadmin", "doAddAnswer", serialize($log_new));
+
 	header("Location: ?module=wannabeadmin&action=editAnswers&questionID=".$questionID);
 
 } // end action == doAddAnswer
@@ -188,6 +193,10 @@ elseif($action == "addQuestion" && $acl_access == "Admin")
 		LIMIT 0,1");
 	$rFindQuestion = db_fetch($qFindQuestion);
 	$questionID = $rFindQuestion->ID;
+	
+	$log_new['question'] = $question;
+	$log_new['questionType'] = $questionType;
+	log_add("wannabeadmin", "addQuestion", serialize($log_new));
 
 	header("Location: ?module=wannabeadmin&action=editQuestion&questionID=".$questionID);
 
@@ -197,6 +206,11 @@ elseif($action == "addQuestion" && $acl_access == "Admin")
 elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access == 'Admin') {
 	$question = $_POST['question'];
 	db_query("UPDATE ".$sql_prefix."_wannabeQuestions SET question = '".db_escape($question)."' WHERE ID = '".db_escape($_GET['questionID'])."'");
+
+	$log_new['question'] = $question;
+	$log_new['questionID'] = $questionID;
+	log_add("wannabeAdmin", "changeQuestion", serialize($log_new));
+
 	header("Location: ?module=wannabeadmin&action=questions");
 }
 
@@ -412,11 +426,18 @@ elseif($action == "doEditcrew" && isset($_GET['crew'])) {
 	$crewname = db_escape($_POST['crewname']);
 
 	db_query("UPDATE ".$sql_prefix."_wannabeCrews SET crewname = '$crewname' WHERE eventID = '$eventID' AND ID = '$crew'");
+	
+	$log_new['crewID'] = $crew;
+	$log_new['crewname'] = $crewname;
+	log_add("wannabeadmin", "doEditcrew", serialize($log_new));
+
 	header("Location: ?module=wannabeadmin&action=crews");
 }
 elseif($action == "doAddCrew") {
 	$crewname = $_POST['crewname'];
 	db_query("INSERT INTO ".$sql_prefix."_wannabeCrews SET crewname = '".db_escape($crewname)."', eventID = $eventID");
+	log_add("wannabeadmin", "doAddCrew", serialize($_POST));
+
 	header("Location: ?module=wannabeadmin&action=crews");
 } // End action == doAddCrew
 
@@ -466,6 +487,12 @@ elseif($action == "doChangeComment") {
 			userID = '".db_escape($user)."',
 			crewID = '".db_escape($crewID)."'");
 	} // End else
+
+	$log_new['comment'] = $comment;
+	$log_new['approval'] = $approval;
+	$log_new['user'] = $user;
+	$log_new['crewID'] = $crewID;
+	log_add("wannabeadmin", "doChangeComment", serialize($log_new));
 
 	header("Location: ?module=wannabeadmin&action=viewApplication&user=$user");
 } // End elseif action == doChangeComment
