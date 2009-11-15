@@ -135,6 +135,7 @@ elseif($action == "doEditPage" && !empty($page))
 			modifiedByUser = ".$sessioninfo->userID.",
 			modifiedTimestamp = ".time()."
 			WHERE ID = ".db_escape($page));
+		log_add("static", "editpage", serialize($_POST));
 		header("Location: ?module=static&action=viewPage&page=$page");
 	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
 		if($page == 'index') $event = $sessioninfo->eventID;
@@ -149,6 +150,7 @@ elseif($action == "doEditPage" && !empty($page))
 				type='system',
 				createdByUser = ".$sessioninfo->userID.",
 				createdTimestamp = ".time());
+			log_add("static", "newsystem", serialize($_POST));
 		} else {
 			db_query("UPDATE ".$sql_prefix."_static
 				SET page = '".db_escape($pageContent)."',
@@ -157,6 +159,7 @@ elseif($action == "doEditPage" && !empty($page))
 				WHERE header = '".db_escape($page)."'
 				AND eventID = '$event'
 				AND type = 'system'");
+			log_add("static", "updatesystem", serialize($_POST));
 		} // End else
 		header("Location: ?module=static&action=listEventPages");
 	} // End elseif acl_access globaladmin
@@ -178,8 +181,14 @@ elseif($action == "addNew") {
 		$qFindNewPageID = db_query("SELECT ID FROM ".$sql_prefix."_static WHERE eventID = $sessioninfo->eventID
 		AND header LIKE '".db_escape($name)."'");
 		$rFindNewPageID = db_fetch($qFindNewPageID);
+
+		$log_new['title'] = $name;
+		$log_new['newPageID'] = $rFindNewPage->ID;
+		log_add("static", "newpage", serialize($log_new));
+
 		header("Location: ?module=static&action=editPage&page=$rFindNewPageID->ID");
 	} // End if
+
 
 } // End elseif action == "addNew"
 
@@ -255,6 +264,12 @@ elseif($action == "addNewACL" && isset($page)) {
 			subcategory = '".db_escape($page)."',
 			access = 'Read'");
 	}
+
+	$log_new['page'] = $page;
+	$log_new['group'] = $group;
+	$log_new['access'] = 'Read';
+
+	log_add("static", "addNewACL", serialize($log_new)); 
 	header("Location: ?module=static&action=editACL&page=$page");
 
 } // End action == addNewACL
@@ -269,6 +284,11 @@ elseif($action == "doChangeACL" && isset($_GET['groupID']) && isset($page)) {
 		AND accessmodule = 'static'
 		AND eventID = '$sessioninfo->eventID'
 		");
+	$log_new['access'] = $groupRights;
+	$log_new['groupID'] = $_GET['groupID'];
+
+	log_add("static", "changeACL", serialize($log_new));
+
 	header("Location: ?module=static&action=editACL&page=$page");
 
 } // End elseif action = doChangeACL
