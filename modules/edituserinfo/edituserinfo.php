@@ -128,8 +128,8 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 			// User has changed this setting, change it in DB
 			db_query("UPDATE ".$sql_prefix."_users SET
 				$name = '$value' WHERE ID = '".db_escape($user)."'");
-			$log['old'][] = $rGetUserinfo[$name];
-			$log['new'][] = $value;
+			$log['old'][$name] = $rGetUserinfo[$name];
+			$log['new'][$name] = $value;
 		} // End if oldvalue != newvalue
 
 	} // End for
