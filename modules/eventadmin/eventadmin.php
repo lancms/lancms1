@@ -30,6 +30,8 @@ if(!isset($action))
 		$content .= "<br /><a href='?module=economy'>".lang("Economy", "eventadmin")."</a>\n";
 	if(acl_access("compoadmin", "", $eventID) != 'No')
 		$content .= "<br /><a href='?module=compoadmin'>".lang("Compoadmin", "eventadmin")."</a>\n";
+	if(acl_access("news", "", $eventID) != 'No')
+		$content .= "<br /><a href='?module=news&action=newsadmin'>".lang("Newsadmin", "eventadmin")."</a>\n";
 
 } // End if !isset(action)
 

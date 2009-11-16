@@ -311,6 +311,18 @@ TABLE [prefix]_compoMatch_signup
 
 }
 
+TABLE [prefix]_news
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	ID,		int(11),	PRI,	NOT NULL, ,		auto_increment
+	header,		text,		,	,	,
+	eventID,	int(11),	,	NOT NULL, 1,
+	content,	text,		,	,	,
+	createTime,	int(11),	,	,	0,
+	active,		enum('yes', 'no'), ,	,	no,
+	global,		enum('yes', 'no'), ,	,	no,
+}
+
 TABLE [prefix]_logs
 {
 #	NAME			TYPE			KEY	NULL	DEFAULT		EXTRA
