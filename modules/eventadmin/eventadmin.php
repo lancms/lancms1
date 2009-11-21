@@ -50,6 +50,11 @@ elseif($action == "doChangeGroupAccess" && isset($_GET['groupID']))
 		WHERE groupID = '".db_escape($groupID)."'
 		AND eventID = '".$eventID."'
 		AND accessmodule = 'eventadmin'");
+
+	$log_new['groupID'] = $groupID;
+	$log_new['access'] = $access;
+	log_add("eventadmin", "changeGroupAccess", serialize($log_new));
+
 	header("Location: ?module=eventadmin&action=groupACLs");
 } // End action = doChangeGroupAccess
 
@@ -107,6 +112,8 @@ elseif($action == "addGroup" && !empty($_POST['groupname']))
 			createdByUser = '$sessioninfo->userID',
 			createdTimestamp = '".time()."',
 			groupType = 'access'");
+		$log_new['groupName'] = $groupname;
+		log_add("eventadmin", "addAccessGroup", serialize($log_new));
 		header("Location: ?module=eventadmin&action=groupManagement");
 	} // End if count = 0
 	else
@@ -140,13 +147,17 @@ elseif($action == "doConfig") {
 	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
 		$evtcfg = $eventconfig['checkbox'][$i];
 
+		$log_old[$evtcfg] = config($evtcfg, $eventID);
+
 		$post = $_POST[$evtcfg];
 		if($post == "on") $post = 1;
 		else $post = "disable";
 		#echo $evtcfg.": ".$post;
 		config($eventconfig['checkbox'][$i], $eventID, $post);
-	} // End for
 
+		$log_new[$evtcfg] = $post;
+	} // End for
+	log_add("eventadmin", "doConfig", serialize($log_new), serialize($log_old));
 	header("Location: ?module=eventadmin&action=config&action=config&saved=OK");
 }
 
@@ -244,6 +255,11 @@ elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['
 			AND groupID = '".db_escape($groupID)."'
 			AND eventID = $eventID");
 	} // End else
+	$log_new['groupID'] = $groupID;
+	$log_new['accessmodule'] = $accessmodule;
+	$log_new['access'] = $newright;
+
+	log_add("eventadmin", "doChangeRight", serialize($log_new));
 
 	if($accessmodule == 'eventAttendee') {
 		header("Location: ?module=eventadmin&action=eventaccess");
