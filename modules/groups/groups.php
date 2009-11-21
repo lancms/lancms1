@@ -154,6 +154,7 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 	{
 		// If clanname already exists
 		header("Location: ?module=groups&action=createClan&clanname&$clanname&clanpassword=$clanpwd&errormsg=".lang("Clanname is already in use. Please choose another name", "groups"));
+		log_add("groups", "clanCreateExists", serialize($_POST));
 	} // End if clanname alreaddy exists
 
 	else
@@ -174,6 +175,11 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 			groupID = '$rLastGroupID->ID',
 			userID = '".$sessioninfo->userID."',
 			access = 'Admin'");
+		$log_new['clanname'] = $clanname;
+		$log_new['clanID'] = $rLastGroupID->ID;
+		$log_new['clanPWD'] = $clanpwd;
+
+		log_add("groups", "clanCreate", serialize($log_new));
 		header("Location: ?module=groups&action=listGroup&groupID=$rLastGroupID->ID");
 	} // End else (clan name and pwd accepted)
 } // End elseif action == doCreateClan
@@ -200,6 +206,11 @@ elseif($action == "doAddMember" && isset($_GET['userID']))
 			groupID = ".db_escape($groupID).",
 			userID = ".db_escape($userID).",
 			access = 'Read'");
+
+		$log_new['userID'] = $userID;
+		$log_new['groupID'] = $groupID;
+		log_add("groups", "addmember", serialize($log_new));
+
 		header("Location: ?module=groups&action=listGroup&groupID=$groupID");
 	} // End else
 
@@ -213,15 +224,23 @@ elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['use
 		die("Sorry, you need admin-rights to do this!");
 
 	$access = $_POST['groupRights'];
+	
+	$log_new['userID'] = $_GET['userID'];
+	$log_new['groupID'] = $groupID;
+	
 	if($access == "No") {
 		db_query("DELETE FROM ".$sql_prefix."_group_members WHERE groupID = '".db_escape($groupID)."'
 			AND userID = '".db_escape($_GET['userID'])."'");
+
+		log_add("groups", "changeGroupRights_remove", serialize($log_new));
 	} // End if access= no, delete
 	else {
 		db_query("UPDATE ".$sql_prefix."_group_members
 			SET access = '".db_escape($access)."'
 			WHERE groupID = '".db_escape($groupID)."'
 			AND userID = '".db_escape($_GET['userID'])."'");
+		$log_new['access'] = $access;
+		log_add("groups", "changeGroupRights", serialize($log_new));
 	} // End else
 	header("Location: ?module=groups&action=listGroup&groupID=$groupID");
 } // End if action == doChangeGroupRights
