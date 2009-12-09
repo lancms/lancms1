@@ -17,6 +17,7 @@ $sql_base = "OSGLdatabase"; // The database to use
 $sql_prefix = "OSGL"; // Someone asked for this a while back. prefix, and _is added automatically
 $language = "norwegian"; // Change this to another language if you wish to use it
 
+$osgl_session_cookie "Session-name";
 
 
 
