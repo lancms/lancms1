@@ -1140,3 +1140,66 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("useradm
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Tilbake")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("useradmin")."' AND string = '".db_escape("Back")."'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Bruker registrert (anonym)")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_register__anonymous")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billett markert som betalt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_arrival__markpaid")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny onsitebillett")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_arrival__doAddOnsiteTick")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny billettype")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_ticketadmin__addTicketType")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billett merket ikke betalt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_arrival__marknotpaid")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billettype redigert")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_ticketadmin__doEditTicket")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Aktiver crewliste")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventconfigoption")."' AND string = '".db_escape("enable_crewlist")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Sett arrangement offentlig")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_globaladmin__setPublic")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("installasjon/oppgradering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_installer__install/upgrade")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Brukerinformasjon endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_edituser__doEditUserinfo")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nyhetsadministrator")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventadmin")."' AND string = '".db_escape("Newsadmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Aktiver nyheter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventconfigoption")."' AND string = '".db_escape("enable_news")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Side redigert")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_static__editpage")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt medlem i gruppe")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_groups__addmember")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret grupperettighet")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_groups__changeGroupRigh")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endre grupperettighet")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_eventadmin__doChangeRight")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Tilgangsgruppe lagt til")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_eventadmin__addAccessGroup")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billett avbestilt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_ticketorder__cancelTicket")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Oppdater systemside")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_static__updatesystem")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny tilgang til side")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_static__addNewACL")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny side")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_static__newpage")."'");
+
