@@ -103,7 +103,6 @@ elseif($action == "editPage" && !empty($page))
 	} // End else
 		
 	/* Edit that page */
-	// FIXME: This should be a HTML-editor!
 	$rStaticPage = db_fetch($qStaticPage);
 
 	$content .= "<form method=POST action=?module=static&action=doEditPage&page=$page>\n";

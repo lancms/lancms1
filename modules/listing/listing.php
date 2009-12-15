@@ -78,7 +78,6 @@ elseif($action == "viewlist" && isset($list)) {
 	$content .= "</table>";
 
 	if($hide_smarty == 1) {
-		## FIXME: Should add some replaces to convert tables to CSV
 		$content = str_replace("<table>", "", $content);
 		$content = str_replace("</td>", "", $content);
 		$content = str_replace("</tr>", "", $content);
