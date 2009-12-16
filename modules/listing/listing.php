@@ -85,6 +85,7 @@ elseif($action == "viewlist" && isset($list)) {
 		$content = str_replace("<tr>", "\n", $content);
 		$content = str_replace("<td>", ";", $content);
 		$content = str_replace("<th>", ";", $content);
+		$content = str_replace("</table>", "", $content);
 		$content = str_replace("\n;", "\n", $content);
 		echo $content;
 	}
