@@ -178,5 +178,5 @@ $userpersonalprefs[0]['default_register'] = 1; // Have this enabled per default 
 $userpersonalprefs[0]['required_on'] = 0; // Don't let the user disable this # FIXME, should not be enabled
 
 
-$mailList[0]['name'] = 'All users';
-$mailList[0]['SQL'] = 'SELECT DISTINCT ID FROM '.$sql_prefix.'_users WHERE ID != 1';
+#$mailList[0]['name'] = 'All users';
+#$mailList[0]['SQL'] = 'SELECT DISTINCT ID FROM '.$sql_prefix.'_users WHERE ID != 1';
