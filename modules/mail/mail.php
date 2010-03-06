@@ -10,11 +10,14 @@ if($action == "massmail") {
 	for($i=0;$i<count($mailList);$i++) {
 		$content .= "<option value='$i'>".$mailList[$i]['name']."</option>\n";
 	}
-	$content .= "</select></td></tr>";
+	$content .= "</select></td></tr>\n\n";
+	$content .= "<tr><td>";
+	$content .= "<input type=text name=subject size=40>";
+	$content .= "</td></tr>\n\n";
 	$content .= "<tr><td>";
 	$content .= "<textarea class='mceEditor' name=message></textarea>";
 
-	$content .= "</td></tr><tr><td>";
+	$content .= "</td></tr>\n\n<tr><td>";
 	$content .= "<input type=submit value='".lang("Send Mail", "mail")."'>";
 	$content .= "</td></tr>";
 
@@ -34,6 +37,7 @@ elseif($action == "sendMail" && isset($_POST['toMailList'])) {
 			SET cronModule = 'MAIL',
 			toUser = '$rFindUsers->EMail',
 			senderID = '$sessioninfo->userID',
+			subject = '".db_escape($_POST['subject'])."',
 			content = '".db_escape($_POST['message'])."'");
 	} // End while
 

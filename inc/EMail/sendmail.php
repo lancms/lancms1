@@ -5,17 +5,25 @@ $qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule =
 
 while($rFindJobs = db_fetch($qFindJobs)) {
 
-	$to = $rFindJobs->toUser;
-	$from = $MAIL_FROM;
-	$subject = "OSGL Mail Subject";
+	$qUserInfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindJobs->toUser'");
+	$rUserInfo = db_fetch($qUserInfo);
+	$to = $rUserInfo->EMail;
+#	$from = $MAIL_FROM;
+	$from = "osgl@globeorg.no";
+	$subject = $rFindJobs->subject;
 	$mail_body = $rFindJobs->content;
-	$mail_headers = "X-Mailer: OSGL-mailer";
+	$mail_headers = "X-Mailer: OSGL-mailer\r\n";
+	$mail_headers .= "MIME-Version: 1.0\r\n"; 
+	$mail_headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+	$mail_headers .= "From: $from";
 	
 
 	// Nice to wrap the mail
 	$mail_body =  wordwrap($mail_body, 70);
-
-	mail($to, $subject, $mail_body, $mail_headers);
-	echo "Sent mail to $to \n";
-#	db_query("UPDATE ".$sql_prefix."_cronjobs SET finishTime = '".time()."' WHERE jobID = '$rFindJobs->jobID'");
+	$html_mail = "<HTML><BODY>
+$mail_body
+</BODY></HTML>";
+	mail($to, $subject, $html_mail, $mail_headers);
+#	echo "Sent mail to $to \n";
+	db_query("UPDATE ".$sql_prefix."_cronjobs SET finishTime = '".time()."' WHERE jobID = '$rFindJobs->jobID'");
 }

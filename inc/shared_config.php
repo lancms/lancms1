@@ -179,4 +179,4 @@ $userpersonalprefs[0]['required_on'] = 0; // Don't let the user disable this # F
 
 
 $mailList[0]['name'] = 'All users';
-$mailList[0]['SQL'] = 'SELECT DISTINCT EMail FROM '.$sql_prefix.'_users';
+$mailList[0]['SQL'] = 'SELECT DISTINCT ID FROM '.$sql_prefix.'_users WHERE ID != 1';

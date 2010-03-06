@@ -355,6 +355,7 @@ TABLE [prefix]_cronjobs
 	cronModule,		varchar(20),		,	,	,
 	toUser,			varchar(45),		,	,	,
 	content,		text,			,	,	,
+	subject,		text,			,	,	,
 	senderID,		int(11),		,	,	,
 	finishTime,		int(11),		,	0,	,
 }
