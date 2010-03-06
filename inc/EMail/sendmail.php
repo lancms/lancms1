@@ -10,8 +10,12 @@ while($rFindJobs = db_fetch($qFindJobs)) {
 	$to = $rUserInfo->EMail;
 #	$from = $MAIL_FROM;
 	$from = "osgl@globeorg.no";
-	$subject = $rFindJobs->subject;
-	$mail_body = $rFindJobs->content;
+	$subject = mb_encode_mimeheader($rFindJobs->subject, "UTF-8");
+	$mail_body = stripslashes($rFindJobs->content);
+
+	$mail_body = str_replace("%%FIRSTNAME%%", $rUserInfo->firstName, $mail_body);
+	$mail_body = str_replace("%%LASTNAME%%", $rUserInfo->lastName, $mail_body);
+	$mail_body = str_replace("%%NICK%%", $rUserInfo->nick, $mail_body);
 	$mail_headers = "X-Mailer: OSGL-mailer\r\n";
 	$mail_headers .= "MIME-Version: 1.0\r\n"; 
 	$mail_headers .= "Content-type: text/html; charset=iso-8859-1\r\n";

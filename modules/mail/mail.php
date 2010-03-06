@@ -35,11 +35,13 @@ elseif($action == "sendMail" && isset($_POST['toMailList'])) {
 	while($rFindUsers = db_fetch($qFindUsers)) {
 		db_query("INSERT INTO ".$sql_prefix."_cronjobs
 			SET cronModule = 'MAIL',
-			toUser = '$rFindUsers->EMail',
+			toUser = '$rFindUsers->ID',
 			senderID = '$sessioninfo->userID',
 			subject = '".db_escape($_POST['subject'])."',
 			content = '".db_escape($_POST['message'])."'");
 	} // End while
-
+	$log_new[] = $toMailList;
+	$log_new[] = $SQL;
+	log_add("mail", "sendmail_mass", serialize($log_new));
 	header("Location: ?module=mail&sending=success");
 } // End elseif action == sendSMS
