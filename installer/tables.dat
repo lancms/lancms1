@@ -307,7 +307,8 @@ TABLE [prefix]_compoMatch_signup
 	clanID,		int(11),	PRI,	,	1,		,
 	userID,		int(11),	PRI,	,	1,		,
 	matchOrder,	int(3),		,	,	,		,
-	
+	result,		varchar(5),	,	,	,		,
+	winlose,	enum('na', 'win', 'loss'), , ,   na,		,
 
 }
 

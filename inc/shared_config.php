@@ -93,6 +93,9 @@ $monthname[12] = 'December';
 $compotype[] = 'FFA';
 $compotype[] = 'clan';
 $compotype[] = '1on1';
+$winlosetype[] = 'win';
+$winlosetype[] = 'loss';
+$winlosetype[] = 'na';
 
 $userprefs[0]['type'] = 'text';
 $userprefs[0]['name'] = 'nick';
