@@ -80,8 +80,8 @@ elseif($action == "doAddEvent")
 			");
 		$qCheckEventID = db_query("SELECT ID FROM ".$sql_prefix."_events WHERE eventname LIKE '".db_escape($eventname)."'");
 		$rCheckEventID = db_fetch($qCheckEventID);
-
-		log_add("globaladmin", "doAddEvent", serialize($eventname));
+		$log_new['eventname'] = $eventname;
+		log_add("globaladmin", "doAddEvent", serialize($log_new));
 
 		header("Location: ?module=events&action=setCurrentEvent&gotomodule=eventadmin&eventID=".$rCheckEventID->ID);
 	} // End else (if name doesn't exists; create it)
@@ -91,16 +91,17 @@ elseif($action == "doAddEvent")
 } // End if action = doAddEvent
 
 elseif($action == "setPrivate") {
-    db_query("UPDATE ".$sql_prefix."_events SET eventPublic = 0 WHERE ID = '".db_escape($_GET['eventID'])."'");
-
-    log_add("globaladmin", "setPrivate", serialize($_GET['eventID']));
-    header("Location: ?module=globaladmin");
+	db_query("UPDATE ".$sql_prefix."_events SET eventPublic = 0 WHERE ID = '".db_escape($_GET['eventID'])."'");
+	$log_new['eventID'] = $_GET['eventID'];
+	log_add("globaladmin", "setPrivate", serialize($log_new));
+	header("Location: ?module=globaladmin");
 }
 
 elseif($action == "setPublic") {
-    db_query("UPDATE ".$sql_prefix."_events SET eventPublic = 1 WHERE ID = '".db_escape($_GET['eventID'])."'");
-    log_add("globaladmin", "setPublic", serialize($_GET['eventID']));
-    header("Location: ?module=globaladmin");
+	db_query("UPDATE ".$sql_prefix."_events SET eventPublic = 1 WHERE ID = '".db_escape($_GET['eventID'])."'");
+	$log_new['eventID'] = $_GET['eventID'];
+	log_add("globaladmin", "setPublic", serialize($log_new));
+	header("Location: ?module=globaladmin");
 }
 
 elseif($action == "config") {
@@ -131,10 +132,11 @@ elseif($action == "doConfig") {
 		if($post == "on") $post = 1;
 		else $post = "disable";
 		#echo $evtcfg.": ".$post;
+		$log_old[$glbcfg] = config($globalconfig['checkbox'][$i]);
 		$log_new[$glbcfg] = $post;
 		config($globalconfig['checkbox'][$i], 1, $post);
 	} // End for
-	log_add("globalconfig", "doConfig", serialize($log_new));
+	log_add("globalconfig", "doConfig", serialize($log_new), serialize($log_old));
 	header("Location: ?module=globaladmin&action=config&action=config&saved=OK");
 }
 
