@@ -27,7 +27,7 @@ if(!isset($action) || $action == "editticket") {
 	$content .= lang($rListTickets->type, "ticketadmin");
 	$content .= "</td><td>\n";
 	$content .= $rListTickets->price;
-	$content .= "</td><td onClick='location.href=\"?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID\"'>\n";
+	$content .= "</td><td class=tdLink onClick='location.href=\"?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID\"'>\n";
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
 	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
 	$rNumTicketsOfType = db_fetch($qNumTicketsOfType);

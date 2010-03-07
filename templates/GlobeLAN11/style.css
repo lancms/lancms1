@@ -291,3 +291,10 @@ image {
 .tbl_left {
 	font-weight: bold;
 }
+
+td.tdLink
+{
+        border-bottom:1px dotted;
+        line-height:1em;
+}
+

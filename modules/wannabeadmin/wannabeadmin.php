@@ -404,7 +404,7 @@ elseif($action == "crews" || $action == "editcrew") {
 				$content .= "</form>";
 			}
 			else {
-				$content .= "<td onClick='location.href=\"?module=wannabeadmin&action=editcrew&crew=$rListCrews->ID\"'>";
+				$content .= "<td class=tdLink onClick='location.href=\"?module=wannabeadmin&action=editcrew&crew=$rListCrews->ID\"'>";
 				$content .= $rListCrews->crewname;
 			}
 			$content .= "</td></tr>\n";

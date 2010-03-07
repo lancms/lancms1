@@ -595,3 +595,8 @@ tr.listRow2
         background-color: #777;
 }
 
+td.tdLink
+{
+	border-bottom:1px dotted; 
+	line-height:1em;
+}

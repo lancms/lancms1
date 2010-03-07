@@ -14,12 +14,12 @@ if(!isset($action)) {
 		$content .= "</td><td>\n";
 		$content .= $rListCompos->type;
 		$content .= "</td>";
-		if($rListCompos->signupOpen == 1) $content .= "<td style='background-color: green;' onClick='location.href=\"?module=compoadmin&action=disableSignup&compo=$rListCompos->ID\"'>".lang("Signup is open", "compoadmin");
-		else $content .= "<td style='background-color: red;' onClick='location.href=\"?module=compoadmin&action=enableSignup&compo=$rListCompos->ID\"'>".lang("Signup is closed", "compoadmin");
+		if($rListCompos->signupOpen == 1) $content .= "<td style='background-color: green;' class=tdLink onClick='location.href=\"?module=compoadmin&action=disableSignup&compo=$rListCompos->ID\"'>".lang("Signup is open", "compoadmin");
+		else $content .= "<td style='background-color: red;' class=tdLink onClick='location.href=\"?module=compoadmin&action=enableSignup&compo=$rListCompos->ID\"'>".lang("Signup is closed", "compoadmin");
 		$content .= "</td>";
 		if($rListCompos->signupOpen == 0) {
 			// signup has closed, enable creating brackets etc.
-			$content .= "<td onClick='location.href=\"?module=compoadmin&action=matchadmin&compo=$rListCompos->ID\"'>";
+			$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&action=matchadmin&compo=$rListCompos->ID\"'>";
 			$content .= lang("Match admin", "compoadmin");
 		} else {
 			$content .= "<td>";
@@ -93,7 +93,7 @@ elseif($action == "matchadmin" && isset($_GET['compo'])) {
 
 	$content .= "<table>";
 	$content .= "<tr>";
-	$content .= "<td onClick='location.href=\"?module=compoadmin&compo=$compo&action=randomizeMatch\"'>";
+	$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&compo=$compo&action=randomizeMatch\"'>";
 	$content .= lang("Randomize first match", "compoadmin")."</td>";
 	$content .= "</tr></table>";
 
