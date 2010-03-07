@@ -86,7 +86,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 
 				$row = 1;
 				$content .= "<table>";
-				foreach($logNew AS $type => $value) {
+				if(!empty($logNew)) foreach($logNew AS $type => $value) {
 
 					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".$value."</th></tr>";
 					$row++;
@@ -101,7 +101,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 
 				$row = 1;
 				$content .= "<table>";
-				foreach($logOld AS $type => $value) {
+				if(!empty($logOld)) foreach($logOld AS $type => $value) {
 
 					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".$value."</th></tr>";
 					$row++;

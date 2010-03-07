@@ -47,7 +47,9 @@ elseif ($action == 'savepassword')
 	// else, set new password:
 	$oldpass = user_getpass ($sessioninfo->userID);
 	user_setpass ($sessioninfo->userID, $md5p1);
-	log_add ("edituser", "setNewPass", $md5p1, $oldpass);
+	$logOld['oldpass'] = $oldpass;
+	$logNew['newpass'] = $md5p1;
+	log_add ("edituser", "setNewPass", serialize($logNew), serialize($logOld));
 
 	$content .= "<h2>".lang ("Password changed", "edituserinfo")."</h2>";
 }

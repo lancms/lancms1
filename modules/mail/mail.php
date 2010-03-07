@@ -40,8 +40,9 @@ elseif($action == "sendMail" && isset($_POST['toMailList'])) {
 			subject = '".db_escape($_POST['subject'])."',
 			content = '".db_escape($_POST['message'])."'");
 	} // End while
-	$log_new[] = $toMailList;
-	$log_new[] = $SQL;
+	$log_new['MailListGroup'] = $toMailList;
+	$log_new['toMailListSQL'] = $SQL;
+	$log_new['message'] = $_POST['message'];
 	log_add("mail", "sendmail_mass", serialize($log_new));
 	header("Location: ?module=mail&sending=success");
 } // End elseif action == sendSMS

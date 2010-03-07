@@ -252,11 +252,11 @@ elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == (
 	$qGetTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
 	$rGetTicket = db_fetch($qGetTicket);
 
-	$lognew[] = $ticket;
+	$lognew['ticketID'] = $ticket;
 
-	$logold[] = $rGetTicket->status;
-	$logold[] = $rGetSeating->seatX;
-	$logold[] = $rGetSeating->seatY;
+	$logold['ticketStatus'] = $rGetTicket->status;
+	$logold['seatX'] = $rGetSeating->seatX;
+	$logold['seatY'] = $rGetSeating->seatY;
 
 	db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
 	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'deleted' WHERE ticketID = '".db_escape($ticket)."'");
