@@ -28,11 +28,11 @@ if(!isset($action) || $action == "searchUser") {
 		$content .= "<tr class='listRow".$listrowcount."'><td>";
 		$content .= display_username($rFindUser->ID);
 		$content .= "</td><td>";
-		$qFindTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets 
+		$qFindTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets
 			WHERE eventID = '$sessioninfo->eventID'
 			AND user = '$rFindUser->ID'");
 		while($rFindTickets = db_fetch($qFindTickets)) {
-			if($rFindTickets->paid == 'yes') 
+			if($rFindTickets->paid == 'yes')
 				$style = 'green';
 			else $style = 'orange';
 
@@ -42,7 +42,7 @@ if(!isset($action) || $action == "searchUser") {
 		} // End while rFindTickets
 		$content .= "<li><a href=?module=arrival&action=addTicket&user=$rFindUser->ID>".lang("Add new ticket", "arrival")."</a></li>";
 		$content .= "</td></tr>";
-		
+
 		$listrowcount++;
                 if ($listrowcount == 3)
                 {
@@ -62,7 +62,7 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 	$rFindUser = db_fetch($qFindUser);
 
 	$content .= "<a href=?module=arrival>".lang("Back to search", "arrival")."</a>\n";
-	
+
 	$content .= "<table>\n";
 
 	$content .= "<tr><td>".lang("Ticket", "arrival");
@@ -145,7 +145,7 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 		$content .= lang("Deleted", "arrival");
 		$content .= "</td>";
 	}
-		
+
 
 
 	$content .= "</tr></table>\n\n";
@@ -153,7 +153,7 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 
 elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
 	$ticket = $_GET['ticket'];
-	
+
 	if($acl_ticket != 'Write' AND $acl_ticket != 'Admin') die("No access to ticket");
 	$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
 	$rFindTicket = db_fetch($qFindTicket);
@@ -165,13 +165,13 @@ elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
 	} else {
 		db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'no' WHERE ticketID = '".db_escape($ticket)."'");
 	}
-	$newlog[] = 'notpaid';
-	$newlog[] = $ticket;
-	$oldlog[] = 'paid';
+	$newlog['newstatus'] = 'notpaid';
+	$newlog['ticketID'] = $ticket;
+	$oldlog['oldstatus'] = 'paid';
 	log_add("arrival", "marknotpaid", serialize($newlog), serialize($oldlog));
 
 	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
-	
+
 }
 
 elseif($action == "markpaid" && isset($_GET['ticket'])) {
@@ -188,10 +188,10 @@ elseif($action == "markpaid" && isset($_GET['ticket'])) {
         } else {
                 db_query("UPDATE ".$sql_prefix."_tickets SET paid = 'yes', paidTime = '".time()."' WHERE ticketID = '".db_escape($ticket)."'");
         }
-	
-	$newlog[] = 'paid';
-	$newlog = $ticket;
-	$oldlog[] = 'notpaid';
+
+	$newlog['newstatus'] = 'paid';
+	$newlog['ticketID'] = $ticket;
+	$oldlog['oldstatus'] = 'notpaid';
 	log_add("arrival", "markpaid", serialize($newlog), serialize($oldlog));
         header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 
@@ -203,7 +203,7 @@ elseif($action == "addTicket" && isset($_GET['user'])) {
 	$qGetTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$sessioninfo->eventID'
 		AND active = 1
 		AND type LIKE 'onsite%'");
-	
+
 	$content .= "<form method=POST action=?module=arrival&action=doAddTicket&user=$user>";
 	$content .= "<select name=tickettype>\n";
 	while($rGetTickets = db_fetch($qGetTickets)) {
@@ -219,7 +219,7 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 	$user = $_GET['user'];
 	$ticketType = $_POST['tickettype'];
 
-	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$sessioninfo->eventID' 
+	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$sessioninfo->eventID'
 		AND ticketTypeID = '".db_escape($ticketType)."'");
 	if(db_num($qCheckTicketType) == 1) {
 		db_query("INSERT INTO ".$sql_prefix."_tickets SET
@@ -229,7 +229,7 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 			user = '".db_escape($user)."',
 			createTime = '".time()."',
 			creator = '$sessioninfo->userID'");
-		$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets 
+		$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets
 			WHERE eventID = '$sessioninfo->eventID'
 			AND user = '".db_escape($user)."'
 			ORDER BY createTime DESC LIMIT 0,1");
@@ -241,7 +241,7 @@ elseif($action == "doAddTicket" && isset($_GET['user'])) {
 		log_add("arrival", "doAddOnsiteTicket", serialize($newlog));
 		header("Location: ?module=arrival&action=ticketdetail&ticket=$rFindTicket->ticketID");
 	} // End if db_num
-	
+
 } // End action = doAddTicket
 
 elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == ('Write' || 'Admin')) {
@@ -251,7 +251,7 @@ elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == (
 	$rGetSeating = db_fetch($qGetSeating);
 	$qGetTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
 	$rGetTicket = db_fetch($qGetTicket);
-	
+
 	$lognew[] = $ticket;
 
 	$logold[] = $rGetTicket->status;
@@ -261,7 +261,7 @@ elseif($action == "deleteTicket" && isset($_GET['ticketID']) && $acl_ticket == (
 	db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
 	db_query("UPDATE ".$sql_prefix."_tickets SET status = 'deleted' WHERE ticketID = '".db_escape($ticket)."'");
 	log_add("arrival", "deleteTicket", serialize($lognew), serialize($logold));
-	
+
 	header("Location: ?module=arrival&action=ticketdetail&ticket=$ticket");
 
 }

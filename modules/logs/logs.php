@@ -24,7 +24,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 
 		$logquery = sprintf ('SELECT ID, userID, INET_NTOA(userIP) as userIP, userHost, eventID, logModule, logFunction, logTextNew, logTextOld, logURL, logTime FROM %s_logs ORDER BY ID DESC LIMIT %s', $sql_prefix, $num_of_rows);
 		$logresult = db_query ($logquery);
-		
+
 		$numrow = 1;
 		while ($log = db_fetch ($logresult))
 		{
@@ -43,7 +43,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<td>".$userip."</td>";
 			$content .= "<td>".$log->logURL."</td>";
 			$content .= "</tr>";
-			
+
 			$numrow++;
 			if ($numrow == 3)
 			{
@@ -68,7 +68,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			if (!empty ($log->userHost))
 			{
 				$userip .= " (".$log->userHost.")";
-			}
+			} // End if(!empty)
 
 			$content .= "<h2>".lang ("Details for logentry ")." #".$logid."</h2>";
 			$content .= "<a href='javascript:history.back()'>Back</a>";
@@ -80,91 +80,40 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<tr class='logrow2'><th>".lang ("Logtype", "logs")."</th><td>".lang ("log_".$log->logModule."__".$log->logFunction, "logs")."</td></tr>";
 			$content .= "</table>";
 
-			if (($log->logType == 5) or ($log->logType == 4))
-			{
-				$details = unserialize ($log->logTextNew);
+			$content .= "<table><tr><td>";
+			if(!empty($log->logTextNew) && $log->logTextNew != NULL) {
+				$logNew = unserialize($log->logTextNew);
 
-				$content .= "<h3>".lang ("Info entered", "logs")."</h3>";
-
+				$row = 1;
 				$content .= "<table>";
+				foreach($logNew AS $type => $value) {
 
-				$content .= "<tr class='logrow1'><th></th><th>New</th></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("UserID", "logs")."</th><td>".$details['userid']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Username", "logs")."</th><td>".$details['username']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Password", "logs")."</th><td>".$details['md5_pass']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Email", "logs")."</th><td>".$details['EMail']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Firstname", "logs")."</th><td>".$details['firstName']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Lastname", "logs")."</th><td>".$details['lastName']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Gender", "logs")."</th><td>".$details['gender']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthday", "logs")."</th><td>".$details['birthDay']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthmonth", "logs")."</th><td>".$details['birthMonth']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthyear", "logs")."</th><td>".$details['birthYear']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Address", "logs")."</th><td>".$details['street']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Postnumber", "logs")."</th><td>".$details['postnumber']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Cellphone", "logs")."</th><td>".$details['cellphone']."</td></tr>";
-
+					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".$value."</th></tr>";
+					$row++;
+					if($row == 3) $row = 1;
+				} // End foreach logNew
 				$content .= "</table>";
-			}
-			elseif ($log->logType == 6)
-			{
-				$details = unserialize ($log->logTextNew);
-				$content .= "<h3>".lang ("Ticketdetails", "logs")."</h3>";
+			} // End if(!empty(logTextNew)
+			$content .= "</td><td>";
+
+			if(!empty($log->logTextOld) && $log->logTextOld != NULL) {
+				$logOld = unserialize($log->logTextOld);
+
+				$row = 1;
 				$content .= "<table>";
-				$content .= "<tr class='logrow2'><th>".lang ("Tickettype", "logs")."</th><td>".tickettype_getname ($details[0])."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Number of tickets", "logs")."</th><td>".$details[1]."</td></tr>";
+				foreach($logOld AS $type => $value) {
+
+					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".$value."</th></tr>";
+					$row++;
+					if($row == 3) $row = 1;
+				} // End foreach logOld
 				$content .= "</table>";
 
-			}
-			elseif ($log->logType == 7)
-			{
-				$details = unserialize ($log->logTextNew);
-				$content .= "<h3>".lang ("Ticketdetails", "logs")."</h3>";
-				$content .= "<table>";
-				$content .= "<tr class='logrow2'><th>".lang ("TicketID", "logs")."</th><td>".$details[0]."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Tickettype", "logs")."</th><td>".tickettype_getname ($details[1])."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Owner", "logs")."</th><td>".display_username ($details[2])."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("User", "logs")."</th><td>".display_username ($details[3])."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Status", "logs")."</th><td>".$details[4]."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Paid", "logs")."</th><td>".$details[5]."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Seating", "logs")."</th><td>".$seating."</td></tr>";
-				$content .= "</table>";
-			}
-			elseif ($log->logType == 8)
-			{
-				$content .= "<h3>".lang ("Password details", "logs")."</h3>";
-				$content .= "<table>";
-				$content .= "<tr class='logrow2'><th>".lang ("New MD5", "logs")."</th><td>".$log->logTextNew."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Old MD5", "logs")."</th><td>".$log->logTextOld."</td></tr>";
-				$content .= "</table>";
-			}
-			if ($log->logType == 9)
-			{
-				$details = unserialize ($log->logTextNew);
-				$od = unserialize ($log->logTextOld);
-				$details = unserialize ($log->logTextNew);
-				$content .= "<h3>".lang ("Info entered", "logs")."</h3>";
 
-				$content .= "<table>";
-
-				$content .= "<tr class='logrow1'><th></th><th>New</th><th>Old</th></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("UserID", "logs")."</th><td>".$details['ID']."</td><td>".$od['ID']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Username", "logs")."</th><td>".$details['nick']."</td><td>".$od['nick']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Email", "logs")."</th><td>".$details['EMail']."</td><td>".$od['EMail']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Firstname", "logs")."</th><td>".$details['firstName']."</td><td>".$od['firstName']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Lastname", "logs")."</th><td>".$details['lastName']."</td><td>".$od['lastName']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Gender", "logs")."</th><td>".$details['gender']."</td><td>".$od['gender']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthday", "logs")."</th><td>".$details['birthDay']."</td><td>".$od['birthDay']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthmonth", "logs")."</th><td>".$details['birthMonth']."</td><td>".$od['birthMonth']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Birthyear", "logs")."</th><td>".$details['birthYear']."</td><td>".$od['birthYear']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Address", "logs")."</th><td>".$details['street']."</td><td>".$od['street']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Postnumber", "logs")."</th><td>".$details['postNumber']."</td><td>".$od['postNumber']."</td></tr>";
-				$content .= "<tr class='logrow2'><th>".lang ("Cellphone", "logs")."</th><td>".$details['cellphone']."</td><td>".$od['cellphone']."</td>></tr>";
-
-				$content .= "</table>";
-				
-			}
-		}
-	}
+			} // end if(!empty(logTextOld)
+			$content .= "</td></tr></table>";
+		} // End else
+	} // End elseif action == details
 }
 else
 {
