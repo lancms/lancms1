@@ -21,6 +21,21 @@ if(!isset($action)) {
 	} // End while
 	$content .= "</table>\n\n";
 
+	$qFindSoldTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketReseller WHERE eventID = '$sessioninfo->eventID'");
+	$content .= "<table>";
+	while($rFindSoldTickets = db_fetch($qFindSoldTickets)) {
+		if($rFindSoldTickets->used == 'no') $bgcolor = 'red';
+		else $bgcolor = 'green';
+		$content .= "<tr bgcolor='$bgcolor'><td>";
+		$content .= $rFindSoldTickets->resellerTicketID;
+		$content .= "</td><td>";
+		$content .= $rFindSoldTickets->resellerID;
+		$content .= "</td><td>";
+		$content .= date("Y/m/d H:i", $rFindSoldTickets->saleTime);
+		$content .= "</td></tr>";
+	} // End while
+	$content .= "</table>";
+
 }
 
 elseif($action == "addTicket" && !empty($_GET['type'])) {
@@ -39,7 +54,8 @@ elseif($action == "addTicket" && !empty($_GET['type'])) {
 				SET resellerTicketID = '$string',
 				ticketType = '".db_escape($type)."',
 				eventID = '$sessioninfo->eventID',
-				resellerID = '$sessioninfo->userID'
+				resellerID = '$sessioninfo->userID',
+				saleTime = '".time()."'
 			");
 
 			$content .=  "<h1>".$string."</h1><br />";
