@@ -152,6 +152,8 @@ elseif($action == "doConfig") {
 			$post = $_POST[$rFindTexts->config];
 #                        $content .= "<input type=text name='".$rFindTexts->config."' value='$rFindTexts->value'>";
 #                        $content .= lang($rFindTexts->config, "globalconfigoption")."<br />";
+			$log_new[$rFindTexts->config] = $post;
+			$log_old[$rFindTexts->config] = config($rFindTexts->config, 1);
 			config($rFindTexts->config, 1, $post);
                 } // End while
         } // End for
