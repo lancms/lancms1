@@ -93,7 +93,8 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 
 		// but log it:
 		// logtype, 3 (failed login)
-		log_add ("login", "failed_password", NULL, NULL, $userID);
+		$log_new['session_ID'] = $sessioninfo->sID;
+		log_add ("login", "failed_password", serialize($log_new), NULL, $userID);
 
 	} // End else (password does not match)
 

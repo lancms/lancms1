@@ -192,8 +192,8 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
         } // End else (maxTicketsPrUser)
         $numTickets--; // Decrease numTickets
     } // End while(numtickets
-    $logmsg[] = $tickettype;
-    $logmsg[] = $_POST['numTickets'];
+    $logmsg['tickettype'] = $tickettype;
+    $logmsg['numTickets'] = $_POST['numTickets'];
     log_add("ticketorder", "buyticket", serialize($logmsg));
     header("Location: ?module=ticketorder");
 } // End action = buyticket
