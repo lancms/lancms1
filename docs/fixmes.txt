@@ -8,7 +8,6 @@ installer/table.php:			// FIXME: dirty hack to get DEFAULT CURRENT_TIMESTAMP in 
 modules/register/register.php:	// FIXME? Cellphone is optional, we may need some code to 1) make it required, 2) hide it completely or 3) something else
 modules/register/register.php:		// FIXME? Hardcoded lenght of cellphone numbers
 modules/register/register.php:	// FIXME? Cellphone is optional
-modules/compoadmin/compoadmin.php:	// FIXME: Should check if matches have been played, and fail if played
 modules/wannabeadmin/wannabeadmin.php:	// FIXME: Ugly way of doing this...
 modules/ticketadmin/ticketadmin.php:		// FIXME: Display link to this seat on map
 modules/static/static.php:	/* FIXME: Should probably be.... more... */
