@@ -47,7 +47,7 @@ if($do == "create_session")
 	// User is not logged in; generate a new seed
 	$generate = md5(rand(0,9999999).microtime());
 
-	$host = $_SERVER['SERVER_NAME'];
+	$host = str_replace(".", "_",$_SERVER['SERVER_NAME']);
 
 	// Find if servername matches any urls defined in eventAutoURL in events.
 	// If it matches, use this event when creating session
@@ -60,7 +60,7 @@ if($do == "create_session")
 		config("hostname_".$host, 1, 1); // Add the hostname-stuff to config, so it can be set
 		$FindAutoEventURL = 1;
 	}
-		
+	$sess_eventID = $FindAutoEventURL;	
 #	if($rFindAutoEventURL->ID) $sess_eventID = $rFindAutoEventURL->ID;
 #	else $sess_eventID = 1;
 
