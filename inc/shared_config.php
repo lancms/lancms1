@@ -36,7 +36,7 @@ $globalconfig['checkbox'][] = 'userinfo_birthday_required';
 $globalconfig['checkbox'][] = 'userinfo_birthyear_required';
 $globalconfig['checkbox'][] = 'userinfo_gender_required';
 $globalconfig['checkbox'][] = 'userinfo_address_required';
-
+$globalconfig['text'][] = 'hostname';
 
 
 

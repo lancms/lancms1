@@ -2,6 +2,7 @@
 
 $acl = acl_access("compoadmin", "", $sessioninfo->eventID);
 $action = $_GET['action'];
+$compoID = $_GET['compoID'];
 
 if(!isset($action)) {
 	$qListCompos = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE eventID = '$sessioninfo->eventID'");
@@ -19,7 +20,7 @@ if(!isset($action)) {
 		$content .= "</td>";
 		if($rListCompos->signupOpen == 0) {
 			// signup has closed, enable creating brackets etc.
-			$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&action=matchadmin&compo=$rListCompos->ID\"'>";
+			$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&action=matchadmin&compoID=$rListCompos->ID\"'>";
 			$content .= lang("Match admin", "compoadmin");
 		} else {
 			$content .= "<td>";
@@ -85,166 +86,64 @@ elseif($action == "disableSignup" && isset($_GET['compo']) && $acl == ('Admin' |
 
 }
 
-elseif($action == "matchadmin" && isset($_GET['compo'])) {
-	$compo = $_GET['compo'];
-
-	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
+elseif($action == "matchadmin" && isset($compoID)) {
+	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compoID)."'");
 	$rGetCompoinfo = db_fetch($qGetCompoinfo);
 
 	$compotype = $rGetCompoinfo->type;
 
-	$content .= "<table>";
-	$content .= "<tr>";
-	$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&compo=$compo&action=randomizeMatch\"'>";
-	$content .= lang("Randomize first match", "compoadmin")."</td>";
-	$content .= "</tr></table>";
-
-	$content .= "<table border=1>";
-	$qFindMatches = db_query("SELECT * FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."' ORDER BY matchOrder ASC");
-	while($rFindMatches = db_fetch($qFindMatches)) {
-		$content .= "<tr><td class=tdLink onClick='location.href=\"?module=compoadmin&compo=$compo&action=editMatch&matchID=$rFindMatches->matchID\"'>";
-#		$content .= $rFindMatches->matchID;
-#		$content .= "</td><td>";
-		$qFindMatchmembers = db_query("SELECT * FROM ".$sql_prefix."_compoMatch_signup WHERE matchID = '$rFindMatches->matchID'");
-		while($rFindMatchmembers = db_fetch($qFindMatchmembers)) {
-
-			switch($compotype) {
-				case 'clan':
-					$qFindClanname = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = '$rFindMatchmembers->clanID'");
-					$rFindClanname = db_fetch($qFindClanname);
-					$content .= $rFindClanname->groupname." ";
-					break;
-				default:
-					$content .= "unknown: $rFindMatchmembers->matchID";
-
-
-			} // End switch
-		} // End while
+	$qFindRounds = db_query("SELECT * FROM ".$sql_prefix."_compoRound WHERE compoID = '".db_escape($compoID)."' ORDER BY compoRoundNumber ASC");
+	while($rFindRounds = db_fetch($qFindRounds)) {
+		$content .= "<table>";
+		$content .= "<tr><th>";
+		$content .= "Round ".$rFindRounds->compoRoundNumber;
+		$content .= "</th><th>";
+		$content .= $rFindRounds->roundName;
+		$content .= "</th>";
+		$content .= "<td class=tdLink onClick='location.href=\"?module=compoadmin&action=randomizeRound&compoID=$compoID&round=$rFindRounds->roundID\"'>";
+		$content .= "test?";
 		$content .= "</td></tr>";
-	} // End while rFindMatches
 
-	$content .= "</table>";
+		$content .= "</table>";
+
+		
+		$content .= "<br /><hr>";
+	} // End while rFindRounds
+	
+	$qMaxRound = db_query("SELECT MAX(compoRoundNumber) AS max_roundnumber FROM ".$sql_prefix."_compoRound WHERE compoID = '".db_escape($compoID)."'");
+	$rMaxRound = db_fetch($qMaxRound);
+	$roundnumber = $rMaxRound->max_roundnumber + 1;
+
+	$content .= "<form method=POST action=?module=compoadmin&compoID=$compoID&action=addRound>\n";
+	$content .= "<input type=text name=roundName value='$rGetCompoinfo->componame round $roundnumber'>".lang("Round name", "compoadmin");
+	$content .= "<input type=hidden name=roundnumber value='$roundnumber'>\n";
+	$content .= "<br />";
+	$content .= "<input type=submit value='".lang("Add round", "compoadmin")."'>";
+	$content .= "</form>\n\n\n";
+	
+
+	
+
+} // End matchadmin
+
+elseif($action == 'addRound' && isset($compoID)) {
+	$roundName = $_POST['roundName'];
+	$roundnumber = $_POST['roundnumber'];
+	
+	db_query("INSERT INTO ".$sql_prefix."_compoRound SET
+		compoID = '".db_escape($compoID)."',
+		compoRoundNumber = '".db_escape($roundnumber)."',
+		roundName = '".db_escape($roundName)."'");
+	header("Location: ?module=compoadmin&action=matchadmin&compoID=$compoID");
+
+
+} // End action == addRound
+
+elseif ($action == "randomizeRound" && isset($compoID) && isset($_GET['round'])) {
+	$round = $_GET['round'];
+
+	$qGetRound = db_query("SELECT * FROM ".$sql_prefix."_compoRound WHERE roundID = '".db_escape($round)."'");
+	$rGetRound = db_fetch($qGetRound);
+
+	
 }
-
-elseif($action == "editMatch" && isset($_GET['matchID'])) {
-	$matchID = $_GET['matchID'];
-	$compoID = $_GET['compo'];
-
-	$qFindMatch = db_query("SELECT * FROM ".$sql_prefix."_compoMatches WHERE matchID = '".db_escape($matchID)."'");
-	$rFindMatch = db_fetch($qFindMatch);
-	$qFindCompo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compoID)."'");
-	$rFindCompo = db_fetch($qFindCompo);
-
-	$content .= "<table>";
-	$content .= "<tr><th>".lang("Clan/user", "compoadmin");
-	$content .= "</th><th>";
-	$content .= lang("Result", "compoadmin");
-	$content .= "</th><th>";
-	$content .= lang("Win/lose");
-	$content .= "</th></tr>";
-	$content .= "<form method=POST action='?module=compoadmin&action=doEditMatch&matchID=$matchID&compoID=$compoID'>";
-
-	$qFindSignedup = db_query("SELECT * FROM ".$sql_prefix."_compoMatch_signup WHERE matchID = '".db_escape($matchID)."'");
-	while($rFindSignedup = db_fetch($qFindSignedup)) {
-
-
-		switch($rFindCompo->type) {
-			case 'clan':
-				$qFindClan = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = '$rFindSignedup->clanID'");
-				$rFindClan = db_fetch($qFindClan);
-				$content .= "<tr><td>".$rFindClan->groupname."</td><td>";
-				$content .= "<input type=text name='clan".$rFindSignedup->clanID."' value='$rFindSignedup->result'>";
-				$content .= "</td><td>";
-
-				$content .= "<select name='winlose$rFindSignedup->clanID'>";
-
-				for($i=0;$i<count($winlosetype);$i++) {
-					#echo "comparing $rFindSignedup->winlose with $winlosetype[$i]\n";
-					$content .= "<option value='$winlosetype[$i]'";
-					if($rFindSignedup->winlose == $winlosetype[$i]) $content .= " SELECTED";
-					$content .= ">".lang($winlosetype[$i], "winlosetype")."</option>\n";
-				}
-				$content .= "</select>\n\n";
-
-				$content .= "</td></tr>";
-				break;
-			default:
-				$content .= "ERROR editMatch switch foobar";
-				$content .= $rFindCompo->type." is wrong";
-		} // End switch
-
-	} // End while rFindSignedup
-	$content .= "</table>\n";
-	$content .= "<input type=submit value='".lang("Save", "compoadmin")."'></form>";
-
-} // End action == editMatch
-
-elseif($action == "doEditMatch" && !empty($_GET['matchID'])) {
-	$matchID = $_GET['matchID'];
-	$compoID = $_GET['compoID'];
-	$qFindMatch = db_query("SELECT * FROM ".$sql_prefix."_compoMatches WHERE matchID = '".db_escape($matchID)."'");
-	$rFindMatch = db_fetch($qFindMatch);
-	$qFindCompo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compoID)."'");
-	$rFindCompo = db_fetch($qFindCompo);
-
-	$qFindSignedup = db_query("SELECT * FROM ".$sql_prefix."_compoMatch_signup WHERE matchID = '".db_escape($matchID)."'");
-	while($rFindSignedup = db_fetch($qFindSignedup)) {
-		switch($rFindCompo->type) {
-			case 'clan':
-				$name_res = 'clan'.$rFindSignedup->clanID;
-				$name_winlose = 'winlose'.$rFindSignedup->clanID;
-
-				$result = $_POST[$name_res];
-				$winlose = $_POST[$name_winlose];
-#				print_r($_POST);
-#				die($name.": ".$result);
-				db_query("UPDATE ".$sql_prefix."_compoMatch_signup SET result = '".db_escape($result)."', winlose = '".db_escape($winlose)."' WHERE matchID = '".db_escape($matchID)."' AND clanID = '$rFindSignedup->clanID'");
-				break;
-			default:
-				die("Error in doEditMatch -> switch");
-
-		} // End switch
-
-	} // end While
-	header("Location: ?module=compoadmin&action=editMatch&matchID=$matchID&compo=$compoID");
-} // End action = doEditMatch
-
-elseif($action == "randomizeMatch" && isset($_GET['compo'])) {
-	$compo = $_GET['compo'];
-	$qGetCompoinfo = db_query("SELECT * FROM ".$sql_prefix."_compos WHERE ID = '".db_escape($compo)."'");
-	$rGetCompoinfo = db_fetch($qGetCompoinfo);
-
-	// FIXME: Should check if matches have been played, and fail if played
-	db_query("DELETE FROM ".$sql_prefix."_compoMatch_signup WHERE matchID IN (SELECT matchID FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."')");
-	db_query("DELETE FROM ".$sql_prefix."_compoMatches WHERE compoID = '".db_escape($compo)."'");
-	$matchPlayers = 1;
-	$matchOrder = 1;
-
-	$qFindSignup = db_query("SELECT * FROM ".$sql_prefix."_compoSignup WHERE compoID = '".db_escape($compo)."' ORDER BY RAND()");
-	while($rFindSignup = db_fetch($qFindSignup))  {
-		if($matchPlayers == 1) {
-			// We've reached enough players this round, create a new match
-			db_query("INSERT INTO ".$sql_prefix."_compoMatches SET compoID = '".db_escape($compo)."', matchOrder = $matchOrder");
-			$matchOrder++;
-		}
-		$qMatchID = db_query("SELECT MAX(matchID) AS matchID FROM ".$sql_prefix."_compoMatches");
-		$rMatchID = db_fetch($qMatchID);
-		$matchID = $rMatchID->matchID;
-
-		if($rGetCompoinfo->playersClan == 1) {
-			db_query("INSERT INTO ".$sql_prefix."_compoMatch_signup SET matchID = '$matchID',
-				clanID = 1,
-				userID = '$rFindSignup->userID'");
-		}
-		else {
-			db_query("INSERT INTO ".$sql_prefix."_compoMatch_signup SET matchID = '$matchID',
-				clanID = '$rFindSignup->clanID'");
-		}
-
-		if($matchPlayers == $rGetCompoinfo->playersRound) {
-			$matchPlayers = 1;
-		}
-		else $matchPlayers++;
-	} // End while
-	header("Location: ?module=compoadmin&compo=$compo&action=matchadmin");
-} // End elseif action == randomizeMatch

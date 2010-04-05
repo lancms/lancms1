@@ -225,6 +225,7 @@ TABLE [prefix]_ticketReseller
 	used,		enum('yes','no'), ,	,	no,
 	usedBy,		int(11),	,	,	,
 	amount,		int(2),		,	,	1,
+	saleTime,	int(11),	,	,	0,
 }
 TABLE [prefix]_tickets
 {
@@ -289,6 +290,17 @@ TABLE [prefix]_compoSignup
 	compoID,	int(11),	PRI,	NOT NULL, ,		
 	clanID,		int(11),	PRI,	,	1,
 	userID,		int(11),	PRI,	,	1,
+}
+
+TABLE [prefix]_compoRound
+{
+#       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
+	roundID,	int(11),	PRI,	NOT NULL, ,		auto_increment
+	compoID,	int(11),	,	,	0,		,
+	roundType,	enum('clan', 'FFA', '1on1', 'group'), , , ,	,
+	compoRoundNumber, int(4),	,	,	1,		,
+	roundName,	varchar(35),	,	,	Round 1,	,
+
 }
 
 TABLE [prefix]_compoMatches

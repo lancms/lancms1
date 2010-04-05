@@ -51,17 +51,24 @@ if($do == "create_session")
 
 	// Find if servername matches any urls defined in eventAutoURL in events.
 	// If it matches, use this event when creating session
-	$qFindAutoEventURL = db_query("SELECT ID FROM ".$sql_prefix."_events WHERE eventAutoURL LIKE '%$host%'
-		AND eventClosed = 0 AND eventPublic = 1");
-	$rFindAutoEventURL = db_fetch($qFindAutoEventURL);
-	if($rFindAutoEventURL->ID) $sess_eventID = $rFindAutoEventURL->ID;
-	else $sess_eventID = 1;
+#	$qFindAutoEventURL = db_query("SELECT ID FROM ".$sql_prefix."_events WHERE eventAutoURL LIKE '%$host%'
+#		AND eventClosed = 0 AND eventPublic = 1");
+#	$rFindAutoEventURL = db_fetch($qFindAutoEventURL);
+	$FindAutoEventURL = config("hostname_".$host);
+
+	if(empty($FindAutoEventURL)) {
+		config("hostname_".$host, 1, 1); // Add the hostname-stuff to config, so it can be set
+		$FindAutoEventURL = 1;
+	}
+		
+#	if($rFindAutoEventURL->ID) $sess_eventID = $rFindAutoEventURL->ID;
+#	else $sess_eventID = 1;
 
 	db_query("INSERT INTO ".$sql_prefix."_session SET
 		sID = '$generate',
 		userIP = '".$_SERVER['REMOTE_ADDR']."',
 		lastVisit = '".time()."',
-		eventID = '$sess_eventID'");
+		eventID = '$FindAutoEventURL'");
 	
 	setcookie($osgl_session_cookie, $generate);
 

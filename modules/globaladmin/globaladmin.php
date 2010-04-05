@@ -116,6 +116,14 @@ elseif($action == "config") {
 		if($cfg_current) $content .= " CHECKED";
 		$content .= "> ".lang($globalconfig['checkbox'][$i], "globalconfigoption")."<br />\n";
 	} // End for
+	for($i=0;$i<count($globalconfig['text']);$i++) {
+		$cfgtype = $globalconfig['text'][$i];
+		$qFindTexts = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config LIKE '".$cfgtype."%' AND eventID = 1");
+		while($rFindTexts = db_fetch($qFindTexts)) {
+			$content .= "<input type=text name='".$rFindTexts->config."' value='$rFindTexts->value'>";
+			$content .= lang($rFindTexts->config, "globalconfigoption")."<br />";
+		} // End while
+	} // End for
 
 	$content .= "<input type=submit value='".lang("Save", "globaladmin_config")."'></form>";
 
@@ -136,6 +144,19 @@ elseif($action == "doConfig") {
 		$log_new[$glbcfg] = $post;
 		config($globalconfig['checkbox'][$i], 1, $post);
 	} // End for
+
+        for($i=0;$i<count($globalconfig['text']);$i++) {
+                $cfgtype = $globalconfig['text'][$i];
+                $qFindTexts = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config LIKE '".$cfgtype."%' AND eventID = 1");
+                while($rFindTexts = db_fetch($qFindTexts)) {
+			$post = $_POST[$rFindTexts->config];
+#                        $content .= "<input type=text name='".$rFindTexts->config."' value='$rFindTexts->value'>";
+#                        $content .= lang($rFindTexts->config, "globalconfigoption")."<br />";
+			config($rFindTexts->config, 1, $post);
+                } // End while
+        } // End for
+
+		
 	log_add("globalconfig", "doConfig", serialize($log_new), serialize($log_old));
 	header("Location: ?module=globaladmin&action=config&action=config&saved=OK");
 }
