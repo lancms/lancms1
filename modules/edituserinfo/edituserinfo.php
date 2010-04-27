@@ -189,19 +189,28 @@ elseif($action == "doEditPreferences" && isset($_GET['user'])) {
 		if($userpersonalprefs[$i]['required_on'] == 1) $POST = "on";
 		$qFindPref = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE userID = '".db_escape($userID)."' AND name = '$prefname'");
 		$numFindPref = db_num($qFindPref);
-
+		
 		if($numFindPref == 0) {
 			db_query("INSERT INTO ".$sql_prefix."_userPreferences
 				SET userID = '".db_escape($userID)."',
 				name = '$prefname',
 				value = '".db_escape($POST)."'");
+			$log_old[$prefname] = "FALSE";
+			$log_new[$prefname] = $POST;
 		} // End if
-		else
+		else	{
 			db_query("UPDATE ".$sql_prefix."_userPreferences SET value = '".db_escape($POST)."'
 				WHERE userID = '".db_escape($userID)."'
 				AND name = '$prefname'");
+			$rFindPref = db_fetch($qFindPref);
+			$log_old[$prefname] = $rFindPref->value;
+			$log_new[$prefname] = $POST;
+
+		}
 
 	} // End for
+
+	log_add("edituser", "doEditPreferences", serialize($log_new), serialize($log_old));
 	header("Location: ?module=edituserinfo&action=editPreferences&user=$userID&change=success");
 
 }
