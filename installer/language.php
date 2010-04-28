@@ -1203,3 +1203,21 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs").
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny side")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_static__newpage")."'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret konfigurasjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_eventadmin__doConfig")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Send E-post")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("mail")."' AND string = '".db_escape("Send Mail")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Mail masseutsendt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_mail__sendmail_mass")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Klan opprettet")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_groups__clanCreate")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endring av global konfigurasjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_globalconfig__doConfig")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret mine innstillinger")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_edituser__doEditPreferenc")."'");
+
