@@ -142,15 +142,15 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
 	$content .= "<tr><td>";
 	$content .= $rListBuyTickets->name;
-	$content .= "</td><td>";
-	$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>";
-	$content .= "<input name=numTickets value=1>";
-	$content .= "<input type=submit value='".lang("Buy ticket")."'>";
-	$content .= "</form>";
-	$content .= "</td></tr>";
+	$content .= "</td><td>\n\n";
+	$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
+	$content .= "<input name=numTickets value=1>\n";
+	$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
+	$content .= "</form>\n\n";
+	$content .= "</td></tr>\n";
         } // End while
     if(config("enable_reseller", $sessioninfo->eventID)) {
-	$content .= "<tr><td>".lang("Ticketcode from reseller", "ticketorder")."</td>";
+	$content .= "<tr><td>".lang("Ticketcode from reseller", "ticketorder")."</td>\n";
 	$content .= "<form method=POST action=?module=ticketorder&action=buyticket>\n";
 	$content .= "<td><input type=text name=resellercode size=10>\n";
 	$content .= "<input type=submit value='".lang("Claim ticket", "ticketorder")."'>\n";
@@ -175,12 +175,16 @@ elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['n
         $rTicketType = db_fetch($qTicketType);
         // Check how many tickets the user already has
         $qUserNumTickets = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID'
-	AND (owner = '$sessioninfo->userID' OR creator = '$sessioninfo->userID')");
+	AND (owner = '$sessioninfo->userID' OR user = '$sessioninfo->userID')");
         $rUserNumTickets = db_fetch($qUserNumTickets);
-        if($rUserNumTickets->count >= $maxTicketsPrUser); // Do noting if we've maxed maxTicketsPrUser
+        if($rUserNumTickets->count >= $maxTicketsPrUser) {
+		 // Do noting if we've maxed maxTicketsPrUser
+		$logmsg['failed_add_maxtickets'] = $rUserNumTickets->count;
+	}
         else { // If we have not yet reached maxTicketsPrUser, add the ticket
 	if($rTicketType->type == "prepaid") $status = 'notpaid';
 	elseif($rTicketType->type == 'preorder') $status = 'notused';
+
 	db_query("INSERT INTO ".$sql_prefix."_tickets SET
 	    owner = '$sessioninfo->userID',
 	    creator = '$sessioninfo->userID',
