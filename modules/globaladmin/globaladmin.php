@@ -106,7 +106,7 @@ elseif($action == "setPublic") {
 
 elseif($action == "config") {
 
-	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
+	if($_GET['saved'] == "OK") $content .= lang("Config successfully saved", "globaladmin");
 
 	$content .= "<form method=POST action='?module=globaladmin&amp;action=doConfig'>\n";
 	for($i=0;$i<count($globalconfig['checkbox']);$i++) {
