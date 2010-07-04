@@ -25,7 +25,7 @@ $eventconfig['checkbox'][] = 'enable_composystem';
 $eventconfig['checkbox'][] = 'enable_reseller';
 $eventconfig['checkbox'][] = 'enable_crewlist';
 $eventconfig['checkbox'][] = 'enable_news';
-
+$eventconfig['checkbox'][] = 'enable_kiosk';
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';
@@ -52,6 +52,9 @@ $eventaccess[] = 'economy';
 $eventaccess[] = 'crewlist';
 $eventaccess[] = 'compoadmin';
 $eventaccess[] = 'reseller';
+$eventaccess[] = 'kiosk_admin';
+$eventaccess[] = 'kiosk_stats';
+$eventaccess[] = 'kiosk_sales';
 
 
 ## GlobalACLs

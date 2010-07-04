@@ -372,3 +372,35 @@ TABLE [prefix]_cronjobs
 	senderID,		int(11),		,	,	,
 	finishTime,		int(11),		,	0,	,
 }
+
+
+TABLE [prefix]_kiosk_wares
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	wareType,		int(11),		,	,	,		
+	name,			varchar(35),		,	,	,
+	price,			int(4),			,	,	0,
+}
+
+TABLE [prefix]_kiosk_waretypes
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	typeName,		varchar(35),		,	,	,		
+}
+
+TABLE [prefix]_kiosk_barcodes
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	barcode,		varchar(40),		PRI,	NOT NULL,	,	
+	wareID,			int(11),		,	NOT NULL,	,
+}
+
+TABLE [prefix]_kiosk_shopbasket
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	sID,			varchar(35),		PRI,	NOT NULL, ,		
+	wareID,			int(11),		PRI,	NOT NULL, ,
+	amount,			int(3),			,	,	1,
+}

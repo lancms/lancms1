@@ -69,6 +69,8 @@ if ($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=arrival\">".lang("Arrival", "index")."</a></li>\n";
 	if (config ("enable_reseller", $sessioninfo->eventID) && acl_access("reseller", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
 		$design_eventmenu .= "<li><a href=\"?module=reseller\">".lang("Reseller", "index")."</a></li>\n";
+	if (config("enable_kiosk", $sessioninfo->eventID) && acl_access("kiosk", "index") != 'No')
+		$design_eventmenu .= "<li><a href=\"?module=kiosk\">".lang("Kiosk", "index")."</a></li>\n";
 
 
 
