@@ -404,3 +404,23 @@ TABLE [prefix]_kiosk_shopbasket
 	wareID,			int(11),		PRI,	NOT NULL, ,
 	amount,			int(3),			,	,	1,
 }
+
+TABLE [prefix]_kiosk_sales
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	salesPerson,		int(11),		,	NOT NULL, 1,	
+	saleTime,		int(11),		,	,	0,
+	eventID,		int(11),		,	,	1,
+	soldTo,			int(11),		,	,	1,
+	totalPrice,		int(5),			,	,	,
+}
+
+TABLE [prefix]_kiosk_saleitems
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	saleID,			int(11),		PRI,	NOT NULL, ,
+	wareID,			int(11),		PRI,	NOT NULL, ,
+	amount,			int(5),			,	,	0,
+	
+}

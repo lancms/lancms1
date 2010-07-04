@@ -3,9 +3,9 @@
 require_once 'include.php';
 $module = $_GET['module'];
 $action = $_GET['action'];
-
+$api = $_GET['api'];
 // FIXME: error and hack-checking
-if (empty($module))
+if (empty($module) && empty($api))
 {
 #	$module = "static";
 #	$qFindStatic = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND eventID = '$sessioninfo->eventID'");
@@ -17,6 +17,11 @@ elseif (isset ($module) && file_exists ('modules/'.$module.'/'.$module.'.php'))
 {
 	include ('modules/'.$module.'/'.$module.'.php');
 } // End if isset module
+elseif (isset ($api) && file_exists ('modules/'.$api.'/api.php'))
+{
+	include ('modules/'.$api.'/'.'api.php');
+	$hide_smarty = TRUE;
+} // End if isset api
 else
 {
 	$content = "Hello World!";

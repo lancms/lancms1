@@ -1,0 +1,45 @@
+#scroll
+
+{
+  position: relative;
+  margin: 0 auto;
+  visibility: hidden;
+  background-color: white;
+  z-index: 1;    
+/*  width: 300px;
+  height: 180px; */
+  border-top-style: solid;
+  border-right-style: solid;
+  border-left-style: solid;
+  border-collapse: collapse;
+  border-bottom-style: solid;
+  border-color: #000000;
+  border-width: 1px;      
+  overflow: auto
+}
+
+#scroll div
+{
+  margin: 0 auto;
+  text-align:left
+}
+
+#suggest table
+{
+  width: 270px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #676767;
+  text-decoration: none;
+  border: 0px;
+  padding: 0px;  
+  text-align:left;   
+  margin: 0px
+
+}
+
+.highlightrow
+{
+  background-color: #999999;
+  cursor: pointer
+}

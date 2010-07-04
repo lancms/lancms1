@@ -624,3 +624,11 @@ function user_exists ($userid)
 	}
 
 }
+
+function kiosk_item_price($wareID) {
+	global $sql_prefix;
+
+	$qDefaultPrice = db_query("SELECT price FROM ".$sql_prefix."_kiosk_wares WHERE ID = '".db_escape($wareID)."'");
+	$rDefaultPrice = db_fetch($qDefaultPrice);
+	return $rDefaultPrice->price;
+}
