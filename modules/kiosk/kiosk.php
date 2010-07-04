@@ -8,16 +8,15 @@ $action = $_GET['action'];
 if(empty($action)) {
 
 	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_suggest.js"></script>'."\n";
-	$design_head .= '<link href="modules/kiosk/suggest.css" rel="stylesheet" type="text/css" />';
+#	$design_head .= '<link href="modules/kiosk/suggest.css" rel="stylesheet" type="text/css" />';
 
 	$content .= "<table>";
 	$content .= "<tr><td colspan=2>";
-	$content .= '<div id="suggestcontent" onclick="hideSuggestions();">';
 	$content .= "<form method=POST action=?module=kiosk&action=addWare>";
-	$content .= "<input type=text name=ware id=ware onkeyup=\"handleKeyUp(event)\" value='' />";
-	$content .= "<div id='scroll'><div id='suggest'></div></div>";
+	$content .= "<input type=text name=ware id=ware  onkeyup=\"suggest();\" autocomplete=\"off\"/>";
+	$content .= "<div id='suggest'></div>";
 	$content .= "<input type=submit value='".lang("Add", "kiosk")."'>\n";
-	$content .= "</form></div>\n\n";
+	$content .= "</form>\n\n";
 	$content .= "</td></tr>";
 
 	$content .= "<tr><td>";

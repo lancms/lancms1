@@ -1,3 +1,18 @@
+a 
+{
+  text-decoration: none;
+  margin: 0px;
+  color: #173f5f
+}
+
+input 
+{
+  border: #999 1px solid; 
+  font-family: helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 10px 
+}
+
 #scroll
 
 {
@@ -6,8 +21,8 @@
   visibility: hidden;
   background-color: white;
   z-index: 1;    
-/*  width: 300px;
-  height: 180px; */
+  width: 300px;
+  height: 180px; 
   border-top-style: solid;
   border-right-style: solid;
   border-left-style: solid;
