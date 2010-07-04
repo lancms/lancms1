@@ -5,6 +5,7 @@ index.php:// FIXME: error and hack-checking
 index.php:// FIXME: this uses userAdmin as an eventACL, while it should be a global ACL.
 index.php:// FIXME:This should probably be a function that checks what events you have access to
 installer/table.php:			// FIXME: dirty hack to get DEFAULT CURRENT_TIMESTAMP in :-P
+modules/kioskadmin/kioskadmin.php:	// FIXME: Create editing, disabling and deletion of wareTypes
 modules/register/register.php:	// FIXME? Cellphone is optional, we may need some code to 1) make it required, 2) hide it completely or 3) something else
 modules/register/register.php:		// FIXME? Hardcoded lenght of cellphone numbers
 modules/register/register.php:	// FIXME? Cellphone is optional
@@ -15,6 +16,8 @@ modules/groups/groups.php:	// FIXME: ACL...
 modules/login/login.php:	// FIXME: Should probably return to referrer.
 modules/logs/logs.php:// FIXME: using nonexistant acl "logview" to make this globaladmin-only until we get global acls working
 modules/logs/logs.php:		// FIXME: Hardcoding number of logentries to show:
+modules/kiosk/kiosk.php:		$content .= $rFindBasket->amount; // FIXME: Needs to have menues and crewprices
+modules/kiosk/kiosk.php:	// FIXME: Should have a AJAX search for wares too
 modules/eventadmin/eventadmin.php:	// FIXME: should probably do a check so that you can't remove the last group with admin-rights
 modules/eventadmin/eventadmin.php:	// FIXME: Only works for accessgroups for now...
 modules/seatadmin/seatadmin.php:		/* FIXME */
