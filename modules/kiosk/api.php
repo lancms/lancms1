@@ -12,14 +12,13 @@ if($action == "searchitems") {
 	echo '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>';
 	echo "\n<response>\n";
 	while($rFindWares = db_fetch($qFindWares)) {
-		echo "<item>";
-		echo "<name>";
+		echo "<item";
+		echo " name='";
 		echo $rFindWares->name;
-		echo "</name>\n";
-		echo "<ID>";
+		echo "'";
+		echo " ID='";
 		echo $rFindWares->ID;
-		echo "</ID>\n";
-		echo "</item>\n\n";
+		echo "' />";
 	} // End while
 	echo "</response>\n";
 } // End action = searchitems

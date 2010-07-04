@@ -51,7 +51,7 @@ if(empty($action)) {
 
 elseif($action == "addWare") {
 
-	$ware = $_POST['ware'];
+	$ware = $_REQUEST['ware'];
 
 	$qFindBarcode = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE barcode = '".db_escape($ware)."'");
 	if(db_num($qFindBarcode) != 0) {
@@ -59,7 +59,13 @@ elseif($action == "addWare") {
 		$wareID = $rFindBarcode->wareID;
 	}
 	// FIXME: Should have a AJAX search for wares too
-
+	else {
+		$qFindWareID = db_query("SELECT * FROM ".$sql_prefix."_kiosk_wares WHERE ID = '".db_escape($ware)."'");
+		if(db_num($qFindWareID) == 1) {
+			$rFindWareID = db_fetch($qFindWareID);
+			$wareID = $rFindWareID->ID;
+		} // End if db_num == 1
+	} // End else
 
 	$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket 
 		WHERE sID = '$sessioninfo->sID'
