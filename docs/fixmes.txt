@@ -17,7 +17,6 @@ modules/login/login.php:	// FIXME: Should probably return to referrer.
 modules/logs/logs.php:// FIXME: using nonexistant acl "logview" to make this globaladmin-only until we get global acls working
 modules/logs/logs.php:		// FIXME: Hardcoding number of logentries to show:
 modules/kiosk/kiosk.php:		$content .= $rFindBasket->amount; // FIXME: Needs to have menues and crewprices
-modules/kiosk/kiosk.php:	// FIXME: Should have a AJAX search for wares too
 modules/eventadmin/eventadmin.php:	// FIXME: should probably do a check so that you can't remove the last group with admin-rights
 modules/eventadmin/eventadmin.php:	// FIXME: Only works for accessgroups for now...
 modules/seatadmin/seatadmin.php:		/* FIXME */
