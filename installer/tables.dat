@@ -388,6 +388,7 @@ TABLE [prefix]_kiosk_waretypes
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
 	ID,			int(11),		PRI,	,	,		auto_increment
 	typeName,		varchar(35),		,	,	,		
+	typeColor,		varchar(10),		,	,	'black',
 }
 
 TABLE [prefix]_kiosk_barcodes

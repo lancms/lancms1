@@ -8,12 +8,15 @@ $action = $_GET['action'];
 if(empty($action)) {
 
 	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_suggest.js"></script>'."\n";
+#	$design_head .= '<script type="text/javascript"> document.forms[\'barfield\'].ware.focus(); </script>';
+
+
 #	$design_head .= '<link href="modules/kiosk/suggest.css" rel="stylesheet" type="text/css" />';
 
 	$content .= "<table>";
 	$content .= "<tr><td colspan=2>";
-	$content .= "<form method=POST action=?module=kiosk&action=addWare>";
-	$content .= "<input type=text name=ware id=ware  onkeyup=\"suggest();\" autocomplete=\"off\"/>";
+	$content .= "<form method='POST' action='?module=kiosk&action=addWare' name='barfield'>\n";
+	$content .= "<input type=text name='ware' id='ware' tabindex=1 onkeyup=\"suggest();\" autocomplete=\"off\"/>";
 	$content .= "<div id='suggest'></div>";
 	$content .= "<input type=submit value='".lang("Add", "kiosk")."'>\n";
 	$content .= "</form>\n\n";
@@ -33,13 +36,19 @@ if(empty($action)) {
 		$price = kiosk_item_price($rFindBasket->wareID) * $rFindBasket->amount;
 		$content .= $price;
 		$total_price = $total_price + $price;
+		$total_warecount = $total_warecount + 1;
+		$content .= "</td><td>";
+		$content .= "<a href=?module=kiosk&action=addWare&ware=$rFindBasket->wareID><img src='inc/images/plus-15px.png' border=0 alt='".lang("Add one more item", "kiosk")."' /></a> ";
+		$content .= "<a href=?module=kiosk&action=removeWare&ware=$rFindBasket->wareID><img src='inc/images/minus-15px.png' border=0 alt='".lang("Remove one item", "kiosk")."' /></a>";
 		$content .= "</td></tr>";
 	}
 	$content .= "</table>";
 	$content .= "</td><td>";
-	$content .= "<font size=36 color=red>$total_price</font>";
-	$content .= "<form method=POST action=?module=kiosk&action=sell>";
-	$content .= "<input type=submit value='".lang("SELL", "kiosk")."'>";
+	if($total_warecount > 0) {
+		$content .= "<font size=36 color=red>$total_price</font>";
+		$content .= "<form method=POST action=?module=kiosk&action=sell>";
+		$content .= "<input type=submit value='".lang("SELL", "kiosk")."'>";
+	} // End if total_warecount > 0
 	$content .= "</form>\n\n";
 	$content .= "</td></tr>";
 	$content .= "</table>";
@@ -58,8 +67,7 @@ elseif($action == "addWare") {
 		$rFindBarcode = db_fetch($qFindBarcode);
 		$wareID = $rFindBarcode->wareID;
 	}
-	// FIXME: Should have a AJAX search for wares too
-	else {
+	else { // Assume we've used AJAX search, and that $ware is an ID
 		$qFindWareID = db_query("SELECT * FROM ".$sql_prefix."_kiosk_wares WHERE ID = '".db_escape($ware)."'");
 		if(db_num($qFindWareID) == 1) {
 			$rFindWareID = db_fetch($qFindWareID);
@@ -85,6 +93,24 @@ elseif($action == "addWare") {
 	header("Location: ?module=kiosk");
 } // End addWare
 
+elseif($action == "removeWare") {
+	$ware = $_REQUEST['ware'];
+
+	$qFindAmount = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE 
+		sID = '$sessioninfo->sID'
+		AND wareID = '".db_escape($ware)."'
+		");
+	$rFindAmount = db_fetch($qFindAmount);
+	if($rFindAmount->amount == 1) {
+		db_query("DELETE FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
+	} // End if amount = 1
+	else {
+		db_query("UPDATE ".$sql_prefix."_kiosk_shopbasket SET amount = amount - 1
+			WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
+	} // End else
+	header("Location: ?module=kiosk");
+} // End if action = removeWare
+ 
 elseif($action == "sell") {
 	$qCreateSale = db_query("INSERT INTO ".$sql_prefix."_kiosk_sales 
 		SET salesPerson = '$sessioninfo->userID',
