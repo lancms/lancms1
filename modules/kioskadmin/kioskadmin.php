@@ -1,6 +1,6 @@
 <?php
 
-$acl = acl_access("kiosk_wares", "", $sessioninfo->eventID);
+$acl = acl_access("kiosk_admin", "", $sessioninfo->eventID);
 
 if($acl == 'No') die("No access!");
 
