@@ -1,5 +1,6 @@
 <?php
 
+db_query("DELETE FROM ".$sql_prefix."_postnumber WHERE country=47");
 db_query("INSERT INTO ".$sql_prefix."_postnumber SET postnumber = '0001', postplace = 'OSLO', county = '0301', country = '47'");
 	db_query("INSERT INTO ".$sql_prefix."_postnumber SET postnumber = '0010', postplace = 'OSLO', county = '0301', country = '47'");
 	db_query("INSERT INTO ".$sql_prefix."_postnumber SET postnumber = '0014', postplace = 'OSLO', county = '0301', country = '47'");

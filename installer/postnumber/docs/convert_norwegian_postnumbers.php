@@ -7,7 +7,8 @@ $fp = fopen($file, "r");
 $output = '<?php
 
 ';
-
+$output .= 'db_query("DELETE FROM ".$sql_prefix."_postnumber WHERE country=47");';
+$output .= "\n";
 while(!feof($fp)) 
 {
 	$line = fgets($fp);
@@ -29,6 +30,6 @@ while(!feof($fp))
 }
 
 
-$fp = fopen ("../postnumbers/norwegian.php", "w");
+$fp = fopen ("../list/norwegian.php", "w");
 fputs($fp, $output) or die("Could not write!");
 fclose($fp);

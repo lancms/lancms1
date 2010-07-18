@@ -425,3 +425,14 @@ TABLE [prefix]_kiosk_saleitems
 	amount,			int(5),			,	,	0,
 	
 }
+
+TABLE [prefix]_postnumber
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	postnumber,		varchar(7),		,	NOT NULL, ,
+	postplace,		varchar(50),		,	,	,
+	country,		tinyint(3),		,	,	0,
+	county,			int(5),			,	,	,
+	comments,		text,			,	,	,
+}
