@@ -189,6 +189,7 @@ if($action == "register")
 if(!isset($action) || $hide_register == FALSE)
 {
 
+	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_postnumber.js"></script>'."\n";
 	if($register_invalid) $content .= "<font color=red>$register_invalid</font><br><br>";
 
 	$content .= "<form method=POST action=?module=register&amp;action=register>\n";
@@ -204,7 +205,7 @@ if(!isset($action) || $hide_register == FALSE)
 		lang("Last name", "register");
 	if(config("userinfo_address_required")) {
 		$content .= "\n<br><input type=text name=address value='$address'> ".lang("Address", "register");
-		$content .= "\n<br><input type=text size=5 name=postnumber value='$postnumber'> ".lang("Postnumber", "register");
+		$content .= "\n<br><input type=text size=5 name=postnumber ID='postnumber' value='$postnumber' onkeyup=\"suggest();\"><div ID='postplace' name='postplace' /> ".lang("Postnumber", "register");
 	}
 
 	if(config("userinfo_gender_required")) {

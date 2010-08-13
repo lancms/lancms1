@@ -24,7 +24,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	$GetSeatedUser = db_fetch($qGetSeatedUser);
 
 
-    if($seatX == 0 && $seatY != 0) {
+    if($seatX == 1 && $seatY != 1) {
         // If we're beginning a new row, end the last row, and begin it
         $content .= "</tr><tr>";
     } // End if seatY == 1 and $seatX != 1
