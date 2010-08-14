@@ -1,0 +1,36 @@
+After installing the software, login as globaladmin/admin and creating your first event in GlobalAdmin. After creating the event, you should go back to globaladmin and set it as public, so that normal users can find it.
+
+Since OSGL has support for multiple events and multiple URLs, you'd have to go to globaladmin -> change global options, and set the default eventID (1 is the default, with no event, the first event you create get eventID 2) for the hostname you're going to your installation of OSGL.
+
+
+** Adding tickets **
+
+You probably need to add some tickets so that your attendees can buy access to your event. In eventadmin, go to ticketadmin and add a tickettype. Set a name, the price of the ticket and what type of ticket it is. You can choose between:
+* prepaid (an admin needs to acknowledge that the ticket has been paid before you can pick a seat)
+* preordered (you select a seat before you pay, payment is done when you arrive)
+* onsite with computer (you haven't ordered a ticket before you show up in the door)
+* onsite without computer (visitor)
+* reseller (you pay in a store to get a code for a ticket).
+
+Prepaid and preordered tickets can be ordered directly by users, but onsite tickets has to be assigned to the user in the arrival-module.
+
+** Designing a seatmap **
+
+It's nice for the attendees to know where they are going to sit. In seatadmin you can design how you set up your floorplan, and choose diffrent types of seats:
+* Wall/Door
+* Open seat (normal, can be chosen by anyone, at once on preordered, and after payment is recieved on prepaid)
+* Group (can be chose based on what group a user is member of. Useful to assign clan-seats to a group/clan or crew)
+* Password (assign a password to the seats. Useful to give out clanseats or reserved seats, without needing to manage which groups should have access.
+* Text (putting text on the map ) FIXME: NOT WORKING
+* Area (creating areas, i.e. "check-in" and "kiosk") FIXME: NOT WORKING
+
+** Starting sales **
+
+In eventadmin -> eventconfig, you can enable diffrent modules. To allow users to buy tickets, you check enable ticketorder, to enable people to pick seats, you enable seating, etc.
+
+
+** Giving out rights **
+
+You'll have to give people rights to allow them access to admin-parts of the system. In eventadmin -> group management, you can create diffrent groups, or crews. Create a group, i.e. "Securitycrew", and go to "Change group rights". If securitycrew is meant to work with arrivals and recieve payments for tickets, they probably need access to tickets, with "ticketadmin", changing seats for users with "seating", and changing users information (if they have written something wrong) with "userAdmin". An access-right of "Read" gives a right to see information, access of "Write" enables the users to do most tasks (i.e. changing tickets assigned to users, etc.) and admin-access gives access to change everything, including adding new tickettypes, etc.
+
+
