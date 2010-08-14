@@ -72,7 +72,7 @@ if ($sessioninfo->eventID > 1)
 	$acl_ticketadmin = acl_access("ticketadmin", "", $sessioninfo->eventID);
 	if ($acl_ticketadmin == 'Admin' || acl_ticketadmin == 'Write')
 		$design_eventmenu .= "<li><a href=\"?module=arrival\">".lang("Arrival", "index")."</a></li>\n";
-	if (config ("enable_reseller", $sessioninfo->eventID) && acl_access("reseller", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
+	if (config ("enable_reseller", $sessioninfo->eventID) && acl_access("reseller", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=reseller\">".lang("Reseller", "index")."</a></li>\n";
 	if (config("enable_kiosk", $sessioninfo->eventID) && acl_access("kiosk_sales", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=kiosk\">".lang("Kiosk", "index")."</a></li>\n";
