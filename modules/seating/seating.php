@@ -26,7 +26,30 @@ else {
 } // End else
 
 if(!isset($action)) {
-    include_once 'modules/seatmap/seatmap.php';
+#	$seatX = $_GET['seatX'];
+#	$seatY = $_GET['seatY'];
+	include_once 'modules/seatmap/seatmap.php';
+
+	if(!empty($_GET['seatX']) && !empty($_GET['seatY'])) {
+        	// Display information about the seat
+
+		$qFindSeatings = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings 
+			WHERE seatX = '".db_escape($_GET['seatX'])."'
+			AND seatY = '".db_escape($_GET['seatY'])."'
+			AND eventID = '$sessioninfo->eventID'");
+		if(db_num($qFindSeatings) > 0) {
+			$rFindSeatings = db_fetch($qFindSeatings);
+			$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '$rFindSeatings->ticketID'");
+			$rFindTicket = db_fetch($qFindTicket);
+			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindTicket->user'");
+			$rFindUser = db_fetch($qFindUser);
+
+			$content .= $rFindUser->firstName." ".$rFindUser->lastName." ".lang("a.k.a.", "seating")." ".$rFindUser->nick;
+		} // End db_num > 0	
+	} // End !empty
+
+	$content .= "<br /><br />";
+	$content .= display_systemstatic("seatmap");
 
 } // End if(!isset($action))
 
@@ -65,3 +88,4 @@ elseif($_GET['action'] == "takeseat") {
     } // End if(seating_rights)
     header("Location: ?module=seating&seatX=$seatX&seatY=$seatY&ticketID=$ticketID");
 } // End if action == "takeseat"
+

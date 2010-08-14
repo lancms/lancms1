@@ -20,6 +20,7 @@ $maxTicketsPrUser = 5;
 $eventconfig['checkbox'][] = 'enable_ticketorder';
 $eventconfig['checkbox'][] = 'enable_FAQ';
 $eventconfig['checkbox'][] = 'seating_enabled';
+$eventconfig['checkbox'][] = 'seating_public';
 $eventconfig['checkbox'][] = 'enable_wannabe';
 $eventconfig['checkbox'][] = 'enable_composystem';
 $eventconfig['checkbox'][] = 'enable_reseller';

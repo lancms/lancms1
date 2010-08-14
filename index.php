@@ -61,6 +61,8 @@ if ($sessioninfo->eventID > 1)
 
 	if (config ("enable_FAQ", $sessioninfo->eventID))
 		$design_eventmenu .= "<li><a href=\"?module=FAQ&amp;action=read\">".lang("FAQ", "index")."</a></li>\n";
+	if (config ("seating_public", $sessioninfo->eventID))
+		$design_eventmenu .= "<li><a href=\"?module=seating\">".lang("Seatmap", "index")."</a></li>\n";
 	if (config ("enable_ticketorder", $sessioninfo->eventID) && $sessioninfo->userID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=ticketorder\">".lang("Order ticket", "index")."</a></li>\n";
 	if (config ("enable_wannabe", $sessioninfo->eventID) && $sessioninfo->userID > 1)
