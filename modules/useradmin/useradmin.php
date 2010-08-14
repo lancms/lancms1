@@ -17,26 +17,42 @@ $action = $_GET['action'];
 if (!isset ($action) or empty ($action))
 {
 	$content .= "<h2>".lang ("User administration", "useradmin")."</h2>";
-	$content .= "<form action='index.php' method='GET'>";
-	$content .= "<input type='hidden' name='module' value='useradmin' />";
-	$content .= "<input type='hidden' name='action' value='listall' />";
-	$content .= "<input type='submit' value='".lang ("View all users", "useradmin")."' />";
-	$content .= "</form>";
-	$content .= "<h3>Regular search</h3>";
-	$content .= "Searches for nick, first or last name and email address";
-	$content .= "<form>";
-	$content .= "<input type='text' />";
-	$content .= " <input type='submit' value='".lang ("Search", "useradmin")."' />";
-	$content .= "</form>";
+	$content .= "<form action='index.php' method='GET'>\n";
+	$content .= "<input type='hidden' name='module' value='useradmin' />\n";
+	$content .= "<input type='hidden' name='action' value='listall' />\n";
+	$content .= "<input type='submit' value='".lang ("View all users", "useradmin")."' />\n";
+	$content .= "</form>\n\n";
+	$content .= "<h3>Regular search</h3>\n";
+	$content .= "Searches for nick, first or last name and email address\n";
+	$content .= "<form method='GET' action='index.php'>\n";
+        $content .= "<input type='hidden' name='module' value='useradmin' />\n";
+        $content .= "<input type='hidden' name='action' value='search' />\n";
+	$content .= "<input type='text' name='search' />\n";
+	$content .= " <input type='submit' value='".lang ("Search", "useradmin")."' />\n";
+	$content .= "</form>\n\n";
 //	$content .= "<h3>Detailed search</h3>";
 //	$content .= "Search for users with tickets for a specific event";
 
 }
-elseif ($action == 'listall')
+elseif ($action == 'listall' || $action == 'search')
 {
 	$content .= "<h2>".lang("List of all users", "useradmin")."</h2>";
 	$content .= "<a href='index.php?module=useradmin'>".lang("Back to user administration", "useradmin")."</a>";
-	$users = user_getall ();
+
+	if($action == "listall") $users = user_getall ();
+	else {
+		$s = db_escape($_GET['search']);
+		$qFindUsers = db_query("SELECT * FROM ".$sql_prefix."_users 
+			WHERE ID = '$s'
+			OR nick LIKE '%$s%'
+			OR firstName LIKE '%$s%'
+			OR lastName LIKE '%$s%'
+			OR EMail LIKE '%$s%'
+		");
+		while($rFindUsers = db_fetch($qFindUsers)) {
+			$users[] = $rFindUsers;
+		} // End while
+	} // End else
 
 	$content .= "<table class='userlist'>";
 	$content .= "<tr>";
