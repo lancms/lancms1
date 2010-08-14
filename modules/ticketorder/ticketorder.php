@@ -140,28 +140,26 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
     if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
-	$content .= "<tr><td>";
-	$content .= $rListBuyTickets->name;
-	$content .= "</td><td>\n\n";
-	$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
-	$content .= "<input name=numTickets value=1>\n";
-	$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
-	$content .= "</form>\n\n";
-	$content .= "</td></tr>\n";
+		$content .= "<tr><td>";
+		$content .= $rListBuyTickets->name;
+		$content .= "</td><td>\n\n";
+		$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
+		$content .= "<input name=numTickets value=1>\n";
+		$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
+		$content .= "</form>\n\n";
+		$content .= "</td></tr>\n";
         } // End while
+    } // End if(db_num(qListBuyTickets)
     if(config("enable_reseller", $sessioninfo->eventID)) {
 	$content .= "<tr><td>".lang("Ticketcode from reseller", "ticketorder")."</td>\n";
 	$content .= "<form method=POST action=?module=ticketorder&action=buyticket>\n";
 	$content .= "<td><input type=text name=resellercode size=10>\n";
 	$content .= "<input type=submit value='".lang("Claim ticket", "ticketorder")."'>\n";
 	$content .= "</form></td></tr>";
-
-
     } // End config(enable_reseller)
-        $content .= "</table>";
-    } // End if(db_num(qListBuyTickets)
-	$content .= "<br /><br />";
-	$content .= display_systemstatic("ticketorder");
+    $content .= "</table>";
+    $content .= "<br /><br />";
+    $content .= display_systemstatic("ticketorder");
 } // End if !isset($action)
 
 elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['numTickets'])) {
