@@ -119,7 +119,7 @@ else {
 #if(acl_access("mojo") == "Admin") $design_userinfo .= "<br />".lang("You have mojo!");
 
 // FIXME:This should probably be a function that checks what events you have access to
-$qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventClosed = 0 AND ID != 1");
+$qEventList = db_query("SELECT * FROM ".$sql_prefix."_events WHERE eventClosed = 0 AND ID != 1 ORDER BY ID DESC");
 while($rEventList = db_fetch($qEventList))
 {
 	if($rEventList->ID != $sessioninfo->eventID && $rEventList->eventPublic == 1) {
