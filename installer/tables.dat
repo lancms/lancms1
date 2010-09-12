@@ -436,3 +436,33 @@ TABLE [prefix]_postnumber
 	county,			int(5),			,	,	,
 	comments,		text,			,	,	,
 }
+
+TABLE [prefix]_forums
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+        ID,                     int(11),                PRI,    ,       ,               auto_increment
+	eventID,		int(11),		,	NOT NULL,	,
+	name,			varchar(35),		,	,	,
+	description,		text,			,	,	,
+}
+
+TABLE [prefix]_forumThreads
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+        ID,                     int(11),                PRI,    ,       ,               auto_increment
+	forumID,		int(11),		,	,	,
+	threadTopic,		text,			,	,	,
+	threadStarter,		int(11),		,	,	,
+	threadDeleted,		tinyint(1),		,	,	0,
+	threadLocked,		tinyint(1),		,	,	0,
+	lastPost,		int(10)			,	,	0,
+}
+
+TABLE [prefix]_forumPosts
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+        ID,                     int(11),                PRI,    ,       ,               auto_increment
+	threadID,		int(11),		,	,	,
+	postAuthor,		int(11),		,	,	,
+	postTimestamp,		int(10),		,	,	0,
+}
