@@ -15,6 +15,7 @@ if(!isset($action) || $action == "editticket") {
         $content .= '</th><th>'.lang("Ticketname", "ticketadmin");
         $content .= '</th><th>'.lang("Tickettype", "ticketadmin");
         $content .= '</th><th>'.lang("Price", "ticketadmin");
+	$content .= '</th><th>'.lang("Number of tickets", "ticketadmin");
         $content .= '</th><th>'.lang("Sold tickets of type (total/seated/paid)", "ticketadmin");
         $content .= '</th></tr>';
         while($rListTickets = db_fetch($qListTickets)) {
@@ -27,6 +28,8 @@ if(!isset($action) || $action == "editticket") {
 	$content .= lang($rListTickets->type, "ticketadmin");
 	$content .= "</td><td>\n";
 	$content .= $rListTickets->price;
+	$content .= "</td><td>\n";
+	$content .= $rListTickets->maxTickets;
 	$content .= "</td><td class=tdLink onClick='location.href=\"?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID\"'>\n";
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
 	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
@@ -92,6 +95,14 @@ if(!isset($action) || $action == "editticket") {
     $content .= "</td><td>\n";
     $content .= lang("Tickettype is active?", "ticketadmin");
     $content .= "</td></tr><tr><td>\n";
+    $content .= "<input type=text size=5 name=maxTickets";
+    if($rGetTicketInfo->maxTickets > 0) $maxTickets = $rGetTicketInfo->maxTickets;
+    else $maxTickets = 0;
+    $content .= " value='$maxTickets'";
+    $content .= ">";
+    $content .= "</td><td>";
+    $content .= lang("Max tickets to sell", "ticketadmin");
+    $content .= "</td></tr><tr><td>\n";
     if($action == "editticket") $content .= "<input type=\"submit\" value='".lang("Edit tickettype", "ticketadmin")."' />\n";
     else $content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add tickettype", "ticketadmin")."' /></p>\n";
     $content .= "</form></td></tr></table>\n";
@@ -103,6 +114,7 @@ elseif($action == "addtickettype") {
     $name = db_escape($_POST['name']);
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
+    $maxTickets = db_escape($_POST['maxTickets']);
     if($_POST['active'] == 1) $active = 1;
     else $active = 0;
 
@@ -111,12 +123,14 @@ elseif($action == "addtickettype") {
         price = '$price', 
         type = '$type', 
         active = '$active',
+	maxTickets = '$maxTickets',
         eventID = '$eventID'");
 
     $log_new['name'] = $name;
     $log_new['price'] = $price;
     $log_new['type'] = $type;
     $log_new['active'] = $active;
+    $log_new['maxTickets'] = $maxTickets;
     log_add("ticketadmin", "addTicketType", serialize($log_new));
 
     header("Location: ?module=ticketadmin");
@@ -127,6 +141,7 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
     $name = db_escape($_POST['name']);
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
+    $maxTickets = db_escape($_POST['maxTickets']);
     if($_POST['active'] == 1) $active = 1;
     else $active = 0;
 
@@ -134,12 +149,14 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
         name = '$name', 
         price = '$price', 
         type = '$type', 
-        active = '$active'
+        active = '$active',
+	maxTickets = '$maxTickets'
         WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
     $log_new['name'] = $name;
     $log_new['price'] = $price;
     $log_new['type'] = $type;
     $log_new['active'] = $active;
+    $log_new['maxTickets'] = $maxTickets;
 
     log_add("ticketadmin", "doEditTicket", serialize($log_new));
     header("Location: ?module=ticketadmin");

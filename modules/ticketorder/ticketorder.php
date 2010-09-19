@@ -140,9 +140,15 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
     if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
         $content .= "<table>\n";
         while($rListBuyTickets = db_fetch($qListBuyTickets)) {
+		if($rListBuyTickets->maxTickets > 1) { // FIXME: Actually limit users from buying more than this
+			$qCheckSold = db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_tickets WHERE ticketType = '$rListBuyTickets->ticketTypeID'");
+			$rCheckSold = db_fetch($qCheckSold);
+			$free_tickets = $rListBuyTickets->maxTickets - $rCheckSold->amount;
+			$free_tickets_text = " (".$free_tickets." ".lang("ledige", "ticketorder").") ";
+		}
 		$content .= "<tr><td>";
 		$content .= $rListBuyTickets->name;
-		$content .= "</td><td>\n\n";
+		$content .= $free_tickets_text."</td><td>\n\n";
 		$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
 		$content .= "<input name=numTickets value=1>\n";
 		$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
