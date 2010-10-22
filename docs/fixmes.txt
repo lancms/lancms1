@@ -14,6 +14,7 @@ modules/ticketadmin/ticketadmin.php:		// FIXME: Display link to this seat on map
 modules/static/static.php:	/* FIXME: Should probably be.... more... */
 modules/groups/groups.php:	// FIXME: ACL...
 modules/login/login.php:	// FIXME: Should probably return to referrer.
+modules/ticketorder/ticketorder.php:		if($rListBuyTickets->maxTickets > 1) { // FIXME: Actually limit users from buying more than this
 modules/logs/logs.php:// FIXME: using nonexistant acl "logview" to make this globaladmin-only until we get global acls working
 modules/logs/logs.php:		// FIXME: Hardcoding number of logentries to show:
 modules/kiosk/kiosk.php:		$content .= $rFindBasket->amount; // FIXME: Needs to have menues and crewprices
