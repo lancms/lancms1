@@ -130,10 +130,14 @@ elseif($action == "doEditPage" && !empty($page))
 
 		db_query("UPDATE ".$sql_prefix."_static
 			SET page = '".db_escape($pageContent)."',
-			header = '".db_escape($header)."',
 			modifiedByUser = ".$sessioninfo->userID.",
 			modifiedTimestamp = ".time()."
 			WHERE ID = ".db_escape($page));
+		if(!empty($header)) {
+			db_query("UPDATE ".$sql_prefix."_static SET 
+			header = '".db_escape($header)."'
+			WHERE ID = ".db_escape($page));
+		}
 		log_add("static", "editpage", serialize($_POST));
 		header("Location: ?module=static&action=viewPage&page=$page");
 	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
