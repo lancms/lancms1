@@ -29,7 +29,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 		while ($log = db_fetch ($logresult))
 		{
 			$userip = $log->userIP;
-			if (!empty($log->userHost))
+			if (!empty($log->userHost) && $log->userHost != "NULL")
 			{
 				$userip .= " (".$log->userHost.")";
 			}
