@@ -80,8 +80,9 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 		db_query("UPDATE ".$sql_prefix."_session SET userID = '".db_escape($userID)."'
 			WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
 
-		// logtype, 1 (login). 
-		log_add ("login", "success", NULL, NULL, $userID);
+		// logtype, 1 (login).
+		$log_new['user_agent'] = $_SERVER['HTTP_USER_AGENT']; 
+		log_add ("login", "success", serialize($log_new), NULL, $userID);
 
 		header("Location: index.php"); // Move to index.php, should give a new userinfo-box
 	} // End if passwords match
@@ -94,6 +95,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 		// but log it:
 		// logtype, 3 (failed login)
 		$log_new['session_ID'] = $sessioninfo->sID;
+		$log_new['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 		log_add ("login", "failed_password", serialize($log_new), NULL, $userID);
 
 	} // End else (password does not match)
