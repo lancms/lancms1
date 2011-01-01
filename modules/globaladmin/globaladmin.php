@@ -38,6 +38,7 @@ if(!isset($action))
 	$content .= "<br /><br /><a href=\"?module=logs\">".lang("View logs", "globaladmin")."</a>";
 	$content .= "<br /><br /><a href=\"?module=useradmin\">".lang("User administration", "globaladmin")."</a>";
 	$content .= "<br /><br /><a href=\"?module=globaladmin&amp;action=listGlobalRights\">".lang("List groups with global access", "globaladmin")."</a>";
+	$content .= "<br /><br /><a href=\"?module=sessions\">".lang("List sessions", "globaladmin")."</a>";
 
 } // End if !isset($action)
 
