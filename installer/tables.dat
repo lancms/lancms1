@@ -46,6 +46,7 @@ TABLE [prefix]_session
 	sID,		varchar(35),	PRI,	,	,
 	userIP,		varchar(15),	,	,	000.000.000.000,
 	userID,		int(11),	,	,	1,
+	userAgent,	text,		,	,	,
 	eventID,	int(11),	,	,	1,
 	lastVisit,	int(11),	,	,	0,
 }

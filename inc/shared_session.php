@@ -67,6 +67,7 @@ if($do == "create_session")
 	db_query("INSERT INTO ".$sql_prefix."_session SET
 		sID = '$generate',
 		userIP = '".$_SERVER['REMOTE_ADDR']."',
+		userAgent = '".$_SERVER['HTTP_USER_AGENT']."',
 		lastVisit = '".time()."',
 		eventID = '$FindAutoEventURL'");
 	
