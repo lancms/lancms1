@@ -343,7 +343,7 @@ TABLE [prefix]_logs
 {
 #	NAME			TYPE			KEY	NULL	DEFAULT		EXTRA
 	ID,			int(11),		PRI,	,	,		auto_increment
-	userID,		int(11),			,	,	,
+	userID,		int(11),			,	,	1,
 	eventID,		int(11),			,	,	,
 	userIP,		int unsigned,	,	,	,
 	userHost,	text,				,	,	,
@@ -353,7 +353,7 @@ TABLE [prefix]_logs
 	logURL,		text,				,	,	,
 	logTime,		timestamp,		,	,	current_timestamp,
 	logModule,		varchar(15),		,	,	,
-	logFunction,		varchar(15),		,	,	,
+	logFunction,		varchar(25),		,	,	,
 	IRCBotRead,		tinyint(1),		,	,	0,
 }
 
