@@ -67,6 +67,11 @@ elseif($action == "doNewThread" && isset($_GET['forum'])) {
 		postTimestamp = '".time()."',
 		postContent = '".db_escape($threadContent)."'");
 	db_query("UPDATE ".$sql_prefix."_users SET forumPosts = forumPosts + 1 WHERE ID = '$sessioninfo->userID'");
+
+	$log_new['threadName'] = $threadName;
+	$log_new['threadContent'] = $threadContent;
+	$log_new['forum'] = $forum;
+	log_add("forum", "newThread", serialize($log_new));
 	
 	header("Location: ?module=forum&action=viewThread&thread=$rFindThreadID->ID");
 }
@@ -122,8 +127,13 @@ elseif($action == "doNewPost" && isset($_GET['thread'])) {
 		postAuthor = '$sessioninfo->userID',
 		postTimestamp = '".time()."',
 		postContent = '".db_escape($postContent)."'");
-
+	
 	db_query("UPDATE ".$sql_prefix."_users SET forumPosts = forumPosts + 1 WHERE ID = '$sessioninfo->userID'");
+
+	$log_new['thread'] = $thread;
+	$log_new['postcontent'] = $postContent;
+	log_add("forum", "newpost", serialize($log_new));
+
 	header("Location: ?module=forum&action=viewThread&thread=$thread");
 }
 else {
