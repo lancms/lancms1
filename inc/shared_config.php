@@ -27,6 +27,7 @@ $eventconfig['checkbox'][] = 'enable_reseller';
 $eventconfig['checkbox'][] = 'enable_crewlist';
 $eventconfig['checkbox'][] = 'enable_news';
 $eventconfig['checkbox'][] = 'enable_kiosk';
+$eventconfig['checkbox'][] = 'enable_forum';
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';

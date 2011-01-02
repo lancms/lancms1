@@ -78,6 +78,9 @@ if ($sessioninfo->eventID > 1)
 		$design_eventmenu .= "<li><a href=\"?module=reseller\">".lang("Reseller", "index")."</a></li>\n";
 	if (config("enable_kiosk", $sessioninfo->eventID) && acl_access("kiosk_sales", "", $sessioninfo->eventID) != 'No')
 		$design_eventmenu .= "<li><a href=\"?module=kiosk\">".lang("Kiosk", "index")."</a></li>\n";
+	if (config("enable_forum", $sessioninfo->eventID))
+		$design_eventmenu .= "<li><a href=\"?module=forum\">".lang("Forum", "index")."</a></li>\n";
+	
 
 
 

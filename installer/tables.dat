@@ -28,6 +28,7 @@ TABLE [prefix]_users
 	birthYear,		int(4),			,		YES,	0,
 	birthMonth,		int(2),			,		YES,	0,
 	birthDay,		int(2),			,		YES,	0,
+	forumPosts,		int(5),			,		,	0,
 	
 }
 
@@ -467,4 +468,5 @@ TABLE [prefix]_forumPosts
 	threadID,		int(11),		,	,	,
 	postAuthor,		int(11),		,	,	,
 	postTimestamp,		int(10),		,	,	0,
+	postContent,		text,			,	,	,
 }

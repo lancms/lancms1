@@ -51,8 +51,81 @@ elseif($action == "newThread" && isset($forum)) {
 
 }
 
-elseif($action == "doNewTread" && isset($forum)) {
+elseif($action == "doNewThread" && isset($_GET['forum'])) {
 	$threadName = $_POST['threadName'];
 	$threadContent = $_POST['threadContent'];
+	$forum = $_GET['forum'];
+	db_query("INSERT INTO ".$sql_prefix."_forumThreads SET 
+		threadStarter = '".$sessioninfo->userID."',
+		forumID = '".db_escape($forum)."',
+		threadTopic = '".db_escape($threadName)."'");
+	$qFindThreadID = db_query("SELECT * FROM ".$sql_prefix."_forumThreads WHERE threadStarter = '".$sessioninfo->userID."' ORDER BY ID DESC LIMIT 0,1");
+	$rFindThreadID = db_fetch($qFindThreadID);
+	db_query("INSERT INTO ".$sql_prefix."_forumPosts 
+		SET postAuthor = '".$sessioninfo->userID."',
+		threadID = '".$rFindThreadID->ID."',
+		postTimestamp = '".time()."',
+		postContent = '".db_escape($threadContent)."'");
+	db_query("UPDATE ".$sql_prefix."_users SET forumPosts = forumPosts + 1 WHERE ID = '$sessioninfo->userID'");
+	
+	header("Location: ?module=forum&action=viewThread&thread=$rFindThreadID->ID");
+}
 
-	$checkRights = 
+
+elseif($action == "viewThread" && isset($_GET['thread'])) {
+	$thread = $_GET['thread'];
+	$qFindThread = db_query("SELECT * FROM ".$sql_prefix."_forumThreads WHERE ID = '".db_escape($thread)."'");
+	$rFindThread = db_fetch($qFindThread);
+
+	$content .= "<table>";
+	$content .= "<tr><th>";
+	$content .= $rFindThread->threadTopic;
+	$content .= "</th></tr>";
+
+	$content .= "</table>";
+	$content .= "<table border=1>";
+
+	$qFindPosts = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '".db_escape($thread)."'");
+	while($rFindPosts = db_fetch($qFindPosts)) {
+		$content .= "<tr><td>";
+		$content .= nl2br($rFindPosts->postContent);
+		$content .= "</td><td>";
+		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindPosts->postAuthor' LIMIT 0,1");
+		$rFindUser = db_fetch($qFindUser);
+		$content .= lang("User:", "forum");
+		$content .= $rFindUser->nick;
+		$content .= "<br />";
+		$content .= lang("Name:", "forum");
+		$content .= $rFindUser->firstName." ".$rFindUser->lastName;
+		$content .= "</td></tr>";
+	} // End while
+	$content .= "</table>";
+	$content .= "<br />";
+	$content .= "<a href=?module=forum&action=newPost&thread=$thread>".lang("New reply", "forum")."</a>";
+}
+
+elseif($action == "newPost" && isset($_GET['thread'])) {
+	$thread = $_GET['thread'];
+
+	$content .= "<form method=POST action=?module=forum&action=doNewPost&thread=$thread>";
+	$content .= "<textarea name=postContent rows=10 cols=60></textarea>";
+	$content .= "<br /><input type=submit value='".lang("Add reply", "forum")."'>";
+	$content .= "</form>";
+}
+
+elseif($action == "doNewPost" && isset($_GET['thread'])) {
+	$thread = $_GET['thread'];
+	$postContent .= $_POST['postContent'];
+
+	db_query("INSERT INTO ".$sql_prefix."_forumPosts SET
+		threadID = '".db_escape($thread)."',
+		postAuthor = '$sessioninfo->userID',
+		postTimestamp = '".time()."',
+		postContent = '".db_escape($postContent)."'");
+
+	db_query("UPDATE ".$sql_prefix."_users SET forumPosts = forumPosts + 1 WHERE ID = '$sessioninfo->userID'");
+	header("Location: ?module=forum&action=viewThread&thread=$thread");
+}
+else {
+	$content .= "Error?";
+}
