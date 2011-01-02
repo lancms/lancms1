@@ -107,6 +107,27 @@ if(!isset($action) || $action == "editticket") {
     else $content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add tickettype", "ticketadmin")."' /></p>\n";
     $content .= "</form></td></tr></table>\n";
 
+    if($action == "editticket" && $rGetTicketInfo->type == 'reseller') {
+	$qGetRights = db_query("SELECT a.groupID,g.groupname 
+		FROM ".$sql_prefix."_ACLs a 
+		JOIN ".$sql_prefix."_groups g ON a.groupID=g.ID 
+		WHERE a.eventID = '$sessioninfo->eventID' 
+		AND accessmodule = 'reseller' 
+		AND subcategory = '$rGetTicketInfo->ticketTypeID'");
+	$content .= "<table>\n";
+	while($rGetRights = db_fetch($qGetRights)) {
+		$content .= "<tr><td>";
+		$content .= "<a href=?module=ticketadmin&action=removeRight&group=$rGetRights->groupID&ticketType=$rGetTicketInfo->ticketTypeID>";
+		$content .= $rGetRights->groupname;
+		$content .= "</a></td></tr>";
+	} // End while rGetRights
+	$qFindGroups = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE eventID IN (1, $sessioninfo->eventID) AND groupType = 'access'");
+	$content .= "<tr><td>";
+	$content .= "<form method=POST action=?module=ticketadmin&action=addReseller&ticketType=$rGetTicketInfo->ticketTypeID>";
+	while($rFindGroups = db_fetch($qFindGroups));
+	$content .= "</table>";
+	
+   } // if action == editticket && type = reseller
 
 } // End if !isset($action)
 

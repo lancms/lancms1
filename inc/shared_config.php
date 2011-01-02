@@ -52,7 +52,6 @@ $eventaccess[] = 'wannabeadmin';
 $eventaccess[] = 'economy';
 $eventaccess[] = 'crewlist';
 $eventaccess[] = 'compoadmin';
-$eventaccess[] = 'reseller';
 $eventaccess[] = 'kiosk_admin';
 $eventaccess[] = 'kiosk_stats';
 $eventaccess[] = 'kiosk_sales';
@@ -69,7 +68,7 @@ $globalaccess[] = 'sendSMS';
 $specialaccess[] = 'groupaccess'; // Used inside groups
 $specialaccess[] = 'globaladmin'; // Can do anything
 $specialaccess[] = 'eventAttendee'; // May access the event, if non-public
-
+$specialaccess[] = 'reseller'; // Gives access to reseller and tickets
 
 ## Static system-messages
 $systemstatic[] = 'index'; // Main page
