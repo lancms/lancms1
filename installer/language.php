@@ -33,7 +33,7 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globala
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Administrer dette arrangementet")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Admin this event")."'");
 
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Sett arrangement offentlig")."'
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Set arrangement offentlig")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Set event public")."'");
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Sett aktiv")."'
@@ -1307,4 +1307,46 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketo
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ta billetten")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketorder")."' AND string = '".db_escape("Claim ticket")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Slettet")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("arrival")."' AND string = '".db_escape("Deleted")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassregistrering offentlig")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventconfigoption")."' AND string = '".db_escape("seating_public")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassregistrering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Seatmap")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("a.k.a.")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("seating")."' AND string = '".db_escape("a.k.a.")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Maks antall billetter å selge")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("Max tickets to sell")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Antall billetter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketadmin")."' AND string = '".db_escape("Number of tickets")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Registrert bruker")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_register__registered")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Vis sesjoner")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("List sessions")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Aktiver forum")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventconfigoption")."' AND string = '".db_escape("enable_forum")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Forum")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Forum")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Start ny tråd")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Start new thread")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Trådnavn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Thread name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Innhold")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Thread content")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til tråd")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Add thread")."'");
 
