@@ -144,7 +144,7 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 			$qCheckSold = db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_tickets WHERE ticketType = '$rListBuyTickets->ticketTypeID'");
 			$rCheckSold = db_fetch($qCheckSold);
 			$free_tickets = $rListBuyTickets->maxTickets - $rCheckSold->amount;
-			$free_tickets_text = " (".$free_tickets." ".lang("ledige", "ticketorder").") ";
+			$free_tickets_text = " (".$free_tickets." ".lang("free", "ticketorder").") ";
 		}
 		$content .= "<tr><td>";
 		$content .= $rListBuyTickets->name;
