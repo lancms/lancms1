@@ -160,6 +160,10 @@ $userprefs[9]['type'] = 'text';
 $userprefs[9]['name'] = 'cellphone';
 $userprefs[9]['displayName'] = 'Cellphone';
 
+$userprefs[10]['type'] = 'text';
+$userprefs[10]['name'] = 'EMail';
+$userprefs[10]['displayName'] = 'EMail';
+
 
 ## SpecialListings
 $listingtype[0]['type'] = 'eventAttendee';
