@@ -425,7 +425,9 @@ function log_add ($logmodule, $logfunction, $lognew="0", $logold="0", $userid=0,
 	}
 	if ($userid == 0)
 	{
-		$userid = $sessioninfo->userID;
+		if(!empty($sessioninfo->userID))
+			$userid = $sessioninfo->userID;
+		else $userid = 1;
 	}
 	if ($eventid == 0)
 	{
