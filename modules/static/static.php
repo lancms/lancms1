@@ -38,7 +38,7 @@ elseif($action == "listEventPages")
 	// No point in checking rights here; it is checked later
 
 	$qListPages = db_query("SELECT * FROM ".$sql_prefix."_static
-		WHERE eventID = ".$sessioninfo->eventID."
+		WHERE eventID = ".$sessioninfo->eventID." AND type = 'static'
 		ORDER BY header ASC");
 
 	if(mysql_num_rows($qListPages) != 0) {
@@ -68,14 +68,16 @@ elseif($action == "listEventPages")
 		$content .= "<input type=\"submit\" value='".lang("Add new page", "static")."' /></p>";
 		$content .= "</form>";
 	} //
-       if(acl_access("globaladmin", "", 0) == 'Admin') {
+	$globaladmin = acl_access("globaladmin", "", 0);
+	$eventadmin = acl_access("eventadmin", "", $sessioninfo->eventID);
+	if($globaladmin == 'Admin' || $eventadmin == 'Admin') {
                 // User has globaladmin-access, give access to editing system messages
                 $content .= "<br /><form method=GET>";
                 $content .= "<input type=hidden name=action value=editPage>\n";
                 $content .= "<input type=hidden name=module value=static>\n";
                 $content .= "<select name=page>\n";
                 for($i=0;$i<count($systemstatic);$i++) {
-                        $content .= "<option value='$systemstatic[$i]'>$systemstatic[$i]</option>";
+                        if(($eventadmin == 'Admin' && $systemstatic[$i] == 'index') || $globaladmin == 'Admin') $content .= "<option value='$systemstatic[$i]'>$systemstatic[$i]</option>";
                 }
                 $content .= "</select>\n";
                 $content .= "<input type=submit value='".lang("Edit system message", "static")."'>";
@@ -98,6 +100,8 @@ elseif($action == "editPage" && !empty($page))
 		if($page == 'index') $findEvent = $sessioninfo->eventID;
 		else $findEvent = 1;
 		$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = '".db_escape($page)."' AND type = 'system' AND eventID = '$findEvent'");
+	} elseif(acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin' && $page == 'index') {
+		$qStaticPage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE header = 'index' AND type = 'system' AND eventID = '$sessioninfo->eventID'");
 	} else {
 		die("Something went wrong... hacking?");
 	} // End else
@@ -140,7 +144,7 @@ elseif($action == "doEditPage" && !empty($page))
 		}
 		log_add("static", "editpage", serialize($_POST));
 		header("Location: ?module=static&action=viewPage&page=$page");
-	} elseif(acl_access("globaladmin", "", 1) == 'Admin') {
+	} elseif(acl_access("globaladmin", "", 1) == 'Admin' || (acl_access("eventadmin", "", $sessioninfo->eventID) && $page == 'index')) {
 		if($page == 'index') $event = $sessioninfo->eventID;
 		else $event = 1;
 
