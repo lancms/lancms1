@@ -209,7 +209,7 @@ elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access 
 
 	$log_new['question'] = $question;
 	$log_new['questionID'] = $questionID;
-	log_add("wannabeAdmin", "changeQuestion", serialize($log_new));
+	log_add("wannabeadmin", "changeQuestion", serialize($log_new));
 
 	header("Location: ?module=wannabeadmin&action=questions");
 }
