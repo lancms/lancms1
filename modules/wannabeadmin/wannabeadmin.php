@@ -235,7 +235,7 @@ elseif($action == "listApplications") {
 			$content .= ">";
 			$content .= "<a href=\"?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID\">";
 			$content .= display_username($rListApplications->userID);
-			$content .= "</a></td>";
+			$content .= "</a></td>\n";
 			for($i=0;$i<count($crewlist);$i++) {
 			    
 			    $qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
@@ -243,7 +243,7 @@ elseif($action == "listApplications") {
 			    $content .= "<td class=wannabeCommentStyle".$rListMyComment->approval.">";
 			    $content .= "</td>\n";
 			} // End for 
-			$content .= "</tr>";
+			$content .= "</tr>\n\n\n";
 		} // End while rListApplications
 		$content .= "</table>";
 	}
@@ -270,9 +270,9 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	while($rListCrewResponses = db_fetch($qListCrewResponses)) {
 		$content .= "<tr class='wannabeCrewResponse".$rListCrewResponseLoopCount."'><td>";
 		$content .= $rListCrewResponses->crewname;
-		$content .= ":</td><td>";
+		$content .= ":</td>\n<td>";
 		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
-		$content .= "</td></tr>";
+		$content .= "</td></tr>\n\n";
 
 		$rListCrewResponseLoopCount++;
 		if ($rListCrewResponseLoopCount == 3)
