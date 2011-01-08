@@ -16,8 +16,13 @@
 				<div id="Header-repeat"><div></div></div>
 				<div id="Header-right"></div>
 					<div id="logo">
-							<h1 id="name-text" class="logo-name"><a href="#">{$eventtitle}</a></h1>
-							<div id="slogan-text" class="logo-text">{$eventsubtext}</div>
+							{if $eventinfo}
+							<h1 id="name-text" class="logo-name"><a href="#">{$eventinfo->eventname}</a></h1>
+							<div id="slogan-text" class="logo-text">{$eventinfo->eventsubtext}</div>
+							{else}
+							<h1 id="name-text" class="logo-name"><a href="#">{$title}</a></h1>
+							<div id="slogan-text" class="logo-text">OSGlobeLAN</div>
+							{/if}
 						</div>
 						
 				
