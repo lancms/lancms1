@@ -189,7 +189,7 @@ if($action == "register")
 if(!isset($action) || $hide_register == FALSE)
 {
 
-	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_suggest.js"></script>'."\n";
+	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_postnumber.js"></script>'."\n";
 	if($register_invalid) $content .= "<font color=red>$register_invalid</font><br><br>";
 
 	$content .= "<form method=POST action=?module=register&amp;action=register>\n";
