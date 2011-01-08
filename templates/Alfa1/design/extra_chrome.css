@@ -1,0 +1,9 @@
+/* extra_chrome.css */
+#menu li a
+{
+	display: block;
+	padding: 57px 20px 12px 20px;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
