@@ -2,7 +2,7 @@ How to install using SVN:
 
 svn co https://osglobelan.svn.sourceforge.net/svnroot/osglobelan/trunk/OSGL2/ /path/to/install/to/htdocs
 
-Create a new file named SVN_Override.php in the root directory with the following content:
+Create a new file named SVN_OverrideConfig.php in the root directory with the following content:
 
 
 <?php
