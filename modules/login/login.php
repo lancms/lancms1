@@ -58,10 +58,13 @@ elseif($action == "password" && !empty($_GET['userID']))
 	$userinfo = db_fetch($get_user);
 
 	$content .= "<p>".lang("Log in as:", "login")."&nbsp;&nbsp;&nbsp;".$userinfo->nick."</p>\n";
-	$content .= "<form method=\"post\" action=\"?module=login&amp;action=login&amp;userID=$userID\">\n";
+	$content .= "<form name='password' method=\"post\" action=\"?module=login&amp;action=login&amp;userID=$userID\">\n";
 	$content .= "<p>".lang("Password:", "login")." <input class=\"login\" type=\"password\" name=\"password\" /></p>\n";
 	$content .= "<p><input class=\"login\" type=\"submit\" value=\"Login\" /></p>\n";
 	$content .= "</form>\n";
+	$content .= "\n\n";
+	$content .= "<script type='text/javascript' language='javascript'>document.forms['password'].elements['password'].focus()</script>\n";
+	$content .= "\n\n";
 }
 
 
