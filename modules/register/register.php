@@ -205,7 +205,7 @@ if(!isset($action) || $hide_register == FALSE)
 		lang("Last name", "register");
 	if(config("userinfo_address_required")) {
 		$content .= "\n<br><input type=text name=address value='$address'> ".lang("Address", "register");
-		$content .= "\n<br><input type=text size=5 name=postnumber ID='postnumber' value='$postnumber' onkeyup=\"suggest();\"><div ID='postplace' name='postplace'></div> ".lang("Postnumber", "register");
+		$content .= "\n<br><input type=text size=5 name=postnumber ID='postnumber' value='$postnumber' onkeyup=\"suggest();\">".lang("Postnumber", "register")."<div ID='postplace' name='postplace'></div>";
 	}
 
 	if(config("userinfo_gender_required")) {
