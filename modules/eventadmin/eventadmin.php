@@ -35,7 +35,7 @@ if(!isset($action))
 	$sendSMS_ACL = acl_access("sendSMS", "", 1);
 	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<br /><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a>";
 	if(acl_access("kiosk_admin", "", $eventID) != 'No')
-		$content .= "<br /><a href='?module=kioskadmin>".lang("Kioskadmin", "eventadmin")."</a>\n";
+		$content .= "<br /><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a>\n";
 
 
 } // End if !isset(action)
