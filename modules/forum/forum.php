@@ -18,7 +18,7 @@ if(empty($action)) {
 } // End if empty(action)
 
 elseif($action == "viewForum" && isset($forum)) {
-	if(acl_access("forum", $forum, $sessioninfo->eventID)) $content .= "<a href=?module=forum&action=newThread&forum=$forum>".lang("Start new thread", "forum")."</a>";	
+	if(acl_access("forum", $forum, $sessioninfo->eventID) && $sessioninfo->userID > 1) $content .= "<a href=?module=forum&action=newThread&forum=$forum>".lang("Start new thread", "forum")."</a>";	
 	$content .= "<table>";
 	$qFindThreads = db_query("SELECT * FROM GO_forumThreads WHERE forumID = '".db_escape($forum)."' AND threadDeleted = 0 ORDER BY lastPost DESC");
 	while($rFindThreads = db_fetch($qFindThreads)) {
@@ -30,7 +30,8 @@ elseif($action == "viewForum" && isset($forum)) {
 	$content .= "</table>";
 } // elseif action = viewForum
 
-elseif($action == "newThread" && isset($forum)) {
+elseif($action == "newThread" && isset($forum) && $sessioninfo->userID > 1) {
+
 
 	$content .= "<table>";
 	$content .= "<form method=POST action=?module=forum&action=doNewThread&forum=$forum>\n";
@@ -51,7 +52,7 @@ elseif($action == "newThread" && isset($forum)) {
 
 }
 
-elseif($action == "doNewThread" && isset($_GET['forum'])) {
+elseif($action == "doNewThread" && isset($_GET['forum']) && $sessioninfo->userID) {
 	$threadName = $_POST['threadName'];
 	$threadContent = $_POST['threadContent'];
 	$forum = $_GET['forum'];
@@ -106,10 +107,10 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 	} // End while
 	$content .= "</table>";
 	$content .= "<br />";
-	$content .= "<a href=?module=forum&action=newPost&thread=$thread>".lang("New reply", "forum")."</a>";
+	if($sessioninfo->userID > 1) $content .= "<a href=?module=forum&action=newPost&thread=$thread>".lang("New reply", "forum")."</a>";
 }
 
-elseif($action == "newPost" && isset($_GET['thread'])) {
+elseif($action == "newPost" && isset($_GET['thread']) && $sessioninfo->userID > 1) {
 	$thread = $_GET['thread'];
 
 	$content .= "<form method=POST action=?module=forum&action=doNewPost&thread=$thread>";
@@ -118,7 +119,7 @@ elseif($action == "newPost" && isset($_GET['thread'])) {
 	$content .= "</form>";
 }
 
-elseif($action == "doNewPost" && isset($_GET['thread'])) {
+elseif($action == "doNewPost" && isset($_GET['thread']) && $sessioninfo->userID > 1) {
 	$thread = $_GET['thread'];
 	$postContent .= $_POST['postContent'];
 
