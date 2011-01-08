@@ -275,3 +275,41 @@ blockquote
 	margin: 0px;
 	padding: 0;
 }
+
+/* override shared/logs.css */
+tr.logrow1
+{
+	background-color: #f59f19;
+}
+
+tr.logrow2
+{
+	background-color: #b15b0f;
+}
+table.logs
+{
+	font-size: 95%;
+}
+/* end override shared/logs.css */
+
+/* override shared/useradmin.css */
+table.userlist
+{
+	font-size: 95%;
+}
+
+tr.userrow0
+{
+	background-color: lightgreen;
+}
+
+tr.userrow1
+{
+	background-color: #f59f19;
+}
+
+tr.userrow2
+{
+	background-color: #b15b0f;
+}
+/* end override shared/useradmin.css */

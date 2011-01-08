@@ -1,13 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
+		<!-- module head code -->
+		{$head}
+		<!-- end module head code -->
+
+		<!-- chrome fix -->
 		{if "Chrome"|eregi:$smarty.server.HTTP_USER_AGENT}
 		<link rel="stylesheet" href="templates/Alfa1/design/extra_chrome.css" type="text/css" />
 		{else}
 		<link rel="stylesheet" href="templates/Alfa1/design/extra_normal.css" type="text/css" />
 		{/if}
+		<!-- end chrome fix -->
+		
 		<link rel="stylesheet" href="templates/Alfa1/design/default.css" type="text/css" />
-		{$head}
+
 		{if $eventinfo->eventname}
 		<title>{$eventinfo->eventname}</title>
 		{else}
