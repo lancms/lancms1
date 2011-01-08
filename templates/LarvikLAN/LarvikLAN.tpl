@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-	<title>LarvikLAN</title>
+	<title>{$eventtitle}</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 	<link rel="stylesheet" href="templates/LarvikLAN/style.css" type="text/css" />
 	{$head}
@@ -16,8 +16,8 @@
 				<div id="Header-repeat"><div></div></div>
 				<div id="Header-right"></div>
 					<div id="logo">
-							<h1 id="name-text" class="logo-name"><a href="#">LarvikLAN</a></h1>
-							<div id="slogan-text" class="logo-text">22. til 24. mai</div>
+							<h1 id="name-text" class="logo-name"><a href="#">{$eventtitle}</a></h1>
+							<div id="slogan-text" class="logo-text">{$eventsubtext}</div>
 						</div>
 						
 				
