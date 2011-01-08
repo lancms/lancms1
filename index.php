@@ -183,6 +183,13 @@ tinyMCE.init({
 
 if(!$hide_smarty) {
 
+	if ($sessioninfo->eventID > 1)
+	{
+		$q = db_query ("SELECT * FROM ".$sql_prefix."_events WHERE ID=".$sessioninfo->eventID);
+		$r = db_fetch_assoc ($q);
+		$smarty->assign ("eventtitle", $r['eventname']);
+	}
+
 	$smarty->assign("grouplist", $design_grouplist);
 	$smarty->assign("eventlist", $design_eventlist);
 	$smarty->assign("userinfo", $design_userinfo);
