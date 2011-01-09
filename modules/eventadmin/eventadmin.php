@@ -26,8 +26,8 @@ if(!isset($action))
 		$content .= "<br /><a href=\"?module=seatadmin\">".lang("Seatreg Admin", "eventadmin")."</a>\n";
 	if(acl_access("ticketadmin", "", $eventID) == 'Admin')
 		$content .= "<br /><a href=\"?module=ticketadmin\">".lang("Ticket Admin", "eventadmin")."</a>\n";
-	if(acl_access("economy", "", $eventID) != 'No')
-		$content .= "<br /><a href='?module=economy'>".lang("Economy", "eventadmin")."</a>\n";
+#	if(acl_access("economy", "", $eventID) != 'No')
+#		$content .= "<br /><a href='?module=economy'>".lang("Economy", "eventadmin")."</a>\n";
 	if(acl_access("compoadmin", "", $eventID) != 'No')
 		$content .= "<br /><a href='?module=compoadmin'>".lang("Compoadmin", "eventadmin")."</a>\n";
 	if(acl_access("news", "", $eventID) != 'No')
