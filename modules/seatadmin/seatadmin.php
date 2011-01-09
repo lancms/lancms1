@@ -157,7 +157,7 @@ elseif($action == "addrow") {
 			eventID = ".$sessioninfo->eventID
 			);
 	} // End while (rCheckRows)
-
+	log_add("seatadmin", "addrow");
 	// Okey, we've added the new column. Refresh back
 	header("Location: ?module=seatadmin");
 } // End if action == addcolumn
@@ -182,7 +182,7 @@ elseif($action == "addcolumn") {
 			eventID = ".$sessioninfo->eventID
 			);
 	} // End while (rCheckColumns)
-
+	log_add("seatadmin", "addcolumn");
 	// Okey, we've added the new row. Refresh back
 	header("Location: ?module=seatadmin");
 } // End if action == addrow
@@ -241,7 +241,11 @@ elseif($action == "doUpdateSeat") {
 		} // end if POST = 1
 
 	} // End while rFindSeats
-
+	$newlog['extra'] = $extra;
+	$newlog['POST'] = $_POST;
+	$newlog['type'] = $type;
+	$newlog['color'] = $color;
+	log_add("seatadmin", "doUpdateSeat", serialize($newlog));
 	header("Location: ?module=seatadmin");
 } // End if action == updateSeat
 
@@ -258,7 +262,7 @@ elseif($action == "doresetmap") {
       // Add a single field to the map
       db_query("INSERT INTO ".$sql_prefix."_seatReg SET eventID = ".$sessioninfo->eventID.", seatX = 1, seatY = 1");
 
-
+	log_add("seatadmin", "doresetmap");
       // Go back to seatadmin
       header("Location: ?module=seatadmin");
 }
