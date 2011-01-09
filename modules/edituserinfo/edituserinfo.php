@@ -117,7 +117,7 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 
 #	$firstName = $_POST['firstName'];
 #	$lastName = $_POST['lastName'];
-
+	$lognew['userID'] = $user;
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
 	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
 	for($i=0;$i<count($userprefs);$i++) {
@@ -130,13 +130,13 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 			// User has changed this setting, change it in DB
 			db_query("UPDATE ".$sql_prefix."_users SET
 				$name = '$value' WHERE ID = '".db_escape($user)."'");
-			$log['old'][$name] = $rGetUserinfo[$name];
-			$log['new'][$name] = $value;
+			$logold[$name] = $rGetUserinfo[$name];
+			$lognew[$name] = $value;
 		} // End if oldvalue != newvalue
 
 	} // End for
 
-	log_add("edituser", "doEditUserinfo", serialize($log['new']), serialize($log['old']));
+	log_add("edituser", "doEditUserinfo", serialize($lognew), serialize($logold));
 
 	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
 
