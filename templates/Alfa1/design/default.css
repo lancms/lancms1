@@ -313,3 +313,15 @@ tr.userrow2
 	background-color: #b15b0f;
 }
 /* end override shared/useradmin.css */
+
+/* override shared/crewlist.css */
+tr.crewlistRow1
+{
+	background-color: #f59f19;
+}
+
+tr.crewlistRow2
+{
+	background-color: #b15b0f;
+}
+/* end override shared/crewlist.css */
