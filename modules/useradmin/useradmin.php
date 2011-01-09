@@ -87,7 +87,7 @@ elseif ($action == 'listall' || $action == 'search')
 		$content .= "<td>".$ui->lastName."</td>";
 		$content .= "<td>".$ui->EMail."</td>";
 		$content .= "<td>".$ui->street."</td>";
-		$content .= "<td>".$ui->postnumber."</td>";
+		$content .= "<td>".$ui->postNumber."</td>";
 		$content .= "<td>".$ui->cellphone."</td>";
 
 		$content .= "</tr>\n";
