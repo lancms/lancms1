@@ -5,7 +5,7 @@ $forum = $_GET['forum'];
 
 if(empty($action)) {
 	$content .= "<table>";
-	$qFindForums = db_query("SELECT * FROM GO_forums WHERE eventID = '$sessioninfo->eventID'");
+	$qFindForums = db_query("SELECT * FROM ".$sql_prefix."_forums WHERE eventID = '$sessioninfo->eventID'");
 	while($rFindForums = db_fetch($qFindForums)) {
 		$link_start = "<a href=?module=forum&action=viewForum&forum=$rFindForums->ID>";
 		$content .= "<tr><td>";
@@ -20,7 +20,7 @@ if(empty($action)) {
 elseif($action == "viewForum" && isset($forum)) {
 	if(acl_access("forum", $forum, $sessioninfo->eventID) && $sessioninfo->userID > 1) $content .= "<a href=?module=forum&action=newThread&forum=$forum>".lang("Start new thread", "forum")."</a>";	
 	$content .= "<table>";
-	$qFindThreads = db_query("SELECT * FROM GO_forumThreads WHERE forumID = '".db_escape($forum)."' AND threadDeleted = 0 ORDER BY lastPost DESC");
+	$qFindThreads = db_query("SELECT * FROM ".$sql_prefix."_forumThreads WHERE forumID = '".db_escape($forum)."' AND threadDeleted = 0 ORDER BY lastPost DESC");
 	while($rFindThreads = db_fetch($qFindThreads)) {
 		$link_start = "<a href=?module=forum&action=viewThread&thread=$rFindThreads->ID>";
 		$content .= "<tr><td>";
