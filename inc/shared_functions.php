@@ -402,7 +402,7 @@ function display_systemstatic($message, $eventID=1) {
 	$qFindMessage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type = 'system' AND header = '".db_escape($message)."' AND eventID = '$eventID'");
 	$rFindMessage = db_fetch($qFindMessage);
 
-	return $rFindMessage->page;
+	return stripslashes($rFindMessage->page);
 }
 
 #############

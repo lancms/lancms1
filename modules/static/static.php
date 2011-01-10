@@ -26,7 +26,7 @@ if($action == "viewPage" && !empty($page))
 	$rViewPage = db_fetch($qViewPage);
 
 	/* FIXME: Should probably be.... more... */
-	$content .= $rViewPage->page;
+	$content .= stripslashes($rViewPage->page);
 
 	db_query("UPDATE ".$sql_prefix."_static SET pageViews = pageViews + 1 WHERE ID = ".db_escape($page));
 } // End if action = viewPage
@@ -112,7 +112,7 @@ elseif($action == "editPage" && !empty($page))
 	$content .= "<form method=POST action=?module=static&action=doEditPage&page=$page>\n";
 	if($rStaticPage->type == 'static') $content .= "<input type=text name=header value='$rStaticPage->header'>\n";
 	else $content .= $page."\n";
-	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name=staticPage>".$rStaticPage->page."</textarea>\n";
+	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name=staticPage>".stripslashes($rStaticPage->page)."</textarea>\n";
 	$content .= "<br /><input type=submit value='".lang("Save", "static")."'>\n";
 	$content .= "</form>";
 
