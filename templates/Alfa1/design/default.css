@@ -276,6 +276,16 @@ blockquote
 	padding: 0;
 }
 
+tr.row1
+{
+	background-color: #f59f19;
+}
+
+tr.row2
+{
+	background-color: #b15b0f;
+}
+
 /* override shared/logs.css */
 tr.logrow1
 {
