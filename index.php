@@ -101,6 +101,7 @@ if($sessioninfo->userID == 1)
 	$design_userinfo .= "<form method=\"get\" action=\"index.php\">\n";
 	$design_userinfo .= "<p><input type=\"hidden\" name=\"module\" value=\"login\" /></p>\n";
 	$design_userinfo .= "<p><input type=\"hidden\" name=\"action\" value=\"finduser\" /></p>\n";
+	$design_userinfo .= "<p>".lang ("Type your nick, email or name here:", "index")."</p>\n";
 	$design_userinfo .= "<p><input class=\"login\" type=\"text\" name=\"username\" /></p>\n";
 	$design_userinfo .= "<p><input class=\"login\" type=\"submit\" value=\"Login\" /></p>";
 	$design_userinfo .= "</form>\n";
