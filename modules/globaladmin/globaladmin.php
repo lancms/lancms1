@@ -171,11 +171,15 @@ elseif($action == "listGlobalRights") {
 	} // End for
 
 	$qFindGroups = db_query("SELECT groups.groupname,groups.eventID,ACLs.accessmodule,ACLs.access FROM ".$sql_prefix."_groups groups JOIN ".$sql_prefix."_ACLs ACLs ON groups.ID=ACLs.groupID WHERE ACLs.accessmodule IN ($searcharray) AND ACLs.access != 'No'");
-	$content .= "<table>";
+	$content .= "<h2>".lang("Groups with global rights", "globaladmin")."</h2>\n";
+	$content .= "<table>\n";
+	$content .= "<tr><th>".lang ("Event", "globaladmin")."</th><th>".lang ("Group", "globaladmin")."</th><th>".lang ("Module")."</th><th>".lang ("Access", "globaladmin")."</th></tr>\n";
+
+	$count = 1;
 	while($rFindGroups = db_fetch($qFindGroups)) {
 		$qFindEventName = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID = '$rFindGroups->eventID'");
 		$rFindEventName = db_fetch($qFindEventName);
-		$content .= "<tr><td>";
+		$content .= "<tr class='row$count'><td>";
 		$content .= $rFindEventName->eventname;
 		$content .= "</td><td>";
 		$content .= $rFindGroups->groupname;
@@ -183,8 +187,17 @@ elseif($action == "listGlobalRights") {
 		$content .= $rFindGroups->accessmodule;	
 		$content .= "</td><td>";
 		$content .= $rFindGroups->access;
-		$content .= "</td></tr>\n\n\n";
+		$content .= "</td></tr>\n";
+
+		if ($count == 2)
+		{
+			$count = 1;
+		}
+		else
+		{
+			$count = 2;
+		}
 	} // End while
-	$content .= "</table>";
+	$content .= "</table>\n";
 
 }
