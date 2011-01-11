@@ -26,7 +26,7 @@ elseif($action == "viewForum" && isset($forum)) {
 		$content .= "<tr><td>";
 		$content .= $link_start.$rFindThreads->threadTopic."</a>";
 		$content .= "</td><td>";
-		$qFindLastPost = db_query("SELECT * FROM ".$sql_prefix."_forumPosts ORDER BY postTimestamp DESC LIMIT 0,1");
+		$qFindLastPost = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '$rFindThreads->ID' ORDER BY postTimestamp DESC LIMIT 0,1");
 		$rFindLastPost = db_fetch($qFindLastPost);
 		$content .= lang("Last post by: ", "forum");
 		$content .= user_profile($rFindLastPost->postAuthor);
