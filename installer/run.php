@@ -12,7 +12,7 @@ mysql_select_db($sql_base);
 <html>
 
 <head>
-<title>OSGL2 Installer / Updater</title>
+<title>lancms installer/updater</title>
 <link rel="stylesheet" type="text/css" href="installer.css">
 </head>
 <body>
