@@ -21,6 +21,9 @@ else {
     $language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
 
     $design_title = "OSGlobeLAN";
+
+	$facebook_appID = "";
+	$facebook_login = TRUE;
 }
 ## All other settings should be done in some kind of installer....
 
