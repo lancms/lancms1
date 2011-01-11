@@ -12,7 +12,7 @@
 	<body>
 	<td class="header">
 	
-	<h2>osgl2 ftw!!!</h2>
+	<h2>lancms ftw!!!</h2>
 </td>
 	<table class="main">
 		

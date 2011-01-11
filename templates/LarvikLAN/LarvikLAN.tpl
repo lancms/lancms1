@@ -21,7 +21,7 @@
 							<div id="slogan-text" class="logo-text">{$eventinfo->eventsubtext}</div>
 							{else}
 							<h1 id="name-text" class="logo-name"><a href="#">{$title}</a></h1>
-							<div id="slogan-text" class="logo-text">OSGlobeLAN</div>
+							<div id="slogan-text" class="logo-text">lancms</div>
 							{/if}
 						</div>
 						
