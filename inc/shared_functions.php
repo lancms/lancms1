@@ -644,7 +644,7 @@ function user_profile ($userid) {
 	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userid)."'");
 	$rFindUser = db_fetch($qFindUser);
 
-	$return = "<a href='?module=profile&user=$rFindUser->ID>";
+	$return = "<a href='?module=profile&user=$rFindUser->ID'>";
 #	$rFindUser->firstName $rFindUser->lastName ";
 #	$return .= lang("a.k.a.", "functions-user_profile");
 #	$return .= " ";

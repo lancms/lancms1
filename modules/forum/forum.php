@@ -31,7 +31,7 @@ elseif($action == "viewForum" && isset($forum)) {
 		$content .= lang("Last post by: ", "forum");
 		$content .= user_profile($rFindLastPost->postAuthor);
 		$content .= " ".date("Y-m-d H:m:s", $rFindLastPost->postTimestamp);
-		$content .= "</td></tr>";
+		$content .= "</td></tr>\n\n";
 	} // End while
 	$content .= "</table>";
 } // elseif action = viewForum
@@ -110,9 +110,9 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 		$content .= "<br />";
 		$content .= lang("Name:", "forum");
 		$content .= $rFindUser->firstName." ".$rFindUser->lastName;
-		$content .= "</td></tr>";
+		$content .= "</td></tr>\n\n";
 	} // End while
-	$content .= "</table>";
+	$content .= "</table>\n\n\n\n";
 	$content .= "<br />";
 	if($sessioninfo->userID > 1) $content .= "<a href=?module=forum&action=newPost&thread=$thread>".lang("New reply", "forum")."</a>";
 }
