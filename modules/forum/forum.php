@@ -25,6 +25,12 @@ elseif($action == "viewForum" && isset($forum)) {
 		$link_start = "<a href=?module=forum&action=viewThread&thread=$rFindThreads->ID>";
 		$content .= "<tr><td>";
 		$content .= $link_start.$rFindThreads->threadTopic."</a>";
+		$content .= "</td><td>";
+		$qFindLastPost = db_query("SELECT * FROM ".$sql_prefix."_forumPosts ORDER BY postTimestamp DESC LIMIT 0,1");
+		$rFindLastPost = db_fetch($qFindLastPost);
+		$content .= lang("Last post by: ", "forum");
+		$content .= user_profile($rFindLastPost->postAuthor);
+		$content .= " ".date("Y-m-d H:m:s", $rFindLastPost->postTimestamp);
 		$content .= "</td></tr>";
 	} // End while
 	$content .= "</table>";
@@ -99,7 +105,8 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindPosts->postAuthor' LIMIT 0,1");
 		$rFindUser = db_fetch($qFindUser);
 		$content .= lang("User:", "forum");
-		$content .= $rFindUser->nick;
+#		$content .= $rFindUser->nick;
+		$content .= user_profile($rFindPosts->postAuthor);
 		$content .= "<br />";
 		$content .= lang("Name:", "forum");
 		$content .= $rFindUser->firstName." ".$rFindUser->lastName;
