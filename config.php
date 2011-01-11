@@ -10,17 +10,17 @@ else {
 
     $sql_type = "mysql"; // SQL type. Valid are... mysql actually
     $sql_host = "localhost"; // SQL Host
-    $sql_user = "OSGL"; // SQL username
+    $sql_user = "lancms"; // SQL username
     $sql_pass = "ComPuterParty"; // Very very secret, if you read this, you should probably go shoot yourself, just to be safe
-    $sql_base = "OSGL"; // The database to use
-    $sql_prefix = "osgl"; // Someone asked for this a while back. prefix, and _ is added automatically
+    $sql_base = "lancms"; // The database to use
+    $sql_prefix = "lancms"; // Someone asked for this a while back. prefix, and _ is added automatically
 
 
 
-    $osgl_session_cookie = "OSGL2-cake";
+    $osgl_session_cookie = "lancms-cake";
     $language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
 
-    $design_title = "OSGlobeLAN";
+    $design_title = "lancms";
 
 	$facebook_appID = "";
 	$facebook_login = TRUE;
