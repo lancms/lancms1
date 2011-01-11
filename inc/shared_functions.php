@@ -634,3 +634,22 @@ function kiosk_item_price($wareID) {
 	$rDefaultPrice = db_fetch($qDefaultPrice);
 	return $rDefaultPrice->price;
 }
+
+
+
+##### userprofile -- give it a userID, and it will return link to profile + name
+function user_profile ($userid) {
+	global $sql_prefix;
+
+	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userid)."'");
+	$rFindUser = db_fetch($qFindUser);
+
+	$return = "<a href='?module=profile&user=$rFindUser->ID>";
+#	$rFindUser->firstName $rFindUser->lastName ";
+#	$return .= lang("a.k.a.", "functions-user_profile");
+#	$return .= " ";
+	$return .= $rFindUser->nick;
+	$return .= "</a>";
+	return $return;
+}
+

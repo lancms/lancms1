@@ -41,15 +41,15 @@ if(!isset($action)) {
 			$rFindSeatings = db_fetch($qFindSeatings);
 			$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '$rFindSeatings->ticketID'");
 			$rFindTicket = db_fetch($qFindTicket);
-			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindTicket->user'");
-			$rFindUser = db_fetch($qFindUser);
-
-			$content .= $rFindUser->firstName." ".$rFindUser->lastName." ".lang("a.k.a.", "seating")." ".$rFindUser->nick;
-			if($sessioninfo->userID != 1 && $rFindUser->EMail != '') {
-				$qCheckMailSetting = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE name = 'allowViewMail' AND userID = '$rFindTicket->user'");
-				$rCheckMailSetting = db_fetch($qCheckMailSetting);
-				if($rCheckMailSetting->value == 'on') $content .= "<br />".lang("Contact this user: ", "seating").$rFindUser->EMail;
-			} // End if sessioninfo->userID != 1
+#			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindTicket->user'");
+#			$rFindUser = db_fetch($qFindUser);
+			$content .= user_profile($rFindTicket->user);
+#			$content .= $rFindUser->firstName." ".$rFindUser->lastName." ".lang("a.k.a.", "seating")." ".$rFindUser->nick;
+#			if($sessioninfo->userID != 1 && $rFindUser->EMail != '') {
+#				$qCheckMailSetting = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE name = 'allowViewMail' AND userID = '$rFindTicket->user'");
+#				$rCheckMailSetting = db_fetch($qCheckMailSetting);
+#				if($rCheckMailSetting->value == 'on') $content .= "<br />".lang("Contact this user: ", "seating").$rFindUser->EMail;
+#			} // End if sessioninfo->userID != 1
 		} // End db_num > 0	
 	} // End !empty
 
