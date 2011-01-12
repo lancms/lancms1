@@ -37,7 +37,7 @@ userID = 1 -- anonymous/not logged in
 ## Predefined variables
 
 $sessioninfo -- users info in session-table (ie: $sessioninfo->userID)
-$_COOKIE[$osgl_cookie_cookie] -- users session-ID
+$_COOKIE[$lancms_cookie_cookie] -- users session-ID
 
 
 

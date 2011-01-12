@@ -1,6 +1,6 @@
 After installing the software, login as globaladmin/admin and creating your first event in GlobalAdmin. After creating the event, you should go back to globaladmin and set it as public, so that normal users can find it.
 
-Since OSGL has support for multiple events and multiple URLs, you'd have to go to globaladmin -> change global options, and set the default eventID (1 is the default, with no event, the first event you create get eventID 2) for the hostname you're going to your installation of OSGL.
+Since lancms has support for multiple events and multiple URLs, you'd have to go to globaladmin -> change global options, and set the default eventID (1 is the default, with no event, the first event you create get eventID 2) for the hostname you're going to your installation of lancms.
 
 
 ** Adding tickets **
