@@ -35,7 +35,7 @@ $design_title = 'lancms';
 
 $language = "norwegian"; // Change this to another language if you wish to use it
 
-$osgl_session_cookie = "cookiemonster";
+$lancms_session_cookie = "cookiemonster";
 
 ?>
 

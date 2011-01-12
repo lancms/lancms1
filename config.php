@@ -17,7 +17,7 @@ else {
 
 
 
-    $osgl_session_cookie = "lancms-cake";
+    $lancms_session_cookie = "lancms-cake";
     $language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
 
     $design_title = "lancms";
@@ -30,5 +30,5 @@ else {
 
 
 global $sql_type;
-global $osgl_session_cookie;
+global $lancms_session_cookie;
 global $sql_prefix;

@@ -11,7 +11,7 @@ if($action == "setCurrentEvent" && isset($eventID))
 	// Update the session-table
 	db_query("UPDATE ".$sql_prefix."_session SET
 		eventID = '$escape'
-		WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
+		WHERE sID = '".$_COOKIE[$lancms_session_cookie]."'");
 
 	// Goto $_GET['gotomodule'] if exists
 	if(!empty($_GET['gotomodule']))

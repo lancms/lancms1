@@ -81,7 +81,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 	{
 		// Passwords match. Login the user
 		db_query("UPDATE ".$sql_prefix."_session SET userID = '".db_escape($userID)."'
-			WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
+			WHERE sID = '".db_escape($_COOKIE[$lancms_session_cookie])."'");
 
 		// logtype, 1 (login).
 		$log_new['user_agent'] = $_SERVER['HTTP_USER_AGENT']; 
@@ -113,7 +113,7 @@ elseif($action == "logout")
 
 	db_query("UPDATE ".$sql_prefix."_session 
 		SET userID = 1 
-		WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
+		WHERE sID = '".db_escape($_COOKIE[$lancms_session_cookie])."'");
 
 	// FIXME: Should probably return to referrer.
 	header("Location: index.php");

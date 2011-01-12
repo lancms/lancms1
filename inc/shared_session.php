@@ -9,7 +9,7 @@ $day_ago = $now - 86400;
 db_query("DELETE FROM ".$sql_prefix."_session WHERE lastVisit < ".$day_ago);
 
 
-if(empty($_COOKIE[$osgl_session_cookie]))
+if(empty($_COOKIE[$lancms_session_cookie]))
 {
 	$do = "create_session";
 
@@ -21,12 +21,12 @@ if(empty($_COOKIE[$osgl_session_cookie]))
 else // if cookie is set
 {
 
-	$test_exists = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
+	$test_exists = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$lancms_session_cookie]."'");
 	if(db_num($test_exists) == 0)
 	{
 		// Cookie is set, but it is no longer valid
 		// Delete cookie/set timeout in past
-		setcookie($osgl_session_cookie, "", time()-10800);
+		setcookie($lancms_session_cookie, "", time()-10800);
 
 		// Create a new session
 		$do = "create_session";
@@ -34,7 +34,7 @@ else // if cookie is set
 
 	else {
 		// hopefully, since sID == PRIMARY KEY, this should be the same as db_num($test_exists) == 1. Update session
-		db_query("UPDATE ".$sql_prefix."_session SET lastVisit = ".time()." WHERE sID = '".db_escape($_COOKIE[$osgl_session_cookie])."'");
+		db_query("UPDATE ".$sql_prefix."_session SET lastVisit = ".time()." WHERE sID = '".db_escape($_COOKIE[$lancms_session_cookie])."'");
 
 	} // End else (if cookie is valid)
 
@@ -71,13 +71,13 @@ if($do == "create_session")
 		lastVisit = '".time()."',
 		eventID = '$FindAutoEventURL'");
 	
-	setcookie($osgl_session_cookie, $generate);
+	setcookie($lancms_session_cookie, $generate);
 
 } // End if do == create_session
 
 
 
-$query_session = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$osgl_session_cookie]."'");
+$query_session = db_query("SELECT * FROM ".$sql_prefix."_session WHERE sID = '".$_COOKIE[$lancms_session_cookie]."'");
 $sessioninfo = db_fetch($query_session);
 global $sessioninfo;
 
