@@ -115,8 +115,6 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 	// Get-parameters
 	$user = $_GET['user'];
 
-#	$firstName = $_POST['firstName'];
-#	$lastName = $_POST['lastName'];
 	$lognew['userID'] = $user;
 	$qGetUserinfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
 	$rGetUserinfo = db_fetch_assoc($qGetUserinfo);
@@ -126,7 +124,6 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 		if($userprefs[$i]['edit_userAdmin'] == 'Write' && ($userAdmin_acl != 'Admin' || $userAdmin_acl != 'Write'));
 		elseif($userprefs[$i]['edit_userAdmin'] == 'Admin' && $userAdmin_acl != 'Admin');
 		elseif($rGetUserinfo[$name] != $value) {
-#			die("Not same on $rGet
 			// User has changed this setting, change it in DB
 			db_query("UPDATE ".$sql_prefix."_users SET
 				$name = '$value' WHERE ID = '".db_escape($user)."'");
