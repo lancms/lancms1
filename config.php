@@ -2,8 +2,8 @@
 
 ## DB-connection
 
-if(file_exists("SVN_OverrideConfig.php")) {
-    include_once 'SVN_OverrideConfig.php';
+if(file_exists("OverrideConfig.php")) {
+    include_once 'OverrideConfig.php';
 }
 
 else {

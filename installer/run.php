@@ -1,7 +1,7 @@
 <?php
 
 require("table.php");
-if(file_exists('../SVN_OverrideConfig.php')) require('../SVN_OverrideConfig.php');
+if(file_exists('../OverrideConfig.php')) require('../OverrideConfig.php');
 else require('../config.php');
 require('../inc/shared_functions.php');
 
