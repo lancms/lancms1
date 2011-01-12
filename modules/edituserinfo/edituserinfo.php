@@ -121,6 +121,8 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 	for($i=0;$i<count($userprefs);$i++) {
 		$name = $userprefs[$i]['name'];
 		$value = $_POST[$name];
+
+	/*
 		if($userprefs[$i]['edit_userAdmin'] == 'Write' && ($userAdmin_acl != 'Admin' || $userAdmin_acl != 'Write'));
 		elseif($userprefs[$i]['edit_userAdmin'] == 'Admin' && $userAdmin_acl != 'Admin');
 		elseif($rGetUserinfo[$name] != $value) {
@@ -130,7 +132,40 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 			$logold[$name] = $rGetUserinfo[$name];
 			$lognew[$name] = $value;
 		} // End if oldvalue != newvalue
+	*/
+		$doup = false;
+		if ($rGetUserinfo[$name] != $value)
+		{
+			$req_acl = $userprefs[$i]['edit_userAdmin'];
 
+			if (!isset ($req_acl) or $req_acl == "")
+			{
+				$doup = true;
+			}
+			elseif ($req_acl == "Write")
+			{
+				if ($userAdmin_acl == "Write" or $userAdmin_acl == "Admin")
+				{
+					$doup = true;
+				}
+			}
+			elseif ($req_acl == "Admin")
+			{
+				if ($userAdmin_acl == "Admin")
+				{
+					$doup = true;
+				}
+			}
+		}
+		if ($doup)
+		{
+			db_query("UPDATE ".$sql_prefix."_users SET
+				$name = '$value' WHERE ID = '".db_escape($user)."'");
+			$logold[$name] = $rGetUserinfo[$name];
+			$lognew[$name] = $value;
+		}
+
+		unset($doup);
 	} // End for
 
 	log_add("edituser", "doEditUserinfo", serialize($lognew), serialize($logold));
