@@ -1,3 +1,3 @@
 #!/bin/bash
 
-xgettext -Lphp -i ../index.php -i ../modules/*/*.php -klang -o messages.pot
+xgettext -Lphp -i ../*.php -i ../modules/*/*.php -i ../inc/*.php -i ../installer/*.php -klang -o messages.pot
