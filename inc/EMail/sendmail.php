@@ -8,9 +8,7 @@ while($rFindJobs = db_fetch($qFindJobs)) {
 	$qUserInfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindJobs->toUser'");
 	$rUserInfo = db_fetch($qUserInfo);
 	$to = $rUserInfo->EMail;
-#	$from = $MAIL_FROM;
-	#FIXME: should be able to select From: address for outgoing mail...
-	$from = "lancms@globeorg.no";
+	$from = $mail_from;
 	$subject = mb_encode_mimeheader($rFindJobs->subject, "UTF-8");
 	$mail_body = stripslashes($rFindJobs->content);
 

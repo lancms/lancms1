@@ -24,6 +24,9 @@ else {
 
 	$facebook_appID = "";
 	$facebook_login = TRUE;
+
+	## Mail settings
+	$mail_from = 'noreply@globeorg.no';
 }
 ## All other settings should be done in some kind of installer....
 

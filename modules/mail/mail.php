@@ -2,6 +2,9 @@
 
 $action = $_GET['action'];
 
+if(acl_access("massmail", "", 1) == 'No') die("No access to this module");
+
+
 if($action == "massmail") {
 	$content .= "<table>";
 	$content .= "<form method=POST action=?module=mail&action=sendMail>\n";
