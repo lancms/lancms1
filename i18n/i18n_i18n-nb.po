@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-13 23:32+0100\n"
-"PO-Revision-Date: 2011-01-13 23:00+0000\n"
+"POT-Creation-Date: 2011-01-14 00:04+0100\n"
+"PO-Revision-Date: 2011-01-14 19:27+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-13 23:16+0000\n"
-"X-Generator: Launchpad (build 12190)\n"
+"X-Launchpad-Export-Date: 2011-01-14 19:32+0000\n"
+"X-Generator: Launchpad (build 12200)\n"
 
 #: ../index.php:31
 msgid "Main page"
@@ -240,35 +240,35 @@ msgstr "Mobil"
 #: ../modules/crewlist/crewlist.php:26
 #: ../modules/globaladmin/globaladmin.php:176 ../modules/groups/groups.php:53
 msgid "Access"
-msgstr ""
+msgstr "Tilgang"
 
 #: ../modules/economy/economy.php:40
 msgid "Save changes"
-msgstr ""
+msgstr "Lagre endringer"
 
 #: ../modules/economy/economy.php:56
 msgid "Main account"
-msgstr ""
+msgstr "Hovedkonto"
 
 #: ../modules/economy/economy.php:64
 msgid "Accountnumber"
-msgstr ""
+msgstr "Kontonummer"
 
 #: ../modules/economy/economy.php:65 ../modules/economy/economy.php:130
 msgid "Amount"
-msgstr ""
+msgstr "Beløp"
 
 #: ../modules/economy/economy.php:66
 msgid "Account description"
-msgstr ""
+msgstr "Kontobeskrivelse"
 
 #: ../modules/economy/economy.php:68
 msgid "New account"
-msgstr ""
+msgstr "Ny konto"
 
 #: ../modules/economy/economy.php:83
 msgid "Accountnumber already exists"
-msgstr ""
+msgstr "Kontonummer eksisterer allerede"
 
 #: ../modules/economy/economy.php:84
 #: ../modules/ticketorder/ticketorder.php:215
@@ -276,66 +276,66 @@ msgstr ""
 #: ../modules/ticketorder/ticketorder.php:223
 #: ../modules/useradmin/useradmin.php:124
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: ../modules/economy/economy.php:126
 msgid "From"
-msgstr ""
+msgstr "Fra"
 
 #: ../modules/economy/economy.php:128
 msgid "Timestamp (YYYY-MM-DD HH:MM)"
-msgstr ""
+msgstr "Tidspunkt (ÅÅÅÅ-MM-DD TT:MM)"
 
 #: ../modules/economy/economy.php:129
 msgid "Description"
-msgstr ""
+msgstr "Beskrivelse"
 
 #: ../modules/economy/economy.php:131
 msgid "Add receipt"
-msgstr ""
+msgstr "Legg til kvittering"
 
 #: ../modules/economy/economy.php:163 ../modules/economy/economy.php:165
 msgid "Main"
-msgstr ""
+msgstr "Hoved"
 
 #: ../modules/economy/economy.php:170 ../modules/economy/economy.php:173
 msgid "Receipts"
-msgstr ""
+msgstr "Kvittering"
 
 #: ../modules/economy/economy.php:177 ../modules/economy/economy.php:179
 msgid "Bookkeeping"
-msgstr ""
+msgstr "Regnskapsføring"
 
 #: ../modules/economy/economy.php:183 ../modules/economy/economy.php:185
 msgid "Accounts"
-msgstr ""
+msgstr "Kontoer"
 
 #: ../modules/edituserinfo/edituserinfo.php:18
 msgid "Passwords did not match"
-msgstr ""
+msgstr "Passordene stemte ikke overens"
 
 #: ../modules/edituserinfo/edituserinfo.php:22
 msgid "You need to fill in both fields"
-msgstr ""
+msgstr "Du må fylle ut begge feltene"
 
 #: ../modules/edituserinfo/edituserinfo.php:25
 msgid "New password"
-msgstr ""
+msgstr "Nytt passord"
 
 #: ../modules/edituserinfo/edituserinfo.php:26
 msgid "Confirm new password"
-msgstr ""
+msgstr "Bekreft nytt passord"
 
 #: ../modules/edituserinfo/edituserinfo.php:54
 msgid "Password changed"
-msgstr ""
+msgstr "Passordet ble endret"
 
 #: ../modules/edituserinfo/edituserinfo.php:63
 #: ../modules/edituserinfo/edituserinfo.php:113
 #: ../modules/edituserinfo/edituserinfo.php:183
 #: ../modules/edituserinfo/edituserinfo.php:216
 msgid "Not access to edit userinfo"
-msgstr ""
+msgstr "Ikke tilgang til å redigere brukerinfo"
 
 #: ../modules/edituserinfo/edituserinfo.php:103
 #: ../modules/edituserinfo/edituserinfo.php:207
@@ -347,870 +347,877 @@ msgstr ""
 #: ../modules/static/static.php:116 ../modules/static/static.php:226
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:77
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: ../modules/eventadmin/eventadmin.php:16
 msgid "Event config"
-msgstr ""
+msgstr "Arrangementskonfigurasjon"
 
 #: ../modules/eventadmin/eventadmin.php:18
 msgid "Group Management"
-msgstr ""
+msgstr "Gruppeadministrasjon"
 
 #: ../modules/eventadmin/eventadmin.php:20
 msgid "Edit static pages"
-msgstr ""
+msgstr "Rediger statiske sider"
 
 #: ../modules/eventadmin/eventadmin.php:22
 msgid "Edit FAQs"
-msgstr ""
+msgstr "Rediger Ofte Stilte Spørsmål"
 
 #: ../modules/eventadmin/eventadmin.php:24
 msgid "WannabeCrew"
-msgstr ""
+msgstr "WannabeCrew"
 
 #: ../modules/eventadmin/eventadmin.php:26
 msgid "Seatreg Admin"
-msgstr ""
+msgstr "Plassregistreringsadministrasjon"
 
 #: ../modules/eventadmin/eventadmin.php:28
 msgid "Ticket Admin"
-msgstr ""
+msgstr "Billettadministrasjon"
 
 #: ../modules/eventadmin/eventadmin.php:32
 msgid "Compoadmin"
-msgstr ""
+msgstr "Compoadmin"
 
 #: ../modules/eventadmin/eventadmin.php:34
 msgid "Newsadmin"
-msgstr ""
+msgstr "Nyhetsadministrasjon"
 
 #: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:23
 msgid "Send SMS"
-msgstr ""
+msgstr "Send SMS"
 
 #: ../modules/eventadmin/eventadmin.php:38
 msgid "Kioskadmin"
-msgstr ""
+msgstr "Kioskadministrasjon"
 
 #: ../modules/eventadmin/eventadmin.php:83
 msgid "Change group rights"
-msgstr ""
+msgstr "Endre gruppetilganger"
 
 #: ../modules/eventadmin/eventadmin.php:94
 msgid "Add group"
-msgstr ""
+msgstr "Legg til gruppe"
 
 #: ../modules/eventadmin/eventadmin.php:127
 msgid "Group name already exists"
-msgstr ""
+msgstr "Gruppenavn eksisterer allerede"
 
 #: ../modules/eventadmin/eventadmin.php:174
 msgid "Back to groups"
-msgstr ""
+msgstr "Tilbake til grupper"
 
 #: ../modules/eventadmin/eventadmin.php:294
 msgid "Allow attendee"
-msgstr ""
+msgstr "Tillat deltagelse"
 
 #: ../modules/eventadmin/eventadmin.php:297
 msgid "Disallow attendee"
-msgstr ""
+msgstr "Nekt deltagelse"
 
 #: ../modules/FAQ/FAQ.php:53
 msgid "Edit FAQ"
-msgstr ""
+msgstr "Rediger FAQ"
 
 #: ../modules/FAQ/FAQ.php:56
 msgid "Delete FAQ"
-msgstr ""
+msgstr "Slett FAQ"
 
 #: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:286
 msgid "Question"
-msgstr ""
+msgstr "Spørsmål"
 
 #: ../modules/FAQ/FAQ.php:64
 msgid "Add question"
-msgstr ""
+msgstr "Legg til spørsmål"
 
 #: ../modules/forum/forum.php:21
 msgid "Start new thread"
-msgstr ""
+msgstr "Start en ny tråd"
 
 #: ../modules/forum/forum.php:31
 msgid "Last post by: "
-msgstr ""
+msgstr "Forrige innlegg av: "
 
 #: ../modules/forum/forum.php:45
 msgid "Thread name"
-msgstr ""
+msgstr "Trådnavn"
 
 #: ../modules/forum/forum.php:50
 msgid "Thread content"
-msgstr ""
+msgstr "Innhold"
 
 #: ../modules/forum/forum.php:55
 msgid "Add thread"
-msgstr ""
+msgstr "Legg til tråd"
 
 #: ../modules/forum/forum.php:107
 msgid "User:"
-msgstr ""
+msgstr "Bruker:"
 
 #: ../modules/forum/forum.php:111
 msgid "Name:"
-msgstr ""
+msgstr "Navn:"
 
 #: ../modules/forum/forum.php:117
 msgid "New reply"
-msgstr ""
+msgstr "Nytt svar"
 
 #: ../modules/forum/forum.php:125
 msgid "Add reply"
-msgstr ""
+msgstr "Legg til svar"
 
 #: ../modules/globaladmin/globaladmin.php:10
 msgid "Event name"
-msgstr ""
+msgstr "Arrangementsnavn"
 
 #: ../modules/globaladmin/globaladmin.php:12
 msgid "Admin this event"
-msgstr ""
+msgstr "Administrer dette arrangementet"
 
 #: ../modules/globaladmin/globaladmin.php:13
 msgid "Set event public"
-msgstr ""
+msgstr "Sett arrangement offentlig"
 
 #: ../modules/globaladmin/globaladmin.php:22
 msgid "Set active"
-msgstr ""
+msgstr "Sett aktiv"
 
 #: ../modules/globaladmin/globaladmin.php:26
 msgid "Public"
-msgstr ""
+msgstr "Offentlig"
 
 #: ../modules/globaladmin/globaladmin.php:28
 msgid "Private"
-msgstr ""
+msgstr "Privat"
 
 #: ../modules/globaladmin/globaladmin.php:29
 msgid "Attendee-access"
-msgstr ""
+msgstr "Deltager-tilganger"
 
 #: ../modules/globaladmin/globaladmin.php:35
 msgid "Add new event"
-msgstr ""
+msgstr "Legg til nytt arrangement"
 
 #: ../modules/globaladmin/globaladmin.php:37
 msgid "Change global options"
-msgstr ""
+msgstr "Endre globale innstilinger"
 
 #: ../modules/globaladmin/globaladmin.php:38
 msgid "View logs"
-msgstr ""
+msgstr "Vis logger"
 
 #: ../modules/globaladmin/globaladmin.php:39
 #: ../modules/useradmin/useradmin.php:19
 msgid "User administration"
-msgstr ""
+msgstr "Brukeradministrasjon"
 
 #: ../modules/globaladmin/globaladmin.php:40
 msgid "List groups with global access"
-msgstr ""
+msgstr "Vis grupper med global tilgang"
 
 #: ../modules/globaladmin/globaladmin.php:41
 msgid "List sessions"
-msgstr ""
+msgstr "Vis sesjoner"
 
 #: ../modules/globaladmin/globaladmin.php:53
 msgid "Name of event"
-msgstr ""
+msgstr "Navn på arrangement"
 
 #: ../modules/globaladmin/globaladmin.php:54
 msgid "Add event"
-msgstr ""
+msgstr "Legg til arrangement"
 
 #: ../modules/globaladmin/globaladmin.php:110
 msgid "Config successfully saved"
-msgstr ""
+msgstr "Konfigurasjon lagret"
 
 #: ../modules/globaladmin/globaladmin.php:174
 msgid "Groups with global rights"
-msgstr ""
+msgstr "Grupper med globale tilganger"
 
 #: ../modules/globaladmin/globaladmin.php:176
 #: ../modules/sessions/sessions.php:16
 msgid "Event"
-msgstr ""
+msgstr "Arrangement"
 
 #: ../modules/globaladmin/globaladmin.php:176
 msgid "Group"
-msgstr ""
+msgstr "Gruppe"
 
 #: ../modules/globaladmin/globaladmin.php:176
 msgid "Module"
-msgstr ""
+msgstr "Modul"
 
 #: ../modules/groups/groups.php:21
 msgid "Create new clan"
-msgstr ""
+msgstr "Opprett ny klan"
 
 #: ../modules/groups/groups.php:26
 msgid "Clan name"
-msgstr ""
+msgstr "Klannavn"
 
 #: ../modules/groups/groups.php:27
 msgid "Clan password (to join the clan)"
-msgstr ""
+msgstr "Klanpassord"
 
 #: ../modules/groups/groups.php:28
 msgid "Create clan"
-msgstr ""
+msgstr "Opprett klan"
 
 #: ../modules/groups/groups.php:48
 msgid "Group: "
-msgstr ""
+msgstr "Gruppe: "
 
 #: ../modules/groups/groups.php:110
 msgid "No users found"
-msgstr ""
+msgstr "Ingen brukere funnet"
 
 #: ../modules/groups/groups.php:112
 msgid "Too many users found, please specify"
-msgstr ""
+msgstr "For mange brukere funnet, vennligst spesifiser"
 
 #: ../modules/groups/groups.php:145
 msgid "Please provide the name of the clan!"
-msgstr ""
+msgstr "Vennligst skriv et navn på klanen!"
 
 #: ../modules/groups/groups.php:156
 msgid "Clanname is already in use. Please choose another name"
-msgstr ""
+msgstr "Klannavn er allerede i bruk. Vennligst velg et annet navn"
 
 #: ../modules/groups/groups.php:202
 msgid "User already member of group"
-msgstr ""
+msgstr "Brukeren er allerede medlem av gruppen"
 
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid "Admin waretypes"
-msgstr ""
+msgstr "Administrer varetyper"
 
 #: ../modules/kioskadmin/kioskadmin.php:13
 msgid "Admin wares"
-msgstr ""
+msgstr "administrerer varer"
 
 #: ../modules/kioskadmin/kioskadmin.php:17
 msgid "Print barcodes"
-msgstr ""
+msgstr "Skriv ut strekkoder"
 
 #: ../modules/kioskadmin/kioskadmin.php:37
 msgid "Add new waretype"
-msgstr ""
+msgstr "Legg til ny varetype"
 
 #: ../modules/kioskadmin/kioskadmin.php:61
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: ../modules/kioskadmin/kioskadmin.php:62
 #: ../modules/kioskadmin/kioskadmin.php:121
 msgid "Barcodes"
-msgstr ""
+msgstr "Strekkoder"
 
 #: ../modules/kioskadmin/kioskadmin.php:85
 msgid "Add ware"
-msgstr ""
+msgstr "Legg til vare"
 
 #: ../modules/kioskadmin/kioskadmin.php:114
 msgid "Ware type"
-msgstr ""
+msgstr "Varetype"
 
 #: ../modules/kioskadmin/kioskadmin.php:115
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid "Price"
-msgstr ""
+msgstr "Pris"
 
 #: ../modules/kioskadmin/kioskadmin.php:129
 msgid "Add barcode"
-msgstr ""
+msgstr "Legg til strekkode"
 
 #: ../modules/kiosk/kiosk.php:21
 msgid "Add"
-msgstr ""
+msgstr "Legg til"
 
 #: ../modules/kiosk/kiosk.php:41
 msgid "Add one more item"
-msgstr ""
+msgstr "Legg til en ting til"
 
 #: ../modules/kiosk/kiosk.php:42
 msgid "Remove one item"
-msgstr ""
+msgstr "Fjern en ting"
 
 #: ../modules/kiosk/kiosk.php:50
 msgid "SELL"
-msgstr ""
+msgstr "SELG"
 
 #: ../modules/listing/listing.php:45
 msgid "Show list"
-msgstr ""
+msgstr "Vis liste"
 
 #: ../modules/login/login.php:20
 msgid "Sorry, too many users, try to narrow down the search"
-msgstr ""
+msgstr "Beklager, for mange treff. Prøv å forbedre søket"
 
 #: ../modules/login/login.php:25
 msgid "Sorry, no such user found"
-msgstr ""
+msgstr "Beklager, finner ingen bruker som passer"
 
 #: ../modules/login/login.php:60
 msgid "Log in as:"
-msgstr ""
+msgstr "Logg inn som:"
 
 #: ../modules/login/login.php:62
 msgid "Password:"
-msgstr ""
+msgstr "Passord:"
 
 #: ../modules/login/login.php:96
 msgid "sorry, wrong password!"
-msgstr ""
+msgstr "Beklager, feil passord!"
 
 #: ../modules/logs/logs.php:14
 msgid "Last 30 logentries"
-msgstr ""
+msgstr "Siste 30 logglinjer"
 
 #: ../modules/logs/logs.php:17
 msgid "Log"
-msgstr ""
+msgstr "Logg"
 
 #: ../modules/logs/logs.php:18 ../modules/logs/logs.php:77
 msgid "Timestamp"
-msgstr ""
+msgstr "Tidspunkt"
 
 #: ../modules/logs/logs.php:19 ../modules/logs/logs.php:76
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
-msgstr ""
+msgstr "Bruker"
 
 #: ../modules/logs/logs.php:20 ../modules/logs/logs.php:80
 msgid "Logtype"
-msgstr ""
+msgstr "Loggtype"
 
 #: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
 msgid "Host"
-msgstr ""
+msgstr "Vertsnavn"
 
 #: ../modules/logs/logs.php:22 ../modules/logs/logs.php:79
 msgid "URL"
-msgstr ""
+msgstr "URL"
 
 #: ../modules/logs/logs.php:42 ../modules/logs/logs.php:80
 msgid "log_"
-msgstr ""
+msgstr "log_"
 
 #: ../modules/logs/logs.php:73
 msgid "Details for logentry "
-msgstr ""
+msgstr "Detaljer for logglinje "
 
 #: ../modules/mail/mail.php:24
 msgid "Send Mail"
-msgstr ""
+msgstr "Send e-post"
 
 #: ../modules/news/news.php:19
 msgid "Add as global article"
-msgstr ""
+msgstr "Legg til som global artikkel"
 
 #: ../modules/news/news.php:20
 msgid "Add new article"
-msgstr ""
+msgstr "Legg til artikkel"
 
 #: ../modules/profile/profile.php:24
 msgid "Groupmemberships"
-msgstr ""
+msgstr "Gruppemedlemskap"
 
 #: ../modules/register/register.php:31 ../modules/register/register.php:33
 msgid "Please provide a username"
-msgstr ""
+msgstr "Oppgi et brukernavn"
 
 #: ../modules/register/register.php:35
 msgid "Please provide a valid email-address"
-msgstr ""
+msgstr "Vennligst oppgi en gyldig epostadresse"
 
 #: ../modules/register/register.php:42
 msgid "Username already in use"
-msgstr ""
+msgstr "Brukernavnet er allerede i bruk"
 
 #: ../modules/register/register.php:49
 msgid "Passwords does not match"
-msgstr ""
+msgstr "Passordene stemmer ikke overens"
 
 #: ../modules/register/register.php:60
 msgid "Firstname must be set"
-msgstr ""
+msgstr "Du må oppgi fornavn"
 
 #: ../modules/register/register.php:70
 msgid "Lastname must be set"
-msgstr ""
+msgstr "Du må oppgi etternavn"
 
 #: ../modules/register/register.php:76
 msgid "Birthyear has to be set"
-msgstr ""
+msgstr "Du må oppgi fødselsår"
 
 #: ../modules/register/register.php:82
 msgid "Birthday has to be set"
-msgstr ""
+msgstr "Du må oppgi fødselsdag"
 
 #: ../modules/register/register.php:85
 msgid "Birthmonth has to be set"
-msgstr ""
+msgstr "Du må oppgi fødselsmåned"
 
 #: ../modules/register/register.php:90
 msgid "You have to specify your gender"
-msgstr ""
+msgstr "Du må oppgi kjønn"
 
 #: ../modules/register/register.php:93
 msgid "Postnumber has to be a number"
-msgstr ""
+msgstr "Postnummer må være et nummer"
 
 #: ../modules/register/register.php:94
 msgid "Please specify your address"
-msgstr ""
+msgstr "Vennligst oppgi adressen din"
 
 #: ../modules/register/register.php:102
 msgid "Cellphone is supposed to be a number"
-msgstr ""
+msgstr "Telefonnummer må være et nummer"
 
 #: ../modules/register/register.php:107
 msgid "Cellphone is supposed to be eight digits"
-msgstr ""
+msgstr "Telefonnummer må være åtte siffer"
 
 #: ../modules/register/register.php:184
 msgid "User registered"
-msgstr ""
+msgstr "Brukeren er registrert"
 
 #: ../modules/register/register.php:196 ../modules/useradmin/useradmin.php:60
 msgid "Username"
-msgstr ""
+msgstr "Brukernavn"
 
 #: ../modules/register/register.php:197
 msgid "Password"
-msgstr ""
+msgstr "Passord"
 
 #: ../modules/register/register.php:198
 msgid "Password again"
-msgstr ""
+msgstr "Gjenta passord"
 
 #: ../modules/register/register.php:199
 msgid "E-Mail"
-msgstr ""
+msgstr "E-post"
 
 #: ../modules/register/register.php:202
 msgid "First name"
-msgstr ""
+msgstr "Fornavn"
 
 #: ../modules/register/register.php:205
 msgid "Last name"
-msgstr ""
+msgstr "Etternavn"
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:64
 msgid "Address"
-msgstr ""
+msgstr "Adresse"
 
 #: ../modules/register/register.php:208 ../modules/useradmin/useradmin.php:65
 msgid "Postnumber"
-msgstr ""
+msgstr "Postnummer"
 
 #: ../modules/register/register.php:213
 msgid "Gender"
-msgstr ""
+msgstr "Kjønn"
 
 #: ../modules/register/register.php:216
 msgid "Male"
-msgstr ""
+msgstr "Mann"
 
 #: ../modules/register/register.php:219
 msgid "Female"
-msgstr ""
+msgstr "Kvinne"
 
 #: ../modules/register/register.php:234
 msgid "Birthmonth"
-msgstr ""
+msgstr "Fødselsmåned"
 
 #: ../modules/register/register.php:245
 msgid "Birthyear"
-msgstr ""
+msgstr "Fødselsår"
 
 #: ../modules/register/register.php:257
 msgid "optional"
-msgstr ""
+msgstr "valgfritt"
 
 #: ../modules/register/register.php:260
 msgid "Create user"
-msgstr ""
+msgstr "Opprett bruker"
 
 #: ../modules/seatadmin/seatadmin.php:23
 msgid "Set password"
-msgstr ""
+msgstr "Sett passord"
 
 #: ../modules/seatadmin/seatadmin.php:49
 msgid "Set groupaccess"
-msgstr ""
+msgstr "Sett gruppetilgang"
 
 #: ../modules/seatadmin/seatadmin.php:108
 msgid "Change seats"
-msgstr ""
+msgstr "Endre sete"
 
 #: ../modules/seatadmin/seatadmin.php:120
 msgid "Add row"
-msgstr ""
+msgstr "Legg til rad"
 
 #: ../modules/seatadmin/seatadmin.php:125
 msgid "Add column"
-msgstr ""
+msgstr "Legg til kolonne"
 
 #: ../modules/seatadmin/seatadmin.php:128
 msgid "Reset map"
-msgstr ""
+msgstr "Nullstill kart"
 
 #: ../modules/seatadmin/seatadmin.php:255
 msgid "Confirm map reset"
-msgstr ""
+msgstr "Bekreft nullstilling av kart"
 
 #: ../modules/seatmap/seatmap_table.php:45
 #: ../modules/seatmap/seatmap_table.php:57
 #: ../modules/seatmap/seatmap_table.php:69
 msgid "Free"
-msgstr ""
+msgstr "Ledig"
 
 #: ../modules/seatmap/seatmap_table.php:112
 msgid "This seat is available"
-msgstr ""
+msgstr "Plassen er ledig"
 
 #: ../modules/seatmap/seatmap_table.php:114
 #: ../modules/seatmap/seatmap_table.php:120
 #: ../modules/seatmap/seatmap_table.php:127
 msgid "Take seat"
-msgstr ""
+msgstr "Reserver plass"
 
 #: ../modules/seatmap/seatmap_table.php:118
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr ""
+"Dette setet er passordbeskyttet. Hvis du kjenner til passordet kan du ta den."
 
 #: ../modules/seatmap/seatmap_table.php:125
 msgid ""
 "This seat is protected by group. You are a member of a group with access. "
 "Halleluja!"
 msgstr ""
+"Denne plassen er reservert til en gruppe. Du er medlem av en gruppe med "
+"tilgang. Whoho!"
 
 #: ../modules/seatmap/seatmap_table.php:131
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
 msgstr ""
+"Denne plassen er reservert til en gruppe. Du er ikke medlem av en gruppe med "
+"tilgang. Synd!"
 
 #: ../modules/sessions/sessions.php:10
 msgid "Sessions"
-msgstr ""
+msgstr "Sesjoner"
 
 #: ../modules/sessions/sessions.php:13
 msgid "IP-address"
-msgstr ""
+msgstr "IP-adresse"
 
 #: ../modules/sessions/sessions.php:14
 msgid "Useragent"
-msgstr ""
+msgstr "Nettleser"
 
 #: ../modules/sessions/sessions.php:17
 msgid "Last visit"
-msgstr ""
+msgstr "Siste besøk"
 
 #: ../modules/static/static.php:57
 msgid "Edit access"
-msgstr ""
+msgstr "Rediger tilgang"
 
 #: ../modules/static/static.php:68
 msgid "Add new page"
-msgstr ""
+msgstr "Legg til ny side"
 
 #: ../modules/static/static.php:83
 msgid "Edit system message"
-msgstr ""
+msgstr "Rediger systemmelding"
 
 #: ../modules/static/static.php:208
 msgid "Editing: "
-msgstr ""
+msgstr "Redigerer: "
 
 #: ../modules/static/static.php:252
 msgid "Add group access"
-msgstr ""
+msgstr "Legg til gruppetilgang"
 
 #: ../modules/ticketadmin/ticketadmin.php:14
 #: ../modules/ticketadmin/ticketadmin.php:192
 #: ../modules/ticketorder/ticketorder.php:24
 msgid "Ticketnumber"
-msgstr ""
+msgstr "Billettnummer"
 
 #: ../modules/ticketadmin/ticketadmin.php:15
 msgid "Ticketname"
-msgstr ""
+msgstr "Billettnavn"
 
 #: ../modules/ticketadmin/ticketadmin.php:16
 #: ../modules/ticketorder/ticketorder.php:25
 msgid "Tickettype"
-msgstr ""
+msgstr "Billettype"
 
 #: ../modules/ticketadmin/ticketadmin.php:18
 msgid "Number of tickets"
-msgstr ""
+msgstr "Antall billetter"
 
 #: ../modules/ticketadmin/ticketadmin.php:19
 msgid "Sold tickets of type (total/seated/paid)"
-msgstr ""
+msgstr "Solgte billetter etter type (totalt/valgt plass/betalt)"
 
 #: ../modules/ticketadmin/ticketadmin.php:61
 msgid "Name of ticket"
-msgstr ""
+msgstr "Navn på billettype"
 
 #: ../modules/ticketadmin/ticketadmin.php:65
 msgid "Price of ticket"
-msgstr ""
+msgstr "Billettpris"
 
 #: ../modules/ticketadmin/ticketadmin.php:70
 msgid "Prepaid ticket"
-msgstr ""
+msgstr "Forhåndsbetalt billett"
 
 #: ../modules/ticketadmin/ticketadmin.php:74
 msgid "Preordered ticket"
-msgstr ""
+msgstr "Forhåndsbestilt billett"
 
 #: ../modules/ticketadmin/ticketadmin.php:78
 msgid "Onsite ticket with computer"
-msgstr ""
+msgstr "Onsite billett med PC"
 
 #: ../modules/ticketadmin/ticketadmin.php:82
 msgid "Onsite ticket without computer"
-msgstr ""
+msgstr "Onsite billett uten PC"
 
 #: ../modules/ticketadmin/ticketadmin.php:86
 msgid "Prepaid ticket reseller"
-msgstr ""
+msgstr "Forhåndsbetalt billett hos forhandler"
 
 #: ../modules/ticketadmin/ticketadmin.php:90
 msgid "Type of ticket"
-msgstr ""
+msgstr "Billettype"
 
 #: ../modules/ticketadmin/ticketadmin.php:96
 msgid "Tickettype is active?"
-msgstr ""
+msgstr "Er billettypen aktiv?"
 
 #: ../modules/ticketadmin/ticketadmin.php:104
 msgid "Max tickets to sell"
-msgstr ""
+msgstr "Maksimum antall billetter å selge"
 
 #: ../modules/ticketadmin/ticketadmin.php:106
 msgid "Edit tickettype"
-msgstr ""
+msgstr "Rediger billettype"
 
 #: ../modules/ticketadmin/ticketadmin.php:107
 msgid "Add tickettype"
-msgstr ""
+msgstr "Legg til billettype"
 
 #: ../modules/ticketadmin/ticketadmin.php:193
 #: ../modules/ticketorder/ticketorder.php:29
 msgid "Owner"
-msgstr ""
+msgstr "Eier"
 
 #: ../modules/ticketadmin/ticketadmin.php:195
 #: ../modules/ticketorder/ticketorder.php:26
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: ../modules/ticketadmin/ticketadmin.php:196
 #: ../modules/ticketorder/ticketorder.php:27
 msgid "Map placement"
-msgstr ""
+msgstr "Kartplassering"
 
 #: ../modules/ticketadmin/ticketadmin.php:197
 msgid "Paid?"
-msgstr ""
+msgstr "Betalt?"
 
 #: ../modules/ticketorder/ticketorder.php:45
 msgid "Place on map"
-msgstr ""
+msgstr "Plasser på kart"
 
 #: ../modules/ticketorder/ticketorder.php:50
 msgid "Seating not enabled yet"
-msgstr ""
+msgstr "Plassreservasjon er ikke aktivert enda"
 
 #: ../modules/ticketorder/ticketorder.php:56
 msgid "Update map"
-msgstr ""
+msgstr "Oppdater kart"
 
 #: ../modules/ticketorder/ticketorder.php:74
 #: ../modules/ticketorder/ticketorder.php:107
 msgid "Found to many users matching, please specify"
-msgstr ""
+msgstr "Fant for mange brukere som passer, vennligst forbedre søket"
 
 #: ../modules/ticketorder/ticketorder.php:97
 msgid "Search owner"
-msgstr ""
+msgstr "Søk på eier"
 
 #: ../modules/ticketorder/ticketorder.php:128
 msgid "Cancel ticket"
-msgstr ""
+msgstr "Avbryt billett"
 
 #: ../modules/ticketorder/ticketorder.php:147
 msgid "free"
-msgstr ""
+msgstr "ledig"
 
 #: ../modules/ticketorder/ticketorder.php:154
 msgid "Buy ticket"
-msgstr ""
+msgstr "Kjøp billett"
 
 #: ../modules/ticketorder/ticketorder.php:160
 msgid "Ticketcode from reseller"
-msgstr ""
+msgstr "Billettkode fra forhandler"
 
 #: ../modules/ticketorder/ticketorder.php:163
 msgid "Claim ticket"
-msgstr ""
+msgstr "Ta billett"
 
 #: ../modules/ticketorder/ticketorder.php:214
 msgid "Could not find that code. Are you sure you typed it correctly?"
-msgstr ""
+msgstr "Kunne ikke finne den koden. Er du sikker på at du skrev den riktig?"
 
 #: ../modules/ticketorder/ticketorder.php:218
 msgid ""
 "Code found, but it's not for this event. Try finding a newer piece for paper "
 "with a newer code"
 msgstr ""
+"Kode funnet, men er ikke til dette arrangementet. Prøv å finne et nyere ark "
+"med en nyere kode."
 
 #: ../modules/ticketorder/ticketorder.php:222
 msgid "Code found, but it has already been used"
-msgstr ""
+msgstr "Kode funnet, men den har allerede blitt brukt"
 
 #: ../modules/ticketorder/ticketorder.php:283
 msgid "Are you sure you wish to delete this ticket?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette billetten?"
 
 #: ../modules/ticketorder/ticketorder.php:284
 msgid "No, this would be a mistake"
-msgstr ""
+msgstr "Nei, det vil jeg ikke"
 
 #: ../modules/ticketorder/ticketorder.php:285
 msgid "Yes, I don't need it"
-msgstr ""
+msgstr "Ja, jeg trenger den ikke"
 
 #: ../modules/useradmin/useradmin.php:23
 msgid "View all users"
-msgstr ""
+msgstr "Vis alle brukere"
 
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
-msgstr ""
+msgstr "Søk"
 
 #: ../modules/useradmin/useradmin.php:39
 msgid "List of all users"
-msgstr ""
+msgstr "Liste over alle brukere"
 
 #: ../modules/useradmin/useradmin.php:40
 msgid "Back to user administration"
-msgstr ""
+msgstr "Tilbake til brukeradministrasjon"
 
 #: ../modules/useradmin/useradmin.php:59
 msgid "ID"
-msgstr ""
+msgstr "ID"
 
 #: ../modules/useradmin/useradmin.php:61
 msgid "Firstname"
-msgstr ""
+msgstr "Fornavn"
 
 #: ../modules/useradmin/useradmin.php:62
 msgid "Lastname"
-msgstr ""
+msgstr "Etternavn"
 
 #: ../modules/useradmin/useradmin.php:63
 msgid "Email"
-msgstr ""
+msgstr "E-post"
 
 #: ../modules/useradmin/useradmin.php:115
 msgid "No user with ID"
-msgstr ""
+msgstr "Ingen bruker med den IDen"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:17
 msgid "Questions"
-msgstr ""
+msgstr "Spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:18
 msgid "Crews"
-msgstr ""
+msgstr "Crew"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:25
 msgid "View Applications"
-msgstr ""
+msgstr "Vis søknader"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:76
 msgid "New question"
-msgstr ""
+msgstr "Nytt spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:79
 msgid "Text answer-field"
-msgstr ""
+msgstr "Tekst-spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:80
 msgid "Dropdown"
-msgstr ""
+msgstr "Nedtreksmeny"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:81
 msgid "Checkbox"
-msgstr ""
+msgstr "Avkrysningsboks"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:84
 msgid "Add new question"
-msgstr ""
+msgstr "Legg til spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:92
 #: ../modules/wannabeadmin/wannabeadmin.php:112
 #: ../modules/wannabeadmin/wannabeadmin.php:116
 msgid "Cancel edit"
-msgstr ""
+msgstr "Avbryt redigering"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:102
 msgid "Change question"
-msgstr ""
+msgstr "Endre spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:135
 msgid "Change answer"
-msgstr ""
+msgstr "Endre svaralternativ"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:150
 msgid "Add answer"
-msgstr ""
+msgstr "Legg til svaralternativ"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:220
 msgid "Applicant"
-msgstr ""
+msgstr "Søker"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:258
 msgid "Application from:"
-msgstr ""
+msgstr "Søknadsskjema"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:259
 msgid "Back to list"
-msgstr ""
+msgstr "Tilbake til lista"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:262
 msgid "Crew"
-msgstr ""
+msgstr "Crew"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:262
 msgid "Response"
-msgstr ""
+msgstr "Svar"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:274
 #: ../modules/wannabe/wannabe.php:28
@@ -1219,28 +1226,29 @@ msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:286
 msgid "Answer"
-msgstr ""
+msgstr "Svar"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:302
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:303
+#: ../inc/shared_functions.php:314
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:361
 #: ../modules/wannabeadmin/wannabeadmin.php:381
 msgid "Comment"
-msgstr ""
+msgstr "Kommentar"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:403
 msgid "Change name"
-msgstr ""
+msgstr "Endre navn"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:419
 msgid "Add crew"
-msgstr ""
+msgstr "Legg til crew"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:457
 msgid "wannabeAdminCmt"
@@ -1248,28 +1256,40 @@ msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:461
 msgid "Save comment"
-msgstr ""
+msgstr "Lagre kommentar"
 
 #: ../modules/wannabe/wannabe.php:6
 msgid "Please login to apply for crew"
-msgstr ""
+msgstr "Vennligst logg inn for å levere crewsøknad"
 
 #: ../modules/wannabe/wannabe.php:9
 msgid "Apply as crew"
-msgstr ""
+msgstr "Lever crewsøknad"
 
 #: ../modules/wannabe/wannabe.php:79
 msgid "Delete application"
-msgstr ""
+msgstr "Slett søknad"
 
 #: ../modules/wannabe/wannabe.php:134
 msgid "Are you sure you want to delete your crewapplication?"
-msgstr ""
+msgstr "Er du sikker på at du vil slette crewsøknaden din?"
 
 #: ../modules/wannabe/wannabe.php:135
 msgid "Yes, I'm sure"
-msgstr ""
+msgstr "Ja, jeg er sikker"
 
 #: ../modules/wannabe/wannabe.php:136
 msgid "No, I still wish to apply for crew"
-msgstr ""
+msgstr "Nei, jeg vil fortsatt søke crew"
+
+#: ../inc/shared_functions.php:319
+msgid "Read"
+msgstr "Lese"
+
+#: ../inc/shared_functions.php:324
+msgid "Write"
+msgstr "Skrive"
+
+#: ../inc/shared_functions.php:329
+msgid "Admin"
+msgstr "Admin"
