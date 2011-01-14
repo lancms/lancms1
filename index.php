@@ -12,6 +12,7 @@ if (empty($module) && empty($api))
 #	$rFindStatic = db_fetch($qFindStatic);
 #	$content .= $rFindStatic->page;
 	$content .= display_systemstatic ("index", $sessioninfo->eventID);
+	$content .= display_news ($sessioninfo->eventID);
 }
 elseif (isset ($module) && file_exists ('modules/'.$module.'/'.$module.'.php'))
 {

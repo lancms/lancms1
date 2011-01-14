@@ -407,6 +407,39 @@ function display_systemstatic($message, $eventID=1) {
 
 #############
 
+// show news for events
+// FIXME: should be fixed not to show news with active='no'
+// FIXME: should support global news
+function display_news ($eventid=1)
+{
+	global $sql_prefix;
+
+	if (!config ("enable_news", $eventid))
+	{
+		return (False);
+	}
+
+
+	$q = db_query ("SELECT * FROM ".$sql_prefix."_news WHERE eventID='".$eventid."'");
+
+	if (!db_num($q))
+	{
+		return (False);
+	}
+	$return .= "<h2>".lang ("News", "news")."</h2>\n";
+
+	while ($news = db_fetch($q))
+	{
+		$return .= "<div class='newsbox'>\n";
+		$return .= stripslashes($news->content)."\n";
+		$return .= "</div>\n";
+	}
+	return ($return);
+}
+
+
+#############
+
 // adding logentry:
 function log_add ($logmodule, $logfunction, $lognew="0", $logold="0", $userid=0, $eventid=0, $userip=0, $userhost=0, $logurl=0)
 {

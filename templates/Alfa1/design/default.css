@@ -335,3 +335,12 @@ tr.crewlistRow2
 	background-color: #b15b0f;
 }
 /* end override shared/crewlist.css */
+
+div.newsbox
+{
+	border-left: dashed 1px black;
+	padding-left: 5px;
+	
+	border-bottom: dashed 1px black;
+	padding-bottom: 5px;
+}
