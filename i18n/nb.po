@@ -7,15 +7,32 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-14 00:04+0100\n"
+"POT-Creation-Date: 2011-01-14 00:46+0100\n"
 "PO-Revision-Date: 2011-01-14 19:27+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-14 19:32+0000\n"
-"X-Generator: Launchpad (build 12200)\n"
+"X-Launchpad-Export-Date: 2011-01-15 07:11+0000\n"
+"X-Generator: Launchpad (build 12177)\n"
+
+#: ../inc/shared_functions.php:314
+#: ../modules/wannabeadmin/wannabeadmin.php:303
+msgid "No"
+msgstr "Nei"
+
+#: ../inc/shared_functions.php:319
+msgid "Read"
+msgstr "Lese"
+
+#: ../inc/shared_functions.php:324
+msgid "Write"
+msgstr "Skrive"
+
+#: ../inc/shared_functions.php:329
+msgid "Admin"
+msgstr "Admin"
 
 #: ../index.php:31
 msgid "Main page"
@@ -101,6 +118,38 @@ msgstr "Bytt passord"
 #: ../index.php:136
 msgid "Logout"
 msgstr "Logg ut"
+
+#: ../modules/FAQ/FAQ.php:53
+msgid "Edit FAQ"
+msgstr "Rediger FAQ"
+
+#: ../modules/FAQ/FAQ.php:56
+msgid "Delete FAQ"
+msgstr "Slett FAQ"
+
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:286
+msgid "Question"
+msgstr "Spørsmål"
+
+#: ../modules/FAQ/FAQ.php:64
+msgid "Add question"
+msgstr "Legg til spørsmål"
+
+#: ../modules/FAQ/FAQ.php:83 ../modules/edituserinfo/edituserinfo.php:103
+#: ../modules/edituserinfo/edituserinfo.php:207
+#: ../modules/eventadmin/eventadmin.php:144
+#: ../modules/eventadmin/eventadmin.php:194
+#: ../modules/eventadmin/eventadmin.php:223
+#: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
+#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
+#: ../modules/static/static.php:116 ../modules/static/static.php:226
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:77
+msgid "Save"
+msgstr "Lagre"
+
+#: ../modules/SMS/SMS.php:23 ../modules/eventadmin/eventadmin.php:36
+msgid "Send SMS"
+msgstr "Send SMS"
 
 #: ../modules/arrival/arrival.php:15 ../modules/groups/groups.php:94
 #: ../modules/ticketorder/ticketorder.php:64
@@ -337,18 +386,6 @@ msgstr "Passordet ble endret"
 msgid "Not access to edit userinfo"
 msgstr "Ikke tilgang til å redigere brukerinfo"
 
-#: ../modules/edituserinfo/edituserinfo.php:103
-#: ../modules/edituserinfo/edituserinfo.php:207
-#: ../modules/eventadmin/eventadmin.php:144
-#: ../modules/eventadmin/eventadmin.php:194
-#: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
-#: ../modules/static/static.php:116 ../modules/static/static.php:226
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:77
-msgid "Save"
-msgstr "Lagre"
-
 #: ../modules/eventadmin/eventadmin.php:16
 msgid "Event config"
 msgstr "Arrangementskonfigurasjon"
@@ -385,10 +422,6 @@ msgstr "Compoadmin"
 msgid "Newsadmin"
 msgstr "Nyhetsadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:23
-msgid "Send SMS"
-msgstr "Send SMS"
-
 #: ../modules/eventadmin/eventadmin.php:38
 msgid "Kioskadmin"
 msgstr "Kioskadministrasjon"
@@ -416,22 +449,6 @@ msgstr "Tillat deltagelse"
 #: ../modules/eventadmin/eventadmin.php:297
 msgid "Disallow attendee"
 msgstr "Nekt deltagelse"
-
-#: ../modules/FAQ/FAQ.php:53
-msgid "Edit FAQ"
-msgstr "Rediger FAQ"
-
-#: ../modules/FAQ/FAQ.php:56
-msgid "Delete FAQ"
-msgstr "Slett FAQ"
-
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:286
-msgid "Question"
-msgstr "Spørsmål"
-
-#: ../modules/FAQ/FAQ.php:64
-msgid "Add question"
-msgstr "Legg til spørsmål"
 
 #: ../modules/forum/forum.php:21
 msgid "Start new thread"
@@ -591,6 +608,22 @@ msgstr "Klannavn er allerede i bruk. Vennligst velg et annet navn"
 msgid "User already member of group"
 msgstr "Brukeren er allerede medlem av gruppen"
 
+#: ../modules/kiosk/kiosk.php:21
+msgid "Add"
+msgstr "Legg til"
+
+#: ../modules/kiosk/kiosk.php:41
+msgid "Add one more item"
+msgstr "Legg til en ting til"
+
+#: ../modules/kiosk/kiosk.php:42
+msgid "Remove one item"
+msgstr "Fjern en ting"
+
+#: ../modules/kiosk/kiosk.php:50
+msgid "SELL"
+msgstr "SELG"
+
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid "Admin waretypes"
 msgstr "Administrer varetyper"
@@ -632,22 +665,6 @@ msgstr "Pris"
 #: ../modules/kioskadmin/kioskadmin.php:129
 msgid "Add barcode"
 msgstr "Legg til strekkode"
-
-#: ../modules/kiosk/kiosk.php:21
-msgid "Add"
-msgstr "Legg til"
-
-#: ../modules/kiosk/kiosk.php:41
-msgid "Add one more item"
-msgstr "Legg til en ting til"
-
-#: ../modules/kiosk/kiosk.php:42
-msgid "Remove one item"
-msgstr "Fjern en ting"
-
-#: ../modules/kiosk/kiosk.php:50
-msgid "SELL"
-msgstr "SELG"
 
 #: ../modules/listing/listing.php:45
 msgid "Show list"
@@ -697,12 +714,12 @@ msgid "Logtype"
 msgstr "Loggtype"
 
 #: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
-msgid "IP"
-msgstr "IP"
-
-#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
 msgid "Host"
 msgstr "Vertsnavn"
+
+#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
+msgid "IP"
+msgstr "IP"
 
 #: ../modules/logs/logs.php:22 ../modules/logs/logs.php:79
 msgid "URL"
@@ -1149,6 +1166,35 @@ msgstr "E-post"
 msgid "No user with ID"
 msgstr "Ingen bruker med den IDen"
 
+#: ../modules/wannabe/wannabe.php:6
+msgid "Please login to apply for crew"
+msgstr "Vennligst logg inn for å levere crewsøknad"
+
+#: ../modules/wannabe/wannabe.php:9
+msgid "Apply as crew"
+msgstr "Lever crewsøknad"
+
+#: ../modules/wannabe/wannabe.php:28
+#: ../modules/wannabeadmin/wannabeadmin.php:274
+msgid "WannabeCrewListPreference"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:79
+msgid "Delete application"
+msgstr "Slett søknad"
+
+#: ../modules/wannabe/wannabe.php:134
+msgid "Are you sure you want to delete your crewapplication?"
+msgstr "Er du sikker på at du vil slette crewsøknaden din?"
+
+#: ../modules/wannabe/wannabe.php:135
+msgid "Yes, I'm sure"
+msgstr "Ja, jeg er sikker"
+
+#: ../modules/wannabe/wannabe.php:136
+msgid "No, I still wish to apply for crew"
+msgstr "Nei, jeg vil fortsatt søke crew"
+
 #: ../modules/wannabeadmin/wannabeadmin.php:17
 msgid "Questions"
 msgstr "Spørsmål"
@@ -1219,11 +1265,6 @@ msgstr "Crew"
 msgid "Response"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:274
-#: ../modules/wannabe/wannabe.php:28
-msgid "WannabeCrewListPreference"
-msgstr ""
-
 #: ../modules/wannabeadmin/wannabeadmin.php:286
 msgid "Answer"
 msgstr "Svar"
@@ -1231,11 +1272,6 @@ msgstr "Svar"
 #: ../modules/wannabeadmin/wannabeadmin.php:302
 msgid "Yes"
 msgstr "Ja"
-
-#: ../modules/wannabeadmin/wannabeadmin.php:303
-#: ../inc/shared_functions.php:314
-msgid "No"
-msgstr "Nei"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:361
 #: ../modules/wannabeadmin/wannabeadmin.php:381
@@ -1257,39 +1293,3 @@ msgstr ""
 #: ../modules/wannabeadmin/wannabeadmin.php:461
 msgid "Save comment"
 msgstr "Lagre kommentar"
-
-#: ../modules/wannabe/wannabe.php:6
-msgid "Please login to apply for crew"
-msgstr "Vennligst logg inn for å levere crewsøknad"
-
-#: ../modules/wannabe/wannabe.php:9
-msgid "Apply as crew"
-msgstr "Lever crewsøknad"
-
-#: ../modules/wannabe/wannabe.php:79
-msgid "Delete application"
-msgstr "Slett søknad"
-
-#: ../modules/wannabe/wannabe.php:134
-msgid "Are you sure you want to delete your crewapplication?"
-msgstr "Er du sikker på at du vil slette crewsøknaden din?"
-
-#: ../modules/wannabe/wannabe.php:135
-msgid "Yes, I'm sure"
-msgstr "Ja, jeg er sikker"
-
-#: ../modules/wannabe/wannabe.php:136
-msgid "No, I still wish to apply for crew"
-msgstr "Nei, jeg vil fortsatt søke crew"
-
-#: ../inc/shared_functions.php:319
-msgid "Read"
-msgstr "Lese"
-
-#: ../inc/shared_functions.php:324
-msgid "Write"
-msgstr "Skrive"
-
-#: ../inc/shared_functions.php:329
-msgid "Admin"
-msgstr "Admin"
