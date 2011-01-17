@@ -218,6 +218,8 @@ if(!$hide_smarty) {
 	$smarty->assign("title", $design_title);
 	$smarty->assign("head", $design_head);
 
+	// for logo and link in the page footer
+	$smarty->assign("footer", $design_footer);
 
 
 	$smarty->display($smarty_display);

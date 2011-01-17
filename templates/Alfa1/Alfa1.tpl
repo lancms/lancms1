@@ -74,7 +74,9 @@
 			<div id="footer">
 				<p>Design by Mathias B&oslash;hn Grytemark, based on an <a href="http://www.oswd.org/">open source design</a> by <a href="http://www.loadfoo.org/">LoadFoO</a>.</p>
 				<p>Powered by <a href="http://launchpad.net/lancms/">lancms</a>.</p>
-				<a href="http://www.globeorg.no/"><img width="69px" height="90px" src="templates/Alfa1/design/go.png" /></a>
+				{if $footer}
+				<a href="{$footer.url}"><img width="{$footer.width}" height="{$footer.height}" src="{$footer.logo}" /></a>
+				{/if}
 			</div>
 
 

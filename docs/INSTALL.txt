@@ -37,6 +37,11 @@ $language = "norwegian"; // Change this to another language if you wish to use i
 
 $lancms_session_cookie = "cookiemonster";
 
+# optional logo in footer. comment out if you don't want it.
+$design_footer['logo'] = 'http://localhost/logo.png';
+$design_footer['width'] = 69;
+$design_footer['height'] = 90;
+$design_footer['url'] = 'http://localhost/';
 ?>
 
 * If you've not done it already, create the database and grant access to it:

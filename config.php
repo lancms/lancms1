@@ -27,6 +27,18 @@ else {
 
 	## Mail settings
 	$mail_from = 'noreply@globeorg.no';
+
+
+
+	# Put something usefull here if you want your logo in the page footer
+	# if you don't want it, comment it out
+	$design_footer['logo'] = 'http://localhost/logo.png';
+	$design_footer['width'] = 69;
+	$design_footer['height'] = 90;
+	$design_footer['url'] = 'http://localhost/';
+
+
+
 }
 ## All other settings should be done in some kind of installer....
 
