@@ -23,30 +23,6 @@ require 'inc/shared_functions.php';
 require 'inc/shared_session.php';
 require 'inc/shared_config.php';
 
-	
-error_reporting(E_ALL | E_STRICT);
-
-define('LOCALE_DIR', './i18n');
-define('DEFAULT_LOCALE', 'en_US');
-if($language == 'norwegian') $locale = 'nb';
-
-
-
-if(!function_exists('gettext')) {
-	include_once 'inc/php-gettext/gettext.php';
-	include_once 'inc/php-gettext/streams.php';
-	include_once 'inc/php-gettext/gettext.inc';
-}
-
-setlocale(LC_MESSAGES, $locale);
-bindtextdomain("i18n", './i18n');
-textdomain('i18n');
-#$domain = 'i18n';
-#bindtextdomain($domain, LOCALE_DIR);
-
-
-
-
 if($hide_smarty != 1) {
 	## Set up Smarty-stuff
 	require 'inc/smarty/libs/Smarty.class.php';
