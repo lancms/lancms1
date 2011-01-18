@@ -286,7 +286,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	$content .= "<tr><th>".lang ("Question", "wannabeadmin")."</th><th>".lang ("Answer", "wannabeadmin")."</th></tr>";
 
 	$qListResponse = db_query("SELECT ques.question,ques.questionType,res.response FROM ".$sql_prefix."_wannabeResponse res
-		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE res.userID = ".db_escape($user));
+		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = '$sessioninfo->eventID' AND res.userID = ".db_escape($user));
 
 	$rListResponseLoopCount = 1;
 	while($rListResponse = db_fetch($qListResponse)) {
