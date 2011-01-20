@@ -162,17 +162,17 @@ blockquote
 
 #left
 {
-	width: 520px;
-	float:left;
+	width: 680px;
+	float:right;
 	display: block;
-       margin-left: 20px;
+	margin-right: 20px;
 	display: inline;
 }
 
 #right
 {
-	width: 315px; 
-	float: right;
+	width: 150px; 
+	float: left;
 	display:block;
 	margin-top: 10px;
 }
@@ -183,7 +183,7 @@ blockquote
 	background: #F6F9FB;
 	border: 1px solid #E1E1E1;
 	padding:10px 10px 15px 10px;
-	float: right;
+	float: left;
 }
 
 #right .box h2
@@ -222,7 +222,7 @@ blockquote
 	list-style: none;
 	margin: 2.0em 0;
 	width: 25em;
-	float: right;
+	float: left;
 }
 
 #nav li
