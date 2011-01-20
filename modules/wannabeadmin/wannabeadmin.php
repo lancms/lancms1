@@ -245,8 +245,8 @@ elseif($action == "listApplications") {
 			} // End for 
 			$content .= "</tr>\n\n\n";
 		} // End while rListApplications
-		$content .= "</table>";
 	}
+		$content .= "</table>";
 
 } // End action=listApplications
 
