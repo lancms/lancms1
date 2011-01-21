@@ -98,6 +98,10 @@ elseif($action == "doEditFAQ" && !empty($faqID))
 		question = '".db_escape($question)."'
 		WHERE ID = '".db_escape($faqID)."'
 		AND eventID = '".db_escape($eventID)."'");
+	$log_new['faqID'] = $faqID;
+	$log_new['question'] = $question;
+	$log_new['answer'] = $answer;
+	log_add("FAQ", "doEditFAQ", serialize($log_new));
 	header("Location: ?module=FAQ&action=adminFAQs");
 } // End if action == doEditFAQ
 
@@ -120,7 +124,10 @@ elseif($action == "addFAQ")
 		AND question = '".db_escape($question)."'
 		ORDER BY ID DESC LIMIT 0,1");
 	$rLastID = db_fetch($qLastID);
-	
+	$log_new['faqID'] = $rLastID->ID;
+	$log_new['question'] = $question;
+	log_add("FAQ", "addFAQ", serialize($log_new));
+
 	// Jump to edit-mode for this FAQ
 	header("Location: ?module=FAQ&action=editFAQ&faqID=$rLastID->ID");
 } // End if action == addFAQ)
@@ -135,6 +142,7 @@ elseif($action == "deleteFAQ" && !empty($faqID))
 	db_query("DELETE FROM ".$sql_prefix."_FAQ
 		WHERE ID = ".db_escape($faqID)."
 		AND eventID = ".db_escape($eventID));
+	log_add("FAQ", "deleteFAQ", serialize($faqID));
 	header("Location: ?module=FAQ&action=adminFAQs");
 } // End action == deleteFAQ
 	
