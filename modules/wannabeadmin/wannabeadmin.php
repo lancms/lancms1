@@ -259,6 +259,16 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 	$content .= "<a href=\"?module=wannabeadmin&action=listApplications\">".lang ("Back to list", "wannabeadmin")."</a>";
 
 	$content .= "<table>";
+
+	// Add information about the user
+	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
+	$rFindUser = db_fetch($qFindUser);
+	$content .= "<tr><td>".lang("Name", "wannabeadmin")."</td><td>$rFindUser->firstName $rFindUser->lastName</td></tr>\n";
+	$content .= "<tr><td>".lang("Birthday", "wannabeadmin")."</td><td>$rFindUser->birthDay / $rFindUser->birthMonth $rFindUser->birthYear </td></tr>\n";
+	$content .= "<tr><td>".lang("Address", "wannabeadmin")."</td><td>$rFindUser->street $rFindUser->postNumber </td></tr>\n";
+
+
+	// Add information about what crews the user wants
 	$content .= "<tr><th>".lang ("Crew", "wannabeadmin")."</th><th>".lang ("Response", "wannabeadmin")."</th></tr>";
 
 	$qListCrewResponses = db_query("SELECT crew.crewname,
@@ -360,10 +370,10 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 			if($editcmt) {
 				$content .= "<a href=\"?module=wannabeadmin&action=changeComment&crewID=$crewID&user=$user\">";
 				if(empty($rListComments->comment)) $content .= lang("Comment", "wannabeadmin");
-				else $content .= $rListComments->comment;
+				else $content .= stripslashes($rListComments->comment);
 				$content .= "</a>";
 			}
-			else $content .= $rListComments->comment;
+			else $content .= stripslashes($rListComments->comment);
 			$content .= "</td>\n";
 
 		} // End while rListCrews
