@@ -100,7 +100,7 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 	$qFindPosts = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '".db_escape($thread)."'");
 	while($rFindPosts = db_fetch($qFindPosts)) {
 		$content .= "<tr><td>";
-		$content .= nl2br($rFindPosts->postContent);
+		$content .= stripslashes(nl2br($rFindPosts->postContent));
 		$content .= "</td><td>";
 		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindPosts->postAuthor' LIMIT 0,1");
 		$rFindUser = db_fetch($qFindUser);
