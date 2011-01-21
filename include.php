@@ -23,6 +23,16 @@ require 'inc/shared_functions.php';
 require 'inc/shared_session.php';
 require 'inc/shared_config.php';
 
+
+## Include and set up i18n
+if($language == 'norwegian') $lang = 'nb_NO.utf8';
+putenv("LANGUAGE=$lang");
+putenv("LANG=$lang");
+setlocale (LC_MESSAGES, $lang);
+bindtextdomain("messages", "./i18n");
+textdomain("messages");
+
+
 if($hide_smarty != 1) {
 	## Set up Smarty-stuff
 	require 'inc/smarty/libs/Smarty.class.php';

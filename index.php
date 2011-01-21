@@ -29,7 +29,7 @@ else
 }
 
 
-$design_menu = "<li><a href=\"index.php\">".lang ("Main page", "index")."</a></li>\n";
+$design_menu = "<li><a href=\"index.php\">".lang("Main page", "index")."</a></li>\n";
 
 if (acl_access ("globaladmin", "", 0) == 'Admin')
 {
