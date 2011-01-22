@@ -17,6 +17,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 		$content .= "<th>".lang ("Log", "logs")."#</th>";
 		$content .= "<th>".lang ("Timestamp", "logs")."</th>";
 		$content .= "<th>".lang ("User", "logs")."</th>";
+		$content .= "<th>".lang ("Logmodule", "logs")."</th>";
 		$content .= "<th>".lang ("Logtype", "logs")."</th>";
 		$content .= "<th>".lang ("IP", "logs")." / ".lang ("Host", "logs")."</th>";
 		$content .= "<th>".lang ("URL", "logs")."</th>";
@@ -39,7 +40,114 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<td>".$log->ID."</td>";
 			$content .= "<td>".$log->logTime."</td>";
 			$content .= "<td>".display_username($log->userID)."</td>";
-			$content .= "<td>".lang ("log_".$log->logModule."__". $log->logFunction, "logs")."</td>";
+#			$content .= "<td>".lang ("log_".$log->logModule."__". $log->logFunction, "logs")."</td>";
+			$m = $log->logModule;
+			$f = $log->logFunction;
+			$mod = NULL;
+			$func = NULL;
+			switch($m) {
+				case "arrival":
+					$mod = lang("Arrival");
+					if($f == "deleteTicket") $func = lang("Ticket deleted");
+					elseif($f == "doAddOnsiteTicket") $func = lang("Onsite ticket added");
+					elseif($f == "marknotpaid") $func = lang("Ticket marked not paid");
+					elseif($f == "markpaid") $func = lang("Ticket marked paid");
+					break;
+				case "edituser":
+					$mod = lang("Edituser");
+					if($f == "doEditPreference") $func = lang("Edit preference");
+					elseif($f == "doEditUserinfo") $func = lang("Edit userinfo");
+					elseif($f == "setNewPass") $func = lang("New password set");
+					break;
+				case "eventadmin":
+					$mod = lang("Eventadmin");
+					if($f == "addAccessGroup") $func = lang("New accessgroup added");
+					elseif($f == "doChangeRight") $func = lang("Groupright change");
+					elseif($f == "doConfig") $func = lang("Configuration change");
+					break;
+				case "FAQ":
+					$mod = lang("FAQ");
+					if($f == "addFAQ") $func = lang("FAQ added");
+					elseif($f == "deleteFAQ") $func = lang("FAQ deleted");
+					break;
+				case "forum":
+					$mod = lang("Forum");
+					if($f == "newpost") $func = lang("New post added");
+					break;
+				case "globaladmin":
+					$mod = lang("Globaladmin");
+					if($f == "doAddEvent") $func = lang("Event added");
+					elseif($f == "setPublic") $func = lang("Set event public");
+					break;
+				case "globalconfig":
+					$mod = lang("Globalconfig");
+					if($f == "doConfig") $func = lang("Global configuration change");
+					break;
+				case "groups":
+					$mod = lang("Groups");
+					if($f == "addmember") $func = lang("Member added");
+					elseif($f == "changeGroupRights") $func = lang("Changed grouprights");
+					elseif($f == "clanCreate") $func = lang("Clan created");
+					break;
+				case "installer":
+					$mod = "installer";
+					if($f == "install/upgrade") $func = lang("System upgrade");
+					break;
+				case "login":
+					$mod = lang("Login");
+					if($f == "failed_password") $func = lang("Failed password login");
+					elseif($f == "login") $func = lang("Successful login");
+					elseif($f == "logout") $func = lang("Logout");
+					elseif($f == "success") $func = lang("Successful login");
+					break;
+				case "mail":
+					$mod = lang("Mail");
+					if($f == "sendmail_mass") $func = lang("Mail sent (mass)");
+					break;
+				case "news":
+					$mod = lang("News");
+					if($f == "addArticle") $func = lang("Add new article");
+					elseif($f == "edit") $func = lang("Article edit");
+					break;
+				case "register":
+					$mod = lang("User registration");
+					if($f == "anonymous") $func = lang("Anonymous registered new user");
+					elseif($f == "registered") $func = lang("User registered new user");
+					break;
+				case "reseller":
+					$mod = lang("Reseller");
+					if($f == "addTicket") $func = lang("addTicket");
+					break;
+				case "seatadmin":
+					$mod = lang("Seatadmin");
+					if($f == "addcolumn") $func = lang("Seatmap column added");
+					elseif($f == "addrow") $func = lang("Seatmap row added");
+					elseif($f == "doresetmap") $func = lang("Seatmap reset");
+					elseif($f == "doUpdateSeat") $func = lang("Seat updated");
+					break;
+				case "static":
+					$mod = lang("Static");
+					if($f == "addNewACL") $func = lang("New ACL");
+					elseif($f == "editpage") $func = lang("Page edited");
+					elseif($f == "newpage") $func = lang("New page added");
+					elseif($f == "newsystem") $func = lang("New system-message added");
+					elseif($f == "updatesystem") $func = lang("Systemmessage edited");
+					break;
+				case "ticketadmin":
+					$mod = lang("Ticketadmin");
+					if($f == "addTicketType") $func = lang("New tickettype added");
+					elseif($f == "doEditTicket") $func = lang("Tickettype changed");
+					break;
+				case "ticketorder":
+					$mod = lang("Ticketorder");
+					if($f == "buyticket") $func = lang("Ticket bought");
+					elseif($f == "cancelTicket") $func = lang("Ticket canceled");
+					break;
+			} // End switch
+			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
+			if(empty($func)) $func = lang("Unknown function")." ".$f;
+			$content .= "<td>".$mod."</td>";
+			$content .= "<td>".$func."</td>";
 			$content .= "<td>".$userip."</td>";
 			$content .= "<td>".$log->logURL."</td>";
 			$content .= "</tr>";
@@ -75,9 +183,10 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 			$content .= "<table>";
 			$content .= "<tr class='logrow1'><th>".lang ("User", "logs")."</th><td>".display_username($log->userID)."</td></tr>";
 			$content .= "<tr class='logrow2'><th>".lang ("Timestamp", "logs")."</th><td>".$log->logTime."</td></tr>";
-			$content .= "<tr class='logrow2'><th>".lang ("IP", "logs")." / ".lang ("Host", "logs")."</th><td>".$userip."</td></tr>";
-			$content .= "<tr class='logrow1'><th>".lang ("URL", "logs")."</th><td>".$log->logURL."</td></tr>";
-			$content .= "<tr class='logrow2'><th>".lang ("Logtype", "logs")."</th><td>".lang ("log_".$log->logModule."__".$log->logFunction, "logs")."</td></tr>";
+			$content .= "<tr class='logrow1'><th>".lang ("IP", "logs")." / ".lang ("Host", "logs")."</th><td>".$userip."</td></tr>";
+			$content .= "<tr class='logrow2'><th>".lang ("URL", "logs")."</th><td>".$log->logURL."</td></tr>";
+			$content .= "<tr class='logrow1'><th>".lang ("Logmodule", "logs")."</th><td>".$log->logModule."</td></tr>";
+			$content .= "<tr class='logrow2'><th>".lang ("Logfunction", "logs")."</th><td>".$log->logFunction."</td></tr>";
 			$content .= "</table>";
 
 			$content .= "<table><tr><td>";
