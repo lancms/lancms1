@@ -6,7 +6,7 @@ $now = time();
 
 $day_ago = $now - 86400;
 
-db_query("DELETE FROM ".$sql_prefix."_session WHERE lastVisit < ".$day_ago);
+db_query("DELETE FROM ".$sql_prefix."_session WHERE lastVisit < ".$day_ago." OR userIP = ''");
 
 
 if(empty($_COOKIE[$lancms_session_cookie]))
