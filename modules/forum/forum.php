@@ -137,6 +137,7 @@ elseif($action == "doNewPost" && isset($_GET['thread']) && $sessioninfo->userID 
 		postContent = '".db_escape($postContent)."'");
 	
 	db_query("UPDATE ".$sql_prefix."_users SET forumPosts = forumPosts + 1 WHERE ID = '$sessioninfo->userID'");
+	db_query("UPDATE ".$sql_prefix."_forumThreads SET lastPost = '".time()."' WHERE ID = '".db_escape($thread)."'");
 
 	$log_new['thread'] = $thread;
 	$log_new['postcontent'] = $postContent;
