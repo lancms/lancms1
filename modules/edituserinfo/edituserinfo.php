@@ -89,8 +89,9 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 					$content .= "<option value='$value'";
 					if($rGetUserinfo[$name] == $value) $content .= " SELECTED";
 					$content .= ">";
-					if(is_numeric($displayname)) $content .= $displayname;
-					else $content .= lang($displayname, "edituserinfo_prefs");
+#					if(is_numeric($displayname)) $content .= $displayname;
+#					else $content .= lang($displayname, "edituserinfo_prefs");
+					$content .= $displayname;
 					$content .= "</option>\n";
 				} // End foreach
 				$content .= "</select>";
@@ -200,7 +201,7 @@ elseif($action == "editPreferences" && isset($_GET['user'])) {
 		} // End switch
 
 		$content .= "</td><td>";
-		$content .= lang($userpersonalprefs[$i]['displayName'], "edituserinfo");
+		$content .= $userpersonalprefs[$i]['displayName'];
 		$content .= "</td></tr>";
 
 	} // End for
