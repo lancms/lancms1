@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-21 21:02+0100\n"
-"PO-Revision-Date: 2011-01-21 20:52+0000\n"
+"POT-Creation-Date: 2011-01-22 17:06+0100\n"
+"PO-Revision-Date: 2011-01-22 16:38+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-22 06:03+0000\n"
-"X-Generator: Launchpad (build 12177)\n"
+"X-Launchpad-Export-Date: 2011-01-22 16:40+0000\n"
+"X-Generator: Launchpad (build 12214)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -33,7 +33,7 @@ msgstr "Registrer bruker"
 msgid "My groups"
 msgstr "Mine grupper"
 
-#: ../index.php:64
+#: ../index.php:64 ../modules/logs/logs.php:69
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -57,11 +57,11 @@ msgstr "Compopåmelding"
 msgid "Crewlist"
 msgstr "Crewliste"
 
-#: ../index.php:77
+#: ../index.php:77 ../modules/logs/logs.php:50
 msgid "Arrival"
 msgstr "Ankomst"
 
-#: ../index.php:79
+#: ../index.php:79 ../modules/logs/logs.php:118
 msgid "Reseller"
 msgstr "Forhandler"
 
@@ -69,7 +69,7 @@ msgstr "Forhandler"
 msgid "Kiosk"
 msgstr "Kiosk"
 
-#: ../index.php:83
+#: ../index.php:83 ../modules/logs/logs.php:74
 msgid "Forum"
 msgstr "Forum"
 
@@ -85,7 +85,8 @@ msgstr "Skriv inn ditt nick, epost eller navn her:"
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:134 ../modules/useradmin/useradmin.php:122
+#: ../index.php:134 ../modules/logs/logs.php:59
+#: ../modules/useradmin/useradmin.php:122
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
@@ -98,7 +99,7 @@ msgstr "Rediger innstillinger"
 msgid "Change password"
 msgstr "Bytt passord"
 
-#: ../index.php:137
+#: ../index.php:137 ../modules/logs/logs.php:100
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -347,7 +348,7 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
 #: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
 #: ../modules/static/static.php:116 ../modules/static/static.php:226
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:77
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid "Save"
 msgstr "Lagre"
 
@@ -427,7 +428,7 @@ msgstr "Rediger FAQ"
 msgid "Delete FAQ"
 msgstr "Slett FAQ"
 
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:319
 msgid "Question"
 msgstr "Spørsmål"
 
@@ -479,7 +480,7 @@ msgstr "Arrangementsnavn"
 msgid "Admin this event"
 msgstr "Administrer dette arrangementet"
 
-#: ../modules/globaladmin/globaladmin.php:13
+#: ../modules/globaladmin/globaladmin.php:13 ../modules/logs/logs.php:80
 msgid "Set event public"
 msgstr "Sett arrangement offentlig"
 
@@ -683,40 +684,260 @@ msgstr "Siste 30 logglinjer"
 msgid "Log"
 msgstr "Logg"
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:77
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:185
 msgid "Timestamp"
 msgstr "Tidspunkt"
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:76
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:184
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
 msgstr "Bruker"
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:80
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:188
+msgid "Logmodule"
+msgstr "Loggmodul"
+
+#: ../modules/logs/logs.php:21
 msgid "Logtype"
 msgstr "Loggtype"
 
-#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:186
 msgid "IP"
 msgstr "IP"
 
-#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:186
 msgid "Host"
 msgstr "Vertsnavn"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:79
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:187
 msgid "URL"
 msgstr "URL"
 
-#: ../modules/logs/logs.php:42 ../modules/logs/logs.php:80
-msgid "log_"
-msgstr "log_"
+#: ../modules/logs/logs.php:51
+msgid "Ticket deleted"
+msgstr "Billett slettet"
 
-#: ../modules/logs/logs.php:73
+#: ../modules/logs/logs.php:52
+msgid "Onsite ticket added"
+msgstr "Onsite billett lagt til"
+
+#: ../modules/logs/logs.php:53
+msgid "Ticket marked not paid"
+msgstr "Billett markert som ikke betalt"
+
+#: ../modules/logs/logs.php:54
+msgid "Ticket marked paid"
+msgstr "Billett markert som betalt"
+
+#: ../modules/logs/logs.php:57
+msgid "Edituser"
+msgstr "Brukerredigering"
+
+#: ../modules/logs/logs.php:58
+msgid "Edit preference"
+msgstr "Brukerinnstillinger"
+
+#: ../modules/logs/logs.php:60
+msgid "New password set"
+msgstr "Nytt passord satt"
+
+#: ../modules/logs/logs.php:63
+msgid "Eventadmin"
+msgstr "Eventadmin"
+
+#: ../modules/logs/logs.php:64
+msgid "New accessgroup added"
+msgstr "Ny aksessgruppe lagt til"
+
+#: ../modules/logs/logs.php:65
+msgid "Groupright change"
+msgstr "Grupperettighet endret"
+
+#: ../modules/logs/logs.php:66
+msgid "Configuration change"
+msgstr "Konfigurasjon endret"
+
+#: ../modules/logs/logs.php:70
+msgid "FAQ added"
+msgstr "FAQ lagt til"
+
+#: ../modules/logs/logs.php:71
+msgid "FAQ deleted"
+msgstr "FAQ slettet"
+
+#: ../modules/logs/logs.php:75
+msgid "New post added"
+msgstr "Ny post lagt til"
+
+#: ../modules/logs/logs.php:78
+msgid "Globaladmin"
+msgstr "Globaladmin"
+
+#: ../modules/logs/logs.php:79
+msgid "Event added"
+msgstr "Arrangement lagt til"
+
+#: ../modules/logs/logs.php:83
+msgid "Globalconfig"
+msgstr "Globalkonfigurasjon"
+
+#: ../modules/logs/logs.php:84
+msgid "Global configuration change"
+msgstr "Globalkonfigurasjon endret"
+
+#: ../modules/logs/logs.php:87
+msgid "Groups"
+msgstr "Grupper"
+
+#: ../modules/logs/logs.php:88
+msgid "Member added"
+msgstr "Medlem lagt inn"
+
+#: ../modules/logs/logs.php:89
+msgid "Changed grouprights"
+msgstr "Endret grupperettigheter"
+
+#: ../modules/logs/logs.php:90
+msgid "Clan created"
+msgstr "Klan opprettet"
+
+#: ../modules/logs/logs.php:94
+msgid "System upgrade"
+msgstr "System oppgradert"
+
+#: ../modules/logs/logs.php:97
+msgid "Login"
+msgstr "Innlogging"
+
+#: ../modules/logs/logs.php:98
+msgid "Failed password login"
+msgstr "Feilet passord ved innlogging"
+
+#: ../modules/logs/logs.php:99 ../modules/logs/logs.php:101
+msgid "Successful login"
+msgstr "Vellykket innlogging"
+
+#: ../modules/logs/logs.php:104
+msgid "Mail"
+msgstr "E-post"
+
+#: ../modules/logs/logs.php:105
+msgid "Mail sent (mass)"
+msgstr "E-post sendt (massesendt)"
+
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:430
+msgid "News"
+msgstr "Nyheter"
+
+#: ../modules/logs/logs.php:109 ../modules/news/news.php:20
+msgid "Add new article"
+msgstr "Legg til artikkel"
+
+#: ../modules/logs/logs.php:110
+msgid "Article edit"
+msgstr "Artikkel redigert"
+
+#: ../modules/logs/logs.php:113
+msgid "User registration"
+msgstr "Brukerregistrering"
+
+#: ../modules/logs/logs.php:114
+msgid "Anonymous registered new user"
+msgstr "Anonym registrerte ny bruker"
+
+#: ../modules/logs/logs.php:115
+msgid "User registered new user"
+msgstr "Bruker registrerte ny bruker"
+
+#: ../modules/logs/logs.php:119
+msgid "addTicket"
+msgstr "Legg til billett"
+
+#: ../modules/logs/logs.php:122
+msgid "Seatadmin"
+msgstr "Plassadministrasjon"
+
+#: ../modules/logs/logs.php:123
+msgid "Seatmap column added"
+msgstr "Plassadmin kolonne lagt til"
+
+#: ../modules/logs/logs.php:124
+msgid "Seatmap row added"
+msgstr "Plassadmin rad lagt til"
+
+#: ../modules/logs/logs.php:125
+msgid "Seatmap reset"
+msgstr "Plassadmin nullstilt"
+
+#: ../modules/logs/logs.php:126
+msgid "Seat updated"
+msgstr "Plass oppdatert"
+
+#: ../modules/logs/logs.php:129
+msgid "Static"
+msgstr "Statisk"
+
+#: ../modules/logs/logs.php:130
+msgid "New ACL"
+msgstr "Ny ACL"
+
+#: ../modules/logs/logs.php:131
+msgid "Page edited"
+msgstr "Side redigert"
+
+#: ../modules/logs/logs.php:132
+msgid "New page added"
+msgstr "Ny side lagt til"
+
+#: ../modules/logs/logs.php:133
+msgid "New system-message added"
+msgstr "Ny systemmelding lagt til"
+
+#: ../modules/logs/logs.php:134
+msgid "Systemmessage edited"
+msgstr "Systemmelding redigert"
+
+#: ../modules/logs/logs.php:137
+msgid "Ticketadmin"
+msgstr "Billettadmin"
+
+#: ../modules/logs/logs.php:138
+msgid "New tickettype added"
+msgstr "Ny billettype lagt til"
+
+#: ../modules/logs/logs.php:139
+msgid "Tickettype changed"
+msgstr "Billettype endret"
+
+#: ../modules/logs/logs.php:142
+msgid "Ticketorder"
+msgstr "Billettbestilling"
+
+#: ../modules/logs/logs.php:143
+msgid "Ticket bought"
+msgstr "Billett bestilt"
+
+#: ../modules/logs/logs.php:144
+msgid "Ticket canceled"
+msgstr "Billett avbestilt"
+
+#: ../modules/logs/logs.php:147
+msgid "Unknown module"
+msgstr "Ukjent modul"
+
+#: ../modules/logs/logs.php:148
+msgid "Unknown function"
+msgstr "Ukjent funksjon"
+
+#: ../modules/logs/logs.php:181
 msgid "Details for logentry "
 msgstr "Detaljer for logglinje "
+
+#: ../modules/logs/logs.php:189
+msgid "Logfunction"
+msgstr "LogFunksjon"
 
 #: ../modules/mail/mail.php:24
 msgid "Send Mail"
@@ -725,10 +946,6 @@ msgstr "Send e-post"
 #: ../modules/news/news.php:19
 msgid "Add as global article"
 msgstr "Legg til som global artikkel"
-
-#: ../modules/news/news.php:20
-msgid "Add new article"
-msgstr "Legg til artikkel"
 
 #: ../modules/profile/profile.php:24
 msgid "Groupmemberships"
@@ -1222,42 +1439,75 @@ msgstr "Crew"
 msgid "Response"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:284
-#: ../modules/wannabe/wannabe.php:28
-msgid "WannabeCrewListPreference"
-msgstr ""
+#: ../modules/wannabeadmin/wannabeadmin.php:287
+#: ../modules/wannabeadmin/wannabeadmin.php:495
+#: ../modules/wannabe/wannabe.php:31
+msgid "Nothing selected"
+msgstr "Ingenting valgt"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:290
+#: ../modules/wannabeadmin/wannabeadmin.php:498
+#: ../modules/wannabe/wannabe.php:34
+msgid "Of course!"
+msgstr "Selvfølgelig!"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:293
+#: ../modules/wannabeadmin/wannabeadmin.php:501
+#: ../modules/wannabe/wannabe.php:37
+msgid "Sure"
+msgstr "Sikkert"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/wannabeadmin/wannabeadmin.php:504
+#: ../modules/wannabe/wannabe.php:40
+msgid "Probably"
+msgstr "Kanskje"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:299
+#: ../modules/wannabeadmin/wannabeadmin.php:507
+#: ../modules/wannabe/wannabe.php:43
+msgid "I'd rather not"
+msgstr "Helst ikke"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:302
+#: ../modules/wannabeadmin/wannabeadmin.php:510
+#: ../modules/wannabe/wannabe.php:46
+msgid "Not at all"
+msgstr "Overhodet ikke"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:305
+#: ../modules/wannabeadmin/wannabeadmin.php:513
+#: ../modules/wannabe/wannabe.php:49
+msgid "Unknown option"
+msgstr "Ukjent alternativ"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:319
 msgid "Answer"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:313
+#: ../modules/wannabeadmin/wannabeadmin.php:336
 msgid "Yes"
 msgstr "Ja"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:314
+#: ../modules/wannabeadmin/wannabeadmin.php:337
 #: ../inc/shared_functions.php:315
 msgid "No"
 msgstr "Nei"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:372
-#: ../modules/wannabeadmin/wannabeadmin.php:392
+#: ../modules/wannabeadmin/wannabeadmin.php:395
+#: ../modules/wannabeadmin/wannabeadmin.php:415
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:414
+#: ../modules/wannabeadmin/wannabeadmin.php:437
 msgid "Change name"
 msgstr "Endre navn"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:430
+#: ../modules/wannabeadmin/wannabeadmin.php:453
 msgid "Add crew"
 msgstr "Legg til crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:468
-msgid "wannabeAdminCmt"
-msgstr ""
-
-#: ../modules/wannabeadmin/wannabeadmin.php:472
+#: ../modules/wannabeadmin/wannabeadmin.php:521
 msgid "Save comment"
 msgstr "Lagre kommentar"
 
@@ -1269,21 +1519,69 @@ msgstr "Vennligst logg inn for å levere crewsøknad"
 msgid "Apply as crew"
 msgstr "Lever crewsøknad"
 
-#: ../modules/wannabe/wannabe.php:79
+#: ../modules/wannabe/wannabe.php:102
 msgid "Delete application"
 msgstr "Slett søknad"
 
-#: ../modules/wannabe/wannabe.php:134
+#: ../modules/wannabe/wannabe.php:157
 msgid "Are you sure you want to delete your crewapplication?"
 msgstr "Er du sikker på at du vil slette crewsøknaden din?"
 
-#: ../modules/wannabe/wannabe.php:135
+#: ../modules/wannabe/wannabe.php:158
 msgid "Yes, I'm sure"
 msgstr "Ja, jeg er sikker"
 
-#: ../modules/wannabe/wannabe.php:136
+#: ../modules/wannabe/wannabe.php:159
 msgid "No, I still wish to apply for crew"
 msgstr "Nei, jeg vil fortsatt søke crew"
+
+#: ../inc/shared_config.php:84
+msgid "January"
+msgstr "Januar"
+
+#: ../inc/shared_config.php:85
+msgid "February"
+msgstr "Februar"
+
+#: ../inc/shared_config.php:86
+msgid "March"
+msgstr "Mars"
+
+#: ../inc/shared_config.php:87
+msgid "April"
+msgstr "April"
+
+#: ../inc/shared_config.php:88
+msgid "May"
+msgstr "Mai"
+
+#: ../inc/shared_config.php:89
+msgid "June"
+msgstr "Juni"
+
+#: ../inc/shared_config.php:90
+msgid "July"
+msgstr "Juli"
+
+#: ../inc/shared_config.php:91
+msgid "August"
+msgstr "August"
+
+#: ../inc/shared_config.php:92
+msgid "September"
+msgstr "September"
+
+#: ../inc/shared_config.php:93
+msgid "October"
+msgstr "Oktober"
+
+#: ../inc/shared_config.php:94
+msgid "November"
+msgstr "November"
+
+#: ../inc/shared_config.php:95
+msgid "December"
+msgstr "Desember"
 
 #: ../inc/shared_functions.php:320
 msgid "Read"
@@ -1297,6 +1595,5 @@ msgstr "Skrive"
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:430
-msgid "News"
-msgstr "Nyheter"
+#~ msgid "log_"
+#~ msgstr "log_"
