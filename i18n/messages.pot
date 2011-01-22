@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2011-01-21 21:02+0100\n"
+        "POT-Creation-Date: 2011-01-22 16:30+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -32,7 +32,7 @@ msgstr  ""
 msgid   "My groups"
 msgstr  ""
 
-#: ../index.php:64
+#: ../index.php:64 ../modules/logs/logs.php:69
 msgid   "FAQ"
 msgstr  ""
 
@@ -56,11 +56,11 @@ msgstr  ""
 msgid   "Crewlist"
 msgstr  ""
 
-#: ../index.php:77
+#: ../index.php:77 ../modules/logs/logs.php:50
 msgid   "Arrival"
 msgstr  ""
 
-#: ../index.php:79
+#: ../index.php:79 ../modules/logs/logs.php:118
 msgid   "Reseller"
 msgstr  ""
 
@@ -68,7 +68,7 @@ msgstr  ""
 msgid   "Kiosk"
 msgstr  ""
 
-#: ../index.php:83
+#: ../index.php:83 ../modules/logs/logs.php:74
 msgid   "Forum"
 msgstr  ""
 
@@ -84,7 +84,8 @@ msgstr  ""
 msgid   "You are logged in as:"
 msgstr  ""
 
-#: ../index.php:134 ../modules/useradmin/useradmin.php:122
+#: ../index.php:134 ../modules/logs/logs.php:59
+#: ../modules/useradmin/useradmin.php:122
 msgid   "Edit userinfo"
 msgstr  ""
 
@@ -97,7 +98,7 @@ msgstr  ""
 msgid   "Change password"
 msgstr  ""
 
-#: ../index.php:137
+#: ../index.php:137 ../modules/logs/logs.php:100
 msgid   "Logout"
 msgstr  ""
 
@@ -346,7 +347,7 @@ msgstr  ""
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
 #: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
 #: ../modules/static/static.php:116 ../modules/static/static.php:226
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:77
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid   "Save"
 msgstr  ""
 
@@ -426,7 +427,7 @@ msgstr  ""
 msgid   "Delete FAQ"
 msgstr  ""
 
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:319
 msgid   "Question"
 msgstr  ""
 
@@ -478,7 +479,7 @@ msgstr  ""
 msgid   "Admin this event"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:13
+#: ../modules/globaladmin/globaladmin.php:13 ../modules/logs/logs.php:80
 msgid   "Set event public"
 msgstr  ""
 
@@ -682,39 +683,259 @@ msgstr  ""
 msgid   "Log"
 msgstr  ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:77
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:185
 msgid   "Timestamp"
 msgstr  ""
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:76
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:184
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid   "User"
 msgstr  ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:80
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:188
+msgid   "Logmodule"
+msgstr  ""
+
+#: ../modules/logs/logs.php:21
 msgid   "Logtype"
 msgstr  ""
 
-#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:186
 msgid   "IP"
 msgstr  ""
 
-#: ../modules/logs/logs.php:21 ../modules/logs/logs.php:78
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:186
 msgid   "Host"
 msgstr  ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:79
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:187
 msgid   "URL"
 msgstr  ""
 
-#: ../modules/logs/logs.php:42 ../modules/logs/logs.php:80
-msgid   "log_"
+#: ../modules/logs/logs.php:51
+msgid   "Ticket deleted"
 msgstr  ""
 
-#: ../modules/logs/logs.php:73
+#: ../modules/logs/logs.php:52
+msgid   "Onsite ticket added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:53
+msgid   "Ticket marked not paid"
+msgstr  ""
+
+#: ../modules/logs/logs.php:54
+msgid   "Ticket marked paid"
+msgstr  ""
+
+#: ../modules/logs/logs.php:57
+msgid   "Edituser"
+msgstr  ""
+
+#: ../modules/logs/logs.php:58
+msgid   "Edit preference"
+msgstr  ""
+
+#: ../modules/logs/logs.php:60
+msgid   "New password set"
+msgstr  ""
+
+#: ../modules/logs/logs.php:63
+msgid   "Eventadmin"
+msgstr  ""
+
+#: ../modules/logs/logs.php:64
+msgid   "New accessgroup added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:65
+msgid   "Groupright change"
+msgstr  ""
+
+#: ../modules/logs/logs.php:66
+msgid   "Configuration change"
+msgstr  ""
+
+#: ../modules/logs/logs.php:70
+msgid   "FAQ added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:71
+msgid   "FAQ deleted"
+msgstr  ""
+
+#: ../modules/logs/logs.php:75
+msgid   "New post added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:78
+msgid   "Globaladmin"
+msgstr  ""
+
+#: ../modules/logs/logs.php:79
+msgid   "Event added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:83
+msgid   "Globalconfig"
+msgstr  ""
+
+#: ../modules/logs/logs.php:84
+msgid   "Global configuration change"
+msgstr  ""
+
+#: ../modules/logs/logs.php:87
+msgid   "Groups"
+msgstr  ""
+
+#: ../modules/logs/logs.php:88
+msgid   "Member added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:89
+msgid   "Changed grouprights"
+msgstr  ""
+
+#: ../modules/logs/logs.php:90
+msgid   "Clan created"
+msgstr  ""
+
+#: ../modules/logs/logs.php:94
+msgid   "System upgrade"
+msgstr  ""
+
+#: ../modules/logs/logs.php:97
+msgid   "Login"
+msgstr  ""
+
+#: ../modules/logs/logs.php:98
+msgid   "Failed password login"
+msgstr  ""
+
+#: ../modules/logs/logs.php:99 ../modules/logs/logs.php:101
+msgid   "Successful login"
+msgstr  ""
+
+#: ../modules/logs/logs.php:104
+msgid   "Mail"
+msgstr  ""
+
+#: ../modules/logs/logs.php:105
+msgid   "Mail sent (mass)"
+msgstr  ""
+
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:430
+msgid   "News"
+msgstr  ""
+
+#: ../modules/logs/logs.php:109 ../modules/news/news.php:20
+msgid   "Add new article"
+msgstr  ""
+
+#: ../modules/logs/logs.php:110
+msgid   "Article edit"
+msgstr  ""
+
+#: ../modules/logs/logs.php:113
+msgid   "User registration"
+msgstr  ""
+
+#: ../modules/logs/logs.php:114
+msgid   "Anonymous registered new user"
+msgstr  ""
+
+#: ../modules/logs/logs.php:115
+msgid   "User registered new user"
+msgstr  ""
+
+#: ../modules/logs/logs.php:119
+msgid   "addTicket"
+msgstr  ""
+
+#: ../modules/logs/logs.php:122
+msgid   "Seatadmin"
+msgstr  ""
+
+#: ../modules/logs/logs.php:123
+msgid   "Seatmap column added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:124
+msgid   "Seatmap row added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:125
+msgid   "Seatmap reset"
+msgstr  ""
+
+#: ../modules/logs/logs.php:126
+msgid   "Seat updated"
+msgstr  ""
+
+#: ../modules/logs/logs.php:129
+msgid   "Static"
+msgstr  ""
+
+#: ../modules/logs/logs.php:130
+msgid   "New ACL"
+msgstr  ""
+
+#: ../modules/logs/logs.php:131
+msgid   "Page edited"
+msgstr  ""
+
+#: ../modules/logs/logs.php:132
+msgid   "New page added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:133
+msgid   "New system-message added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:134
+msgid   "Systemmessage edited"
+msgstr  ""
+
+#: ../modules/logs/logs.php:137
+msgid   "Ticketadmin"
+msgstr  ""
+
+#: ../modules/logs/logs.php:138
+msgid   "New tickettype added"
+msgstr  ""
+
+#: ../modules/logs/logs.php:139
+msgid   "Tickettype changed"
+msgstr  ""
+
+#: ../modules/logs/logs.php:142
+msgid   "Ticketorder"
+msgstr  ""
+
+#: ../modules/logs/logs.php:143
+msgid   "Ticket bought"
+msgstr  ""
+
+#: ../modules/logs/logs.php:144
+msgid   "Ticket canceled"
+msgstr  ""
+
+#: ../modules/logs/logs.php:147
+msgid   "Unknown module"
+msgstr  ""
+
+#: ../modules/logs/logs.php:148
+msgid   "Unknown function"
+msgstr  ""
+
+#: ../modules/logs/logs.php:181
 msgid   "Details for logentry "
+msgstr  ""
+
+#: ../modules/logs/logs.php:189
+msgid   "Logfunction"
 msgstr  ""
 
 #: ../modules/mail/mail.php:24
@@ -723,10 +944,6 @@ msgstr  ""
 
 #: ../modules/news/news.php:19
 msgid   "Add as global article"
-msgstr  ""
-
-#: ../modules/news/news.php:20
-msgid   "Add new article"
 msgstr  ""
 
 #: ../modules/profile/profile.php:24
@@ -1211,42 +1428,75 @@ msgstr  ""
 msgid   "Response"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:284
-#: ../modules/wannabe/wannabe.php:28
-msgid   "WannabeCrewListPreference"
+#: ../modules/wannabeadmin/wannabeadmin.php:287
+#: ../modules/wannabeadmin/wannabeadmin.php:495
+#: ../modules/wannabe/wannabe.php:31
+msgid   "Nothing selected"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:290
+#: ../modules/wannabeadmin/wannabeadmin.php:498
+#: ../modules/wannabe/wannabe.php:34
+msgid   "Of course!"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:293
+#: ../modules/wannabeadmin/wannabeadmin.php:501
+#: ../modules/wannabe/wannabe.php:37
+msgid   "Sure"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/wannabeadmin/wannabeadmin.php:504
+#: ../modules/wannabe/wannabe.php:40
+msgid   "Probably"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:299
+#: ../modules/wannabeadmin/wannabeadmin.php:507
+#: ../modules/wannabe/wannabe.php:43
+msgid   "I'd rather not"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:302
+#: ../modules/wannabeadmin/wannabeadmin.php:510
+#: ../modules/wannabe/wannabe.php:46
+msgid   "Not at all"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:305
+#: ../modules/wannabeadmin/wannabeadmin.php:513
+#: ../modules/wannabe/wannabe.php:49
+msgid   "Unknown option"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:319
 msgid   "Answer"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:313
+#: ../modules/wannabeadmin/wannabeadmin.php:336
 msgid   "Yes"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:314
+#: ../modules/wannabeadmin/wannabeadmin.php:337
 #: ../inc/shared_functions.php:315
 msgid   "No"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:372
-#: ../modules/wannabeadmin/wannabeadmin.php:392
+#: ../modules/wannabeadmin/wannabeadmin.php:395
+#: ../modules/wannabeadmin/wannabeadmin.php:415
 msgid   "Comment"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:414
+#: ../modules/wannabeadmin/wannabeadmin.php:437
 msgid   "Change name"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:430
+#: ../modules/wannabeadmin/wannabeadmin.php:453
 msgid   "Add crew"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:468
-msgid   "wannabeAdminCmt"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.php:472
+#: ../modules/wannabeadmin/wannabeadmin.php:521
 msgid   "Save comment"
 msgstr  ""
 
@@ -1258,19 +1508,19 @@ msgstr  ""
 msgid   "Apply as crew"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:79
+#: ../modules/wannabe/wannabe.php:102
 msgid   "Delete application"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:134
+#: ../modules/wannabe/wannabe.php:157
 msgid   "Are you sure you want to delete your crewapplication?"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:135
+#: ../modules/wannabe/wannabe.php:158
 msgid   "Yes, I'm sure"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:136
+#: ../modules/wannabe/wannabe.php:159
 msgid   "No, I still wish to apply for crew"
 msgstr  ""
 
@@ -1284,8 +1534,4 @@ msgstr  ""
 
 #: ../inc/shared_functions.php:330
 msgid   "Admin"
-msgstr  ""
-
-#: ../inc/shared_functions.php:430
-msgid   "News"
 msgstr  ""
