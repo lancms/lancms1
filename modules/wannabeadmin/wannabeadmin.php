@@ -281,7 +281,30 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		$content .= "<tr class='wannabeCrewResponse".$rListCrewResponseLoopCount."'><td>";
 		$content .= $rListCrewResponses->crewname;
 		$content .= ":</td>\n<td>";
-		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
+//		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
+                switch($rListCrewResponses->response) {
+                                case "0":
+                                        $content .= lang("Nothing selected");
+                                        break;
+                                case "1":
+                                        $content .= lang("Of course!");
+                                        break;
+                                case "2":
+                                        $content .= lang("Sure");
+                                        break;
+                                case "3":
+                                        $content .= lang("Probably");
+                                        break;
+                                case "4":
+                                        $content .= lang("I'd rather not");
+                                        break;
+                                case "5":
+                                        $content .= lang("Not at all");
+                                        break;
+                                default:
+                                        $content .= lang("Unknown option");
+		} // End switch
+
 		$content .= "</td></tr>\n\n";
 
 		$rListCrewResponseLoopCount++;
@@ -465,9 +488,35 @@ elseif($action == "changeComment" && !empty($_GET['crewID']) && !empty($_GET['us
 	for($i=0;$i<6;$i++) {
 		$content .= "<option value=$i";
 		if($i==$rCheckExisting->approval) $content .= " SELECTED";
-		$content .= ">".lang("wannabeAdminCmt".$i, "wannabeadmin_prefs")."</option>";
+#		$content .= ">".lang("wannabeAdminCmt".$i, "wannabeadmin_prefs")."</option>";
+		$content .= ">";
+                       switch($i) {
+                                case "0":
+                                        $content .= lang("Nothing selected");
+                                        break;
+                                case "1":
+                                        $content .= lang("Of course!");
+                                        break;
+                                case "2":
+                                        $content .= lang("Sure");
+                                        break;
+                                case "3":
+                                        $content .= lang("Probably");
+                                        break;
+                                case "4":
+                                        $content .= lang("I'd rather not");
+                                        break;
+                                case "5":
+                                        $content .= lang("Not at all");
+                                        break;
+                                default:
+                                        $content .= lang("Unknown option");
+                        } // End switch
+		$content .= "</option>\n";
+
+	
 	} // End for
-	$content .= "</select>";
+	$content .= "</select>\n\n";
 	$content .= "<br /><textarea name=\"comment\" rows=\"5\" cols=\"40\">$rCheckExisting->comment</textarea>";
 	$content .= "<br /><input type=\"submit\" value='".lang("Save comment", "wannabeadmin")."' />";
 	$content .= "</form>";

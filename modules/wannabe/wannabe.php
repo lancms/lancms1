@@ -50,7 +50,7 @@ if(!isset($action)) {
 			} // End switch
 			$content .= "</option>\n";
 		} // End for
-		$content .= "</select>";
+		$content .= "</select>\n";
 	} // End while
 
 
