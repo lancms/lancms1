@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>{$title}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="templates/GlobeLAN11/style.css" rel="stylesheet" type="text/css">
 {$head}
 </head>
