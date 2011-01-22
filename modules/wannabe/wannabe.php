@@ -25,7 +25,30 @@ if(!isset($action)) {
 		for($i=0;$i<6;$i++) {
 			$content .= "<option value=$i";
 			if($rListCrews->response == $i) $content .= " SELECTED";
-			$content .= ">".lang("WannabeCrewListPreference".$i, "wannabe_crewprefs")."</option>\n";
+			$content .= ">";
+			switch($i) {
+				case "0":
+					$content .= lang("Nothing selected");
+					break;
+				case "1":
+					$content .= lang("Of course!");
+					break;
+				case "2":
+					$content .= lang("Sure");
+					break;
+				case "3":
+					$content .= lang("Probably");
+					break;
+				case "4":
+					$content .= lang("I'd rather not");
+					break;
+				case "5":
+					$content .= lang("Not at all");
+					break;
+				default:
+					$content .= lang("Unknown option");
+			} // End switch
+			$content .= "</option>\n";
 		} // End for
 		$content .= "</select>";
 	} // End while
