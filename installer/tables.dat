@@ -353,7 +353,7 @@ TABLE [prefix]_logs
 	logURL,		text,				,	,	,
 	logTime,		timestamp,		,	,	current_timestamp,
 	logModule,		varchar(15),		,	,	,
-	logFunction,		varchar(25),		,	,	,
+	logFunction,		varchar(35),		,	,	,
 	IRCBotRead,		tinyint(1),		,	,	0,
 }
 
