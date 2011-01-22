@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2011-01-22 16:30+0100\n"
+        "POT-Creation-Date: 2011-01-22 17:06+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1522,6 +1522,54 @@ msgstr  ""
 
 #: ../modules/wannabe/wannabe.php:159
 msgid   "No, I still wish to apply for crew"
+msgstr  ""
+
+#: ../inc/shared_config.php:84
+msgid   "January"
+msgstr  ""
+
+#: ../inc/shared_config.php:85
+msgid   "February"
+msgstr  ""
+
+#: ../inc/shared_config.php:86
+msgid   "March"
+msgstr  ""
+
+#: ../inc/shared_config.php:87
+msgid   "April"
+msgstr  ""
+
+#: ../inc/shared_config.php:88
+msgid   "May"
+msgstr  ""
+
+#: ../inc/shared_config.php:89
+msgid   "June"
+msgstr  ""
+
+#: ../inc/shared_config.php:90
+msgid   "July"
+msgstr  ""
+
+#: ../inc/shared_config.php:91
+msgid   "August"
+msgstr  ""
+
+#: ../inc/shared_config.php:92
+msgid   "September"
+msgstr  ""
+
+#: ../inc/shared_config.php:93
+msgid   "October"
+msgstr  ""
+
+#: ../inc/shared_config.php:94
+msgid   "November"
+msgstr  ""
+
+#: ../inc/shared_config.php:95
+msgid   "December"
 msgstr  ""
 
 #: ../inc/shared_functions.php:320
