@@ -258,7 +258,7 @@ elseif($action == "doChangeRights" && !empty($_GET['groupID']) && !empty($_GET['
 		db_query("UPDATE ".$sql_prefix."_ACLs SET access = '".db_escape($newright)."'
 			WHERE accessmodule = '".db_escape($accessmodule)."'
 			AND groupID = '".db_escape($groupID)."'
-			AND eventID = $eventID");
+			AND eventID = $event");
 	} // End else
 	$log_new['groupID'] = $groupID;
 	$log_new['accessmodule'] = $accessmodule;
