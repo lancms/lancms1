@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2011-01-22 17:06+0100\n"
+        "POT-Creation-Date: 2011-01-22 17:30+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -135,7 +135,7 @@ msgid   "E-mail"
 msgstr  ""
 
 #: ../modules/arrival/arrival.php:96 ../modules/register/register.php:226
-#: ../modules/wannabeadmin/wannabeadmin.php:267
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:123
 msgid   "Birthday"
 msgstr  ""
 
@@ -230,12 +230,12 @@ msgstr  ""
 msgid   "Nick"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:22
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:167
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:257
-#: ../modules/useradmin/useradmin.php:66
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:163
 msgid   "Cellphone"
 msgstr  ""
 
@@ -333,14 +333,14 @@ msgid   "Password changed"
 msgstr  ""
 
 #: ../modules/edituserinfo/edituserinfo.php:63
-#: ../modules/edituserinfo/edituserinfo.php:113
-#: ../modules/edituserinfo/edituserinfo.php:183
-#: ../modules/edituserinfo/edituserinfo.php:216
+#: ../modules/edituserinfo/edituserinfo.php:114
+#: ../modules/edituserinfo/edituserinfo.php:184
+#: ../modules/edituserinfo/edituserinfo.php:217
 msgid   "Not access to edit userinfo"
 msgstr  ""
 
-#: ../modules/edituserinfo/edituserinfo.php:103
-#: ../modules/edituserinfo/edituserinfo.php:207
+#: ../modules/edituserinfo/edituserinfo.php:104
+#: ../modules/edituserinfo/edituserinfo.php:208
 #: ../modules/eventadmin/eventadmin.php:144
 #: ../modules/eventadmin/eventadmin.php:194
 #: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
@@ -1011,6 +1011,7 @@ msgid   "User registered"
 msgstr  ""
 
 #: ../modules/register/register.php:196 ../modules/useradmin/useradmin.php:60
+#: ../inc/shared_config.php:109
 msgid   "Username"
 msgstr  ""
 
@@ -1026,11 +1027,11 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:202
+#: ../modules/register/register.php:202 ../inc/shared_config.php:113
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:205
+#: ../modules/register/register.php:205 ../inc/shared_config.php:118
 msgid   "Last name"
 msgstr  ""
 
@@ -1040,10 +1041,11 @@ msgid   "Address"
 msgstr  ""
 
 #: ../modules/register/register.php:208 ../modules/useradmin/useradmin.php:65
+#: ../inc/shared_config.php:151
 msgid   "Postnumber"
 msgstr  ""
 
-#: ../modules/register/register.php:213
+#: ../modules/register/register.php:213 ../inc/shared_config.php:156
 msgid   "Gender"
 msgstr  ""
 
@@ -1570,6 +1572,22 @@ msgstr  ""
 
 #: ../inc/shared_config.php:95
 msgid   "December"
+msgstr  ""
+
+#: ../inc/shared_config.php:146
+msgid   "Streetadress"
+msgstr  ""
+
+#: ../inc/shared_config.php:172
+msgid   "List all attendees on current event"
+msgstr  ""
+
+#: ../inc/shared_config.php:189
+msgid   "Allow other users to see my mailadress"
+msgstr  ""
+
+#: ../inc/shared_config.php:194
+msgid   "All users"
 msgstr  ""
 
 #: ../inc/shared_functions.php:320
