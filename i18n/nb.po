@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-22 17:06+0100\n"
-"PO-Revision-Date: 2011-01-22 16:38+0000\n"
+"POT-Creation-Date: 2011-01-22 17:30+0100\n"
+"PO-Revision-Date: 2011-01-22 17:37+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-22 16:40+0000\n"
-"X-Generator: Launchpad (build 12214)\n"
+"X-Launchpad-Export-Date: 2011-01-23 06:01+0000\n"
+"X-Generator: Launchpad (build 12177)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -136,7 +136,7 @@ msgid "E-mail"
 msgstr "E-post"
 
 #: ../modules/arrival/arrival.php:96 ../modules/register/register.php:226
-#: ../modules/wannabeadmin/wannabeadmin.php:267
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:123
 msgid "Birthday"
 msgstr "Fødselsdag"
 
@@ -231,12 +231,12 @@ msgstr "Påmelding er avsluttet"
 msgid "Nick"
 msgstr "Brukernavn"
 
-#: ../modules/crewlist/crewlist.php:22
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:167
 msgid "EMail"
 msgstr "E-post"
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:257
-#: ../modules/useradmin/useradmin.php:66
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:163
 msgid "Cellphone"
 msgstr "Mobil"
 
@@ -334,14 +334,14 @@ msgid "Password changed"
 msgstr "Passordet ble endret"
 
 #: ../modules/edituserinfo/edituserinfo.php:63
-#: ../modules/edituserinfo/edituserinfo.php:113
-#: ../modules/edituserinfo/edituserinfo.php:183
-#: ../modules/edituserinfo/edituserinfo.php:216
+#: ../modules/edituserinfo/edituserinfo.php:114
+#: ../modules/edituserinfo/edituserinfo.php:184
+#: ../modules/edituserinfo/edituserinfo.php:217
 msgid "Not access to edit userinfo"
 msgstr "Ikke tilgang til å redigere brukerinfo"
 
-#: ../modules/edituserinfo/edituserinfo.php:103
-#: ../modules/edituserinfo/edituserinfo.php:207
+#: ../modules/edituserinfo/edituserinfo.php:104
+#: ../modules/edituserinfo/edituserinfo.php:208
 #: ../modules/eventadmin/eventadmin.php:144
 #: ../modules/eventadmin/eventadmin.php:194
 #: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
@@ -1012,6 +1012,7 @@ msgid "User registered"
 msgstr "Brukeren er registrert"
 
 #: ../modules/register/register.php:196 ../modules/useradmin/useradmin.php:60
+#: ../inc/shared_config.php:109
 msgid "Username"
 msgstr "Brukernavn"
 
@@ -1027,11 +1028,11 @@ msgstr "Gjenta passord"
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../modules/register/register.php:202
+#: ../modules/register/register.php:202 ../inc/shared_config.php:113
 msgid "First name"
 msgstr "Fornavn"
 
-#: ../modules/register/register.php:205
+#: ../modules/register/register.php:205 ../inc/shared_config.php:118
 msgid "Last name"
 msgstr "Etternavn"
 
@@ -1041,10 +1042,11 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../modules/register/register.php:208 ../modules/useradmin/useradmin.php:65
+#: ../inc/shared_config.php:151
 msgid "Postnumber"
 msgstr "Postnummer"
 
-#: ../modules/register/register.php:213
+#: ../modules/register/register.php:213 ../inc/shared_config.php:156
 msgid "Gender"
 msgstr "Kjønn"
 
@@ -1582,6 +1584,22 @@ msgstr "November"
 #: ../inc/shared_config.php:95
 msgid "December"
 msgstr "Desember"
+
+#: ../inc/shared_config.php:146
+msgid "Streetadress"
+msgstr "Adresse"
+
+#: ../inc/shared_config.php:172
+msgid "List all attendees on current event"
+msgstr "Vis alle deltagere på nåværende arrangement"
+
+#: ../inc/shared_config.php:189
+msgid "Allow other users to see my mailadress"
+msgstr "Tillatt andre brukere å se min epost-adresse"
+
+#: ../inc/shared_config.php:194
+msgid "All users"
+msgstr "Alle brukere"
 
 #: ../inc/shared_functions.php:320
 msgid "Read"
