@@ -115,6 +115,7 @@ if($action == "register")
 
 	if(!$register_invalid)
 	{
+		$genkey = md5(serialize($_POST) * time());
 		$hide_register = TRUE;
 		$md5_pass = md5($pass1);
 		db_query("INSERT INTO ".$sql_prefix."_users SET
@@ -131,13 +132,22 @@ if($action == "register")
 			postnumber = '".db_escape($postnumber)."',
 			cellphone = '".db_escape ($cellphone)."',
 			registerIP = '".$_SERVER['REMOTE_ADDR']."',
+			EMailVerifyCode = '".$genkey."',
 			registerTime = '".time()."'
 		");
 
 
-
 		$newid = mysql_insert_id ();
 
+		$url = $url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$newid";
+		$email_subject = lang("Verify your new account");
+		$email_content = sprintf(lang("Hello %s.
+
+You, or someone else has registered a new account on %s.
+
+To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
+
+		send_email($newid, $email_subject, $email_content);		
 		// Fix default preferences
 		for($i=0;$i<count($userpersonalprefs);$i++) {
 			if($userpersonalprefs[$i]['default_register'] == 1) {
@@ -185,6 +195,7 @@ if($action == "register")
 	} // End if register_invalid = FALSE
 
 } // End action = register
+
 
 if(!isset($action) || $hide_register == FALSE)
 {

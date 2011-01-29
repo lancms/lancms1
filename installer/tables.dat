@@ -21,7 +21,7 @@ TABLE [prefix]_users
 	street2,		varchar(50),		,		YES,	,
 	registerTime, 		int(11),		,		YES,	 0,	
 	registerIP, 		varchar(15),	   	,		YES,	000.000.000.000,
-	EMailVerifyCode, 	varchar(25),	   	,		YES,	  ,	
+	EMailVerifyCode, 	varchar(40),	   	,		YES,	  ,	
 	userInfoVerified, 	tinyint(1),		,		YES,	 0,	
 	gender,			enum('Male', 'Female'),	,		NO,	,
 	cellphone,		varchar(20),		,		YES,	0,
