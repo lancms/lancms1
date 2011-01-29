@@ -9,6 +9,7 @@ TABLE [prefix]_users
 	nick,			varchar(35),	  	,	  	 ,	NOT NULL,	
 	password, 		varchar(50),	   	,		YES,	  ,	
 	EMail, 			varchar(50),	   	,		YES,	  ,	
+	EMailConfirmed,		tinyint(1)		,		YES,	0,
 	globaladmin, 		tinyint(1),		,		YES,	 0,	
 	firstName, 		varchar(40),	   	,		YES,	  ,	
 	lastName, 		varchar(40),	   	,		YES,	  ,	
@@ -29,6 +30,8 @@ TABLE [prefix]_users
 	birthMonth,		int(2),			,		YES,	0,
 	birthDay,		int(2),			,		YES,	0,
 	forumPosts,		int(5),			,		,	0,
+	lastPasswordReset,	int(11),		,		YES,	0,
+	passwordResetCode,	varchar(25),		,		,	,
 	
 }
 
