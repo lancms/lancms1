@@ -147,7 +147,7 @@ You, or someone else has registered a new account on %s.
 
 To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
 
-		send_email($newid, $email_subject, $email_content);		
+#		send_email($newid, $email_subject, $email_content);		
 		// Fix default preferences
 		for($i=0;$i<count($userpersonalprefs);$i++) {
 			if($userpersonalprefs[$i]['default_register'] == 1) {
