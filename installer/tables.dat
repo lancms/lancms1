@@ -31,7 +31,7 @@ TABLE [prefix]_users
 	birthDay,		int(2),			,		YES,	0,
 	forumPosts,		int(5),			,		,	0,
 	lastPasswordReset,	int(11),		,		YES,	0,
-	passwordResetCode,	varchar(25),		,		,	,
+	passwordResetCode,	varchar(40),		,		,	,
 	
 }
 
