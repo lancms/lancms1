@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-01-22 17:30+0100\n"
-"PO-Revision-Date: 2011-01-22 17:37+0000\n"
+"POT-Creation-Date: 2011-01-29 16:09+0100\n"
+"PO-Revision-Date: 2011-01-29 15:29+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-01-23 06:01+0000\n"
+"X-Launchpad-Export-Date: 2011-01-30 05:48+0000\n"
 "X-Generator: Launchpad (build 12177)\n"
 
 #: ../index.php:32
@@ -672,9 +672,76 @@ msgstr "Logg inn som:"
 msgid "Password:"
 msgstr "Passord:"
 
-#: ../modules/login/login.php:96
+#: ../modules/login/login.php:68
+msgid "Reset password"
+msgstr "Nullstill passord"
+
+#: ../modules/login/login.php:97
 msgid "sorry, wrong password!"
 msgstr "Beklager, feil passord!"
+
+#: ../modules/login/login.php:131
+msgid ""
+"The user has not confirmed his EMailAddress. Not able to reset password"
+msgstr ""
+"Brukeren har ikke bekreftet sin epost-adresse. Kan ikke nullstille passord"
+
+#: ../modules/login/login.php:134
+msgid ""
+"You have already tried to reset your password today. Please check your mails "
+"inbox and junkfolder"
+msgstr ""
+"Du har allerede forsøkt å nullstille passordet ditt i dag. Sjekk "
+"epostkontoen din og spam-mappa."
+
+#: ../modules/login/login.php:138
+msgid "I confirm that this is my account, and I want to reset the password"
+msgstr ""
+"Jeg bekrefter at dette er min konto, og at jeg vil nullstille passordet"
+
+#: ../modules/login/login.php:150
+msgid "Email not confirmed!"
+msgstr "Epost ikke bekreftet!"
+
+#: ../modules/login/login.php:151
+msgid "Multiple attempts at password reset. Not done"
+msgstr "Flere forsøk på å nullstille passordet. Ikke utført."
+
+#: ../modules/login/login.php:162
+#, php-format
+msgid "Password reset for %s"
+msgstr "Nullstill passord for %s"
+
+#: ../modules/login/login.php:171
+msgid "Email sent. Please check your inbox and spamfolder"
+msgstr "Epost sent. Sjekk din epostkonto og spammappe"
+
+#: ../modules/login/login.php:184 ../modules/login/login.php:208
+msgid ""
+"Key or userID not found, or already used. You can only reset the password "
+"once with each key"
+msgstr ""
+"Nøkkel eller brukerID ikke funnet, eller allerede brukt. Du kan kun "
+"nullstille passordet en gang med hver nøkkel"
+
+#: ../modules/login/login.php:187
+msgid "Please provide your new password, two times"
+msgstr "Vennligst skriv inn ditt nye passord, to ganger."
+
+#: ../modules/login/login.php:191
+msgid "Set new password"
+msgstr "Sett nytt passord"
+
+#: ../modules/login/login.php:210
+msgid "Passwords don't match. Go back and try again"
+msgstr "Passordene er ikke like. Gå tilbake og prøv igjen"
+
+#: ../modules/login/login.php:221
+#, php-format
+msgid "Password successfully reset. Please go back to <a href='%s'>Login</a>"
+msgstr ""
+"Passord har blitt nullstilt. Vennligst gå tilbake til <a "
+"href='%s'>innlogging</a>"
 
 #: ../modules/logs/logs.php:14
 msgid "Last 30 logentries"
