@@ -143,6 +143,14 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					if($f == "buyticket") $func = lang("Ticket bought");
 					elseif($f == "cancelTicket") $func = lang("Ticket canceled");
 					break;
+				case "wannabe":
+					$mod = lang("Wannabe");
+					if($f == "doApplication") $func = lang("Apply");
+					break;
+				case "wannabeadmin":
+					$mod = lang("Wannabeadmin");
+					if($f == "doChangeComment") $func = lang("Change comment");
+					break;
 			} // End switch
 			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
 			if(empty($func)) $func = lang("Unknown function")." ".$f;
