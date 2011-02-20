@@ -122,6 +122,7 @@ TABLE [prefix]_static
 	modifiedTimestamp,	int(10),	,	,	0,
 	pageViews,		int(15),	,	,	0,
 	type,			enum('static', 'system'), , ,	static,
+	deleted,		tinyint(1),	,	,	0,
 }
 
 TABLE [prefix]_FAQ

@@ -50,7 +50,7 @@ if (config ("users_may_create_clan") && $sessioninfo->userID > 1)
 if ($sessioninfo->eventID > 1)
 {
 	// Should probably have some sort of event-config for enabled modules.
-	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND type = 'static'");
+	$qListStaticPages = db_query("SELECT ID,header FROM ".$sql_prefix."_static WHERE eventID = '$sessioninfo->eventID' AND type = 'static' AND deleted = 0");
 	while ($rListStaticPages = db_fetch($qListStaticPages))
 	{
 		if (acl_access("static", $rListStaticPages->ID, $sessioninfo->eventID) != 'No')

@@ -50,11 +50,19 @@ elseif($action == "listEventPages")
 			if($rACL_access != ("Admin" || "Write"));
 			else {
 				// You do have some sort of right. Display link
-				$content .= "<tr><td><a href=\"?module=static&action=editPage&page=$rListPages->ID\">";
+				$content .= "<tr><td>";
+				if($rListPages->deleted == 1) $content .= "<strike>";
+				$content .= "<a href=\"?module=static&action=editPage&page=$rListPages->ID\">";
 				$content .= $rListPages->header."</a>\n";
+				if($rListPages->deleted == 1) $content .= "</strike>";
 				if($rACL_access == 'Admin') {
 					$content .= "</td><td><a href=\"?module=static&action=editACL&page=$rListPages->ID\">";
 					$content .= lang("Edit access", "static");
+					$content .= "</td><td>";
+					$content .= "<a href='?module=static&action=delete&page=$rListPages->ID'>";
+					if($rListPages->deleted == 0) $content .= lang("Delete");
+					else $content .= lang("Undelete");
+					$content .= "</a>";
 				} // End if rACL_access = 'Admin'
 				$content .= "</td></tr>";
 			} // End else
@@ -300,3 +308,16 @@ elseif($action == "doChangeACL" && isset($_GET['groupID']) && isset($page)) {
 
 } // End elseif action = doChangeACL
 
+elseif($action == "delete" && isset($page) && $acl_access == 'Admin') {
+	$qPageInfo = db_query("SELECT * FROM ".$sql_prefix."_static WHERE ID = '".db_escape($page)."'");
+	$rPageInfo = db_fetch($qPageInfo);
+
+	if($rPageInfo->deleted == 0) $delete_status = 1;
+	else $delete_status = 0;
+
+	db_query("UPDATE ".$sql_prefix."_static SET deleted = '$delete_status' WHERE ID = '".db_escape($page)."'");
+	$log_new['delete_status'] = $delete_status;
+
+	log_add("static", "delete", serialize($log_new));
+	header("Location: ?module=static&action=listEventPages");
+}
