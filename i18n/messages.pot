@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2011-02-20 16:57+0100\n"
+        "POT-Creation-Date: 2011-02-20 17:51+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1080,10 +1080,10 @@ msgstr  ""
 
 #: ../modules/register/register.php:144
 #, php-format
-msgid   "Hello %s.\r\n"
-        "\r\n"
-        "You, or someone else has registered a new account on %s.\r\n"
-        "\r\n"
+msgid   "Hello %s.\n"
+        "\n"
+        "You, or someone else has registered a new account on %s.\n"
+        "\n"
         "To verify your mailaddress, please go to %s"
 msgstr  ""
 
