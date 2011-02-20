@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
 ## Define diffrent variables

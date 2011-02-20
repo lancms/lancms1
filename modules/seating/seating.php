@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 #config("seating_enabled", $sessioninfo->eventID, 1);
 $action = $_GET['action'];
 $ticketID = $_GET['ticketID'];

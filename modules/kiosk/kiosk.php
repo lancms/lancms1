@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $acl = acl_access("kiosk_sales", "", $sessioninfo->eventID);
 if($acl == 'No') die("Error, no access!");

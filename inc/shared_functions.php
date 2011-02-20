@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 ######################################################
 function db_query($query)
@@ -53,7 +53,7 @@ function db_fetch_assoc($query) {
 } // End function db_fetch
 
 
-#### return db_num_fields 
+#### return db_num_fields
 function db_num_fields($query) {
 	global $sql_type;
 
@@ -400,7 +400,7 @@ function display_username($userID) {
 
 function display_systemstatic($message, $eventID=1) {
 	global $sql_prefix;
-	
+
 	$qFindMessage = db_query("SELECT * FROM ".$sql_prefix."_static WHERE type = 'system' AND header = '".db_escape($message)."' AND eventID = '$eventID'");
 	$rFindMessage = db_fetch($qFindMessage);
 

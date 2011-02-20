@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $eventID = $sessioninfo->eventID;
 $acl_access = acl_access("FAQ", "", $eventID);

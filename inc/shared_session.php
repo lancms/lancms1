@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 
 // First, delete all old sessions
@@ -60,7 +60,7 @@ if($do == "create_session")
 		config("hostname_".$host, 1, 1); // Add the hostname-stuff to config, so it can be set
 		$FindAutoEventURL = 1;
 	}
-	$sess_eventID = $FindAutoEventURL;	
+	$sess_eventID = $FindAutoEventURL;
 #	if($rFindAutoEventURL->ID) $sess_eventID = $rFindAutoEventURL->ID;
 #	else $sess_eventID = 1;
 
@@ -70,7 +70,7 @@ if($do == "create_session")
 		userAgent = '".$_SERVER['HTTP_USER_AGENT']."',
 		lastVisit = '".time()."',
 		eventID = '$FindAutoEventURL'");
-	
+
 	setcookie($lancms_session_cookie, $generate);
 
 } // End if do == create_session
@@ -83,7 +83,7 @@ global $sessioninfo;
 
 if(empty($sessioninfo->userID)) // Session is empty
 	$sessioninfo->userID = 1; // Set session user to anonymous.
-if(empty($sessioninfo->eventID) && $sess_eventID) 
+if(empty($sessioninfo->eventID) && $sess_eventID)
 	// Event is empty and we're creating a new session
 	$sessioninfo->eventID = $sess_eventID;
 

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 $acl = acl_access("kiosk_admin", "", $sessioninfo->eventID);
 

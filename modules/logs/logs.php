@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 // FIXME: using nonexistant acl "logview" to make this globaladmin-only until we get global acls working
 if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')

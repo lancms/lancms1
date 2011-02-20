@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 if(acl_access("translate", 0, 0) != 'Admin') die("You do not have access to translate-interface");
 
