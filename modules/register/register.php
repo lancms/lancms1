@@ -246,7 +246,7 @@ if(!isset($action) || $hide_register == FALSE)
 		for($month=1;$month<=12;$month++) {
 			$content .= "\n<option value=$month";
 			if($birthMonth == $month) $content .= " SELECTED";
-			$content .= ">".lang($monthname[$month], "register")."</option>";
+			$content .= ">".$monthname[$month]."</option>";
 		} // End for
 		$content .= "</select>";
 
