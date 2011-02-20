@@ -32,7 +32,7 @@ else {
 
 	# Put something usefull here if you want your logo in the page footer
 	# if you don't want it, comment it out
-	$design_footer['logo'] = 'http://default.globeorg.no/logo.png';
+	$design_footer['logo'] = 'http://default.globeorg.no/go.png';
 	$design_footer['width'] = 69;
 	$design_footer['height'] = 90;
 	$design_footer['url'] = 'http://default.globeorg.no/';
