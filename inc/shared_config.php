@@ -77,7 +77,7 @@ $specialaccess[] = 'reseller'; // Gives access to reseller and tickets
 $systemstatic[] = 'index'; // Main page
 $systemstatic[] = 'ticketorder'; // Text to display below ticketorder-page
 $systemstatic[] = 'seatmap'; // Text to display in the bottom of seatmap
-
+$systemstatic[] = 'ticketorder_unpaid_tickets'; // Text to display if the user has unpaid tickets
 
 ## Datestuff
 

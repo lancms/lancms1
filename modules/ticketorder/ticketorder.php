@@ -46,6 +46,7 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 	    $content .= "</a>";
 	} elseif($rDisplayTickets->status == 'notpaid') {
 		$content .= lang("Not paid", "ticketorder");
+		if($rCheckTicketType->type == 'prepaid') $prepaid_amount = $prepaid_amount + $rCheckTicketType->price;
 	} elseif(!config("seating_enabled", $sessioninfo->eventID)) {
 		$content .= lang("Seating not enabled yet", "ticketorder");
 	} else {
@@ -166,6 +167,11 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
     $content .= "</table>";
     $content .= "<br /><br />";
     $content .= display_systemstatic("ticketorder");
+    if($prepaid_amount > 1) {
+	$system_msg = display_systemstatic("ticketorder_unpaid_tickets");
+	$system_msg = str_replace("%%AMOUNT%%", $prepaid_amount, $system_msg);
+	$content .= $system_msg;
+   } // End if
 } // End if !isset($action)
 
 elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['numTickets'])) {
