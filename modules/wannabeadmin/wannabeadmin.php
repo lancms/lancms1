@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];

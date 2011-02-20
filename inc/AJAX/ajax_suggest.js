@@ -1,4 +1,4 @@
-//This doesn't work in IE 6
+﻿//This doesn't work in IE 6
 var suggestReq = new XMLHttpRequest();
 function suggest() {
      if (suggestReq.readyState == 4 || suggestReq.readyState == 0) {

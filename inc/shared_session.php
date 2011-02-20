@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 // First, delete all old sessions

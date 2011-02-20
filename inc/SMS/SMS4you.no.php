@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 
 $qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule = 'SMS' AND (finishTime < 1 OR finishTime IS NULL) LIMIT 0,20");

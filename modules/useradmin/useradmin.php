@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $design_head .= "<link rel='stylesheet' href='templates/shared/useradmin.css' type='text/css' />";
 

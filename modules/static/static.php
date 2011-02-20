@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $action = $_GET['action'];
 if(empty($page)) $page = $_GET['page'];

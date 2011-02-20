@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $acl = acl_access("compoadmin", "", $sessioninfo->eventID);
 $action = $_GET['action'];

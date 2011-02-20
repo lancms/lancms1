@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /*
    Copyright (c) 2005 Steven Armstrong <sa at c-area dot ch>
    Copyright (c) 2009 Danilo Segan <danilo@kvota.net>

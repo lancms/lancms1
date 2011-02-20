@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $eventID = $sessioninfo->eventID;
 $userID = $sessioninfo->userID;
 

@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $action = $_GET['action'];
 $list = $_GET['list'];

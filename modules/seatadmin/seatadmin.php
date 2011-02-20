@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $acl_access = acl_access("seatreg_admin", "", $sessioninfo->eventID);
 
 $action = $_GET['action'];

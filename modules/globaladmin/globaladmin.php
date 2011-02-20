@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $action = $_GET['action'];
 
 if(acl_access("globaladmin", "", 0) != "Admin") die("You do not have propper rights!");

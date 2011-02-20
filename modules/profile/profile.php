@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $user = $_GET['user'];
 

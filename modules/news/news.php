@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $acl = acl_access("news", "", $sessioninfo->eventID);
 $global_acl = acl_access("news", "", 1);

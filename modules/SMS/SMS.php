@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 
 $acl_access = acl_access("sendSMS", "", 1);
 

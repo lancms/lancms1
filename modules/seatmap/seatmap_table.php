@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 $design_head .= '<link href="templates/shared/seatreg_table.css" rel="stylesheet" type="text/css">';
 $place_seatX = $_GET['seatX'];
 $place_seatY = $_GET['seatY'];
