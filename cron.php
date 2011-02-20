@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 include_once 'include.php';
 $hide_smarty = 1;

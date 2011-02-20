@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 require_once 'include.php';
 $module = $_GET['module'];
