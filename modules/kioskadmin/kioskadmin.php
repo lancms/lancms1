@@ -55,23 +55,27 @@ elseif($action == "editWareType" && !empty($_GET['wareType'])) {
 }
 
 elseif($action == "wares") {
-	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types 
+	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName,wares.price FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types 
 		ON wares.wareType=types.ID");
 
 	$content .= "<table>";
 	$content .= "<tr><th>".lang("Name", "kioskadmin")."</th>";
 	$content .= "<th>".lang("Type", "kioskadmin")."</th>";
 	$content .= "<th>".lang("Barcodes", "kioskadmin")."</th>";
+	$content .= "<th>".lang("Price (normal)")."</th>";
 	$content .= "</tr>";
 	while($rFindWares = db_fetch($qFindWares)) {
 		$content .= "<tr>";
-		$content .= "<td class='tdLink' onClick='location.href=\"?module=kioskadmin&action=editWare&wareID=$rFindWares->ID\"'>";
+		$onclick = "class='tdLink' onClick='location.href=\"?module=kioskadmin&action=editWare&wareID=$rFindWares->ID\"'";
+		$content .= "<td $onclick>";
 		$content .= $rFindWares->name;
-		$content .= "</td><td>";
+		$content .= "</td><td $onclick>";
 		$content .= $rFindWares->typeName;
-		$content .= "</td><td>";
+		$content .= "</td><td $onclick>";
 		$qFindBarcodes = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE wareID = '$rFindWares->ID'");
 		$content .= db_num($qFindBarcodes);
+		$content .= "</td><td $onclick>";
+		$content .= $rFindWares->price;
 		$content .= "</td></tr>";
 	} // End while
 	$content .= "</table>";
