@@ -1,0 +1,29 @@
+\chapter{The modules - advanced usage of lancms}
+
+\section{Globaladmin}
+
+Globaladmin is the module where you changes that affect the entire lancms
+installation. You can create and change events, view the logs and modify
+users.
+
+Only users with global admin-rights can see \lstinline!globaladmin!. This
+right can normally not be given out, but there are two ways of giving it to
+more than the first "globaladmin"-user:
+\begin{itemize}
+\item By finding the user you want to give global admin-rights to in MySQL
+(phpmyadmin or other tool) and changing the field \lstinline!globaladmin! to
+'1' from '0'.
+\item By putting the following in your config.php or OverrideConfig.php:
+\lstinline;$globalaccess[] = 'globaladmin';. Afterwards you have to create an
+accessgroup in an event and give it the globaladmin-right. You should for
+security-reasons remove the globalaccess-line from your config afterwards.
+\end{itemize}
+
+Events can have two operating modes: public and private. If the event is
+public, anyone can see it in the eventlist (in the menu). If it's private, you
+have to be given permission to see it (or have global admin-rights). To give
+someone access to a private event, set that event as active and go to
+\lstinline!Attendee-access!. That will give you a list of all access-groups in
+all events and you can press \lstinline!allow access! to give the members of
+that group access to the event.
+
