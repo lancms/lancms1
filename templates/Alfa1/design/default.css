@@ -344,3 +344,10 @@ div.newsbox
 	border-bottom: dashed 1px black;
 	padding-bottom: 5px;
 }
+
+td.tdLink
+{
+        border-bottom:1px dotted;
+        line-height:1em;
+}
+

@@ -45,6 +45,8 @@ elseif($action == "addWareType" && !empty($_POST['name'])) {
 	if(db_num($qFindDuplicate) == 0) {
 		db_query("INSERT INTO ".$sql_prefix."_kiosk_waretypes SET typeName = '".db_escape($name)."'");
 	}
+	$log_new['name'] = $name;
+	log_add("kioskadmin", "addWareType", serialize($log_new));
 	header("Location: ?module=kioskadmin&action=wareTypes");
 } // End action == addWareType
 
@@ -53,23 +55,27 @@ elseif($action == "editWareType" && !empty($_GET['wareType'])) {
 }
 
 elseif($action == "wares") {
-	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types 
+	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName,wares.price FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types 
 		ON wares.wareType=types.ID");
 
 	$content .= "<table>";
 	$content .= "<tr><th>".lang("Name", "kioskadmin")."</th>";
 	$content .= "<th>".lang("Type", "kioskadmin")."</th>";
 	$content .= "<th>".lang("Barcodes", "kioskadmin")."</th>";
+	$content .= "<th>".lang("Price (normal)")."</th>";
 	$content .= "</tr>";
 	while($rFindWares = db_fetch($qFindWares)) {
 		$content .= "<tr>";
-		$content .= "<td class='tdLink' onClick='location.href=\"?module=kioskadmin&action=editWare&wareID=$rFindWares->ID\"'>";
+		$onclick = "class='tdLink' onClick='location.href=\"?module=kioskadmin&action=editWare&wareID=$rFindWares->ID\"'";
+		$content .= "<td $onclick>";
 		$content .= $rFindWares->name;
-		$content .= "</td><td>";
+		$content .= "</td><td $onclick>";
 		$content .= $rFindWares->typeName;
-		$content .= "</td><td>";
+		$content .= "</td><td $onclick>";
 		$qFindBarcodes = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE wareID = '$rFindWares->ID'");
 		$content .= db_num($qFindBarcodes);
+		$content .= "</td><td $onclick>";
+		$content .= $rFindWares->price;
 		$content .= "</td></tr>";
 	} // End while
 	$content .= "</table>";
@@ -93,6 +99,11 @@ elseif($action == "addWare" && !empty($_POST['name'])) {
 	$wareType = $_POST['wareType'];
 
 	db_query("INSERT INTO ".$sql_prefix."_kiosk_wares SET name = '".db_escape($name)."', wareType = '".db_escape($wareType)."'");
+
+	$log_new['wareType'] = $wareType;
+	$log_new['name'] = $name;
+	log_add("kioskadmin", "addWare", serialize($log_new));
+
 	header("Location: ?module=kioskadmin&action=wares");
 
 } // End action = addWare
@@ -143,6 +154,9 @@ elseif($action == "doEditWare" && !empty($_GET['wareID'])) {
 		price = '".db_escape($price)."'
 
 		WHERE ID = '".db_escape($wareID)."'");
+
+	log_add("kioskadmin", "doEditWare", serialize($_POST));
+
 	header("Location: ?module=kioskadmin&action=wares");
 } // End action == doEditWare
 
@@ -155,6 +169,10 @@ elseif($action == "addBarcode" && !empty($_GET['wareID'])) {
 		db_query("INSERT INTO ".$sql_prefix."_kiosk_barcodes 
 			SET wareID = '".db_escape($wareID)."', 
 			barcode = '".db_escape($barcode)."'");
+		$log_new['wareID'] = $wareID;
+		$log_new['barcode'] = $barcode;
+		log_add("kioskadmin", "addbarcode", serialize($log_new));
 	} // End db_num()
+
 	header("Location: ?module=kioskadmin&action=editWare&wareID=$wareID");
 } // End action == addBarcode

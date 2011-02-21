@@ -20,6 +20,7 @@ if(empty($action)) {
 	$content .= "<div id='suggest'></div>";
 	$content .= "<input type=submit value='".lang("Add", "kiosk")."'>\n";
 	$content .= "</form>\n\n";
+	$content .= "<script type='text/javascript' language='javascript'>document.forms['barfield'].elements['ware'].focus()</script>\n";
 	$content .= "</td></tr>";
 
 	$content .= "<tr><td>";

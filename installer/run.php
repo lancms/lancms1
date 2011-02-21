@@ -119,7 +119,7 @@ if(!isset($_GET["demodata"]))
 include_once 'add_default_content.php';
 include_once 'language.php';
 
-log_add("installer", "install/upgrade");
+log_add("installer", "install/upgrade", serialize($_SERVER));
 ?>
 
 <h1>Finito!</h1>

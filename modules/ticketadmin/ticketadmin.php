@@ -207,7 +207,16 @@ elseif($action == "listTickets") {
 		$content .= "</td><td>";
 		$content .= lang($rGetTickets->status, "ticketorder");
 		$content .= "</td><td>";
-		// FIXME: Display link to this seat on map
+		$content .= "<a href='?module=seating&ticketID=$rGetTickets->ticketID'>";
+		
+		$qFindSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '$rGetTickets->ticketID'");
+		if(db_num($qFindSeating) == 1) {
+			$rFindSeating = db_fetch($qFindSeating);
+			$content .= $rFindSeating->seatX." / ".$rFindSeating->seatY;
+		} // End db_num($qFindSeating)
+		else $content .= lang("No seat chosen");
+
+		$content .= "</a>";
 		$content .= "</td><td>";
 		$content .= lang($rGetTickets->paid, "ticketadmin");
 		$content .= "</td></tr>\n\n";

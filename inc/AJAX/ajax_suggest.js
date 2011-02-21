@@ -37,8 +37,8 @@ function handleSuggestions() {
 //                        suggest += 'onmouseout="javascript:suggestOut(this);" ';
 //                        suggest += 'onclick="javascript:setValue(this.innerHTML);" ';
 //                        suggest += 'class="suggest_link">' + val + '</div>';
-			var suggest = '<tr><td><a href=?module=kiosk&action=addWare&ware=' + ID;
-			suggest += '>' + name + '</a></td></tr>';
+			var suggest = '<li><a href=?module=kiosk&action=addWare&ware=' + ID;
+			suggest += '>' + name + '</a></li>';
                         ss.innerHTML += suggest;
                }
           }
