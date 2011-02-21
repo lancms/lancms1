@@ -16,7 +16,8 @@ all: $(MASTER).pdf
 #	dvips $< -o
 
 $(MASTER).pdf: *.tex
-	pdflatex $(MASTER).tex
+	texi2pdf $(MASTER).tex
+#	pdflatex $(MASTER).tex
 
 force:
 	touch $(MASTER).tex
