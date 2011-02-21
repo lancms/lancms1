@@ -10,11 +10,13 @@ The trunk-code in Bazaar is the most updated code, and we try to always keep it 
 \item Unpack it in a place where your webserver can reach it
 \item Edit settings in config.php
 \item If you've not done it already, create the database and grant access to it:
+\end{itemize}
 \begin{lstlisting}
 mysql> CREATE DATABASE lancmsdb;
 mysql> GRANT ALL PRIVILEGES ON lancmsdb.* to
        'lancmsuser'@'localhost' IDENTIFIED BY 'lancmspass';
 \end{lstlisting}
+\begin{itemize}
 \item Change the rights of the tmp-folder to 777 or allow the Apache/webserver-user rights to read and write to the folder below (chmod 777 tmp -R)
 \item To install/upgrade the database, visit http://your.server.name/installer/run.php
 \end{itemize}
@@ -23,6 +25,7 @@ mysql> GRANT ALL PRIVILEGES ON lancmsdb.* to
 \begin{itemize}
 \item Do \lstinline!bzr checkout lp:lancms! in a place where your webserver can reach it
 \item Create a file called 'OverrideConfig.php' in the base directory containing the settings from config.php you want to override:
+\end{itemize}
 \begin{lstlisting}
 <?php
 // SQL type. Valid options are: mysql
@@ -58,12 +61,26 @@ $design_footer['url'] = 'http://localhost/';
 
 ?>
 \end{lstlisting}
+\begin{itemize}
 \item If you've not done it already, create the database and grant access to
 it:
+\end{itemize}
 \begin{lstlisting}
 mysql> CREATE DATABASE lancmsdb;
 mysql> GRANT ALL PRIVILEGES ON lancmsdb.* to
        'lancmsuser'@'localhost' IDENTIFIED BY 'lancmspass';
 \end{lstlisting}
+\begin{itemize}
+\item \lstinline!chmod 777 tmp -R!
+\item To install/upgrade the database, visit
+http://your.server.name/installer/run.php
+\end{itemize}
 
+\section{Upgrading when using Bazaar}
+\begin{itemize}
+\item \lstinline!cd /path/to/lancms/!
+\item \lstinline!bzr update!
+\item \lstinline!chown www-data . -R!
+\item \lstinline!cd installer!
+\item \lstinline!php run.php!
 \end{itemize}
