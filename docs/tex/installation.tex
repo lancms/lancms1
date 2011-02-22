@@ -23,7 +23,7 @@ mysql> GRANT ALL PRIVILEGES ON lancmsdb.* to
 
 \section{Install from the lancms1-series in bazaar/launchpad}
 \begin{itemize}
-\item Do \lstinline!bzr checkout lp:lancms! in a place where your webserver can reach it
+\item Do \texttt{bzr checkout lp:lancms} in a place where your webserver can reach it
 \item Create a file called 'OverrideConfig.php' in the base directory containing the settings from config.php you want to override:
 \end{itemize}
 \begin{lstlisting}
@@ -71,16 +71,16 @@ mysql> GRANT ALL PRIVILEGES ON lancmsdb.* to
        'lancmsuser'@'localhost' IDENTIFIED BY 'lancmspass';
 \end{lstlisting}
 \begin{itemize}
-\item \lstinline!chmod 777 tmp -R!
+\item Apache needs access to the tmp-directory: \texttt{chmod 777 tmp -R}
 \item To install/upgrade the database, visit
 http://your.server.name/installer/run.php
 \end{itemize}
 
 \section{Upgrading when using Bazaar}
 \begin{itemize}
-\item \lstinline!cd /path/to/lancms/!
-\item \lstinline!bzr update!
-\item \lstinline!chown www-data . -R!
-\item \lstinline!cd installer!
-\item \lstinline!php run.php!
+\item \texttt{cd /path/to/lancms/}
+\item \texttt{bzr update}
+\item \texttt{chown www-data . -R}
+\item \texttt{cd installer}
+\item \texttt{php run.php}
 \end{itemize}

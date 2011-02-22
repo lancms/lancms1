@@ -1,30 +1,30 @@
 \chapter{After installation - a quick intro to using lancms}
 
-After installing the software, log in as \lstinline!globaladmin / admin! and
+After installing the software, log in as \underline{globaladmin / admin} and
 create your first event in globaladmin. After creating the event you should go
 back to globaladmin and set it as public, so that normal users may find it.
 
 Since lancms has support for multiple events and multiple URLs, you have to go
-to \lstinline!globaladmin! and then \lstinline!change global options! and set default eventID
+to \textit{globaladmin} and then \textit{change global options} and set default eventID
 for the hostname you're using for your installation of lancms.
 '1' is the default id, no event, event. The first event you create get id '2'.
 
 \section{Adding tickets}
 
 You probably need to add some tickets so that your attendees can buy access to
-your event. In \lstinline!eventadmin!, go to \lstinline!ticketadmin! and add a
+your event. In \textit{eventadmin}, go to \textit{ticketadmin} and add a
 ticket type. Set a name, the price of the ticket and what type of ticket it
 is. You can choose between:
-\begin{itemize}
-\item prepaid - an admin need to acknowledge that the ticket has been paid
+\begin{description}
+\item[prepaid] an admin need to acknowledge that the ticket has been paid
 for before you can choose a seat
-\item preordered - you select a seat before you pay, payment is done when you
+\item[preordered] you select a seat before you pay, payment is done when you
 arrive
-\item onsite with computer - you haven't ordered a ticket before you show up
+\item[onsite with computer] you haven't ordered a ticket before you show up
 in the door
-\item onsite without computer - visitor
-\item reseller - you pay in store to get a code for a ticket
-\end{itemize}
+\item[onsite without computer] visitor
+\item[reseller] you pay in store to get a code for a ticket
+\end{description}
 
 Prepaid and preordered tickets can be ordered directly by users, but onsite
 tickets has to be assigned to the user in the arrival-module.
@@ -34,39 +34,40 @@ tickets has to be assigned to the user in the arrival-module.
 It's nice for the attendees to know where they are going to sit.
 In seatadmin you can design how you set up your floorplan and choose
 different types of seats/tiles:
-\begin{itemize}
-\item Wall / Door
-\item Open seat - normal seat, can be chosen by anyone, at once on preordered
+\begin{description}
+\item[Wall] Wall...
+\item[Door] Door...
+\item[Open seat] normal seat, can be chosen by anyone, at once on preordered
 or after payment is recieved on prepaid
-\item Group - can be chosen based on what group an user is member of. Useful
+\item[Group] can be chosen based on what group an user is member of. Useful
 to assign seats to a group (clan or crew)
-\item Password - assign a password to the seats. Lets you give users access to
+\item[Password] assign a password to the seats. Lets you give users access to
 seats with having to be members of a specific group
-\item Text - putting text on the map (FIXME. Doesn't work at the moment)
-\item Area - placing areas on the map, for example "check-in" or "kiosk" (FIXME. Doesn't work at the moment)
-\end{itemize}
+\item[Text] putting text on the map (FIXME. Doesn't work at the moment)
+\item[Area] placing areas on the map, for example "check-in" or "kiosk" (FIXME. Doesn't work at the moment)
+\end{description}
 
 Before you can start designing the seatmap, you have to reset it to create it
 and setup the event to have a seatmap.
 
 \section{Starting sales}
 
-In \lstinline!eventconfig! under \lstinline!eventadmin! you can enable
-different modules. To allow users to buy tickets must enable
-\lstinline!ticketorder!. To allow users to pick seats, you enable
-\lstinline!seating!, etc.
+In \textit{eventconfig} under \textit{eventadmin} you can enable
+different modules. To allow users to buy tickets you must enable
+\textit{ticketorder}. To allow users to pick seats, you enable
+\textit{seating}, etc.
 
 \section{Giving out rights}
 
 You'll have to give people rights to allow them to access the
 administration parts of the system.
-In \lstinline!group management! under \lstinline!eventadmin! you can create
+In \textit{group management} under \textit{eventadmin} you can create
 different groups or crews. Create a group, for example "Securitycrew", and go
-to \lstinline!Change group rights! If "Securitycrew" is meant to work with
+to \textit{Change group rights}. If "Securitycrew" is meant to work with
 arrivals and recieve payment for tickets they would need access to
-tickets (with \lstinline!ticketsadmin!), changing seats for users (with
-\lstinline!seating!) and correcting user information (with
-\lstinline!userAdmin!). An access of "Read" gives a right to see information,
+tickets (with \textit{ticketsadmin}), changing seats for users (with
+\textit{seating}) and correcting user information (with
+\textit{userAdmin}). An access of "Read" gives a right to see information,
 "Write" enables the users to most tasks (for example changing tickets assigned
 to users etc.) and "Admin" gives access to change everything, including adding
 new ticket types etc.
