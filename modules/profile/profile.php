@@ -31,3 +31,11 @@ $content .= "</ul></td></tr>\n\n\n";
 
 
 $content .= "</table>";
+
+
+$useradminread = acl_access ("userAdmin", "", 1);
+if ($useradminread != "No")
+{
+	$content .= "<a href='index.php?module=edituserinfo&action=editUserinfo&user=".$rFindUser->ID."'>"._("Edit userinfo")."</a>";
+}
+
