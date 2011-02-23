@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: PACKAGE VERSION\n"
         "Report-Msgid-Bugs-To: \n"
-        "POT-Creation-Date: 2011-02-20 17:51+0100\n"
+        "POT-Creation-Date: 2011-02-23 19:24+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,8 +119,8 @@ msgid   "Ticket"
 msgstr  ""
 
 #: ../modules/arrival/arrival.php:79 ../modules/crewlist/crewlist.php:18
-#: ../modules/kioskadmin/kioskadmin.php:60
-#: ../modules/kioskadmin/kioskadmin.php:106 ../modules/profile/profile.php:12
+#: ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid   "Name"
 msgstr  ""
@@ -340,11 +340,11 @@ msgstr  ""
 
 #: ../modules/edituserinfo/edituserinfo.php:104
 #: ../modules/edituserinfo/edituserinfo.php:208
-#: ../modules/eventadmin/eventadmin.php:144
-#: ../modules/eventadmin/eventadmin.php:194
-#: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
+#: ../modules/eventadmin/eventadmin.php:146
+#: ../modules/eventadmin/eventadmin.php:196
+#: ../modules/eventadmin/eventadmin.php:225 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid   "Save"
@@ -394,27 +394,31 @@ msgstr  ""
 msgid   "Kioskadmin"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:83
+#: ../modules/eventadmin/eventadmin.php:40
+msgid   "Forumadmin"
+msgstr  ""
+
+#: ../modules/eventadmin/eventadmin.php:85
 msgid   "Change group rights"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:94
+#: ../modules/eventadmin/eventadmin.php:96
 msgid   "Add group"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:127
+#: ../modules/eventadmin/eventadmin.php:129
 msgid   "Group name already exists"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:174
+#: ../modules/eventadmin/eventadmin.php:176
 msgid   "Back to groups"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:294
+#: ../modules/eventadmin/eventadmin.php:296
 msgid   "Allow attendee"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:297
+#: ../modules/eventadmin/eventadmin.php:299
 msgid   "Disallow attendee"
 msgstr  ""
 
@@ -432,6 +436,30 @@ msgstr  ""
 
 #: ../modules/FAQ/FAQ.php:64
 msgid   "Add question"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid   "Enabled"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid   "Disabled"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid   "Change forum"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid   "Add forum"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid   "Forum name"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid   "Forum description"
 msgstr  ""
 
 #: ../modules/forum/forum.php:21
@@ -608,29 +636,33 @@ msgstr  ""
 msgid   "Add new waretype"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:61
+#: ../modules/kioskadmin/kioskadmin.php:63
 msgid   "Type"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:121
+#: ../modules/kioskadmin/kioskadmin.php:64
+#: ../modules/kioskadmin/kioskadmin.php:132
 msgid   "Barcodes"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:85
+#: ../modules/kioskadmin/kioskadmin.php:65
+msgid   "Price (normal)"
+msgstr  ""
+
+#: ../modules/kioskadmin/kioskadmin.php:91
 msgid   "Add ware"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:114
+#: ../modules/kioskadmin/kioskadmin.php:125
 msgid   "Ware type"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:115
+#: ../modules/kioskadmin/kioskadmin.php:126
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid   "Price"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:129
+#: ../modules/kioskadmin/kioskadmin.php:140
 msgid   "Add barcode"
 msgstr  ""
 
@@ -638,15 +670,15 @@ msgstr  ""
 msgid   "Add"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:41
+#: ../modules/kiosk/kiosk.php:42
 msgid   "Add one more item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:42
+#: ../modules/kiosk/kiosk.php:43
 msgid   "Remove one item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:50
+#: ../modules/kiosk/kiosk.php:51
 msgid   "SELL"
 msgstr  ""
 
@@ -882,7 +914,7 @@ msgstr  ""
 msgid   "Mail sent (mass)"
 msgstr  ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:431
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:438
 msgid   "News"
 msgstr  ""
 
@@ -1347,6 +1379,10 @@ msgstr  ""
 msgid   "Paid?"
 msgstr  ""
 
+#: ../modules/ticketadmin/ticketadmin.php:217
+msgid   "No seat chosen"
+msgstr  ""
+
 #: ../modules/ticketorder/ticketorder.php:45
 msgid   "Place on map"
 msgstr  ""
@@ -1570,7 +1606,7 @@ msgid   "Yes"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:337
-#: ../inc/shared_functions.php:316
+#: ../inc/shared_functions.php:323
 msgid   "No"
 msgstr  ""
 
@@ -1679,14 +1715,14 @@ msgstr  ""
 msgid   "All users"
 msgstr  ""
 
-#: ../inc/shared_functions.php:321
+#: ../inc/shared_functions.php:328
 msgid   "Read"
 msgstr  ""
 
-#: ../inc/shared_functions.php:326
+#: ../inc/shared_functions.php:333
 msgid   "Write"
 msgstr  ""
 
-#: ../inc/shared_functions.php:331
+#: ../inc/shared_functions.php:338
 msgid   "Admin"
 msgstr  ""
