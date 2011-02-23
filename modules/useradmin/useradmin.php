@@ -128,11 +128,8 @@ elseif ($action == 'details')
 	}
 	else
 	{
-		$content .= "<h2>User details: ".display_username ($id)."</h2>";
-		if($acl_useradmin == 'Admin' || $acl_useradmin == 'Write') {
-			$content .= "<a href=?module=edituserinfo&action=editUserinfo&user=$id>".lang("Edit userinfo", "useradmin")."</a> <br />";
-		}
-		$content .= "<a href='javascript:history.back ()'>".lang("Back", "useradmin")."</a>";
+			  header ('Location: index.php?module=profile&user='.$id);
+			  die ();
 	}
 }
 else
