@@ -67,28 +67,39 @@ elseif ($action == 'listall' || $action == 'search')
 	$content .= "</tr>";
 
 	$ucount = 1;
+
+	# FIXME: move this function to a better place
+	function uadl ($userid, $str)
+	{
+			  $a = "<a href='index.php?module=useradmin&action=details&userid=".$userid."'>";
+			  $end = "</a>";
+			  return ($a.$str.$end);
+	}
+
+
+
 	foreach ($users as $ui)
 	{
 
-		$onclick = "onClick='location.href=\"index.php?module=useradmin&action=details&userid=".$ui->ID."\"'";
-
+#		$onclick = "onClick='location.href=\"index.php?module=useradmin&action=details&userid=".$ui->ID."\"'";
+	
 		if ($ui->globaladmin > 0)
 		{
-			$content .= "<tr ".$onclick." class='userrow0'>";
+			$content .= "<tr class='userrow0'>";
 		}
 		else
 		{
-			$content .= "<tr ".$onclick." class='userrow".$ucount."'>";
+			$content .= "<tr class='userrow".$ucount."'>";
 		}
 
-		$content .= "<td>".$ui->ID."</td>";
-		$content .= "<td>".$ui->nick."</td>";
-		$content .= "<td>".$ui->firstName."</td>";
-		$content .= "<td>".$ui->lastName."</td>";
-		$content .= "<td>".$ui->EMail."</td>";
-		$content .= "<td>".$ui->street."</td>";
-		$content .= "<td>".$ui->postNumber."</td>";
-		$content .= "<td>".$ui->cellphone."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->ID)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->nick)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->firstName)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->lastName)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->EMail)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->street)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->postNumber)."</td>";
+		$content .= "<td>".uadl($ui->ID, $ui->cellphone)."</td>";
 
 		$content .= "</tr>\n";
 
