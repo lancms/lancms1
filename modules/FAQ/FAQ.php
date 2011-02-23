@@ -48,21 +48,21 @@ elseif($action == "adminFAQs")
 		while($rFAQs = db_fetch($qFAQs))
 		{
 			// List FAQs
-			$content .= "<tr><td><a name=#".$rFAQs->ID."></a>$rFAQs->question</td>";
-			$content .= "<td><a href=\"?module=FAQ&amp;action=editFAQ&amp;faqID=$rFAQs->ID\">";
+			$content .= "<tr><td><a name=#".$rFAQs->ID."></a>$rFAQs->question</td>\n";
+			$content .= "<td><a href=\"?module=FAQ&amp;action=editFAQ&amp;faqID=$rFAQs->ID\">\n";
 			$content .= lang("Edit FAQ", "FAQ");
-			$content .= "</td><td>";
-			$content .= "<a href=\"?module=FAQ&amp;action=deleteFAQ&amp;faqID=$rFAQs->ID\">";
+			$content .= "</td><td>\n";
+			$content .= "<a href=\"?module=FAQ&amp;action=deleteFAQ&amp;faqID=$rFAQs->ID\">\n";
 			$content .= lang("Delete FAQ", "FAQ");
-			$content .= "</td></tr>";
+			$content .= "</td></tr>\n";
 		} // End while
 		$content .= '</table>';
 	}
 	
-	$content .= "<form method=\"post\" action=\"?module=FAQ&amp;action=addFAQ\">";
-	$content .= "<p class=\"nopad\"><textarea rows=\"2\" cols=\"50\" name=\"question\">".lang("Question", "FAQ")."</textarea></p>";
-	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add question", "FAQ")."' /></p>";
-	$content .= "</form>";
+	$content .= "<form method=\"post\" action=\"?module=FAQ&amp;action=addFAQ\">\n";
+	$content .= "<p class=\"nopad\"><textarea rows=\"2\" cols=\"50\" name=\"question\">".lang("Question", "FAQ")."</textarea></p>\n";
+	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add question", "FAQ")."' /></p>\n";
+	$content .= "</form>\n";
 
 } // End elseif $action = adminFAQs
 
