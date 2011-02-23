@@ -452,6 +452,7 @@ TABLE [prefix]_forums
 	eventID,		int(11),		,	NOT NULL,	,
 	name,			varchar(35),		,	,	,
 	description,		text,			,	,	,
+	disabled,		tinyint(1),		,	,	0,
 }
 
 TABLE [prefix]_forumThreads

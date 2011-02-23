@@ -12,7 +12,11 @@ if(!isset($action) || ($action == "editForum" && isset($_GET['forumID']))) {
 	$qFindForums = db_query("SELECT * FROM ".$sql_prefix."_forums WHERE eventID = '$sessioninfo->eventID'");
 	$content .= "<table>";
 	while($rFindForums = db_fetch($qFindForums)) {
-		$content .= "<tr><td class=tdLink onClick='location.href=\"?module=forumadmin&action=editForum&forumID=$rFindForums->ID\"'>$rFindForums->name</td></tr>\n";
+		$content .= "<tr><td class=tdLink onClick='location.href=\"?module=forumadmin&action=editForum&forumID=$rFindForums->ID\"'>$rFindForums->name</td>";
+		if($rFindForums->disabled == 0) $lang_text = lang("Enabled");
+		else $lang_text = lang("Disabled");
+		$content .= "<td><a href=?module=forumadmin&action=enableddisabled&forumID=$rFindForums->ID>$lang_text</a>";
+		$content .= "</td></tr>\n";
 	} // End while
 	$content .= "</table>\n\n";
 
@@ -47,3 +51,19 @@ elseif($action == "addForum" && !empty($_POST['name'])) {
 	log_add("forumadmin", "addForum", serialize($_POST));
 	header("Location: ?module=forumadmin");
 } // End action == addForum
+
+elseif($action == "enableddisabled" && isset($forumID)) {
+	$qFindForum = db_query("SELECT * FROM ".$sql_prefix."_forums WHERE ID = '".db_escape($forumID)."' AND eventID = '$sessioninfo->eventID'");
+	$rFindForum = db_fetch($qFindForum);
+
+	if($rFindForum->disabled == 1) $next_status = 0;
+	else $next_status = 1;
+
+	db_query("UPDATE ".$sql_prefix."_forums SET disabled = '$next_status' WHERE ID = '$rFindForum->ID'");
+	$log_new['forumName'] = $rFindForum->name;
+	$log_new['status'] = $next_status;
+	$log_old['status'] = $rFindForum->disabled;
+
+	log_add("forumadmin", "enabledisable", serialize($log_new), serialize($log_old));
+	header("Location: ?module=forumadmin");
+}

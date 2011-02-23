@@ -5,7 +5,7 @@ $forum = $_GET['forum'];
 
 if(empty($action)) {
 	$content .= "<table>";
-	$qFindForums = db_query("SELECT * FROM ".$sql_prefix."_forums WHERE eventID = '$sessioninfo->eventID'");
+	$qFindForums = db_query("SELECT * FROM ".$sql_prefix."_forums WHERE eventID = '$sessioninfo->eventID' AND disabled = 0");
 	while($rFindForums = db_fetch($qFindForums)) {
 		$link_start = "<a href=?module=forum&action=viewForum&forum=$rFindForums->ID>";
 		$content .= "<tr><td>";
