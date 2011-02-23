@@ -41,7 +41,9 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
 			senderID = '$sessioninfo->userID',
 			content = '".db_escape($_POST['message'])."'");
 	} // End while
-
+	$log_new['toListName'] = $smsList[$toSmsList]['name'];
+	$log_new['message'] = $_POST['message'];
+	log_add("SMS", "sendSMS", serialize($log_new));
 	header("Location: ?module=SMS&sending=success");
 } // End elseif action == sendSMS
 
