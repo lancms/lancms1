@@ -265,6 +265,12 @@ function lang($string, $module = "index")
 {
 	global $language; // Get default/current language
 	global $sql_prefix;
+	global $lang_method;
+
+	if($lang_method == "gettext") {
+		 return _($string);
+	} else {
+	
 
 	// Check to see if that string exists
 	$q = db_query("SELECT * FROM ".$sql_prefix."_lang
@@ -301,6 +307,7 @@ function lang($string, $module = "index")
 		}
 	}
 #	return _($string);
+	} // End else lang_method();
 }
 
 
