@@ -57,6 +57,7 @@ $eventaccess[] = 'kiosk_admin';
 $eventaccess[] = 'kiosk_stats';
 $eventaccess[] = 'kiosk_sales';
 $eventaccess[] = 'news';
+$eventaccess[] = 'infoscreen';
 
 
 ## GlobalACLs

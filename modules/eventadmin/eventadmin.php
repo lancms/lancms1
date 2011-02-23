@@ -38,6 +38,8 @@ if(!isset($action))
 		$content .= "<br /><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a>\n";
 	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin') 
 		$content .= "<br /><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a>\n";
+	if(acl_access("infoscreen", "", $sessioninfo->eventID) != 'No')
+		$content .= "<br /><a href='?module=infoscreens'>"._("Infoscreens")."</a>\n";
 
 
 } // End if !isset(action)

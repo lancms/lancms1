@@ -476,3 +476,11 @@ TABLE [prefix]_forumPosts
 	postTimestamp,		int(10),		,	,	0,
 	postContent,		text,			,	,	,
 }
+
+TABLE [prefix]_infoscreens
+{
+#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
+	ID,			int(11),		PRI,	,	,		auto_increment
+	eventID,		int(11),		,	,	1,
+	name,			varchar(25),		,	,	,
+}
