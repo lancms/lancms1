@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-20 17:51+0100\n"
-"PO-Revision-Date: 2011-02-20 16:33+0000\n"
-"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
+"POT-Creation-Date: 2011-02-23 21:25+0100\n"
+"PO-Revision-Date: 2011-02-23 20:55+0000\n"
+"Last-Translator: Mathias Bøhn Grytemark <Unknown>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-21 05:42+0000\n"
+"X-Launchpad-Export-Date: 2011-02-24 06:14+0000\n"
 "X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
@@ -86,7 +86,7 @@ msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
 #: ../index.php:134 ../modules/logs/logs.php:59
-#: ../modules/useradmin/useradmin.php:122
+#: ../modules/profile/profile.php:42
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
@@ -121,8 +121,8 @@ msgid "Ticket"
 msgstr "Billett"
 
 #: ../modules/arrival/arrival.php:79 ../modules/crewlist/crewlist.php:18
-#: ../modules/kioskadmin/kioskadmin.php:60
-#: ../modules/kioskadmin/kioskadmin.php:106 ../modules/profile/profile.php:12
+#: ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
 msgstr "Navn"
@@ -136,7 +136,7 @@ msgid "E-mail"
 msgstr "E-post"
 
 #: ../modules/arrival/arrival.php:96 ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:123
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:124
 msgid "Birthday"
 msgstr "Fødselsdag"
 
@@ -231,12 +231,12 @@ msgstr "Påmelding er avsluttet"
 msgid "Nick"
 msgstr "Brukernavn"
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:167
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:168
 msgid "EMail"
 msgstr "E-post"
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:163
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:164
 msgid "Cellphone"
 msgstr "Mobil"
 
@@ -277,7 +277,6 @@ msgstr "Kontonummer eksisterer allerede"
 #: ../modules/ticketorder/ticketorder.php:221
 #: ../modules/ticketorder/ticketorder.php:225
 #: ../modules/ticketorder/ticketorder.php:229
-#: ../modules/useradmin/useradmin.php:124
 msgid "Back"
 msgstr "Tilbake"
 
@@ -342,11 +341,11 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 
 #: ../modules/edituserinfo/edituserinfo.php:104
 #: ../modules/edituserinfo/edituserinfo.php:208
-#: ../modules/eventadmin/eventadmin.php:144
-#: ../modules/eventadmin/eventadmin.php:194
-#: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
+#: ../modules/eventadmin/eventadmin.php:148
+#: ../modules/eventadmin/eventadmin.php:198
+#: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid "Save"
@@ -396,27 +395,35 @@ msgstr "Send SMS"
 msgid "Kioskadmin"
 msgstr "Kioskadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:83
+#: ../modules/eventadmin/eventadmin.php:40
+msgid "Forumadmin"
+msgstr "Forumadministrasjon"
+
+#: ../modules/eventadmin/eventadmin.php:42
+msgid "Infoscreens"
+msgstr "Infoskjermer"
+
+#: ../modules/eventadmin/eventadmin.php:87
 msgid "Change group rights"
 msgstr "Endre gruppetilganger"
 
-#: ../modules/eventadmin/eventadmin.php:94
+#: ../modules/eventadmin/eventadmin.php:98
 msgid "Add group"
 msgstr "Legg til gruppe"
 
-#: ../modules/eventadmin/eventadmin.php:127
+#: ../modules/eventadmin/eventadmin.php:131
 msgid "Group name already exists"
 msgstr "Gruppenavn eksisterer allerede"
 
-#: ../modules/eventadmin/eventadmin.php:174
+#: ../modules/eventadmin/eventadmin.php:178
 msgid "Back to groups"
 msgstr "Tilbake til grupper"
 
-#: ../modules/eventadmin/eventadmin.php:294
+#: ../modules/eventadmin/eventadmin.php:298
 msgid "Allow attendee"
 msgstr "Tillat deltagelse"
 
-#: ../modules/eventadmin/eventadmin.php:297
+#: ../modules/eventadmin/eventadmin.php:301
 msgid "Disallow attendee"
 msgstr "Nekt deltagelse"
 
@@ -435,6 +442,30 @@ msgstr "Spørsmål"
 #: ../modules/FAQ/FAQ.php:64
 msgid "Add question"
 msgstr "Legg til spørsmål"
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid "Enabled"
+msgstr "Aktivert"
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid "Disabled"
+msgstr "Deaktivert"
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid "Change forum"
+msgstr "Endre forum"
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid "Add forum"
+msgstr "Legg til forum"
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid "Forum name"
+msgstr "Forumnavn"
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid "Forum description"
+msgstr "Forumbeskrivelse"
 
 #: ../modules/forum/forum.php:21
 msgid "Start new thread"
@@ -594,6 +625,14 @@ msgstr "Klannavn er allerede i bruk. Vennligst velg et annet navn"
 msgid "User already member of group"
 msgstr "Brukeren er allerede medlem av gruppen"
 
+#: ../modules/infoscreens/infoscreens.php:21
+msgid "Screen name"
+msgstr "Skjermnavn"
+
+#: ../modules/infoscreens/infoscreens.php:22
+msgid "Add screen"
+msgstr "Legg til skjerm"
+
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid "Admin waretypes"
 msgstr "Administrer varetyper"
@@ -610,29 +649,33 @@ msgstr "Skriv ut strekkoder"
 msgid "Add new waretype"
 msgstr "Legg til ny varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:61
+#: ../modules/kioskadmin/kioskadmin.php:63
 msgid "Type"
 msgstr "Type"
 
-#: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:121
+#: ../modules/kioskadmin/kioskadmin.php:64
+#: ../modules/kioskadmin/kioskadmin.php:132
 msgid "Barcodes"
 msgstr "Strekkoder"
 
-#: ../modules/kioskadmin/kioskadmin.php:85
+#: ../modules/kioskadmin/kioskadmin.php:65
+msgid "Price (normal)"
+msgstr "Pris (normalt)"
+
+#: ../modules/kioskadmin/kioskadmin.php:91
 msgid "Add ware"
 msgstr "Legg til vare"
 
-#: ../modules/kioskadmin/kioskadmin.php:114
+#: ../modules/kioskadmin/kioskadmin.php:125
 msgid "Ware type"
 msgstr "Varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:115
+#: ../modules/kioskadmin/kioskadmin.php:126
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid "Price"
 msgstr "Pris"
 
-#: ../modules/kioskadmin/kioskadmin.php:129
+#: ../modules/kioskadmin/kioskadmin.php:140
 msgid "Add barcode"
 msgstr "Legg til strekkode"
 
@@ -640,15 +683,15 @@ msgstr "Legg til strekkode"
 msgid "Add"
 msgstr "Legg til"
 
-#: ../modules/kiosk/kiosk.php:41
+#: ../modules/kiosk/kiosk.php:42
 msgid "Add one more item"
 msgstr "Legg til en ting til"
 
-#: ../modules/kiosk/kiosk.php:42
+#: ../modules/kiosk/kiosk.php:43
 msgid "Remove one item"
 msgstr "Fjern en ting"
 
-#: ../modules/kiosk/kiosk.php:50
+#: ../modules/kiosk/kiosk.php:51
 msgid "SELL"
 msgstr "SELG"
 
@@ -894,7 +937,7 @@ msgstr "E-post"
 msgid "Mail sent (mass)"
 msgstr "E-post sendt (massesendt)"
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:431
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:438
 msgid "News"
 msgstr "Nyheter"
 
@@ -1026,7 +1069,7 @@ msgstr "Send e-post"
 msgid "Add as global article"
 msgstr "Legg til som global artikkel"
 
-#: ../modules/profile/profile.php:24
+#: ../modules/profile/profile.php:28
 msgid "Groupmemberships"
 msgstr "Gruppemedlemskap"
 
@@ -1099,13 +1142,18 @@ msgid ""
 "\n"
 "To verify your mailaddress, please go to %s"
 msgstr ""
+"Hei %s.\n"
+"\n"
+"Du, eller noen andre har registrert en ny konto på %s.\n"
+"\n"
+"For å verifisere din epost-adresse, gå til %s"
 
 #: ../modules/register/register.php:194
 msgid "User registered"
 msgstr "Brukeren er registrert"
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:110
 msgid "Username"
 msgstr "Brukernavn"
 
@@ -1121,11 +1169,11 @@ msgstr "Gjenta passord"
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:113
+#: ../modules/register/register.php:213 ../inc/shared_config.php:114
 msgid "First name"
 msgstr "Fornavn"
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:118
+#: ../modules/register/register.php:216 ../inc/shared_config.php:119
 msgid "Last name"
 msgstr "Etternavn"
 
@@ -1135,11 +1183,11 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:151
+#: ../inc/shared_config.php:152
 msgid "Postnumber"
 msgstr "Postnummer"
 
-#: ../modules/register/register.php:224 ../inc/shared_config.php:156
+#: ../modules/register/register.php:224 ../inc/shared_config.php:157
 msgid "Gender"
 msgstr "Kjønn"
 
@@ -1367,6 +1415,10 @@ msgstr "Kartplassering"
 msgid "Paid?"
 msgstr "Betalt?"
 
+#: ../modules/ticketadmin/ticketadmin.php:217
+msgid "No seat chosen"
+msgstr "Ikke valgt sete"
+
 #: ../modules/ticketorder/ticketorder.php:45
 msgid "Place on map"
 msgstr "Plasser på kart"
@@ -1468,7 +1520,7 @@ msgstr "Etternavn"
 msgid "Email"
 msgstr "E-post"
 
-#: ../modules/useradmin/useradmin.php:115
+#: ../modules/useradmin/useradmin.php:126
 msgid "No user with ID"
 msgstr "Ingen bruker med den IDen"
 
@@ -1593,7 +1645,7 @@ msgid "Yes"
 msgstr "Ja"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:337
-#: ../inc/shared_functions.php:316
+#: ../inc/shared_functions.php:323
 msgid "No"
 msgstr "Nei"
 
@@ -1638,79 +1690,79 @@ msgstr "Ja, jeg er sikker"
 msgid "No, I still wish to apply for crew"
 msgstr "Nei, jeg vil fortsatt søke crew"
 
-#: ../inc/shared_config.php:84
+#: ../inc/shared_config.php:85
 msgid "January"
 msgstr "Januar"
 
-#: ../inc/shared_config.php:85
+#: ../inc/shared_config.php:86
 msgid "February"
 msgstr "Februar"
 
-#: ../inc/shared_config.php:86
+#: ../inc/shared_config.php:87
 msgid "March"
 msgstr "Mars"
 
-#: ../inc/shared_config.php:87
+#: ../inc/shared_config.php:88
 msgid "April"
 msgstr "April"
 
-#: ../inc/shared_config.php:88
+#: ../inc/shared_config.php:89
 msgid "May"
 msgstr "Mai"
 
-#: ../inc/shared_config.php:89
+#: ../inc/shared_config.php:90
 msgid "June"
 msgstr "Juni"
 
-#: ../inc/shared_config.php:90
+#: ../inc/shared_config.php:91
 msgid "July"
 msgstr "Juli"
 
-#: ../inc/shared_config.php:91
+#: ../inc/shared_config.php:92
 msgid "August"
 msgstr "August"
 
-#: ../inc/shared_config.php:92
+#: ../inc/shared_config.php:93
 msgid "September"
 msgstr "September"
 
-#: ../inc/shared_config.php:93
+#: ../inc/shared_config.php:94
 msgid "October"
 msgstr "Oktober"
 
-#: ../inc/shared_config.php:94
+#: ../inc/shared_config.php:95
 msgid "November"
 msgstr "November"
 
-#: ../inc/shared_config.php:95
+#: ../inc/shared_config.php:96
 msgid "December"
 msgstr "Desember"
 
-#: ../inc/shared_config.php:146
+#: ../inc/shared_config.php:147
 msgid "Streetadress"
 msgstr "Adresse"
 
-#: ../inc/shared_config.php:172
+#: ../inc/shared_config.php:173
 msgid "List all attendees on current event"
 msgstr "Vis alle deltagere på nåværende arrangement"
 
-#: ../inc/shared_config.php:189
+#: ../inc/shared_config.php:190
 msgid "Allow other users to see my mailadress"
 msgstr "Tillatt andre brukere å se min epost-adresse"
 
-#: ../inc/shared_config.php:194
+#: ../inc/shared_config.php:195
 msgid "All users"
 msgstr "Alle brukere"
 
-#: ../inc/shared_functions.php:321
+#: ../inc/shared_functions.php:328
 msgid "Read"
 msgstr "Lese"
 
-#: ../inc/shared_functions.php:326
+#: ../inc/shared_functions.php:333
 msgid "Write"
 msgstr "Skrive"
 
-#: ../inc/shared_functions.php:331
+#: ../inc/shared_functions.php:338
 msgid "Admin"
 msgstr "Admin"
 
