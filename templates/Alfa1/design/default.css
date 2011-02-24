@@ -347,7 +347,24 @@ div.newsbox
 
 td.tdLink
 {
-        border-bottom:1px dotted;
-        line-height:1em;
+	border-bottom:1px dotted;
+	line-height:1em;
 }
 
+
+table.viewthread
+{
+	width: 100%;
+	border: 1px solid #000000;
+	border-collapse: collapse;
+}
+
+table.viewthread td
+{
+	border: 1px solid #000000;
+}
+
+table.viewthread td.info
+{
+	width: 30%;
+}

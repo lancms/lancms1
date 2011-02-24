@@ -89,28 +89,31 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 	$qFindThread = db_query("SELECT * FROM ".$sql_prefix."_forumThreads WHERE ID = '".db_escape($thread)."'");
 	$rFindThread = db_fetch($qFindThread);
 
-	$content .= "<table>";
-	$content .= "<tr><th>";
-	$content .= $rFindThread->threadTopic;
-	$content .= "</th></tr>";
-
-	$content .= "</table>";
-	$content .= "<table border=1>";
+	$content .= "<h3>".stripslashes ($rFindThread->threadTopic)."</h3>";
+	
+	
+	$content .= "<table class='viewthread'>";
 
 	$qFindPosts = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '".db_escape($thread)."'");
-	while($rFindPosts = db_fetch($qFindPosts)) {
+	while ($rFindPosts = db_fetch($qFindPosts))
+	{
+		$qFindAuthor = db_query (sprintf ("SELECT nick, CONCAT(firstName, ' ', lastName) AS name FROM %s_users WHERE ID=%s", $sql_prefix, $rFindPosts->postAuthor));
+		$rFindAuthor = db_fetch ($qFindAuthor);
+		$nick = $rFindAuthor->nick;
+		$name = $rFindAuthor->name;
+
 		$content .= "<tr><td>";
-		$content .= stripslashes(nl2br($rFindPosts->postContent));
-		$content .= "</td><td>";
-		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindPosts->postAuthor' LIMIT 0,1");
-		$rFindUser = db_fetch($qFindUser);
-		$content .= lang("User:", "forum");
-#		$content .= $rFindUser->nick;
-		$content .= user_profile($rFindPosts->postAuthor);
+		$content .= stripslashes (nl2br ($rFindPosts->postContent));
+		$content .= "</td>";
+		$content .= "<td clasS='info'>";
+		$content .= "<b>"._("Nick:")."</b> $nick";
 		$content .= "<br />";
-		$content .= lang("Name:", "forum");
-		$content .= $rFindUser->firstName." ".$rFindUser->lastName;
-		$content .= "</td></tr>\n\n";
+		$content .= "<b>"._("Name:")."</b> $name";
+		$content .= "<br />";
+		$content .= "<b>"._("Posted:")."</b> ".date("Y-m-d H:m:s", $rFindPosts->postTimestamp);
+		$content .= "</td></tr>";
+		unset ($nick);
+		unset ($name);
 	} // End while
 	$content .= "</table>\n\n\n\n";
 	$content .= "<br />";
