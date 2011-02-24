@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-20 17:51+0100\n"
+"POT-Creation-Date: 2011-02-23 21:25+0100\n"
 "PO-Revision-Date: 2011-01-13 23:30+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-21 05:42+0000\n"
+"X-Launchpad-Export-Date: 2011-02-24 06:14+0000\n"
 "X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
@@ -86,7 +86,7 @@ msgid "You are logged in as:"
 msgstr ""
 
 #: ../index.php:134 ../modules/logs/logs.php:59
-#: ../modules/useradmin/useradmin.php:122
+#: ../modules/profile/profile.php:42
 msgid "Edit userinfo"
 msgstr ""
 
@@ -121,8 +121,8 @@ msgid "Ticket"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:79 ../modules/crewlist/crewlist.php:18
-#: ../modules/kioskadmin/kioskadmin.php:60
-#: ../modules/kioskadmin/kioskadmin.php:106 ../modules/profile/profile.php:12
+#: ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
 msgstr ""
@@ -136,7 +136,7 @@ msgid "E-mail"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:96 ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:123
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:124
 msgid "Birthday"
 msgstr ""
 
@@ -231,12 +231,12 @@ msgstr ""
 msgid "Nick"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:167
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:168
 msgid "EMail"
 msgstr ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:163
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:164
 msgid "Cellphone"
 msgstr ""
 
@@ -277,7 +277,6 @@ msgstr ""
 #: ../modules/ticketorder/ticketorder.php:221
 #: ../modules/ticketorder/ticketorder.php:225
 #: ../modules/ticketorder/ticketorder.php:229
-#: ../modules/useradmin/useradmin.php:124
 msgid "Back"
 msgstr ""
 
@@ -342,11 +341,11 @@ msgstr ""
 
 #: ../modules/edituserinfo/edituserinfo.php:104
 #: ../modules/edituserinfo/edituserinfo.php:208
-#: ../modules/eventadmin/eventadmin.php:144
-#: ../modules/eventadmin/eventadmin.php:194
-#: ../modules/eventadmin/eventadmin.php:223 ../modules/FAQ/FAQ.php:83
+#: ../modules/eventadmin/eventadmin.php:148
+#: ../modules/eventadmin/eventadmin.php:198
+#: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid "Save"
@@ -396,27 +395,35 @@ msgstr ""
 msgid "Kioskadmin"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:83
+#: ../modules/eventadmin/eventadmin.php:40
+msgid "Forumadmin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:42
+msgid "Infoscreens"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:87
 msgid "Change group rights"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:94
+#: ../modules/eventadmin/eventadmin.php:98
 msgid "Add group"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:127
+#: ../modules/eventadmin/eventadmin.php:131
 msgid "Group name already exists"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:174
+#: ../modules/eventadmin/eventadmin.php:178
 msgid "Back to groups"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:294
+#: ../modules/eventadmin/eventadmin.php:298
 msgid "Allow attendee"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:297
+#: ../modules/eventadmin/eventadmin.php:301
 msgid "Disallow attendee"
 msgstr ""
 
@@ -434,6 +441,30 @@ msgstr ""
 
 #: ../modules/FAQ/FAQ.php:64
 msgid "Add question"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid "Enabled"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid "Disabled"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid "Change forum"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid "Add forum"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid "Forum name"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid "Forum description"
 msgstr ""
 
 #: ../modules/forum/forum.php:21
@@ -594,6 +625,14 @@ msgstr ""
 msgid "User already member of group"
 msgstr ""
 
+#: ../modules/infoscreens/infoscreens.php:21
+msgid "Screen name"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:22
+msgid "Add screen"
+msgstr ""
+
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid "Admin waretypes"
 msgstr ""
@@ -610,29 +649,33 @@ msgstr ""
 msgid "Add new waretype"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:61
+#: ../modules/kioskadmin/kioskadmin.php:63
 msgid "Type"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:121
+#: ../modules/kioskadmin/kioskadmin.php:64
+#: ../modules/kioskadmin/kioskadmin.php:132
 msgid "Barcodes"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:85
+#: ../modules/kioskadmin/kioskadmin.php:65
+msgid "Price (normal)"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:91
 msgid "Add ware"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:114
+#: ../modules/kioskadmin/kioskadmin.php:125
 msgid "Ware type"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:115
+#: ../modules/kioskadmin/kioskadmin.php:126
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid "Price"
 msgstr ""
 
-#: ../modules/kioskadmin/kioskadmin.php:129
+#: ../modules/kioskadmin/kioskadmin.php:140
 msgid "Add barcode"
 msgstr ""
 
@@ -640,15 +683,15 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:41
+#: ../modules/kiosk/kiosk.php:42
 msgid "Add one more item"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:42
+#: ../modules/kiosk/kiosk.php:43
 msgid "Remove one item"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:50
+#: ../modules/kiosk/kiosk.php:51
 msgid "SELL"
 msgstr ""
 
@@ -886,7 +929,7 @@ msgstr ""
 msgid "Mail sent (mass)"
 msgstr ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:431
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:438
 msgid "News"
 msgstr ""
 
@@ -1018,7 +1061,7 @@ msgstr ""
 msgid "Add as global article"
 msgstr ""
 
-#: ../modules/profile/profile.php:24
+#: ../modules/profile/profile.php:28
 msgid "Groupmemberships"
 msgstr ""
 
@@ -1097,7 +1140,7 @@ msgid "User registered"
 msgstr ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:110
 msgid "Username"
 msgstr ""
 
@@ -1113,11 +1156,11 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:113
+#: ../modules/register/register.php:213 ../inc/shared_config.php:114
 msgid "First name"
 msgstr ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:118
+#: ../modules/register/register.php:216 ../inc/shared_config.php:119
 msgid "Last name"
 msgstr ""
 
@@ -1127,11 +1170,11 @@ msgid "Address"
 msgstr ""
 
 #: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:151
+#: ../inc/shared_config.php:152
 msgid "Postnumber"
 msgstr ""
 
-#: ../modules/register/register.php:224 ../inc/shared_config.php:156
+#: ../modules/register/register.php:224 ../inc/shared_config.php:157
 msgid "Gender"
 msgstr ""
 
@@ -1354,6 +1397,10 @@ msgstr ""
 msgid "Paid?"
 msgstr ""
 
+#: ../modules/ticketadmin/ticketadmin.php:217
+msgid "No seat chosen"
+msgstr ""
+
 #: ../modules/ticketorder/ticketorder.php:45
 msgid "Place on map"
 msgstr ""
@@ -1453,7 +1500,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: ../modules/useradmin/useradmin.php:115
+#: ../modules/useradmin/useradmin.php:126
 msgid "No user with ID"
 msgstr ""
 
@@ -1578,7 +1625,7 @@ msgid "Yes"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:337
-#: ../inc/shared_functions.php:316
+#: ../inc/shared_functions.php:323
 msgid "No"
 msgstr ""
 
@@ -1623,78 +1670,78 @@ msgstr ""
 msgid "No, I still wish to apply for crew"
 msgstr ""
 
-#: ../inc/shared_config.php:84
+#: ../inc/shared_config.php:85
 msgid "January"
 msgstr ""
 
-#: ../inc/shared_config.php:85
+#: ../inc/shared_config.php:86
 msgid "February"
 msgstr ""
 
-#: ../inc/shared_config.php:86
+#: ../inc/shared_config.php:87
 msgid "March"
 msgstr ""
 
-#: ../inc/shared_config.php:87
+#: ../inc/shared_config.php:88
 msgid "April"
 msgstr ""
 
-#: ../inc/shared_config.php:88
+#: ../inc/shared_config.php:89
 msgid "May"
 msgstr ""
 
-#: ../inc/shared_config.php:89
+#: ../inc/shared_config.php:90
 msgid "June"
 msgstr ""
 
-#: ../inc/shared_config.php:90
+#: ../inc/shared_config.php:91
 msgid "July"
 msgstr ""
 
-#: ../inc/shared_config.php:91
+#: ../inc/shared_config.php:92
 msgid "August"
 msgstr ""
 
-#: ../inc/shared_config.php:92
+#: ../inc/shared_config.php:93
 msgid "September"
 msgstr ""
 
-#: ../inc/shared_config.php:93
+#: ../inc/shared_config.php:94
 msgid "October"
 msgstr ""
 
-#: ../inc/shared_config.php:94
+#: ../inc/shared_config.php:95
 msgid "November"
 msgstr ""
 
-#: ../inc/shared_config.php:95
+#: ../inc/shared_config.php:96
 msgid "December"
 msgstr ""
 
-#: ../inc/shared_config.php:146
+#: ../inc/shared_config.php:147
 msgid "Streetadress"
 msgstr ""
 
-#: ../inc/shared_config.php:172
+#: ../inc/shared_config.php:173
 msgid "List all attendees on current event"
 msgstr ""
 
-#: ../inc/shared_config.php:189
+#: ../inc/shared_config.php:190
 msgid "Allow other users to see my mailadress"
 msgstr ""
 
-#: ../inc/shared_config.php:194
+#: ../inc/shared_config.php:195
 msgid "All users"
 msgstr ""
 
-#: ../inc/shared_functions.php:321
+#: ../inc/shared_functions.php:328
 msgid "Read"
 msgstr ""
 
-#: ../inc/shared_functions.php:326
+#: ../inc/shared_functions.php:333
 msgid "Write"
 msgstr ""
 
-#: ../inc/shared_functions.php:331
+#: ../inc/shared_functions.php:338
 msgid "Admin"
 msgstr ""
