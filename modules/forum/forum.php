@@ -106,7 +106,7 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 		$content .= stripslashes (nl2br ($rFindPosts->postContent));
 		$content .= "</td>";
 		$content .= "<td clasS='info'>";
-		$content .= "<b>"._("Nick:")."</b> $nick";
+		$content .= "<b>"._("Nick:")."</b> <a href='?module=profile&user=".$rFindPosts->postAuthor."'>$nick</a>";
 		$content .= "<br />";
 		$content .= "<b>"._("Name:")."</b> $name";
 		$content .= "<br />";
