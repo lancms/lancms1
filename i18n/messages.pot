@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-02-24 09:48+0100\n"
+        "POT-Creation-Date: 2011-02-25 22:28+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -134,7 +134,7 @@ msgid   "E-mail"
 msgstr  ""
 
 #: ../modules/arrival/arrival.php:96 ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:124
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:135
 msgid   "Birthday"
 msgstr  ""
 
@@ -229,12 +229,12 @@ msgstr  ""
 msgid   "Nick"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:168
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:179
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:164
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:175
 msgid   "Cellphone"
 msgstr  ""
 
@@ -331,14 +331,14 @@ msgid   "Password changed"
 msgstr  ""
 
 #: ../modules/edituserinfo/edituserinfo.php:63
-#: ../modules/edituserinfo/edituserinfo.php:114
-#: ../modules/edituserinfo/edituserinfo.php:184
-#: ../modules/edituserinfo/edituserinfo.php:217
+#: ../modules/edituserinfo/edituserinfo.php:119
+#: ../modules/edituserinfo/edituserinfo.php:189
+#: ../modules/edituserinfo/edituserinfo.php:222
 msgid   "Not access to edit userinfo"
 msgstr  ""
 
-#: ../modules/edituserinfo/edituserinfo.php:104
-#: ../modules/edituserinfo/edituserinfo.php:208
+#: ../modules/edituserinfo/edituserinfo.php:109
+#: ../modules/edituserinfo/edituserinfo.php:213
 #: ../modules/eventadmin/eventadmin.php:148
 #: ../modules/eventadmin/eventadmin.php:198
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
@@ -413,6 +413,11 @@ msgstr  ""
 msgid   "Group name already exists"
 msgstr  ""
 
+#: ../modules/eventadmin/eventadmin.php:138
+#: ../modules/globaladmin/globaladmin.php:110
+msgid   "Config successfully saved"
+msgstr  ""
+
 #: ../modules/eventadmin/eventadmin.php:178
 msgid   "Back to groups"
 msgstr  ""
@@ -485,19 +490,23 @@ msgstr  ""
 msgid   "Add thread"
 msgstr  ""
 
-#: ../modules/forum/forum.php:107
-msgid   "User:"
+#: ../modules/forum/forum.php:109
+msgid   "Nick:"
 msgstr  ""
 
 #: ../modules/forum/forum.php:111
 msgid   "Name:"
 msgstr  ""
 
-#: ../modules/forum/forum.php:117
+#: ../modules/forum/forum.php:113
+msgid   "Posted:"
+msgstr  ""
+
+#: ../modules/forum/forum.php:120
 msgid   "New reply"
 msgstr  ""
 
-#: ../modules/forum/forum.php:125
+#: ../modules/forum/forum.php:128
 msgid   "Add reply"
 msgstr  ""
 
@@ -560,10 +569,6 @@ msgstr  ""
 
 #: ../modules/globaladmin/globaladmin.php:54
 msgid   "Add event"
-msgstr  ""
-
-#: ../modules/globaladmin/globaladmin.php:110
-msgid   "Config successfully saved"
 msgstr  ""
 
 #: ../modules/globaladmin/globaladmin.php:174
@@ -1135,7 +1140,7 @@ msgid   "User registered"
 msgstr  ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:121
 msgid   "Username"
 msgstr  ""
 
@@ -1151,11 +1156,11 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:114
+#: ../modules/register/register.php:213 ../inc/shared_config.php:125
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:119
+#: ../modules/register/register.php:216 ../inc/shared_config.php:130
 msgid   "Last name"
 msgstr  ""
 
@@ -1165,11 +1170,11 @@ msgid   "Address"
 msgstr  ""
 
 #: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:152
+#: ../inc/shared_config.php:163
 msgid   "Postnumber"
 msgstr  ""
 
-#: ../modules/register/register.php:224 ../inc/shared_config.php:157
+#: ../modules/register/register.php:224 ../inc/shared_config.php:168
 msgid   "Gender"
 msgstr  ""
 
@@ -1394,8 +1399,24 @@ msgstr  ""
 msgid   "Paid?"
 msgstr  ""
 
-#: ../modules/ticketadmin/ticketadmin.php:217
+#: ../modules/ticketadmin/ticketadmin.php:208
+msgid   "used"
+msgstr  ""
+
+#: ../modules/ticketadmin/ticketadmin.php:209
+msgid   "not used"
+msgstr  ""
+
+#: ../modules/ticketadmin/ticketadmin.php:219
 msgid   "No seat chosen"
+msgstr  ""
+
+#: ../modules/ticketadmin/ticketadmin.php:223
+msgid   "yes"
+msgstr  ""
+
+#: ../modules/ticketadmin/ticketadmin.php:224
+msgid   "no"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.php:45
@@ -1666,67 +1687,111 @@ msgstr  ""
 msgid   "No, I still wish to apply for crew"
 msgstr  ""
 
-#: ../inc/shared_config.php:85
-msgid   "January"
+#: ../inc/shared_config.php:21
+msgid   "Activate ticketorder"
 msgstr  ""
 
-#: ../inc/shared_config.php:86
-msgid   "February"
+#: ../inc/shared_config.php:23
+msgid   "Activate FAQ"
 msgstr  ""
 
-#: ../inc/shared_config.php:87
-msgid   "March"
+#: ../inc/shared_config.php:25
+msgid   "Activate seating"
 msgstr  ""
 
-#: ../inc/shared_config.php:88
-msgid   "April"
+#: ../inc/shared_config.php:27
+msgid   "Show link to seating"
 msgstr  ""
 
-#: ../inc/shared_config.php:89
-msgid   "May"
+#: ../inc/shared_config.php:29
+msgid   "Activate wannabesystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:90
-msgid   "June"
+#: ../inc/shared_config.php:31
+msgid   "Activate composystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:91
-msgid   "July"
+#: ../inc/shared_config.php:33
+msgid   "Activate reseller"
 msgstr  ""
 
-#: ../inc/shared_config.php:92
-msgid   "August"
+#: ../inc/shared_config.php:35
+msgid   "Activate crewlist"
 msgstr  ""
 
-#: ../inc/shared_config.php:93
-msgid   "September"
+#: ../inc/shared_config.php:37
+msgid   "Activate news"
 msgstr  ""
 
-#: ../inc/shared_config.php:94
-msgid   "October"
+#: ../inc/shared_config.php:39
+msgid   "Activate kiosksystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:95
-msgid   "November"
+#: ../inc/shared_config.php:41
+msgid   "Activate forum"
 msgstr  ""
 
 #: ../inc/shared_config.php:96
+msgid   "January"
+msgstr  ""
+
+#: ../inc/shared_config.php:97
+msgid   "February"
+msgstr  ""
+
+#: ../inc/shared_config.php:98
+msgid   "March"
+msgstr  ""
+
+#: ../inc/shared_config.php:99
+msgid   "April"
+msgstr  ""
+
+#: ../inc/shared_config.php:100
+msgid   "May"
+msgstr  ""
+
+#: ../inc/shared_config.php:101
+msgid   "June"
+msgstr  ""
+
+#: ../inc/shared_config.php:102
+msgid   "July"
+msgstr  ""
+
+#: ../inc/shared_config.php:103
+msgid   "August"
+msgstr  ""
+
+#: ../inc/shared_config.php:104
+msgid   "September"
+msgstr  ""
+
+#: ../inc/shared_config.php:105
+msgid   "October"
+msgstr  ""
+
+#: ../inc/shared_config.php:106
+msgid   "November"
+msgstr  ""
+
+#: ../inc/shared_config.php:107
 msgid   "December"
 msgstr  ""
 
-#: ../inc/shared_config.php:147
+#: ../inc/shared_config.php:158
 msgid   "Streetadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:173
+#: ../inc/shared_config.php:184
 msgid   "List all attendees on current event"
 msgstr  ""
 
-#: ../inc/shared_config.php:190
+#: ../inc/shared_config.php:201
 msgid   "Allow other users to see my mailadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:195
+#: ../inc/shared_config.php:206
 msgid   "All users"
 msgstr  ""
 
@@ -1740,4 +1805,8 @@ msgstr  ""
 
 #: ../inc/shared_functions.php:338
 msgid   "Admin"
+msgstr  ""
+
+#: ../inc/shared_functions.php:692
+msgid   "a.k.a."
 msgstr  ""

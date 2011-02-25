@@ -17,17 +17,28 @@ $maxTicketsPrUser = 5;
 
 ## eventconfigs
 
-$eventconfig['checkbox'][] = 'enable_ticketorder';
-$eventconfig['checkbox'][] = 'enable_FAQ';
-$eventconfig['checkbox'][] = 'seating_enabled';
-$eventconfig['checkbox'][] = 'seating_public';
-$eventconfig['checkbox'][] = 'enable_wannabe';
-$eventconfig['checkbox'][] = 'enable_composystem';
-$eventconfig['checkbox'][] = 'enable_reseller';
-$eventconfig['checkbox'][] = 'enable_crewlist';
-$eventconfig['checkbox'][] = 'enable_news';
-$eventconfig['checkbox'][] = 'enable_kiosk';
-$eventconfig['checkbox'][] = 'enable_forum';
+$eventconfig['checkbox'][0]['config'] = 'enable_ticketorder';
+$eventconfig['checkbox'][0]['name'] = _("Activate ticketorder");
+$eventconfig['checkbox'][1]['config'] = 'enable_FAQ';
+$eventconfig['checkbox'][1]['name'] = _("Activate FAQ");
+$eventconfig['checkbox'][2]['config'] = 'seating_enabled';
+$eventconfig['checkbox'][2]['name'] = _("Activate seating");
+$eventconfig['checkbox'][3]['config'] = 'seating_public';
+$eventconfig['checkbox'][3]['name'] = _("Show link to seating");
+$eventconfig['checkbox'][4]['config'] = 'enable_wannabe';
+$eventconfig['checkbox'][4]['name'] = _("Activate wannabesystem");
+$eventconfig['checkbox'][5]['config'] = 'enable_composystem';
+$eventconfig['checkbox'][5]['name'] = _("Activate composystem");
+$eventconfig['checkbox'][6]['config'] = 'enable_reseller';
+$eventconfig['checkbox'][6]['name'] = _("Activate reseller");
+$eventconfig['checkbox'][7]['config'] = 'enable_crewlist';
+$eventconfig['checkbox'][7]['name'] = _("Activate crewlist");
+$eventconfig['checkbox'][8]['config'] = 'enable_news';
+$eventconfig['checkbox'][8]['name'] = _("Activate news");
+$eventconfig['checkbox'][9]['config'] = 'enable_kiosk';
+$eventconfig['checkbox'][9]['name'] = _("Activate kiosksystem");
+$eventconfig['checkbox'][10]['config'] = 'enable_forum';
+$eventconfig['checkbox'][10]['name'] = _("Activate forum");
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';
