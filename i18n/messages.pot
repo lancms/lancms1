@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-02-23 21:25+0100\n"
+        "POT-Creation-Date: 2011-02-24 09:48+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -385,7 +385,7 @@ msgstr  ""
 msgid   "Newsadmin"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:23
+#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:31
 msgid   "Send SMS"
 msgstr  ""
 
@@ -1270,6 +1270,10 @@ msgstr  ""
 
 #: ../modules/sessions/sessions.php:17
 msgid   "Last visit"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:35
+msgid   "Number of characters entered:"
 msgstr  ""
 
 #: ../modules/static/static.php:60
