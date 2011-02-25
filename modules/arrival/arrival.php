@@ -7,51 +7,133 @@ $acl_seating = acl_access("seating", "", $sessioninfo->eventID);
 
 if($acl_ticket == 'No') die("No access to ticketadmin");
 
-if(!isset($action) || $action == "searchUser") {
-
+if(!isset($action) || $action == "searchUser")
+{
 	$search = $_POST['searchUser'];
-	$content .= "<form method=POST action=?module=arrival&action=searchUser>\n";
-	$content .= "<input type=text name=searchUser value='$search'>\n ";
-	$content .= "<input type=submit value='".lang("Search user")."'>";
-	$content .= "</form>";
+	$scope = $_POST['scope'];
 
-		$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE
-			(nick LIKE '%".db_escape($search)."%'
-			OR firstName LIKE '%".db_escape($search)."%'
-			OR lastName LIKE '%".db_escape($search)."%'
-			OR CONCAT(firstName, ' ', lastName) LIKE '%".db_escape($search)."%'
-			OR EMail LIKE '%".db_escape($search)."%')
-			AND ID != 1");
-	$content .= "<table>\n";
-	$listrowcount = 1;
-	while($rFindUser = db_fetch($qFindUser)) {
-		$content .= "<tr class='listRow".$listrowcount."'><td>";
-		$content .= display_username($rFindUser->ID);
-		$content .= "</td><td>";
-		$qFindTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets
-			WHERE eventID = '$sessioninfo->eventID'
-			AND user = '$rFindUser->ID'");
-		while($rFindTickets = db_fetch($qFindTickets)) {
-			if($rFindTickets->paid == 'yes')
-				$style = 'green';
-			else $style = 'orange';
+	if ($scope == 'all')
+	{
+		$all_checked = 'CHECKED';
+	}
+	else  // scope == tickets
+	{
+		$tickets_checked = 'CHECKED';
+	}
 
-			$content .= "<li><font style='background-color: $style;'>";
-			$content .= "<a href=?module=arrival&action=ticketdetail&ticket=$rFindTickets->ticketID>";
-			$content .= tickettype_getname($rFindTickets->ticketType)."</a></font></li>";
-		} // End while rFindTickets
-		$content .= "<li><a href=?module=arrival&action=addTicket&user=$rFindUser->ID>".lang("Add new ticket", "arrival")."</a></li>";
-		$content .= "</td></tr>";
+	$content .= "<h3>"._ ('Arrival')."</h3>\n";
 
-		$listrowcount++;
-                if ($listrowcount == 3)
-                {
-                        $listrowcount = 1;
-                }
+	$content .= "<form method='POST' action='?module=arrival&action=searchUser'>\n";
+	$content .= "<table>\n<tr>\n<td>\n";
+	$content .= sprintf ("<input type='text' name='searchUser' value='%s' />\n", $search);
+	$content .= "</td>\n<td>\n";
+	$content .= sprintf ("<input type='submit' value='%s' />\n", _('Search'));
+	$content .= "</td>\n</tr>\n<td colspan='2'>\n";
+	$content .= sprintf ("<input type='radio' %s name='scope' value='all' /> %s\n", $all_checked, _("Search all users"));
+	$content .= "</td>\n</tr>\n<td colspan='2'>\n";
+	$content .= sprintf ("<input type='radio' %s name='scope' value='tickets' /> %s\n", $tickets_checked, _("Search users with tickets"));
+	$content .= "</td>\n</tr>\n</table>\n";
+	$content .= "</form>\n";
+
+	
+	// FIXME: this could be done globally and save some typing :-) ($usertable = $sql_prefix."users";)
+	$usertable = $sql_prefix."_users";
+	$ticketstable = $sql_prefix."_tickets";
+	$tickettypestable = $sql_prefix."_ticketTypes";
+
+	$str = db_escape ($search);
+
+	if ($search == "" or empty ($search))
+	{
+		if ($scope == 'all')
+		{
+			$usersQ = sprintf ("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 ORDER BY ID", $usertable);
+		}
+		else // scope == tickets
+		{
+			$usersQ = sprintf ("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName, u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID ORDER BY u.ID", $usertable, $ticketstable, $sessioninfo->eventID);
+		}
+	}
+	else
+	{
+		if ($scope == 'all')
+		{
+			$usersQ = sprintf ("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 AND 
+				(nick LIKE '%%%s%%' OR
+				firstName LIKE '%%%s%%' OR
+				lastName LIKE '%%%s%%' OR
+				CONCAT (firstName, ' ', lastName) LIKE '%%%s%%' OR
+				EMail LIKE '%%%s%%') ORDER BY ID
+				", $usertable, $str, $str, $str, $str, $str);
+		}
+		else // scope == tickets
+		{
+			$usersQ = sprintf ("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName, u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID AND 
+			(u.nick LIKE '%%%s%%' OR
+			u.firstName LIKE '%%%s%%' OR
+			u.lastName LIKE '%%%s%%' OR
+			CONCAT (u.firstName, ' ', u.lastName) LIKE '%%%s%%' OR
+			EMail LIKE '%%%s%%'
+			) ORDER BY u.ID
+			", $usertable, $ticketstable, $sessioninfo->eventID, $str, $str, $str, $str, $str);
+		}
+	}
+
+	$usersR = db_query ($usersQ);
+	$usersC = db_num ($usersR);
+
+	if ($usersC)
+	{
+		$content .= "<table style='border: solid 1px black; border-collapse: collapse;'>\n";
+		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th></th></tr>\n", _('Nick'), _('Name'));
+	}
+
+	while ($user = db_fetch ($usersR))
+	{
+		$ticketactions = "<table>\n";
+		$ticketactions .= sprintf ("<tr><td><a href='?module=arrival&action=addTicket&user=%s'>%s</a></td></tr>\n", $user->ID, _('Add new ticket'));
+		
+		$ticketsQ = sprintf ("SELECT type.name AS name, tickets.ticketID as ticketID, tickets.paid AS paid, tickets.status AS status FROM %s AS tickets, %s AS type WHERE tickets.user=%s", $ticketstable, $tickettypestable, $user->ID);
+		$ticketsR = db_query ($ticketsQ);
+	#	$ticketsC = db_num ($ticketsQ);
+		while ($ticket = db_fetch ($ticketsR))
+		{
+			if ($ticket->status == 'deleted')
+			{
+				$ticketcolor = 'red';
+			}
+			elseif ($ticket->paid == 'yes')
+			{
+				$ticketcolor = 'green';
+			}
+			elseif ($ticket->paid == 'no')
+			{
+				$ticketcolor = 'orange';
+			}
+			$ticketactions .= sprintf ("<tr><td style='background-color: %s'><a href='?module=arrival&action=ticketdetail&ticket=%s'>%s</a></td></tr>\n", $ticketcolor, $ticket->ticketID, $ticket->name);
+		}
 
 
-	} // End while
-	$content .= "</table>";
+		$ticketactions .= "</table>\n";
+
+		$content .= "<tr>\n";
+		$content .= sprintf ('<td style="border: solid 1px black;">%s</td>', $user->nick);
+		$content .= sprintf ('<td style="border: solid 1px black;">%s %s</td>', $user->firstName, $user->lastName);
+		$content .= sprintf ('<td style="border: solid 1px black;">%s</td>', $ticketactions);
+		$content .= "</tr>\n";
+	}
+	
+	if ($usersC)
+	{
+		$content .= "</table>\n";
+	}
+	else
+	{
+		$content .= "<br /><p>";
+		$content .= _('Found no matching users');
+		$content .= "</p><br />\n";
+	}
+
 }
 
 elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
