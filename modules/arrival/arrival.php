@@ -62,7 +62,7 @@ if(!isset($action) || $action == "searchUser")
 				(nick LIKE '%%%s%%' OR
 				firstName LIKE '%%%s%%' OR
 				lastName LIKE '%%%s%%' OR
-				CONCAT (firstName, ' ', lastName) LIKE '%%%s%%' OR
+				CONCAT(firstName, ' ', lastName) LIKE '%%%s%%' OR
 				EMail LIKE '%%%s%%') ORDER BY ID
 				", $usertable, $str, $str, $str, $str, $str);
 		}
@@ -72,7 +72,7 @@ if(!isset($action) || $action == "searchUser")
 			(u.nick LIKE '%%%s%%' OR
 			u.firstName LIKE '%%%s%%' OR
 			u.lastName LIKE '%%%s%%' OR
-			CONCAT (u.firstName, ' ', u.lastName) LIKE '%%%s%%' OR
+			CONCAT(u.firstName, ' ', u.lastName) LIKE '%%%s%%' OR
 			EMail LIKE '%%%s%%'
 			) ORDER BY u.ID
 			", $usertable, $ticketstable, $sessioninfo->eventID, $str, $str, $str, $str, $str);
