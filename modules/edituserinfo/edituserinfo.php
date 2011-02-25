@@ -69,7 +69,14 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 
 	for($i=0;$i<count($userprefs);$i++) {
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "<tr><td>";
-		$content .= lang($userprefs[$i]['displayName'], "edituserinfo_prefs");
+		if (isset($userprefs[$i]['displayName']))
+		{
+			$content .= _($userprefs[$i]['displayName']);
+		}
+		else
+		{
+			$content .= "";
+		}
 		if($userprefs[$i]['mandatory'] && !empty($userprefs[$i]['displayName'])) $content .= " <font color=red>*</font>";
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_begin'] == 1) $content .= "</td><td>";
 
@@ -89,8 +96,6 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 					$content .= "<option value='$value'";
 					if($rGetUserinfo[$name] == $value) $content .= " SELECTED";
 					$content .= ">";
-#					if(is_numeric($displayname)) $content .= $displayname;
-#					else $content .= lang($displayname, "edituserinfo_prefs");
 					$content .= $displayname;
 					$content .= "</option>\n";
 				} // End foreach
