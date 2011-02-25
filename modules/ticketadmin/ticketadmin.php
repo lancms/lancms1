@@ -201,11 +201,13 @@ elseif($action == "listTickets") {
 		$content .= "<tr><td>";
 		$content .= $rGetTickets->ticketID;
 		$content .= "</td><td>";
-		$content .= display_username($rGetTickets->owner);
+		$content .= user_profile($rGetTickets->owner);
 		$content .= "</td><td>";
-		$content .= display_username($rGetTickets->user);
+		$content .= user_profile($rGetTickets->user);
 		$content .= "</td><td>";
-		$content .= lang($rGetTickets->status, "ticketorder");
+		if($rGetTickets->status == 'used') $content .= _("used");
+		else $content .= _("not used");
+#		$content .= lang($rGetTickets->status, "ticketorder");
 		$content .= "</td><td>";
 		$content .= "<a href='?module=seating&ticketID=$rGetTickets->ticketID'>";
 		
@@ -218,7 +220,9 @@ elseif($action == "listTickets") {
 
 		$content .= "</a>";
 		$content .= "</td><td>";
-		$content .= lang($rGetTickets->paid, "ticketadmin");
+		if($rGetTickets->paid == 'yes') $content .= _("yes");
+		else $content .= _("no");
+#		$content .= lang($rGetTickets->paid, "ticketadmin");
 		$content .= "</td></tr>\n\n";
 	} // End while rGetTickets
 	$content .= "</table>";

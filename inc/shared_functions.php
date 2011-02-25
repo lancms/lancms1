@@ -687,9 +687,11 @@ function user_profile ($userid) {
 	$rFindUser = db_fetch($qFindUser);
 
 	$return = "<a href='?module=profile&user=$rFindUser->ID'>";
-#	$rFindUser->firstName $rFindUser->lastName ";
-#	$return .= lang("a.k.a.", "functions-user_profile");
-#	$return .= " ";
+	if(!empty($rFindUser->firstName) && !empty($rFindUser->lastName)) {
+		$return .= $rFindUser->firstName." ".$rFindUser->lastName." ";
+		$return .= lang("a.k.a.", "functions-user_profile");
+		$return .= " ";
+	}
 	$return .= $rFindUser->nick;
 	$return .= "</a>";
 	return $return;

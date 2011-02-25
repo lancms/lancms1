@@ -135,14 +135,14 @@ elseif($action == "addGroup" && !empty($_POST['groupname']))
 
 elseif($action == "config") {
 	if($acl_eventadmin != 'Admin') die("No access to admin event");
-	if($_GET['saved'] == "OK") $content .= "Config successfully saved";
+	if($_GET['saved'] == "OK") $content .= _("Config successfully saved");
 
 	$content .= "<form method=\"post\" action='?module=eventadmin&amp;action=doConfig'>\n";
 	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
-		$cfg_current = config($eventconfig['checkbox'][$i], $eventID);
-		$content .= "<p class=\"nopad\"><input type=\"checkbox\" name='".$eventconfig['checkbox'][$i]."'";
+		$cfg_current = config($eventconfig['checkbox'][$i]['config'], $eventID);
+		$content .= "<p class=\"nopad\"><input type=\"checkbox\" name='".$eventconfig['checkbox'][$i]['config']."'";
 		if($cfg_current) $content .= " CHECKED";
-		$content .= " /> ".lang($eventconfig['checkbox'][$i], "eventconfigoption")."</p>\n";
+		$content .= " /> ".$eventconfig['checkbox'][$i]['name']."</p>\n";
 	} // End for
 
 	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Save", "eventadmin_config")."' /></p></form>";
@@ -154,7 +154,7 @@ elseif($action == "config") {
 elseif($action == "doConfig") {
 	if($acl_eventadmin != 'Admin') die("No access to admin event");
 	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
-		$evtcfg = $eventconfig['checkbox'][$i];
+		$evtcfg = $eventconfig['checkbox'][$i]['config'];
 
 		$log_old[$evtcfg] = config($evtcfg, $eventID);
 
@@ -162,7 +162,7 @@ elseif($action == "doConfig") {
 		if($post == "on") $post = 1;
 		else $post = "disable";
 		#echo $evtcfg.": ".$post;
-		config($eventconfig['checkbox'][$i], $eventID, $post);
+		config($eventconfig['checkbox'][$i]['config'], $eventID, $post);
 
 		$log_new[$evtcfg] = $post;
 	} // End for
