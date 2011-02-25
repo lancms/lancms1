@@ -1,1 +1,3 @@
 OverrideConfig.php
+tmp/*.*
+tmp/*/*.*
