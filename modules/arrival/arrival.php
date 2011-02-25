@@ -93,7 +93,7 @@ if(!isset($action) || $action == "searchUser")
 		$ticketactions = "<table>\n";
 		$ticketactions .= sprintf ("<tr><td><a href='?module=arrival&action=addTicket&user=%s'>%s</a></td></tr>\n", $user->ID, _('Add new ticket'));
 		
-		$ticketsQ = sprintf ("SELECT type.name AS name, tickets.ticketID as ticketID, tickets.paid AS paid, tickets.status AS status FROM %s AS tickets, %s AS type WHERE tickets.user=%s AND tickets.eventID=%s", $ticketstable, $tickettypestable, $user->ID, $sessioninfo->eventID);
+		$ticketsQ = sprintf ("SELECT type.name AS name, tickets.ticketID as ticketID, tickets.paid AS paid, tickets.status AS status FROM %s AS tickets, %s AS type WHERE tickets.user=%s AND tickets.eventID=%s AND tickets.ticketType=type.ticketTypeID", $ticketstable, $tickettypestable, $user->ID, $sessioninfo->eventID);
 		$ticketsR = db_query ($ticketsQ);
 	#	$ticketsC = db_num ($ticketsQ);
 		while ($ticket = db_fetch ($ticketsR))
