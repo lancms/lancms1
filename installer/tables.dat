@@ -484,3 +484,12 @@ TABLE [prefix]_infoscreens
 	eventID,		int(11),		,	,	1,
 	name,			varchar(25),		,	,	,
 }
+
+TABLE [prefix]_sleepers
+{
+#	name, type, key, null, default, extra
+	ID, int(11), PRI, , , auto_increment
+	userID, int(11), , , ,
+	sleepTimestamp, timestamp, , , , DEFAULT CURRENT_TIMESTAMP
+	eventID, int(11), , , ,
+}

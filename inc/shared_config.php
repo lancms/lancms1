@@ -39,6 +39,8 @@ $eventconfig['checkbox'][9]['config'] = 'enable_kiosk';
 $eventconfig['checkbox'][9]['name'] = _("Activate kiosksystem");
 $eventconfig['checkbox'][10]['config'] = 'enable_forum';
 $eventconfig['checkbox'][10]['name'] = _("Activate forum");
+$eventconfig['checkbox'][11]['config'] = 'enable_sleepers';
+$eventconfig['checkbox'][11]['name'] = _("Activate sleepsystem");
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';
@@ -69,6 +71,7 @@ $eventaccess[] = 'kiosk_stats';
 $eventaccess[] = 'kiosk_sales';
 $eventaccess[] = 'news';
 $eventaccess[] = 'infoscreen';
+$eventaccess[] = 'sleepers';
 
 
 ## GlobalACLs
