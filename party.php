@@ -181,6 +181,9 @@ function previewslide ($slide)
 
 	print "</head>\n<body>\n";
 
+	print "<input type='button' onclick='history.back()' value='Back'/>\n";
+	print "<hr />\n";
+
 	print $slide->content;
 
 	print "</body>\n<html>\n";
