@@ -61,7 +61,7 @@ if (empty($action))
 		while ($slide = db_fetch ($slideR))
 		{
 			$slide_edit = sprintf ("<form method='POST' action='?module=infoscreens&action=editSlide&slideID=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Edit'));
-			$slide_preview = sprintf ("<form method='POST' action='party.php?slide%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Preview'));
+			$slide_preview = sprintf ("<form method='POST' action='party.php?slide=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Preview'));
 
 			$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $slide->name, $slide_edit, $slide_preview);
 			unset ($slide_preview);
