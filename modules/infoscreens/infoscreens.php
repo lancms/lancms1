@@ -5,10 +5,14 @@ if($acl == 'No' || $acl == 'Read') die("No access to infoscreens");
 
 $action = $_GET['action'];
 
+$slidetable = $sql_prefix."_infoscreensSlides";
+$queuetable = $sql_prefix."_infoscreensQueues";
+$screentable = $sql_prefix."_infoscreens";
+
 if (empty($action))
 {
 	#### START - screens ####
-	$content .= "<div style='border: solid 1px black; border-collapse: collapse;'>\n";
+	$content .= "<div style='border: solid 1px black; border-collapse: collapse; padding: 10px;'>\n";
 	$content .= "<h3>"._('Screens')."</h3>";
 
 	$qFindScreens = db_query("SELECT * FROM ".$sql_prefix."_infoscreens WHERE eventID = '$sessioninfo->eventID'");
@@ -33,33 +37,107 @@ if (empty($action))
 	#### END - screens ####
 
 	#### START - slides ####
-	$content .= "<br /><div style='border: solid 1px black; border-collapse: collapse;'>\n";
+	$content .= "<br /><div style='border: solid 1px black; border-collapse: collapse; padding: 10px;'>\n";
 	$content .= "<h3>"._('Slides')."</h3>\n";
 
 	if ($acl == 'Write' or $acl == 'Admin')
 	{
 		$content .= "<a href='?module=infoscreens&action=newSlide'>"._('Create new slide')."</a>";
 	}
+
+	$slideQ = sprintf ('SELECT * FROM %s WHERE eventID=%s', $slidetable, $sessioninfo->eventID);
+	$slideR = db_query ($slideQ);
+	$slideC = db_num ($slideR);
+	if ($slideC)
+	{
+		$border = 'style="border: solid 1px black; border-collapse: collapse;"';
+		$content .= "<table $border>\n";
+
+		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th></tr>\n", _('Name'), _('Edit'), _('Preview'));
+
+		while ($slide = db_fetch ($slideR))
+		{
+			$slide_edit = sprintf ("<form method='POST' action='?module=infoscreens&action=editSlide&slideID=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Edit'));
+			$slide_preview = "";
+
+			$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $slide->name, $slide_edit, $slide_preview);
+			unset ($slide_preview);
+			unset ($slide_edit);
+		}
+
+		$content .= "</table>\n";
+	}
+	else
+	{
+		$content .= "<p><i>"._('There are no slides for this event')."</i></p>";
+	}
 	
-	# TODO: list slides here.
 	$content .= "</div>";
 	#### END - slides
 	
 	#### START - queues ####
-	$content .= "<br /><div style='border: solid 1px black; border-collapse: collapse;'>\n";
+	$content .= "<br /><div style='border: solid 1px black; border-collapse: collapse; padding: 10px;'>\n";
 	$content .= "<h3>"._('Queues')."</h3>\n";
 
 	$content .= "</div>";
 	#### END - queues ####
 }
 
-elseif ($action == 'newSlide' and ($acl == 'Write' or $acl == 'Admin'))
+elseif (($action == 'newSlide' or $action=='editSlide') and ($acl == 'Write' or $acl == 'Admin'))
 {
-	$content .= "<h3>"._('Create a new slide')."</h3>\n";
+	if ($action == 'newSlide')
+	{
+		$ae = false;
+		$an = true;
+	}
+	else
+	{
+		$ae = true;
+		$an = false;
+	}
+
+	if ($ae)
+	{
+		$slideID = $_REQUEST['slideID'];
+		if (!is_numeric($slideID) or empty ($slideID))
+		{
+			header ('Location: ?module=infoscreens');
+			die();
+		}
+	}
+
+	if ($an)
+	{
+		$content .= "<h3>"._('Create a new slide')."</h3>\n";
+	}
+	elseif ($ae)
+	{
+		$content .= "<h3>"._('Edit slide')."</h3>\n";
+	}
+
+	if ($ae)
+	{
+		$slideQ = sprintf ('SELECT * FROM %s WHERE ID=%s', $slidetable, $slideID);
+		$slideR = db_query ($slideQ);
+		$slideC = db_num ($slideR);
+		if ($slideC)
+		{
+			$slide = db_fetch ($slideR);
+		}
+		else
+		{
+			header ('Location: ?module=infoscreens');
+			die();
+		}
+	}
 
 	$content .= "<form method='POST' action='?module=infoscreens&action=saveSlide'>\n";
-	$content .= _('Name:')." <input type=text name=header value='$rStaticPage->header'>\n";
-	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name='content'>".stripslashes($rStaticPage->page)."</textarea>\n";
+	if ($ae)
+	{
+		$content .= "<input type='hidden' name='slideID' value='".$slideID."' />\n";
+	}
+	$content .= _('Name:')." <input type='text' name='name' value='".$slide->name."' />\n";
+	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name='content'>".$slide->content."</textarea>\n";
 	$content .= "<br /><input type=submit value='"._('Save')."'>\n";
 	$content .= "</form>\n";
 
@@ -67,25 +145,34 @@ elseif ($action == 'newSlide' and ($acl == 'Write' or $acl == 'Admin'))
 
 elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 {
-	$slidetable = $sql_prefix."infoscreensSlides";
-	$slideID = $_POST['slideID'];
-/*	
+	$slideID = $_REQUEST['slideID'];
+	$content = $_POST['content'];
+	$name = $_POST['name'];
+	
 	if (empty ($content) or empty ($name))
 	{
-		$
+		$content .= "<p>"._('You forgot either name or some content.. Go back and try again.')."</p>\n";
 	}
-	elseif (empty($slideID)
+	elseif (empty($slideID))
 	{
 		// this is new slide...
-		$q = sprintf ('INSERT INTO %s (name, content) VALUES (%s, %s)', $slidetable, db_escape($));
-
+		$q = sprintf ('INSERT INTO %s (name, content, eventID) VALUES ("%s", "%s", %s)', $slidetable, db_escape($name), db_escape($content), $sessioninfo->eventID);
+		db_query ($q);
 		unset ($q);
+		# FIXME: logging of slide-actions
+
+		header ('Location: ?module=infoscreens');
+		die();
 	}
 	else
 	{
-		// existing slide, update.
+		$q = sprintf ("UPDATE %s SET name='%s', content='%s' WHERE ID=%s", $slidetable, db_escape($name), db_escape($content), $slideID);
+		db_query ($q);
+		unset ($q);
+		header ('Location: ?module=infoscreens');
+		die();
 	}
-*/
+
 } // end action == saveSlide
 
 elseif ($action == "addScreen" && $acl == 'Admin')
