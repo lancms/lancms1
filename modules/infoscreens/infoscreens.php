@@ -11,6 +11,9 @@ $screentable = $sql_prefix."_infoscreens";
 
 if (empty($action))
 {
+	$content .= "<h2>"._("Infoscreens")."</h2>\n";
+	$content .= "<p>"._('Remember that all slides must be considered public!')."</p>\n";
+
 	#### START - screens ####
 	$content .= "<div style='border: solid 1px black; border-collapse: collapse; padding: 10px;'>\n";
 	$content .= "<h3>"._('Screens')."</h3>";
