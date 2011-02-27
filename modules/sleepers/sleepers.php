@@ -1,5 +1,9 @@
 <?php
 
+$usertable = $sql_prefix."_users";
+$ticketstable = $sql_prefix."_tickets";
+$sleeperstable = $sql_prefix."_sleepers";
+
 if (!config ('enable_sleepers', $sessioninfo->eventID))
 {
 	die (_('Module not activated'));
@@ -31,6 +35,14 @@ if ($action == 'addsleeper')
 		header ('Location: ?module=sleepers');
 		die ();
 	}
+
+	# FIXME: check that the user isn't sleeping already.
+
+	$q = sprintf ('INSERT INTO %s (eventID, userID) VALUES (%s, %s)', $sleeperstable, $sessioninfo->eventID, db_escape($userid));
+	db_query ($q);
+
+	header ('Location: ?module=sleepers');
+	die ();
 }
 elseif ($action == 'removesleeper')
 {
@@ -47,12 +59,14 @@ elseif ($action == 'removesleeper')
 		header ('Location: ?module=sleepers');
 		die ();
 	}
+	$q = sprintf ('DELETE FROM %s WHERE eventID=%s AND userID=%s', $sleeperstable, $sessioninfo->eventID, db_escape($userid));
+	db_query ($q);
+
+	header ('Location: ?module=sleepers');
+	die ();
 }
 elseif ($action == 'searchsleeper')
 {
-	$usertable = $sql_prefix."_users";
-	$ticketstable = $sql_prefix."_tickets";
-	$sleeperstable = $sql_prefix."_sleepers";
 
 	$str = $_POST['searchstring'];
 	$scope = $_POST['scope'];
@@ -65,9 +79,13 @@ elseif ($action == 'searchsleeper')
 	}
 	else
 	{
-		$str = db_escape ($str);
-		if ($scope == 'tickets')
+		if (is_numeric ($str))
 		{
+			$usersQ = sprintf ('SELECT nick, firstName, lastName, ID FROM %s WHERE ID=%s', $usertable, $str);
+		}
+		elseif ($scope == 'tickets')
+		{
+			$str = db_escape ($str);
 			$content .= "<p>"._("Searching only users with tickets for this event")."</p>";
 			
 			$usersQ = sprintf ("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName, u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID AND 
@@ -81,6 +99,7 @@ elseif ($action == 'searchsleeper')
 		}
 		else
 		{
+			$str = db_escape ($str);
 			$content .= "<p>"._("Searching all users")."</p>";
 			
 			$usersQ = sprintf ("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 AND 
@@ -193,20 +212,25 @@ else // empty($action) or $action==*
 	$content .= _("Search users with tickets for this event only:")." <input type='checkbox' CHECKED name='scope' value='tickets' />\n";
 	$content .= "</form>\n";
 
-	$sleeperQ = sprintf ('SELECT s.sleepTimestamp, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
+	$sleeperQ = sprintf ('SELECT s.sleepTimestamp, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s AND s.userID=u.ID ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
 	$sleeperR = db_query ($sleeperQ);
 	$sleeperC = db_num ($sleeperR);
 
 	if ($sleeperC)
 	{
+		$border = 'style="border: solid 1px black; border-collapse: collapse;"';
 		$content .= "<br /><p>"._('Number of sleeping users:')." ".$sleeperC."</p>\n";
 
-		$content .= "<table>\n";
+		$content .= "<table $border>\n";
 		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th></tr>\n", _("Nick"), _("Name"), _("Went to bed"));
 
 		while ($sleeper = db_fetch ($sleeperR))
 		{
-			$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $sleeper->nick, $sleeper->name, $sleeper->sleepTimestamp);
+		$content .= "<tr>\n";
+		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->nick);
+		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->name);
+		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
+		$content .= "</tr>\n";
 		}
 
 		$content .= "</table>\n";
