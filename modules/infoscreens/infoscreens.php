@@ -189,8 +189,8 @@ elseif (($action == 'newSlide' or $action=='editSlide') and ($acl == 'Write' or 
 	{
 		$content .= "<input type='hidden' name='slideID' value='".$slideID."' />\n";
 	}
-	$content .= _('Name:')." <input type='text' name='name' value='".$slide->name."' />\n";
-	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name='content'>".$slide->content."</textarea>\n";
+	$content .= _('Name:')." <input type='text' name='name' value='".stripslashes($slide->name)."' />\n";
+	$content .= "<br /><textarea class='mceEditor' rows=25 cols=60 name='content'>".stripslashes($slide->content)."</textarea>\n";
 	$content .= "<br /><input type=submit value='"._('Save')."'>\n";
 	$content .= "</form>\n";
 

@@ -156,7 +156,7 @@ function showslide($showslide, $wait, $nextinqueue, $s)
 
 	print "</head>\n<body>\n";
 
-	print $slide->content;
+	print stripslashes($slide->content);
 
 	print "</body>\n<html>\n";
 
@@ -184,7 +184,7 @@ function previewslide ($slide)
 	print "<input type='button' onclick='history.back()' value='Back'/>\n";
 	print "<hr />\n";
 
-	print $slide->content;
+	print stripslashes($slide->content);
 
 	print "</body>\n<html>\n";
 }
