@@ -23,11 +23,13 @@ if ($action == 'addsleeper')
 	if (empty ($userid) or !is_numeric ($userid))
 	{
 		header ('Location: ?module=sleepers');
+		die ();
 	}
 
 	if (!user_exists ($userid))
 	{
 		header ('Location: ?module=sleepers');
+		die ();
 	}
 }
 elseif ($action == 'removesleeper')
@@ -37,11 +39,13 @@ elseif ($action == 'removesleeper')
 	if (empty ($userid) or !is_numeric ($userid))
 	{
 		header ('Location: ?module=sleepers');
+		die ();
 	}
 
 	if (!user_exists ($userid))
 	{
 		header ('Location: ?module=sleepers');
+		die ();
 	}
 }
 elseif ($action == 'searchsleeper')
