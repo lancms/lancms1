@@ -15,9 +15,6 @@ if ($acl_access != 'Admin' and $acl_access != 'Write')
 	die (_('No access'));
 }
 
-## FIXME: logging of sleepers-actions
-
-
 $content .= "<h3>"._('Sleepers')."</h3>\n";
 
 if ($action == 'addsleeper')
