@@ -493,3 +493,21 @@ TABLE [prefix]_sleepers
 	sleepTimestamp, timestamp, , , , DEFAULT CURRENT_TIMESTAMP
 	eventID, int(11), , , ,
 }
+
+TABLE [prefix]_infoscreensSlides
+{
+	ID, int(11), PRI, , , auto_increment
+	eventID, int(11), , , 1,
+	name, varchar(25), , , ,
+	content, text, , , , 
+}
+
+TABLE [prefix]_infoscreensQueues
+{
+	ID, int(11), PRI, , , auto_increment
+	eventID, int(11), , , 1, 
+	slideID, int(11), , , ,
+	screenID, int(11), , , ,
+	wait, int(11), , , 60,
+}
+
