@@ -11,6 +11,10 @@ $eid = $sessioninfo->eventID;
 $s = $_GET['s'];
 $q = $_GET['q'];
 
+$slide = $_GET['slide'];
+
+if (empty ($slide) or !is_numeric($slide))
+{
 
 if (empty ($s) or !is_numeric($s))
 {
@@ -122,7 +126,11 @@ else
 {
 	die ('wtf..');
 }
-
+}
+else // if $slide is something - preview
+{
+	previewslide ($slide);
+}
 
 function showslide($showslide, $wait, $nextinqueue, $s)
 {
@@ -152,6 +160,30 @@ function showslide($showslide, $wait, $nextinqueue, $s)
 
 	print "</body>\n<html>\n";
 
+}
+
+function previewslide ($slide)
+{
+	global $slidetable;
+	$slideQ = sprintf ('SELECT * FROM %s WHERE ID=%s', $slidetable, db_escape($slide));
+	$slideR = db_query ($slideQ);
+	$slideC = db_num ($slideR);
+	
+	if (!$slideC)
+	{
+		die ("wtf.. slide doesn't exist!");
+	}
+	$slide = db_fetch ($slideR);
+	
+	print "<html>\n<head>\n";
+
+	print "<link rel='stylesheet' href='templates/shared/party.css' type='text/css' />";
+
+	print "</head>\n<body>\n";
+
+	print $slide->content;
+
+	print "</body>\n<html>\n";
 }
 
 
