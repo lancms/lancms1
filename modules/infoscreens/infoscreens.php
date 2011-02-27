@@ -99,11 +99,32 @@ if (empty($action))
 				while ($queue = db_fetch ($queueR))
 				{
 					$rmbut = sprintf ("<form method='POST' action='?module=infoscreens&action=queueRemove&queueID=%s'><input type='submit' value='%s' /></form>", $queue->ID, _('Remove'));
-					$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $queue->slide, $queue->wait, $rmbut);
+					$content .= sprintf ("<tr><td $border>%s</td><td $border>%s</td><td $border>%s</td></tr>\n", $queue->slide, $queue->wait, $rmbut);
 					unset ($rmbut);
 				}
-
 				$content .= "</table>\n";
+
+			}
+			
+			
+			$slideQ = sprintf ('SELECT * FROM %s WHERE eventID=%s', $slidetable, $sessioninfo->eventID);
+			$slideR = db_query ($slideQ);
+			$slideC = db_num ($slideR);
+
+			if ($slideC)
+			{
+				$content .= "<form method='POST' action='?module=infoscreens&action=queueAdd'>\n";
+				$content .= "<input type='hidden' name='screenID' value='".$screen->ID."' />\n";
+
+				$content .= "<select name='slideID'>\n";
+				while ($slide = db_fetch($slideR))
+				{
+					$content .= sprintf ("<option value='%s'>%s</option>\n", $slide->ID, $slide->name);
+				}
+				$content .= "</select>\n";
+				$content .= "<input type='text' name='wait' value='60' style='width: 20px;' />\n";
+				$content .= "<input type='submit' value='"._('Add')."' />\n";
+				$content .= "</form>\n";
 			}
 		}
 	}
@@ -203,6 +224,32 @@ elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 	}
 
 } // end action == saveSlide
+
+elseif ($action == 'queueAdd' and ($acl == 'Admin' or $acl == 'Write'))
+{
+	$slideID = $_REQUEST['slideID'];
+	$screenID = $_REQUEST['screenID'];
+	$wait = $_REQUEST['wait'];
+
+	if (!is_numeric($wait) or empty ($wait))
+	{
+		$wait = 60;
+	}
+	if (empty ($slideID) or !is_numeric ($slideID) or empty ($screenID) or !is_numeric ($screenID))
+	{
+		$content .= "<p>"._('You did something wrong. Go back and try again.')."</p>";
+	}
+	else
+	{
+		$q = sprintf ('INSERT INTO %s (slideID, eventID,  screenID, wait) VALUES (%s, %s, %s, %s)', $queuetable, db_escape($slideID), $sessioninfo->eventID, db_escape ($screenID), db_escape($wait));
+		db_query ($q);
+
+		header ('Location: ?module=infoscreens');
+		die();
+	}
+
+
+} // end action == 'queueAdd'
 
 elseif ($action == "addScreen" && $acl == 'Admin')
 {
