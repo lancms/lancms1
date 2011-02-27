@@ -88,7 +88,7 @@ if (empty($action))
 		{
 			$content .= "<h4><i>"._('Screen:')."</i> ".$screen->name."</h4>\n";
 
-			$queueQ = sprintf ('SELECT q.ID, s.name as slide, q.wait FROM %s AS q, %s AS s WHERE q.eventID=%s AND q.slideID=s.ID', $queuetable, $slidetable, $sessioninfo->eventID);
+			$queueQ = sprintf ('SELECT q.ID, s.name as slide, q.wait FROM %s AS q, %s AS s WHERE q.eventID=%s AND q.slideID=s.ID AND q.screenID=%s', $queuetable, $slidetable, $sessioninfo->eventID, $screen->ID);
 			$queueR = db_query ($queueQ);
 			$queueC = db_num ($queueR);
 			if ($queueC)
@@ -247,9 +247,25 @@ elseif ($action == 'queueAdd' and ($acl == 'Admin' or $acl == 'Write'))
 		header ('Location: ?module=infoscreens');
 		die();
 	}
-
-
 } // end action == 'queueAdd'
+
+elseif ($action == 'queueRemove' and ($acl == 'Admin' or $acl == 'Write'))
+{
+	$queueID = $_REQUEST['queueID'];
+	if (empty ($queueID) or !is_numeric($queueID))
+	{
+		$content .= "<p>"._('You did something wrong. Go back and try again.')."</p>";
+	}
+	else
+	{
+		# FIXME: infoscreensQueues... should do some testing on the separation of different events and their acls... not sure this is 100% safe...
+		$q = sprintf ('DELETE FROM %s WHERE ID=%s AND eventID=%s', $queuetable, db_escape($queueID), $sessioninfo->eventID);
+		db_query ($q);
+		header ('Location: ?module=infoscreens');
+		die ();
+
+	}
+} // end action == 'queueRemove'
 
 elseif ($action == "addScreen" && $acl == 'Admin')
 {
