@@ -40,6 +40,7 @@ if ($action == 'addsleeper')
 
 	$q = sprintf ('INSERT INTO %s (eventID, userID) VALUES (%s, %s)', $sleeperstable, $sessioninfo->eventID, db_escape($userid));
 	db_query ($q);
+	log_add ("sleepers", "addsleeper", $userid);
 
 	header ('Location: ?module=sleepers');
 	die ();
@@ -61,6 +62,7 @@ elseif ($action == 'removesleeper')
 	}
 	$q = sprintf ('DELETE FROM %s WHERE eventID=%s AND userID=%s', $sleeperstable, $sessioninfo->eventID, db_escape($userid));
 	db_query ($q);
+	log_add ("sleepers", "removesleeper", $userid);
 
 	header ('Location: ?module=sleepers');
 	die ();
