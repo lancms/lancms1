@@ -79,6 +79,35 @@ if (empty($action))
 	$content .= "<br /><div style='border: solid 1px black; border-collapse: collapse; padding: 10px;'>\n";
 	$content .= "<h3>"._('Queues')."</h3>\n";
 
+	$screenQ = sprintf ("SELECT * FROM %s WHERE eventID=%s", $screentable, $sessioninfo->eventID);
+	$screenR = db_query ($screenQ);
+	$screenC = db_num ($screenR);
+	if ($screenC)
+	{
+		while ($screen = db_fetch ($screenR))
+		{
+			$content .= "<h4><i>"._('Screen:')."</i> ".$screen->name."</h4>\n";
+
+			$queueQ = sprintf ('SELECT q.ID, s.name as slide, q.wait FROM %s AS q, %s AS s WHERE q.eventID=%s AND q.slideID=s.ID', $queuetable, $slidetable, $sessioninfo->eventID);
+			$queueR = db_query ($queueQ);
+			$queueC = db_num ($queueR);
+			if ($queueC)
+			{
+				$content .= "<table $border>\n";
+				$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th></tr>\n", _('Slide'), _('Wait'), _('Remove'));
+
+				while ($queue = db_fetch ($queueR))
+				{
+					$rmbut = sprintf ("<form method='POST' action='?module=infoscreens&action=queueRemove&queueID=%s'><input type='submit' value='%s' /></form>", $queue->ID, _('Remove'));
+					$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $queue->slide, $queue->wait, $rmbut);
+					unset ($rmbut);
+				}
+
+				$content .= "</table>\n";
+			}
+		}
+	}
+
 	$content .= "</div>";
 	#### END - queues ####
 }
