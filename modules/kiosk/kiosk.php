@@ -21,6 +21,11 @@ if(empty($action)) {
 	$content .= "<input type=submit value='".lang("Add", "kiosk")."'>\n";
 	$content .= "</form>\n\n";
 	$content .= "<script type='text/javascript' language='javascript'>document.forms['barfield'].elements['ware'].focus()</script>\n";
+	$content .= "</td><td>";
+	if($sessioninfo->kioskSaleTo > 1) {
+		$content .= _("Currently selling to:");
+		$content .= " ".display_username($sessioninfo->kioskSaleTo);
+	} // End kioskSaleTo
 	$content .= "</td></tr>";
 
 	$content .= "<tr><td>";
@@ -68,6 +73,16 @@ elseif($action == "addWare") {
 		$rFindBarcode = db_fetch($qFindBarcode);
 		$wareID = $rFindBarcode->wareID;
 	}
+	elseif(stristr($ware, "UID")) {
+		$checkingUser =TRUE;
+		$userID = str_replace("UID", "", $ware);
+
+		if(user_exists($userID)) {
+			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE 
+				sID = '$sessioninfo->sID'");
+		} // End if user_Exists
+		else die(_("User not found!"));
+	}
 	else { // Assume we've used AJAX search, and that $ware is an ID
 		$qFindWareID = db_query("SELECT * FROM ".$sql_prefix."_kiosk_wares WHERE ID = '".db_escape($ware)."'");
 		if(db_num($qFindWareID) == 1) {
@@ -75,22 +90,23 @@ elseif($action == "addWare") {
 			$wareID = $rFindWareID->ID;
 		} // End if db_num == 1
 	} // End else
-
-	$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket 
-		WHERE sID = '$sessioninfo->sID'
-		AND wareID = $wareID");
-
-	if(db_num($qFindBasket) == 0) {
-		db_query("INSERT INTO ".$sql_prefix."_kiosk_shopbasket
-			SET sID = '$sessioninfo->sID',
-			wareID = $wareID");
-	} // End if_db_num == 0
-	else {
-		db_query("UPDATE ".$sql_prefix."_kiosk_shopbasket
-			SET amount = amount + 1
+	if(!$checkingUser) {
+		$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket 
 			WHERE sID = '$sessioninfo->sID'
 			AND wareID = $wareID");
-	} // End else
+
+		if(db_num($qFindBasket) == 0) {
+			db_query("INSERT INTO ".$sql_prefix."_kiosk_shopbasket
+				SET sID = '$sessioninfo->sID',
+				wareID = $wareID");
+		} // End if_db_num == 0
+		else {
+			db_query("UPDATE ".$sql_prefix."_kiosk_shopbasket
+				SET amount = amount + 1
+				WHERE sID = '$sessioninfo->sID'
+				AND wareID = $wareID");
+		} // End else
+	} // End if checkingUser == FALSE
 	header("Location: ?module=kiosk");
 } // End addWare
 
@@ -116,6 +132,7 @@ elseif($action == "sell") {
 	$qCreateSale = db_query("INSERT INTO ".$sql_prefix."_kiosk_sales 
 		SET salesPerson = '$sessioninfo->userID',
 		saleTime = '".time()."',
+		soldTo = '".$sessioninfo->kioskSaleTo."',
 		eventID = '$sessioninfo->eventID'");
 	$qSaleID = db_query("SELECT ID FROM ".$sql_prefix."_kiosk_sales 
 		WHERE salesPerson = '$sessioninfo->userID' 
@@ -138,6 +155,7 @@ elseif($action == "sell") {
 		$total_price = $total_price + (kiosk_item_price($rFindBasket->wareID) * $rFindBasket->amount);
 	} // End while
 	db_query("UPDATE ".$sql_prefix."_kiosk_sales SET totalPrice = '$total_price' WHERE ID = '$saleID'");
+	db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '1' WHERE sID = '$sessioninfo->sID'");
 	header("Location: ?module=kiosk");
 	
 	
