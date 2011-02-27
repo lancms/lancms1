@@ -151,6 +151,11 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					$mod = lang("Wannabeadmin");
 					if($f == "doChangeComment") $func = lang("Change comment");
 					break;
+				case "sleepers":
+					$mod = lang("Sleepers");
+					if($f == "addsleeper") $func = lang("Add sleeper");
+					if($f == "removesleeper") $func = lang("Remove sleeper");
+					break;
 			} // End switch
 			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
 			if(empty($func)) $func = lang("Unknown function")." ".$f;
