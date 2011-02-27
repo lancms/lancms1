@@ -230,7 +230,7 @@ else // empty($action) or $action==*
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->nick);
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->name);
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
-		$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("Find"));
+		$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("View"));
 		$content .= "</tr>\n";
 		}
 
