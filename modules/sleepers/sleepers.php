@@ -68,7 +68,7 @@ elseif ($action == 'removesleeper')
 elseif ($action == 'searchsleeper')
 {
 
-	$str = $_POST['searchstring'];
+	$str = $_REQUEST['searchstring'];
 	$scope = $_POST['scope'];
 	
 	$content .= "<a href='?module=sleepers'>"._("Return to sleepers overview")."</a>\n";
@@ -212,7 +212,7 @@ else // empty($action) or $action==*
 	$content .= _("Search users with tickets for this event only:")." <input type='checkbox' CHECKED name='scope' value='tickets' />\n";
 	$content .= "</form>\n";
 
-	$sleeperQ = sprintf ('SELECT s.sleepTimestamp, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s AND s.userID=u.ID ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
+	$sleeperQ = sprintf ('SELECT s.sleepTimestamp, u.ID, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s AND s.userID=u.ID ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
 	$sleeperR = db_query ($sleeperQ);
 	$sleeperC = db_num ($sleeperR);
 
@@ -222,7 +222,7 @@ else // empty($action) or $action==*
 		$content .= "<br /><p>"._('Number of sleeping users:')." ".$sleeperC."</p>\n";
 
 		$content .= "<table $border>\n";
-		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th></tr>\n", _("Nick"), _("Name"), _("Went to bed"));
+		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th><th></th></tr>\n", _("Nick"), _("Name"), _("Went to bed"));
 
 		while ($sleeper = db_fetch ($sleeperR))
 		{
@@ -230,6 +230,7 @@ else // empty($action) or $action==*
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->nick);
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->name);
 		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
+		$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("Find"));
 		$content .= "</tr>\n";
 		}
 
