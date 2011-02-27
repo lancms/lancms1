@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-02-25 22:28+0100\n"
+        "POT-Creation-Date: 2011-02-27 19:43+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,8 @@ msgstr  ""
 msgid   "Crewlist"
 msgstr  ""
 
-#: ../index.php:77 ../modules/logs/logs.php:50
+#: ../index.php:77 ../modules/arrival/arrival.php:24
+#: ../modules/logs/logs.php:50
 msgid   "Arrival"
 msgstr  ""
 
@@ -71,100 +72,124 @@ msgstr  ""
 msgid   "Forum"
 msgstr  ""
 
-#: ../index.php:93
+#: ../index.php:87 ../modules/logs/logs.php:155
+#: ../modules/sleepers/sleepers.php:21
+msgid   "Sleepers"
+msgstr  ""
+
+#: ../index.php:97
 msgid   "Event Admin"
 msgstr  ""
 
-#: ../index.php:105
+#: ../index.php:109
 msgid   "Type your nick, email or name here:"
 msgstr  ""
 
-#: ../index.php:130
+#: ../index.php:134
 msgid   "You are logged in as:"
 msgstr  ""
 
-#: ../index.php:134 ../modules/logs/logs.php:59
+#: ../index.php:138 ../modules/logs/logs.php:59
 #: ../modules/profile/profile.php:42
 msgid   "Edit userinfo"
 msgstr  ""
 
-#: ../index.php:135
+#: ../index.php:139
 msgid   "Edit my preferences"
 msgstr  ""
 
-#: ../index.php:136 ../modules/edituserinfo/edituserinfo.php:14
+#: ../index.php:140 ../modules/edituserinfo/edituserinfo.php:14
 #: ../modules/edituserinfo/edituserinfo.php:27
 msgid   "Change password"
 msgstr  ""
 
-#: ../index.php:137 ../modules/logs/logs.php:100
+#: ../index.php:141 ../modules/logs/logs.php:100
 msgid   "Logout"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:15 ../modules/groups/groups.php:94
-#: ../modules/ticketorder/ticketorder.php:65
-msgid   "Search user"
+#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:214
+#: ../modules/useradmin/useradmin.php:31
+msgid   "Search"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:43
-msgid   "Add new ticket"
+#: ../modules/arrival/arrival.php:32
+msgid   "Search all users"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:64
-msgid   "Back to search"
+#: ../modules/arrival/arrival.php:34
+msgid   "Search users with tickets"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:68
-msgid   "Ticket"
+#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
+#: ../modules/groups/groups.php:52 ../modules/profile/profile.php:18
+#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
+msgid   "Nick"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:79 ../modules/crewlist/crewlist.php:18
-#: ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
+#: ../modules/crewlist/crewlist.php:18 ../modules/kioskadmin/kioskadmin.php:62
 #: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
+#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid   "Name"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:85
+#: ../modules/arrival/arrival.php:94
+msgid   "Add new ticket"
+msgstr  ""
+
+#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:203
+msgid   "Found no matching users"
+msgstr  ""
+
+#: ../modules/arrival/arrival.php:146
+msgid   "Back to search"
+msgstr  ""
+
+#: ../modules/arrival/arrival.php:150
+msgid   "Ticket"
+msgstr  ""
+
+#: ../modules/arrival/arrival.php:167
 msgid   "Adress"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:91
+#: ../modules/arrival/arrival.php:173
 msgid   "E-mail"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:96 ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:135
+#: ../modules/arrival/arrival.php:178 ../modules/register/register.php:237
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:138
 msgid   "Birthday"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:107
+#: ../modules/arrival/arrival.php:189
 #: ../modules/ticketorder/ticketorder.php:133
 msgid   "Paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:112
+#: ../modules/arrival/arrival.php:194
 #: ../modules/ticketorder/ticketorder.php:48
 msgid   "Not paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:124 ../modules/arrival/arrival.php:129
+#: ../modules/arrival/arrival.php:206 ../modules/arrival/arrival.php:211
 msgid   "Seated"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:133
+#: ../modules/arrival/arrival.php:215
 msgid   "Not seated"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:139
+#: ../modules/arrival/arrival.php:221
 msgid   "Delete ticket"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:145
+#: ../modules/arrival/arrival.php:227
 msgid   "Deleted"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:213
+#: ../modules/arrival/arrival.php:295
 msgid   "Add ticket to user"
 msgstr  ""
 
@@ -224,17 +249,12 @@ msgstr  ""
 msgid   "Signup has closed"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:20 ../modules/groups/groups.php:52
-#: ../modules/profile/profile.php:18
-msgid   "Nick"
-msgstr  ""
-
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:179
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:182
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:175
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:178
 msgid   "Cellphone"
 msgstr  ""
 
@@ -608,6 +628,10 @@ msgstr  ""
 msgid   "Group: "
 msgstr  ""
 
+#: ../modules/groups/groups.php:94 ../modules/ticketorder/ticketorder.php:65
+msgid   "Search user"
+msgstr  ""
+
 #: ../modules/groups/groups.php:110
 msgid   "No users found"
 msgstr  ""
@@ -628,12 +652,28 @@ msgstr  ""
 msgid   "User already member of group"
 msgstr  ""
 
-#: ../modules/infoscreens/infoscreens.php:21
+#: ../modules/infoscreens/infoscreens.php:13
+msgid   "Screens"
+msgstr  ""
+
+#: ../modules/infoscreens/infoscreens.php:27
 msgid   "Screen name"
 msgstr  ""
 
-#: ../modules/infoscreens/infoscreens.php:22
+#: ../modules/infoscreens/infoscreens.php:28
 msgid   "Add screen"
+msgstr  ""
+
+#: ../modules/infoscreens/infoscreens.php:37
+msgid   "Slides"
+msgstr  ""
+
+#: ../modules/infoscreens/infoscreens.php:38
+msgid   "Create new slide"
+msgstr  ""
+
+#: ../modules/infoscreens/infoscreens.php:46
+msgid   "Queues"
 msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:12
@@ -787,18 +827,18 @@ msgstr  ""
 msgid   "Log"
 msgstr  ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:193
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:198
 msgid   "Timestamp"
 msgstr  ""
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:192
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:197
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid   "User"
 msgstr  ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:196
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:201
 msgid   "Logmodule"
 msgstr  ""
 
@@ -806,15 +846,15 @@ msgstr  ""
 msgid   "Logtype"
 msgstr  ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:194
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
 msgid   "IP"
 msgstr  ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:194
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
 msgid   "Host"
 msgstr  ""
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:195
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:200
 msgid   "URL"
 msgstr  ""
 
@@ -1038,19 +1078,27 @@ msgstr  ""
 msgid   "Change comment"
 msgstr  ""
 
-#: ../modules/logs/logs.php:155
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:190
+msgid   "Add sleeper"
+msgstr  ""
+
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:184
+msgid   "Remove sleeper"
+msgstr  ""
+
+#: ../modules/logs/logs.php:160
 msgid   "Unknown module"
 msgstr  ""
 
-#: ../modules/logs/logs.php:156
+#: ../modules/logs/logs.php:161
 msgid   "Unknown function"
 msgstr  ""
 
-#: ../modules/logs/logs.php:189
+#: ../modules/logs/logs.php:194
 msgid   "Details for logentry "
 msgstr  ""
 
-#: ../modules/logs/logs.php:197
+#: ../modules/logs/logs.php:202
 msgid   "Logfunction"
 msgstr  ""
 
@@ -1140,7 +1188,7 @@ msgid   "User registered"
 msgstr  ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:121
+#: ../inc/shared_config.php:124
 msgid   "Username"
 msgstr  ""
 
@@ -1156,11 +1204,11 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:125
+#: ../modules/register/register.php:213 ../inc/shared_config.php:128
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:130
+#: ../modules/register/register.php:216 ../inc/shared_config.php:133
 msgid   "Last name"
 msgstr  ""
 
@@ -1170,11 +1218,11 @@ msgid   "Address"
 msgstr  ""
 
 #: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:163
+#: ../inc/shared_config.php:166
 msgid   "Postnumber"
 msgstr  ""
 
-#: ../modules/register/register.php:224 ../inc/shared_config.php:168
+#: ../modules/register/register.php:224 ../inc/shared_config.php:171
 msgid   "Gender"
 msgstr  ""
 
@@ -1275,6 +1323,76 @@ msgstr  ""
 
 #: ../modules/sessions/sessions.php:17
 msgid   "Last visit"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:9
+msgid   "Module not activated"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:15
+msgid   "No access"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:78
+msgid   "Return to sleepers overview"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:82
+msgid   "You must enter a search string"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:93
+msgid   "Searching only users with tickets for this event"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:107
+msgid   "Searching all users"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:123
+msgid   "Tickets"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:123
+#: ../modules/ticketadmin/ticketadmin.php:195
+#: ../modules/ticketorder/ticketorder.php:26
+msgid   "Status"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:134
+msgid   "Sleeping since"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:140
+msgid   "Not sleeping"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:169
+msgid   "No tickets for this event"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:212
+msgid   "Search for user:"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:216
+msgid   "Search users with tickets for this event only:"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:226
+msgid   "Number of sleeping users:"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:229
+msgid   "Went to bed"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:237
+msgid   "View"
+msgstr  ""
+
+#: ../modules/sleepers/sleepers.php:245
+msgid   "There are no sleeping users"
 msgstr  ""
 
 #: ../modules/SMS/SMS.php:35
@@ -1385,11 +1503,6 @@ msgstr  ""
 msgid   "Owner"
 msgstr  ""
 
-#: ../modules/ticketadmin/ticketadmin.php:195
-#: ../modules/ticketorder/ticketorder.php:26
-msgid   "Status"
-msgstr  ""
-
 #: ../modules/ticketadmin/ticketadmin.php:196
 #: ../modules/ticketorder/ticketorder.php:27
 msgid   "Map placement"
@@ -1487,10 +1600,6 @@ msgstr  ""
 
 #: ../modules/useradmin/useradmin.php:23
 msgid   "View all users"
-msgstr  ""
-
-#: ../modules/useradmin/useradmin.php:31
-msgid   "Search"
 msgstr  ""
 
 #: ../modules/useradmin/useradmin.php:39
@@ -1731,67 +1840,71 @@ msgstr  ""
 msgid   "Activate forum"
 msgstr  ""
 
-#: ../inc/shared_config.php:96
-msgid   "January"
-msgstr  ""
-
-#: ../inc/shared_config.php:97
-msgid   "February"
-msgstr  ""
-
-#: ../inc/shared_config.php:98
-msgid   "March"
+#: ../inc/shared_config.php:43
+msgid   "Activate sleepsystem"
 msgstr  ""
 
 #: ../inc/shared_config.php:99
-msgid   "April"
+msgid   "January"
 msgstr  ""
 
 #: ../inc/shared_config.php:100
-msgid   "May"
+msgid   "February"
 msgstr  ""
 
 #: ../inc/shared_config.php:101
-msgid   "June"
+msgid   "March"
 msgstr  ""
 
 #: ../inc/shared_config.php:102
-msgid   "July"
+msgid   "April"
 msgstr  ""
 
 #: ../inc/shared_config.php:103
-msgid   "August"
+msgid   "May"
 msgstr  ""
 
 #: ../inc/shared_config.php:104
-msgid   "September"
+msgid   "June"
 msgstr  ""
 
 #: ../inc/shared_config.php:105
-msgid   "October"
+msgid   "July"
 msgstr  ""
 
 #: ../inc/shared_config.php:106
-msgid   "November"
+msgid   "August"
 msgstr  ""
 
 #: ../inc/shared_config.php:107
+msgid   "September"
+msgstr  ""
+
+#: ../inc/shared_config.php:108
+msgid   "October"
+msgstr  ""
+
+#: ../inc/shared_config.php:109
+msgid   "November"
+msgstr  ""
+
+#: ../inc/shared_config.php:110
 msgid   "December"
 msgstr  ""
 
-#: ../inc/shared_config.php:158
+#: ../inc/shared_config.php:161
 msgid   "Streetadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:184
+#: ../inc/shared_config.php:187
 msgid   "List all attendees on current event"
 msgstr  ""
 
-#: ../inc/shared_config.php:201
+#: ../inc/shared_config.php:204
 msgid   "Allow other users to see my mailadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:206
+#: ../inc/shared_config.php:209
 msgid   "All users"
 msgstr  ""
 
