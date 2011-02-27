@@ -53,6 +53,7 @@ TABLE [prefix]_session
 	userAgent,	text,		,	,	,
 	eventID,	int(11),	,	,	1,
 	lastVisit,	int(11),	,	,	0,
+	kioskSaleTo,	int(11),	,	,	1,
 }
 
 TABLE [prefix]_events
