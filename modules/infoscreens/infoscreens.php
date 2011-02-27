@@ -91,7 +91,7 @@ if (empty($action))
 		{
 			$content .= "<h4><i>"._('Screen:')."</i> ".$screen->name."</h4>\n";
 
-			$queueQ = sprintf ('SELECT q.ID, s.name as slide, q.wait FROM %s AS q, %s AS s WHERE q.eventID=%s AND q.slideID=s.ID AND q.screenID=%s', $queuetable, $slidetable, $sessioninfo->eventID, $screen->ID);
+			$queueQ = sprintf ('SELECT q.ID, s.name as slide, q.wait FROM %s AS q, %s AS s WHERE q.eventID=%s AND q.slideID=s.ID AND q.screenID=%s ORDER BY ID', $queuetable, $slidetable, $sessioninfo->eventID, $screen->ID);
 			$queueR = db_query ($queueQ);
 			$queueC = db_num ($queueR);
 			if ($queueC)
