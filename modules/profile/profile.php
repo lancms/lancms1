@@ -44,6 +44,7 @@ $content .= "</table>\n";
 
 if ($useradminread != "No")
 {
-	$content .= "<br /><a href='index.php?module=edituserinfo&action=editUserinfo&user=".$user->ID."'>"._("Edit userinfo")."</a>\n";
+	$content .= "<br />\n";
+	$content .= sprintf ("<form method='POST' action='?module=edituserinfo&action=editUserinfo&user=%s'><input type='submit' value='%s' /></form>\n", $user->ID, _('Edit userinfo'));
 }
 
