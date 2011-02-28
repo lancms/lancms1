@@ -147,9 +147,10 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
 			$free_tickets = $rListBuyTickets->maxTickets - $rCheckSold->amount;
 			$free_tickets_text = " (".$free_tickets." ".lang("free", "ticketorder").") ";
 		}
-		$content .= "<tr><td>";
-		$content .= $rListBuyTickets->name;
-		$content .= $free_tickets_text."</td><td>\n\n";
+
+
+		# FIXME: !!!!! Hardcoded 'kr' for price!
+		$content .= "<tr><td>".$rListBuyTickets->name." (<i>"._('Price:')." ".$rListBuyTickets->price." kr</i>) ".$free_tickets_text."</td><td>\n\n";
 		$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
 		$content .= "<input name=numTickets value=1>\n";
 		$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
