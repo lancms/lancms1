@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-25 22:28+0100\n"
-"PO-Revision-Date: 2011-02-25 22:56+0000\n"
+"POT-Creation-Date: 2011-02-27 19:43+0100\n"
+"PO-Revision-Date: 2011-02-27 19:42+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-26 06:38+0000\n"
+"X-Launchpad-Export-Date: 2011-02-28 05:52+0000\n"
 "X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
@@ -57,7 +57,8 @@ msgstr "Compopåmelding"
 msgid "Crewlist"
 msgstr "Crewliste"
 
-#: ../index.php:77 ../modules/logs/logs.php:50
+#: ../index.php:77 ../modules/arrival/arrival.php:24
+#: ../modules/logs/logs.php:50
 msgid "Arrival"
 msgstr "Ankomst"
 
@@ -73,100 +74,124 @@ msgstr "Kiosk"
 msgid "Forum"
 msgstr "Forum"
 
-#: ../index.php:93
+#: ../index.php:87 ../modules/logs/logs.php:155
+#: ../modules/sleepers/sleepers.php:21
+msgid "Sleepers"
+msgstr "Sovende"
+
+#: ../index.php:97
 msgid "Event Admin"
 msgstr "Arrangementadmin"
 
-#: ../index.php:105
+#: ../index.php:109
 msgid "Type your nick, email or name here:"
 msgstr "Skriv inn ditt nick, epost eller navn her:"
 
-#: ../index.php:130
+#: ../index.php:134
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:134 ../modules/logs/logs.php:59
+#: ../index.php:138 ../modules/logs/logs.php:59
 #: ../modules/profile/profile.php:42
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
-#: ../index.php:135
+#: ../index.php:139
 msgid "Edit my preferences"
 msgstr "Rediger innstillinger"
 
-#: ../index.php:136 ../modules/edituserinfo/edituserinfo.php:14
+#: ../index.php:140 ../modules/edituserinfo/edituserinfo.php:14
 #: ../modules/edituserinfo/edituserinfo.php:27
 msgid "Change password"
 msgstr "Bytt passord"
 
-#: ../index.php:137 ../modules/logs/logs.php:100
+#: ../index.php:141 ../modules/logs/logs.php:100
 msgid "Logout"
 msgstr "Logg ut"
 
-#: ../modules/arrival/arrival.php:15 ../modules/groups/groups.php:94
-#: ../modules/ticketorder/ticketorder.php:65
-msgid "Search user"
-msgstr "Søk etter bruker"
+#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:214
+#: ../modules/useradmin/useradmin.php:31
+msgid "Search"
+msgstr "Søk"
 
-#: ../modules/arrival/arrival.php:43
-msgid "Add new ticket"
-msgstr "Legg til billett"
+#: ../modules/arrival/arrival.php:32
+msgid "Search all users"
+msgstr "Søk alle brukere"
 
-#: ../modules/arrival/arrival.php:64
-msgid "Back to search"
-msgstr "Tilbake til søk"
+#: ../modules/arrival/arrival.php:34
+msgid "Search users with tickets"
+msgstr "Søk brukere med billetter"
 
-#: ../modules/arrival/arrival.php:68
-msgid "Ticket"
-msgstr "Billett"
+#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
+#: ../modules/groups/groups.php:52 ../modules/profile/profile.php:18
+#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
+msgid "Nick"
+msgstr "Brukernavn"
 
-#: ../modules/arrival/arrival.php:79 ../modules/crewlist/crewlist.php:18
-#: ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
+#: ../modules/crewlist/crewlist.php:18 ../modules/kioskadmin/kioskadmin.php:62
 #: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
+#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
 msgstr "Navn"
 
-#: ../modules/arrival/arrival.php:85
+#: ../modules/arrival/arrival.php:94
+msgid "Add new ticket"
+msgstr "Legg til billett"
+
+#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:203
+msgid "Found no matching users"
+msgstr "Fant ingen brukere som lignet søket"
+
+#: ../modules/arrival/arrival.php:146
+msgid "Back to search"
+msgstr "Tilbake til søk"
+
+#: ../modules/arrival/arrival.php:150
+msgid "Ticket"
+msgstr "Billett"
+
+#: ../modules/arrival/arrival.php:167
 msgid "Adress"
 msgstr "Adresse"
 
-#: ../modules/arrival/arrival.php:91
+#: ../modules/arrival/arrival.php:173
 msgid "E-mail"
 msgstr "E-post"
 
-#: ../modules/arrival/arrival.php:96 ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:135
+#: ../modules/arrival/arrival.php:178 ../modules/register/register.php:237
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:138
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: ../modules/arrival/arrival.php:107
+#: ../modules/arrival/arrival.php:189
 #: ../modules/ticketorder/ticketorder.php:133
 msgid "Paid"
 msgstr "Betalt"
 
-#: ../modules/arrival/arrival.php:112
+#: ../modules/arrival/arrival.php:194
 #: ../modules/ticketorder/ticketorder.php:48
 msgid "Not paid"
 msgstr "Ikke betalt"
 
-#: ../modules/arrival/arrival.php:124 ../modules/arrival/arrival.php:129
+#: ../modules/arrival/arrival.php:206 ../modules/arrival/arrival.php:211
 msgid "Seated"
 msgstr "Har plass"
 
-#: ../modules/arrival/arrival.php:133
+#: ../modules/arrival/arrival.php:215
 msgid "Not seated"
 msgstr "Har ikke plass"
 
-#: ../modules/arrival/arrival.php:139
+#: ../modules/arrival/arrival.php:221
 msgid "Delete ticket"
 msgstr "Slett billett"
 
-#: ../modules/arrival/arrival.php:145
+#: ../modules/arrival/arrival.php:227
 msgid "Deleted"
 msgstr "Slettet"
 
-#: ../modules/arrival/arrival.php:213
+#: ../modules/arrival/arrival.php:295
 msgid "Add ticket to user"
 msgstr "Legg til billett til bruker"
 
@@ -226,17 +251,12 @@ msgstr "Meld meg av"
 msgid "Signup has closed"
 msgstr "Påmelding er avsluttet"
 
-#: ../modules/crewlist/crewlist.php:20 ../modules/groups/groups.php:52
-#: ../modules/profile/profile.php:18
-msgid "Nick"
-msgstr "Brukernavn"
-
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:179
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:182
 msgid "EMail"
 msgstr "E-post"
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:175
+#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:178
 msgid "Cellphone"
 msgstr "Mobil"
 
@@ -610,6 +630,10 @@ msgstr "Opprett klan"
 msgid "Group: "
 msgstr "Gruppe: "
 
+#: ../modules/groups/groups.php:94 ../modules/ticketorder/ticketorder.php:65
+msgid "Search user"
+msgstr "Søk etter bruker"
+
 #: ../modules/groups/groups.php:110
 msgid "No users found"
 msgstr "Ingen brukere funnet"
@@ -630,13 +654,29 @@ msgstr "Klannavn er allerede i bruk. Vennligst velg et annet navn"
 msgid "User already member of group"
 msgstr "Brukeren er allerede medlem av gruppen"
 
-#: ../modules/infoscreens/infoscreens.php:21
+#: ../modules/infoscreens/infoscreens.php:13
+msgid "Screens"
+msgstr "Skjermer"
+
+#: ../modules/infoscreens/infoscreens.php:27
 msgid "Screen name"
 msgstr "Skjermnavn"
 
-#: ../modules/infoscreens/infoscreens.php:22
+#: ../modules/infoscreens/infoscreens.php:28
 msgid "Add screen"
 msgstr "Legg til skjerm"
+
+#: ../modules/infoscreens/infoscreens.php:37
+msgid "Slides"
+msgstr "Lysbilder"
+
+#: ../modules/infoscreens/infoscreens.php:38
+msgid "Create new slide"
+msgstr "Opprett nytt lysbilde"
+
+#: ../modules/infoscreens/infoscreens.php:46
+msgid "Queues"
+msgstr "Køer"
 
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid "Admin waretypes"
@@ -799,18 +839,18 @@ msgstr "Siste 30 logglinjer"
 msgid "Log"
 msgstr "Logg"
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:193
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:198
 msgid "Timestamp"
 msgstr "Tidspunkt"
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:192
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:197
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
 msgstr "Bruker"
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:196
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:201
 msgid "Logmodule"
 msgstr "Loggmodul"
 
@@ -818,15 +858,15 @@ msgstr "Loggmodul"
 msgid "Logtype"
 msgstr "Loggtype"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:194
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
 msgid "IP"
 msgstr "IP"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:194
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
 msgid "Host"
 msgstr "Vertsnavn"
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:195
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:200
 msgid "URL"
 msgstr "URL"
 
@@ -1050,19 +1090,27 @@ msgstr "Wannabeadministrasjon"
 msgid "Change comment"
 msgstr "Endre kommentar"
 
-#: ../modules/logs/logs.php:155
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:190
+msgid "Add sleeper"
+msgstr "Legg til sovende"
+
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:184
+msgid "Remove sleeper"
+msgstr "Fjern sovende"
+
+#: ../modules/logs/logs.php:160
 msgid "Unknown module"
 msgstr "Ukjent modul"
 
-#: ../modules/logs/logs.php:156
+#: ../modules/logs/logs.php:161
 msgid "Unknown function"
 msgstr "Ukjent funksjon"
 
-#: ../modules/logs/logs.php:189
+#: ../modules/logs/logs.php:194
 msgid "Details for logentry "
 msgstr "Detaljer for logglinje "
 
-#: ../modules/logs/logs.php:197
+#: ../modules/logs/logs.php:202
 msgid "Logfunction"
 msgstr "LogFunksjon"
 
@@ -1158,7 +1206,7 @@ msgid "User registered"
 msgstr "Brukeren er registrert"
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:121
+#: ../inc/shared_config.php:124
 msgid "Username"
 msgstr "Brukernavn"
 
@@ -1174,11 +1222,11 @@ msgstr "Gjenta passord"
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:125
+#: ../modules/register/register.php:213 ../inc/shared_config.php:128
 msgid "First name"
 msgstr "Fornavn"
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:130
+#: ../modules/register/register.php:216 ../inc/shared_config.php:133
 msgid "Last name"
 msgstr "Etternavn"
 
@@ -1188,11 +1236,11 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:163
+#: ../inc/shared_config.php:166
 msgid "Postnumber"
 msgstr "Postnummer"
 
-#: ../modules/register/register.php:224 ../inc/shared_config.php:168
+#: ../modules/register/register.php:224 ../inc/shared_config.php:171
 msgid "Gender"
 msgstr "Kjønn"
 
@@ -1302,6 +1350,76 @@ msgstr "Nettleser"
 msgid "Last visit"
 msgstr "Siste besøk"
 
+#: ../modules/sleepers/sleepers.php:9
+msgid "Module not activated"
+msgstr "Modulen ikke aktivert"
+
+#: ../modules/sleepers/sleepers.php:15
+msgid "No access"
+msgstr "Ingen tilgang"
+
+#: ../modules/sleepers/sleepers.php:78
+msgid "Return to sleepers overview"
+msgstr "Tilbake til oversikten over sovende"
+
+#: ../modules/sleepers/sleepers.php:82
+msgid "You must enter a search string"
+msgstr "Du må skrive inn en søkestreng"
+
+#: ../modules/sleepers/sleepers.php:93
+msgid "Searching only users with tickets for this event"
+msgstr "Søker kun på brukere med billetter til dette arrangementet"
+
+#: ../modules/sleepers/sleepers.php:107
+msgid "Searching all users"
+msgstr "Søker i alle brukere"
+
+#: ../modules/sleepers/sleepers.php:123
+msgid "Tickets"
+msgstr "Billetter"
+
+#: ../modules/sleepers/sleepers.php:123
+#: ../modules/ticketadmin/ticketadmin.php:195
+#: ../modules/ticketorder/ticketorder.php:26
+msgid "Status"
+msgstr "Status"
+
+#: ../modules/sleepers/sleepers.php:134
+msgid "Sleeping since"
+msgstr "Sovet siden"
+
+#: ../modules/sleepers/sleepers.php:140
+msgid "Not sleeping"
+msgstr "Sover ikke"
+
+#: ../modules/sleepers/sleepers.php:169
+msgid "No tickets for this event"
+msgstr "Ingen billetter til dette arrangementet"
+
+#: ../modules/sleepers/sleepers.php:212
+msgid "Search for user:"
+msgstr "Søk etter bruker:"
+
+#: ../modules/sleepers/sleepers.php:216
+msgid "Search users with tickets for this event only:"
+msgstr "Søk bare etter brukere med billetter til dette arrangementet:"
+
+#: ../modules/sleepers/sleepers.php:226
+msgid "Number of sleeping users:"
+msgstr "Antall sovende brukere:"
+
+#: ../modules/sleepers/sleepers.php:229
+msgid "Went to bed"
+msgstr "Gikk å la seg"
+
+#: ../modules/sleepers/sleepers.php:237
+msgid "View"
+msgstr "Vis"
+
+#: ../modules/sleepers/sleepers.php:245
+msgid "There are no sleeping users"
+msgstr "Det er ingen sovende brukere"
+
 #: ../modules/SMS/SMS.php:35
 msgid "Number of characters entered:"
 msgstr "Antall tegn lagt inn:"
@@ -1410,11 +1528,6 @@ msgstr "Legg til billettype"
 msgid "Owner"
 msgstr "Eier"
 
-#: ../modules/ticketadmin/ticketadmin.php:195
-#: ../modules/ticketorder/ticketorder.php:26
-msgid "Status"
-msgstr "Status"
-
 #: ../modules/ticketadmin/ticketadmin.php:196
 #: ../modules/ticketorder/ticketorder.php:27
 msgid "Map placement"
@@ -1516,10 +1629,6 @@ msgstr "Ja, jeg trenger den ikke"
 #: ../modules/useradmin/useradmin.php:23
 msgid "View all users"
 msgstr "Vis alle brukere"
-
-#: ../modules/useradmin/useradmin.php:31
-msgid "Search"
-msgstr "Søk"
 
 #: ../modules/useradmin/useradmin.php:39
 msgid "List of all users"
@@ -1759,67 +1868,71 @@ msgstr "Aktiver kiosksystemet"
 msgid "Activate forum"
 msgstr "Aktiver forum"
 
-#: ../inc/shared_config.php:96
+#: ../inc/shared_config.php:43
+msgid "Activate sleepsystem"
+msgstr "Aktiver sovesystem"
+
+#: ../inc/shared_config.php:99
 msgid "January"
 msgstr "Januar"
 
-#: ../inc/shared_config.php:97
+#: ../inc/shared_config.php:100
 msgid "February"
 msgstr "Februar"
 
-#: ../inc/shared_config.php:98
+#: ../inc/shared_config.php:101
 msgid "March"
 msgstr "Mars"
 
-#: ../inc/shared_config.php:99
+#: ../inc/shared_config.php:102
 msgid "April"
 msgstr "April"
 
-#: ../inc/shared_config.php:100
+#: ../inc/shared_config.php:103
 msgid "May"
 msgstr "Mai"
 
-#: ../inc/shared_config.php:101
+#: ../inc/shared_config.php:104
 msgid "June"
 msgstr "Juni"
 
-#: ../inc/shared_config.php:102
+#: ../inc/shared_config.php:105
 msgid "July"
 msgstr "Juli"
 
-#: ../inc/shared_config.php:103
+#: ../inc/shared_config.php:106
 msgid "August"
 msgstr "August"
 
-#: ../inc/shared_config.php:104
+#: ../inc/shared_config.php:107
 msgid "September"
 msgstr "September"
 
-#: ../inc/shared_config.php:105
+#: ../inc/shared_config.php:108
 msgid "October"
 msgstr "Oktober"
 
-#: ../inc/shared_config.php:106
+#: ../inc/shared_config.php:109
 msgid "November"
 msgstr "November"
 
-#: ../inc/shared_config.php:107
+#: ../inc/shared_config.php:110
 msgid "December"
 msgstr "Desember"
 
-#: ../inc/shared_config.php:158
+#: ../inc/shared_config.php:161
 msgid "Streetadress"
 msgstr "Adresse"
 
-#: ../inc/shared_config.php:184
+#: ../inc/shared_config.php:187
 msgid "List all attendees on current event"
 msgstr "Vis alle deltagere på nåværende arrangement"
 
-#: ../inc/shared_config.php:201
+#: ../inc/shared_config.php:204
 msgid "Allow other users to see my mailadress"
 msgstr "Tillatt andre brukere å se min epost-adresse"
 
-#: ../inc/shared_config.php:206
+#: ../inc/shared_config.php:209
 msgid "All users"
 msgstr "Alle brukere"
 
