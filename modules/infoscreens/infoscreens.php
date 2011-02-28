@@ -211,6 +211,11 @@ elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 		// this is new slide...
 		$q = sprintf ('INSERT INTO %s (name, content, eventID) VALUES ("%s", "%s", %s)', $slidetable, db_escape($name), db_escape($content), $sessioninfo->eventID);
 		db_query ($q);
+		$log['ID'] = mysql_insert_id ();
+		$log['name'] = $name;
+		$log['content'] = $content;
+		$log['eventID'] = $sessioninfo->eventID;
+		log_add ("infoscreens", "newSlide", serialize ($log));
 		unset ($q);
 		# FIXME: logging of slide-actions
 
