@@ -156,6 +156,14 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					if($f == "addsleeper") $func = lang("Add sleeper");
 					if($f == "removesleeper") $func = lang("Remove sleeper");
 					break;
+				case "infoscreens":
+					$mod = _("Infoscreens");
+					if($f == "addScreen") $func = _("Add screen");
+					if($f == "queueAdd") $func = _("Add to queue");
+					if($f == "queueRemove") $func = _("Remove from queue");
+					if($f == "newSlide") $func = _("New slide");
+					if($f == "editSlide") $func = _("Edit slide");
+					break;
 			} // End switch
 			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
 			if(empty($func)) $func = lang("Unknown function")." ".$f;
