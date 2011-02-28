@@ -217,16 +217,29 @@ elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 		$log['eventID'] = $sessioninfo->eventID;
 		log_add ("infoscreens", "newSlide", serialize ($log));
 		unset ($q);
-		# FIXME: logging of slide-actions
 
 		header ('Location: ?module=infoscreens');
 		die();
 	}
 	else
 	{
+		$oq = sprintf ("SELECT * FROM %s WHERE ID=%s", $slidetable, $slideID);
+		$or = db_query ($oq);
+		$old = db_fetch($or);
+
 		$q = sprintf ("UPDATE %s SET name='%s', content='%s' WHERE ID=%s", $slidetable, db_escape($name), db_escape($content), $slideID);
 		db_query ($q);
 		unset ($q);
+
+		$lognew['id'] = $slideID;
+		$lognew['name'] = $name;
+		$lognew['content'] = $content;
+
+		$logold['id'] = $old->ID;
+		$logold['name'] = $old->name;
+		$logold['content'] = $old->content;
+		log_add("infoscreens", "editSlide", serialize ($lognew), serialize ($logold));
+
 		header ('Location: ?module=infoscreens');
 		die();
 	}
@@ -252,6 +265,13 @@ elseif ($action == 'queueAdd' and ($acl == 'Admin' or $acl == 'Write'))
 		$q = sprintf ('INSERT INTO %s (slideID, eventID,  screenID, wait) VALUES (%s, %s, %s, %s)', $queuetable, db_escape($slideID), $sessioninfo->eventID, db_escape ($screenID), db_escape($wait));
 		db_query ($q);
 
+		$log['ID'] = mysql_insert_id();
+		$log['eventID'] = $sessioninfo->eventID;
+		$log['screenID'] = $screenID;
+		$log['wait'] = $wait;
+		$log['slideID'] = $slideID;
+		log_add ("infoscreens", "queueAdd", serialize($log));
+
 		header ('Location: ?module=infoscreens');
 		die();
 	}
@@ -269,6 +289,8 @@ elseif ($action == 'queueRemove' and ($acl == 'Admin' or $acl == 'Write'))
 		# FIXME: infoscreensQueues... should do some testing on the separation of different events and their acls... not sure this is 100% safe...
 		$q = sprintf ('DELETE FROM %s WHERE ID=%s AND eventID=%s', $queuetable, db_escape($queueID), $sessioninfo->eventID);
 		db_query ($q);
+		$log['id'] = $queueID;
+		log_add ("infoscreens", "queueRemove", serialize($log));
 		header ('Location: ?module=infoscreens');
 		die ();
 
