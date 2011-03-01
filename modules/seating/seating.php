@@ -65,6 +65,10 @@ elseif($_GET['action'] == "takeseat") {
     $ticketID = $_GET['ticketID'];
     $eventID = $sessioninfo->eventID;
     $password = $_POST['password'];
+    $newlog['ticketID'] = $ticketID;
+    $newlog['seatX'] = $seatX;
+    $newlog['seatY'] = $seatY;
+    $newlog['password'] = $password;
 
 
     if(seating_rights($seatX, $seatY, $ticketID, $eventID, $password)) {
@@ -90,7 +94,12 @@ elseif($_GET['action'] == "takeseat") {
 		    seatY = '".db_escape($seatY)."'
 		    WHERE ticketID = '".db_escape($ticketID)."'");
         } // End else
+	log_add("seating", "takeseat", serialize($newlog));
     } // End if(seating_rights)
+    else {
+	// Failed seating_rights()
+	log_add("seating", "failedTakeseat", serialize($newlog));
+    } // End else
     header("Location: ?module=seating&seatX=$seatX&seatY=$seatY&ticketID=$ticketID");
 } // End if action == "takeseat"
 
