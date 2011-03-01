@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-27 19:43+0100\n"
+"POT-Creation-Date: 2011-02-28 09:15+0100\n"
 "PO-Revision-Date: 2011-01-14 23:50+0000\n"
 "Last-Translator: zeugma <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-02-28 05:52+0000\n"
+"X-Launchpad-Export-Date: 2011-03-01 05:57+0000\n"
 "X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
@@ -75,7 +75,7 @@ msgid "Forum"
 msgstr "Forum"
 
 #: ../index.php:87 ../modules/logs/logs.php:155
-#: ../modules/sleepers/sleepers.php:21
+#: ../modules/sleepers/sleepers.php:18
 msgid "Sleepers"
 msgstr ""
 
@@ -109,7 +109,19 @@ msgstr ""
 msgid "Logout"
 msgstr "Çıkış"
 
-#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:214
+#: ../party.php:32
+msgid "There are no screens for this event"
+msgstr ""
+
+#: ../party.php:48
+msgid "The screen requested does not exist"
+msgstr ""
+
+#: ../party.php:62
+msgid "There are no queue for this screen"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
 msgstr ""
@@ -124,14 +136,16 @@ msgstr ""
 
 #: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
 #: ../modules/groups/groups.php:52 ../modules/profile/profile.php:18
-#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
+#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 msgid "Nick"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
-#: ../modules/crewlist/crewlist.php:18 ../modules/kioskadmin/kioskadmin.php:62
+#: ../modules/crewlist/crewlist.php:18
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/kioskadmin/kioskadmin.php:62
 #: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
-#: ../modules/sleepers/sleepers.php:123 ../modules/sleepers/sleepers.php:229
+#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
 msgstr "İsim"
@@ -140,7 +154,7 @@ msgstr "İsim"
 msgid "Add new ticket"
 msgstr ""
 
-#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:203
+#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:200
 msgid "Found no matching users"
 msgstr ""
 
@@ -365,6 +379,7 @@ msgstr ""
 #: ../modules/eventadmin/eventadmin.php:198
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
+#: ../modules/infoscreens/infoscreens.php:194
 #: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
@@ -420,6 +435,7 @@ msgid "Forumadmin"
 msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:42
+#: ../modules/infoscreens/infoscreens.php:14
 msgid "Infoscreens"
 msgstr ""
 
@@ -516,7 +532,7 @@ msgstr ""
 msgid "Nick:"
 msgstr ""
 
-#: ../modules/forum/forum.php:111
+#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:192
 msgid "Name:"
 msgstr ""
 
@@ -654,28 +670,84 @@ msgstr ""
 msgid "User already member of group"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:13
+#: ../modules/infoscreens/infoscreens.php:15
+msgid "Remember that all slides must be considered public!"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:19
 msgid "Screens"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:27
+#: ../modules/infoscreens/infoscreens.php:34
 msgid "Screen name"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:28
+#: ../modules/infoscreens/infoscreens.php:35
 msgid "Add screen"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:37
+#: ../modules/infoscreens/infoscreens.php:44
 msgid "Slides"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:38
+#: ../modules/infoscreens/infoscreens.php:48
 msgid "Create new slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:46
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/infoscreens/infoscreens.php:63
+msgid "Edit"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/infoscreens/infoscreens.php:64
+msgid "Preview"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:75
+msgid "There are no slides for this event"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:83
 msgid "Queues"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:92
+msgid "Screen:"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+msgid "Slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+msgid "Wait"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+#: ../modules/infoscreens/infoscreens.php:104
+msgid "Remove"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:129 ../modules/kiosk/kiosk.php:21
+msgid "Add"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:164
+msgid "Create a new slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:168
+msgid "Edit slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:207
+msgid "You forgot either name or some content.. Go back and try again."
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:243
+#: ../modules/infoscreens/infoscreens.php:260
+msgid "You did something wrong. Go back and try again."
 msgstr ""
 
 #: ../modules/kioskadmin/kioskadmin.php:12
@@ -724,20 +796,24 @@ msgstr ""
 msgid "Add barcode"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:21
-msgid "Add"
+#: ../modules/kiosk/kiosk.php:26
+msgid "Currently selling to:"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:42
+#: ../modules/kiosk/kiosk.php:47
 msgid "Add one more item"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:43
+#: ../modules/kiosk/kiosk.php:48
 msgid "Remove one item"
 msgstr ""
 
-#: ../modules/kiosk/kiosk.php:51
+#: ../modules/kiosk/kiosk.php:56
 msgid "SELL"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:84
+msgid "User not found!"
 msgstr ""
 
 #: ../modules/listing/listing.php:45
@@ -1082,11 +1158,11 @@ msgstr ""
 msgid "Change comment"
 msgstr ""
 
-#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:190
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:187
 msgid "Add sleeper"
 msgstr ""
 
-#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:184
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:181
 msgid "Remove sleeper"
 msgstr ""
 
@@ -1340,65 +1416,65 @@ msgstr ""
 msgid "No access"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:78
+#: ../modules/sleepers/sleepers.php:75
 msgid "Return to sleepers overview"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:82
+#: ../modules/sleepers/sleepers.php:79
 msgid "You must enter a search string"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:93
+#: ../modules/sleepers/sleepers.php:90
 msgid "Searching only users with tickets for this event"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:107
+#: ../modules/sleepers/sleepers.php:104
 msgid "Searching all users"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:123
+#: ../modules/sleepers/sleepers.php:120
 msgid "Tickets"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:123
+#: ../modules/sleepers/sleepers.php:120
 #: ../modules/ticketadmin/ticketadmin.php:195
 #: ../modules/ticketorder/ticketorder.php:26
 msgid "Status"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:134
+#: ../modules/sleepers/sleepers.php:131
 msgid "Sleeping since"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:140
+#: ../modules/sleepers/sleepers.php:137
 msgid "Not sleeping"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:169
+#: ../modules/sleepers/sleepers.php:166
 msgid "No tickets for this event"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:212
+#: ../modules/sleepers/sleepers.php:209
 msgid "Search for user:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:216
+#: ../modules/sleepers/sleepers.php:213
 msgid "Search users with tickets for this event only:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:223
 msgid "Number of sleeping users:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:229
+#: ../modules/sleepers/sleepers.php:226
 msgid "Went to bed"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:237
+#: ../modules/sleepers/sleepers.php:234
 msgid "View"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:245
+#: ../modules/sleepers/sleepers.php:242
 msgid "There are no sleeping users"
 msgstr ""
 
