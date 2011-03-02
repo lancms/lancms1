@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-02-28 09:15+0100\n"
+"POT-Creation-Date: 2011-03-01 20:44+0100\n"
 "PO-Revision-Date: 2011-01-14 23:50+0000\n"
 "Last-Translator: zeugma <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-01 05:57+0000\n"
+"X-Launchpad-Export-Date: 2011-03-02 14:13+0000\n"
 "X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
@@ -92,7 +92,7 @@ msgid "You are logged in as:"
 msgstr ""
 
 #: ../index.php:138 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:42
+#: ../modules/profile/profile.php:48
 msgid "Edit userinfo"
 msgstr ""
 
@@ -135,7 +135,7 @@ msgid "Search users with tickets"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
-#: ../modules/groups/groups.php:52 ../modules/profile/profile.php:18
+#: ../modules/groups/groups.php:52 ../modules/profile/profile.php:15
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 msgid "Nick"
 msgstr ""
@@ -144,7 +144,7 @@ msgstr ""
 #: ../modules/crewlist/crewlist.php:18
 #: ../modules/infoscreens/infoscreens.php:59
 #: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:12
+#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:13
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
@@ -174,7 +174,8 @@ msgstr "Adres"
 msgid "E-mail"
 msgstr "E-posta"
 
-#: ../modules/arrival/arrival.php:178 ../modules/register/register.php:237
+#: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
+#: ../modules/register/register.php:237
 #: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:138
 msgid "Birthday"
 msgstr ""
@@ -269,8 +270,9 @@ msgstr ""
 msgid "EMail"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:24 ../modules/register/register.php:268
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:178
+#: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
+#: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
+#: ../inc/shared_config.php:178
 msgid "Cellphone"
 msgstr ""
 
@@ -308,9 +310,9 @@ msgid "Accountnumber already exists"
 msgstr ""
 
 #: ../modules/economy/economy.php:84
-#: ../modules/ticketorder/ticketorder.php:221
-#: ../modules/ticketorder/ticketorder.php:225
-#: ../modules/ticketorder/ticketorder.php:229
+#: ../modules/ticketorder/ticketorder.php:222
+#: ../modules/ticketorder/ticketorder.php:226
+#: ../modules/ticketorder/ticketorder.php:230
 msgid "Back"
 msgstr ""
 
@@ -435,7 +437,7 @@ msgid "Forumadmin"
 msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:42
-#: ../modules/infoscreens/infoscreens.php:14
+#: ../modules/infoscreens/infoscreens.php:14 ../modules/logs/logs.php:160
 msgid "Infoscreens"
 msgstr ""
 
@@ -682,7 +684,7 @@ msgstr ""
 msgid "Screen name"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:35
+#: ../modules/infoscreens/infoscreens.php:35 ../modules/logs/logs.php:161
 msgid "Add screen"
 msgstr ""
 
@@ -737,7 +739,7 @@ msgstr ""
 msgid "Create a new slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:168
+#: ../modules/infoscreens/infoscreens.php:168 ../modules/logs/logs.php:165
 msgid "Edit slide"
 msgstr ""
 
@@ -745,8 +747,8 @@ msgstr ""
 msgid "You forgot either name or some content.. Go back and try again."
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:243
-#: ../modules/infoscreens/infoscreens.php:260
+#: ../modules/infoscreens/infoscreens.php:261
+#: ../modules/infoscreens/infoscreens.php:285
 msgid "You did something wrong. Go back and try again."
 msgstr ""
 
@@ -907,18 +909,18 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:198
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:206
 msgid "Timestamp"
 msgstr ""
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:197
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:205
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
 msgstr ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:201
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:209
 msgid "Logmodule"
 msgstr ""
 
@@ -926,15 +928,15 @@ msgstr ""
 msgid "Logtype"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
 msgid "IP"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:199
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
 msgid "Host"
 msgstr ""
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:200
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:208
 msgid "URL"
 msgstr ""
 
@@ -1166,19 +1168,31 @@ msgstr ""
 msgid "Remove sleeper"
 msgstr ""
 
-#: ../modules/logs/logs.php:160
+#: ../modules/logs/logs.php:162
+msgid "Add to queue"
+msgstr ""
+
+#: ../modules/logs/logs.php:163
+msgid "Remove from queue"
+msgstr ""
+
+#: ../modules/logs/logs.php:164
+msgid "New slide"
+msgstr ""
+
+#: ../modules/logs/logs.php:168
 msgid "Unknown module"
 msgstr ""
 
-#: ../modules/logs/logs.php:161
+#: ../modules/logs/logs.php:169
 msgid "Unknown function"
 msgstr ""
 
-#: ../modules/logs/logs.php:194
+#: ../modules/logs/logs.php:202
 msgid "Details for logentry "
 msgstr ""
 
-#: ../modules/logs/logs.php:202
+#: ../modules/logs/logs.php:210
 msgid "Logfunction"
 msgstr ""
 
@@ -1190,7 +1204,27 @@ msgstr ""
 msgid "Add as global article"
 msgstr ""
 
-#: ../modules/profile/profile.php:28
+#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
+msgid "Email"
+msgstr ""
+
+#: ../modules/profile/profile.php:22 ../modules/register/register.php:224
+#: ../inc/shared_config.php:171
+msgid "Gender"
+msgstr ""
+
+#: ../modules/profile/profile.php:24 ../modules/register/register.php:218
+#: ../modules/useradmin/useradmin.php:64
+#: ../modules/wannabeadmin/wannabeadmin.php:268
+msgid "Address"
+msgstr ""
+
+#: ../modules/profile/profile.php:25 ../modules/register/register.php:219
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:166
+msgid "Postnumber"
+msgstr ""
+
+#: ../modules/profile/profile.php:34
 msgid "Groupmemberships"
 msgstr ""
 
@@ -1291,20 +1325,6 @@ msgstr ""
 
 #: ../modules/register/register.php:216 ../inc/shared_config.php:133
 msgid "Last name"
-msgstr ""
-
-#: ../modules/register/register.php:218 ../modules/useradmin/useradmin.php:64
-#: ../modules/wannabeadmin/wannabeadmin.php:268
-msgid "Address"
-msgstr ""
-
-#: ../modules/register/register.php:219 ../modules/useradmin/useradmin.php:65
-#: ../inc/shared_config.php:166
-msgid "Postnumber"
-msgstr ""
-
-#: ../modules/register/register.php:224 ../inc/shared_config.php:171
-msgid "Gender"
 msgstr ""
 
 #: ../modules/register/register.php:227
@@ -1644,41 +1664,45 @@ msgstr ""
 msgid "free"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:155
+#: ../modules/ticketorder/ticketorder.php:153
+msgid "Price:"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:156
 msgid "Buy ticket"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:161
+#: ../modules/ticketorder/ticketorder.php:162
 msgid "Ticketcode from reseller"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:164
+#: ../modules/ticketorder/ticketorder.php:165
 msgid "Claim ticket"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:220
+#: ../modules/ticketorder/ticketorder.php:221
 msgid "Could not find that code. Are you sure you typed it correctly?"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:224
+#: ../modules/ticketorder/ticketorder.php:225
 msgid ""
 "Code found, but it's not for this event. Try finding a newer piece for paper "
 "with a newer code"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:228
+#: ../modules/ticketorder/ticketorder.php:229
 msgid "Code found, but it has already been used"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:289
+#: ../modules/ticketorder/ticketorder.php:290
 msgid "Are you sure you wish to delete this ticket?"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:290
+#: ../modules/ticketorder/ticketorder.php:291
 msgid "No, this would be a mistake"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:291
+#: ../modules/ticketorder/ticketorder.php:292
 msgid "Yes, I don't need it"
 msgstr ""
 
@@ -1704,10 +1728,6 @@ msgstr ""
 
 #: ../modules/useradmin/useradmin.php:62
 msgid "Lastname"
-msgstr ""
-
-#: ../modules/useradmin/useradmin.php:63
-msgid "Email"
 msgstr ""
 
 #: ../modules/useradmin/useradmin.php:126
