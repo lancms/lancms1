@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-03-01 20:44+0100\n"
+        "POT-Creation-Date: 2011-03-03 17:15+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,7 +174,7 @@ msgstr  ""
 
 #: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:138
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:140
 msgid   "Birthday"
 msgstr  ""
 
@@ -264,13 +264,13 @@ msgstr  ""
 msgid   "Signup has closed"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:182
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:184
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
-#: ../inc/shared_config.php:178
+#: ../inc/shared_config.php:180
 msgid   "Cellphone"
 msgstr  ""
 
@@ -1205,7 +1205,7 @@ msgid   "Email"
 msgstr  ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.php:224
-#: ../inc/shared_config.php:171
+#: ../inc/shared_config.php:173
 msgid   "Gender"
 msgstr  ""
 
@@ -1216,7 +1216,7 @@ msgid   "Address"
 msgstr  ""
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.php:219
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:166
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:168
 msgid   "Postnumber"
 msgstr  ""
 
@@ -1298,7 +1298,7 @@ msgid   "User registered"
 msgstr  ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:124
+#: ../inc/shared_config.php:126
 msgid   "Username"
 msgstr  ""
 
@@ -1314,11 +1314,11 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:128
+#: ../modules/register/register.php:213 ../inc/shared_config.php:130
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:133
+#: ../modules/register/register.php:216 ../inc/shared_config.php:135
 msgid   "Last name"
 msgstr  ""
 
@@ -1940,67 +1940,71 @@ msgstr  ""
 msgid   "Activate sleepsystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:99
-msgid   "January"
-msgstr  ""
-
-#: ../inc/shared_config.php:100
-msgid   "February"
+#: ../inc/shared_config.php:45
+msgid   "Show number of free tickets in ticketorder"
 msgstr  ""
 
 #: ../inc/shared_config.php:101
-msgid   "March"
+msgid   "January"
 msgstr  ""
 
 #: ../inc/shared_config.php:102
-msgid   "April"
+msgid   "February"
 msgstr  ""
 
 #: ../inc/shared_config.php:103
-msgid   "May"
+msgid   "March"
 msgstr  ""
 
 #: ../inc/shared_config.php:104
-msgid   "June"
+msgid   "April"
 msgstr  ""
 
 #: ../inc/shared_config.php:105
-msgid   "July"
+msgid   "May"
 msgstr  ""
 
 #: ../inc/shared_config.php:106
-msgid   "August"
+msgid   "June"
 msgstr  ""
 
 #: ../inc/shared_config.php:107
-msgid   "September"
+msgid   "July"
 msgstr  ""
 
 #: ../inc/shared_config.php:108
-msgid   "October"
+msgid   "August"
 msgstr  ""
 
 #: ../inc/shared_config.php:109
-msgid   "November"
+msgid   "September"
 msgstr  ""
 
 #: ../inc/shared_config.php:110
+msgid   "October"
+msgstr  ""
+
+#: ../inc/shared_config.php:111
+msgid   "November"
+msgstr  ""
+
+#: ../inc/shared_config.php:112
 msgid   "December"
 msgstr  ""
 
-#: ../inc/shared_config.php:161
+#: ../inc/shared_config.php:163
 msgid   "Streetadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:187
+#: ../inc/shared_config.php:189
 msgid   "List all attendees on current event"
 msgstr  ""
 
-#: ../inc/shared_config.php:204
+#: ../inc/shared_config.php:206
 msgid   "Allow other users to see my mailadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:209
+#: ../inc/shared_config.php:211
 msgid   "All users"
 msgstr  ""
 
