@@ -41,6 +41,8 @@ $eventconfig['checkbox'][10]['config'] = 'enable_forum';
 $eventconfig['checkbox'][10]['name'] = _("Activate forum");
 $eventconfig['checkbox'][11]['config'] = 'enable_sleepers';
 $eventconfig['checkbox'][11]['name'] = _("Activate sleepsystem");
+$eventconfig['checkbox'][12]['config'] = 'show_free_tickets';
+$eventconfig['checkbox'][12]['name'] = _("Show number of free tickets in ticketorder");
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';
