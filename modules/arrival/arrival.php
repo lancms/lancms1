@@ -231,6 +231,9 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 
 
 	$content .= "</tr></table>\n\n";
+	$content .= "<br />\n";
+	$userACL = acl_access("userAdmin", "", 1);
+	if($userACL == 'Write' || $userACL == 'Admin') $content .= sprintf ("<form method='POST' action='?module=edituserinfo&action=editUserinfo&user=%s'><input type='submit' value='%s' /></form>\n", $rFindTicket->user, _('Edit userinfo'));
 }
 
 elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
