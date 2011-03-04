@@ -45,7 +45,8 @@ else
 	}
 	else
 	{
-		die (_('The screen requested does not exist'));
+		#die (_('The screen requested does not exist'));
+		header("Location: party.php");
 	}
 	
 }
