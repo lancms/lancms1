@@ -32,13 +32,13 @@ if(!isset($action) || $action == "editticket") {
 	$content .= $rListTickets->maxTickets;
 	$content .= "</td><td class=tdLink onClick='location.href=\"?module=ticketadmin&action=listTickets&tickettype=$rListTickets->ticketTypeID\"'>\n";
 	$qNumTicketsOfType = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets 
-	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID'");
+	    WHERE eventID = '$eventID' AND ticketType = '$rListTickets->ticketTypeID' AND status != 'deleted'");
 	$rNumTicketsOfType = db_fetch($qNumTicketsOfType);
 	$qNumTicketsUsed = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets
 		WHERE eventID = '$eventID' AND ticketType='$rListTickets->ticketTypeID' AND status = 'used'");
 	$rNumTicketsUsed = db_fetch($qNumTicketsUsed);
 	$qNumTicketsPaid = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets
-		WHERE eventID = '$eventID' AND ticketType='$rListTickets->ticketTypeID' AND paid = 'yes'");
+		WHERE eventID = '$eventID' AND ticketType='$rListTickets->ticketTypeID' AND status != 'deleted' AND paid = 'yes'");
 	$rNumTicketsPaid = db_fetch($qNumTicketsPaid);
 	$content .= $rNumTicketsOfType->count."/".$rNumTicketsUsed->count."/".$rNumTicketsPaid->count;
 	$content .= "</td></tr>\n";
