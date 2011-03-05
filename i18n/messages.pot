@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-03-05 12:30+0100\n"
+        "POT-Creation-Date: 2011-03-05 12:54+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -296,7 +296,11 @@ msgid   "Money earned"
 msgstr  ""
 
 #: ../modules/dashboard/dashboard.php:37
-msgid   "Sold for"
+msgid   "Sold for (total)"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:43
+msgid   "Creditsale"
 msgstr  ""
 
 #: ../modules/economy/economy.php:40
