@@ -43,5 +43,23 @@ if(empty($action)) {
 	$content .= "<br /><b>"._("Creditsale")."</b>: ";
 	$content .= $rCheckCreditSale->creditSale;
 	$content .= "</td></tr>";
+
+	// Details
+	$content .= "<tr><td>";
+	$qFindTicketDetails = db_query("SELECT COUNT(*) AS amount,tt.name AS name FROM ".$sql_prefix."_tickets t JOIN ".$sql_prefix."_ticketTypes tt ON t.ticketType = tt.ticketTypeID WHERE tt.eventID = '$sessioninfo->eventID' AND t.paid='yes' GROUP BY tt.name");
+	while($rFindTicketDetails = db_fetch($qFindTicketDetails)) {
+		$content .= "<br /><b>".$rFindTicketDetails->name."</b>: ";
+		$content .= $rFindTicketDetails->amount;
+#		$content .= "</li>";
+	} // End while
+	$content .= "</td><td>\n";
+	$qFindKioskDetails = db_query("SELECT w.name,SUM(amount) AS amount FROM (".$sql_prefix."_kiosk_saleitems si LEFT JOIN ".$sql_prefix."_kiosk_sales s ON s.ID=si.saleID) LEFT JOIN ".$sql_prefix."_kiosk_wares w ON si.wareID=w.ID WHERE s.eventID = '$sessioninfo->eventID' GROUP BY w.name ORDER BY w.wareType,w.name");
+#	$content .= "</td></tr>";
+	while($rFindKioskDetails = db_fetch($qFindKioskDetails)) {
+		$content .= "<br /><b>".$rFindKioskDetails->name."</b>: ";
+		$content .= $rFindKioskDetails->amount;
+	} // End while
+	// End it
+	$content .= "</td></tr>";
 	$content .= "</table>";
 }
