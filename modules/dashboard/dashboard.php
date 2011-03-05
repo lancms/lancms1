@@ -34,10 +34,14 @@ if(empty($action)) {
 	$content .= $rCountTicketsSold->amount;
 	$content .= "</td><td>";
 	// Kiosk
-	$content .= "<b>"._("Sold for")."</b>: ";
+	$content .= "<b>"._("Sold for (total)")."</b>: ";
 	$qCheckKiosk = db_query("SELECT SUM(totalPrice) AS totalPrice FROM ".$sql_prefix."_kiosk_sales WHERE eventID = '$sessioninfo->eventID'");
 	$rCheckKiosk = db_fetch($qCheckKiosk);
 	$content .= $rCheckKiosk->totalPrice;
+	$qCheckCreditSale = db_query("SELECT SUM(totalPrice) AS creditSale FROM ".$sql_prefix."_kiosk_sales WHERE eventID = '$sessioninfo->eventID' AND credit = 1");
+	$rCheckCreditSale = db_fetch($qCheckCreditSale);
+	$content .= "<br /><b>"._("Creditsale")."</b>: ";
+	$content .= $rCheckCreditSale->creditSale;
 	$content .= "</td></tr>";
 	$content .= "</table>";
 }
