@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-03-05 12:54+0100\n"
+        "POT-Creation-Date: 2011-03-05 17:07+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -141,8 +141,8 @@ msgstr  ""
 #: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
 #: ../modules/crewlist/crewlist.php:18
 #: ../modules/infoscreens/infoscreens.php:59
-#: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:13
+#: ../modules/kioskadmin/kioskadmin.php:63
+#: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid   "Name"
@@ -404,7 +404,7 @@ msgstr  ""
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
 #: ../modules/infoscreens/infoscreens.php:194
-#: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid   "Save"
@@ -782,41 +782,45 @@ msgstr  ""
 msgid   "Admin wares"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:17
+#: ../modules/kioskadmin/kioskadmin.php:14
+msgid   "Admin credit"
+msgstr  ""
+
+#: ../modules/kioskadmin/kioskadmin.php:18
 msgid   "Print barcodes"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:37
+#: ../modules/kioskadmin/kioskadmin.php:38
 msgid   "Add new waretype"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:63
+#: ../modules/kioskadmin/kioskadmin.php:64
 msgid   "Type"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:64
-#: ../modules/kioskadmin/kioskadmin.php:132
+#: ../modules/kioskadmin/kioskadmin.php:65
+#: ../modules/kioskadmin/kioskadmin.php:133
 msgid   "Barcodes"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:65
+#: ../modules/kioskadmin/kioskadmin.php:66
 msgid   "Price (normal)"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:91
+#: ../modules/kioskadmin/kioskadmin.php:92
 msgid   "Add ware"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:125
+#: ../modules/kioskadmin/kioskadmin.php:126
 msgid   "Ware type"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:126
+#: ../modules/kioskadmin/kioskadmin.php:127
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid   "Price"
 msgstr  ""
 
-#: ../modules/kioskadmin/kioskadmin.php:140
+#: ../modules/kioskadmin/kioskadmin.php:141
 msgid   "Add barcode"
 msgstr  ""
 
