@@ -58,6 +58,17 @@ if(empty($action)) {
 		$content .= "<font size=36 color=red>$total_price</font>";
 		$content .= "<form method=POST action=?module=kiosk&action=sell>";
 		$content .= "<input type=submit value='".lang("SELL", "kiosk")."'>";
+
+	        if($sessioninfo->kioskSaleTo > 1) {
+        	        if(config("kiosk_userSale_credit_default", $sessioninfo->eventID)) $credit_yes = 'checked';
+                	else $credit_no = 'checked';
+	                $content .= "<br /><input type=radio name=credit value='yes' $credit_yes>";
+        	        $content .= _("Add to users credit");
+                	$content .= "<br /><input type=radio name=credit value='no' $credit_no>";
+	                $content .= _("User pays cash");
+	        } // End kioskSaleTo > 1
+
+
 	} // End if total_warecount > 0
 	$content .= "</form>\n\n";
 	$content .= "</td></tr>";
@@ -133,10 +144,13 @@ elseif($action == "removeWare") {
 } // End if action = removeWare
  
 elseif($action == "sell") {
+	if($_POST['credit'] == 'yes' AND $sessioninfo->kioskSaleTo > 1) $credit = 1;
+	else $credit = 0;
 	$qCreateSale = db_query("INSERT INTO ".$sql_prefix."_kiosk_sales 
 		SET salesPerson = '$sessioninfo->userID',
 		saleTime = '".time()."',
 		soldTo = '".$sessioninfo->kioskSaleTo."',
+		credit = '$credit',
 		eventID = '$sessioninfo->eventID'");
 	$qSaleID = db_query("SELECT ID FROM ".$sql_prefix."_kiosk_sales 
 		WHERE salesPerson = '$sessioninfo->userID' 

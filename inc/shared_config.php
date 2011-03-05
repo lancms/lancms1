@@ -43,6 +43,10 @@ $eventconfig['checkbox'][11]['config'] = 'enable_sleepers';
 $eventconfig['checkbox'][11]['name'] = _("Activate sleepsystem");
 $eventconfig['checkbox'][12]['config'] = 'show_free_tickets';
 $eventconfig['checkbox'][12]['name'] = _("Show number of free tickets in ticketorder");
+$eventconfig['checkbox'][13]['config'] = 'kiosk_userSale_credit_default';
+$eventconfig['checkbox'][13]['name'] = _("Default option in kiosk to sell to credit when user is selected (otherwise cash payment is selected as default)");
+
+
 
 ## Globalconfigs
 $globalconfig['checkbox'][] = 'users_may_create_clan';

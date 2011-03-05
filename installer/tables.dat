@@ -424,6 +424,8 @@ TABLE [prefix]_kiosk_sales
 	eventID,		int(11),		,	,	1,
 	soldTo,			int(11),		,	,	1,
 	totalPrice,		int(5),			,	,	,
+	credit,			tinyint(1),		,	,	0,
+	creditPaid,		tinyint(1),		,	,	0,
 }
 
 TABLE [prefix]_kiosk_saleitems
