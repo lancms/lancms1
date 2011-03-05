@@ -25,6 +25,10 @@ if(empty($action)) {
 	if($sessioninfo->kioskSaleTo > 1) {
 		$content .= _("Currently selling to:");
 		$content .= " ".display_username($sessioninfo->kioskSaleTo);
+		$content .= "<form method=POST action='?module=kiosk&action=addWare' name='resetSaleTo'>\n";
+		$content .= "<input type='hidden' name='ware' value='UID1'>";
+		$content .= "<input type=submit value='"._("Remove user")."'>";
+		$content .= "</form>\n";
 	} // End kioskSaleTo
 	$content .= "</td></tr>";
 
