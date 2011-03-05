@@ -8,7 +8,7 @@ $action = $_GET['dashboard'];
 
 if(empty($action)) {
 	$design_head .= "<meta http-equiv='refresh' content='10'>";
-	$content .= "<table border=1>";
+	$content .= "<table border=1 style='font-size: 200%;'>";
 	$content .= "<tr><th>";
 	$content .= _("Tickets sold");
 	$content .= "</th><th>";
@@ -46,14 +46,14 @@ if(empty($action)) {
 
 	// Details
 	$content .= "<tr><td>";
-	$qFindTicketDetails = db_query("SELECT COUNT(*) AS amount,tt.name AS name FROM ".$sql_prefix."_tickets t JOIN ".$sql_prefix."_ticketTypes tt ON t.ticketType = tt.ticketTypeID WHERE tt.eventID = '$sessioninfo->eventID' AND t.paid='yes' GROUP BY tt.name");
+	$qFindTicketDetails = db_query("SELECT COUNT(*) AS amount,tt.name AS name FROM ".$sql_prefix."_tickets t JOIN ".$sql_prefix."_ticketTypes tt ON t.ticketType = tt.ticketTypeID WHERE tt.eventID = '$sessioninfo->eventID' AND t.paid='yes' GROUP BY tt.name ORDER BY amount DESC");
 	while($rFindTicketDetails = db_fetch($qFindTicketDetails)) {
 		$content .= "<br /><b>".$rFindTicketDetails->name."</b>: ";
 		$content .= $rFindTicketDetails->amount;
 #		$content .= "</li>";
 	} // End while
 	$content .= "</td><td>\n";
-	$qFindKioskDetails = db_query("SELECT w.name,SUM(amount) AS amount FROM (".$sql_prefix."_kiosk_saleitems si LEFT JOIN ".$sql_prefix."_kiosk_sales s ON s.ID=si.saleID) LEFT JOIN ".$sql_prefix."_kiosk_wares w ON si.wareID=w.ID WHERE s.eventID = '$sessioninfo->eventID' GROUP BY w.name ORDER BY w.wareType,w.name");
+	$qFindKioskDetails = db_query("SELECT w.name,SUM(amount) AS amount FROM (".$sql_prefix."_kiosk_saleitems si LEFT JOIN ".$sql_prefix."_kiosk_sales s ON s.ID=si.saleID) LEFT JOIN ".$sql_prefix."_kiosk_wares w ON si.wareID=w.ID WHERE s.eventID = '$sessioninfo->eventID' GROUP BY w.name ORDER BY amount DESC");
 #	$content .= "</td></tr>";
 	while($rFindKioskDetails = db_fetch($qFindKioskDetails)) {
 		$content .= "<br /><b>".$rFindKioskDetails->name."</b>: ";
