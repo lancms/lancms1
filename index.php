@@ -85,7 +85,7 @@ if ($sessioninfo->eventID > 1)
 	$acl_sleepers = acl_access("sleepers", "", $sessioninfo->eventID);
 	if ((config ('enable_sleepers', $sessioninfo->eventID)) and ($acl_sleepers == 'Admin' or $acl_sleepers == 'Write'))
 		$design_eventmenu .= "<li><a href=\"?module=sleepers\">".lang("Sleepers", "index")."</a></li>\n";
-	if(acl_access("dashboard") != 'No') $design_menu .= "<li><a href='?module=dashboard'>"._("Dashboard")."</a></li>\n";
+	if(acl_access("dashboard", "", $sessioninfo->eventID) != 'No') $design_menu .= "<li><a href='?module=dashboard'>"._("Dashboard")."</a></li>\n";
 	
 
 
