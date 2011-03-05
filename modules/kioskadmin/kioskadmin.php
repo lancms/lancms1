@@ -11,6 +11,7 @@ if(empty($action)) {
 	$content .= "<ul>";
 	$content .= "<li><a href=?module=kioskadmin&action=wareTypes>".lang("Admin waretypes")."</a></li>\n";
 	$content .= "<li><a href=?module=kioskadmin&action=wares>".lang("Admin wares")."</a></li>\n";
+	$content .= "<li><a href=?module=kioskadmin&action=credit>"._("Admin credit")."</a></li>\n";
 	$content .= "</ul>";
 
 	$content .= "<ul>";
@@ -176,3 +177,17 @@ elseif($action == "addBarcode" && !empty($_GET['wareID'])) {
 
 	header("Location: ?module=kioskadmin&action=editWare&wareID=$wareID");
 } // End action == addBarcode
+
+
+elseif($action == "credit") {
+	$qFindCredits = db_query("SELECT u.nick,u.ID,SUM(totalPrice) AS totalPrice FROM ".$sql_prefix."_kiosk_sales ks JOIN ".$sql_prefix."_users u ON u.ID=ks.soldTo WHERE ks.credit = 1 AND creditPaid = 0 GROUP BY u.nick ORDER BY totalPrice DESC");
+
+	$content .= "<table>";
+	while($rFindCredits = db_fetch($qFindCredits)) {
+		$content .= "<tr><td>";
+		$content .= user_profile($rFindCredits->ID);
+		$content .= "</td><td>\n";
+		$content .= $rFindCredits->totalPrice;
+	} // End while
+	$content .= "</table>\n\n";
+} // End action = credit
