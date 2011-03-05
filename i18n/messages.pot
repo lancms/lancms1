@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-03-03 17:15+0100\n"
+        "POT-Creation-Date: 2011-03-05 12:30+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,33 +77,37 @@ msgstr  ""
 msgid   "Sleepers"
 msgstr  ""
 
-#: ../index.php:97
+#: ../index.php:88
+msgid   "Dashboard"
+msgstr  ""
+
+#: ../index.php:98
 msgid   "Event Admin"
 msgstr  ""
 
-#: ../index.php:109
+#: ../index.php:110
 msgid   "Type your nick, email or name here:"
 msgstr  ""
 
-#: ../index.php:134
+#: ../index.php:135
 msgid   "You are logged in as:"
 msgstr  ""
 
-#: ../index.php:138 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:48
+#: ../index.php:139 ../modules/arrival/arrival.php:236
+#: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
 msgid   "Edit userinfo"
 msgstr  ""
 
-#: ../index.php:139
+#: ../index.php:140
 msgid   "Edit my preferences"
 msgstr  ""
 
-#: ../index.php:140 ../modules/edituserinfo/edituserinfo.php:14
+#: ../index.php:141 ../modules/edituserinfo/edituserinfo.php:14
 #: ../modules/edituserinfo/edituserinfo.php:27
 msgid   "Change password"
 msgstr  ""
 
-#: ../index.php:141 ../modules/logs/logs.php:100
+#: ../index.php:142 ../modules/logs/logs.php:100
 msgid   "Logout"
 msgstr  ""
 
@@ -111,11 +115,7 @@ msgstr  ""
 msgid   "There are no screens for this event"
 msgstr  ""
 
-#: ../party.php:48
-msgid   "The screen requested does not exist"
-msgstr  ""
-
-#: ../party.php:62
+#: ../party.php:63
 msgid   "There are no queue for this screen"
 msgstr  ""
 
@@ -174,7 +174,7 @@ msgstr  ""
 
 #: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:140
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:145
 msgid   "Birthday"
 msgstr  ""
 
@@ -204,7 +204,7 @@ msgstr  ""
 msgid   "Deleted"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:295
+#: ../modules/arrival/arrival.php:298
 msgid   "Add ticket to user"
 msgstr  ""
 
@@ -264,19 +264,39 @@ msgstr  ""
 msgid   "Signup has closed"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:184
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:189
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
-#: ../inc/shared_config.php:180
+#: ../inc/shared_config.php:185
 msgid   "Cellphone"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:26
 #: ../modules/globaladmin/globaladmin.php:176 ../modules/groups/groups.php:53
 msgid   "Access"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:4
+msgid   "No access to dashboard"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:13 ../modules/dashboard/dashboard.php:28
+msgid   "Tickets sold"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:15
+msgid   "Kiosk sales"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:19
+msgid   "Money earned"
+msgstr  ""
+
+#: ../modules/dashboard/dashboard.php:37
+msgid   "Sold for"
 msgstr  ""
 
 #: ../modules/economy/economy.php:40
@@ -800,19 +820,31 @@ msgstr  ""
 msgid   "Currently selling to:"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:47
+#: ../modules/kiosk/kiosk.php:30
+msgid   "Remove user"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:51
 msgid   "Add one more item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:48
+#: ../modules/kiosk/kiosk.php:52
 msgid   "Remove one item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:56
+#: ../modules/kiosk/kiosk.php:60
 msgid   "SELL"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:84
+#: ../modules/kiosk/kiosk.php:66
+msgid   "Add to users credit"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:68
+msgid   "User pays cash"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:99
 msgid   "User not found!"
 msgstr  ""
 
@@ -1205,7 +1237,7 @@ msgid   "Email"
 msgstr  ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.php:224
-#: ../inc/shared_config.php:173
+#: ../inc/shared_config.php:178
 msgid   "Gender"
 msgstr  ""
 
@@ -1216,7 +1248,7 @@ msgid   "Address"
 msgstr  ""
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.php:219
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:168
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:173
 msgid   "Postnumber"
 msgstr  ""
 
@@ -1298,7 +1330,7 @@ msgid   "User registered"
 msgstr  ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:126
+#: ../inc/shared_config.php:131
 msgid   "Username"
 msgstr  ""
 
@@ -1314,11 +1346,11 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:130
+#: ../modules/register/register.php:213 ../inc/shared_config.php:135
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:135
+#: ../modules/register/register.php:216 ../inc/shared_config.php:140
 msgid   "Last name"
 msgstr  ""
 
@@ -1944,67 +1976,72 @@ msgstr  ""
 msgid   "Show number of free tickets in ticketorder"
 msgstr  ""
 
-#: ../inc/shared_config.php:101
-msgid   "January"
-msgstr  ""
-
-#: ../inc/shared_config.php:102
-msgid   "February"
-msgstr  ""
-
-#: ../inc/shared_config.php:103
-msgid   "March"
-msgstr  ""
-
-#: ../inc/shared_config.php:104
-msgid   "April"
-msgstr  ""
-
-#: ../inc/shared_config.php:105
-msgid   "May"
+#: ../inc/shared_config.php:47
+msgid   "Default option in kiosk to sell to credit when user is selected "
+        "(otherwise cash payment is selected as default)"
 msgstr  ""
 
 #: ../inc/shared_config.php:106
-msgid   "June"
+msgid   "January"
 msgstr  ""
 
 #: ../inc/shared_config.php:107
-msgid   "July"
+msgid   "February"
 msgstr  ""
 
 #: ../inc/shared_config.php:108
-msgid   "August"
+msgid   "March"
 msgstr  ""
 
 #: ../inc/shared_config.php:109
-msgid   "September"
+msgid   "April"
 msgstr  ""
 
 #: ../inc/shared_config.php:110
-msgid   "October"
+msgid   "May"
 msgstr  ""
 
 #: ../inc/shared_config.php:111
-msgid   "November"
+msgid   "June"
 msgstr  ""
 
 #: ../inc/shared_config.php:112
+msgid   "July"
+msgstr  ""
+
+#: ../inc/shared_config.php:113
+msgid   "August"
+msgstr  ""
+
+#: ../inc/shared_config.php:114
+msgid   "September"
+msgstr  ""
+
+#: ../inc/shared_config.php:115
+msgid   "October"
+msgstr  ""
+
+#: ../inc/shared_config.php:116
+msgid   "November"
+msgstr  ""
+
+#: ../inc/shared_config.php:117
 msgid   "December"
 msgstr  ""
 
-#: ../inc/shared_config.php:163
+#: ../inc/shared_config.php:168
 msgid   "Streetadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:189
+#: ../inc/shared_config.php:194
 msgid   "List all attendees on current event"
 msgstr  ""
 
-#: ../inc/shared_config.php:206
+#: ../inc/shared_config.php:211
 msgid   "Allow other users to see my mailadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:211
+#: ../inc/shared_config.php:216
 msgid   "All users"
 msgstr  ""
 
