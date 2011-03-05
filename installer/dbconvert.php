@@ -5,7 +5,7 @@ else require('../config.php');
 require('../inc/shared_functions.php');
 
 
-$eventID = 4; // EventID to import the DB to
+$eventID = 9; // EventID to import the DB to
 
 
 
@@ -18,7 +18,7 @@ mysql_select_db($sql_base, $todb) or die(mysql_error());
 
 
 
-$qFromUsers = mysql_query("SELECT * FROM $sql_oldbase.users WHERE ID != 1 AND verified = 0", $from);
+$qFromUsers = mysql_query("SELECT * FROM $sql_oldbase.users WHERE ID != 1 AND memberVerified = 1", $from);
 
 while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 
@@ -33,7 +33,7 @@ while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 		echo "Didn't find $rFromUsers->nick, inserting\n";
 		if($rFromUsers->gender == 1) $gender = 'Female';
 		else $gender = 'Male';
-		mysql_query("INSERT INTO $sql_base.".$sql_prefix."_users SET
+		mysql_query ("INSERT INTO $sql_base.".$sql_prefix."_users SET
 			nick = '".$rFromUsers->nick."',
 			firstName = '".$rFromUsers->firstName."',
 			lastName = '".$rFromUsers->lastName."',
@@ -60,7 +60,7 @@ while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 	$user_converttable[$oldUID] = $newUID;
 
 } // End qUsers
-
+/*
 $qFromWannabeQ = mysql_query("SELECT * FROM $sql_oldbase.wannabeQue", $from) or die("qFromWannabeQ: ".mysql_error());
 
 while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
@@ -142,5 +142,5 @@ while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
 
 
 } // End wannabeQuestions
-
+*/
 $qFindClans = mysql_query("SELECT * FROM $sql_oldbase.Clan", $from);

@@ -108,7 +108,7 @@ elseif($action == "addWare") {
 	if(!$checkingUser) {
 		$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket 
 			WHERE sID = '$sessioninfo->sID'
-			AND wareID = $wareID");
+			AND wareID = '$wareID'");
 
 		if(db_num($qFindBasket) == 0) {
 			db_query("INSERT INTO ".$sql_prefix."_kiosk_shopbasket

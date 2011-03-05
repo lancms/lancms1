@@ -117,6 +117,7 @@ if ($showslide and $nextinqueue)
 }
 elseif (empty ($showslide))
 {
+	header ("Refresh: 1;");
 	die ('wtf.. no slide to show!');
 }
 elseif (empty ($nextinqueue))

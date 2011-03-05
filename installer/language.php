@@ -1350,3 +1350,376 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til tråd")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Add thread")."'");
 
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret grupperettigheter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_groups__changeGroupRights")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret brukerinnstillinger")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_edituser__doEditPreferences")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Avbryt redigering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Cancel edit")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endre spørsmål")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Change question")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("La til wannabespørsmål")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeadmin__addQuestion")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret wannabespørsmål")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeAdmin__changeQuestion")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endre navn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Change name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret wannabecrew")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeadmin__doEditcrew")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("La til wannabecrew")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeadmin__doAddCrew")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ja")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Yes")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Wannabe: crewsøknad fjernet")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabe__doRemoveApplication")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Wannabe: Søknad")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabe__doApplication")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Wannabeadmin: kommentar endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeadmin__doChangeComment")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Bruker:")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("User:")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Navn:")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Name:")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt svar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("New reply")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny forumtråd")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_forum__newThread")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til svar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Add reply")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt forumsvar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_forum__newpost")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Epost")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("edituserinfo_prefs")."' AND string = '".db_escape("EMail")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Bekreft nullstilling av kart")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Confirm map reset")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassadmin: plasstype endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_seatadmin__doUpdateSeat")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassadmin: opprettet kolonne")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_seatadmin__addcolumn")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassadmin: opprettet rad")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_seatadmin__addrow")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassadmin: kart nullstilt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_seatadmin__doresetmap")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Rundenavn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("compoadmin")."' AND string = '".db_escape("Round name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til runde")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("compoadmin")."' AND string = '".db_escape("Add round")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Sesjoner")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("Sessions")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("IP-adresse")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("IP-address")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("UserAgent")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("Useragent")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Bruker")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("User")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Arrangement")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("Event")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Siste besøk")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("sessions")."' AND string = '".db_escape("Last visit")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Grupper med globale rettigheter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Groups with global rights")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Arrangement")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Event")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Gruppe")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Group")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Modul")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Module")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Tilgang")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("Access")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Skriv inn ditt nick, epost eller navn her:")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Type your nick, email or name here:")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Siste innlegg av:")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Last post by: ")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Navn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("profile")."' AND string = '".db_escape("Name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nick")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("profile")."' AND string = '".db_escape("Nick")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Gruppemedlemsskap")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("profile")."' AND string = '".db_escape("Groupmemberships")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nyheter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("news")."' AND string = '".db_escape("News")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ingen")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("No")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Navn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Fødselsdag")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Birthday")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Adresse")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("wannabeadmin")."' AND string = '".db_escape("Address")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Januar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("January")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Februar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("February")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Mars")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("March")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("April")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("April")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Mai")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("May")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Juni")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("June")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Juli")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("July")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("August")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("August")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("September")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("September")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Oktober")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("October")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("November")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("November")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Desember")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("December")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Brukernavn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Username")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Fornavn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("First name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Etternavn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Last name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Fødselsdag")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Birthday")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Gateadresse")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Streetadress")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Postnummer")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Postnumber")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Kjønn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Gender")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Mobil")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Cellphone")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("E-post")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("EMail")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Vis alle deltagere på nåværende arrangement")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("List all attendees on current event")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Tillat andre brukere å se min epost-adresse")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Allow other users to see my mailadress")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Alle brukere")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("All users")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nullstill passord")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Reset password")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ingenting valgt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Nothing selected")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Selvfølgelig!")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Of course!")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Sikkert")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Sure")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Kanskje")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Probably")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Helst ikke")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("I'd rather not")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Overhodet ikke")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Not at all")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Brukeren har ikke bekreftet epostadressen. Ikke mulig å nullstille passord")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("The user has not confirmed his EMailAddress. Not able to reset password")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Verifiser din nye konto")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Verify your new account")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Hei %s. Du, eller noen andre har registrert en konto på %s. For å verifisere din epost-adresse, gå til %s")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Hello %s.
+
+You, or someone else has registered a new account on %s.
+
+To verify your mailaddress, please go to %s")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("ledige")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("ticketorder")."' AND string = '".db_escape("free")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Loggmodul")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("Logmodule")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ukjent modul")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Unknown module")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ukjent funksjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Unknown function")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Innlogging")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Login")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Vellykket innlogging")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Successful login")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Feilet passordinnlogging")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Failed password login")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Brukerregistrering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("User registration")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Anonym brukerregistrering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Anonymous registered new user")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Grupper")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Groups")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Medlem lagt til")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Member added")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Loggfunksjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("Logfunction")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Systemoppgradering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("System upgrade")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Wannabeadmin")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Wannabeadmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endre kommentar")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Change comment")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Søk")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Apply")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret grupperettigheter")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Changed grouprights")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Fult navn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("listing")."' AND string = '".db_escape("Full name")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("sluttdato")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("listing")."' AND string = '".db_escape("enddate")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billettbestilling")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Ticketorder")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billett avbestilt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Ticket canceled")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Statisk")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Static")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Systemmelding endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Systemmessage edited")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billett kjøpt")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Ticket bought")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billettadministrasjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Ticketadmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Billettype endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Tickettype changed")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Arrangementsadministrasjon")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Eventadmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Konfigurasjon endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Configuration change")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny billettype lagt til")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("New tickettype added")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plassadmin")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Seatadmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Plass oppdatert")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Seat updated")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt innlegg lagt inn")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("New post added")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Side endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Page edited")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Denne plassen er beskyttet til å kun være tilgjengelig for en gruppe. Du er ikke medlem av en gruppe med tilgang. Synd :(")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("seatmap_table")."' AND string = '".db_escape("This seat is protected by group. You are not member of a group with access. Too bad!")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Brukerredigering")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Edituser")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Grupperettighet endret")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Groupright change")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Globaladmin")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Globaladmin")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Arrangement lagt til")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Event added")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Slett")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Delete")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Gjenopprett")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Undelete")."'");
+
+db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny ACL")."'
+WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("New ACL")."'");
+
