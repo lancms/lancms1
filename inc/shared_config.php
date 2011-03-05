@@ -74,6 +74,7 @@ $eventaccess[] = 'kiosk_sales';
 $eventaccess[] = 'news';
 $eventaccess[] = 'infoscreen';
 $eventaccess[] = 'sleepers';
+$eventaccess[] = 'dashboard';
 
 
 ## GlobalACLs
