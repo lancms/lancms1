@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-05 12:30+0100\n"
-"PO-Revision-Date: 2011-03-05 11:51+0000\n"
+"POT-Creation-Date: 2011-03-05 17:07+0100\n"
+"PO-Revision-Date: 2011-03-05 16:19+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-05 11:52+0000\n"
-"X-Generator: Launchpad (build 12515)\n"
+"X-Launchpad-Export-Date: 2011-03-06 06:09+0000\n"
+"X-Generator: Launchpad (build 12351)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -143,8 +143,8 @@ msgstr "Brukernavn"
 #: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
 #: ../modules/crewlist/crewlist.php:18
 #: ../modules/infoscreens/infoscreens.php:59
-#: ../modules/kioskadmin/kioskadmin.php:62
-#: ../modules/kioskadmin/kioskadmin.php:117 ../modules/profile/profile.php:13
+#: ../modules/kioskadmin/kioskadmin.php:63
+#: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 #: ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
@@ -298,8 +298,12 @@ msgid "Money earned"
 msgstr "Penger tjent"
 
 #: ../modules/dashboard/dashboard.php:37
-msgid "Sold for"
-msgstr "Solgt for"
+msgid "Sold for (total)"
+msgstr "Solgt for (totalt)"
+
+#: ../modules/dashboard/dashboard.php:43
+msgid "Creditsale"
+msgstr "Kredittsalg"
 
 #: ../modules/economy/economy.php:40
 msgid "Save changes"
@@ -402,7 +406,7 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
 #: ../modules/infoscreens/infoscreens.php:194
-#: ../modules/kioskadmin/kioskadmin.php:128 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid "Save"
@@ -780,41 +784,45 @@ msgstr "Administrer varetyper"
 msgid "Admin wares"
 msgstr "administrerer varer"
 
-#: ../modules/kioskadmin/kioskadmin.php:17
+#: ../modules/kioskadmin/kioskadmin.php:14
+msgid "Admin credit"
+msgstr "Administrer kredittkjøp"
+
+#: ../modules/kioskadmin/kioskadmin.php:18
 msgid "Print barcodes"
 msgstr "Skriv ut strekkoder"
 
-#: ../modules/kioskadmin/kioskadmin.php:37
+#: ../modules/kioskadmin/kioskadmin.php:38
 msgid "Add new waretype"
 msgstr "Legg til ny varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:63
+#: ../modules/kioskadmin/kioskadmin.php:64
 msgid "Type"
 msgstr "Type"
 
-#: ../modules/kioskadmin/kioskadmin.php:64
-#: ../modules/kioskadmin/kioskadmin.php:132
+#: ../modules/kioskadmin/kioskadmin.php:65
+#: ../modules/kioskadmin/kioskadmin.php:133
 msgid "Barcodes"
 msgstr "Strekkoder"
 
-#: ../modules/kioskadmin/kioskadmin.php:65
+#: ../modules/kioskadmin/kioskadmin.php:66
 msgid "Price (normal)"
 msgstr "Pris (normalt)"
 
-#: ../modules/kioskadmin/kioskadmin.php:91
+#: ../modules/kioskadmin/kioskadmin.php:92
 msgid "Add ware"
 msgstr "Legg til vare"
 
-#: ../modules/kioskadmin/kioskadmin.php:125
+#: ../modules/kioskadmin/kioskadmin.php:126
 msgid "Ware type"
 msgstr "Varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:126
+#: ../modules/kioskadmin/kioskadmin.php:127
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid "Price"
 msgstr "Pris"
 
-#: ../modules/kioskadmin/kioskadmin.php:140
+#: ../modules/kioskadmin/kioskadmin.php:141
 msgid "Add barcode"
 msgstr "Legg til strekkode"
 
@@ -2112,3 +2120,6 @@ msgstr "a.k.a."
 
 #~ msgid "The screen requested does not exist"
 #~ msgstr "Den spesifiserte skjermen finnes ikke"
+
+#~ msgid "Sold for"
+#~ msgstr "Solgt for"
