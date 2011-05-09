@@ -1,0 +1,2079 @@
+# Russian translation for lancms
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
+# This file is distributed under the same license as the lancms package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: lancms\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2011-03-05 17:07+0100\n"
+"PO-Revision-Date: 2011-05-08 20:38+0000\n"
+"Last-Translator: Romanenko Lesha <Unknown>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Launchpad-Export-Date: 2011-05-09 05:57+0000\n"
+"X-Generator: Launchpad (build 12959)\n"
+
+#: ../index.php:32
+msgid "Main page"
+msgstr "Главная страница"
+
+#: ../index.php:36
+msgid "Global Admin"
+msgstr ""
+
+#: ../index.php:41
+msgid "Register user"
+msgstr "Зарегестрировать пользователя"
+
+#: ../index.php:45
+msgid "My groups"
+msgstr "Мои группы"
+
+#: ../index.php:64 ../modules/logs/logs.php:69
+msgid "FAQ"
+msgstr "FAQ"
+
+#: ../index.php:66
+msgid "Seatmap"
+msgstr ""
+
+#: ../index.php:68
+msgid "Order ticket"
+msgstr ""
+
+#: ../index.php:70 ../modules/logs/logs.php:147
+msgid "Wannabe"
+msgstr ""
+
+#: ../index.php:72
+msgid "Composignup"
+msgstr ""
+
+#: ../index.php:74
+msgid "Crewlist"
+msgstr ""
+
+#: ../index.php:77 ../modules/arrival/arrival.php:24
+#: ../modules/logs/logs.php:50
+msgid "Arrival"
+msgstr ""
+
+#: ../index.php:79 ../modules/logs/logs.php:118
+msgid "Reseller"
+msgstr ""
+
+#: ../index.php:81
+msgid "Kiosk"
+msgstr "Киоск"
+
+#: ../index.php:83 ../modules/logs/logs.php:74
+msgid "Forum"
+msgstr "Форум"
+
+#: ../index.php:87 ../modules/logs/logs.php:155
+#: ../modules/sleepers/sleepers.php:18
+msgid "Sleepers"
+msgstr ""
+
+#: ../index.php:88
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: ../index.php:98
+msgid "Event Admin"
+msgstr ""
+
+#: ../index.php:110
+msgid "Type your nick, email or name here:"
+msgstr ""
+
+#: ../index.php:135
+msgid "You are logged in as:"
+msgstr ""
+
+#: ../index.php:139 ../modules/arrival/arrival.php:236
+#: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
+msgid "Edit userinfo"
+msgstr "Изменить информацию о пользователе"
+
+#: ../index.php:140
+msgid "Edit my preferences"
+msgstr ""
+
+#: ../index.php:141 ../modules/edituserinfo/edituserinfo.php:14
+#: ../modules/edituserinfo/edituserinfo.php:27
+msgid "Change password"
+msgstr ""
+
+#: ../index.php:142 ../modules/logs/logs.php:100
+msgid "Logout"
+msgstr ""
+
+#: ../party.php:32
+msgid "There are no screens for this event"
+msgstr ""
+
+#: ../party.php:63
+msgid "There are no queue for this screen"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
+#: ../modules/useradmin/useradmin.php:31
+msgid "Search"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:32
+msgid "Search all users"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:34
+msgid "Search users with tickets"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
+#: ../modules/groups/groups.php:52 ../modules/profile/profile.php:15
+#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+msgid "Nick"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
+#: ../modules/crewlist/crewlist.php:18
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/kioskadmin/kioskadmin.php:63
+#: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
+#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+#: ../modules/wannabeadmin/wannabeadmin.php:266
+msgid "Name"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:94
+msgid "Add new ticket"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:200
+msgid "Found no matching users"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:146
+msgid "Back to search"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:150
+msgid "Ticket"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:167
+msgid "Adress"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:173
+msgid "E-mail"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
+#: ../modules/register/register.php:237
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:145
+msgid "Birthday"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:189
+#: ../modules/ticketorder/ticketorder.php:133
+msgid "Paid"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:194
+#: ../modules/ticketorder/ticketorder.php:48
+msgid "Not paid"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:206 ../modules/arrival/arrival.php:211
+msgid "Seated"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:215
+msgid "Not seated"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:221
+msgid "Delete ticket"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:227
+msgid "Deleted"
+msgstr ""
+
+#: ../modules/arrival/arrival.php:298
+msgid "Add ticket to user"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:18
+msgid "Signup is open"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:19
+msgid "Signup is closed"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:24
+msgid "Match admin"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:27
+msgid "Match admin (close signup to enable)"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:39
+msgid "Compo name"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:46
+msgid "Number of players per clan"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:47
+msgid "Number of clans/players per round"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:48
+msgid "Add compo"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:118
+msgid "Round name"
+msgstr ""
+
+#: ../modules/compoadmin/compoadmin.php:121
+msgid "Add round"
+msgstr ""
+
+#: ../modules/compos/compos.php:41
+msgid "Signup"
+msgstr ""
+
+#: ../modules/compos/compos.php:102
+msgid "Sign me up"
+msgstr ""
+
+#: ../modules/compos/compos.php:115
+msgid "Remove me"
+msgstr ""
+
+#: ../modules/compos/compos.php:119
+msgid "Signup has closed"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:189
+msgid "EMail"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
+#: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
+#: ../inc/shared_config.php:185
+msgid "Cellphone"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:26
+#: ../modules/globaladmin/globaladmin.php:176 ../modules/groups/groups.php:53
+msgid "Access"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:4
+msgid "No access to dashboard"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:13 ../modules/dashboard/dashboard.php:28
+msgid "Tickets sold"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:15
+msgid "Kiosk sales"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:19
+msgid "Money earned"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:37
+msgid "Sold for (total)"
+msgstr ""
+
+#: ../modules/dashboard/dashboard.php:43
+msgid "Creditsale"
+msgstr ""
+
+#: ../modules/economy/economy.php:40
+msgid "Save changes"
+msgstr ""
+
+#: ../modules/economy/economy.php:56
+msgid "Main account"
+msgstr ""
+
+#: ../modules/economy/economy.php:64
+msgid "Accountnumber"
+msgstr ""
+
+#: ../modules/economy/economy.php:65 ../modules/economy/economy.php:130
+msgid "Amount"
+msgstr ""
+
+#: ../modules/economy/economy.php:66
+msgid "Account description"
+msgstr ""
+
+#: ../modules/economy/economy.php:68
+msgid "New account"
+msgstr ""
+
+#: ../modules/economy/economy.php:83
+msgid "Accountnumber already exists"
+msgstr ""
+
+#: ../modules/economy/economy.php:84
+#: ../modules/ticketorder/ticketorder.php:222
+#: ../modules/ticketorder/ticketorder.php:226
+#: ../modules/ticketorder/ticketorder.php:230
+msgid "Back"
+msgstr ""
+
+#: ../modules/economy/economy.php:126
+msgid "From"
+msgstr ""
+
+#: ../modules/economy/economy.php:128
+msgid "Timestamp (YYYY-MM-DD HH:MM)"
+msgstr ""
+
+#: ../modules/economy/economy.php:129
+msgid "Description"
+msgstr ""
+
+#: ../modules/economy/economy.php:131
+msgid "Add receipt"
+msgstr ""
+
+#: ../modules/economy/economy.php:163 ../modules/economy/economy.php:165
+msgid "Main"
+msgstr ""
+
+#: ../modules/economy/economy.php:170 ../modules/economy/economy.php:173
+msgid "Receipts"
+msgstr ""
+
+#: ../modules/economy/economy.php:177 ../modules/economy/economy.php:179
+msgid "Bookkeeping"
+msgstr ""
+
+#: ../modules/economy/economy.php:183 ../modules/economy/economy.php:185
+msgid "Accounts"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:18
+msgid "Passwords did not match"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:22
+msgid "You need to fill in both fields"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:25
+msgid "New password"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:26
+msgid "Confirm new password"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:54
+msgid "Password changed"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:63
+#: ../modules/edituserinfo/edituserinfo.php:119
+#: ../modules/edituserinfo/edituserinfo.php:189
+#: ../modules/edituserinfo/edituserinfo.php:222
+msgid "Not access to edit userinfo"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:109
+#: ../modules/edituserinfo/edituserinfo.php:213
+#: ../modules/eventadmin/eventadmin.php:148
+#: ../modules/eventadmin/eventadmin.php:198
+#: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
+#: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
+#: ../modules/infoscreens/infoscreens.php:194
+#: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
+#: ../modules/static/static.php:124 ../modules/static/static.php:234
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
+msgid "Save"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:16
+msgid "Event config"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:18
+msgid "Group Management"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:20
+msgid "Edit static pages"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:22
+msgid "Edit FAQs"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:24
+msgid "WannabeCrew"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:26
+msgid "Seatreg Admin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:28
+msgid "Ticket Admin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:32
+msgid "Compoadmin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:34
+msgid "Newsadmin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:31
+msgid "Send SMS"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:38
+msgid "Kioskadmin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:40
+msgid "Forumadmin"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:42
+#: ../modules/infoscreens/infoscreens.php:14 ../modules/logs/logs.php:160
+msgid "Infoscreens"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:87
+msgid "Change group rights"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:98
+msgid "Add group"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:131
+msgid "Group name already exists"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:138
+#: ../modules/globaladmin/globaladmin.php:110
+msgid "Config successfully saved"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:178
+msgid "Back to groups"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:298
+msgid "Allow attendee"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:301
+msgid "Disallow attendee"
+msgstr ""
+
+#: ../modules/FAQ/FAQ.php:53
+msgid "Edit FAQ"
+msgstr ""
+
+#: ../modules/FAQ/FAQ.php:56
+msgid "Delete FAQ"
+msgstr ""
+
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:319
+msgid "Question"
+msgstr ""
+
+#: ../modules/FAQ/FAQ.php:64
+msgid "Add question"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid "Enabled"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid "Disabled"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid "Change forum"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid "Add forum"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid "Forum name"
+msgstr ""
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid "Forum description"
+msgstr ""
+
+#: ../modules/forum/forum.php:21
+msgid "Start new thread"
+msgstr ""
+
+#: ../modules/forum/forum.php:31
+msgid "Last post by: "
+msgstr ""
+
+#: ../modules/forum/forum.php:45
+msgid "Thread name"
+msgstr ""
+
+#: ../modules/forum/forum.php:50
+msgid "Thread content"
+msgstr ""
+
+#: ../modules/forum/forum.php:55
+msgid "Add thread"
+msgstr ""
+
+#: ../modules/forum/forum.php:109
+msgid "Nick:"
+msgstr ""
+
+#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:192
+msgid "Name:"
+msgstr ""
+
+#: ../modules/forum/forum.php:113
+msgid "Posted:"
+msgstr ""
+
+#: ../modules/forum/forum.php:120
+msgid "New reply"
+msgstr ""
+
+#: ../modules/forum/forum.php:128
+msgid "Add reply"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:10
+msgid "Event name"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:12
+msgid "Admin this event"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:13 ../modules/logs/logs.php:80
+msgid "Set event public"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:22
+msgid "Set active"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:26
+msgid "Public"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:28
+msgid "Private"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:29
+msgid "Attendee-access"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:35
+msgid "Add new event"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:37
+msgid "Change global options"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:38
+msgid "View logs"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:39
+#: ../modules/useradmin/useradmin.php:19
+msgid "User administration"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:40
+msgid "List groups with global access"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:41
+msgid "List sessions"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:53
+msgid "Name of event"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:54
+msgid "Add event"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:174
+msgid "Groups with global rights"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/sessions/sessions.php:16
+msgid "Event"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:176
+msgid "Group"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:176
+msgid "Module"
+msgstr ""
+
+#: ../modules/groups/groups.php:21
+msgid "Create new clan"
+msgstr ""
+
+#: ../modules/groups/groups.php:26
+msgid "Clan name"
+msgstr ""
+
+#: ../modules/groups/groups.php:27
+msgid "Clan password (to join the clan)"
+msgstr ""
+
+#: ../modules/groups/groups.php:28
+msgid "Create clan"
+msgstr ""
+
+#: ../modules/groups/groups.php:48
+msgid "Group: "
+msgstr ""
+
+#: ../modules/groups/groups.php:94 ../modules/ticketorder/ticketorder.php:65
+msgid "Search user"
+msgstr ""
+
+#: ../modules/groups/groups.php:110
+msgid "No users found"
+msgstr ""
+
+#: ../modules/groups/groups.php:112
+msgid "Too many users found, please specify"
+msgstr ""
+
+#: ../modules/groups/groups.php:145
+msgid "Please provide the name of the clan!"
+msgstr ""
+
+#: ../modules/groups/groups.php:156
+msgid "Clanname is already in use. Please choose another name"
+msgstr ""
+
+#: ../modules/groups/groups.php:202
+msgid "User already member of group"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:15
+msgid "Remember that all slides must be considered public!"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:19
+msgid "Screens"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:34
+msgid "Screen name"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:35 ../modules/logs/logs.php:161
+msgid "Add screen"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:44
+msgid "Slides"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:48
+msgid "Create new slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/infoscreens/infoscreens.php:63
+msgid "Edit"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/infoscreens/infoscreens.php:64
+msgid "Preview"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:75
+msgid "There are no slides for this event"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:83
+msgid "Queues"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:92
+msgid "Screen:"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+msgid "Slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+msgid "Wait"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:100
+#: ../modules/infoscreens/infoscreens.php:104
+msgid "Remove"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:129 ../modules/kiosk/kiosk.php:21
+msgid "Add"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:164
+msgid "Create a new slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:168 ../modules/logs/logs.php:165
+msgid "Edit slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:207
+msgid "You forgot either name or some content.. Go back and try again."
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:261
+#: ../modules/infoscreens/infoscreens.php:285
+msgid "You did something wrong. Go back and try again."
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:12
+msgid "Admin waretypes"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:13
+msgid "Admin wares"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:14
+msgid "Admin credit"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:18
+msgid "Print barcodes"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:38
+msgid "Add new waretype"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:64
+msgid "Type"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:65
+#: ../modules/kioskadmin/kioskadmin.php:133
+msgid "Barcodes"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:66
+msgid "Price (normal)"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:92
+msgid "Add ware"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:126
+msgid "Ware type"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:127
+#: ../modules/ticketadmin/ticketadmin.php:17
+msgid "Price"
+msgstr ""
+
+#: ../modules/kioskadmin/kioskadmin.php:141
+msgid "Add barcode"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:26
+msgid "Currently selling to:"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:30
+msgid "Remove user"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:51
+msgid "Add one more item"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:52
+msgid "Remove one item"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:60
+msgid "SELL"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:66
+msgid "Add to users credit"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:68
+msgid "User pays cash"
+msgstr ""
+
+#: ../modules/kiosk/kiosk.php:99
+msgid "User not found!"
+msgstr ""
+
+#: ../modules/listing/listing.php:45
+msgid "Show list"
+msgstr ""
+
+#: ../modules/login/login.php:20
+msgid "Sorry, too many users, try to narrow down the search"
+msgstr ""
+
+#: ../modules/login/login.php:25
+msgid "Sorry, no such user found"
+msgstr ""
+
+#: ../modules/login/login.php:60
+msgid "Log in as:"
+msgstr ""
+
+#: ../modules/login/login.php:62
+msgid "Password:"
+msgstr ""
+
+#: ../modules/login/login.php:68
+msgid "Reset password"
+msgstr ""
+
+#: ../modules/login/login.php:97
+msgid "sorry, wrong password!"
+msgstr ""
+
+#: ../modules/login/login.php:131
+msgid ""
+"The user has not confirmed his EMailAddress. Not able to reset password"
+msgstr ""
+
+#: ../modules/login/login.php:134
+msgid ""
+"You have already tried to reset your password today. Please check your mails "
+"inbox and junkfolder"
+msgstr ""
+
+#: ../modules/login/login.php:138
+msgid "I confirm that this is my account, and I want to reset the password"
+msgstr ""
+
+#: ../modules/login/login.php:150
+msgid "Email not confirmed!"
+msgstr ""
+
+#: ../modules/login/login.php:151
+msgid "Multiple attempts at password reset. Not done"
+msgstr ""
+
+#: ../modules/login/login.php:162
+#, php-format
+msgid "Password reset for %s"
+msgstr ""
+
+#: ../modules/login/login.php:171
+msgid "Email sent. Please check your inbox and spamfolder"
+msgstr ""
+
+#: ../modules/login/login.php:184 ../modules/login/login.php:208
+msgid ""
+"Key or userID not found, or already used. You can only reset the password "
+"once with each key"
+msgstr ""
+
+#: ../modules/login/login.php:187
+msgid "Please provide your new password, two times"
+msgstr ""
+
+#: ../modules/login/login.php:191
+msgid "Set new password"
+msgstr ""
+
+#: ../modules/login/login.php:210
+msgid "Passwords don't match. Go back and try again"
+msgstr ""
+
+#: ../modules/login/login.php:221
+#, php-format
+msgid "Password successfully reset. Please go back to <a href='%s'>Login</a>"
+msgstr ""
+
+#: ../modules/logs/logs.php:14
+msgid "Last 30 logentries"
+msgstr ""
+
+#: ../modules/logs/logs.php:17
+msgid "Log"
+msgstr ""
+
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:206
+msgid "Timestamp"
+msgstr ""
+
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:205
+#: ../modules/sessions/sessions.php:15
+#: ../modules/ticketadmin/ticketadmin.php:194
+#: ../modules/ticketorder/ticketorder.php:28
+msgid "User"
+msgstr ""
+
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:209
+msgid "Logmodule"
+msgstr ""
+
+#: ../modules/logs/logs.php:21
+msgid "Logtype"
+msgstr ""
+
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+msgid "IP"
+msgstr ""
+
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+msgid "Host"
+msgstr ""
+
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:208
+msgid "URL"
+msgstr ""
+
+#: ../modules/logs/logs.php:51
+msgid "Ticket deleted"
+msgstr ""
+
+#: ../modules/logs/logs.php:52
+msgid "Onsite ticket added"
+msgstr ""
+
+#: ../modules/logs/logs.php:53
+msgid "Ticket marked not paid"
+msgstr ""
+
+#: ../modules/logs/logs.php:54
+msgid "Ticket marked paid"
+msgstr ""
+
+#: ../modules/logs/logs.php:57
+msgid "Edituser"
+msgstr ""
+
+#: ../modules/logs/logs.php:58
+msgid "Edit preference"
+msgstr ""
+
+#: ../modules/logs/logs.php:60
+msgid "New password set"
+msgstr ""
+
+#: ../modules/logs/logs.php:63
+msgid "Eventadmin"
+msgstr ""
+
+#: ../modules/logs/logs.php:64
+msgid "New accessgroup added"
+msgstr ""
+
+#: ../modules/logs/logs.php:65
+msgid "Groupright change"
+msgstr ""
+
+#: ../modules/logs/logs.php:66
+msgid "Configuration change"
+msgstr ""
+
+#: ../modules/logs/logs.php:70
+msgid "FAQ added"
+msgstr ""
+
+#: ../modules/logs/logs.php:71
+msgid "FAQ deleted"
+msgstr ""
+
+#: ../modules/logs/logs.php:75
+msgid "New post added"
+msgstr ""
+
+#: ../modules/logs/logs.php:78
+msgid "Globaladmin"
+msgstr ""
+
+#: ../modules/logs/logs.php:79
+msgid "Event added"
+msgstr ""
+
+#: ../modules/logs/logs.php:83
+msgid "Globalconfig"
+msgstr ""
+
+#: ../modules/logs/logs.php:84
+msgid "Global configuration change"
+msgstr ""
+
+#: ../modules/logs/logs.php:87
+msgid "Groups"
+msgstr ""
+
+#: ../modules/logs/logs.php:88
+msgid "Member added"
+msgstr ""
+
+#: ../modules/logs/logs.php:89
+msgid "Changed grouprights"
+msgstr ""
+
+#: ../modules/logs/logs.php:90
+msgid "Clan created"
+msgstr ""
+
+#: ../modules/logs/logs.php:94
+msgid "System upgrade"
+msgstr ""
+
+#: ../modules/logs/logs.php:97
+msgid "Login"
+msgstr ""
+
+#: ../modules/logs/logs.php:98
+msgid "Failed password login"
+msgstr ""
+
+#: ../modules/logs/logs.php:99 ../modules/logs/logs.php:101
+msgid "Successful login"
+msgstr ""
+
+#: ../modules/logs/logs.php:104
+msgid "Mail"
+msgstr ""
+
+#: ../modules/logs/logs.php:105
+msgid "Mail sent (mass)"
+msgstr ""
+
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:438
+msgid "News"
+msgstr ""
+
+#: ../modules/logs/logs.php:109 ../modules/news/news.php:20
+msgid "Add new article"
+msgstr ""
+
+#: ../modules/logs/logs.php:110
+msgid "Article edit"
+msgstr ""
+
+#: ../modules/logs/logs.php:113
+msgid "User registration"
+msgstr ""
+
+#: ../modules/logs/logs.php:114
+msgid "Anonymous registered new user"
+msgstr ""
+
+#: ../modules/logs/logs.php:115
+msgid "User registered new user"
+msgstr ""
+
+#: ../modules/logs/logs.php:119
+msgid "addTicket"
+msgstr ""
+
+#: ../modules/logs/logs.php:122
+msgid "Seatadmin"
+msgstr ""
+
+#: ../modules/logs/logs.php:123
+msgid "Seatmap column added"
+msgstr ""
+
+#: ../modules/logs/logs.php:124
+msgid "Seatmap row added"
+msgstr ""
+
+#: ../modules/logs/logs.php:125
+msgid "Seatmap reset"
+msgstr ""
+
+#: ../modules/logs/logs.php:126
+msgid "Seat updated"
+msgstr ""
+
+#: ../modules/logs/logs.php:129
+msgid "Static"
+msgstr ""
+
+#: ../modules/logs/logs.php:130
+msgid "New ACL"
+msgstr ""
+
+#: ../modules/logs/logs.php:131
+msgid "Page edited"
+msgstr ""
+
+#: ../modules/logs/logs.php:132
+msgid "New page added"
+msgstr ""
+
+#: ../modules/logs/logs.php:133
+msgid "New system-message added"
+msgstr ""
+
+#: ../modules/logs/logs.php:134
+msgid "Systemmessage edited"
+msgstr ""
+
+#: ../modules/logs/logs.php:137
+msgid "Ticketadmin"
+msgstr ""
+
+#: ../modules/logs/logs.php:138
+msgid "New tickettype added"
+msgstr ""
+
+#: ../modules/logs/logs.php:139
+msgid "Tickettype changed"
+msgstr ""
+
+#: ../modules/logs/logs.php:142
+msgid "Ticketorder"
+msgstr ""
+
+#: ../modules/logs/logs.php:143
+msgid "Ticket bought"
+msgstr ""
+
+#: ../modules/logs/logs.php:144
+msgid "Ticket canceled"
+msgstr ""
+
+#: ../modules/logs/logs.php:148
+msgid "Apply"
+msgstr ""
+
+#: ../modules/logs/logs.php:151
+msgid "Wannabeadmin"
+msgstr ""
+
+#: ../modules/logs/logs.php:152
+msgid "Change comment"
+msgstr ""
+
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:187
+msgid "Add sleeper"
+msgstr ""
+
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:181
+msgid "Remove sleeper"
+msgstr ""
+
+#: ../modules/logs/logs.php:162
+msgid "Add to queue"
+msgstr ""
+
+#: ../modules/logs/logs.php:163
+msgid "Remove from queue"
+msgstr ""
+
+#: ../modules/logs/logs.php:164
+msgid "New slide"
+msgstr ""
+
+#: ../modules/logs/logs.php:168
+msgid "Unknown module"
+msgstr ""
+
+#: ../modules/logs/logs.php:169
+msgid "Unknown function"
+msgstr ""
+
+#: ../modules/logs/logs.php:202
+msgid "Details for logentry "
+msgstr ""
+
+#: ../modules/logs/logs.php:210
+msgid "Logfunction"
+msgstr ""
+
+#: ../modules/mail/mail.php:24
+msgid "Send Mail"
+msgstr ""
+
+#: ../modules/news/news.php:19
+msgid "Add as global article"
+msgstr ""
+
+#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
+msgid "Email"
+msgstr ""
+
+#: ../modules/profile/profile.php:22 ../modules/register/register.php:224
+#: ../inc/shared_config.php:178
+msgid "Gender"
+msgstr ""
+
+#: ../modules/profile/profile.php:24 ../modules/register/register.php:218
+#: ../modules/useradmin/useradmin.php:64
+#: ../modules/wannabeadmin/wannabeadmin.php:268
+msgid "Address"
+msgstr ""
+
+#: ../modules/profile/profile.php:25 ../modules/register/register.php:219
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:173
+msgid "Postnumber"
+msgstr ""
+
+#: ../modules/profile/profile.php:34
+msgid "Groupmemberships"
+msgstr ""
+
+#: ../modules/register/register.php:31 ../modules/register/register.php:33
+msgid "Please provide a username"
+msgstr ""
+
+#: ../modules/register/register.php:35
+msgid "Please provide a valid email-address"
+msgstr ""
+
+#: ../modules/register/register.php:42
+msgid "Username already in use"
+msgstr ""
+
+#: ../modules/register/register.php:49
+msgid "Passwords does not match"
+msgstr ""
+
+#: ../modules/register/register.php:60
+msgid "Firstname must be set"
+msgstr ""
+
+#: ../modules/register/register.php:70
+msgid "Lastname must be set"
+msgstr ""
+
+#: ../modules/register/register.php:76
+msgid "Birthyear has to be set"
+msgstr ""
+
+#: ../modules/register/register.php:82
+msgid "Birthday has to be set"
+msgstr ""
+
+#: ../modules/register/register.php:85
+msgid "Birthmonth has to be set"
+msgstr ""
+
+#: ../modules/register/register.php:90
+msgid "You have to specify your gender"
+msgstr ""
+
+#: ../modules/register/register.php:93
+msgid "Postnumber has to be a number"
+msgstr ""
+
+#: ../modules/register/register.php:94
+msgid "Please specify your address"
+msgstr ""
+
+#: ../modules/register/register.php:102
+msgid "Cellphone is supposed to be a number"
+msgstr ""
+
+#: ../modules/register/register.php:107
+msgid "Cellphone is supposed to be eight digits"
+msgstr ""
+
+#: ../modules/register/register.php:143
+msgid "Verify your new account"
+msgstr ""
+
+#: ../modules/register/register.php:144
+#, php-format
+msgid ""
+"Hello %s.\n"
+"\n"
+"You, or someone else has registered a new account on %s.\n"
+"\n"
+"To verify your mailaddress, please go to %s"
+msgstr ""
+
+#: ../modules/register/register.php:194
+msgid "User registered"
+msgstr ""
+
+#: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
+#: ../inc/shared_config.php:131
+msgid "Username"
+msgstr ""
+
+#: ../modules/register/register.php:208
+msgid "Password"
+msgstr ""
+
+#: ../modules/register/register.php:209
+msgid "Password again"
+msgstr ""
+
+#: ../modules/register/register.php:210
+msgid "E-Mail"
+msgstr ""
+
+#: ../modules/register/register.php:213 ../inc/shared_config.php:135
+msgid "First name"
+msgstr ""
+
+#: ../modules/register/register.php:216 ../inc/shared_config.php:140
+msgid "Last name"
+msgstr ""
+
+#: ../modules/register/register.php:227
+msgid "Male"
+msgstr ""
+
+#: ../modules/register/register.php:230
+msgid "Female"
+msgstr ""
+
+#: ../modules/register/register.php:245
+msgid "Birthmonth"
+msgstr ""
+
+#: ../modules/register/register.php:256
+msgid "Birthyear"
+msgstr ""
+
+#: ../modules/register/register.php:268
+msgid "optional"
+msgstr ""
+
+#: ../modules/register/register.php:271
+msgid "Create user"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:23
+msgid "Set password"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:49
+msgid "Set groupaccess"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:108
+msgid "Change seats"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:120
+msgid "Add row"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:125
+msgid "Add column"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:128
+msgid "Reset map"
+msgstr ""
+
+#: ../modules/seatadmin/seatadmin.php:255
+msgid "Confirm map reset"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:45
+#: ../modules/seatmap/seatmap_table.php:57
+#: ../modules/seatmap/seatmap_table.php:69
+msgid "Free"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:112
+msgid "This seat is available"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:114
+#: ../modules/seatmap/seatmap_table.php:120
+#: ../modules/seatmap/seatmap_table.php:127
+msgid "Take seat"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:118
+msgid ""
+"This seat is password-protected. If you know the password, you can take it"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:125
+msgid ""
+"This seat is protected by group. You are a member of a group with access. "
+"Halleluja!"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:131
+msgid ""
+"This seat is protected by group. You are not member of a group with access. "
+"Too bad!"
+msgstr ""
+
+#: ../modules/sessions/sessions.php:10
+msgid "Sessions"
+msgstr ""
+
+#: ../modules/sessions/sessions.php:13
+msgid "IP-address"
+msgstr ""
+
+#: ../modules/sessions/sessions.php:14
+msgid "Useragent"
+msgstr ""
+
+#: ../modules/sessions/sessions.php:17
+msgid "Last visit"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:9
+msgid "Module not activated"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:15
+msgid "No access"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:75
+msgid "Return to sleepers overview"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:79
+msgid "You must enter a search string"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:90
+msgid "Searching only users with tickets for this event"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:104
+msgid "Searching all users"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:120
+msgid "Tickets"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:120
+#: ../modules/ticketadmin/ticketadmin.php:195
+#: ../modules/ticketorder/ticketorder.php:26
+msgid "Status"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:131
+msgid "Sleeping since"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:137
+msgid "Not sleeping"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:166
+msgid "No tickets for this event"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:209
+msgid "Search for user:"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:213
+msgid "Search users with tickets for this event only:"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:223
+msgid "Number of sleeping users:"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:226
+msgid "Went to bed"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:234
+msgid "View"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:242
+msgid "There are no sleeping users"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:35
+msgid "Number of characters entered:"
+msgstr ""
+
+#: ../modules/static/static.php:60
+msgid "Edit access"
+msgstr ""
+
+#: ../modules/static/static.php:63
+msgid "Delete"
+msgstr ""
+
+#: ../modules/static/static.php:64
+msgid "Undelete"
+msgstr ""
+
+#: ../modules/static/static.php:76
+msgid "Add new page"
+msgstr ""
+
+#: ../modules/static/static.php:91
+msgid "Edit system message"
+msgstr ""
+
+#: ../modules/static/static.php:216
+msgid "Editing: "
+msgstr ""
+
+#: ../modules/static/static.php:260
+msgid "Add group access"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:14
+#: ../modules/ticketadmin/ticketadmin.php:192
+#: ../modules/ticketorder/ticketorder.php:24
+msgid "Ticketnumber"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:15
+msgid "Ticketname"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:16
+#: ../modules/ticketorder/ticketorder.php:25
+msgid "Tickettype"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:18
+msgid "Number of tickets"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:19
+msgid "Sold tickets of type (total/seated/paid)"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:61
+msgid "Name of ticket"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:65
+msgid "Price of ticket"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:70
+msgid "Prepaid ticket"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:74
+msgid "Preordered ticket"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:78
+msgid "Onsite ticket with computer"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:82
+msgid "Onsite ticket without computer"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:86
+msgid "Prepaid ticket reseller"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:90
+msgid "Type of ticket"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:96
+msgid "Tickettype is active?"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:104
+msgid "Max tickets to sell"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:106
+msgid "Edit tickettype"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:107
+msgid "Add tickettype"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:193
+#: ../modules/ticketorder/ticketorder.php:29
+msgid "Owner"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:196
+#: ../modules/ticketorder/ticketorder.php:27
+msgid "Map placement"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:197
+msgid "Paid?"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:208
+msgid "used"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:209
+msgid "not used"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:219
+msgid "No seat chosen"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:223
+msgid "yes"
+msgstr ""
+
+#: ../modules/ticketadmin/ticketadmin.php:224
+msgid "no"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:45
+msgid "Place on map"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:51
+msgid "Seating not enabled yet"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:57
+msgid "Update map"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:75
+#: ../modules/ticketorder/ticketorder.php:108
+msgid "Found to many users matching, please specify"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:98
+msgid "Search owner"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:129
+msgid "Cancel ticket"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:148
+msgid "free"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:153
+msgid "Price:"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:156
+msgid "Buy ticket"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:162
+msgid "Ticketcode from reseller"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:165
+msgid "Claim ticket"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:221
+msgid "Could not find that code. Are you sure you typed it correctly?"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:225
+msgid ""
+"Code found, but it's not for this event. Try finding a newer piece for paper "
+"with a newer code"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:229
+msgid "Code found, but it has already been used"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:290
+msgid "Are you sure you wish to delete this ticket?"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:291
+msgid "No, this would be a mistake"
+msgstr ""
+
+#: ../modules/ticketorder/ticketorder.php:292
+msgid "Yes, I don't need it"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:23
+msgid "View all users"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:39
+msgid "List of all users"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:40
+msgid "Back to user administration"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:59
+msgid "ID"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:61
+msgid "Firstname"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:62
+msgid "Lastname"
+msgstr ""
+
+#: ../modules/useradmin/useradmin.php:126
+msgid "No user with ID"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:17
+msgid "Questions"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:18
+msgid "Crews"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:25
+msgid "View Applications"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:76
+msgid "New question"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:79
+msgid "Text answer-field"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:80
+msgid "Dropdown"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:81
+msgid "Checkbox"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:84
+msgid "Add new question"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:92
+#: ../modules/wannabeadmin/wannabeadmin.php:112
+#: ../modules/wannabeadmin/wannabeadmin.php:116
+msgid "Cancel edit"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:102
+msgid "Change question"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:135
+msgid "Change answer"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:150
+msgid "Add answer"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:220
+msgid "Applicant"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:258
+msgid "Application from:"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:259
+msgid "Back to list"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:272
+msgid "Crew"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:272
+msgid "Response"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:287
+#: ../modules/wannabeadmin/wannabeadmin.php:495
+#: ../modules/wannabe/wannabe.php:31
+msgid "Nothing selected"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:290
+#: ../modules/wannabeadmin/wannabeadmin.php:498
+#: ../modules/wannabe/wannabe.php:34
+msgid "Of course!"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:293
+#: ../modules/wannabeadmin/wannabeadmin.php:501
+#: ../modules/wannabe/wannabe.php:37
+msgid "Sure"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/wannabeadmin/wannabeadmin.php:504
+#: ../modules/wannabe/wannabe.php:40
+msgid "Probably"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:299
+#: ../modules/wannabeadmin/wannabeadmin.php:507
+#: ../modules/wannabe/wannabe.php:43
+msgid "I'd rather not"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:302
+#: ../modules/wannabeadmin/wannabeadmin.php:510
+#: ../modules/wannabe/wannabe.php:46
+msgid "Not at all"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:305
+#: ../modules/wannabeadmin/wannabeadmin.php:513
+#: ../modules/wannabe/wannabe.php:49
+msgid "Unknown option"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:319
+msgid "Answer"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:336
+msgid "Yes"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:337
+#: ../inc/shared_functions.php:323
+msgid "No"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:395
+#: ../modules/wannabeadmin/wannabeadmin.php:415
+msgid "Comment"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:437
+msgid "Change name"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:453
+msgid "Add crew"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:521
+msgid "Save comment"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:6
+msgid "Please login to apply for crew"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:9
+msgid "Apply as crew"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:102
+msgid "Delete application"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:157
+msgid "Are you sure you want to delete your crewapplication?"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:158
+msgid "Yes, I'm sure"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:159
+msgid "No, I still wish to apply for crew"
+msgstr ""
+
+#: ../inc/shared_config.php:21
+msgid "Activate ticketorder"
+msgstr ""
+
+#: ../inc/shared_config.php:23
+msgid "Activate FAQ"
+msgstr ""
+
+#: ../inc/shared_config.php:25
+msgid "Activate seating"
+msgstr ""
+
+#: ../inc/shared_config.php:27
+msgid "Show link to seating"
+msgstr ""
+
+#: ../inc/shared_config.php:29
+msgid "Activate wannabesystem"
+msgstr ""
+
+#: ../inc/shared_config.php:31
+msgid "Activate composystem"
+msgstr ""
+
+#: ../inc/shared_config.php:33
+msgid "Activate reseller"
+msgstr ""
+
+#: ../inc/shared_config.php:35
+msgid "Activate crewlist"
+msgstr ""
+
+#: ../inc/shared_config.php:37
+msgid "Activate news"
+msgstr ""
+
+#: ../inc/shared_config.php:39
+msgid "Activate kiosksystem"
+msgstr ""
+
+#: ../inc/shared_config.php:41
+msgid "Activate forum"
+msgstr ""
+
+#: ../inc/shared_config.php:43
+msgid "Activate sleepsystem"
+msgstr ""
+
+#: ../inc/shared_config.php:45
+msgid "Show number of free tickets in ticketorder"
+msgstr ""
+
+#: ../inc/shared_config.php:47
+msgid ""
+"Default option in kiosk to sell to credit when user is selected (otherwise "
+"cash payment is selected as default)"
+msgstr ""
+
+#: ../inc/shared_config.php:106
+msgid "January"
+msgstr ""
+
+#: ../inc/shared_config.php:107
+msgid "February"
+msgstr ""
+
+#: ../inc/shared_config.php:108
+msgid "March"
+msgstr ""
+
+#: ../inc/shared_config.php:109
+msgid "April"
+msgstr ""
+
+#: ../inc/shared_config.php:110
+msgid "May"
+msgstr ""
+
+#: ../inc/shared_config.php:111
+msgid "June"
+msgstr ""
+
+#: ../inc/shared_config.php:112
+msgid "July"
+msgstr ""
+
+#: ../inc/shared_config.php:113
+msgid "August"
+msgstr ""
+
+#: ../inc/shared_config.php:114
+msgid "September"
+msgstr ""
+
+#: ../inc/shared_config.php:115
+msgid "October"
+msgstr ""
+
+#: ../inc/shared_config.php:116
+msgid "November"
+msgstr ""
+
+#: ../inc/shared_config.php:117
+msgid "December"
+msgstr ""
+
+#: ../inc/shared_config.php:168
+msgid "Streetadress"
+msgstr ""
+
+#: ../inc/shared_config.php:194
+msgid "List all attendees on current event"
+msgstr ""
+
+#: ../inc/shared_config.php:211
+msgid "Allow other users to see my mailadress"
+msgstr ""
+
+#: ../inc/shared_config.php:216
+msgid "All users"
+msgstr ""
+
+#: ../inc/shared_functions.php:328
+msgid "Read"
+msgstr ""
+
+#: ../inc/shared_functions.php:333
+msgid "Write"
+msgstr ""
+
+#: ../inc/shared_functions.php:338
+msgid "Admin"
+msgstr ""
+
+#: ../inc/shared_functions.php:692
+msgid "a.k.a."
+msgstr ""
