@@ -514,3 +514,12 @@ TABLE [prefix]_infoscreensQueues
 	wait, int(11), , , 60,
 }
 
+TABLE [prefix]_files
+{
+	ID, int(11), PRI, , , auto_increment
+	uploaded_by,	int(11),	, 	1,
+	file_path,	text,		,	,
+	file_type,	varchar(15),	,	,
+	extra,		text,	,	1,
+	upload_timestamp, timestamp,    ,       ,       current_timestamp,
+}

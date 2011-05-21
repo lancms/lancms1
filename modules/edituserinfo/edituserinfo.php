@@ -252,6 +252,28 @@ elseif($action == "doEditPreferences" && isset($_GET['user'])) {
 	header("Location: ?module=edituserinfo&action=editPreferences&user=$userID&change=success");
 
 }
+
+elseif($action == "profilePicture" && isset($_GET['user'])) {
+        $user = $_GET['user'];
+        $userAdmin_acl = acl_access("userAdmin", "", 1);
+        if($user == $sessioninfo->userID);
+        elseif($userAdmin_acl == 'Admin' || $userAdmin_acl == 'Write');
+        else die(lang("Not access to edit profile picture", "edituserinfo"));
+
+	$qFindProfile = db_query("SELECT * FROM ".$sql_prefix."_files WHERE extra = '".db_escape($user)."' AND file_type = 'profilepic'");
+	if(db_num($qFindProfile) > 0) {
+		$rFindProfile = db_fetch($qFindProfile);
+		$content .= "<img src='$rFindProfile->file_path'>";
+	}
+
+	$content .= '<form enctype="multipart/form-data" action="upload.php" method="POST">';
+	$content .= '<input type="hidden" name="file_type" value="profilepic" />';
+	$content .= _("Choose file to upload: ");
+	$content .= "<input name=uploadfile type=file />";
+	$content .= "<input type=submit value='"._("Upload picture")."' />";
+	$content .= "</form>";
+
+}
 else
 {
 	// no action defined? ship user back to start.
