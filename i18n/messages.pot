@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-03-05 17:07+0100\n"
+        "POT-Creation-Date: 2011-05-21 23:48+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,6 +117,22 @@ msgstr  ""
 
 #: ../party.php:63
 msgid   "There are no queue for this screen"
+msgstr  ""
+
+#: ../upload.php:15
+msgid   "No such file directory"
+msgstr  ""
+
+#: ../upload.php:16
+msgid   "File directory not writable"
+msgstr  ""
+
+#: ../upload.php:25
+msgid   "Upload failed, could not move file"
+msgstr  ""
+
+#: ../upload.php:27
+msgid   "Upload failed, file exists"
 msgstr  ""
 
 #: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
@@ -408,6 +424,18 @@ msgstr  ""
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid   "Save"
+msgstr  ""
+
+#: ../modules/edituserinfo/edituserinfo.php:261
+msgid   "Not access to edit profile picture"
+msgstr  ""
+
+#: ../modules/edituserinfo/edituserinfo.php:271
+msgid   "Choose file to upload: "
+msgstr  ""
+
+#: ../modules/edituserinfo/edituserinfo.php:273
+msgid   "Upload picture"
 msgstr  ""
 
 #: ../modules/eventadmin/eventadmin.php:16
