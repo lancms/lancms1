@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-03-05 17:07+0100\n"
+"POT-Creation-Date: 2011-05-21 23:48+0200\n"
 "PO-Revision-Date: 2011-03-05 16:19+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-03-06 06:09+0000\n"
-"X-Generator: Launchpad (build 12351)\n"
+"X-Launchpad-Export-Date: 2011-05-22 05:56+0000\n"
+"X-Generator: Launchpad (build 12959)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -120,6 +120,22 @@ msgstr "Det finnes ingen skjermer for dette arrangementet"
 #: ../party.php:63
 msgid "There are no queue for this screen"
 msgstr "Det er ingen kø for denne skjermen"
+
+#: ../upload.php:15
+msgid "No such file directory"
+msgstr ""
+
+#: ../upload.php:16
+msgid "File directory not writable"
+msgstr ""
+
+#: ../upload.php:25
+msgid "Upload failed, could not move file"
+msgstr ""
+
+#: ../upload.php:27
+msgid "Upload failed, file exists"
+msgstr ""
 
 #: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
 #: ../modules/useradmin/useradmin.php:31
@@ -411,6 +427,18 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
 msgid "Save"
 msgstr "Lagre"
+
+#: ../modules/edituserinfo/edituserinfo.php:261
+msgid "Not access to edit profile picture"
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:271
+msgid "Choose file to upload: "
+msgstr ""
+
+#: ../modules/edituserinfo/edituserinfo.php:273
+msgid "Upload picture"
+msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:16
 msgid "Event config"
