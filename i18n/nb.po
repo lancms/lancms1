@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2011-05-21 23:48+0200\n"
-"PO-Revision-Date: 2011-03-05 16:19+0000\n"
+"PO-Revision-Date: 2011-05-22 16:07+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-05-22 05:56+0000\n"
+"X-Launchpad-Export-Date: 2011-05-23 05:33+0000\n"
 "X-Generator: Launchpad (build 12959)\n"
 
 #: ../index.php:32
@@ -123,19 +123,19 @@ msgstr "Det er ingen kø for denne skjermen"
 
 #: ../upload.php:15
 msgid "No such file directory"
-msgstr ""
+msgstr "Ingen slik mappe"
 
 #: ../upload.php:16
 msgid "File directory not writable"
-msgstr ""
+msgstr "Kan ikke skrive til mappe"
 
 #: ../upload.php:25
 msgid "Upload failed, could not move file"
-msgstr ""
+msgstr "Opplastning feilet, kunne ikke flytte fil"
 
 #: ../upload.php:27
 msgid "Upload failed, file exists"
-msgstr ""
+msgstr "Opplastning feilet, fil eksisterer allerede"
 
 #: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
 #: ../modules/useradmin/useradmin.php:31
@@ -430,15 +430,15 @@ msgstr "Lagre"
 
 #: ../modules/edituserinfo/edituserinfo.php:261
 msgid "Not access to edit profile picture"
-msgstr ""
+msgstr "Ikke tilgang til å redigere profilbilde"
 
 #: ../modules/edituserinfo/edituserinfo.php:271
 msgid "Choose file to upload: "
-msgstr ""
+msgstr "Velg fil å laste opp: "
 
 #: ../modules/edituserinfo/edituserinfo.php:273
 msgid "Upload picture"
-msgstr ""
+msgstr "Last opp bilde"
 
 #: ../modules/eventadmin/eventadmin.php:16
 msgid "Event config"
