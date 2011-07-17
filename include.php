@@ -27,7 +27,7 @@ require 'inc/shared_config.php';
 if($language == 'norwegian') $lang = 'nb_NO.utf8';
 putenv("LANGUAGE=$lang");
 putenv("LANG=$lang");
-setlocale (LC_MESSAGES, $lang);
+setlocale (LC_ALL, $lang);
 bindtextdomain("messages", "./i18n");
 bind_textdomain_codeset("messages", "UTF-8");
 textdomain("messages");
