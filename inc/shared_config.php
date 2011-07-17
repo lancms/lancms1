@@ -2,14 +2,16 @@
 
 
 ## Define diffrent variables
-$seattype['b'] = 'Blank';
-$seattype['d'] = 'Open seat';
-$seattype['p'] = 'Password-protected seat';
-$seattype['g'] = 'Group-protected seat';
-$seattype['t'] = 'Text';
-$seattype['w'] = 'Wall';
-$seattype['o'] = 'Door';
-$seattype['a'] = 'Area';
+$seattype['b'] = _('Blank');
+$seattype['d'] = _('Open seat');
+$seattype['p'] = _('Password-protected seat');
+$seattype['g'] = _('Group-protected seat');
+$seattype['t'] = _('Text');
+$seattype['w'] = _('Wall');
+$seattype['o'] = _('Door');
+$seattype['a'] = _('Area');
+$seattype['n'] = _('Not opened yet');
+$seattype['r'] = _('Right-protected seat');
 
 
 $maxTicketsPrUser = 5;

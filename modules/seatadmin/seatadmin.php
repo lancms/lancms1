@@ -9,7 +9,7 @@ if($acl_access != 'Admin') {
 }
 
 if($action == "updateSeat") {
-	if($type == "d" OR $type == "w" OR $type == "o" OR $type == "b") {
+	if($type == "d" OR $type == "w" OR $type == "o" OR $type == "b" OR $type == "n") {
 		$action = "doUpdateSeat";
 	} // End if type = "normal"
 
@@ -52,6 +52,26 @@ if($action == "updateSeat") {
 	elseif($type == "g" && isset($_POST['group'])) { // type is group, and group is set
 		$action = "doUpdateSeat";
 	} // End isset(group)
+	elseif($type == "r" && !isset($_POST['right'])) {
+	// Type is right, and no right has been set
+	   $seatcontent .= "<select name=\"right\">\n";
+	   foreach($eventaccess AS $key => $value) {
+		  $seatcontent .= "<option value=\"$value\"";
+		  $seatcontent .= ">$value</option>\n";
+		
+	    } // End foreach eventaccess
+		foreach($globalaccess AS $key => $value) {
+		  $seatcontent .= "<option value=\"$key\"";
+		  $seatcontent .= ">$value</option>\n";
+		
+	    } // End foreach globalaccess
+		$seatcontent .= "</select>\n";
+	} // End elseif type == r
+	elseif($type == "r" && isset($_POST['right'])) {
+		$action = "doUpdateSeat";
+	} // End type == r and isset(right)
+	
+	
 } // End if action == "updateSeat"
 
 if(!isset($action) || $action == "updateSeat") {
@@ -218,6 +238,13 @@ elseif($action == "doUpdateSeat") {
 			break;
 		case "b":
 			$color = 'white';
+			break;
+		case "r":
+			$color = 'orange';
+			$extra = $_POST['right'];
+			break;
+		case "n":
+			$color = 'darkblue';
 			break;
 		default:
 			$color = 'purple';

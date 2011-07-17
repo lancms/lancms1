@@ -194,9 +194,9 @@ TABLE [prefix]_seatReg
 	eventID,	int(11),	PRI,	NOT NULL, ,
 	seatX,		int(4),		PRI,	NOT NULL, ,
 	seatY,		int(4),		PRI,	NOT NULL, ,
-	type,		enum('d','p','g','t','b','w','o','a'), , NOT NULL, b ,
+	type,		enum('d','p','g','t','b','w','o','a','n','r'), , NOT NULL, b ,
 	name,		varchar(25),	,	NULL,	,
-	color,		enum('black','green','yellow','orange','red','white','blue','purple'), , , white,
+	color,		enum('black','green','yellow','orange','red','white','blue','purple','darkblue'), , , white,
 	extra,		varchar(15),	,	NULL,	,
 }
 

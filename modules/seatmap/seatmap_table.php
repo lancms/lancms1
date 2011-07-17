@@ -85,6 +85,20 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    // Type is opening/door
 	    $content .= "<td class=seatDoor></td>";
 	    break;
+	case "n":
+		// Type is not opened yet
+		$content .= "<td class=seatNormalUser>"._("N/A")."</td>";
+		break;
+	case "r":
+		// Type is right-protected
+		$content .= "<td class=seatGroup>";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
+		else $content .= _("Free");
+		$content .= "</a>";
+		$content .= "</td>";
+		break;
+		
 	default:
 	    // Unknown type. Just create something
 	    $content .= "<td class=seatUnknownCell>$type</td>\n";
@@ -122,15 +136,25 @@ if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioni
 	    break;
 	case "g":
 	    if(seating_rights($place_seatX, $place_seatY, $ticketID, $sessioninfo->eventID, $password)) {
-	        $content .= lang("This seat is protected by group. You are a member of a group with access. Halleluja!", "seatmap_table");
-	        $content .= "<a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
+	        $content .= lang("This seat is protected by group. You are a member of a group with access.", "seatmap_table");
+	        $content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
 	        $content .= lang("Take seat", "seatmap_table");
 	        $content .= "</a>";
 	    } // End if(seating_rights)
 	    else {
 	        $content .= lang("This seat is protected by group. You are not member of a group with access. Too bad!", "seatmap_table");
 	    } // End else
-        } // End switch
+		break;
+	case "r":
+		if(seating_rights($place_seatX, $place_seatY, $ticketID, $sessioninfo->eventID, $password)) {
+			$content .= _("This seat is protected by a special right. You are a member of a group with access");
+			$content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
+	        $content .= _("Take seat");
+	        $content .= "</a>";
+		} // End if(seating_rights)
+		else $content .= _("This seat is protected by a special right. You are not member of a group with access. Too bad!");
+		break;
+		 } // End switch
     } // End if db_num() == 0
 
 }

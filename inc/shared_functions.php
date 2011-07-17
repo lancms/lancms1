@@ -382,6 +382,9 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
 	    		    if($password == $rSeatInfo->extra) $returncode = 1;
 	    		    #die("password: $password, matching against $rSeatInfo->extra");
 	    	    	break;
+				case 'r':
+					// Right-protected. Check if the user has that right.
+					if(acl_access($rSeatInfo->extra, "", "", $sessioninfo->userID) != 'No') $returncode = 1;
 	    	    default:
 	    	    	die("type: ".$type);
 	    	} // End switch($type)
