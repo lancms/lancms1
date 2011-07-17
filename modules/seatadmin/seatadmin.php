@@ -39,7 +39,7 @@ if($action == "updateSeat") {
 			ORDER BY groupname ASC
 			");
 		while($rGroups = db_fetch($qGroups)) {
-			$seatcontent .= "<option value=\"'$rGroups->ID'\">";
+			$seatcontent .= "<option value=\"$rGroups->ID\">";
 			$seatcontent .= $rGroups->groupname." (".$rGroups->groupType.")";
 			$seatcontent .= "</option>\n";
 
