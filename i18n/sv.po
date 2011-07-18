@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-05-21 23:48+0200\n"
+"POT-Creation-Date: 2011-07-17 18:59+0200\n"
 "PO-Revision-Date: 2011-04-25 17:39+0000\n"
 "Last-Translator: berjatroll <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-05-22 05:56+0000\n"
-"X-Generator: Launchpad (build 12959)\n"
+"X-Launchpad-Export-Date: 2011-07-18 05:12+0000\n"
+"X-Generator: Launchpad (build 13405)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -129,11 +129,11 @@ msgstr ""
 msgid "File directory not writable"
 msgstr ""
 
-#: ../upload.php:25
-msgid "Upload failed, could not move file"
+#: ../upload.php:35
+msgid "Upload failed, could not move file "
 msgstr ""
 
-#: ../upload.php:27
+#: ../upload.php:37
 msgid "Upload failed, file exists"
 msgstr ""
 
@@ -192,7 +192,7 @@ msgstr ""
 
 #: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:237
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:145
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:147
 msgid "Birthday"
 msgstr ""
 
@@ -282,13 +282,13 @@ msgstr ""
 msgid "Signup has closed"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:189
+#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:191
 msgid "EMail"
 msgstr ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
-#: ../inc/shared_config.php:185
+#: ../inc/shared_config.php:187
 msgid "Cellphone"
 msgstr ""
 
@@ -1120,7 +1120,7 @@ msgstr ""
 msgid "Mail sent (mass)"
 msgstr ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:438
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:441
 msgid "News"
 msgstr ""
 
@@ -1277,7 +1277,7 @@ msgid "Email"
 msgstr ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.php:224
-#: ../inc/shared_config.php:178
+#: ../inc/shared_config.php:180
 msgid "Gender"
 msgstr ""
 
@@ -1288,7 +1288,7 @@ msgid "Address"
 msgstr ""
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.php:219
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:173
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:175
 msgid "Postnumber"
 msgstr ""
 
@@ -1371,7 +1371,7 @@ msgid "User registered"
 msgstr ""
 
 #: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:131
+#: ../inc/shared_config.php:133
 msgid "Username"
 msgstr ""
 
@@ -1387,11 +1387,11 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:135
+#: ../modules/register/register.php:213 ../inc/shared_config.php:137
 msgid "First name"
 msgstr ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:140
+#: ../modules/register/register.php:216 ../inc/shared_config.php:142
 msgid "Last name"
 msgstr ""
 
@@ -1427,57 +1427,74 @@ msgstr ""
 msgid "Set groupaccess"
 msgstr ""
 
-#: ../modules/seatadmin/seatadmin.php:108
+#: ../modules/seatadmin/seatadmin.php:128
 msgid "Change seats"
 msgstr ""
 
-#: ../modules/seatadmin/seatadmin.php:120
+#: ../modules/seatadmin/seatadmin.php:140
 msgid "Add row"
 msgstr ""
 
-#: ../modules/seatadmin/seatadmin.php:125
+#: ../modules/seatadmin/seatadmin.php:145
 msgid "Add column"
 msgstr ""
 
-#: ../modules/seatadmin/seatadmin.php:128
+#: ../modules/seatadmin/seatadmin.php:148
 msgid "Reset map"
 msgstr ""
 
-#: ../modules/seatadmin/seatadmin.php:255
+#: ../modules/seatadmin/seatadmin.php:282
 msgid "Confirm map reset"
 msgstr ""
 
 #: ../modules/seatmap/seatmap_table.php:45
 #: ../modules/seatmap/seatmap_table.php:57
 #: ../modules/seatmap/seatmap_table.php:69
+#: ../modules/seatmap/seatmap_table.php:97
 msgid "Free"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:112
+#: ../modules/seatmap/seatmap_table.php:90
+msgid "N/A"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:126
 msgid "This seat is available"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:114
-#: ../modules/seatmap/seatmap_table.php:120
-#: ../modules/seatmap/seatmap_table.php:127
+#: ../modules/seatmap/seatmap_table.php:128
+#: ../modules/seatmap/seatmap_table.php:134
+#: ../modules/seatmap/seatmap_table.php:141
+#: ../modules/seatmap/seatmap_table.php:152
 msgid "Take seat"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:118
+#: ../modules/seatmap/seatmap_table.php:132
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:125
+#: ../modules/seatmap/seatmap_table.php:139
 msgid ""
-"This seat is protected by group. You are a member of a group with access. "
-"Halleluja!"
+"This seat is protected by group. You are a member of a group with access."
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:131
+#: ../modules/seatmap/seatmap_table.php:145
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:150
+msgid ""
+"This seat is protected by a special right. You are a member of a group with "
+"access"
+msgstr ""
+
+#: ../modules/seatmap/seatmap_table.php:155
+msgid ""
+"This seat is protected by a special right. You are not member of a group "
+"with access. Too bad!"
 msgstr ""
 
 #: ../modules/sessions/sessions.php:10
@@ -1968,125 +1985,165 @@ msgstr ""
 msgid "No, I still wish to apply for crew"
 msgstr ""
 
-#: ../inc/shared_config.php:21
-msgid "Activate ticketorder"
+#: ../inc/shared_config.php:5
+msgid "Blank"
+msgstr ""
+
+#: ../inc/shared_config.php:6
+msgid "Open seat"
+msgstr ""
+
+#: ../inc/shared_config.php:7
+msgid "Password-protected seat"
+msgstr ""
+
+#: ../inc/shared_config.php:8
+msgid "Group-protected seat"
+msgstr ""
+
+#: ../inc/shared_config.php:9
+msgid "Text"
+msgstr ""
+
+#: ../inc/shared_config.php:10
+msgid "Wall"
+msgstr ""
+
+#: ../inc/shared_config.php:11
+msgid "Door"
+msgstr ""
+
+#: ../inc/shared_config.php:12
+msgid "Area"
+msgstr ""
+
+#: ../inc/shared_config.php:13
+msgid "Not opened yet"
+msgstr ""
+
+#: ../inc/shared_config.php:14
+msgid "Right-protected seat"
 msgstr ""
 
 #: ../inc/shared_config.php:23
-msgid "Activate FAQ"
+msgid "Activate ticketorder"
 msgstr ""
 
 #: ../inc/shared_config.php:25
-msgid "Activate seating"
+msgid "Activate FAQ"
 msgstr ""
 
 #: ../inc/shared_config.php:27
-msgid "Show link to seating"
+msgid "Activate seating"
 msgstr ""
 
 #: ../inc/shared_config.php:29
-msgid "Activate wannabesystem"
+msgid "Show link to seating"
 msgstr ""
 
 #: ../inc/shared_config.php:31
-msgid "Activate composystem"
+msgid "Activate wannabesystem"
 msgstr ""
 
 #: ../inc/shared_config.php:33
-msgid "Activate reseller"
+msgid "Activate composystem"
 msgstr ""
 
 #: ../inc/shared_config.php:35
-msgid "Activate crewlist"
+msgid "Activate reseller"
 msgstr ""
 
 #: ../inc/shared_config.php:37
-msgid "Activate news"
+msgid "Activate crewlist"
 msgstr ""
 
 #: ../inc/shared_config.php:39
-msgid "Activate kiosksystem"
+msgid "Activate news"
 msgstr ""
 
 #: ../inc/shared_config.php:41
-msgid "Activate forum"
+msgid "Activate kiosksystem"
 msgstr ""
 
 #: ../inc/shared_config.php:43
-msgid "Activate sleepsystem"
+msgid "Activate forum"
 msgstr ""
 
 #: ../inc/shared_config.php:45
-msgid "Show number of free tickets in ticketorder"
+msgid "Activate sleepsystem"
 msgstr ""
 
 #: ../inc/shared_config.php:47
+msgid "Show number of free tickets in ticketorder"
+msgstr ""
+
+#: ../inc/shared_config.php:49
 msgid ""
 "Default option in kiosk to sell to credit when user is selected (otherwise "
 "cash payment is selected as default)"
 msgstr ""
 
-#: ../inc/shared_config.php:106
+#: ../inc/shared_config.php:108
 msgid "January"
 msgstr ""
 
-#: ../inc/shared_config.php:107
+#: ../inc/shared_config.php:109
 msgid "February"
 msgstr ""
 
-#: ../inc/shared_config.php:108
+#: ../inc/shared_config.php:110
 msgid "March"
 msgstr ""
 
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:111
 msgid "April"
 msgstr ""
 
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:112
 msgid "May"
 msgstr ""
 
-#: ../inc/shared_config.php:111
+#: ../inc/shared_config.php:113
 msgid "June"
 msgstr ""
 
-#: ../inc/shared_config.php:112
+#: ../inc/shared_config.php:114
 msgid "July"
 msgstr ""
 
-#: ../inc/shared_config.php:113
+#: ../inc/shared_config.php:115
 msgid "August"
 msgstr ""
 
-#: ../inc/shared_config.php:114
+#: ../inc/shared_config.php:116
 msgid "September"
 msgstr ""
 
-#: ../inc/shared_config.php:115
+#: ../inc/shared_config.php:117
 msgid "October"
 msgstr ""
 
-#: ../inc/shared_config.php:116
+#: ../inc/shared_config.php:118
 msgid "November"
 msgstr ""
 
-#: ../inc/shared_config.php:117
+#: ../inc/shared_config.php:119
 msgid "December"
 msgstr ""
 
-#: ../inc/shared_config.php:168
+#: ../inc/shared_config.php:170
 msgid "Streetadress"
 msgstr ""
 
-#: ../inc/shared_config.php:194
+#: ../inc/shared_config.php:196
 msgid "List all attendees on current event"
 msgstr ""
 
-#: ../inc/shared_config.php:211
+#: ../inc/shared_config.php:213
 msgid "Allow other users to see my mailadress"
 msgstr ""
 
-#: ../inc/shared_config.php:216
+#: ../inc/shared_config.php:218
 msgid "All users"
 msgstr ""
 
@@ -2102,6 +2159,6 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
-#: ../inc/shared_functions.php:692
+#: ../inc/shared_functions.php:695
 msgid "a.k.a."
 msgstr ""
