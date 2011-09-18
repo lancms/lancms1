@@ -78,7 +78,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 	$get_user = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
 	$userinfo = db_fetch($get_user);
 
-	if(md5($password) == $userinfo->password)
+	if(md5($password) == $userinfo->password && $userinfo->EMailConfirmed == 1)
 	{
 		// Passwords match. Login the user
 		db_query("UPDATE ".$sql_prefix."_session SET userID = '".db_escape($userID)."'
@@ -90,6 +90,13 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 
 		header("Location: index.php"); // Move to index.php, should give a new userinfo-box
 	} // End if passwords match
+	
+	elseif(md5($password) == $userinfo->password && $userinfo->EMailConfirmed != 1) {
+		// Password is correct, but users mail isn't confirmed
+		$content .= _("Your email hasn't been confirmed. Please go to the link sent in your email.");
+		$content .= "<br /><br />";
+		$content .= sprintf(_("If you haven't gotten any email from us yet, <a href=\"%s\">resend email</a>"), "?module=login&action=resendVerifyCode&user=$userinfo->ID&mail=$userinfo->EMail");
+	} // End elseif EMailConfirmed != 1
 
 	else
 	{
@@ -222,3 +229,30 @@ elseif($action == "doNewPassword" && !empty($_GET['userID'])&& !empty($_GET['key
 	} // End else
 
 } // End elseif action = doNewPassword
+
+
+elseif($action == "resendVerifyCode") {
+	$user = $_GET['user'];
+	$mail = $_GET['mail'];
+
+	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."' AND EMail = '".db_escape($mail)."'");
+	if(db_num($qFindUser) != 1) die("Could not find user and email?");
+	$rFindUser = db_fetch($qFindUser);
+	
+	if($rFindUser->EMailVerifyCode == NULL) {
+		$gencode = md5(rand(1,100000) * time());
+		db_query("UPDATE ".$sql_prefix."_users SET EMailVerifyCode = '$gencode' WHERE ID = '$rFindUser->ID'");
+	}
+	else $gencode = $rFindUser->EMailVerifyCode;
+
+	$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$user&verifycode=$gencode";
+	$email_subject = lang("Verify your account");
+	$email_content = sprintf(_("Hello %s.
+
+You have tried to login to your account on %s, but haven't verified your account.
+
+To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
+	send_email($user, $email_subject, $email_content);
+	log_add("login", "resendVerifyCode");
+	$content .= _("Email with verificationcode has been sent. Please wait for it to come (it might take a couple of minutes).");
+}	

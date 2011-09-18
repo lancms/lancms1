@@ -115,7 +115,7 @@ if($action == "register")
 
 	if(!$register_invalid)
 	{
-		$genkey = md5(serialize($_POST) * time());
+		$genkey = md5(rand(1,10000) * time());
 		$hide_register = TRUE;
 		$md5_pass = md5($pass1);
 		db_query("INSERT INTO ".$sql_prefix."_users SET
@@ -139,7 +139,7 @@ if($action == "register")
 
 		$newid = mysql_insert_id ();
 
-		$url = $url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$newid";
+		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$newid&verifycode=$genkey";
 		$email_subject = lang("Verify your new account");
 		$email_content = sprintf(lang("Hello %s.
 
@@ -147,7 +147,7 @@ You, or someone else has registered a new account on %s.
 
 To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
 
-#		send_email($newid, $email_subject, $email_content);		
+		send_email($newid, $email_subject, $email_content);		
 		// Fix default preferences
 		for($i=0;$i<count($userpersonalprefs);$i++) {
 			if($userpersonalprefs[$i]['default_register'] == 1) {
@@ -195,6 +195,37 @@ To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER
 	} // End if register_invalid = FALSE
 
 } // End action = register
+
+
+
+#module=register&action=verifymail&userID=$newid&verifycode=$genkey
+elseif($action == "verifymail" && isset($_GET['userID']) && isset($_GET['verifycode'])) {
+	$hide_register = TRUE;
+        $verifycode = $_GET['verifycode'];
+        $userID = $_GET['userID'];
+
+        if($verifycode == NULL) $content .= _("Verifycationcode not valid");
+        else {
+                $qCheckUser = db_query("SELECT EMailConfirmed,EMail,EMailVerifyCode FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
+                $rCheckUser = db_fetch($qCheckUser);
+
+                if($rCheckUser->EMailConfirmed == 1) $content .= _("EMail was already verified. Not verified again");
+                elseif($rCheckUser->EMailVerifyCode != $verifycode) {
+                        $content .= "Verificationcode does not match. Try again";
+                        $log_new['tried_verifycode'] = $verifycode;
+                        $log_new['actual_verifycode'] = $rCheckUser->EMailVerifyCode;
+
+                        log_add("register", "failed_verifycode", serialize($log_new));
+                }
+                elseif($rCheckUser->EMailVerifyCode == $verifycode) {
+                        $content .= _("EMail verified. Welcome aboard");
+                        $log_new['verifycode'] = $verifycode;
+                        db_query("UPDATE ".$sql_prefix."_users SET EMailConfirmed = 1 WHERE ID = '".db_escape($userID)."'");
+                        log_add("register", "confirmed_verifycode", serialize($log_new));
+                } // End elseif EMailVerifyCode == verifycode
+        } // End else
+} // end action = verifymail
+
 
 
 if(!isset($action) || $hide_register == FALSE)
@@ -278,3 +309,4 @@ if(!isset($action) || $hide_register == FALSE)
 	} // End if AJAX postnumbers
 
 } // End elseif !isset $action
+
