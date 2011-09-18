@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-09-18 20:35+0200\n"
+        "POT-Creation-Date: 2011-09-18 21:59+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -190,7 +190,7 @@ msgid   "E-mail"
 msgstr  ""
 
 #: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
-#: ../modules/register/register.php:237
+#: ../modules/register/register.php:268
 #: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:147
 msgid   "Birthday"
 msgstr  ""
@@ -286,7 +286,7 @@ msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
-#: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
+#: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:66
 #: ../inc/shared_config.php:187
 msgid   "Cellphone"
 msgstr  ""
@@ -913,61 +913,91 @@ msgstr  ""
 msgid   "Reset password"
 msgstr  ""
 
-#: ../modules/login/login.php:97
+#: ../modules/login/login.php:96
+msgid   "Your email hasn't been confirmed. Please go to the link sent in your "
+        "email."
+msgstr  ""
+
+#: ../modules/login/login.php:98
+#, php-format
+msgid   "If you haven't gotten any email from us yet, <a href=\"%s\">resend "
+        "email</a>"
+msgstr  ""
+
+#: ../modules/login/login.php:104
 msgid   "sorry, wrong password!"
 msgstr  ""
 
-#: ../modules/login/login.php:131
+#: ../modules/login/login.php:138
 msgid   "The user has not confirmed his EMailAddress. Not able to reset "
         "password"
 msgstr  ""
 
-#: ../modules/login/login.php:134
+#: ../modules/login/login.php:141
 msgid   "You have already tried to reset your password today. Please check "
         "your mails inbox and junkfolder"
 msgstr  ""
 
-#: ../modules/login/login.php:138
+#: ../modules/login/login.php:145
 msgid   "I confirm that this is my account, and I want to reset the password"
 msgstr  ""
 
-#: ../modules/login/login.php:150
+#: ../modules/login/login.php:157
 msgid   "Email not confirmed!"
 msgstr  ""
 
-#: ../modules/login/login.php:151
+#: ../modules/login/login.php:158
 msgid   "Multiple attempts at password reset. Not done"
 msgstr  ""
 
-#: ../modules/login/login.php:162
+#: ../modules/login/login.php:169
 #, php-format
 msgid   "Password reset for %s"
 msgstr  ""
 
-#: ../modules/login/login.php:171
+#: ../modules/login/login.php:178
 msgid   "Email sent. Please check your inbox and spamfolder"
 msgstr  ""
 
-#: ../modules/login/login.php:184 ../modules/login/login.php:208
+#: ../modules/login/login.php:191 ../modules/login/login.php:215
 msgid   "Key or userID not found, or already used. You can only reset the "
         "password once with each key"
 msgstr  ""
 
-#: ../modules/login/login.php:187
+#: ../modules/login/login.php:194
 msgid   "Please provide your new password, two times"
 msgstr  ""
 
-#: ../modules/login/login.php:191
+#: ../modules/login/login.php:198
 msgid   "Set new password"
 msgstr  ""
 
-#: ../modules/login/login.php:210
+#: ../modules/login/login.php:217
 msgid   "Passwords don't match. Go back and try again"
 msgstr  ""
 
-#: ../modules/login/login.php:221
+#: ../modules/login/login.php:228
 #, php-format
 msgid   "Password successfully reset. Please go back to <a href='%s'>Login</a>"
+msgstr  ""
+
+#: ../modules/login/login.php:249
+msgid   "Verify your account"
+msgstr  ""
+
+#: ../modules/login/login.php:250
+#, php-format
+msgid   "Hello %s.\n"
+        "\n"
+        "You have tried to login to your account on %s, but haven't verified "
+        "your account.\n"
+        "\n"
+        "To verify your mailaddress, please go to %s"
+msgstr  ""
+
+#: ../modules/login/login.php:257
+msgid   "Email with verificationcode has been sent. Please wait for it to "
+        "come (it might take a couple of minutes)."
 msgstr  ""
 
 #: ../modules/logs/logs.php:14
@@ -1285,18 +1315,18 @@ msgstr  ""
 msgid   "Email"
 msgstr  ""
 
-#: ../modules/profile/profile.php:22 ../modules/register/register.php:224
+#: ../modules/profile/profile.php:22 ../modules/register/register.php:255
 #: ../inc/shared_config.php:180
 msgid   "Gender"
 msgstr  ""
 
-#: ../modules/profile/profile.php:24 ../modules/register/register.php:218
+#: ../modules/profile/profile.php:24 ../modules/register/register.php:249
 #: ../modules/useradmin/useradmin.php:64
 #: ../modules/wannabeadmin/wannabeadmin.php:268
 msgid   "Address"
 msgstr  ""
 
-#: ../modules/profile/profile.php:25 ../modules/register/register.php:219
+#: ../modules/profile/profile.php:25 ../modules/register/register.php:250
 #: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:175
 msgid   "Postnumber"
 msgstr  ""
@@ -1378,52 +1408,64 @@ msgstr  ""
 msgid   "User registered"
 msgstr  ""
 
-#: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
+#: ../modules/register/register.php:207
+msgid   "Verifycationcode not valid"
+msgstr  ""
+
+#: ../modules/register/register.php:212
+msgid   "EMail was already verified. Not verified again"
+msgstr  ""
+
+#: ../modules/register/register.php:221
+msgid   "EMail verified. Welcome aboard"
+msgstr  ""
+
+#: ../modules/register/register.php:238 ../modules/useradmin/useradmin.php:60
 #: ../inc/shared_config.php:133
 msgid   "Username"
 msgstr  ""
 
-#: ../modules/register/register.php:208
+#: ../modules/register/register.php:239
 msgid   "Password"
 msgstr  ""
 
-#: ../modules/register/register.php:209
+#: ../modules/register/register.php:240
 msgid   "Password again"
 msgstr  ""
 
-#: ../modules/register/register.php:210
+#: ../modules/register/register.php:241
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:137
+#: ../modules/register/register.php:244 ../inc/shared_config.php:137
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:142
+#: ../modules/register/register.php:247 ../inc/shared_config.php:142
 msgid   "Last name"
 msgstr  ""
 
-#: ../modules/register/register.php:227
+#: ../modules/register/register.php:258
 msgid   "Male"
 msgstr  ""
 
-#: ../modules/register/register.php:230
+#: ../modules/register/register.php:261
 msgid   "Female"
 msgstr  ""
 
-#: ../modules/register/register.php:245
+#: ../modules/register/register.php:276
 msgid   "Birthmonth"
 msgstr  ""
 
-#: ../modules/register/register.php:256
+#: ../modules/register/register.php:287
 msgid   "Birthyear"
 msgstr  ""
 
-#: ../modules/register/register.php:268
+#: ../modules/register/register.php:299
 msgid   "optional"
 msgstr  ""
 
-#: ../modules/register/register.php:271
+#: ../modules/register/register.php:302
 msgid   "Create user"
 msgstr  ""
 
