@@ -164,6 +164,10 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					if($f == "newSlide") $func = _("New slide");
 					if($f == "editSlide") $func = _("Edit slide");
 					break;
+				case "SMS":
+					$mod = _("SMS");
+					if($f == "sendSMS") $func = _("SMS sent");
+					break;
 			} // End switch
 			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
 			if(empty($func)) $func = lang("Unknown function")." ".$f;
