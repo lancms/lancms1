@@ -7,6 +7,7 @@ if($sessioninfo->userID == 1) die(lang("Please login to apply for crew", "wannab
 
 if(!isset($action)) {
 	$content .= "<h2>".lang ("Apply as crew", "wannabe")."</h2>";
+	if($_GET['Application'] == 'saved') $content .= "<h1>"._("Your application is saved")."</h1>";
 
 	$content .= "<table>";
 	$content .= "<form method=POST action=?module=wannabe&action=doApplication>";
@@ -150,7 +151,7 @@ elseif($action == "doApplication") {
 
 	} // End while
 	log_add("wannabe", "doApplication", serialize($log_new));
-	header("Location: ?module=wannabe");
+	header("Location: ?module=wannabe&Application=saved");
 } // End doApplication
 
 elseif($action == "removeApplication" ) {
