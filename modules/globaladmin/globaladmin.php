@@ -11,6 +11,7 @@ if(!isset($action))
 	$content .= "</th><th>";
 	$content .= lang("Admin this event", "globaladmin");
 	$content .= "</th><th>".lang("Set event public", "globaladmin");
+	$content .= "</th><th>"._("Is open");
 	$content .= "</th></tr>\n\n";
 
 	$qListEvents = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID != 1");
@@ -28,6 +29,14 @@ if(!isset($action))
 	        $content .= "<a href=\"?module=globaladmin&amp;eventID=$rListEvents->ID&amp;action=setPublic\">".lang("Private", "globaladmin")."</a>";
 		if($rListEvents->ID == $sessioninfo->eventID) $content .= " <a href=\"?module=eventadmin&amp;eventID=$rListEvents->ID&amp;action=eventaccess\">".lang("Attendee-access", "globaladmin")."</a>";
 	    }
+		$content .= "</td><td>";
+		$content .= "<a href=?module=globaladmin&eventID=$rListEvents->ID&action=toggleClosed>";
+		if($rListEvents->eventClosed == 0)
+			$closedImage = 'images/icons/yes.png';
+		else 
+			$closedImage = 'images/icons/no.png';
+		$content .= "<img src=\"$closedImage\" width=\"50%\"></a>";
+
 	    $content .= "</td></tr>\n\n\n";
 	} // End while(rListEvents)
 	$content .= "</table>";
@@ -200,4 +209,19 @@ elseif($action == "listGlobalRights") {
 	} // End while
 	$content .= "</table>\n";
 
+}
+
+elseif($action == "toggleClosed" && isset($_GET['eventID'])) {
+	$eventID = $_GET['eventID'];
+	$qFindClosed = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID = '".db_escape($eventID)."'");
+	$rFindClosed = db_fetch($qFindClosed);
+
+	if($rFindClosed->eventClosed == 0) $newClosed = 1;
+	else $newClosed = 0;
+	db_query("UPDATE ".$sql_prefix."_events SET eventClosed = '$newClosed' WHERE ID = '".db_escape($eventID)."'");
+	$log_new['eventID'] = $eventID;
+	$log_new['closedStatus'] = $newClosed;
+	$log_old['closedStatus'] = $rFindClosed->eventClosed;
+	log_add("globaladmin", "toggleClosed", serialize($log_new), serialize($log_old));
+	header("Location: ?module=globaladmin");
 }
