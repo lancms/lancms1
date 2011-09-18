@@ -253,6 +253,6 @@ You have tried to login to your account on %s, but haven't verified your account
 
 To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
 	send_email($user, $email_subject, $email_content);
-	log_add("login", "resendVerifyCode");
+	log_add("login", "resendVerifyCode", "", "", $user);
 	$content .= _("Email with verificationcode has been sent. Please wait for it to come (it might take a couple of minutes).");
 }	

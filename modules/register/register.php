@@ -215,13 +215,13 @@ elseif($action == "verifymail" && isset($_GET['userID']) && isset($_GET['verifyc
                         $log_new['tried_verifycode'] = $verifycode;
                         $log_new['actual_verifycode'] = $rCheckUser->EMailVerifyCode;
 
-                        log_add("register", "failed_verifycode", serialize($log_new));
+                        log_add("register", "failed_verifycode", serialize($log_new), "", $userID);
                 }
                 elseif($rCheckUser->EMailVerifyCode == $verifycode) {
                         $content .= _("EMail verified. Welcome aboard");
                         $log_new['verifycode'] = $verifycode;
                         db_query("UPDATE ".$sql_prefix."_users SET EMailConfirmed = 1 WHERE ID = '".db_escape($userID)."'");
-                        log_add("register", "confirmed_verifycode", serialize($log_new));
+                        log_add("register", "confirmed_verifycode", serialize($log_new), "", $userID);
                 } // End elseif EMailVerifyCode == verifycode
         } // End else
 } // end action = verifymail
