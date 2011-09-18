@@ -227,6 +227,6 @@ if(!$hide_smarty) {
 	$smarty->assign("footer", $design_footer);
 
 
-	$smarty->display($smarty_display);
+	$smarty->display($smarty_display) or die("Could not display smarty. Are you sure you have write-access to the tmp/template*-folders?");
 
 }
