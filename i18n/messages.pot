@@ -7,10 +7,11 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-07-17 18:59+0200\n"
+        "POT-Creation-Date: 2011-09-18 20:35+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
         "MIME-Version: 1.0\n"
         "Content-Type: text/plain; charset=CHARSET\n"
         "Content-Transfer-Encoding: 8bit\n"
@@ -127,11 +128,11 @@ msgstr  ""
 msgid   "File directory not writable"
 msgstr  ""
 
-#: ../upload.php:35
-msgid   "Upload failed, could not move file "
+#: ../upload.php:25
+msgid   "Upload failed, could not move file"
 msgstr  ""
 
-#: ../upload.php:37
+#: ../upload.php:27
 msgid   "Upload failed, file exists"
 msgstr  ""
 
@@ -291,7 +292,7 @@ msgid   "Cellphone"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:26
-#: ../modules/globaladmin/globaladmin.php:176 ../modules/groups/groups.php:53
+#: ../modules/globaladmin/globaladmin.php:185 ../modules/groups/groups.php:53
 msgid   "Access"
 msgstr  ""
 
@@ -418,11 +419,11 @@ msgstr  ""
 #: ../modules/eventadmin/eventadmin.php:148
 #: ../modules/eventadmin/eventadmin.php:198
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
+#: ../modules/globaladmin/globaladmin.php:138 ../modules/groups/groups.php:79
 #: ../modules/infoscreens/infoscreens.php:194
 #: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
 msgid   "Save"
 msgstr  ""
 
@@ -504,7 +505,7 @@ msgid   "Group name already exists"
 msgstr  ""
 
 #: ../modules/eventadmin/eventadmin.php:138
-#: ../modules/globaladmin/globaladmin.php:110
+#: ../modules/globaladmin/globaladmin.php:119
 msgid   "Config successfully saved"
 msgstr  ""
 
@@ -612,69 +613,73 @@ msgstr  ""
 msgid   "Set event public"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:22
+#: ../modules/globaladmin/globaladmin.php:14
+msgid   "Is open"
+msgstr  ""
+
+#: ../modules/globaladmin/globaladmin.php:23
 msgid   "Set active"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:26
+#: ../modules/globaladmin/globaladmin.php:27
 msgid   "Public"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:28
+#: ../modules/globaladmin/globaladmin.php:29
 msgid   "Private"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:29
+#: ../modules/globaladmin/globaladmin.php:30
 msgid   "Attendee-access"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:35
+#: ../modules/globaladmin/globaladmin.php:44
 msgid   "Add new event"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:37
+#: ../modules/globaladmin/globaladmin.php:46
 msgid   "Change global options"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:38
+#: ../modules/globaladmin/globaladmin.php:47
 msgid   "View logs"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:39
+#: ../modules/globaladmin/globaladmin.php:48
 #: ../modules/useradmin/useradmin.php:19
 msgid   "User administration"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:40
+#: ../modules/globaladmin/globaladmin.php:49
 msgid   "List groups with global access"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:41
+#: ../modules/globaladmin/globaladmin.php:50
 msgid   "List sessions"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:53
+#: ../modules/globaladmin/globaladmin.php:62
 msgid   "Name of event"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:54
+#: ../modules/globaladmin/globaladmin.php:63
 msgid   "Add event"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:174
+#: ../modules/globaladmin/globaladmin.php:183
 msgid   "Groups with global rights"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 #: ../modules/sessions/sessions.php:16
 msgid   "Event"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 msgid   "Group"
 msgstr  ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 msgid   "Module"
 msgstr  ""
 
@@ -973,18 +978,18 @@ msgstr  ""
 msgid   "Log"
 msgstr  ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:206
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:210
 msgid   "Timestamp"
 msgstr  ""
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:205
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:209
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid   "User"
 msgstr  ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:209
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:213
 msgid   "Logmodule"
 msgstr  ""
 
@@ -992,15 +997,15 @@ msgstr  ""
 msgid   "Logtype"
 msgstr  ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
 msgid   "IP"
 msgstr  ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
 msgid   "Host"
 msgstr  ""
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:208
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:212
 msgid   "URL"
 msgstr  ""
 
@@ -1245,18 +1250,26 @@ msgid   "New slide"
 msgstr  ""
 
 #: ../modules/logs/logs.php:168
-msgid   "Unknown module"
+msgid   "SMS"
 msgstr  ""
 
 #: ../modules/logs/logs.php:169
+msgid   "SMS sent"
+msgstr  ""
+
+#: ../modules/logs/logs.php:172
+msgid   "Unknown module"
+msgstr  ""
+
+#: ../modules/logs/logs.php:173
 msgid   "Unknown function"
 msgstr  ""
 
-#: ../modules/logs/logs.php:202
+#: ../modules/logs/logs.php:206
 msgid   "Details for logentry "
 msgstr  ""
 
-#: ../modules/logs/logs.php:210
+#: ../modules/logs/logs.php:214
 msgid   "Logfunction"
 msgstr  ""
 
@@ -1882,43 +1895,43 @@ msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:287
 #: ../modules/wannabeadmin/wannabeadmin.php:495
-#: ../modules/wannabe/wannabe.php:31
+#: ../modules/wannabe/wannabe.php:32
 msgid   "Nothing selected"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:290
 #: ../modules/wannabeadmin/wannabeadmin.php:498
-#: ../modules/wannabe/wannabe.php:34
+#: ../modules/wannabe/wannabe.php:35
 msgid   "Of course!"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:293
 #: ../modules/wannabeadmin/wannabeadmin.php:501
-#: ../modules/wannabe/wannabe.php:37
+#: ../modules/wannabe/wannabe.php:38
 msgid   "Sure"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:296
 #: ../modules/wannabeadmin/wannabeadmin.php:504
-#: ../modules/wannabe/wannabe.php:40
+#: ../modules/wannabe/wannabe.php:41
 msgid   "Probably"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:299
 #: ../modules/wannabeadmin/wannabeadmin.php:507
-#: ../modules/wannabe/wannabe.php:43
+#: ../modules/wannabe/wannabe.php:44
 msgid   "I'd rather not"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:302
 #: ../modules/wannabeadmin/wannabeadmin.php:510
-#: ../modules/wannabe/wannabe.php:46
+#: ../modules/wannabe/wannabe.php:47
 msgid   "Not at all"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:305
 #: ../modules/wannabeadmin/wannabeadmin.php:513
-#: ../modules/wannabe/wannabe.php:49
+#: ../modules/wannabe/wannabe.php:50
 msgid   "Unknown option"
 msgstr  ""
 
@@ -1960,19 +1973,23 @@ msgstr  ""
 msgid   "Apply as crew"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:102
+#: ../modules/wannabe/wannabe.php:10
+msgid   "Your application is saved"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:103
 msgid   "Delete application"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:157
+#: ../modules/wannabe/wannabe.php:158
 msgid   "Are you sure you want to delete your crewapplication?"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:158
+#: ../modules/wannabe/wannabe.php:159
 msgid   "Yes, I'm sure"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:159
+#: ../modules/wannabe/wannabe.php:160
 msgid   "No, I still wish to apply for crew"
 msgstr  ""
 
