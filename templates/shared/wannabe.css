@@ -2,20 +2,20 @@ td.wannabeCommentStyle0 {
 /*	background-color: red; */
 }
 td.wannabeCommentStyle1 {
-    background-color: red;
+    background-color: green;
 }
 td.wannabeCommentStyle2 {
-    background-color: orange;
+    background-color: yellow;
+    color: black;
 }
 td.wannabeCommentStyle3 {
     background-color: grey;
 }
 td.wannabeCommentStyle4 {
-    background-color: yellow;
-	 color: black;
+    background-color: orange;
 }
 td.wannabeCommentStyle5 {
-    background-color: green;
+    background-color: red;
 }
 th.wannabecomments {
 	border: solid 1px black;
