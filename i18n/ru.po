@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-07-17 18:59+0200\n"
+"POT-Creation-Date: 2011-09-18 22:34+0200\n"
 "PO-Revision-Date: 2011-05-08 20:38+0000\n"
 "Last-Translator: Romanenko Lesha <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-07-18 05:12+0000\n"
-"X-Generator: Launchpad (build 13405)\n"
+"X-Launchpad-Export-Date: 2011-09-19 04:52+0000\n"
+"X-Generator: Launchpad (build 13955)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -129,11 +129,11 @@ msgstr ""
 msgid "File directory not writable"
 msgstr ""
 
-#: ../upload.php:35
-msgid "Upload failed, could not move file "
+#: ../upload.php:25
+msgid "Upload failed, could not move file"
 msgstr ""
 
-#: ../upload.php:37
+#: ../upload.php:27
 msgid "Upload failed, file exists"
 msgstr ""
 
@@ -191,7 +191,7 @@ msgid "E-mail"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
-#: ../modules/register/register.php:237
+#: ../modules/register/register.php:268
 #: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:147
 msgid "Birthday"
 msgstr ""
@@ -287,13 +287,13 @@ msgid "EMail"
 msgstr ""
 
 #: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
-#: ../modules/register/register.php:268 ../modules/useradmin/useradmin.php:66
+#: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:66
 #: ../inc/shared_config.php:187
 msgid "Cellphone"
 msgstr ""
 
 #: ../modules/crewlist/crewlist.php:26
-#: ../modules/globaladmin/globaladmin.php:176 ../modules/groups/groups.php:53
+#: ../modules/globaladmin/globaladmin.php:185 ../modules/groups/groups.php:53
 msgid "Access"
 msgstr ""
 
@@ -420,11 +420,11 @@ msgstr ""
 #: ../modules/eventadmin/eventadmin.php:148
 #: ../modules/eventadmin/eventadmin.php:198
 #: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:129 ../modules/groups/groups.php:79
+#: ../modules/globaladmin/globaladmin.php:138 ../modules/groups/groups.php:79
 #: ../modules/infoscreens/infoscreens.php:194
 #: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:100
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
 msgid "Save"
 msgstr ""
 
@@ -506,7 +506,7 @@ msgid "Group name already exists"
 msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:138
-#: ../modules/globaladmin/globaladmin.php:110
+#: ../modules/globaladmin/globaladmin.php:119
 msgid "Config successfully saved"
 msgstr ""
 
@@ -614,69 +614,73 @@ msgstr ""
 msgid "Set event public"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:22
+#: ../modules/globaladmin/globaladmin.php:14
+msgid "Is open"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:23
 msgid "Set active"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:26
+#: ../modules/globaladmin/globaladmin.php:27
 msgid "Public"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:28
+#: ../modules/globaladmin/globaladmin.php:29
 msgid "Private"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:29
+#: ../modules/globaladmin/globaladmin.php:30
 msgid "Attendee-access"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:35
+#: ../modules/globaladmin/globaladmin.php:44
 msgid "Add new event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:37
+#: ../modules/globaladmin/globaladmin.php:46
 msgid "Change global options"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:38
+#: ../modules/globaladmin/globaladmin.php:47
 msgid "View logs"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:39
+#: ../modules/globaladmin/globaladmin.php:48
 #: ../modules/useradmin/useradmin.php:19
 msgid "User administration"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:40
+#: ../modules/globaladmin/globaladmin.php:49
 msgid "List groups with global access"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:41
+#: ../modules/globaladmin/globaladmin.php:50
 msgid "List sessions"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:53
+#: ../modules/globaladmin/globaladmin.php:62
 msgid "Name of event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:54
+#: ../modules/globaladmin/globaladmin.php:63
 msgid "Add event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:174
+#: ../modules/globaladmin/globaladmin.php:183
 msgid "Groups with global rights"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 #: ../modules/sessions/sessions.php:16
 msgid "Event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 msgid "Group"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:176
+#: ../modules/globaladmin/globaladmin.php:185
 msgid "Module"
 msgstr ""
 
@@ -910,63 +914,95 @@ msgstr ""
 msgid "Reset password"
 msgstr ""
 
-#: ../modules/login/login.php:97
+#: ../modules/login/login.php:96
+msgid ""
+"Your email hasn't been confirmed. Please go to the link sent in your email."
+msgstr ""
+
+#: ../modules/login/login.php:98
+#, php-format
+msgid ""
+"If you haven't gotten any email from us yet, <a href=\"%s\">resend email</a>"
+msgstr ""
+
+#: ../modules/login/login.php:104
 msgid "sorry, wrong password!"
 msgstr ""
 
-#: ../modules/login/login.php:131
+#: ../modules/login/login.php:138
 msgid ""
 "The user has not confirmed his EMailAddress. Not able to reset password"
 msgstr ""
 
-#: ../modules/login/login.php:134
+#: ../modules/login/login.php:141
 msgid ""
 "You have already tried to reset your password today. Please check your mails "
 "inbox and junkfolder"
 msgstr ""
 
-#: ../modules/login/login.php:138
+#: ../modules/login/login.php:145
 msgid "I confirm that this is my account, and I want to reset the password"
 msgstr ""
 
-#: ../modules/login/login.php:150
+#: ../modules/login/login.php:157
 msgid "Email not confirmed!"
 msgstr ""
 
-#: ../modules/login/login.php:151
+#: ../modules/login/login.php:158
 msgid "Multiple attempts at password reset. Not done"
 msgstr ""
 
-#: ../modules/login/login.php:162
+#: ../modules/login/login.php:169
 #, php-format
 msgid "Password reset for %s"
 msgstr ""
 
-#: ../modules/login/login.php:171
+#: ../modules/login/login.php:178
 msgid "Email sent. Please check your inbox and spamfolder"
 msgstr ""
 
-#: ../modules/login/login.php:184 ../modules/login/login.php:208
+#: ../modules/login/login.php:191 ../modules/login/login.php:215
 msgid ""
 "Key or userID not found, or already used. You can only reset the password "
 "once with each key"
 msgstr ""
 
-#: ../modules/login/login.php:187
+#: ../modules/login/login.php:194
 msgid "Please provide your new password, two times"
 msgstr ""
 
-#: ../modules/login/login.php:191
+#: ../modules/login/login.php:198
 msgid "Set new password"
 msgstr ""
 
-#: ../modules/login/login.php:210
+#: ../modules/login/login.php:217
 msgid "Passwords don't match. Go back and try again"
 msgstr ""
 
-#: ../modules/login/login.php:221
+#: ../modules/login/login.php:228
 #, php-format
 msgid "Password successfully reset. Please go back to <a href='%s'>Login</a>"
+msgstr ""
+
+#: ../modules/login/login.php:249
+msgid "Verify your account"
+msgstr ""
+
+#: ../modules/login/login.php:250
+#, php-format
+msgid ""
+"Hello %s.\n"
+"\n"
+"You have tried to login to your account on %s, but haven't verified your "
+"account.\n"
+"\n"
+"To verify your mailaddress, please go to %s"
+msgstr ""
+
+#: ../modules/login/login.php:257
+msgid ""
+"Email with verificationcode has been sent. Please wait for it to come (it "
+"might take a couple of minutes)."
 msgstr ""
 
 #: ../modules/logs/logs.php:14
@@ -977,18 +1013,18 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:206
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:210
 msgid "Timestamp"
 msgstr ""
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:205
+#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:209
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
 msgstr ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:209
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:213
 msgid "Logmodule"
 msgstr ""
 
@@ -996,15 +1032,15 @@ msgstr ""
 msgid "Logtype"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
 msgid "IP"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:207
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
 msgid "Host"
 msgstr ""
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:208
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:212
 msgid "URL"
 msgstr ""
 
@@ -1249,18 +1285,26 @@ msgid "New slide"
 msgstr ""
 
 #: ../modules/logs/logs.php:168
-msgid "Unknown module"
+msgid "SMS"
 msgstr ""
 
 #: ../modules/logs/logs.php:169
+msgid "SMS sent"
+msgstr ""
+
+#: ../modules/logs/logs.php:172
+msgid "Unknown module"
+msgstr ""
+
+#: ../modules/logs/logs.php:173
 msgid "Unknown function"
 msgstr ""
 
-#: ../modules/logs/logs.php:202
+#: ../modules/logs/logs.php:206
 msgid "Details for logentry "
 msgstr ""
 
-#: ../modules/logs/logs.php:210
+#: ../modules/logs/logs.php:214
 msgid "Logfunction"
 msgstr ""
 
@@ -1276,18 +1320,18 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: ../modules/profile/profile.php:22 ../modules/register/register.php:224
+#: ../modules/profile/profile.php:22 ../modules/register/register.php:255
 #: ../inc/shared_config.php:180
 msgid "Gender"
 msgstr ""
 
-#: ../modules/profile/profile.php:24 ../modules/register/register.php:218
+#: ../modules/profile/profile.php:24 ../modules/register/register.php:249
 #: ../modules/useradmin/useradmin.php:64
 #: ../modules/wannabeadmin/wannabeadmin.php:268
 msgid "Address"
 msgstr ""
 
-#: ../modules/profile/profile.php:25 ../modules/register/register.php:219
+#: ../modules/profile/profile.php:25 ../modules/register/register.php:250
 #: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:175
 msgid "Postnumber"
 msgstr ""
@@ -1370,52 +1414,64 @@ msgstr ""
 msgid "User registered"
 msgstr ""
 
-#: ../modules/register/register.php:207 ../modules/useradmin/useradmin.php:60
+#: ../modules/register/register.php:207
+msgid "Verifycationcode not valid"
+msgstr ""
+
+#: ../modules/register/register.php:212
+msgid "EMail was already verified. Not verified again"
+msgstr ""
+
+#: ../modules/register/register.php:221
+msgid "EMail verified. Welcome aboard"
+msgstr ""
+
+#: ../modules/register/register.php:238 ../modules/useradmin/useradmin.php:60
 #: ../inc/shared_config.php:133
 msgid "Username"
 msgstr ""
 
-#: ../modules/register/register.php:208
+#: ../modules/register/register.php:239
 msgid "Password"
 msgstr ""
 
-#: ../modules/register/register.php:209
+#: ../modules/register/register.php:240
 msgid "Password again"
 msgstr ""
 
-#: ../modules/register/register.php:210
+#: ../modules/register/register.php:241
 msgid "E-Mail"
 msgstr ""
 
-#: ../modules/register/register.php:213 ../inc/shared_config.php:137
+#: ../modules/register/register.php:244 ../inc/shared_config.php:137
 msgid "First name"
 msgstr ""
 
-#: ../modules/register/register.php:216 ../inc/shared_config.php:142
+#: ../modules/register/register.php:247 ../inc/shared_config.php:142
 msgid "Last name"
 msgstr ""
 
-#: ../modules/register/register.php:227
+#: ../modules/register/register.php:258
 msgid "Male"
 msgstr ""
 
-#: ../modules/register/register.php:230
+#: ../modules/register/register.php:261
 msgid "Female"
 msgstr ""
 
-#: ../modules/register/register.php:245
+#: ../modules/register/register.php:276
 msgid "Birthmonth"
 msgstr ""
 
-#: ../modules/register/register.php:256
+#: ../modules/register/register.php:287
 msgid "Birthyear"
 msgstr ""
 
-#: ../modules/register/register.php:268
+#: ../modules/register/register.php:299
 msgid "optional"
 msgstr ""
 
-#: ../modules/register/register.php:271
+#: ../modules/register/register.php:302
 msgid "Create user"
 msgstr ""
 
@@ -1891,43 +1947,43 @@ msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:287
 #: ../modules/wannabeadmin/wannabeadmin.php:495
-#: ../modules/wannabe/wannabe.php:31
+#: ../modules/wannabe/wannabe.php:32
 msgid "Nothing selected"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:290
 #: ../modules/wannabeadmin/wannabeadmin.php:498
-#: ../modules/wannabe/wannabe.php:34
+#: ../modules/wannabe/wannabe.php:35
 msgid "Of course!"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:293
 #: ../modules/wannabeadmin/wannabeadmin.php:501
-#: ../modules/wannabe/wannabe.php:37
+#: ../modules/wannabe/wannabe.php:38
 msgid "Sure"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:296
 #: ../modules/wannabeadmin/wannabeadmin.php:504
-#: ../modules/wannabe/wannabe.php:40
+#: ../modules/wannabe/wannabe.php:41
 msgid "Probably"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:299
 #: ../modules/wannabeadmin/wannabeadmin.php:507
-#: ../modules/wannabe/wannabe.php:43
+#: ../modules/wannabe/wannabe.php:44
 msgid "I'd rather not"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:302
 #: ../modules/wannabeadmin/wannabeadmin.php:510
-#: ../modules/wannabe/wannabe.php:46
+#: ../modules/wannabe/wannabe.php:47
 msgid "Not at all"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:305
 #: ../modules/wannabeadmin/wannabeadmin.php:513
-#: ../modules/wannabe/wannabe.php:49
+#: ../modules/wannabe/wannabe.php:50
 msgid "Unknown option"
 msgstr ""
 
@@ -1969,19 +2025,23 @@ msgstr ""
 msgid "Apply as crew"
 msgstr ""
 
-#: ../modules/wannabe/wannabe.php:102
+#: ../modules/wannabe/wannabe.php:10
+msgid "Your application is saved"
+msgstr ""
+
+#: ../modules/wannabe/wannabe.php:103
 msgid "Delete application"
 msgstr ""
 
-#: ../modules/wannabe/wannabe.php:157
+#: ../modules/wannabe/wannabe.php:158
 msgid "Are you sure you want to delete your crewapplication?"
 msgstr ""
 
-#: ../modules/wannabe/wannabe.php:158
+#: ../modules/wannabe/wannabe.php:159
 msgid "Yes, I'm sure"
 msgstr ""
 
-#: ../modules/wannabe/wannabe.php:159
+#: ../modules/wannabe/wannabe.php:160
 msgid "No, I still wish to apply for crew"
 msgstr ""
 
