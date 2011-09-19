@@ -57,7 +57,7 @@ if($hide_smarty != 1) {
 } // End $hide_smarty != 1
 
 
-if($cron_type == 'include') {
+if($cron_type != 'cron') {
 
 	if($use_SMS_system == "SMS4you.no" && !empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass)) {
         	include_once 'inc/SMS/SMS4you.no.php';
