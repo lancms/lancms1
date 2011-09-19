@@ -222,3 +222,4 @@ $mailList[0]['SQL'] = 'SELECT DISTINCT ID FROM '.$sql_prefix.'_users WHERE ID !=
 ## Usually shouldn't be done anything with these things..
 
 $lang_method ="gettext";
+$cron_limit = "1";

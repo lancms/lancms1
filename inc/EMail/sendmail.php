@@ -1,7 +1,7 @@
 <?php
 
 
-$qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule = 'MAIL' AND (finishTime < 1 OR finishTime IS NULL) LIMIT 0,20");
+$qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule = 'MAIL' AND (finishTime < 1 OR finishTime IS NULL) LIMIT $cron_limit");
 
 while($rFindJobs = db_fetch($qFindJobs)) {
 

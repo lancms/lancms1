@@ -36,7 +36,8 @@ else {
 	$design_footer['width'] = 69;
 	$design_footer['height'] = 90;
 	$design_footer['url'] = 'http://default.globeorg.no/';
-
+	
+	$cron_type = 'include'; // Can be include or cron
 
 
 }
