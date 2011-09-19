@@ -5,7 +5,7 @@ if($action == "finduser")
 {
 	$user = db_escape($_GET['username']);
 
-	if(is_numeric($_GET['username'])) $finduser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$user'");
+	if(is_numeric($_GET['username']) && $user > 1) $finduser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$user'");
 	else $finduser = db_query("SELECT * FROM ".$sql_prefix."_users 
 		WHERE (nick LIKE '%".$user."%'
 		OR EMail LIKE '%".$user."%'
