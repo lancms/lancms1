@@ -21,9 +21,14 @@ else {
     $language = "norwegian"; // The user might want to customize this him self... Might be a FIXME
 
     $design_title = "lancms";
-
+	// Facebook Login
 	$facebook_appID = "";
-	$facebook_login = TRUE;
+	$facebook_login = FALSE;
+
+	// Facebook likebox
+	// Remove # and point to your Facebook page URL:
+#	$facebook_likebox_url = 'http://www.facebook.com/GlobeLAN'; 
+
 
 	## Mail settings
 	$mail_from = 'noreply@globeorg.no';
