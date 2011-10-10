@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-09-18 22:34+0200\n"
+        "POT-Creation-Date: 2011-10-10 21:34+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,8 +44,8 @@ msgstr  ""
 msgid   "Order ticket"
 msgstr  ""
 
-#: ../index.php:70 ../modules/logs/logs.php:147
-msgid   "Wannabe"
+#: ../index.php:70
+msgid   "Apply for crewposition"
 msgstr  ""
 
 #: ../index.php:72
@@ -1245,6 +1245,10 @@ msgstr  ""
 
 #: ../modules/logs/logs.php:144
 msgid   "Ticket canceled"
+msgstr  ""
+
+#: ../modules/logs/logs.php:147
+msgid   "Wannabe"
 msgstr  ""
 
 #: ../modules/logs/logs.php:148
