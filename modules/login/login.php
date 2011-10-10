@@ -159,7 +159,7 @@ elseif($action == "doResetPassword" && !empty($_GET['userID'])) {
 	else {
 		$genkey = md5(serialize($rGetUser) * time() * rand(0,100000));
 
-		db_query("UPDATE ".$sql_prefix."_users SET passwordResetCode = '$genkey', lastPasswordReset = '".time()."'");
+		db_query("UPDATE ".$sql_prefix."_users SET passwordResetCode = '$genkey', lastPasswordReset = '".time()."' WHERE ID = '".db_escape($userID)."'");
 		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=login&action=newPassword&userID=$userID&key=$genkey";
 		$email_content = sprintf(lang("<p>Hello %s %s.</p>
 <br />
