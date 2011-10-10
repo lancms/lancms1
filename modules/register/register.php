@@ -145,7 +145,7 @@ if($action == "register")
 
 You, or someone else has registered a new account on %s.
 
-To verify your mailaddress, please go to %s"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url);
+To verify your mailaddress, please go to <a href='%s'>%s</a>"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url, $url);
 
 		send_email($newid, $email_subject, $email_content);		
 		// Fix default preferences
