@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-09-18 22:34+0200\n"
+"POT-Creation-Date: 2011-10-10 21:34+0200\n"
 "PO-Revision-Date: 2011-05-08 20:38+0000\n"
 "Last-Translator: Romanenko Lesha <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-09-27 04:58+0000\n"
-"X-Generator: Launchpad (build 14028)\n"
+"X-Launchpad-Export-Date: 2011-10-11 05:49+0000\n"
+"X-Generator: Launchpad (build 14123)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -45,8 +45,8 @@ msgstr ""
 msgid "Order ticket"
 msgstr ""
 
-#: ../index.php:70 ../modules/logs/logs.php:147
-msgid "Wannabe"
+#: ../index.php:70
+msgid "Apply for crewposition"
 msgstr ""
 
 #: ../index.php:72
@@ -1250,6 +1250,10 @@ msgstr ""
 
 #: ../modules/logs/logs.php:144
 msgid "Ticket canceled"
+msgstr ""
+
+#: ../modules/logs/logs.php:147
+msgid "Wannabe"
 msgstr ""
 
 #: ../modules/logs/logs.php:148
