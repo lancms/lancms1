@@ -171,6 +171,7 @@ if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $ac
     if($prepaid_amount > 1) {
 	$system_msg = display_systemstatic("ticketorder_unpaid_tickets");
 	$system_msg = str_replace("%%AMOUNT%%", $prepaid_amount, $system_msg);
+	$system_msg = str_replace("%%USERID%%", $system_msg, $system_msg);
 	$content .= $system_msg;
    } // End if
 } // End if !isset($action)
