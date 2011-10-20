@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-10 21:34+0200\n"
+"POT-Creation-Date: 2011-10-19 19:12+0200\n"
 "PO-Revision-Date: 2011-10-14 10:23+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-10-15 05:17+0000\n"
-"X-Generator: Launchpad (build 14124)\n"
+"X-Launchpad-Export-Date: 2011-10-20 04:51+0000\n"
+"X-Generator: Launchpad (build 14165)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -350,9 +350,9 @@ msgid "Accountnumber already exists"
 msgstr "Kontonummer eksisterer allerede"
 
 #: ../modules/economy/economy.php:84
-#: ../modules/ticketorder/ticketorder.php:222
-#: ../modules/ticketorder/ticketorder.php:226
-#: ../modules/ticketorder/ticketorder.php:230
+#: ../modules/ticketorder/ticketorder.php:223
+#: ../modules/ticketorder/ticketorder.php:227
+#: ../modules/ticketorder/ticketorder.php:231
 msgid "Back"
 msgstr "Tilbake"
 
@@ -1008,14 +1008,8 @@ msgid ""
 "You have tried to login to your account on %s, but haven't verified your "
 "account.\n"
 "\n"
-"To verify your mailaddress, please go to %s"
+"To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr ""
-"Hei %s.\n"
-"\n"
-"Du har forsøkt å logge inn på kontoen din på %s, men har ikke verifisert "
-"epostkontoen din.\n"
-"\n"
-"For å verifisere adressen din, gå til %s."
 
 #: ../modules/login/login.php:257
 msgid ""
@@ -1431,13 +1425,8 @@ msgid ""
 "\n"
 "You, or someone else has registered a new account on %s.\n"
 "\n"
-"To verify your mailaddress, please go to %s"
+"To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr ""
-"Hei %s.\n"
-"\n"
-"Du, eller noen andre har registrert en ny konto på %s.\n"
-"\n"
-"For å verifisere din epost-adresse, gå til %s"
 
 #: ../modules/register/register.php:194
 msgid "User registered"
@@ -1859,11 +1848,11 @@ msgstr "Billettkode fra forhandler"
 msgid "Claim ticket"
 msgstr "Ta billett"
 
-#: ../modules/ticketorder/ticketorder.php:221
+#: ../modules/ticketorder/ticketorder.php:222
 msgid "Could not find that code. Are you sure you typed it correctly?"
 msgstr "Kunne ikke finne den koden. Er du sikker på at du skrev den riktig?"
 
-#: ../modules/ticketorder/ticketorder.php:225
+#: ../modules/ticketorder/ticketorder.php:226
 msgid ""
 "Code found, but it's not for this event. Try finding a newer piece for paper "
 "with a newer code"
@@ -1871,19 +1860,19 @@ msgstr ""
 "Kode funnet, men er ikke til dette arrangementet. Prøv å finne et nyere ark "
 "med en nyere kode."
 
-#: ../modules/ticketorder/ticketorder.php:229
+#: ../modules/ticketorder/ticketorder.php:230
 msgid "Code found, but it has already been used"
 msgstr "Kode funnet, men den har allerede blitt brukt"
 
-#: ../modules/ticketorder/ticketorder.php:290
+#: ../modules/ticketorder/ticketorder.php:291
 msgid "Are you sure you wish to delete this ticket?"
 msgstr "Er du sikker på at du vil slette billetten?"
 
-#: ../modules/ticketorder/ticketorder.php:291
+#: ../modules/ticketorder/ticketorder.php:292
 msgid "No, this would be a mistake"
 msgstr "Nei, det vil jeg ikke"
 
-#: ../modules/ticketorder/ticketorder.php:292
+#: ../modules/ticketorder/ticketorder.php:293
 msgid "Yes, I don't need it"
 msgstr "Ja, jeg trenger den ikke"
 

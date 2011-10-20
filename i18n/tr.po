@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-10 21:34+0200\n"
+"POT-Creation-Date: 2011-10-19 19:12+0200\n"
 "PO-Revision-Date: 2011-01-14 23:50+0000\n"
 "Last-Translator: zeugma <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-10-11 05:49+0000\n"
-"X-Generator: Launchpad (build 14123)\n"
+"X-Launchpad-Export-Date: 2011-10-20 04:52+0000\n"
+"X-Generator: Launchpad (build 14165)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -350,9 +350,9 @@ msgid "Accountnumber already exists"
 msgstr ""
 
 #: ../modules/economy/economy.php:84
-#: ../modules/ticketorder/ticketorder.php:222
-#: ../modules/ticketorder/ticketorder.php:226
-#: ../modules/ticketorder/ticketorder.php:230
+#: ../modules/ticketorder/ticketorder.php:223
+#: ../modules/ticketorder/ticketorder.php:227
+#: ../modules/ticketorder/ticketorder.php:231
 msgid "Back"
 msgstr ""
 
@@ -996,7 +996,7 @@ msgid ""
 "You have tried to login to your account on %s, but haven't verified your "
 "account.\n"
 "\n"
-"To verify your mailaddress, please go to %s"
+"To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr ""
 
 #: ../modules/login/login.php:257
@@ -1411,7 +1411,7 @@ msgid ""
 "\n"
 "You, or someone else has registered a new account on %s.\n"
 "\n"
-"To verify your mailaddress, please go to %s"
+"To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr ""
 
 #: ../modules/register/register.php:194
@@ -1825,29 +1825,29 @@ msgstr ""
 msgid "Claim ticket"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:221
+#: ../modules/ticketorder/ticketorder.php:222
 msgid "Could not find that code. Are you sure you typed it correctly?"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:225
+#: ../modules/ticketorder/ticketorder.php:226
 msgid ""
 "Code found, but it's not for this event. Try finding a newer piece for paper "
 "with a newer code"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:229
+#: ../modules/ticketorder/ticketorder.php:230
 msgid "Code found, but it has already been used"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:290
+#: ../modules/ticketorder/ticketorder.php:291
 msgid "Are you sure you wish to delete this ticket?"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:291
+#: ../modules/ticketorder/ticketorder.php:292
 msgid "No, this would be a mistake"
 msgstr ""
 
-#: ../modules/ticketorder/ticketorder.php:292
+#: ../modules/ticketorder/ticketorder.php:293
 msgid "Yes, I don't need it"
 msgstr ""
 
