@@ -295,10 +295,12 @@ elseif($action == "eventaccess") {
 			AND groupID = '$rListGroups->ID'");
 		if(db_num($qCheckAccess) == 0) {
 			$content .= "<a href=?module=eventadmin&action=doChangeRights&groupID=$rListGroups->ID&accessmodule=eventAttendee&groupRight=Read>";
-			$content .= lang("Allow attendee", "eventadmin")."</a>";
+			$content .= "<img src=images/icons/no.png width=\"50%\"></a>";
+//			$content .= lang("Allow attendee", "eventadmin")."</a>";
 		} else {
 			$content .= "<a href=?module=eventadmin&action=doChangeRights&groupID=$rListGroups->ID&accessmodule=eventAttendee&groupRight=No>";
-			$content .= lang("Disallow attendee", "eventadmin")."</a>";
+			$content .= "<img src=images/icons/yes.png width=\"50%\"></a>";
+//			$content .= lang("Disallow attendee", "eventadmin")."</a>";
 		}
 		$row++;
 		if($row == 3) $row = 1;
