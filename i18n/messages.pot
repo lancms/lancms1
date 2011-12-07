@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2011-10-19 19:12+0200\n"
+        "POT-Creation-Date: 2011-12-07 16:37+0100\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -511,14 +511,6 @@ msgstr  ""
 
 #: ../modules/eventadmin/eventadmin.php:178
 msgid   "Back to groups"
-msgstr  ""
-
-#: ../modules/eventadmin/eventadmin.php:298
-msgid   "Allow attendee"
-msgstr  ""
-
-#: ../modules/eventadmin/eventadmin.php:301
-msgid   "Disallow attendee"
 msgstr  ""
 
 #: ../modules/FAQ/FAQ.php:53
