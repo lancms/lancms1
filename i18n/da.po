@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-10-19 19:12+0200\n"
+"POT-Creation-Date: 2011-12-07 16:37+0100\n"
 "PO-Revision-Date: 2011-01-13 23:30+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Danish <da@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-10-20 04:51+0000\n"
-"X-Generator: Launchpad (build 14165)\n"
+"X-Launchpad-Export-Date: 2011-12-08 06:09+0000\n"
+"X-Generator: Launchpad (build 14443)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -512,14 +512,6 @@ msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:178
 msgid "Back to groups"
-msgstr ""
-
-#: ../modules/eventadmin/eventadmin.php:298
-msgid "Allow attendee"
-msgstr ""
-
-#: ../modules/eventadmin/eventadmin.php:301
-msgid "Disallow attendee"
 msgstr ""
 
 #: ../modules/FAQ/FAQ.php:53
