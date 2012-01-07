@@ -131,7 +131,7 @@ elseif($action == "newPost" && isset($_GET['thread']) && $sessioninfo->userID > 
 
 elseif($action == "doNewPost" && isset($_GET['thread']) && $sessioninfo->userID > 1) {
 	$thread = $_GET['thread'];
-	$postContent .= $_POST['postContent'];
+	$postContent = $_POST['postContent'];
 
 	db_query("INSERT INTO ".$sql_prefix."_forumPosts SET
 		threadID = '".db_escape($thread)."',
