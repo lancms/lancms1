@@ -94,7 +94,7 @@ elseif($action == "viewThread" && isset($_GET['thread'])) {
 	
 	$content .= "<table class='viewthread'>";
 
-	$qFindPosts = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '".db_escape($thread)."'");
+	$qFindPosts = db_query("SELECT * FROM ".$sql_prefix."_forumPosts WHERE threadID = '".db_escape($thread)."' ORDER BY postTimestamp ASC");
 	while ($rFindPosts = db_fetch($qFindPosts))
 	{
 		$qFindAuthor = db_query (sprintf ("SELECT nick, CONCAT(firstName, ' ', lastName) AS name FROM %s_users WHERE ID=%s", $sql_prefix, $rFindPosts->postAuthor));
