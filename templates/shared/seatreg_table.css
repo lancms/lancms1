@@ -9,6 +9,10 @@ table#seatRegTable {
     background-color: red;
     font-size: 12px;
 }
+.seatNormalUserFree {
+    background-color: green;
+    font-size: 12px;
+}
 
 .seatUnknownCell {
     background-color: pink;

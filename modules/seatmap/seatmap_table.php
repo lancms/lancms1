@@ -39,10 +39,15 @@ while($rGetSeats = db_fetch($qGetSeats)) {
         switch($type) {
 	case "d":
 	    // Type is normal seat
-	    $content .= "<td class=seatNormalUser>";
-	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
-		if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
-	    else $content .= lang("Free", "seatmap");
+	    if(!empty($GetSeatedUser->nick)) {
+		$content .= "<td class=seatNormalUser>";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		$content .= $GetSeatedUser->nick;
+	    } else {  
+		$content .= "<td class=seatNormalUserFree>";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		$content .= lang("Free", "seatmap");
+	    } // End else
 
 	    $content .= "</a>";
 	    $content .= "</td>";
