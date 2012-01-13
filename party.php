@@ -29,6 +29,7 @@ if (empty ($s) or !is_numeric($s))
 	}
 	else
 	{
+		header ("Location: party.php?s=$s");
 		die (_('There are no screens for this event'));
 	}
 }
@@ -60,6 +61,7 @@ if (empty ($q) or !is_numeric($q))
 
 	if (!$count)
 	{
+		header ("Refresh:5;url=party.php?s=$s");
 		die (_('There are no queue for this screen'));
 	}
 	else
