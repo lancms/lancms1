@@ -117,8 +117,8 @@ if ($showslide and $nextinqueue)
 }
 elseif (empty ($showslide))
 {
-	header ("Refresh: 1;");
-	die ('wtf.. no slide to show!');
+	header ("Location: party.php?s=$s");
+	die ('wtf.. queue-item removed while I was thinking...');
 }
 elseif (empty ($nextinqueue))
 {
