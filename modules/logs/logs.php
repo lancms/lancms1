@@ -222,7 +222,7 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 				$content .= "<table>";
 				if(!empty($logNew)) foreach($logNew AS $type => $value) {
 
-					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".$value."</th></tr>";
+					$content .= "<tr class='logrow$row'><th>".$type."</th><td>".htmlentities($value)."</th></tr>";
 					$row++;
 					if($row == 3) $row = 1;
 				} // End foreach logNew
