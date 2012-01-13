@@ -240,6 +240,10 @@ if(!$hide_smarty) {
 	$smarty->assign("footer", $design_footer);
 
 
-	$smarty->display($smarty_display) or die("Could not display smarty. Are you sure you have write-access to the tmp/template*-folders?");
-
+	$smarty_fetch = $smarty->fetch($smarty_display);
+	if ($smarty_fetch == "" or empty ($smarty_fetch) or (!$smarty_fetch))
+	{
+		die("Could not display smarty. Are you sure you have write-access to the tmp/template*-folders?");
+	}
+	print $smarty_fetch;
 }
