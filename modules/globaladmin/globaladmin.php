@@ -12,6 +12,7 @@ if(!isset($action))
 	$content .= lang("Admin this event", "globaladmin");
 	$content .= "</th><th>".lang("Set event public", "globaladmin");
 	$content .= "</th><th>"._("Is open");
+	$content .= "</th><th>"._("Design");
 	$content .= "</th></tr>\n\n";
 
 	$qListEvents = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID != 1");
@@ -37,7 +38,9 @@ if(!isset($action))
 			$closedImage = 'images/icons/no.png';
 		$content .= "<img src=\"$closedImage\" width=\"50%\"></a>";
 
-	    $content .= "</td></tr>\n\n\n";
+		$content .= "</td><td>\n";
+		$content .= $rListEvents->eventDesign;
+		$content .= "</td></tr>\n\n\n";
 	} // End while(rListEvents)
 	$content .= "</table>";
 	/* List of global admin-options */
