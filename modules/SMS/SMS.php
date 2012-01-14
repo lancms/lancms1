@@ -17,7 +17,7 @@ if(empty($action)) {
 						 ";
 
 	$content .= "<table>";
-	$content .= "<form method='POST' action='?module=SMS&action=sendSMS'>\n";
+	$content .= "<form method='POST' action='?module=SMS&action=previewSMS'>\n";
 	$content .= "<tr><td>";
 	$content .= "<select name='toSmsList'>";
 	for($i=0;$i<count($smsList);$i++) {
@@ -25,10 +25,11 @@ if(empty($action)) {
 	}
 	$content .= "</select></td></tr>";
 	$content .= "<tr><td>";
-	$content .= "<textarea onkeyup='checkLength(\"message\", \"count\");' onkeydown='checkLength(\"message\", \"count\");' id='message' name='message'></textarea>";
+	# FIXME? Hardcoded textarea width and height
+	$content .= "<textarea style='width: 300px; height: 200px;' onkeyup='checkLength(\"message\", \"count\");' onkeydown='checkLength(\"message\", \"count\");' id='message' name='message'></textarea>";
 
 	$content .= "</td></tr><tr><td>";
-	$content .= "<input type='submit' value='".lang("Send SMS", "SMS")."'>";
+	$content .= "<input type='submit' value='"._("Preview SMS")."'>";
 	$content .= "</td></tr>";
 
 	$content .= "<tr><th>";
@@ -39,12 +40,86 @@ if(empty($action)) {
 	$content .= "</form></table>";
 } // End action
 
+elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
+{
+	$toSmsList = $_POST['toSmsList'];
+	$SQL = $smsList[$toSmsList]['SQL'];
+	$msgcontent = $_POST['message'];
+	if (empty ($SQL))
+	{
+		# FIXME: die ()
+		die ("No such group?");
+	}
+	$qCellphone = db_query ($SQL);
+	
+	if (!mysql_num_rows ($qCellphone))
+	{
+		# FIXME: die ()
+		die ("No users in group..?");
+	}
+	
+
+	$content .= "<h2>"._("Preview SMS")."</h2>\n";
+
+	$content .= "<h3>"._("Recipients")."</h3>\n";
+	
+	$content .= "<p>"._("Sends to group:")." <strong>".$smsList[$toSmsList]['name']."</strong></p>\n";
+
+	$content .= "<table>\n";
+	$content .= "<tr>\n";
+	$content .= "<th>"._("Username")."</th>";
+	$content .= "<th>"._("Name")."</th>";
+	$content .= "<th>"._("Number")."</th>";
+	$content .= "</tr>\n";
+
+	$rownum = 1;
+	while ($rCellphone = db_fetch ($qCellphone))
+	{
+		if ($rownum == 3)
+		{
+			$rownum = 1;
+		}
+		
+		$qUser = db_query ("SELECT * FROM ".$sql_prefix."_users WHERE ID='".db_escape($rCellphone->ID)."'");
+		$rUser = db_fetch ($qUser);
+
+		$content .= "<tr class='row".$rownum."'>\n";
+		$content .= "<td>".$rUser->nick."</td>\n";
+		$content .= "<td>".$rUser->firstName." ".$rUser->lastName."</td>\n";
+		$content .= "<td>".$rCellphone->cellphone."</td>\n";
+		$content .= "</tr>\n";
+
+		$rownum++;
+		unset ($rUser);
+		unset ($qUser);
+	}
+	$content .= "</table>\n";
+	
+	$content .= "<h3>"._("Message content")."</h3>\n";
+	# FIXME? Hardcoded textarea width and height
+	$content .= "<textarea style='width: 300px; height: 200px;' disabled>".htmlentities($msgcontent)."</textarea>\n";
+	$content .= "<p>"._("Number of characters entered:")." ".strlen($msgcontent)."</p>\n";
+
+	$content .= "<form method='POST' action='?module=SMS&action=sendSMS'>\n";
+	$content .= "<input type='button' onClick='javascript:history.back()' value='"._("Back")."' />\n";
+	$content .= "<input type='submit' value='"._("Send SMS")."' />\n";
+	$content .= "<input type='hidden' name='toSmsList' value='".$_POST['toSmsList']."' />\n";
+	$content .= "<input type='hidden' name='message' value='".$_POST['message']."' />\n";
+	$content .= "</form>\n";
+}
+	
+
+
 
 elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
 	$toSmsList = $_POST['toSmsList'];
 
 	$SQL = $smsList[$toSmsList]['SQL'];
-	if(empty($SQL)) die("No such group?");
+	if(empty($SQL))
+	{
+		# FIXME: die ()
+		die("No such group?");
+	}
 
 	$qFindUsers = db_query($SQL);
 	while($rFindUsers = db_fetch($qFindUsers)) {
@@ -60,4 +135,5 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
 	header("Location: ?module=SMS&sending=success");
 } // End elseif action == sendSMS
 
+# FIXME: less than usefull error message
 else echo "???";
