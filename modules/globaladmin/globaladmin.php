@@ -1,5 +1,5 @@
 <?php
-$action = $_GET['action'];
+$action = $_REQUEST['action'];
 
 if(acl_access("globaladmin", "", 0) != "Admin") die("You do not have propper rights!");
 
@@ -16,8 +16,13 @@ if(!isset($action))
 	$content .= "</th></tr>\n\n";
 
 	$qListEvents = db_query("SELECT * FROM ".$sql_prefix."_events WHERE ID != 1");
+	$rownum = 1;
 	while($rListEvents = db_fetch($qListEvents)) {
-	    $content .= "<tr><td>";
+		if ($rownum == 3)
+		{
+			$rownum = 1;
+		}
+	    $content .= "<tr class='row".$rownum."'><td>";
 	    $content .= $rListEvents->eventname;
 	    $content .= "</td><td>";
 	    $content .= "<a href=\"?module=events&amp;action=setCurrentEvent&amp;eventID=$rListEvents->ID\">";
@@ -39,8 +44,26 @@ if(!isset($action))
 		$content .= "<img src=\"$closedImage\" width=\"50%\"></a>";
 
 		$content .= "</td><td>\n";
-		$content .= $rListEvents->eventDesign;
+
+		$content .= "<form action='index.php' method='get'><input type='hidden' name='module' value='globaladmin' /><input type='hidden' name='action' value='setDesign' /><input type='hidden' name='eventID' value='".$rListEvents->ID."' /><select name='design'>";
+
+
+		$designs = list_designs ();
+		foreach ($designs as $design)
+		{
+			$design_selected = "";
+			if ($design == $rListEvents->eventDesign)
+			{
+				$design_selected = "SELECTED";
+			}
+			$content .= "<option ".$design_selected." value='".$design."'>".$design."</option>";
+		}
+
+		$content .= "</select><input type='submit' value='"._("Change")."' /></form>";
+
+
 		$content .= "</td></tr>\n\n\n";
+		$rownum++;
 	} // End while(rListEvents)
 	$content .= "</table>";
 	/* List of global admin-options */
@@ -227,4 +250,19 @@ elseif($action == "toggleClosed" && isset($_GET['eventID'])) {
 	$log_old['closedStatus'] = $rFindClosed->eventClosed;
 	log_add("globaladmin", "toggleClosed", serialize($log_new), serialize($log_old));
 	header("Location: ?module=globaladmin");
+}
+
+elseif ($action == "setDesign" and isset ($_REQUEST['eventID']) and isset ($_REQUEST['design']))
+{
+	$eventid = $_REQUEST['eventID'];
+	$design = $_REQUEST['design'];
+
+	$designs = list_designs ();
+	
+	if (in_array ($design, $designs))
+	{
+		$qUpdateDesign = db_query ("UPDATE ".$sql_prefix."_events SET eventDesign='".db_escape($design)."' WHERE ID = '".db_escape($eventid)."'") or die (mysql_error ());
+	}
+
+	header ("Location: ?module=globaladmin");
 }

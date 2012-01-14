@@ -714,3 +714,22 @@ function send_email ($userID, $subject, $content) {
 
 	return true;
 }
+
+## returns an array of available designs
+function list_designs ()
+{
+	$path = (dirname($_SERVER['SCRIPT_FILENAME']));
+	$all_files = scandir ($path."/templates/");
+
+	$dirs = array ();
+
+	foreach ($all_files as $dir)
+	{
+		if (is_dir($path."/templates/".$dir) and $dir != "shared" and $dir != "." and $dir != "..")
+		{
+			$dirs[] = $dir;
+		}
+
+	}
+	return ($dirs);
+}
