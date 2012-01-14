@@ -13,6 +13,8 @@ if(empty($action)) {
 		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID 
 		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No' AND acl.eventID = '$sessioninfo->eventID'");
 
+	$content .= "<h2>"._("Crewlist")."</h2>\n";
+
 	$content .= '<table>';
 	$content .= "<tr><th>";
 	$content .= lang("Name", "crewlist");
