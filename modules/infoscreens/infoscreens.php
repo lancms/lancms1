@@ -23,6 +23,8 @@ if (empty($action))
 	while($rFindScreens = db_fetch($qFindScreens)) {
 		$content .= "<tr><td style='border: solid 1px black; border-collapse: collapse;'>";
 		$content .= $rFindScreens->name;
+		$content .= "</td><td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>\n";
+		$content .= "<a href='party.php?s=$rFindScreens->ID'>"._("Link to screen</a>")."</a>";
 		$content .= "</td></tr>\n\n";
 		# FIXME: would be nice to get to delete screens :-)
 	}
