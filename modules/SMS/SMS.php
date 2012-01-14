@@ -16,17 +16,19 @@ if(empty($action)) {
 						</script>
 						 ";
 
+	$content .= "<h2>"._("Create SMS")."</h2>";
+
 	$content .= "<table>";
 	$content .= "<form method='POST' action='?module=SMS&action=previewSMS'>\n";
 	$content .= "<tr><td>";
-	$content .= "<select name='toSmsList'>";
+	$content .= _("Select recipient(s):")." <select name='toSmsList'>";
 	for($i=0;$i<count($smsList);$i++) {
 		$content .= "<option value='$i'>".$smsList[$i]['name']."</option>\n";
 	}
 	$content .= "</select></td></tr>";
 	$content .= "<tr><td>";
 	# FIXME? Hardcoded textarea width and height
-	$content .= "<textarea style='width: 300px; height: 200px;' onkeyup='checkLength(\"message\", \"count\");' onkeydown='checkLength(\"message\", \"count\");' id='message' name='message'></textarea>";
+	$content .= "<textarea style='margin-top: 10px; width: 300px; height: 200px;' onkeyup='checkLength(\"message\", \"count\");' onkeydown='checkLength(\"message\", \"count\");' id='message' name='message'></textarea>";
 
 	$content .= "</td></tr><tr><td>";
 	$content .= "<input type='submit' value='"._("Preview SMS")."'>";
