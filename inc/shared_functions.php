@@ -733,3 +733,16 @@ function list_designs ()
 	}
 	return ($dirs);
 }
+
+# this returns the group name, given an ID
+function get_groupname ($groupid)
+{
+	global $sql_prefix;
+	$qGroup = db_query ("SELECT groupname FROM ".$sql_prefix."_groups WHERE ID='".db_escape($groupid)."'");
+	if (!mysql_num_rows ($qGroup))
+	{
+		return (false);
+	}
+	$rGroup = db_fetch ($qGroup);
+	return ($rGroup->groupname);
+}

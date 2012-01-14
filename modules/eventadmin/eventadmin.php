@@ -175,7 +175,8 @@ elseif(($action == "groupRights" || $action == "changeGroupRights") && !empty($_
 		die("Sorry, you have to be eventadmin to give eventrights");
 	$groupID = $_GET['groupID'];
 
-	$content .= "<a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Back to groups", "eventadmin")."</a>\n";
+	$content .= "<h2>"._("Editing group rights for:")." <strong>".get_groupname($groupID)."</strong></h2>\n<br />\n";
+	$content .= "<a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Back to groups", "eventadmin")."</a>\n<br /><br />\n";
 	$content .= "<table>";
 
 	// List up eventaccess-rights
