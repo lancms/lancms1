@@ -206,6 +206,8 @@ tinyMCE.init({
 
 if($facebook_likebox_url != FALSE) {
 	$design_grouplist .= '
+</div>
+<div class="box">
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
