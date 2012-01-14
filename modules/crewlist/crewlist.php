@@ -13,6 +13,8 @@ if(empty($action)) {
 		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID 
 		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No' AND acl.eventID = '$sessioninfo->eventID'");
 
+	$totalcrewmembers = mysql_num_rows ($qGetCrewMembers);
+
 	$content .= "<h2>"._("Crewlist")."</h2>\n";
 
 	$content .= '<table>';
@@ -69,5 +71,52 @@ if(empty($action)) {
 		}
 	} // End while
 	$content .= "</table>";
+
+
+	$content .= "<br /><br />\n<h3>"._("Number of persons in crew")."</h3>\n";
+
+	$qCount = db_query ("SELECT g.groupname, COUNT(gm.userID) as members FROM ".$sql_prefix."_group_members AS gm, ".$sql_prefix."_ACLs AS acl, ".$sql_prefix."_groups as g WHERE g.ID=gm.groupID AND gm.groupID=acl.groupID AND acl.accessmodule='crewlist' AND acl.access!='No' AND acl.eventID=".$sessioninfo->eventID." GROUP BY gm.groupID;");
+	
+	$content .= "<table>\n";
+	$content .= "<tr>\n";
+	$content .= "<th>"._("Crew")."</th>\n";
+	$content .= "<th>"._("Members")."</th>\n";
+	$content .= "</tr>\n";
+	
+	$rownum = 1;
+	while ($rCount = db_fetch ($qCount))
+	{
+		if ($rownum == 3)
+		{
+			$rownum = 1;
+		}
+		$content .= "<tr class='crewlistRow".$rownum."'>\n";
+		$content .= "<td>";
+		$content .= $rCount->groupname;
+		$content .= "</td>\n";
+		$content .= "<td style='text-align: center;'>";
+		$content .= $rCount->members;
+		$content .= "</td>\n";
+		$content .= "</tr>\n";
+
+		$rownum++;
+	}
+
+	if ($rownum == 3)
+	{
+		$rownum = 1;
+	}
+	$content .= "<tr class='crewlistRow".$rownum."'>\n";
+	$content .= "<td><i>";
+	$content .= _("Total in crew");
+	$content .= "</i></td>\n";
+	$content .= "<td style='text-align: center;'><i>";
+	$content .= $totalcrewmembers;
+	$content .= "</i></td>\n";
+	$content .= "</tr>\n";
+
+	$content .= "</table>\n";
+
+
 
 } // End empty($action)
