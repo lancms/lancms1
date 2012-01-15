@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2011-12-07 16:37+0100\n"
+"POT-Creation-Date: 2012-01-14 17:36+0100\n"
 "PO-Revision-Date: 2011-05-08 20:38+0000\n"
 "Last-Translator: Romanenko Lesha <Unknown>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2011-12-08 06:09+0000\n"
-"X-Generator: Launchpad (build 14443)\n"
+"X-Launchpad-Export-Date: 2012-01-15 05:42+0000\n"
+"X-Generator: Launchpad (build 14664)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -53,7 +53,7 @@ msgstr ""
 msgid "Composignup"
 msgstr ""
 
-#: ../index.php:74
+#: ../index.php:74 ../modules/crewlist/crewlist.php:18
 msgid "Crewlist"
 msgstr ""
 
@@ -113,11 +113,11 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: ../party.php:32
+#: ../party.php:33
 msgid "There are no screens for this event"
 msgstr ""
 
-#: ../party.php:63
+#: ../party.php:65
 msgid "There are no queue for this screen"
 msgstr ""
 
@@ -150,19 +150,19 @@ msgstr ""
 msgid "Search users with tickets"
 msgstr ""
 
-#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:20
+#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:24
 #: ../modules/groups/groups.php:52 ../modules/profile/profile.php:15
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 msgid "Nick"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
-#: ../modules/crewlist/crewlist.php:18
-#: ../modules/infoscreens/infoscreens.php:59
+#: ../modules/crewlist/crewlist.php:22
+#: ../modules/infoscreens/infoscreens.php:61
 #: ../modules/kioskadmin/kioskadmin.php:63
 #: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
-#: ../modules/wannabeadmin/wannabeadmin.php:266
+#: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:266
 msgid "Name"
 msgstr ""
 
@@ -282,19 +282,36 @@ msgstr ""
 msgid "Signup has closed"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:22 ../inc/shared_config.php:191
+#: ../modules/crewlist/crewlist.php:26 ../inc/shared_config.php:191
 msgid "EMail"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:24 ../modules/profile/profile.php:21
+#: ../modules/crewlist/crewlist.php:28 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:66
 #: ../inc/shared_config.php:187
 msgid "Cellphone"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:26
-#: ../modules/globaladmin/globaladmin.php:185 ../modules/groups/groups.php:53
+#: ../modules/crewlist/crewlist.php:30
+#: ../modules/globaladmin/globaladmin.php:211 ../modules/groups/groups.php:53
 msgid "Access"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:76
+msgid "Number of persons in crew"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:82
+#: ../modules/wannabeadmin/wannabeadmin.php:272
+msgid "Crew"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:83
+msgid "Members"
+msgstr ""
+
+#: ../modules/crewlist/crewlist.php:111
+msgid "Total in crew"
 msgstr ""
 
 #: ../modules/dashboard/dashboard.php:4
@@ -349,7 +366,7 @@ msgstr ""
 msgid "Accountnumber already exists"
 msgstr ""
 
-#: ../modules/economy/economy.php:84
+#: ../modules/economy/economy.php:84 ../modules/SMS/SMS.php:106
 #: ../modules/ticketorder/ticketorder.php:223
 #: ../modules/ticketorder/ticketorder.php:227
 #: ../modules/ticketorder/ticketorder.php:231
@@ -418,10 +435,10 @@ msgstr ""
 #: ../modules/edituserinfo/edituserinfo.php:109
 #: ../modules/edituserinfo/edituserinfo.php:213
 #: ../modules/eventadmin/eventadmin.php:148
-#: ../modules/eventadmin/eventadmin.php:198
-#: ../modules/eventadmin/eventadmin.php:227 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:138 ../modules/groups/groups.php:79
-#: ../modules/infoscreens/infoscreens.php:194
+#: ../modules/eventadmin/eventadmin.php:199
+#: ../modules/eventadmin/eventadmin.php:228 ../modules/FAQ/FAQ.php:83
+#: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:79
+#: ../modules/infoscreens/infoscreens.php:196
 #: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
@@ -476,7 +493,7 @@ msgstr ""
 msgid "Newsadmin"
 msgstr ""
 
-#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:31
+#: ../modules/eventadmin/eventadmin.php:36 ../modules/SMS/SMS.php:107
 msgid "Send SMS"
 msgstr ""
 
@@ -506,11 +523,15 @@ msgid "Group name already exists"
 msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:138
-#: ../modules/globaladmin/globaladmin.php:119
+#: ../modules/globaladmin/globaladmin.php:145
 msgid "Config successfully saved"
 msgstr ""
 
 #: ../modules/eventadmin/eventadmin.php:178
+msgid "Editing group rights for:"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:179
 msgid "Back to groups"
 msgstr ""
 
@@ -578,7 +599,7 @@ msgstr ""
 msgid "Nick:"
 msgstr ""
 
-#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:192
+#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:194
 msgid "Name:"
 msgstr ""
 
@@ -610,69 +631,77 @@ msgstr ""
 msgid "Is open"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:23
-msgid "Set active"
-msgstr ""
-
-#: ../modules/globaladmin/globaladmin.php:27
-msgid "Public"
+#: ../modules/globaladmin/globaladmin.php:15
+msgid "Design"
 msgstr ""
 
 #: ../modules/globaladmin/globaladmin.php:29
+msgid "Set active"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:33
+msgid "Public"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:35
 msgid "Private"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:30
+#: ../modules/globaladmin/globaladmin.php:36
 msgid "Attendee-access"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:44
+#: ../modules/globaladmin/globaladmin.php:62
+msgid "Change"
+msgstr ""
+
+#: ../modules/globaladmin/globaladmin.php:70
 msgid "Add new event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:46
+#: ../modules/globaladmin/globaladmin.php:72
 msgid "Change global options"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:47
+#: ../modules/globaladmin/globaladmin.php:73
 msgid "View logs"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:48
+#: ../modules/globaladmin/globaladmin.php:74
 #: ../modules/useradmin/useradmin.php:19
 msgid "User administration"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:49
+#: ../modules/globaladmin/globaladmin.php:75
 msgid "List groups with global access"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:50
+#: ../modules/globaladmin/globaladmin.php:76
 msgid "List sessions"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:62
+#: ../modules/globaladmin/globaladmin.php:88
 msgid "Name of event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:63
+#: ../modules/globaladmin/globaladmin.php:89
 msgid "Add event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:183
+#: ../modules/globaladmin/globaladmin.php:209
 msgid "Groups with global rights"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:185
+#: ../modules/globaladmin/globaladmin.php:211
 #: ../modules/sessions/sessions.php:16
 msgid "Event"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:185
+#: ../modules/globaladmin/globaladmin.php:211
 msgid "Group"
 msgstr ""
 
-#: ../modules/globaladmin/globaladmin.php:185
+#: ../modules/globaladmin/globaladmin.php:211
 msgid "Module"
 msgstr ""
 
@@ -728,75 +757,79 @@ msgstr ""
 msgid "Screens"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:34
+#: ../modules/infoscreens/infoscreens.php:27
+msgid "Link to screen</a>"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:36
 msgid "Screen name"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:35 ../modules/logs/logs.php:161
+#: ../modules/infoscreens/infoscreens.php:37 ../modules/logs/logs.php:161
 msgid "Add screen"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:44
+#: ../modules/infoscreens/infoscreens.php:46
 msgid "Slides"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:48
+#: ../modules/infoscreens/infoscreens.php:50
 msgid "Create new slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:59
-#: ../modules/infoscreens/infoscreens.php:63
+#: ../modules/infoscreens/infoscreens.php:61
+#: ../modules/infoscreens/infoscreens.php:65
 msgid "Edit"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:59
-#: ../modules/infoscreens/infoscreens.php:64
+#: ../modules/infoscreens/infoscreens.php:61
+#: ../modules/infoscreens/infoscreens.php:66
 msgid "Preview"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:75
+#: ../modules/infoscreens/infoscreens.php:77
 msgid "There are no slides for this event"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:83
+#: ../modules/infoscreens/infoscreens.php:85
 msgid "Queues"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:92
+#: ../modules/infoscreens/infoscreens.php:94
 msgid "Screen:"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:100
+#: ../modules/infoscreens/infoscreens.php:102
 msgid "Slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:100
+#: ../modules/infoscreens/infoscreens.php:102
 msgid "Wait"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:100
-#: ../modules/infoscreens/infoscreens.php:104
+#: ../modules/infoscreens/infoscreens.php:102
+#: ../modules/infoscreens/infoscreens.php:106
 msgid "Remove"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:129 ../modules/kiosk/kiosk.php:21
+#: ../modules/infoscreens/infoscreens.php:131 ../modules/kiosk/kiosk.php:21
 msgid "Add"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:164
+#: ../modules/infoscreens/infoscreens.php:166
 msgid "Create a new slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:168 ../modules/logs/logs.php:165
+#: ../modules/infoscreens/infoscreens.php:170 ../modules/logs/logs.php:165
 msgid "Edit slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:207
+#: ../modules/infoscreens/infoscreens.php:209
 msgid "You forgot either name or some content.. Go back and try again."
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:261
-#: ../modules/infoscreens/infoscreens.php:285
+#: ../modules/infoscreens/infoscreens.php:263
+#: ../modules/infoscreens/infoscreens.php:287
 msgid "You did something wrong. Go back and try again."
 msgstr ""
 
@@ -1422,8 +1455,8 @@ msgstr ""
 msgid "EMail verified. Welcome aboard"
 msgstr ""
 
-#: ../modules/register/register.php:238 ../modules/useradmin/useradmin.php:60
-#: ../inc/shared_config.php:133
+#: ../modules/register/register.php:238 ../modules/SMS/SMS.php:72
+#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:133
 msgid "Username"
 msgstr ""
 
@@ -1499,51 +1532,51 @@ msgstr ""
 msgid "Confirm map reset"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:45
-#: ../modules/seatmap/seatmap_table.php:57
-#: ../modules/seatmap/seatmap_table.php:69
-#: ../modules/seatmap/seatmap_table.php:97
+#: ../modules/seatmap/seatmap_table.php:49
+#: ../modules/seatmap/seatmap_table.php:62
+#: ../modules/seatmap/seatmap_table.php:74
+#: ../modules/seatmap/seatmap_table.php:102
 msgid "Free"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:90
+#: ../modules/seatmap/seatmap_table.php:95
 msgid "N/A"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:126
+#: ../modules/seatmap/seatmap_table.php:131
 msgid "This seat is available"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:128
-#: ../modules/seatmap/seatmap_table.php:134
-#: ../modules/seatmap/seatmap_table.php:141
-#: ../modules/seatmap/seatmap_table.php:152
+#: ../modules/seatmap/seatmap_table.php:133
+#: ../modules/seatmap/seatmap_table.php:139
+#: ../modules/seatmap/seatmap_table.php:146
+#: ../modules/seatmap/seatmap_table.php:157
 msgid "Take seat"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:132
+#: ../modules/seatmap/seatmap_table.php:137
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:139
+#: ../modules/seatmap/seatmap_table.php:144
 msgid ""
 "This seat is protected by group. You are a member of a group with access."
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:145
+#: ../modules/seatmap/seatmap_table.php:150
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:150
+#: ../modules/seatmap/seatmap_table.php:155
 msgid ""
 "This seat is protected by a special right. You are a member of a group with "
 "access"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:155
+#: ../modules/seatmap/seatmap_table.php:160
 msgid ""
 "This seat is protected by a special right. You are not member of a group "
 "with access. Too bad!"
@@ -1635,8 +1668,36 @@ msgstr ""
 msgid "There are no sleeping users"
 msgstr ""
 
-#: ../modules/SMS/SMS.php:35
+#: ../modules/SMS/SMS.php:19
+msgid "Create SMS"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:24
+msgid "Select recipient(s):"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
+msgid "Preview SMS"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
 msgid "Number of characters entered:"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:66
+msgid "Recipients"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:68
+msgid "Sends to group:"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:74
+msgid "Number"
+msgstr ""
+
+#: ../modules/SMS/SMS.php:100
+msgid "Message content"
 msgstr ""
 
 #: ../modules/static/static.php:60
@@ -1931,10 +1992,6 @@ msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:259
 msgid "Back to list"
-msgstr ""
-
-#: ../modules/wannabeadmin/wannabeadmin.php:272
-msgid "Crew"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:272
