@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-01-14 17:36+0100\n"
-"PO-Revision-Date: 2012-01-14 14:00+0000\n"
-"Last-Translator: Mathias Bøhn Grytemark <Unknown>\n"
+"PO-Revision-Date: 2012-01-15 12:30+0000\n"
+"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-15 05:42+0000\n"
+"X-Launchpad-Export-Date: 2012-01-16 05:31+0000\n"
 "X-Generator: Launchpad (build 14664)\n"
 
 #: ../index.php:32
@@ -299,7 +299,7 @@ msgstr "Tilgang"
 
 #: ../modules/crewlist/crewlist.php:76
 msgid "Number of persons in crew"
-msgstr ""
+msgstr "Antall personer i crew"
 
 #: ../modules/crewlist/crewlist.php:82
 #: ../modules/wannabeadmin/wannabeadmin.php:272
@@ -308,11 +308,11 @@ msgstr "Crew"
 
 #: ../modules/crewlist/crewlist.php:83
 msgid "Members"
-msgstr ""
+msgstr "Medlemmer"
 
 #: ../modules/crewlist/crewlist.php:111
 msgid "Total in crew"
-msgstr ""
+msgstr "Totalt i crew"
 
 #: ../modules/dashboard/dashboard.php:4
 msgid "No access to dashboard"
@@ -529,7 +529,7 @@ msgstr "Konfigurasjon lagret"
 
 #: ../modules/eventadmin/eventadmin.php:178
 msgid "Editing group rights for:"
-msgstr ""
+msgstr "Rediger grupperettigheter for:"
 
 #: ../modules/eventadmin/eventadmin.php:179
 msgid "Back to groups"
@@ -633,7 +633,7 @@ msgstr "Er åpen"
 
 #: ../modules/globaladmin/globaladmin.php:15
 msgid "Design"
-msgstr ""
+msgstr "Design"
 
 #: ../modules/globaladmin/globaladmin.php:29
 msgid "Set active"
@@ -653,7 +653,7 @@ msgstr "Deltager-tilganger"
 
 #: ../modules/globaladmin/globaladmin.php:62
 msgid "Change"
-msgstr ""
+msgstr "Endre"
 
 #: ../modules/globaladmin/globaladmin.php:70
 msgid "Add new event"
@@ -759,7 +759,7 @@ msgstr "Skjermer"
 
 #: ../modules/infoscreens/infoscreens.php:27
 msgid "Link to screen</a>"
-msgstr ""
+msgstr "Link til skjerm</a>"
 
 #: ../modules/infoscreens/infoscreens.php:36
 msgid "Screen name"
@@ -1704,15 +1704,15 @@ msgstr "Det er ingen sovende brukere"
 
 #: ../modules/SMS/SMS.php:19
 msgid "Create SMS"
-msgstr ""
+msgstr "Opprett SMS"
 
 #: ../modules/SMS/SMS.php:24
 msgid "Select recipient(s):"
-msgstr ""
+msgstr "Velg mottager(e):"
 
 #: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
 msgid "Preview SMS"
-msgstr ""
+msgstr "Forhåndsvis SMS"
 
 #: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
 msgid "Number of characters entered:"
@@ -1720,19 +1720,19 @@ msgstr "Antall tegn lagt inn:"
 
 #: ../modules/SMS/SMS.php:66
 msgid "Recipients"
-msgstr ""
+msgstr "Mottakere"
 
 #: ../modules/SMS/SMS.php:68
 msgid "Sends to group:"
-msgstr ""
+msgstr "Send til gruppe:"
 
 #: ../modules/SMS/SMS.php:74
 msgid "Number"
-msgstr ""
+msgstr "Nummer"
 
 #: ../modules/SMS/SMS.php:100
 msgid "Message content"
-msgstr ""
+msgstr "Meldingsinnhold"
 
 #: ../modules/static/static.php:60
 msgid "Edit access"
