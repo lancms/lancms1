@@ -129,6 +129,11 @@ if(!isset($action) || $action == "updateSeat") {
 	//$content .= "</td></tr>\n";
 	//$content .= "<br />";
 	$content .= $seatcontent; // Add post-seat-content to content
+
+	$content .= _("Number of rows:")." ". $seatY;
+	$content .= "\n<br />\n\n";
+        $content .= _("Number of colums:")." ". $seatX;
+
 	$content .= "</div>\n";
 
 	$content .= "</form>\n";
@@ -149,10 +154,8 @@ if(!isset($action) || $action == "updateSeat") {
 	$content .= "</form>\n\n";
 	//$content .= "</td></tr>\n";
 	//$content .= "</table>\n";
-	
+
 	$content .= "</div>\n";
-
-
 
 } // End if(!isset($action))
 
