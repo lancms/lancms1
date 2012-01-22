@@ -1,6 +1,7 @@
 <?php
 
 $action = $_GET['action'];
+$subaction = isset($_GET['subaction']) ? $_GET['subaction'] : null;
 
 $acl_ticket = acl_access("ticketadmin", "", $sessioninfo->eventID);
 $acl_seating = acl_access("seating", "", $sessioninfo->eventID);
@@ -156,8 +157,16 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 	$content .= $rFindTicketType->price;
 	$content .= "</td></tr>\n";
 
+	// display owner
+	$content .= "<tr><th>"._("Owner")."</th></tr>\n";
+	$content .= "<tr><td>"._("Name");
+	$content .= "</td><td>";
+	$content .= display_username($rFindTicket->owner); //$rFindUser->firstName." ".$rFindUser->lastName;
+	$content .= "</td></tr>\n";
 
 	// display name
+	$content .= "<tr><td>&nbsp;</td></tr>\n";
+	$content .= "<tr><th>"._("User")."</th></tr>\n";
 	$content .= "<tr><td>".lang("Name", "arrival");
 	$content .= "</td><td>";
 	$content .= display_username($rFindUser->ID); //$rFindUser->firstName." ".$rFindUser->lastName;
@@ -234,6 +243,95 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 	$content .= "<br />\n";
 	$userACL = acl_access("userAdmin", "", 1);
 	if($userACL == 'Write' || $userACL == 'Admin') $content .= sprintf ("<form method='POST' action='?module=edituserinfo&action=editUserinfo&user=%s'><input type='submit' value='%s' /></form>\n", $rFindTicket->user, _('Edit userinfo'));
+
+	//XXX: Should extra access be needed for changing owner?
+	$content .= sprintf ("<form method='POST' action='?module=arrival&action=changeowner&ticket=%d'><input type='submit' value='%s' /></form>\n", $rFindTicket->ticketID, _('Change owner'));
+
+	$content .= sprintf ("<form method='POST' action='?module=arrival&action=changeuser&ticket=%d'><input type='submit' value='%s' /></form>\n", $rFindTicket->ticketID, _('Change user'));
+}
+
+elseif($action == "changeowner" && isset($_GET['ticket']))
+{
+	$ticket = $_GET['ticket'];
+	$toUser = isset($_GET['toUser']) ? $_GET['toUser'] : null;
+	$query = isset($_POST['query']) ? $_POST['query'] : null;
+
+	if($toUser)
+	{
+        	db_query("UPDATE ".$sql_prefix."_tickets SET owner = '".db_escape($toUser)."' WHERE ticketID = '".db_escape($ticket)."'");
+		header("Location: ?module=arrival&action=ticketdetail&ticket={$ticket}");
+	}
+
+	$content .= "<h2>" . _("Search for new owner") . "</h2>\n";
+
+	$content .= "<form method=\"POST\" action=\"?module=arrival&action=changeowner&ticket={$ticket}\">\n";
+	$content .= "<input type=\"text\" name=\"query\" value=\"".($query ? $query : "")."\">\n";
+	$content .= "<input type=\"submit\" value=\"" . _("Search") ."\">\n";
+	$content .= "</form>\n";
+
+	if($query)
+	{
+		$search = db_escape($query);
+		$qFindUser = db_query("SELECT ID FROM ".$sql_prefix."_users
+			WHERE nick LIKE '%$search%'
+			OR firstName LIKE '%$search%'
+			OR lastName LIKE '%$search%'
+		");
+		if(db_num($qFindUser) > 30 ) {
+			$content .= lang("Found to many users matching, please specify", "arrival");
+		} // Found to many matches on search
+		else {
+			$content .= "<ul>";
+			while($rFindUser = db_fetch($qFindUser)) {
+				$content .= "<li><a href=?module=arrival&action=changeowner&ticket=$ticket&toUser=$rFindUser->ID>";
+				$content .= display_username($rFindUser->ID);
+				$content .= "</a></li>";
+			} // End while rFindUser
+			$content .= '</ul>';
+		} // End else (db_num())
+	}
+}
+
+elseif($action == "changeuser" && isset($_GET['ticket']))
+{
+	$ticket = $_GET['ticket'];
+	$toUser = isset($_GET['toUser']) ? $_GET['toUser'] : null;
+	$query = isset($_POST['query']) ? $_POST['query'] : null;
+
+	if($toUser)
+	{
+        	db_query("UPDATE ".$sql_prefix."_tickets SET user = '".db_escape($toUser)."' WHERE ticketID = '".db_escape($ticket)."'");
+		header("Location: ?module=arrival&action=ticketdetail&ticket={$ticket}");
+	}
+
+	$content .= "<h2>" . _("Search for new user") . "</h2>\n";
+
+	$content .= "<form method=\"POST\" action=\"?module=arrival&action=changeuser&ticket={$ticket}\">\n";
+	$content .= "<input type=\"text\" name=\"query\" value=\"".($query ? $query : "")."\">\n";
+	$content .= "<input type=\"submit\" value=\"" . _("Search") ."\">\n";
+	$content .= "</form>\n";
+
+	if($query)
+	{
+		$search = db_escape($query);
+		$qFindUser = db_query("SELECT ID FROM ".$sql_prefix."_users
+			WHERE nick LIKE '%$search%'
+			OR firstName LIKE '%$search%'
+			OR lastName LIKE '%$search%'
+		");
+		if(db_num($qFindUser) > 30 ) {
+			$content .= lang("Found to many users matching, please specify", "arrival");
+		} // Found to many matches on search
+		else {
+			$content .= "<ul>";
+			while($rFindUser = db_fetch($qFindUser)) {
+				$content .= "<li><a href=?module=arrival&action=changeuser&ticket=$ticket&toUser=$rFindUser->ID>";
+				$content .= display_username($rFindUser->ID);
+				$content .= "</a></li>";
+			} // End while rFindUser
+			$content .= '</ul>';
+		} // End else (db_num())
+	}
 }
 
 elseif($action == "marknotpaid" && isset($_GET['ticket'])) {
