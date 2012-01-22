@@ -157,8 +157,16 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 	$content .= $rFindTicketType->price;
 	$content .= "</td></tr>\n";
 
+	// display owner
+	$content .= "<tr><th>"._("Owner")."</th></tr>\n";
+	$content .= "<tr><td>"._("Name");
+	$content .= "</td><td>";
+	$content .= display_username($rFindTicket->owner); //$rFindUser->firstName." ".$rFindUser->lastName;
+	$content .= "</td></tr>\n";
 
 	// display name
+	$content .= "<tr><td>&nbsp;</td></tr>\n";
+	$content .= "<tr><th>"._("User")."</th></tr>\n";
 	$content .= "<tr><td>".lang("Name", "arrival");
 	$content .= "</td><td>";
 	$content .= display_username($rFindUser->ID); //$rFindUser->firstName." ".$rFindUser->lastName;
