@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-14 17:36+0100\n"
-"PO-Revision-Date: 2012-01-15 12:30+0000\n"
-"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
+"POT-Creation-Date: 2012-01-23 10:53+0100\n"
+"PO-Revision-Date: 2012-01-23 12:49+0000\n"
+"Last-Translator: Thomas Presthus <thomas@erus.net>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-01-16 05:31+0000\n"
-"X-Generator: Launchpad (build 14664)\n"
+"X-Launchpad-Export-Date: 2012-01-24 05:49+0000\n"
+"X-Generator: Launchpad (build 14713)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -57,7 +57,7 @@ msgstr "Compopåmelding"
 msgid "Crewlist"
 msgstr "Crewliste"
 
-#: ../index.php:77 ../modules/arrival/arrival.php:24
+#: ../index.php:77 ../modules/arrival/arrival.php:25
 #: ../modules/logs/logs.php:50
 msgid "Arrival"
 msgstr "Ankomst"
@@ -95,7 +95,7 @@ msgstr "Skriv inn ditt nick, epost eller navn her:"
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:139 ../modules/arrival/arrival.php:236
+#: ../index.php:139 ../modules/arrival/arrival.php:245
 #: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
@@ -137,27 +137,28 @@ msgstr "Opplastning feilet, kunne ikke flytte fil"
 msgid "Upload failed, file exists"
 msgstr "Opplastning feilet, fil eksisterer allerede"
 
-#: ../modules/arrival/arrival.php:30 ../modules/sleepers/sleepers.php:211
+#: ../modules/arrival/arrival.php:31 ../modules/arrival/arrival.php:269
+#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:211
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
 msgstr "Søk"
 
-#: ../modules/arrival/arrival.php:32
+#: ../modules/arrival/arrival.php:33
 msgid "Search all users"
 msgstr "Søk alle brukere"
 
-#: ../modules/arrival/arrival.php:34
+#: ../modules/arrival/arrival.php:35
 msgid "Search users with tickets"
 msgstr "Søk brukere med billetter"
 
-#: ../modules/arrival/arrival.php:88 ../modules/crewlist/crewlist.php:24
+#: ../modules/arrival/arrival.php:89 ../modules/crewlist/crewlist.php:24
 #: ../modules/groups/groups.php:52 ../modules/profile/profile.php:15
 #: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
 msgid "Nick"
 msgstr "Brukernavn"
 
-#: ../modules/arrival/arrival.php:88 ../modules/arrival/arrival.php:161
-#: ../modules/crewlist/crewlist.php:22
+#: ../modules/arrival/arrival.php:89 ../modules/arrival/arrival.php:162
+#: ../modules/arrival/arrival.php:170 ../modules/crewlist/crewlist.php:22
 #: ../modules/infoscreens/infoscreens.php:61
 #: ../modules/kioskadmin/kioskadmin.php:63
 #: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
@@ -166,63 +167,98 @@ msgstr "Brukernavn"
 msgid "Name"
 msgstr "Navn"
 
-#: ../modules/arrival/arrival.php:94
+#: ../modules/arrival/arrival.php:95
 msgid "Add new ticket"
 msgstr "Legg til billett"
 
-#: ../modules/arrival/arrival.php:133 ../modules/sleepers/sleepers.php:200
+#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:200
 msgid "Found no matching users"
 msgstr "Fant ingen brukere som lignet søket"
 
-#: ../modules/arrival/arrival.php:146
+#: ../modules/arrival/arrival.php:147
 msgid "Back to search"
 msgstr "Tilbake til søk"
 
-#: ../modules/arrival/arrival.php:150
+#: ../modules/arrival/arrival.php:151
 msgid "Ticket"
 msgstr "Billett"
 
-#: ../modules/arrival/arrival.php:167
+#: ../modules/arrival/arrival.php:161
+#: ../modules/ticketadmin/ticketadmin.php:193
+#: ../modules/ticketorder/ticketorder.php:29
+msgid "Owner"
+msgstr "Eier"
+
+#: ../modules/arrival/arrival.php:169 ../modules/logs/logs.php:19
+#: ../modules/logs/logs.php:209 ../modules/sessions/sessions.php:15
+#: ../modules/ticketadmin/ticketadmin.php:194
+#: ../modules/ticketorder/ticketorder.php:28
+msgid "User"
+msgstr "Bruker"
+
+#: ../modules/arrival/arrival.php:176
 msgid "Adress"
 msgstr "Adresse"
 
-#: ../modules/arrival/arrival.php:173
+#: ../modules/arrival/arrival.php:182
 msgid "E-mail"
 msgstr "E-post"
 
-#: ../modules/arrival/arrival.php:178 ../modules/profile/profile.php:23
+#: ../modules/arrival/arrival.php:187 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:268
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:147
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:148
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: ../modules/arrival/arrival.php:189
+#: ../modules/arrival/arrival.php:198
 #: ../modules/ticketorder/ticketorder.php:133
 msgid "Paid"
 msgstr "Betalt"
 
-#: ../modules/arrival/arrival.php:194
+#: ../modules/arrival/arrival.php:203
 #: ../modules/ticketorder/ticketorder.php:48
 msgid "Not paid"
 msgstr "Ikke betalt"
 
-#: ../modules/arrival/arrival.php:206 ../modules/arrival/arrival.php:211
+#: ../modules/arrival/arrival.php:215 ../modules/arrival/arrival.php:220
 msgid "Seated"
 msgstr "Har plass"
 
-#: ../modules/arrival/arrival.php:215
+#: ../modules/arrival/arrival.php:224
 msgid "Not seated"
 msgstr "Har ikke plass"
 
-#: ../modules/arrival/arrival.php:221
+#: ../modules/arrival/arrival.php:230
 msgid "Delete ticket"
 msgstr "Slett billett"
 
-#: ../modules/arrival/arrival.php:227
+#: ../modules/arrival/arrival.php:236
 msgid "Deleted"
 msgstr "Slettet"
 
-#: ../modules/arrival/arrival.php:298
+#: ../modules/arrival/arrival.php:248
+msgid "Change owner"
+msgstr "Bytt eier"
+
+#: ../modules/arrival/arrival.php:250
+msgid "Change user"
+msgstr "Bytt bruker"
+
+#: ../modules/arrival/arrival.php:265
+msgid "Search for new owner"
+msgstr "Søk etter ny eier"
+
+#: ../modules/arrival/arrival.php:281 ../modules/arrival/arrival.php:323
+#: ../modules/ticketorder/ticketorder.php:75
+#: ../modules/ticketorder/ticketorder.php:108
+msgid "Found to many users matching, please specify"
+msgstr "Fant for mange brukere som passer, vennligst forbedre søket"
+
+#: ../modules/arrival/arrival.php:307
+msgid "Search for new user"
+msgstr "Søk etter ny bruker"
+
+#: ../modules/arrival/arrival.php:396
 msgid "Add ticket to user"
 msgstr "Legg til billett til bruker"
 
@@ -282,13 +318,13 @@ msgstr "Meld meg av"
 msgid "Signup has closed"
 msgstr "Påmelding er avsluttet"
 
-#: ../modules/crewlist/crewlist.php:26 ../inc/shared_config.php:191
+#: ../modules/crewlist/crewlist.php:26 ../inc/shared_config.php:192
 msgid "EMail"
 msgstr "E-post"
 
 #: ../modules/crewlist/crewlist.php:28 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:66
-#: ../inc/shared_config.php:187
+#: ../inc/shared_config.php:188
 msgid "Cellphone"
 msgstr "Mobil"
 
@@ -758,8 +794,8 @@ msgid "Screens"
 msgstr "Skjermer"
 
 #: ../modules/infoscreens/infoscreens.php:27
-msgid "Link to screen</a>"
-msgstr "Link til skjerm</a>"
+msgid "Link to screen"
+msgstr "Lenke til skjerm"
 
 #: ../modules/infoscreens/infoscreens.php:36
 msgid "Screen name"
@@ -1062,13 +1098,6 @@ msgstr "Logg"
 msgid "Timestamp"
 msgstr "Tidspunkt"
 
-#: ../modules/logs/logs.php:19 ../modules/logs/logs.php:209
-#: ../modules/sessions/sessions.php:15
-#: ../modules/ticketadmin/ticketadmin.php:194
-#: ../modules/ticketorder/ticketorder.php:28
-msgid "User"
-msgstr "Bruker"
-
 #: ../modules/logs/logs.php:20 ../modules/logs/logs.php:213
 msgid "Logmodule"
 msgstr "Loggmodul"
@@ -1370,7 +1399,7 @@ msgid "Email"
 msgstr "E-post"
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.php:255
-#: ../inc/shared_config.php:180
+#: ../inc/shared_config.php:181
 msgid "Gender"
 msgstr "Kjønn"
 
@@ -1381,7 +1410,7 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.php:250
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:175
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:176
 msgid "Postnumber"
 msgstr "Postnummer"
 
@@ -1481,7 +1510,7 @@ msgid "EMail verified. Welcome aboard"
 msgstr "Epost-adressen verfisert. Velkommen ombord"
 
 #: ../modules/register/register.php:238 ../modules/SMS/SMS.php:72
-#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:133
+#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:134
 msgid "Username"
 msgstr "Brukernavn"
 
@@ -1497,11 +1526,11 @@ msgstr "Gjenta passord"
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../modules/register/register.php:244 ../inc/shared_config.php:137
+#: ../modules/register/register.php:244 ../inc/shared_config.php:138
 msgid "First name"
 msgstr "Fornavn"
 
-#: ../modules/register/register.php:247 ../inc/shared_config.php:142
+#: ../modules/register/register.php:247 ../inc/shared_config.php:143
 msgid "Last name"
 msgstr "Etternavn"
 
@@ -1541,19 +1570,27 @@ msgstr "Sett gruppetilgang"
 msgid "Change seats"
 msgstr "Endre sete"
 
-#: ../modules/seatadmin/seatadmin.php:140
+#: ../modules/seatadmin/seatadmin.php:133
+msgid "Number of rows:"
+msgstr "Antall rader:"
+
+#: ../modules/seatadmin/seatadmin.php:135
+msgid "Number of colums:"
+msgstr "Antall kolonner:"
+
+#: ../modules/seatadmin/seatadmin.php:145
 msgid "Add row"
 msgstr "Legg til rad"
 
-#: ../modules/seatadmin/seatadmin.php:145
+#: ../modules/seatadmin/seatadmin.php:150
 msgid "Add column"
 msgstr "Legg til kolonne"
 
-#: ../modules/seatadmin/seatadmin.php:148
+#: ../modules/seatadmin/seatadmin.php:153
 msgid "Reset map"
 msgstr "Nullstill kart"
 
-#: ../modules/seatadmin/seatadmin.php:282
+#: ../modules/seatadmin/seatadmin.php:285
 msgid "Confirm map reset"
 msgstr "Bekreft nullstilling av kart"
 
@@ -1833,11 +1870,6 @@ msgstr "Rediger billettype"
 msgid "Add tickettype"
 msgstr "Legg til billettype"
 
-#: ../modules/ticketadmin/ticketadmin.php:193
-#: ../modules/ticketorder/ticketorder.php:29
-msgid "Owner"
-msgstr "Eier"
-
 #: ../modules/ticketadmin/ticketadmin.php:196
 #: ../modules/ticketorder/ticketorder.php:27
 msgid "Map placement"
@@ -1878,11 +1910,6 @@ msgstr "Plassreservasjon er ikke aktivert enda"
 #: ../modules/ticketorder/ticketorder.php:57
 msgid "Update map"
 msgstr "Oppdater kart"
-
-#: ../modules/ticketorder/ticketorder.php:75
-#: ../modules/ticketorder/ticketorder.php:108
-msgid "Found to many users matching, please specify"
-msgstr "Fant for mange brukere som passer, vennligst forbedre søket"
 
 #: ../modules/ticketorder/ticketorder.php:98
 msgid "Search owner"
@@ -2234,67 +2261,67 @@ msgstr ""
 "Standardvalg i kiosk er å selge på kreditt når en bruker er valgt (ellers "
 "blir kontantbetaling valgt som standard)"
 
-#: ../inc/shared_config.php:108
+#: ../inc/shared_config.php:109
 msgid "January"
 msgstr "Januar"
 
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:110
 msgid "February"
 msgstr "Februar"
 
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:111
 msgid "March"
 msgstr "Mars"
 
-#: ../inc/shared_config.php:111
+#: ../inc/shared_config.php:112
 msgid "April"
 msgstr "April"
 
-#: ../inc/shared_config.php:112
+#: ../inc/shared_config.php:113
 msgid "May"
 msgstr "Mai"
 
-#: ../inc/shared_config.php:113
+#: ../inc/shared_config.php:114
 msgid "June"
 msgstr "Juni"
 
-#: ../inc/shared_config.php:114
+#: ../inc/shared_config.php:115
 msgid "July"
 msgstr "Juli"
 
-#: ../inc/shared_config.php:115
+#: ../inc/shared_config.php:116
 msgid "August"
 msgstr "August"
 
-#: ../inc/shared_config.php:116
+#: ../inc/shared_config.php:117
 msgid "September"
 msgstr "September"
 
-#: ../inc/shared_config.php:117
+#: ../inc/shared_config.php:118
 msgid "October"
 msgstr "Oktober"
 
-#: ../inc/shared_config.php:118
+#: ../inc/shared_config.php:119
 msgid "November"
 msgstr "November"
 
-#: ../inc/shared_config.php:119
+#: ../inc/shared_config.php:120
 msgid "December"
 msgstr "Desember"
 
-#: ../inc/shared_config.php:170
+#: ../inc/shared_config.php:171
 msgid "Streetadress"
 msgstr "Adresse"
 
-#: ../inc/shared_config.php:196
+#: ../inc/shared_config.php:197
 msgid "List all attendees on current event"
 msgstr "Vis alle deltagere på nåværende arrangement"
 
-#: ../inc/shared_config.php:213
+#: ../inc/shared_config.php:214
 msgid "Allow other users to see my mailadress"
 msgstr "Tillatt andre brukere å se min epost-adresse"
 
-#: ../inc/shared_config.php:218
+#: ../inc/shared_config.php:219
 msgid "All users"
 msgstr "Alle brukere"
 
