@@ -165,7 +165,7 @@ function config($config, $event = 1, $value = "NOTSET")
 
 
 ######################################################
-function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
+function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF", $check_global = 1)
 {
 	/* Check what rights the user has to a module or event. */
 
@@ -182,14 +182,15 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF")
 	}
 	*/
 	// Check if user is global admin
-	$qGlobalAdmin = db_query("SELECT globaladmin FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
-	$rGlobalAdmin = db_fetch($qGlobalAdmin);
-	if($rGlobalAdmin->globaladmin == 1)
-	{
-		return "Admin";
-		break;
-	}
-
+	if($check_global) {
+		$qGlobalAdmin = db_query("SELECT globaladmin FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
+		$rGlobalAdmin = db_fetch($qGlobalAdmin);
+		if($rGlobalAdmin->globaladmin == 1)
+		{
+			return "Admin";
+			break;
+		}
+	} // End check_global
 	// Check what groups the user is a member of
 	$qCheckGroups = db_query("SELECT groupID FROM ".$sql_prefix."_group_members
 		WHERE userID = ".db_escape($userID));
