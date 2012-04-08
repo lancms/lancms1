@@ -32,6 +32,7 @@ TABLE [prefix]_users
 	forumPosts,		int(5),			,		,	0,
 	lastPasswordReset,	int(11),		,		YES,	0,
 	passwordResetCode,	varchar(40),		,		,	,
+	facebookID,		int(15),		,		YES,	0,
 	
 }
 
