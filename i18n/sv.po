@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-01-23 10:53+0100\n"
+"POT-Creation-Date: 2012-04-08 21:26+0200\n"
 "PO-Revision-Date: 2011-04-25 17:39+0000\n"
 "Last-Translator: berjatroll <Unknown>\n"
 "Language-Team: Swedish <sv@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-03-14 04:53+0000\n"
-"X-Generator: Launchpad (build 14933)\n"
+"X-Launchpad-Export-Date: 2012-04-09 05:06+0000\n"
+"X-Generator: Launchpad (build 15060)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -206,7 +206,7 @@ msgstr ""
 
 #: ../modules/arrival/arrival.php:187 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:268
-#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:267 ../inc/shared_config.php:147
 msgid "Birthday"
 msgstr ""
 
@@ -318,13 +318,13 @@ msgstr ""
 msgid "Signup has closed"
 msgstr ""
 
-#: ../modules/crewlist/crewlist.php:26 ../inc/shared_config.php:192
+#: ../modules/crewlist/crewlist.php:26 ../inc/shared_config.php:191
 msgid "EMail"
 msgstr ""
 
 #: ../modules/crewlist/crewlist.php:28 ../modules/profile/profile.php:21
 #: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:66
-#: ../inc/shared_config.php:188
+#: ../inc/shared_config.php:187
 msgid "Cellphone"
 msgstr ""
 
@@ -1210,7 +1210,7 @@ msgstr ""
 msgid "Mail sent (mass)"
 msgstr ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:441
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:442
 msgid "News"
 msgstr ""
 
@@ -1379,7 +1379,7 @@ msgid "Email"
 msgstr ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.php:255
-#: ../inc/shared_config.php:181
+#: ../inc/shared_config.php:180
 msgid "Gender"
 msgstr ""
 
@@ -1390,7 +1390,7 @@ msgid "Address"
 msgstr ""
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.php:250
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:176
+#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:175
 msgid "Postnumber"
 msgstr ""
 
@@ -1485,7 +1485,7 @@ msgid "EMail verified. Welcome aboard"
 msgstr ""
 
 #: ../modules/register/register.php:238 ../modules/SMS/SMS.php:72
-#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:134
+#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:133
 msgid "Username"
 msgstr ""
 
@@ -1501,11 +1501,11 @@ msgstr ""
 msgid "E-Mail"
 msgstr ""
 
-#: ../modules/register/register.php:244 ../inc/shared_config.php:138
+#: ../modules/register/register.php:244 ../inc/shared_config.php:137
 msgid "First name"
 msgstr ""
 
-#: ../modules/register/register.php:247 ../inc/shared_config.php:143
+#: ../modules/register/register.php:247 ../inc/shared_config.php:142
 msgid "Last name"
 msgstr ""
 
@@ -2076,7 +2076,7 @@ msgid "Yes"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:337
-#: ../inc/shared_functions.php:323
+#: ../inc/shared_functions.php:324
 msgid "No"
 msgstr ""
 
@@ -2223,82 +2223,82 @@ msgid ""
 "cash payment is selected as default)"
 msgstr ""
 
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:108
 msgid "January"
 msgstr ""
 
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:109
 msgid "February"
 msgstr ""
 
-#: ../inc/shared_config.php:111
+#: ../inc/shared_config.php:110
 msgid "March"
 msgstr ""
 
-#: ../inc/shared_config.php:112
+#: ../inc/shared_config.php:111
 msgid "April"
 msgstr ""
 
-#: ../inc/shared_config.php:113
+#: ../inc/shared_config.php:112
 msgid "May"
 msgstr ""
 
-#: ../inc/shared_config.php:114
+#: ../inc/shared_config.php:113
 msgid "June"
 msgstr ""
 
-#: ../inc/shared_config.php:115
+#: ../inc/shared_config.php:114
 msgid "July"
 msgstr ""
 
-#: ../inc/shared_config.php:116
+#: ../inc/shared_config.php:115
 msgid "August"
 msgstr ""
 
-#: ../inc/shared_config.php:117
+#: ../inc/shared_config.php:116
 msgid "September"
 msgstr ""
 
-#: ../inc/shared_config.php:118
+#: ../inc/shared_config.php:117
 msgid "October"
 msgstr ""
 
-#: ../inc/shared_config.php:119
+#: ../inc/shared_config.php:118
 msgid "November"
 msgstr ""
 
-#: ../inc/shared_config.php:120
+#: ../inc/shared_config.php:119
 msgid "December"
 msgstr ""
 
-#: ../inc/shared_config.php:171
+#: ../inc/shared_config.php:170
 msgid "Streetadress"
 msgstr ""
 
-#: ../inc/shared_config.php:197
+#: ../inc/shared_config.php:196
 msgid "List all attendees on current event"
 msgstr ""
 
-#: ../inc/shared_config.php:214
+#: ../inc/shared_config.php:213
 msgid "Allow other users to see my mailadress"
 msgstr ""
 
-#: ../inc/shared_config.php:219
+#: ../inc/shared_config.php:218
 msgid "All users"
 msgstr ""
 
-#: ../inc/shared_functions.php:328
+#: ../inc/shared_functions.php:329
 msgid "Read"
 msgstr ""
 
-#: ../inc/shared_functions.php:333
+#: ../inc/shared_functions.php:334
 msgid "Write"
 msgstr ""
 
-#: ../inc/shared_functions.php:338
+#: ../inc/shared_functions.php:339
 msgid "Admin"
 msgstr ""
 
-#: ../inc/shared_functions.php:695
+#: ../inc/shared_functions.php:696
 msgid "a.k.a."
 msgstr ""
