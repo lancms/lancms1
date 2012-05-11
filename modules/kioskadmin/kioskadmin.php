@@ -210,4 +210,16 @@ elseif($action == 'viewCreditSales' && !empty($_GET['user'])) {
 
 	} // End while rFindWares
 	$content .= "</table>";
+
+	$content .= "<form method=POST action='?module=kioskadmin&action=markcreditpaid&user=$user'>";
+	$content .= "<input type=submit value='"._("Mark credit as paid")."'>";
+	$content .= "</form>";
 } // End action = viewCreditSales
+
+elseif($action == "markcreditpaid" && !empty($_GET['user'])) {
+	$user = $_GET['user'];
+	
+	db_query("UPDATE ".$sql_prefix."_kiosk_sales SET creditPaid = 1 WHERE soldTo = '".db_escape($user)."' AND creditPaid = 0 AND credit = 1 AND eventID = '$sessioninfo->eventID'");
+	header("Location: ?module=kioskadmin&action=credit");
+
+} // End action = markcreditpaid
