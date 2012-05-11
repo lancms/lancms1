@@ -180,14 +180,34 @@ elseif($action == "addBarcode" && !empty($_GET['wareID'])) {
 
 
 elseif($action == "credit") {
-	$qFindCredits = db_query("SELECT u.nick,u.ID,SUM(totalPrice) AS totalPrice FROM ".$sql_prefix."_kiosk_sales ks JOIN ".$sql_prefix."_users u ON u.ID=ks.soldTo WHERE ks.credit = 1 AND creditPaid = 0 GROUP BY u.nick ORDER BY totalPrice DESC");
+	$qFindCredits = db_query("SELECT u.nick,u.ID,SUM(totalPrice) AS totalPrice FROM ".$sql_prefix."_kiosk_sales ks JOIN ".$sql_prefix."_users u ON u.ID=ks.soldTo WHERE ks.credit = 1 AND creditPaid = 0 AND eventID = '$sessioninfo->eventID' GROUP BY u.nick ORDER BY totalPrice DESC");
 
 	$content .= "<table>";
 	while($rFindCredits = db_fetch($qFindCredits)) {
 		$content .= "<tr><td>";
 		$content .= user_profile($rFindCredits->ID);
 		$content .= "</td><td>\n";
+		$content .= "<a href='?module=kioskadmin&action=viewCreditSales&user=$rFindCredits->ID'>";
 		$content .= $rFindCredits->totalPrice;
+		$content .= "</a></td></tr>";
 	} // End while
 	$content .= "</table>\n\n";
 } // End action = credit
+
+elseif($action == 'viewCreditSales' && !empty($_GET['user'])) {
+	$user = $_GET['user'];
+
+	$qFindWares = db_query("SELECT kw.ID,kw.name,kw.price,kw.wareType,ksi.amount FROM (".$sql_prefix."_kiosk_saleitems ksi LEFT JOIN ".$sql_prefix."_kiosk_sales ks ON ks.ID=ksi.saleID) LEFT JOIN ".$sql_prefix."_kiosk_wares kw ON ksi.wareID=kw.ID WHERE ks.credit=1 AND ks.soldTo = '".db_escape($user)."' AND ks.eventID = '$sessioninfo->eventID' ORDER BY kw.name ASC");
+	$content .= "<table>";
+	while($rFindWares = db_fetch($qFindWares)) {
+		$content .= "<tr><td>";
+		$content .= $rFindWares->name;
+		$content .= "</td><td>";
+		$content .= $rFindWares->amount;
+		$content .= "</td><td>";
+		$content .= $rFindWares->price;
+		$content .= "</td></tr>";
+
+	} // End while rFindWares
+	$content .= "</table>";
+} // End action = viewCreditSales
