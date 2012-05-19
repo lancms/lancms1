@@ -220,6 +220,8 @@ elseif($action == "markcreditpaid" && !empty($_GET['user'])) {
 	$user = $_GET['user'];
 	
 	db_query("UPDATE ".$sql_prefix."_kiosk_sales SET creditPaid = 1 WHERE soldTo = '".db_escape($user)."' AND creditPaid = 0 AND credit = 1 AND eventID = '$sessioninfo->eventID'");
+	$log_new = serialize($user);
+	log_add("kioskadmin", "markcreditpaid", $log_new);
 	header("Location: ?module=kioskadmin&action=credit");
 
 } // End action = markcreditpaid

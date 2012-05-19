@@ -168,6 +168,13 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					$mod = _("SMS");
 					if($f == "sendSMS") $func = _("SMS sent");
 					break;
+				case "kioskadmin":
+					$mod = _("Kiosk");
+					if($f == "markcreditpaid") $func = _("Marked credit as paid");
+					if($f == "addWare") $func = _("New item added");
+					if($f == "addWareType") $func = _("New item category added");
+					if($f == "doEditWare") $func = _("Item edited");
+					break;
 			} // End switch
 			if(empty($mod)) $mod = lang("Unknown module")." ".$m;
 			if(empty($func)) $func = lang("Unknown function")." ".$f;
