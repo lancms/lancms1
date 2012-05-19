@@ -20,7 +20,6 @@ switch ($sql_type)
 ## Includes etc.
 require 'inc/shared_functions.php';
 require 'inc/shared_session.php';
-require 'inc/shared_config.php';
 
 
 ## Include and set up i18n
@@ -32,6 +31,7 @@ bindtextdomain("messages", "./i18n");
 bind_textdomain_codeset("messages", "UTF-8");
 textdomain("messages");
 
+require 'inc/shared_config.php';
 
 if($hide_smarty != 1) {
 	## Set up Smarty-stuff
