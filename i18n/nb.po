@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2012-04-08 21:26+0200\n"
+"POT-Creation-Date: 2012-05-19 17:50+0200\n"
 "PO-Revision-Date: 2012-01-23 12:49+0000\n"
 "Last-Translator: Thomas Presthus <thomas@erus.net>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-19 05:39+0000\n"
+"X-Launchpad-Export-Date: 2012-05-20 04:51+0000\n"
 "X-Generator: Launchpad (build 15259)\n"
 
 #: ../index.php:32
@@ -66,7 +66,7 @@ msgstr "Ankomst"
 msgid "Reseller"
 msgstr "Forhandler"
 
-#: ../index.php:81
+#: ../index.php:81 ../modules/logs/logs.php:172
 msgid "Kiosk"
 msgstr "Kiosk"
 
@@ -91,25 +91,25 @@ msgstr "Arrangementadmin"
 msgid "Type your nick, email or name here:"
 msgstr "Skriv inn ditt nick, epost eller navn her:"
 
-#: ../index.php:135
+#: ../index.php:142
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:139 ../modules/arrival/arrival.php:245
+#: ../index.php:146 ../modules/arrival/arrival.php:245
 #: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
-#: ../index.php:140
+#: ../index.php:147
 msgid "Edit my preferences"
 msgstr "Rediger innstillinger"
 
-#: ../index.php:141 ../modules/edituserinfo/edituserinfo.php:14
+#: ../index.php:148 ../modules/edituserinfo/edituserinfo.php:14
 #: ../modules/edituserinfo/edituserinfo.php:27
 msgid "Change password"
 msgstr "Bytt passord"
 
-#: ../index.php:142 ../modules/logs/logs.php:100
+#: ../index.php:149 ../modules/logs/logs.php:100
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -190,7 +190,7 @@ msgid "Owner"
 msgstr "Eier"
 
 #: ../modules/arrival/arrival.php:169 ../modules/logs/logs.php:19
-#: ../modules/logs/logs.php:209 ../modules/sessions/sessions.php:15
+#: ../modules/logs/logs.php:216 ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
@@ -919,6 +919,10 @@ msgstr "Pris"
 msgid "Add barcode"
 msgstr "Legg til strekkode"
 
+#: ../modules/kioskadmin/kioskadmin.php:215
+msgid "Mark credit as paid"
+msgstr ""
+
 #: ../modules/kiosk/kiosk.php:26
 msgid "Currently selling to:"
 msgstr "Selger til:"
@@ -1094,11 +1098,11 @@ msgstr "Siste 30 logglinjer"
 msgid "Log"
 msgstr "Logg"
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:210
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:217
 msgid "Timestamp"
 msgstr "Tidspunkt"
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:213
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:220
 msgid "Logmodule"
 msgstr "Loggmodul"
 
@@ -1106,15 +1110,15 @@ msgstr "Loggmodul"
 msgid "Logtype"
 msgstr "Loggtype"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
 msgid "IP"
 msgstr "IP"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:211
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
 msgid "Host"
 msgstr "Vertsnavn"
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:212
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:219
 msgid "URL"
 msgstr "URL"
 
@@ -1370,19 +1374,35 @@ msgstr "SMS"
 msgid "SMS sent"
 msgstr "SMS sendt"
 
-#: ../modules/logs/logs.php:172
+#: ../modules/logs/logs.php:173
+msgid "Marked credit as paid"
+msgstr ""
+
+#: ../modules/logs/logs.php:174
+msgid "New item added"
+msgstr ""
+
+#: ../modules/logs/logs.php:175
+msgid "New item category added"
+msgstr ""
+
+#: ../modules/logs/logs.php:176
+msgid "Item edited"
+msgstr ""
+
+#: ../modules/logs/logs.php:179
 msgid "Unknown module"
 msgstr "Ukjent modul"
 
-#: ../modules/logs/logs.php:173
+#: ../modules/logs/logs.php:180
 msgid "Unknown function"
 msgstr "Ukjent funksjon"
 
-#: ../modules/logs/logs.php:206
+#: ../modules/logs/logs.php:213
 msgid "Details for logentry "
 msgstr "Detaljer for logglinje "
 
-#: ../modules/logs/logs.php:214
+#: ../modules/logs/logs.php:221
 msgid "Logfunction"
 msgstr "LogFunksjon"
 
