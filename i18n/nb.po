@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2012-05-19 17:50+0200\n"
-"PO-Revision-Date: 2012-01-23 12:49+0000\n"
-"Last-Translator: Thomas Presthus <thomas@erus.net>\n"
+"PO-Revision-Date: 2012-07-23 15:43+0000\n"
+"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2012-05-20 04:51+0000\n"
-"X-Generator: Launchpad (build 15259)\n"
+"X-Launchpad-Export-Date: 2012-07-24 05:08+0000\n"
+"X-Generator: Launchpad (build 15668)\n"
 
 #: ../index.php:32
 msgid "Main page"
@@ -921,7 +921,7 @@ msgstr "Legg til strekkode"
 
 #: ../modules/kioskadmin/kioskadmin.php:215
 msgid "Mark credit as paid"
-msgstr ""
+msgstr "Marker kreditt som betalt"
 
 #: ../modules/kiosk/kiosk.php:26
 msgid "Currently selling to:"
@@ -1376,19 +1376,19 @@ msgstr "SMS sendt"
 
 #: ../modules/logs/logs.php:173
 msgid "Marked credit as paid"
-msgstr ""
+msgstr "Markert kreditt som betalt"
 
 #: ../modules/logs/logs.php:174
 msgid "New item added"
-msgstr ""
+msgstr "Ny vare lagt til"
 
 #: ../modules/logs/logs.php:175
 msgid "New item category added"
-msgstr ""
+msgstr "Ny varekategori lagt til"
 
 #: ../modules/logs/logs.php:176
 msgid "Item edited"
-msgstr ""
+msgstr "Vare redigert"
 
 #: ../modules/logs/logs.php:179
 msgid "Unknown module"
