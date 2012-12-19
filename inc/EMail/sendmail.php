@@ -4,10 +4,13 @@
 $qFindJobs = db_query("SELECT * FROM ".$sql_prefix."_cronjobs WHERE cronModule = 'MAIL' AND (finishTime < 1 OR finishTime IS NULL) LIMIT $cron_limit");
 
 while($rFindJobs = db_fetch($qFindJobs)) {
+	if(is_numeric($rFindJobs->toUser)) {
+		$qUserInfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindJobs->toUser'");
+		$rUserInfo = db_fetch($qUserInfo);
+		$to = $rUserInfo->EMail;
+	}
+	else $to = $rFindJobs->toUser;
 
-	$qUserInfo = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindJobs->toUser'");
-	$rUserInfo = db_fetch($qUserInfo);
-	$to = $rUserInfo->EMail;
 	$from = $mail_from;
 	$subject = mb_encode_mimeheader($rFindJobs->subject, "UTF-8");
 	$mail_body = stripslashes($rFindJobs->content);
