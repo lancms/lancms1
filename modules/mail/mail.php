@@ -36,9 +36,12 @@ elseif($action == "sendMail" && isset($_POST['toMailList'])) {
 
 	$qFindUsers = db_query($SQL);
 	while($rFindUsers = db_fetch($qFindUsers)) {
+	if(!empty($rFindUsers->EMail)) $toUser = $rFindUsers->EMail;
+	elseif(!empty($rFindUsers->ID)) $toUser = $rFindUsers->ID;
+	else $toUser = $rFindUsers->ID;
 		db_query("INSERT INTO ".$sql_prefix."_cronjobs
 			SET cronModule = 'MAIL',
-			toUser = '$rFindUsers->ID',
+			toUser = '$toUser',
 			senderID = '$sessioninfo->userID',
 			subject = '".db_escape($_POST['subject'])."',
 			content = '".db_escape($_POST['message'])."'");
