@@ -1,0 +1,46 @@
+#!/usr/bin/php
+<?php
+
+$sql_user = getenv('SQL_USER');
+$sql_password = getenv('SQL_PASSWORD');
+$sql_server = getenv('SQL_SERVER');
+$sql_database = getenv('SQL_DATABASE');
+$sql_prefix = getenv('SQL_PREFIX');
+
+$eventID = getenv('EVENTID');
+
+mysql_connect($sql_server, $sql_user, $sql_password) or die(mysql_error());
+mysql_select_db($sql_database) or die(mysql_error());
+
+$qFindTotalSessions = mysql_query("SELECT COUNT(*) AS total FROM ".$sql_prefix."_session") or die(mysql_error());
+$rFindTotalSessions = mysql_fetch_object($qFindTotalSessions);
+$total = $rFindTotalSessions->total;
+if(!$total) $total = 0;
+
+$qFindLoggedInSessions = mysql_query("SELECT COUNT(*) AS logged_in FROM ".$sql_prefix."_session WHERE userID > 1") or die(mysql_error());
+$rFindLoggedInSessions = mysql_fetch_object($qFindLoggedInSessions);
+$logged_in = $rFindLoggedInSessions->logged_in;
+if(!$logged_in) $logged_in = 0;
+
+
+
+
+if($argv[1] == "authconf") {
+        exit('yes');
+}
+
+if($argv[1] == "config") {
+
+        echo "graph_title Aktive sesjoner
+graph_vlabel Sesjoner
+graph_category LANCMS
+graph_scale no
+lancms_total_sessions.label Sesjoner totalt
+lancms_sessions_loggedin.label Innloggede brukere
+";
+        exit();
+} // End config
+
+echo "lancms_total_sessions.value $total
+lancms_sessions_loggedin.value $logged_in
+";

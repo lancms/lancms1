@@ -1,0 +1,23 @@
+Installation guide for installing LANCMSs munin-plugins
+
+
+
+1) Copy the files in plugins directory into your munin-plugins directory (Debian: /usr/share/munin/plugins)
+2) Symlink to etc-directory
+(Debian):
+ln -s /usr/share/munin/plugins/lancms_sessions /etc/munin/plugins/lancms_sessions
+ln -s /usr/share/munin/plugins/lancms_tickets /etc/munin/plugins/lancms_tickets
+3) Configure LANCMS database:
+(Debian: /etc/munin/plugins-conf.d/lancms)
+
+[lancms*]
+env.SQL_USER lancms
+env.SQL_PASSWORD ComPuterParty
+env.SQL_SERVER localhost
+env.SQL_DATABASE lancms
+env.SQL_PREFIX lancms
+env.EVENTID 2
+
+
+
+

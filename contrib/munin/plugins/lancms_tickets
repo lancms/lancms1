@@ -1,0 +1,96 @@
+#!/usr/bin/php
+<?php
+
+$sql_user = getenv('SQL_USER');
+$sql_password = getenv('SQL_PASSWORD');
+$sql_server = getenv('SQL_SERVER');
+$sql_database = getenv('SQL_DATABASE');
+$sql_prefix = getenv('SQL_PREFIX');
+
+$eventID = getenv('EVENTID');
+
+mysql_connect($sql_server, $sql_user, $sql_password) or die(mysql_error());
+mysql_select_db($sql_database) or die(mysql_error());
+
+$qFindTotalTickets = mysql_query("SELECT COUNT(*) AS total FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' AND type IN ('d', 'n')");
+$rFindTotalTickets = mysql_fetch_object($qFindTotalTickets);
+$total = $rFindTotalTickets->total;
+if(!$total) $total = 0;
+
+
+$qFindReservedTickets = mysql_query("SELECT COUNT(*) AS total_tickets_taken FROM ".$sql_prefix."_tickets WHERE eventID = 19");
+$rFindReservedTickets = mysql_fetch_object($qFindReservedTickets);
+$total_tickets_taken = $rFindReservedTickets->total_tickets_taken;
+if(!$total_tickets_taken) $total_tickets_taken = 0;
+
+$qFindUsedTickets = mysql_query("SELECT COUNT(*) AS used_tickets FROM ".$sql_prefix."_tickets WHERE eventID = 19 AND status = 'used'");
+$rFindUsedTickets = mysql_fetch_object($qFindUsedTickets);
+$used_tickets = $rFindUsedTickets->used_tickets;
+if(!$used_tickets) $used_tickets = 0;
+
+$qFindNotUsedTickets = mysql_query("SELECT COUNT(*) AS notused_tickets FROM ".$sql_prefix."_tickets WHERE eventID = 19 AND status = 'notused'");
+$rFindNotUsedTickets = mysql_fetch_object($qFindNotUsedTickets);
+$notused_tickets = $rFindNotUsedTickets->notused_tickets;
+if(!$notused_tickets) $notused_tickets = 0;
+
+$qFindPaidTickets = mysql_query("SELECT COUNT(*) AS paid_tickets FROM ".$sql_prefix."_tickets WHERE eventID = 19 AND paid = 'yes'");
+$rFindPaidTickets = mysql_fetch_object($qFindPaidTickets);
+$paid_tickets = $rFindPaidTickets->paid_tickets;
+if(!$paid_tickets) $paid_tickets = 0;
+
+$qFindNotOpenedTickets = mysql_query("SELECT COUNT(*) AS notopened FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' AND type = 'n'");
+$rFindNotOpenedTickets = mysql_fetch_object($qFindNotOpenedTickets);
+$notopen = $rFindNotOpenedTickets->notopened;
+if(!$notopen) $notopen = 0;
+
+$free_tickets = $total - ($notopen + $used_tickets);
+
+
+if($argv[1] == "authconf") {
+        exit('yes');
+}
+if(getenv('GRAPH_TITLE')) $text_graph_title = getenv('GRAPH_TITLE');
+else $text_graph_title = 'Event tickets';
+if(getenv('GRAPH_VLABEL')) $text_graph_vlabel = getenv('GRAPH_VLABEL');
+else $text_graph_vlabel = 'Tickets';
+if(getenv('TICKETS_TOTAL')) $text_tickets_total = getenv('TICKETS_TOTAL');
+else $text_tickets_total = 'Tickets total';
+if(getenv('TICKETS_RESERVED')) $text_tickets_reserved = getenv('TICKETS_RESERVED');
+else $text_tickets_reserved = 'Tickets reserved';
+if(getenv('TICKETS_USED')) $text_tickets_used = getenv('TICKETS_USED');
+else $text_tickets_used = 'Tickets used';
+if(getenv('TICKETS_NOTUSED')) $text_tickets_notused = getenv('TICKETS_NOTUSED');
+else $text_tickets_notused = 'Tickets not used';
+if(getenv('TICKETS_PAID')) $text_tickets_paid = getenv('TICKETS_PAID');
+else $text_tickets_paid = 'Tickets paid';
+if(getenv('SEATS_NOTOPEN')) $text_seats_notopen = getenv('SEATS_NOTOPEN');
+else $text_seats_notopen = 'Seats not opened yet';
+if(getenv('SEATS_FREE')) $text_seats_free = getenv('SEATS_FREE');
+else $text_seats_free = 'Free seats';
+
+
+if($argv[1] == "config") {
+
+        echo "graph_title $text_graph_title
+graph_vlabel $text_graph_vlabel
+graph_category LANCMS
+graph_scale no
+lancms_total_tickets.label $text_tickets_total
+lancms_tickets_taken.label $text_tickets_reserved
+lancms_tickets_used.label $text_tickets_used
+lancms_tickets_notused.label $text_tickets_notused
+lancms_tickets_paid.label $text_tickets_paid
+lancms_tickets_notopen.label $text_seats_notopen
+lancms_tickets_free.label $text_seats_free
+";
+        exit();
+} // End config
+
+echo "lancms_total_tickets.value $total
+lancms_tickets_taken.value $total_tickets_taken
+lancms_tickets_used.value $used_tickets
+lancms_tickets_notused.value $notused_tickets
+lancms_tickets_paid.value $paid_tickets
+lancms_tickets_notopen.value $notopen
+lancms_tickets_free.value $free_tickets
+";
