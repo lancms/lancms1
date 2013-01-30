@@ -83,7 +83,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
 		// Passwords match. Login the user
 		db_query("UPDATE ".$sql_prefix."_session SET userID = '".db_escape($userID)."'
 			WHERE sID = '".db_escape($_COOKIE[$lancms_session_cookie])."'");
-
+		db_query("UPDATE ".$sql_prefix."_users SET lastLoginTime = NOW() WHERE ID = '".db_escape($userID)."'");
 		// logtype, 1 (login).
 		$log_new['user_agent'] = $_SERVER['HTTP_USER_AGENT']; 
 		log_add ("login", "success", serialize($log_new), NULL, $userID);
