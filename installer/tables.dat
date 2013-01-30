@@ -33,7 +33,7 @@ TABLE [prefix]_users
 	lastPasswordReset,	int(11),		,		YES,	0,
 	passwordResetCode,	varchar(40),		,		,	,
 	facebookID,		int(15),		,		YES,	0,
-	lastLoginTime,	datetime,		,		YES,	0,
+	lastLoginTime,	datetime,		,		YES,	,
 }
 
 TABLE [prefix]_config
