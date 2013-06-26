@@ -32,12 +32,14 @@
 // $lancmsdir = '/var/www/lancms/';
 
 // Or like we do it:
-$lancmsdir = '/data/web/no/globeorg/lancms/htdocs/';
+#$lancmsdir = '/data/web/no/globeorg/lancms/htdocs/';
+$lancmsdir = '/var/www/partysys.globelan.no/htdocs/';
 
 
 ##### GROUP NAME OVERRIDE
 $reallistname['77'] = "globelan-17-security";
 $reallistname['74'] = "globelan-17-kiosk";
+$reallistname['108'] = 'globelan-20';
 
 
 ##### EVENTS WITH CREWLIST

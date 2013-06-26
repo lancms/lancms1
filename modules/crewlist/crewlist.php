@@ -10,7 +10,7 @@ if(empty($action)) {
 	$design_head .= '<link href="templates/shared/crewlist.css" rel="stylesheet" type="text/css">';
 
 	$qGetCrewMembers = db_query("SELECT DISTINCT gm.userID FROM ".$sql_prefix."_group_members gm 
-		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID 
+		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID
 		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No' AND acl.eventID = '$sessioninfo->eventID'");
 
 	$totalcrewmembers = mysql_num_rows ($qGetCrewMembers);
