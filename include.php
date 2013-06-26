@@ -1,4 +1,5 @@
 <?php
+#require 'inc/php-gettext/gettext.inc';
 require 'config.php';
 
 
@@ -57,7 +58,9 @@ if($hide_smarty != 1) {
 } // End $hide_smarty != 1
 
 
-if($cron_type != 'cron') {
+#if($cron_type != 'cron') {
+// If remote addr is set, include cron-stuff
+if(isset($_SERVER['REMOTE_ADDR'])) { 
 
 	if($use_SMS_system == "SMS4you.no" && !empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass)) {
         	include_once 'inc/SMS/SMS4you.no.php';
