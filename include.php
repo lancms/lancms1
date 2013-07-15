@@ -22,7 +22,6 @@ switch ($sql_type)
 require 'inc/shared_functions.php';
 require 'inc/shared_session.php';
 
-
 ## Include and set up i18n
 if($language == 'norwegian') $lang = 'nb_NO.utf8';
 putenv("LANGUAGE=$lang");
@@ -52,8 +51,9 @@ if($hide_smarty != 1) {
 	if(file_exists($smarty->template_dir."/".$eventinfo->eventDesign."/".$eventinfo->eventDesign.".tpl")) {
 		$smarty_display = $eventinfo->eventDesign."/".$eventinfo->eventDesign.".tpl";
 	}
+	else $smarty_display = 'Alfa1/Alfa1.tpl';
 	#else $smarty_display = 'LarvikLAN/LarvikLAN.tpl';
-	else die("Design doesn't exists");
+#	else die("Design doesn't exists");
 
 } // End $hide_smarty != 1
 
