@@ -40,6 +40,8 @@ if(!isset($action))
 		$content .= "<br /><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a>\n";
 	if(acl_access("infoscreen", "", $sessioninfo->eventID) != 'No')
 		$content .= "<br /><a href='?module=infoscreens'>"._("Infoscreens")."</a>\n";
+	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList)) 
+		$content .= "<br /><a href='?module=mail&action=massmail'>"._("Mass-mailer")."</a>\n";
 
 
 } // End if !isset(action)
