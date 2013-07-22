@@ -65,13 +65,13 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 		$rUserInfo = db_fetch($qUserInfo);
 		$content .= $rUserInfo->nick;
 		$content .= "</td><td>";
-		if(acl_access("grouprights", $groupID, 1) == 'Admin' && $action != 'changeGroupRights')
+		if((acl_access("grouprights", $groupID, 1) == 'Admin' && $action != 'changeGroupRights') || (acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin' && $action != 'changeGroupRights'))
 		{
 			$content .= "<a href=\"?module=groups&action=changeGroupRights&groupID=$groupID&userID=$rListMembers->userID\">";
 			$content .= $rListMembers->access;
 			$content .= "</a>\n";
 		} // End acl_access(grouprights) == admin & action != 'changeGroupRights'
-		elseif(acl_access("grouprights", $groupID, 1) == 'Admin' && $action == 'changeGroupRights' && $_GET['userID'] == $rListMembers->userID)
+		elseif((acl_access("grouprights", $groupID, 1) == 'Admin' && $action == 'changeGroupRights' && $_GET['userID'] == $rListMembers->userID) || (acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin' && $action == 'changeGroupRights' && $_GET['userID'] == $rListMembers->userID))
 		{
 			$content .= "<form method=POST action=?module=groups&amp;action=doChangeGroupRights&amp;groupID=$groupID&amp;userID=".$_GET['userID'].">\n";
 			$content .= "<select name=groupRights>\n";
@@ -87,7 +87,7 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 
 	$content .= "</table>";
 	// Do test of users group-rights. If admin, display add members-form
-	if(acl_access("grouprights", $groupID, 1) == 'Admin')
+	if(acl_access("grouprights", $groupID, 1) == 'Admin' || acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin')
 	{
 		$content .= "<form method=POST action=?module=groups&amp;action=addGroupMember&amp;groupID=$groupID>\n";
 		$content .= "<input type=text name=searchUser value='".$searchUser."'>";
@@ -188,8 +188,10 @@ elseif($action == "doCreateClan" && config("users_may_create_clan") && $sessioni
 elseif($action == "doAddMember" && isset($_GET['userID']))
 {
 	// Do test of users group-rights
-	if(acl_access("grouprights", $groupID, 1) != 'Admin')
-		die("Sorry, you need admin-rights to do this!");
+	if(acl_access("grouprights", $groupID, 1) != 'Admin') {
+	  if(acl_access("eventadmin", "", $sessioninfo->eventID) != 'Admin' )
+		  die("Sorry, you need admin-rights to do this!");
+  }
 
 	$userID = $_GET['userID'];
 
@@ -220,8 +222,10 @@ elseif($action == "doAddMember" && isset($_GET['userID']))
 elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['userID']))
 {
 	// Do test of users group-rights
-	if(acl_access("grouprights", $groupID, 1) != 'Admin')
-		die("Sorry, you need admin-rights to do this!");
+	if(acl_access("grouprights", $groupID, 1) != 'Admin') {
+   	if(acl_access("eventadmin", "", $sessioninfo->eventID) != 'Admin')
+	   	die("Sorry, you need admin-rights to do this!");
+	}
 
 	$access = $_POST['groupRights'];
 	
