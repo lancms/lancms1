@@ -3,7 +3,6 @@
 $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];
 $acl_access = acl_access("wannabeadmin", "", $eventID);
-
 if($acl_access == 'No') die("You don't have access to this");
 
 
@@ -380,8 +379,15 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 		if($rListAdmins->adminID == $sessioninfo->userID) {
 			$editcmt = TRUE; // Current user, allow changing comments
 			$admincmdused = TRUE; // User has commented, don't display in extra list below
+	
 		}
-		else $editcmt = FALSE;
+		elseif($acl_access == 'Write' || $acl_access == 'Admin') {
+			$editcmt = TRUE;
+		}
+		else {
+			$editcmt = FALSE;
+			echo TRUE;
+		}
 		$qListCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 		while($rListCrews = db_fetch($qListCrews)) {
 			$crewID = $rListCrews->ID;
