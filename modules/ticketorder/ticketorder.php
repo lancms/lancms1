@@ -258,6 +258,11 @@ elseif($action == "doChangeOwner") {
     else {
         db_query("UPDATE ".$sql_prefix."_tickets SET owner = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
     }
+	 $logmsg['new_user'] = $toOwner;
+    $logmsg['ticket'] = $ticket;
+	 log_add("ticketorder", "changeOwner", serialize($logmsg));
+
+	
     header("Location: ?module=ticketorder");
 } // End elseif(action == doChangeOwner)
 
@@ -273,6 +278,9 @@ elseif($action == "doChangeUser") {
     else {
         db_query("UPDATE ".$sql_prefix."_tickets SET user = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
     }
+	 $logmsg['new_user'] = $toOwner;
+	 $logmsg['ticket'] = $ticket;
+	 log_add("ticketorder", "changeUser", serialize($logmsg));
     header("Location: ?module=ticketorder");
 } // End elseif(action == doChangeOwner)
 
