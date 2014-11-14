@@ -10,20 +10,22 @@ if($action == "adminWannabe")
 {
 	/* Adminlist for wannabe-actions */
 
+    $content .= "<ul class=\"wannabeadmin-menu\">";
 	if($acl_access == "Admin")
 	{
 		// User has wannabe adminrights
-		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a>\n";
-		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a></li>\n";
+		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a></li>\n";
 
 	} // End acl_access = Admin
 
 	if($acl_access == 'Write' || $acl_access == 'Admin')
 	{
 		// User has wannabe write-access (may see and write comments)
-		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a>";
+		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a></li>";
 
 	} // End acl_access > Write
+    $content .= "</ul>";
 
 
 } // End if action == "adminWannabe"

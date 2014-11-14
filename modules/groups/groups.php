@@ -45,6 +45,9 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 	$qShowGroupInfo = db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = ".db_escape($groupID));
 	$rShowGroupInfo = db_fetch($qShowGroupInfo);
 
+    // Add back button
+    $content .= "<div><a href='?module=eventadmin&action=groupManagement' title='" . lang('Go back') . "'> " . lang('Go back') . "</a></div><br />";
+
 	$content .= lang("Group: ", "groups");
 	$content .= $rShowGroupInfo->groupname;
 	$content .= "<br /><br />";

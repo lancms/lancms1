@@ -34,7 +34,7 @@ if(!isset($action))
 	if(acl_access("news", "", $eventID) != 'No')
 		$content .= "<li><a href='?module=news&action=newsadmin'>".lang("Newsadmin", "eventadmin")."</a></li>\n";
 	$sendSMS_ACL = acl_access("sendSMS", "", 1);
-	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<br /><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a></li>";
+	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<li><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a></li>";
 	if(acl_access("kiosk_admin", "", $eventID) != 'No')
 		$content .= "<li><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin') 

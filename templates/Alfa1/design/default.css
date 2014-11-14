@@ -369,4 +369,41 @@ table.viewthread td.info
 	width: 30%;
 }
 
+/* Crewlist */
+.crewlist {
+    border-spacing: 0;
+    border: 0;
+}
+
+.crewlist tr th,
+.crewlist tr td {
+    padding: 4px 3px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+    border-left: 1px solid #dddddd;
+}
+
+.crewlist tr th {
+    text-align: left;
+    background-color: #2b6fb6;
+    border-left: 0;
+    color: #ffffff;
+}
+
+.crewlist tr td:last-child {
+    border-right: 1px solid #dddddd;
+}
+
+.crewlist tr:nth-child(2n+1) td {
+    background-color: #f0f0f0;
+}
+
+.crewlist tr:nth-child(2n+1) td:first-child {
+    background-color: #E2E4E6;
+}
+
+.crewlist.summary-table tr:last-child td {
+    font-weight: 700;
+}
+
 

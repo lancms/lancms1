@@ -17,7 +17,7 @@ if(empty($action)) {
 
 	$content .= "<h2>"._("Crewlist")."</h2>\n";
 
-	$content .= '<table>';
+	$content .= '<table class="crewlist">';
 	$content .= "<tr><th>";
 	$content .= lang("Name", "crewlist");
 	$content .= "</th><th>";
@@ -77,7 +77,7 @@ if(empty($action)) {
 
 	$qCount = db_query ("SELECT g.groupname, COUNT(gm.userID) as members FROM ".$sql_prefix."_group_members AS gm, ".$sql_prefix."_ACLs AS acl, ".$sql_prefix."_groups as g WHERE g.ID=gm.groupID AND gm.groupID=acl.groupID AND acl.accessmodule='crewlist' AND acl.access!='No' AND acl.eventID=".$sessioninfo->eventID." GROUP BY gm.groupID;");
 	
-	$content .= "<table>\n";
+	$content .= "<table class='crewlist summary-table'>\n";
 	$content .= "<tr>\n";
 	$content .= "<th>"._("Crew")."</th>\n";
 	$content .= "<th>"._("Members")."</th>\n";
