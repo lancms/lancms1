@@ -11,38 +11,40 @@ if($acl_eventadmin == 'No')
 
 if(!isset($action))
 {
+    $content .= "<ul class=\"eventadmin-menu-list\">";
 	// No action specified. List all eventadmin tasks
 	if(acl_access("eventadmin", "", $eventID) == 'Admin')
-		$content .= "<br /><a href=\"?module=eventadmin&amp;action=config\">".lang("Event config", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=eventadmin&amp;action=config\">".lang("Event config", "eventadmin")."</a></li>\n";
 	if(acl_access("eventadmin", "", $sessioninfo->eventID) == ('Admin' || 'Write'))
-		$content .= "<br /><a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Group Management", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=eventadmin&amp;action=groupManagement\">".lang("Group Management", "eventadmin")."</a></li>\n";
 	if(acl_access("static", "", $eventID) != 'No')
-		$content .= "<br /><a href=\"?module=static&amp;action=listEventPages\">".lang("Edit static pages", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=static&amp;action=listEventPages\">".lang("Edit static pages", "eventadmin")."</a></li>\n";
 	if(acl_access("FAQ", "", $eventID) == 'Admin')
-		$content .= "<br /><a href=\"?module=FAQ&amp;action=adminFAQs\">".lang("Edit FAQs", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=FAQ&amp;action=adminFAQs\">".lang("Edit FAQs", "eventadmin")."</a></li>\n";
 	if(acl_access("wannabeadmin", "", $eventID) != 'No')
-		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=adminWannabe\">".lang("WannabeCrew", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=adminWannabe\">".lang("WannabeCrew", "eventadmin")."</a></li>\n";
 	if(acl_access("seatadmin", "", $eventID) == 'Admin')
-		$content .= "<br /><a href=\"?module=seatadmin\">".lang("Seatreg Admin", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=seatadmin\">".lang("Seatreg Admin", "eventadmin")."</a></li>\n";
 	if(acl_access("ticketadmin", "", $eventID) == 'Admin')
-		$content .= "<br /><a href=\"?module=ticketadmin\">".lang("Ticket Admin", "eventadmin")."</a>\n";
+		$content .= "<li><a href=\"?module=ticketadmin\">".lang("Ticket Admin", "eventadmin")."</a></li>\n";
 #	if(acl_access("economy", "", $eventID) != 'No')
 #		$content .= "<br /><a href='?module=economy'>".lang("Economy", "eventadmin")."</a>\n";
 	if(acl_access("compoadmin", "", $eventID) != 'No')
-		$content .= "<br /><a href='?module=compoadmin'>".lang("Compoadmin", "eventadmin")."</a>\n";
+		$content .= "<li><a href='?module=compoadmin'>".lang("Compoadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("news", "", $eventID) != 'No')
-		$content .= "<br /><a href='?module=news&action=newsadmin'>".lang("Newsadmin", "eventadmin")."</a>\n";
+		$content .= "<li><a href='?module=news&action=newsadmin'>".lang("Newsadmin", "eventadmin")."</a></li>\n";
 	$sendSMS_ACL = acl_access("sendSMS", "", 1);
-	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<br /><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a>";
+	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<br /><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a></li>";
 	if(acl_access("kiosk_admin", "", $eventID) != 'No')
-		$content .= "<br /><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a>\n";
+		$content .= "<li><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin') 
-		$content .= "<br /><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a>\n";
+		$content .= "<li><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("infoscreen", "", $sessioninfo->eventID) != 'No')
-		$content .= "<br /><a href='?module=infoscreens'>"._("Infoscreens")."</a>\n";
+		$content .= "<li><a href='?module=infoscreens'>"._("Infoscreens")."</a></li>\n";
 	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList)) 
-		$content .= "<br /><a href='?module=mail&action=massmail'>"._("Mass-mailer")."</a>\n";
+		$content .= "<li><a href='?module=mail&action=massmail'>"._("Mass-mailer")."</a></li>\n";
 
+    $content .= "</ul>";
 
 } // End if !isset(action)
 
