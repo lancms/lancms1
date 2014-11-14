@@ -1,5 +1,5 @@
 <?php
-$acl_access = acl_access("seatreg_admin", "", $sessioninfo->eventID);
+$acl_access = acl_access("seatadmin", "", $sessioninfo->eventID);
 
 $action = $_GET['action'];
 $type = $_POST['type'];

@@ -70,6 +70,7 @@ $eventaccess[] = 'FAQ';
 $eventaccess[] = 'ticketadmin';
 $eventaccess[] = 'static';
 $eventaccess[] = 'seating'; // Access to seat any other users
+$eventaccess[] = 'seatadmin';
 $eventaccess[] = 'wannabeadmin';
 #$eventaccess[] = 'economy';
 $eventaccess[] = 'crewlist';
