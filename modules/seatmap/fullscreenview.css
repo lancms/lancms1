@@ -1,0 +1,17 @@
+/*
+ * CSS rules for allowing content fullwidth.
+ * @author edvin
+ */
+
+div#right {
+    display: none;
+}
+
+div#left {
+    width: 100%;
+    margin-right: 0;
+}
+
+table#seatRegTable {
+    margin: 0 auto;
+}

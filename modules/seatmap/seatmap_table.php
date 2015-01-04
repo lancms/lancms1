@@ -8,6 +8,27 @@ $place_seatY = $_GET['seatY'];
 $qGetSeats = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$sessioninfo->eventID'
         ORDER BY seatY ASC, seatX ASC");
 
+/* -------------------------------------------------------- */
+/* START Fullscreen											*/
+/* -------------------------------------------------------- */
+$url = array('true', 'Fullskjerm-visning');
+$fullscreenMode = (isset($_GET['fullscreen']) && $_GET['fullscreen'] == 'true' ? true : false);
+
+// Output css if "fullscreen=true"
+if ($fullscreenMode == true) {
+	$url = array('false', 'Normal-visning');
+
+	$content .= '<style type="text/css">';
+	$content .= file_get_contents(__DIR__ . "/fullscreenview.css");
+	$content .= '</style>';
+}
+
+// Display link.
+$content .= '<div class="right-holder fullscreen-link"><a href="?module=seating&amp;fullscreen=' . $url[0] . '" title="' . _($url[1]) . '">' . _($url[1]) . '</a></div>';
+/* -------------------------------------------------------- */
+/* END Fullscreen											*/
+/* -------------------------------------------------------- */
+
 $content .= '<table id="seatRegTable">';
 $content .= "<tr>"; // Begin the first row
 while($rGetSeats = db_fetch($qGetSeats)) {

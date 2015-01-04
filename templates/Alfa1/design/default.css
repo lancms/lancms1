@@ -406,4 +406,19 @@ table.viewthread td.info
     font-weight: 700;
 }
 
+/* For fullscreen link on seating */
+.fullscreen-link {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 10px;
+}
 
+.right-holder {
+	display: block;
+	width: 100%;
+}
+
+.right-holder > * {
+	float: right;
+	display: inline-block;
+}
