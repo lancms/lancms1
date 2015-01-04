@@ -194,12 +194,12 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 
 	$content .= "<tr>";
 	if($rFindTicket->paid == 'yes') {
-		$content .= "<td class=tdLink style='background-color: green;' onClick='location.href=\"?module=arrival&action=marknotpaid&ticket=$ticket\"'>";
+		$content .= "<td class='arrival-actions-common arrival-actions-white tdLink' style='background-color: green;' onClick='location.href=\"?module=arrival&action=marknotpaid&ticket=$ticket\"'>";
 		$content .= lang("Paid", "arrival")." (".$rFindTicketType->price.")";
 		$content .= "</td>";
 	}
 	else {
-		$content .= "<td class=tdLink style='background-color: red;' onClick='location.href=\"?module=arrival&action=markpaid&ticket=$ticket\"'>";
+		$content .= "<td class='arrival-actions-common arrival-actions-white tdLink' style='background-color: red;' onClick='location.href=\"?module=arrival&action=markpaid&ticket=$ticket\"'>";
 		$content .= lang("Not paid", "arrival")." (".$rFindTicketType->price.")";
 		$content .= "</td>";
 
@@ -211,28 +211,28 @@ elseif($action == "ticketdetail" && isset($_GET['ticket'])) {
 		$rFindTicketSeating = db_fetch($qFindTicketSeating);
 		$seatX = $rFindTicketSeating->seatX;
 		$seatY = $rFindTicketSeating->seatY;
-		$content .= "<td class=tdLink style='background-color: green;' onClick='location.href=\"?module=seating&ticketID=$ticket&seatX=$seatX&seatY=$seatY\"'>";
+		$content .= "<td class='arrival-actions-common arrival-actions-white tdLink' style='background-color: green;' onClick='location.href=\"?module=seating&ticketID=$ticket&seatX=$seatX&seatY=$seatY\"'>";
 		$content .= lang("Seated", "arrival");
 		$content .= "</td>";
 	} elseif(db_num($qFindTicketSeating) != 0) {
 		// Ticket is seated, and does not have access to seat
-		$content .= "<td style='background-color: yellow;'>";
+		$content .= "<td class='arrival-actions-common' style='background-color: yellow;'>";
 		$content .= lang("Seated", "arrival");
 		$content .= "</td>";
 	} else {
-		$content .= "<td class=tdLink style='background-color: red;' onClick='location.href=\"?module=seating&ticketID=$ticket\"'>";
+		$content .= "<td class='arrival-actions-common tdLink' style='background-color: red;' onClick='location.href=\"?module=seating&ticketID=$ticket\"'>";
 		$content .= lang("Not seated", "arrival");
 		$content .= "</td>";
 	} // End else
 	if($rFindTicket->status != 'deleted' && $acl_ticket == ('Write' || 'Admin')) {
-		$content .= "<td class=tdLink style='background-color: orange;'";
+		$content .= "<td class='tdLink arrival-actions-common' style='background-color: orange;'";
 		$content .= " onClick='location.href=\"?module=arrival&action=deleteTicket&ticketID=$ticket\"'>";
 		$content .= lang("Delete ticket", "arrival");
 		$content .= "</td>";
 	}
 
 	elseif($rFindTicket->status == 'deleted') {
-		$content .= "<td style='background-color: red;'>";
+		$content .= "<td class='arrival-actions-common' style='background-color: red;'>";
 		$content .= lang("Deleted", "arrival");
 		$content .= "</td>";
 	}

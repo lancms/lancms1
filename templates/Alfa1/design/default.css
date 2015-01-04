@@ -406,6 +406,15 @@ table.viewthread td.info
     font-weight: 700;
 }
 
+.arrival-actions-common {
+	padding: 5px;
+	font-size: 0.75rem;
+}
+
+.arrival-actions-white {
+	color: #ffffff;
+}
+
 /* For fullscreen link on seating */
 .fullscreen-link {
 	display: block;
