@@ -188,7 +188,6 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF", $chec
 		if($rGlobalAdmin->globaladmin == 1)
 		{
 			return "Admin";
-			break;
 		}
 	} // End check_global
 	// Check what groups the user is a member of
@@ -319,7 +318,7 @@ function option_rights($default = 'No')
 {
 	/* This function returns <options> for use where you select what rights a group shall have */
 	// Display No-rights
-	$return .= "<option value='No'";
+	$return = "<option value='No'";
 	if($default == 'No') $return .= ' selected';
 	$return .= ">".lang("No", "functions")."</option>\n";
 
@@ -439,7 +438,7 @@ function display_news ($eventid=1)
 	{
 		return (False);
 	}
-	$return .= "<h2>".lang ("News", "news")."</h2>\n";
+	$return = "<h2>".lang ("News", "news")."</h2>\n";
 
 	while ($news = db_fetch($q))
 	{
