@@ -13,6 +13,7 @@ $qGetSeats = db_query("SELECT * FROM ".$sql_prefix."_seatReg WHERE eventID = '$s
 /* -------------------------------------------------------- */
 $url = array('true', 'Fullskjerm-visning');
 $fullscreenMode = (isset($_GET['fullscreen']) && $_GET['fullscreen'] == 'true' ? true : false);
+$suffixSeatingUrl = ($fullscreenMode == true ? '&amp;fullscreen=true' : '');
 
 // Output css if "fullscreen=true"
 if ($fullscreenMode == true) {
@@ -62,11 +63,11 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    // Type is normal seat
 	    if(!empty($GetSeatedUser->nick)) {
 		$content .= "<td class=seatNormalUser>";
-		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
 		$content .= $GetSeatedUser->nick;
 	    } else {  
 		$content .= "<td class=seatNormalUserFree>";
-		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
 		$content .= lang("Free", "seatmap");
 	    } // End else
 
@@ -76,7 +77,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	case "p":
 	    // Type is password-protected
 	    $content .= "<td class=seatPassword>";
-	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 	    else {
 		if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
@@ -88,7 +89,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	case "g":
 	    // Type is group-protected
 	    $content .= "<td class=seatGroup>";
-	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 	    else {
 	    	if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
@@ -118,7 +119,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	case "r":
 		// Type is right-protected
 		$content .= "<td class=seatGroup>";
-		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY\">";
+		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
 		if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 		else $content .= _("Free");
 		$content .= "</a>";
@@ -150,20 +151,20 @@ if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioni
         switch($rGetSeatInfo->type) {
 	case "d":
 	    $content .= lang("This seat is available", "seatmap_table");
-	    $content .= "<a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
+	    $content .= "<a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY$suffixSeatingUrl\">";
 	    $content .= lang("Take seat", "seatmap_table");
 	    $content .= "</a>";
 	    break;
 	case "p":
 	    $content .= lang("This seat is password-protected. If you know the password, you can take it", "seatmap_table");
-	    $content .= "<form method=POST action=?module=seating&amp;action=takeseat&amp&ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY>";
+	    $content .= "<form method=POST action=?module=seating&amp;action=takeseat&amp&ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY$suffixSeatingUrl>";
 	    $content .= "<input type=text name=password><input type=submit value='".lang("Take seat", "seatmap_table")."'>\n";
 	    $content .= "</form>";
 	    break;
 	case "g":
 	    if(seating_rights($place_seatX, $place_seatY, $ticketID, $sessioninfo->eventID, $password)) {
 	        $content .= lang("This seat is protected by group. You are a member of a group with access.", "seatmap_table");
-	        $content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
+	        $content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY$suffixSeatingUrl\">";
 	        $content .= lang("Take seat", "seatmap_table");
 	        $content .= "</a>";
 	    } // End if(seating_rights)
@@ -174,7 +175,7 @@ if(!empty($place_seatY) && !empty($seatX) && config("seating_enabled", $sessioni
 	case "r":
 		if(seating_rights($place_seatX, $place_seatY, $ticketID, $sessioninfo->eventID, $password)) {
 			$content .= _("This seat is protected by a special right. You are a member of a group with access");
-			$content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY\">";
+			$content .= "<br /><a href=\"?module=seating&amp;action=takeseat&amp;ticketID=$ticketID&amp;seatX=$place_seatX&amp;seatY=$place_seatY$suffixSeatingUrl\">";
 	        $content .= _("Take seat");
 	        $content .= "</a>";
 		} // End if(seating_rights)
