@@ -19,26 +19,30 @@ if (empty($action))
 	$content .= "<h3>"._('Screens')."</h3>";
 
 	$qFindScreens = db_query("SELECT * FROM ".$sql_prefix."_infoscreens WHERE eventID = '$sessioninfo->eventID'");
-	$content .= "<table style='border: solid 1px black; border-collapse: collapse;'>";
-	$content .= sprintf("<tr><th>%s</th><th>%s</th><th>%s</th></tr>", _("Name"), _("Preview"), _("Remove"));
-	while($rFindScreens = db_fetch($qFindScreens)) {
-		$content .= "<tr><td style='border: solid 1px black; border-collapse: collapse;'>";
-		$content .= $rFindScreens->name;
-		$content .= "</td><td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>\n";
-		$content .= "<a href='party.php?s=$rFindScreens->ID'>"._("Link to screen")."</a></td>";
+	$nFindScreens = db_num($qFindScreens);
+	if ($nFindScreens > 0) {
+		$content .= "<table style='border: solid 1px black; border-collapse: collapse;'>";
+		$content .= sprintf("<tr><th>%s</th><th>%s</th><th>%s</th></tr>", _("Name"), _("Preview"), _("Remove"));
+		while($rFindScreens = db_fetch($qFindScreens)) {
+			$content .= "<tr><td style='border: solid 1px black; border-collapse: collapse;'>";
+			$content .= $rFindScreens->name;
+			$content .= "</td><td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>\n";
+			$content .= "<a href='party.php?s=$rFindScreens->ID'>"._("Link to screen")."</a></td>";
 
-		// Show remove button if has admin acl.
-		if($acl == 'Admin') {
-			$content .= "<td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>";
-			$content .= "<form action='?module=infoscreens&action=rmScreen' method='post'>";
-			$content .= "<input type='hidden' name='screenID' value='$rFindScreens->ID'>";
-			$content .= "<input type='submit' value='" . _('Remove') . "'></form></td>";
+			// Show remove button if has admin acl.
+			if($acl == 'Admin') {
+				$content .= "<td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>";
+				$content .= "<form action='?module=infoscreens&action=rmScreen' method='post'>";
+				$content .= "<input type='hidden' name='screenID' value='$rFindScreens->ID'>";
+				$content .= "<input type='submit' value='" . _('Remove') . "'></form></td>";
+			}
+
+			$content .= "</tr>\n\n";
 		}
-
-		$content .= "</tr>\n\n";
+		$content .= "</table>";
+	} else {
+		$content .= "<p><em>" . _("No screens created yet, create one in the form under.") . "</em></p>";
 	}
-	$content .= "</table>";
-
 
 	if($acl == 'Admin') {
 		$content .= "<br /><form method=POST action='?module=infoscreens&action=addScreen'>\n";
