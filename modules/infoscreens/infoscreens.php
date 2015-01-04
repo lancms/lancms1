@@ -20,19 +20,28 @@ if (empty($action))
 
 	$qFindScreens = db_query("SELECT * FROM ".$sql_prefix."_infoscreens WHERE eventID = '$sessioninfo->eventID'");
 	$content .= "<table style='border: solid 1px black; border-collapse: collapse;'>";
+	$content .= sprintf("<tr><th>%s</th><th>%s</th><th>%s</th></tr>", _("Name"), _("Preview"), _("Remove"));
 	while($rFindScreens = db_fetch($qFindScreens)) {
 		$content .= "<tr><td style='border: solid 1px black; border-collapse: collapse;'>";
 		$content .= $rFindScreens->name;
 		$content .= "</td><td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>\n";
-		$content .= "<a href='party.php?s=$rFindScreens->ID'>"._("Link to screen")."</a>";
-		$content .= "</td></tr>\n\n";
-		# FIXME: would be nice to get to delete screens :-)
+		$content .= "<a href='party.php?s=$rFindScreens->ID'>"._("Link to screen")."</a></td>";
+
+		// Show remove button if has admin acl.
+		if($acl == 'Admin') {
+			$content .= "<td style='border: solid 1px black; border-collapse: collapse; padding: 3px;'>";
+			$content .= "<form action='?module=infoscreens&action=rmScreen' method='post'>";
+			$content .= "<input type='hidden' name='screenID' value='$rFindScreens->ID'>";
+			$content .= "<input type='submit' value='" . _('Remove') . "'></form></td>";
+		}
+
+		$content .= "</tr>\n\n";
 	}
 	$content .= "</table>";
 
 
 	if($acl == 'Admin') {
-		$content .= "<form method=POST action='?module=infoscreens&action=addScreen'>\n";
+		$content .= "<br /><form method=POST action='?module=infoscreens&action=addScreen'>\n";
 		$content .= "<input type=text name='name'>"._("Screen name");
 		$content .= "<br /><input type=submit value='"._("Add screen")."'>";
 		$content .= "</form>\n";
@@ -58,16 +67,16 @@ if (empty($action))
 		$border = 'style="border: solid 1px black; border-collapse: collapse;"';
 		$content .= "<table $border>\n";
 
-		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th></tr>\n", _('Name'), _('Edit'), _('Preview'));
+		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th></tr>\n", _('Name'), _('Edit'), _('Preview'), _('Remove'));
 
 		while ($slide = db_fetch ($slideR))
 		{
 			$slide_edit = sprintf ("<form method='POST' action='?module=infoscreens&action=editSlide&slideID=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Edit'));
 			$slide_preview = sprintf ("<form method='POST' action='party.php?slide=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Preview'));
+			$slide_remove = sprintf ("<form method='POST' action='?module=infoscreens&action=rmSlide&slideID=%s'><input type='submit' value='%s' /></form>", $slide->ID, _('Remove'));
 
-			$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td></tr>\n", $slide->name, $slide_edit, $slide_preview);
-			unset ($slide_preview);
-			unset ($slide_edit);
+			$content .= sprintf ("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>\n", $slide->name, $slide_edit, $slide_preview, $slide_remove);
+			unset ($slide_preview, $slide_edit, $slide_remove);
 		}
 
 		$content .= "</table>\n";
@@ -137,6 +146,34 @@ if (empty($action))
 	$content .= "</div>";
 	#### END - queues ####
 }
+
+elseif (($action == 'rmScreen') && ($acl == 'Write' || $acl == 'Admin'))
+{
+	// Action: rmScreen, delete a screen and its queue.
+	// Verify parameters
+	if (isset($_POST['screenID']) == false || is_numeric($_POST['screenID']) == false || intval($_POST['screenID']) < 1) {
+		$content .= "<p>" . _('Screen ID is missing or invalid, it must be numeric and over zero. Go back and try again.') . "</p>";
+	} else {
+		$eventID = $sessioninfo->eventID;
+		$screenID = intval($_POST['screenID']);
+
+		// Send query for deleting screen first.
+		db_query(sprintf("DELETE FROM %s WHERE eventID=%s AND ID=%s", $screentable, $eventID, $screenID));
+
+		// Delete queue.
+		db_query(sprintf("DELETE FROM %s WHERE eventID=%s AND screenID=%s", $queuetable, $eventID, $screenID));
+
+		// Log this action.
+		$log['ID'] = $screenID;
+		$log['eventID'] = $eventID;
+		log_add ("infoscreens", "rmScreen", serialize($log));
+
+		// That's it.
+		header ('Location: ?module=infoscreens');
+		die();
+	}
+
+} // end action=rmScreen
 
 elseif (($action == 'newSlide' or $action=='editSlide') and ($acl == 'Write' or $acl == 'Admin'))
 {
@@ -247,6 +284,34 @@ elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 	}
 
 } // end action == saveSlide
+
+elseif ($action == 'rmSlide' && ($acl == 'Admin' || $acl == 'Write'))
+{
+	// Action: rmslide, removes slide from slide-table and queue-table database.
+	// Check if slideID is in post.
+	if (isset($_GET['slideID']) == false || is_numeric($_GET['slideID']) == false || intval($_GET['slideID']) < 1) {
+		$content .= "<p>"._('Slide ID is missing or invalid, it must be numeric and over zero. Go back and try again.')."</p>";
+	} else {
+		// Create some variables for query first for added security.
+		$eventID = $sessioninfo->eventID;
+		$slideID = intval($_GET['slideID']);
+
+		// Send delete query for slide.
+		db_query(sprintf("DELETE FROM %s WHERE eventID=%s AND ID=%s", $slidetable, $eventID, $slideID));
+
+		// Send delete query for queue table.
+		db_query(sprintf("DELETE FROM %s WHERE eventID=%s AND slideID=%s", $queuetable, $eventID, $slideID));
+
+		// Log this action.
+		$log['ID'] = $slideID;
+		$log['eventID'] = $eventID;
+		log_add ("infoscreens", "rmSlide", serialize($log));
+
+		// All done.
+		header ('Location: ?module=infoscreens&deletedSlideID=' . $slideID);
+		die();
+	}
+} // end action == rmSlide
 
 elseif ($action == 'queueAdd' and ($acl == 'Admin' or $acl == 'Write'))
 {
