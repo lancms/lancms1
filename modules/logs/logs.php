@@ -163,6 +163,8 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					if($f == "queueRemove") $func = _("Remove from queue");
 					if($f == "newSlide") $func = _("New slide");
 					if($f == "editSlide") $func = _("Edit slide");
+					if($f == "rmSlide") $func = _("Remove slide");
+					if($f == "rmScreen") $func = _("Remove screen");
 					break;
 				case "SMS":
 					$mod = _("SMS");
