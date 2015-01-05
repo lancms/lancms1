@@ -415,6 +415,59 @@ table.viewthread td.info
 	color: #ffffff;
 }
 
+.ticket-ok,
+.ticket-uhm,
+.ticket-warn,
+.ticket-error {
+	padding: 2px 3px;
+	font-size: 0.65rem;
+	display: inline-block;
+}
+
+td.ticket-ok,
+td.ticket-uhm,
+td.ticket-warn,
+td.ticket-error {
+	padding: 4px 5px;
+	font-size: 0.75rem;
+}
+
+.ticket-error a,
+.ticket-ok a,
+.ticket-uhm a,
+.ticket-warn a {
+	text-decoration: none;
+}
+
+.ticket-error a {
+	color: #ffffff;
+}
+
+.ticket-uhm a,
+.ticket-warn a {
+	color: #000000;
+}
+
+.ticket-error {
+	background-color: #d60218;
+	color: #ffffff;
+}
+
+.ticket-ok {
+	background-color: #11bf24;
+	color: #ffffff;
+}
+
+.ticket-uhm {
+	background-color: #b0a514;
+	color: #000000;
+}
+
+.ticket-warn {
+	background-color: #d6d507;
+	color: #000000;
+}
+
 /* For fullscreen link on seating */
 .fullscreen-link {
 	display: block;

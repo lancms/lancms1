@@ -99,19 +99,22 @@ if(!isset($action) || $action == "searchUser")
 	#	$ticketsC = db_num ($ticketsQ);
 		while ($ticket = db_fetch ($ticketsR))
 		{
+			$ticketCssClass = "";
 			if ($ticket->status == 'deleted')
 			{
-				$ticketcolor = 'red';
+				$ticketCssClass = 'ticket-error';
 			}
 			elseif ($ticket->paid == 'yes')
 			{
-				$ticketcolor = 'green';
+				$ticketCssClass = 'ticket-ok';
 			}
 			elseif ($ticket->paid == 'no')
 			{
-				$ticketcolor = 'orange';
+				$ticketCssClass = 'ticket-uhm';
 			}
-			$ticketactions .= sprintf ("<tr><td style='background-color: %s'><a href='?module=arrival&action=ticketdetail&ticket=%s'>%s</a></td></tr>\n", $ticketcolor, $ticket->ticketID, $ticket->name);
+
+			$ticketactions .= sprintf ("<tr><td class='%s'><a href='?module=arrival&action=ticketdetail&ticket=%s'>%s</a></td></tr>\n",
+				$ticketCssClass, $ticket->ticketID, $ticket->name);
 		}
 
 

@@ -32,13 +32,10 @@ if ($action == 'addsleeper')
 		die ();
 	}
 
-	if (!user_exists ($userid))
-	{
+	if (!user_exists ($userid) || is_user_sleeping($userid) == true) {
 		header ('Location: ?module=sleepers');
 		die ();
 	}
-
-	# FIXME: check that the user isn't sleeping already.
 
 	$q = sprintf ('INSERT INTO %s (eventID, userID) VALUES (%s, %s)', $sleeperstable, $sessioninfo->eventID, db_escape($userid));
 	db_query ($q);
@@ -232,9 +229,11 @@ elseif ($action == 'searchsleeper')
 					}
 					else
 					{
-						$tickets = "<span style='background-color: red'>"._("No tickets for this event")."</span>";
-
-						# FIXME: need to show that the person is a member of crew...
+						$tickets = "<p><span class=\"ticket-error\">"._("No tickets for this event")."</span>";
+						if (is_user_crew($user->ID) == true) {
+							$tickets .= "<br /><span class=\"ticket-warn\">"._("This user is a crew-member.")."</span>";
+						}
+						$tickets .= "</p>";
 					}
 
 

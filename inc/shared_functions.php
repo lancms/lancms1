@@ -770,3 +770,42 @@ function get_groupname ($groupid)
 	$rGroup = db_fetch ($qGroup);
 	return ($rGroup->groupname);
 }
+
+/**
+ * Indicates if a user if sleeping.
+ *
+ * @param int $userID
+ * @param int $eventID If null then current event ID is used.
+ * @return bool
+ */
+function is_user_sleeping($userID, $eventID=null) {
+	global $sql_prefix,$sessioninfo;
+
+	if ($eventID == null)
+		$eventID = $sessioninfo->eventID;
+
+	$table = $sql_prefix . "_sleepers";
+	$isSleepingQuery = db_query(sprintf("SELECT userID FROM %s WHERE userID = %s AND eventID = %s", $table, $userID, $eventID));
+
+	return db_num($isSleepingQuery) > 0 ? true : false;
+}
+
+/**
+ * Indicates if a user is crew, user is considered a crew-member when in a group with type "access".
+ *
+ * @param int $userID
+ * @param int $eventID If null then current event ID is used.
+ * @return bool
+ */
+function is_user_crew($userID, $eventID=null) {
+	global $sql_prefix,$sessioninfo;
+
+	if ($eventID == null)
+		$eventID = $sessioninfo->eventID;
+
+	$query = db_query(sprintf("SELECT g.ID FROM %s as g, %s as gm
+								WHERE g.ID = gm.groupID AND g.groupType='access' AND (gm.userID=%s AND g.eventID=%s)",
+		$sql_prefix . "_groups", $sql_prefix . "_group_members", $userID, $eventID));
+
+	return db_num($query) > 0 ? true : false;
+}
