@@ -7,7 +7,14 @@ var wakeupHandler = new WakeupHandler();
 function WakeupHandler() {
     this.sleepers = [];
     this.lang = [];
-    this.wakeupMessage = "%USER% skal vekkes nå.";
+    this.allowAlerts = true;
+
+    /**
+     * Disallow browser alerts.
+     */
+    this.disallowAlerts = function () {
+        this.allowAlerts = false;
+    };
 
     /**
      * Adds a new sleeper and starts countdown on it.
@@ -144,7 +151,7 @@ function WakeupHandler() {
         this.removeSleeper(sleeperObj.userID);
 
         // Alert browser.
-        if (sendAlert == true)
+        if (sendAlert == true && this.allowAlerts == true)
             alert(this.lang[9] + "\n\n" + message);
 
         var td = document.getElementById('wakeup-' + sleeperObj.userID);

@@ -81,6 +81,9 @@ elseif ($action == 'rmWake')
 		die ();
 	}
 
+	$log = array('userID' => $userID);
+	log_add ("sleepers", "removewakeup", serialize($log));
+
 	$wakeupManager->removeWakeup($userID);
 	header ('Location: ?module=sleepers&wakerm=' . $userID);
 	die ();
