@@ -9,13 +9,16 @@ if (!config ('enable_sleepers', $sessioninfo->eventID))
 	die (_('Module not activated'));
 }
 
+require __DIR__ . "/WakeupManager.php";
+$wakeupManager = new WakeupManager($sessioninfo->eventID, $sleeperstable);
+
 $acl_access = acl_access ('sleepers', "", $sessioninfo->eventID);
 if ($acl_access != 'Admin' and $acl_access != 'Write')
 {
 	die (_('No access'));
 }
 
-$content .= "<h3>"._('Sleepers')."</h3>\n";
+$content .= "<h2>"._('Sleepers')."</h2>\n";
 
 if ($action == 'addsleeper')
 {
@@ -65,6 +68,67 @@ elseif ($action == 'removesleeper')
 
 	header ('Location: ?module=sleepers');
 	die ();
+}
+elseif ($action == 'rmWake')
+{
+	// Remove wake time on sleeper.
+	$userID = $_GET['userID'];
+
+	if (isset($userID) == false || is_numeric($userID) == false) {
+		header ('Location: ?module=sleepers');
+		die ();
+	}
+
+	$wakeupManager->removeWakeup($userID);
+	header ('Location: ?module=sleepers&wakerm=' . $userID);
+	die ();
+}
+elseif ($action == 'setwakegui')
+{
+	// Set wake time on sleeper, GUI.
+	$userID = $_GET['userID'];
+
+	if (isset($userID) == false || is_numeric($userID) == false) {
+		header ('Location: ?module=sleepers');
+		die ();
+	}
+
+	$content .= "<a href='?module=sleepers'>"._("Return to sleepers overview")."</a>\n";
+	ob_start();
+	include __DIR__ . "/setwake_gui.php";
+	$content .= ob_get_clean();
+}
+elseif ($action == 'setWake')
+{
+	// Set wake time on sleeper.
+	$userID = $_GET['userID'];
+	$params = array();
+	$check = array("day", "month", "year", "hours", "minutes", "seconds");
+
+	if ((isset($userID) == false || is_numeric($userID) == false)) {
+		header ('Location: ?module=sleepers');
+		die();
+	}
+
+	foreach ($check as $key=>$param) {
+		if (array_key_exists($param, $_POST) == false || is_numeric($_POST[$param]) == false) {
+			header ('Location: ?module=sleepers&action=setwakegui&userID=' . $userID);
+			die();
+		}
+
+		$params[$param] = intval($_POST[$param]);
+	}
+
+	$timestamp = mktime($params['hours'], $params['minutes'], $params['seconds'], $params['month'], $params['day'], $params['year']);
+
+	if (time() >= $timestamp) {
+		header ('Location: ?module=sleepers&action=setwakegui&userID=' . $userID . '&invalidtime');
+		die();
+	}
+
+	$wakeupManager->setWakeup($userID, $timestamp);
+	header ('Location: ?module=sleepers&wakeset=' . $userID);
+	die();
 }
 elseif ($action == 'searchsleeper')
 {
@@ -205,6 +269,7 @@ elseif ($action == 'searchsleeper')
 else // empty($action) or $action==*
 {
 
+	$content .= "<script type=\"text/javascript\" src=\"templates/Alfa1/js/wakeup.js\"></script>\n";
 	$content .= "<form action='?module=sleepers&action=searchsleeper' method='POST'>\n";
 	$content .= _('Search for user:')."<br />\n";
 	$content .= "<input type='text' name='searchstring' />\n";
@@ -213,9 +278,11 @@ else // empty($action) or $action==*
 	$content .= _("Search users with tickets for this event only:")." <input type='checkbox' CHECKED name='scope' value='tickets' />\n";
 	$content .= "</form>\n";
 
-	$sleeperQ = sprintf ('SELECT s.sleepTimestamp, u.ID, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s AND s.userID=u.ID ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
+	$sleeperQ = sprintf ('SELECT s.wakeupTimestamp, s.sleepTimestamp, u.ID, u.nick, CONCAT(u.firstName, " ",u.lastName) AS name FROM %s AS s, %s AS u WHERE s.eventID=%s AND s.userID=u.ID ORDER BY s.sleepTimestamp', $sql_prefix."_sleepers", $sql_prefix."_users", $sessioninfo->eventID);
 	$sleeperR = db_query ($sleeperQ);
 	$sleeperC = db_num ($sleeperR);
+
+	$sleepersArrayJs = array();
 
 	if ($sleeperC)
 	{
@@ -223,19 +290,56 @@ else // empty($action) or $action==*
 		$content .= "<br /><p>"._('Number of sleeping users:')." ".$sleeperC."</p>\n";
 
 		$content .= "<table $border>\n";
-		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th><th></th></tr>\n", _("Nick"), _("Name"), _("Went to bed"));
+		$content .= sprintf ("<tr><th>%s</th><th>%s</th><th>%s</th><th>%s</th><th></th></tr>\n", _("Nick"), _("Name"), _("Went to bed"), _("Wakeup"));
 
 		while ($sleeper = db_fetch ($sleeperR))
 		{
-		$content .= "<tr>\n";
-		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->nick);
-		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->name);
-		$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
-		$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("View"));
-		$content .= "</tr>\n";
+			$wakeupManager->filterSleeper($sleeper);
+
+			$userID = $sleeper->ID;
+			$username = $sleeper->nick;
+			$name = $sleeper->name;
+			$wakeupTime = $wakeupManager->getWakeupTime($userID);
+			$wakeupText = _("No wakeup") . ", <a href=\"?module=sleepers&amp;action=setwakegui&amp;userID=$userID\">" . mb_strtolower(_("Set wakeup")) . "</a>";
+			if ($wakeupTime > 0) {
+				$wakeupText = _("Loading");
+			}
+
+			$content .= "<tr>\n";
+			$content .= sprintf ("<td %s>%s</td>\n", $border, $username);
+			$content .= sprintf ("<td %s>%s</td>\n", $border, $name);
+			$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
+			$content .= sprintf ("<td id=\"wakeup-" . $sleeper->ID . "\" %s>%s</td>\n", $border, $wakeupText);
+			$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("View"));
+			$content .= "</tr>\n";
+
+			// Add javascript for user if has wakeup.
+			if ($wakeupTime > 0) {
+				$sleepersArrayJs[] = "new Sleeper($userID, '$name', '$username', $wakeupTime)";
+			}
 		}
 
 		$content .= "</table>\n";
+		$content .= "<script type=\"text/javascript\">
+			window.onload = function() {
+				var sleepers = [" . implode(", ", $sleepersArrayJs) . "];
+				wakeupHandler.addLangString(0, '" . _('Day') . "');
+				wakeupHandler.addLangString(1, '" . _('Hour') . "');
+				wakeupHandler.addLangString(2, '" . _('Min') . "');
+				wakeupHandler.addLangString(3, '" . _('Sec') . "');
+				wakeupHandler.addLangString(4, '" . _('Days') . "');
+				wakeupHandler.addLangString(5, '" . _('Hours') . "');
+				wakeupHandler.addLangString(6, '" . _('Mins') . "');
+				wakeupHandler.addLangString(7, '" . _('Secs') . "');
+				wakeupHandler.addLangString(8, '" . _('%NAME% (%USERNAME%) shall be waken now!') . "');
+				wakeupHandler.addLangString(9, '" . _('Waking alert!') . "');
+				wakeupHandler.addLangString(10, '" . _('Wake me!') . "');
+				wakeupHandler.addLangString(11, '" . _('Remove') . "');
+
+				// Everything start here, so add options berfore calling this.
+				wakeupHandler.setSleepers(sleepers);
+			};
+		</script>";
 	}
 	else
 	{

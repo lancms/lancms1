@@ -701,6 +701,30 @@ function user_profile ($userid) {
 }
 
 
+##### userinfo -- give it a userID, and it will return array with users information
+function user_info ($userid) {
+	global $sql_prefix;
+
+	$return = array();
+
+	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userid)."'");
+	$nFindUser = db_num($qFindUser);
+
+	if ($nFindUser > 0) {
+		$rFindUser = db_fetch($qFindUser);
+		$return['ID'] = $rFindUser->ID;
+		$return['nick'] = $rFindUser->nick;
+		$return['fName'] = $rFindUser->firstName;
+		$return['lName'] = $rFindUser->lastName;
+		$return['allName'] = $rFindUser->firstName . " " . $rFindUser->lastName;
+		$return['email'] = $rFindUser->EMail;
+		$return['emailVerified'] = $rFindUser->EMailConfirmed == 1 ? true : false;
+		$return['globalAdmin'] = $rFindUser->globaladmin == 1 ? true : false;
+	}
+	return count($return) > 0 ? $return : false;
+}
+
+
 function send_email ($userID, $subject, $content) {
 	global $sql_prefix;
 	global $sessioninfo;

@@ -496,6 +496,7 @@ TABLE [prefix]_sleepers
 	userID, int(11), , , ,
 	sleepTimestamp, timestamp, , , , DEFAULT CURRENT_TIMESTAMP
 	eventID, int(11), , , ,
+	wakeupTimestamp, bigint(20), , , 0,
 }
 
 TABLE [prefix]_infoscreensSlides
