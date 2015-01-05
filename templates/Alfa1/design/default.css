@@ -468,6 +468,33 @@ td.ticket-error {
 	color: #000000;
 }
 
+/* Tables */
+.better-table {
+	border-spacing: 0;
+	width: 100%;
+}
+
+.better-table tr:first-child td,
+.better-table tr:first-child th {
+	text-align: left;
+	background-color: #2B6FB6;
+	color: #FFFFFF;
+	border-top: 1px solid #cfcfcf;
+}
+
+.better-table tr td,
+.better-table tr th {
+	padding: 5px;
+	font-size: 0.75rem;
+	border-bottom: 1px solid #cfcfcf;
+	border-left: 1px solid #cfcfcf;
+}
+
+.better-table tr td:last-child,
+.better-table tr th:last-child {
+	border-right: 1px solid #cfcfcf;
+}
+
 /* For fullscreen link on seating */
 .fullscreen-link {
 	display: block;
