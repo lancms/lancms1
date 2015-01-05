@@ -110,6 +110,7 @@ elseif($action == "editWaretype" && isset($_GET['wareType'])) {
 	$typeRow = db_fetch($getWareType);
 
 	// Display GUI.
+	$content .= "<p><a href=\"?module=kioskadmin&amp;action=wareTypes\">" . _("Back to waretypes") . "</a></p>";
 	$content .= "<h2>" . _("Edit ware type") . "</h2>";
 	$content .= "<form action='?module=kioskadmin&action=addWareType&save=true&wareType=$wareID' method='post'>
 	<table>
