@@ -3,10 +3,10 @@
 require("table.php");
 if(file_exists('../OverrideConfig.php')) require('../OverrideConfig.php');
 else require('../config.php');
+require('../inc/db_functions.php');
 require('../inc/shared_functions.php');
 
-mysql_connect($sql_host, $sql_user, $sql_pass);
-mysql_select_db($sql_base);
+db_connect();
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
@@ -25,7 +25,7 @@ if(!isset($_GET["demodata"]))
 	$file_tables = array();
 
 	$tblq = db_query("SHOW TABLES");
-	while($table = mysql_fetch_array($tblq))
+	while($table = db_fetch_assoc($tblq))
 	{
 		$db_tables[strtolower($table[0])] = new table($table[0], true);
 	}
@@ -128,6 +128,7 @@ log_add("installer", "install/upgrade", serialize($_SERVER));
 </div>
 <?php
 }
+db_close();
 ?>
 </body>
 </html>

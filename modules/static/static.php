@@ -41,7 +41,7 @@ elseif($action == "listEventPages")
 		WHERE eventID = ".$sessioninfo->eventID." AND type = 'static'
 		ORDER BY header ASC");
 
-	if(mysql_num_rows($qListPages) != 0) {
+	if(db_num($qListPages) != 0) {
 		$content .= '<table>';
 		while($rListPages = db_fetch($qListPages))
 		{

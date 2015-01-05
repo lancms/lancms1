@@ -261,7 +261,8 @@ elseif ($action == "setDesign" and isset ($_REQUEST['eventID']) and isset ($_REQ
 	
 	if (in_array ($design, $designs))
 	{
-		$qUpdateDesign = db_query ("UPDATE ".$sql_prefix."_events SET eventDesign='".db_escape($design)."' WHERE ID = '".db_escape($eventid)."'") or die (mysql_error ());
+		// db_query() handles errors.
+		$qUpdateDesign = db_query ("UPDATE ".$sql_prefix."_events SET eventDesign='".db_escape($design)."' WHERE ID = '".db_escape($eventid)."'");
 	}
 
 	header ("Location: ?module=globaladmin");

@@ -254,7 +254,7 @@ elseif ($action == 'saveSlide' and ($acl == 'Admin' or $acl == 'Write'))
 		// this is new slide...
 		$q = sprintf ('INSERT INTO %s (name, content, eventID) VALUES ("%s", "%s", %s)', $slidetable, db_escape($name), db_escape($content), $sessioninfo->eventID);
 		db_query ($q);
-		$log['ID'] = mysql_insert_id ();
+		$log['ID'] = db_insert_id();
 		$log['name'] = $name;
 		$log['content'] = $content;
 		$log['eventID'] = $sessioninfo->eventID;
@@ -336,7 +336,7 @@ elseif ($action == 'queueAdd' and ($acl == 'Admin' or $acl == 'Write'))
 		$q = sprintf ('INSERT INTO %s (slideID, eventID,  screenID, wait) VALUES (%s, %s, %s, %s)', $queuetable, db_escape($slideID), $sessioninfo->eventID, db_escape ($screenID), db_escape($wait));
 		db_query ($q);
 
-		$log['ID'] = mysql_insert_id();
+		$log['ID'] = db_insert_id();
 		$log['eventID'] = $sessioninfo->eventID;
 		$log['screenID'] = $screenID;
 		$log['wait'] = $wait;

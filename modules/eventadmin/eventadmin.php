@@ -79,7 +79,7 @@ elseif($action == "groupManagement")
 	// If error is set; display error.
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br /><br />\n";
 
-	if(mysql_num_rows($qListGroups) != 0) {
+	if(db_num($qListGroups) != 0) {
 		$content .= '<table>';
 		while($rListGroups = db_fetch($qListGroups))
 		{

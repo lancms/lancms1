@@ -43,7 +43,7 @@ elseif($action == "adminFAQs")
 	$qFAQs = db_query("SELECT * FROM ".$sql_prefix."_FAQ
 		WHERE eventID = '".db_escape($eventID)."'");
 	
-	if(mysql_num_rows($qFAQs) != 0) {
+	if(db_num($qFAQs) != 0) {
 		$content .= '<table>';
 		while($rFAQs = db_fetch($qFAQs))
 		{

@@ -84,7 +84,7 @@ if(!isset($action) || $action == "updateSeat") {
 	
 	$content .= "<form method=\"post\" action=\"?module=seatadmin&amp;action=updateSeat\">\n";
 	
-	if(mysql_num_rows($qGetSeatY) != 0) {
+	if(db_num($qGetSeatY) != 0) {
 		$content .= "<table style=\"border: 1px solid;\">\n";
 
 		while($rGetSeatY = db_fetch($qGetSeatY)) {

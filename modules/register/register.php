@@ -137,7 +137,7 @@ if($action == "register")
 		");
 
 
-		$newid = mysql_insert_id ();
+		$newid = db_insert_id();
 
 		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$newid&verifycode=$genkey";
 		$email_subject = lang("Verify your new account");

@@ -13,7 +13,7 @@ if(empty($action)) {
 		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID
 		WHERE acl.accessmodule = 'crewlist' AND acl.access != 'No' AND acl.eventID = '$sessioninfo->eventID'");
 
-	$totalcrewmembers = mysql_num_rows ($qGetCrewMembers);
+	$totalcrewmembers = db_num($qGetCrewMembers);
 
 	$content .= "<h2>"._("Crewlist")."</h2>\n";
 

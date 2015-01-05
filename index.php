@@ -184,7 +184,7 @@ if($sessioninfo->userID != 1)
 		".$sql_prefix."_groups.ID
 		WHERE ".$sql_prefix."_group_members.userID = $sessioninfo->userID");
 
-	if(mysql_num_rows($qListGroups) != 0) {
+	if(db_num($qListGroups) != 0) {
 		while($rListGroups = db_fetch($qListGroups))
 		{
 			$design_grouplist .= "<li><a href=\"?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->groupID\">";

@@ -39,7 +39,7 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
 		WHERE eventID = '".db_escape($eventID)."' ORDER BY questionOrder ASC, ID ASC");
 
-	if(mysql_num_rows($qListQuestions) != 0) {
+	if(db_num($qListQuestions) != 0) {
 		$content .= '<table>';
 
 		while($rListQuestions = db_fetch($qListQuestions))
@@ -228,7 +228,7 @@ elseif($action == "listApplications") {
 	$qListApplications = db_query("SELECT DISTINCT userID FROM ".$sql_prefix."_wannabeResponse res
 		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = $eventID");
 	
-	if(mysql_num_rows($qListApplications) != 0) {
+	if(db_num($qListApplications) != 0) {
 	
 		while($rListApplications = db_fetch($qListApplications)) {
 			$content .= "<tr><td";
@@ -435,7 +435,7 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 elseif($action == "crews" || $action == "editcrew") {
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 	
-	if(mysql_num_rows($qListCrews) != 0) {
+	if(db_num($qListCrews) != 0) {
 		$content .= "<table>";
 		while($rListCrews = db_fetch($qListCrews)) {
 			$content .= "<tr>";

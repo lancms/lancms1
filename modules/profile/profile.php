@@ -28,7 +28,7 @@ if ($useradminread != "No")
 
 $qFindGroups = db_query("SELECT g.groupname,e.eventname FROM (".$sql_prefix."_groups g JOIN ".$sql_prefix."_group_members gm ON gm.groupID=g.ID) JOIN ".$sql_prefix."_events e ON g.eventID=e.ID WHERE gm.userID = '".$user->ID."'");
 
-if (mysql_num_rows($qFindGroups))
+if (db_num($qFindGroups))
 {
 	$content .= "<tr><th>";
 	$content .= _("Groupmemberships");

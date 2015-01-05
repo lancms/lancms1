@@ -54,7 +54,7 @@ elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
 	}
 	$qCellphone = db_query ($SQL);
 	
-	if (!mysql_num_rows ($qCellphone))
+	if (!db_num($qCellphone))
 	{
 		# FIXME: die ()
 		die ("No users in group..?");

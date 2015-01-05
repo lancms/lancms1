@@ -2,38 +2,32 @@
 
 if(file_exists('../OverrideConfig.php')) require('../OverrideConfig.php');
 else require('../config.php');
+require('../inc/db_functions.php');
 require('../inc/shared_functions.php');
 
 
 $eventID = 9; // EventID to import the DB to
 
+$from = db_connect(array('db' => $from));
+$todb = db_connect(array('db' => $todb));
 
 
-$from = mysql_connect($sql_host, $sql_user, $sql_pass) or die(mysql_error());
-mysql_select_db($sql_oldbase, $from) or die(mysql_error());
+$qFromUsers = db_query("SELECT * FROM $sql_oldbase.users WHERE ID != 1 AND memberVerified = 1", $from);
 
-$todb = mysql_connect($sql_host, $sql_user, $sql_pass) or die(mysql_error());
-mysql_select_db($sql_base, $todb) or die(mysql_error());
-
-
-
-
-$qFromUsers = mysql_query("SELECT * FROM $sql_oldbase.users WHERE ID != 1 AND memberVerified = 1", $from);
-
-while($rFromUsers = mysql_fetch_object($qFromUsers)) {
+while($rFromUsers = db_fetch($qFromUsers)) {
 
 	/* ******************************************************************************* */
 	/* *                 Convert to users-table                                        */
 	/* ******************************************************************************* */
 
-	$qFindToUser = mysql_query("SELECT ID FROM $sql_base.".$sql_prefix."_users WHERE firstName LIKE '".$rFromUsers->firstName."'
-		AND lastName LIKE '".$rFromUsers->lastName."' AND nick LIKE '".$rFromUsers->nick."'", $todb) or die(mysql_error());
+	$qFindToUser = db_query("SELECT ID FROM $sql_base.".$sql_prefix."_users WHERE firstName LIKE '".$rFromUsers->firstName."'
+		AND lastName LIKE '".$rFromUsers->lastName."' AND nick LIKE '".$rFromUsers->nick."'", $todb);
 
-	if(mysql_num_rows($qFindToUser) == 0) {
+	if(db_num($qFindToUser) == 0) {
 		echo "Didn't find $rFromUsers->nick, inserting\n";
 		if($rFromUsers->gender == 1) $gender = 'Female';
 		else $gender = 'Male';
-		mysql_query ("INSERT INTO $sql_base.".$sql_prefix."_users SET
+		db_query ("INSERT INTO $sql_base.".$sql_prefix."_users SET
 			nick = '".$rFromUsers->nick."',
 			firstName = '".$rFromUsers->firstName."',
 			lastName = '".$rFromUsers->lastName."',
@@ -48,13 +42,13 @@ while($rFromUsers = mysql_fetch_object($qFromUsers)) {
 			postNumber = '".$rFromUsers->postNr."',
 			postPlace = '".$rFromUsers->postPlace."'
 
-		", $todb) or die(mysql_error());
-		$qFindToUser = mysql_query("SELECT ID FROM $sql_base.".$sql_prefix."_users WHERE firstName LIKE '".$rFromUsers->firstName."'
+		", $todb);
+		$qFindToUser = db_query("SELECT ID FROM $sql_base.".$sql_prefix."_users WHERE firstName LIKE '".$rFromUsers->firstName."'
 			AND lastName LIKE '".$rFromUsers->lastName."' AND nick LIKE '".$rFromUsers->nick."'", $todb);
 	} // End if mysql_num_rows(qFindToUser);
 	else echo "Found ".$rFromUsers->nick."\n";
 
-	$rFindUser = mysql_fetch_object($qFindToUser);
+	$rFindUser = db_fetch($qFindToUser);
 	$oldUID = $rFromUsers->ID;
 	$newUID = $rFindUser->ID;
 	$user_converttable[$oldUID] = $newUID;
@@ -143,4 +137,7 @@ while($rFromWannabeQ = mysql_fetch_object($qFromWannabeQ)) {
 
 } // End wannabeQuestions
 */
-$qFindClans = mysql_query("SELECT * FROM $sql_oldbase.Clan", $from);
+$qFindClans = db_query("SELECT * FROM $sql_oldbase.Clan", $from);
+
+db_close($from);
+db_close($todb);

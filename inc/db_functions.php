@@ -12,42 +12,64 @@ $mysqli = null;
 /**
  * Connects to database using config, supported types: mysql and mysqli (recommended)
  *
- * @return bool
+ * @param $loginInfo array Contains login info instead of params.
+ * @return mixed returns mysqli class when using mysqli and link resource for mysql.
  */
-function db_connect() {
+function db_connect($loginInfo=null) {
     global $sql_type, $sql_host, $sql_user, $sql_pass, $sql_base, $mysqli;
+
+    // Use $loginInfo?
+    if (is_array($loginInfo)) {
+        if (isset($loginInfo['host']))
+            $sql_host = $loginInfo['host'];
+
+        if (isset($loginInfo['user']))
+            $sql_user = $loginInfo['user'];
+
+        if (isset($loginInfo['pass']))
+            $sql_user = $loginInfo['pass'];
+
+        if (isset($loginInfo['db']))
+            $sql_user = $loginInfo['db'];
+    }
+
     switch ($sql_type)
     {
         case "mysql":
-            mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
+            $res = mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
             ## This might jump to installer......
-            mysql_select_db($sql_base) or die("Could not select MySQL DB. Error is: ".mysql_error());
-            break;
+            mysql_select_db($sql_base, $res) or die("Could not select MySQL DB. Error is: ".mysql_error());
+            return $res;
         case "mysqli":
             $mysqli = new mysqli($sql_host, $sql_user, $sql_pass, $sql_base);
             if ($mysqli->connect_error) {
                 die('Could not connect to MySQL-host. Error is: ' . $mysqli->connect_error);
             }
-			break;
+			return $mysqli;
         default:
             die("Something seriously wrong with variable sql_type in function db_connect. The reported sql_type is '$sql_type'");
 
     } // end switch ($sql_type)
-    return true;
 }
 
 /**
  * Disconnects the database connection.
+ *
+ * @param $res
  */
-function db_close() {
+function db_close($res=null) {
     global $sql_type,$mysqli;
+
     switch ($sql_type) {
         case "mysql":
-            mysql_close();
+            mysql_close(($res == null ? null : $res));
             break;
         case "mysqli":
-            if ($mysqli != null)
-                $mysqli->close();
+            if ($res == null)
+                $res = $mysqli;
+
+            if ($res != null)
+                $res->close();
             break;
         default:
             die("Something seriously wrong with variable sql_type in function db_close. The reported sql_type is '$sql_type'");
@@ -58,21 +80,25 @@ function db_close() {
  * Send a query to the database.
  *
  * @param $query
+ * @param $res
  * @return bool|mysqli_result|resource
  */
-function db_query($query)
+function db_query($query, $res=null)
 {
     /* Function to do queries to/from DBs */
     global $sql_type,$mysqli;
     switch ($sql_type)
     {
         case "mysql":
-            $q = mysql_query($query) or die("MYSQL Error with query (".$query.") because of: ".mysql_error());
+            $q = mysql_query($query, $res) or die("MYSQL Error with query (".$query.") because of: ".mysql_error());
             break;
         case "mysqli":
-            $q = $mysqli->query($query);
+            if ($res == null)
+                $res = $mysqli;
+
+            $q = $res->query($query);
             if ($q == false) {
-                die("MYSQLi Error with query (".$query.") because of: ".$mysqli->error);
+                die("MYSQLi Error with query (".$query.") because of: ".$res->error);
             }
 			break;
         default:
@@ -101,6 +127,7 @@ function db_fetch($query) {
             if (!($query instanceof mysqli_result)) {
                 return array();
             }
+
             $return = $query->fetch_object();
             break;
         default:
@@ -197,19 +224,23 @@ function db_field_name($query, $column_num) {
  * Escapes special characters in a string for use in an SQL statement, taking into account the current charset of the connection
  *
  * @param $var
+ * @param $res
  * @return string
  */
-function db_escape($var)
+function db_escape($var, $res=null)
 {
     global $sql_type,$mysqli;
     /* Function to escape strings before they are inserted to the DB. Should avoid some haxxoring, so should probably use it... */
     switch ($sql_type)
     {
         case "mysql":
-            $return = mysql_real_escape_string($var);
+            $return = mysql_real_escape_string($var, $res);
             break;
         case "mysqli":
-            $return = $mysqli->real_escape_string($var);
+            if ($res == null)
+                $res = $mysqli;
+
+            $return = $res->real_escape_string($var);
             break;
         default:
             die("Something seriously wrong with variable sql_type in function " . __FUNCTION__);
@@ -249,17 +280,21 @@ function db_num ($q)
 /**
  * Returns the auto generated id used in the last query
  *
+ * @param $res
  * @return int|mixed
  */
-function db_insert_id() {
+function db_insert_id($res=null) {
     global $sql_type,$mysqli;
     switch ($sql_type)
     {
         case "mysql":
-            $return = mysql_insert_id();
+            $return = mysql_insert_id($res);
             break;
         case "mysqli":
-            $return = $mysqli->insert_id;
+            if ($res == null)
+                $res = $mysqli;
+
+            $return = $res->insert_id;
             break;
         default:
             die("Something seriously wrong with variable sql_type in function " . __FUNCTION__);

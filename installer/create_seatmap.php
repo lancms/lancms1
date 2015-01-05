@@ -2,12 +2,12 @@
 
 if(file_exists('../OverrideConfig.php')) require('../OverrideConfig.php');
 else require('../config.php');
+require('../inc/db_functions.php');
 require('../inc/shared_functions.php');
 
 $eventID = 2; // EventID for the event to insert seatmap.ini to
 
-mysql_connect($sql_host, $sql_user, $sql_pass);
-mysql_select_db($sql_base);
+db_connect();
 
 // Delete current seatreg-table
 db_query("DELETE FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID'");
