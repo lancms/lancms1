@@ -1,5 +1,7 @@
 <?php
 
+// TODO: Allow toggling wakeup-service (js) (default: false)
+
 $usertable = $sql_prefix."_users";
 $ticketstable = $sql_prefix."_tickets";
 $sleeperstable = $sql_prefix."_sleepers";
