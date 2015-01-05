@@ -83,7 +83,12 @@ function db_query($query)
     return $q;
 } // End function db_query()
 
-######################################################
+/**
+ * Returns the current row of a result set as an object
+ *
+ * @param $query
+ * @return array|object|stdClass
+ */
 function db_fetch($query) {
     global $sql_type;
     /* Function to fetch results from db_query */
