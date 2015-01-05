@@ -256,3 +256,5 @@ if(!$hide_smarty) {
 	}
 	print $smarty_fetch;
 }
+
+db_close();

@@ -1,20 +1,11 @@
 <?php
 #require 'inc/php-gettext/gettext.inc';
 require 'config.php';
+require 'inc/db_functions.php';
 
 
 # Start DB-connection
-
-switch ($sql_type)
-{
-	case "mysql":
-		mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
-		## This might jump to installer......
-		mysql_select_db($sql_base) or die("Could not select MySQL DB. Error is: ".mysql_error());
-		break;
-	default:
-		die("Holy shit, someone forgot to set sql_type in config.php to something valid!");
-} // End switch $sql_type
+db_connect();
 
 
 
