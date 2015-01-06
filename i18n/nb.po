@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-12-25 21:26+0100\n"
-"PO-Revision-Date: 2014-12-25 20:32+0000\n"
+"POT-Creation-Date: 2015-01-05 18:38+0100\n"
+"PO-Revision-Date: 2015-01-05 18:48+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-26 06:04+0000\n"
+"X-Launchpad-Export-Date: 2015-01-06 06:44+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../index.php:32
@@ -66,7 +66,7 @@ msgstr "Ankomst"
 msgid "Reseller"
 msgstr "Forhandler"
 
-#: ../index.php:81 ../modules/logs/logs.php:172
+#: ../index.php:81 ../modules/logs/logs.php:174
 msgid "Kiosk"
 msgstr "Kiosk"
 
@@ -75,7 +75,7 @@ msgid "Forum"
 msgstr "Forum"
 
 #: ../index.php:87 ../modules/logs/logs.php:155
-#: ../modules/sleepers/sleepers.php:18
+#: ../modules/sleepers/sleepers.php:23
 msgid "Sleepers"
 msgstr "Sovende"
 
@@ -138,7 +138,7 @@ msgid "Upload failed, file exists"
 msgstr "Opplastning feilet, fil eksisterer allerede"
 
 #: ../modules/arrival/arrival.php:31 ../modules/arrival/arrival.php:269
-#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:211
+#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:281
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
 msgstr "Søk"
@@ -153,16 +153,17 @@ msgstr "Søk brukere med billetter"
 
 #: ../modules/arrival/arrival.php:89 ../modules/crewlist/crewlist.php:24
 #: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
-#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
 msgid "Nick"
 msgstr "Brukernavn"
 
 #: ../modules/arrival/arrival.php:89 ../modules/arrival/arrival.php:162
 #: ../modules/arrival/arrival.php:170 ../modules/crewlist/crewlist.php:22
-#: ../modules/infoscreens/infoscreens.php:61
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/kioskadmin/kioskadmin.php:63
 #: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
-#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
 #: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:267
 msgid "Name"
 msgstr "Navn"
@@ -171,7 +172,7 @@ msgstr "Navn"
 msgid "Add new ticket"
 msgstr "Legg til billett"
 
-#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:200
+#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:269
 msgid "Found no matching users"
 msgstr "Fant ingen brukere som lignet søket"
 
@@ -190,7 +191,7 @@ msgid "Owner"
 msgstr "Eier"
 
 #: ../modules/arrival/arrival.php:169 ../modules/logs/logs.php:19
-#: ../modules/logs/logs.php:216 ../modules/sessions/sessions.php:15
+#: ../modules/logs/logs.php:218 ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
@@ -474,7 +475,7 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/eventadmin/eventadmin.php:203
 #: ../modules/eventadmin/eventadmin.php:232 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
-#: ../modules/infoscreens/infoscreens.php:196
+#: ../modules/infoscreens/infoscreens.php:237
 #: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
@@ -639,7 +640,7 @@ msgstr "Legg til tråd"
 msgid "Nick:"
 msgstr "Brukernavn:"
 
-#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:194
+#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:235
 msgid "Name:"
 msgstr "Navn:"
 
@@ -801,79 +802,105 @@ msgstr "Husk at alle lysbildene må regnes som offentlig tilgjengelige!"
 msgid "Screens"
 msgstr "Skjermer"
 
-#: ../modules/infoscreens/infoscreens.php:27
-msgid "Link to screen"
-msgstr "Lenke til skjerm"
-
-#: ../modules/infoscreens/infoscreens.php:36
-msgid "Screen name"
-msgstr "Skjermnavn"
-
-#: ../modules/infoscreens/infoscreens.php:37 ../modules/logs/logs.php:161
-msgid "Add screen"
-msgstr "Legg til skjerm"
-
-#: ../modules/infoscreens/infoscreens.php:46
-msgid "Slides"
-msgstr "Lysbilder"
-
-#: ../modules/infoscreens/infoscreens.php:50
-msgid "Create new slide"
-msgstr "Opprett nytt lysbilde"
-
-#: ../modules/infoscreens/infoscreens.php:61
-#: ../modules/infoscreens/infoscreens.php:65
-msgid "Edit"
-msgstr "Rediger"
-
-#: ../modules/infoscreens/infoscreens.php:61
-#: ../modules/infoscreens/infoscreens.php:66
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:79
 msgid "Preview"
 msgstr "Forhåndsvis"
 
-#: ../modules/infoscreens/infoscreens.php:77
-msgid "There are no slides for this event"
-msgstr "Det finnes ingen lysbilder for dette arrangementet"
-
-#: ../modules/infoscreens/infoscreens.php:85
-msgid "Queues"
-msgstr "Køer"
-
-#: ../modules/infoscreens/infoscreens.php:94
-msgid "Screen:"
-msgstr "Skjerm:"
-
-#: ../modules/infoscreens/infoscreens.php:102
-msgid "Slide"
-msgstr "Lysbilde"
-
-#: ../modules/infoscreens/infoscreens.php:102
-msgid "Wait"
-msgstr "Ventetid"
-
-#: ../modules/infoscreens/infoscreens.php:102
-#: ../modules/infoscreens/infoscreens.php:106
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:37
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:80
+#: ../modules/infoscreens/infoscreens.php:115
+#: ../modules/infoscreens/infoscreens.php:119
+#: ../modules/sleepers/sleepers.php:342
 msgid "Remove"
 msgstr "Fjern"
 
-#: ../modules/infoscreens/infoscreens.php:131 ../modules/kiosk/kiosk.php:21
+#: ../modules/infoscreens/infoscreens.php:30
+msgid "Link to screen"
+msgstr "Lenke til skjerm"
+
+#: ../modules/infoscreens/infoscreens.php:44
+msgid "No screens created yet, create one in the form under."
+msgstr "Ingen skjermer laget enda, lag en under."
+
+#: ../modules/infoscreens/infoscreens.php:49
+msgid "Screen name"
+msgstr "Skjermnavn"
+
+#: ../modules/infoscreens/infoscreens.php:50 ../modules/logs/logs.php:161
+msgid "Add screen"
+msgstr "Legg til skjerm"
+
+#: ../modules/infoscreens/infoscreens.php:59
+msgid "Slides"
+msgstr "Lysbilder"
+
+#: ../modules/infoscreens/infoscreens.php:63
+msgid "Create new slide"
+msgstr "Opprett nytt lysbilde"
+
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:78
+msgid "Edit"
+msgstr "Rediger"
+
+#: ../modules/infoscreens/infoscreens.php:90
+msgid "There are no slides for this event"
+msgstr "Det finnes ingen lysbilder for dette arrangementet"
+
+#: ../modules/infoscreens/infoscreens.php:98
+msgid "Queues"
+msgstr "Køer"
+
+#: ../modules/infoscreens/infoscreens.php:107
+msgid "Screen:"
+msgstr "Skjerm:"
+
+#: ../modules/infoscreens/infoscreens.php:115
+msgid "Slide"
+msgstr "Lysbilde"
+
+#: ../modules/infoscreens/infoscreens.php:115
+msgid "Wait"
+msgstr "Ventetid"
+
+#: ../modules/infoscreens/infoscreens.php:144 ../modules/kiosk/kiosk.php:21
 msgid "Add"
 msgstr "Legg til"
 
-#: ../modules/infoscreens/infoscreens.php:166
+#: ../modules/infoscreens/infoscreens.php:159
+msgid ""
+"Screen ID is missing or invalid, it must be numeric and over zero. Go back "
+"and try again."
+msgstr ""
+"SkjermID mangler eller er ugyldig. Det må være numerisk og over null. Gå "
+"tilbake og prøv igjen."
+
+#: ../modules/infoscreens/infoscreens.php:207
 msgid "Create a new slide"
 msgstr "Lag nytt lysbilde"
 
-#: ../modules/infoscreens/infoscreens.php:170 ../modules/logs/logs.php:165
+#: ../modules/infoscreens/infoscreens.php:211 ../modules/logs/logs.php:165
 msgid "Edit slide"
 msgstr "Rediger lysbilde"
 
-#: ../modules/infoscreens/infoscreens.php:209
+#: ../modules/infoscreens/infoscreens.php:250
 msgid "You forgot either name or some content.. Go back and try again."
 msgstr "Du har glemt enten navn eller innehold. Gå tilbake og prøv på nytt."
 
-#: ../modules/infoscreens/infoscreens.php:263
-#: ../modules/infoscreens/infoscreens.php:287
+#: ../modules/infoscreens/infoscreens.php:297
+msgid ""
+"Slide ID is missing or invalid, it must be numeric and over zero. Go back "
+"and try again."
+msgstr ""
+"Lysbilde ID mangler eller er ugyldig, den må være tall og over null. Gå "
+"tilbake og prøv igjen."
+
+#: ../modules/infoscreens/infoscreens.php:332
+#: ../modules/infoscreens/infoscreens.php:356
 msgid "You did something wrong. Go back and try again."
 msgstr "Du gjorde nok noe feil. Gå tilbake og prøv på nytt."
 
@@ -1106,11 +1133,11 @@ msgstr "Siste 30 logglinjer"
 msgid "Log"
 msgstr "Logg"
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:217
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:219
 msgid "Timestamp"
 msgstr "Tidspunkt"
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:220
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:222
 msgid "Logmodule"
 msgstr "Loggmodul"
 
@@ -1118,15 +1145,15 @@ msgstr "Loggmodul"
 msgid "Logtype"
 msgstr "Loggtype"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:220
 msgid "IP"
 msgstr "IP"
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:220
 msgid "Host"
 msgstr "Vertsnavn"
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:219
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:221
 msgid "URL"
 msgstr "URL"
 
@@ -1242,7 +1269,7 @@ msgstr "E-post"
 msgid "Mail sent (mass)"
 msgstr "E-post sendt (massesendt)"
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:442
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:441
 msgid "News"
 msgstr "Nyheter"
 
@@ -1354,11 +1381,11 @@ msgstr "Wannabeadministrasjon"
 msgid "Change comment"
 msgstr "Endre kommentar"
 
-#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:187
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:256
 msgid "Add sleeper"
 msgstr "Legg til sovende"
 
-#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:181
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:250
 msgid "Remove sleeper"
 msgstr "Fjern sovende"
 
@@ -1374,43 +1401,51 @@ msgstr "Fjern fra kø"
 msgid "New slide"
 msgstr "Ny side"
 
-#: ../modules/logs/logs.php:168
+#: ../modules/logs/logs.php:166
+msgid "Remove slide"
+msgstr "Fjern lysbilde"
+
+#: ../modules/logs/logs.php:167
+msgid "Remove screen"
+msgstr "Fjern skjerm"
+
+#: ../modules/logs/logs.php:170
 msgid "SMS"
 msgstr "SMS"
 
-#: ../modules/logs/logs.php:169
+#: ../modules/logs/logs.php:171
 msgid "SMS sent"
 msgstr "SMS sendt"
 
-#: ../modules/logs/logs.php:173
+#: ../modules/logs/logs.php:175
 msgid "Marked credit as paid"
 msgstr "Markert kreditt som betalt"
 
-#: ../modules/logs/logs.php:174
+#: ../modules/logs/logs.php:176
 msgid "New item added"
 msgstr "Ny vare lagt til"
 
-#: ../modules/logs/logs.php:175
+#: ../modules/logs/logs.php:177
 msgid "New item category added"
 msgstr "Ny varekategori lagt til"
 
-#: ../modules/logs/logs.php:176
+#: ../modules/logs/logs.php:178
 msgid "Item edited"
 msgstr "Vare redigert"
 
-#: ../modules/logs/logs.php:179
+#: ../modules/logs/logs.php:181
 msgid "Unknown module"
 msgstr "Ukjent modul"
 
-#: ../modules/logs/logs.php:180
+#: ../modules/logs/logs.php:182
 msgid "Unknown function"
 msgstr "Ukjent funksjon"
 
-#: ../modules/logs/logs.php:213
+#: ../modules/logs/logs.php:215
 msgid "Details for logentry "
 msgstr "Detaljer for logglinje "
 
-#: ../modules/logs/logs.php:221
+#: ../modules/logs/logs.php:223
 msgid "Logfunction"
 msgstr "LogFunksjon"
 
@@ -1622,42 +1657,42 @@ msgstr "Nullstill kart"
 msgid "Confirm map reset"
 msgstr "Bekreft nullstilling av kart"
 
-#: ../modules/seatmap/seatmap_table.php:49
-#: ../modules/seatmap/seatmap_table.php:62
-#: ../modules/seatmap/seatmap_table.php:74
-#: ../modules/seatmap/seatmap_table.php:102
+#: ../modules/seatmap/seatmap_table.php:71
+#: ../modules/seatmap/seatmap_table.php:84
+#: ../modules/seatmap/seatmap_table.php:96
+#: ../modules/seatmap/seatmap_table.php:124
 msgid "Free"
 msgstr "Ledig"
 
-#: ../modules/seatmap/seatmap_table.php:95
+#: ../modules/seatmap/seatmap_table.php:117
 msgid "N/A"
 msgstr "N/A"
 
-#: ../modules/seatmap/seatmap_table.php:131
+#: ../modules/seatmap/seatmap_table.php:153
 msgid "This seat is available"
 msgstr "Plassen er ledig"
 
-#: ../modules/seatmap/seatmap_table.php:133
-#: ../modules/seatmap/seatmap_table.php:139
-#: ../modules/seatmap/seatmap_table.php:146
-#: ../modules/seatmap/seatmap_table.php:157
+#: ../modules/seatmap/seatmap_table.php:155
+#: ../modules/seatmap/seatmap_table.php:161
+#: ../modules/seatmap/seatmap_table.php:168
+#: ../modules/seatmap/seatmap_table.php:179
 msgid "Take seat"
 msgstr "Reserver plass"
 
-#: ../modules/seatmap/seatmap_table.php:137
+#: ../modules/seatmap/seatmap_table.php:159
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr ""
 "Dette setet er passordbeskyttet. Hvis du kjenner til passordet kan du ta den."
 
-#: ../modules/seatmap/seatmap_table.php:144
+#: ../modules/seatmap/seatmap_table.php:166
 msgid ""
 "This seat is protected by group. You are a member of a group with access."
 msgstr ""
 "Denne plassen er kun tilgjengelig for en gruppe. Du er medlem av en gruppe "
 "med tilgang."
 
-#: ../modules/seatmap/seatmap_table.php:150
+#: ../modules/seatmap/seatmap_table.php:172
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
@@ -1665,7 +1700,7 @@ msgstr ""
 "Denne plassen er reservert til en gruppe. Du er ikke medlem av en gruppe med "
 "tilgang. Synd!"
 
-#: ../modules/seatmap/seatmap_table.php:155
+#: ../modules/seatmap/seatmap_table.php:177
 msgid ""
 "This seat is protected by a special right. You are a member of a group with "
 "access"
@@ -1673,7 +1708,7 @@ msgstr ""
 "Denne plassen er beskyttet av en rettighet. Du er medlem av en gruppe med "
 "tilgang."
 
-#: ../modules/seatmap/seatmap_table.php:160
+#: ../modules/seatmap/seatmap_table.php:182
 msgid ""
 "This seat is protected by a special right. You are not member of a group "
 "with access. Too bad!"
@@ -1697,73 +1732,175 @@ msgstr "Nettleser"
 msgid "Last visit"
 msgstr "Siste besøk"
 
-#: ../modules/sleepers/sleepers.php:9
+#: ../modules/sleepers/setwake_gui.php:9
+msgid "User not found"
+msgstr "Brukeren ble ikke funnet"
+
+#: ../modules/sleepers/setwake_gui.php:14
+msgid "Set waking on user"
+msgstr "Sett vekking på bruker"
+
+#: ../modules/sleepers/setwake_gui.php:21
+#: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:331
+msgid "Day"
+msgstr "Dag"
+
+#: ../modules/sleepers/setwake_gui.php:22
+#: ../modules/sleepers/setwake_gui.php:33
+msgid "Month"
+msgstr "Måned"
+
+#: ../modules/sleepers/setwake_gui.php:23
+#: ../modules/sleepers/setwake_gui.php:39
+msgid "Year"
+msgstr "År"
+
+#: ../modules/sleepers/setwake_gui.php:26
+msgid "Date"
+msgstr "Dato"
+
+#: ../modules/sleepers/setwake_gui.php:51
+#: ../modules/sleepers/setwake_gui.php:57 ../modules/sleepers/sleepers.php:336
+msgid "Hours"
+msgstr "Timer"
+
+#: ../modules/sleepers/setwake_gui.php:52
+#: ../modules/sleepers/setwake_gui.php:63
+msgid "Minutes"
+msgstr "Minutter"
+
+#: ../modules/sleepers/setwake_gui.php:53
+#: ../modules/sleepers/setwake_gui.php:69
+msgid "Seconds"
+msgstr "Sekunder"
+
+#: ../modules/sleepers/setwake_gui.php:56
+msgid "Time"
+msgstr "Klokkeslett"
+
+#: ../modules/sleepers/setwake_gui.php:78
+msgid "Submit"
+msgstr "Bekreft"
+
+#: ../modules/sleepers/sleepers.php:11
 msgid "Module not activated"
 msgstr "Modulen ikke aktivert"
 
-#: ../modules/sleepers/sleepers.php:15
+#: ../modules/sleepers/sleepers.php:20
 msgid "No access"
 msgstr "Ingen tilgang"
 
-#: ../modules/sleepers/sleepers.php:75
+#: ../modules/sleepers/sleepers.php:101 ../modules/sleepers/sleepers.php:144
 msgid "Return to sleepers overview"
 msgstr "Tilbake til oversikten over sovende"
 
-#: ../modules/sleepers/sleepers.php:79
+#: ../modules/sleepers/sleepers.php:148
 msgid "You must enter a search string"
 msgstr "Du må skrive inn en søkestreng"
 
-#: ../modules/sleepers/sleepers.php:90
+#: ../modules/sleepers/sleepers.php:159
 msgid "Searching only users with tickets for this event"
 msgstr "Søker kun på brukere med billetter til dette arrangementet"
 
-#: ../modules/sleepers/sleepers.php:104
+#: ../modules/sleepers/sleepers.php:173
 msgid "Searching all users"
 msgstr "Søker i alle brukere"
 
-#: ../modules/sleepers/sleepers.php:120
+#: ../modules/sleepers/sleepers.php:189
 msgid "Tickets"
 msgstr "Billetter"
 
-#: ../modules/sleepers/sleepers.php:120
+#: ../modules/sleepers/sleepers.php:189
 #: ../modules/ticketadmin/ticketadmin.php:195
 #: ../modules/ticketorder/ticketorder.php:26
 msgid "Status"
 msgstr "Status"
 
-#: ../modules/sleepers/sleepers.php:131
+#: ../modules/sleepers/sleepers.php:200
 msgid "Sleeping since"
 msgstr "Sovet siden"
 
-#: ../modules/sleepers/sleepers.php:137
+#: ../modules/sleepers/sleepers.php:206
 msgid "Not sleeping"
 msgstr "Sover ikke"
 
-#: ../modules/sleepers/sleepers.php:166
+#: ../modules/sleepers/sleepers.php:235
 msgid "No tickets for this event"
 msgstr "Ingen billetter til dette arrangementet"
 
-#: ../modules/sleepers/sleepers.php:209
+#: ../modules/sleepers/sleepers.php:279
 msgid "Search for user:"
 msgstr "Søk etter bruker:"
 
-#: ../modules/sleepers/sleepers.php:213
+#: ../modules/sleepers/sleepers.php:283
 msgid "Search users with tickets for this event only:"
 msgstr "Søk bare etter brukere med billetter til dette arrangementet:"
 
-#: ../modules/sleepers/sleepers.php:223
+#: ../modules/sleepers/sleepers.php:295
 msgid "Number of sleeping users:"
 msgstr "Antall sovende brukere:"
 
-#: ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:298
 msgid "Went to bed"
 msgstr "Gikk å la seg"
 
-#: ../modules/sleepers/sleepers.php:234
+#: ../modules/sleepers/sleepers.php:298
+msgid "Wakeup"
+msgstr "Vekking"
+
+#: ../modules/sleepers/sleepers.php:308
+msgid "No wakeup"
+msgstr "Ingen vekking"
+
+#: ../modules/sleepers/sleepers.php:308
+msgid "Set wakeup"
+msgstr "Sett vekking"
+
+#: ../modules/sleepers/sleepers.php:310
+msgid "Loading"
+msgstr "Laster"
+
+#: ../modules/sleepers/sleepers.php:318
 msgid "View"
 msgstr "Vis"
 
-#: ../modules/sleepers/sleepers.php:242
+#: ../modules/sleepers/sleepers.php:332
+msgid "Hour"
+msgstr "Time"
+
+#: ../modules/sleepers/sleepers.php:333
+msgid "Min"
+msgstr "Min"
+
+#: ../modules/sleepers/sleepers.php:334
+msgid "Sec"
+msgstr "Sek"
+
+#: ../modules/sleepers/sleepers.php:335
+msgid "Days"
+msgstr "Dager"
+
+#: ../modules/sleepers/sleepers.php:337
+msgid "Mins"
+msgstr "Mins"
+
+#: ../modules/sleepers/sleepers.php:338
+msgid "Secs"
+msgstr "Seks"
+
+#: ../modules/sleepers/sleepers.php:339
+msgid "%NAME% (%USERNAME%) shall be waken now!"
+msgstr "%NAME% (%USERNAME%) skal vekkes nå!"
+
+#: ../modules/sleepers/sleepers.php:340
+msgid "Waking alert!"
+msgstr "Vekkings varsel!"
+
+#: ../modules/sleepers/sleepers.php:341
+msgid "Wake me!"
+msgstr "Vekk meg!"
+
+#: ../modules/sleepers/sleepers.php:351
 msgid "There are no sleeping users"
 msgstr "Det er ingen sovende brukere"
 
@@ -2140,7 +2277,7 @@ msgid "Yes"
 msgstr "Ja"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:338
-#: ../inc/shared_functions.php:324
+#: ../inc/shared_functions.php:323
 msgid "No"
 msgstr "Nei"
 
@@ -2353,18 +2490,18 @@ msgstr "Tillatt andre brukere å se min epost-adresse"
 msgid "All users"
 msgstr "Alle brukere"
 
-#: ../inc/shared_functions.php:329
+#: ../inc/shared_functions.php:328
 msgid "Read"
 msgstr "Lese"
 
-#: ../inc/shared_functions.php:334
+#: ../inc/shared_functions.php:333
 msgid "Write"
 msgstr "Skrive"
 
-#: ../inc/shared_functions.php:339
+#: ../inc/shared_functions.php:338
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:696
+#: ../inc/shared_functions.php:695
 msgid "a.k.a."
 msgstr "a.k.a."

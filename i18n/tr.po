@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2014-12-25 21:26+0100\n"
+"POT-Creation-Date: 2015-01-05 18:38+0100\n"
 "PO-Revision-Date: 2011-01-14 23:50+0000\n"
 "Last-Translator: zeugma <Unknown>\n"
 "Language-Team: Turkish <tr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2014-12-26 06:04+0000\n"
+"X-Launchpad-Export-Date: 2015-01-06 06:44+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../index.php:32
@@ -66,7 +66,7 @@ msgstr ""
 msgid "Reseller"
 msgstr ""
 
-#: ../index.php:81 ../modules/logs/logs.php:172
+#: ../index.php:81 ../modules/logs/logs.php:174
 msgid "Kiosk"
 msgstr ""
 
@@ -75,7 +75,7 @@ msgid "Forum"
 msgstr "Forum"
 
 #: ../index.php:87 ../modules/logs/logs.php:155
-#: ../modules/sleepers/sleepers.php:18
+#: ../modules/sleepers/sleepers.php:23
 msgid "Sleepers"
 msgstr ""
 
@@ -138,7 +138,7 @@ msgid "Upload failed, file exists"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:31 ../modules/arrival/arrival.php:269
-#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:211
+#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:281
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
 msgstr ""
@@ -153,16 +153,17 @@ msgstr ""
 
 #: ../modules/arrival/arrival.php:89 ../modules/crewlist/crewlist.php:24
 #: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
-#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
 msgid "Nick"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:89 ../modules/arrival/arrival.php:162
 #: ../modules/arrival/arrival.php:170 ../modules/crewlist/crewlist.php:22
-#: ../modules/infoscreens/infoscreens.php:61
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/kioskadmin/kioskadmin.php:63
 #: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
-#: ../modules/sleepers/sleepers.php:120 ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
 #: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:267
 msgid "Name"
 msgstr "İsim"
@@ -171,7 +172,7 @@ msgstr "İsim"
 msgid "Add new ticket"
 msgstr ""
 
-#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:200
+#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:269
 msgid "Found no matching users"
 msgstr ""
 
@@ -190,7 +191,7 @@ msgid "Owner"
 msgstr ""
 
 #: ../modules/arrival/arrival.php:169 ../modules/logs/logs.php:19
-#: ../modules/logs/logs.php:216 ../modules/sessions/sessions.php:15
+#: ../modules/logs/logs.php:218 ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
@@ -474,7 +475,7 @@ msgstr ""
 #: ../modules/eventadmin/eventadmin.php:203
 #: ../modules/eventadmin/eventadmin.php:232 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
-#: ../modules/infoscreens/infoscreens.php:196
+#: ../modules/infoscreens/infoscreens.php:237
 #: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
@@ -639,7 +640,7 @@ msgstr ""
 msgid "Nick:"
 msgstr ""
 
-#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:194
+#: ../modules/forum/forum.php:111 ../modules/infoscreens/infoscreens.php:235
 msgid "Name:"
 msgstr ""
 
@@ -801,79 +802,101 @@ msgstr ""
 msgid "Screens"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:27
-msgid "Link to screen"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:36
-msgid "Screen name"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:37 ../modules/logs/logs.php:161
-msgid "Add screen"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:46
-msgid "Slides"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:50
-msgid "Create new slide"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:61
-#: ../modules/infoscreens/infoscreens.php:65
-msgid "Edit"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:61
-#: ../modules/infoscreens/infoscreens.php:66
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:79
 msgid "Preview"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:77
-msgid "There are no slides for this event"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:85
-msgid "Queues"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:94
-msgid "Screen:"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:102
-msgid "Slide"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:102
-msgid "Wait"
-msgstr ""
-
-#: ../modules/infoscreens/infoscreens.php:102
-#: ../modules/infoscreens/infoscreens.php:106
+#: ../modules/infoscreens/infoscreens.php:25
+#: ../modules/infoscreens/infoscreens.php:37
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:80
+#: ../modules/infoscreens/infoscreens.php:115
+#: ../modules/infoscreens/infoscreens.php:119
+#: ../modules/sleepers/sleepers.php:342
 msgid "Remove"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:131 ../modules/kiosk/kiosk.php:21
+#: ../modules/infoscreens/infoscreens.php:30
+msgid "Link to screen"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:44
+msgid "No screens created yet, create one in the form under."
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:49
+msgid "Screen name"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:50 ../modules/logs/logs.php:161
+msgid "Add screen"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:59
+msgid "Slides"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:63
+msgid "Create new slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:74
+#: ../modules/infoscreens/infoscreens.php:78
+msgid "Edit"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:90
+msgid "There are no slides for this event"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:98
+msgid "Queues"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:107
+msgid "Screen:"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:115
+msgid "Slide"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:115
+msgid "Wait"
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:144 ../modules/kiosk/kiosk.php:21
 msgid "Add"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:166
+#: ../modules/infoscreens/infoscreens.php:159
+msgid ""
+"Screen ID is missing or invalid, it must be numeric and over zero. Go back "
+"and try again."
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:207
 msgid "Create a new slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:170 ../modules/logs/logs.php:165
+#: ../modules/infoscreens/infoscreens.php:211 ../modules/logs/logs.php:165
 msgid "Edit slide"
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:209
+#: ../modules/infoscreens/infoscreens.php:250
 msgid "You forgot either name or some content.. Go back and try again."
 msgstr ""
 
-#: ../modules/infoscreens/infoscreens.php:263
-#: ../modules/infoscreens/infoscreens.php:287
+#: ../modules/infoscreens/infoscreens.php:297
+msgid ""
+"Slide ID is missing or invalid, it must be numeric and over zero. Go back "
+"and try again."
+msgstr ""
+
+#: ../modules/infoscreens/infoscreens.php:332
+#: ../modules/infoscreens/infoscreens.php:356
 msgid "You did something wrong. Go back and try again."
 msgstr ""
 
@@ -1086,11 +1109,11 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:217
+#: ../modules/logs/logs.php:18 ../modules/logs/logs.php:219
 msgid "Timestamp"
 msgstr ""
 
-#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:220
+#: ../modules/logs/logs.php:20 ../modules/logs/logs.php:222
 msgid "Logmodule"
 msgstr ""
 
@@ -1098,15 +1121,15 @@ msgstr ""
 msgid "Logtype"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:220
 msgid "IP"
 msgstr ""
 
-#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:218
+#: ../modules/logs/logs.php:22 ../modules/logs/logs.php:220
 msgid "Host"
 msgstr ""
 
-#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:219
+#: ../modules/logs/logs.php:23 ../modules/logs/logs.php:221
 msgid "URL"
 msgstr ""
 
@@ -1222,7 +1245,7 @@ msgstr ""
 msgid "Mail sent (mass)"
 msgstr ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:442
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:441
 msgid "News"
 msgstr ""
 
@@ -1334,11 +1357,11 @@ msgstr ""
 msgid "Change comment"
 msgstr ""
 
-#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:187
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:256
 msgid "Add sleeper"
 msgstr ""
 
-#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:181
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:250
 msgid "Remove sleeper"
 msgstr ""
 
@@ -1354,43 +1377,51 @@ msgstr ""
 msgid "New slide"
 msgstr ""
 
-#: ../modules/logs/logs.php:168
+#: ../modules/logs/logs.php:166
+msgid "Remove slide"
+msgstr ""
+
+#: ../modules/logs/logs.php:167
+msgid "Remove screen"
+msgstr ""
+
+#: ../modules/logs/logs.php:170
 msgid "SMS"
 msgstr ""
 
-#: ../modules/logs/logs.php:169
+#: ../modules/logs/logs.php:171
 msgid "SMS sent"
 msgstr ""
 
-#: ../modules/logs/logs.php:173
+#: ../modules/logs/logs.php:175
 msgid "Marked credit as paid"
 msgstr ""
 
-#: ../modules/logs/logs.php:174
+#: ../modules/logs/logs.php:176
 msgid "New item added"
 msgstr ""
 
-#: ../modules/logs/logs.php:175
+#: ../modules/logs/logs.php:177
 msgid "New item category added"
 msgstr ""
 
-#: ../modules/logs/logs.php:176
+#: ../modules/logs/logs.php:178
 msgid "Item edited"
 msgstr ""
 
-#: ../modules/logs/logs.php:179
+#: ../modules/logs/logs.php:181
 msgid "Unknown module"
 msgstr ""
 
-#: ../modules/logs/logs.php:180
+#: ../modules/logs/logs.php:182
 msgid "Unknown function"
 msgstr ""
 
-#: ../modules/logs/logs.php:213
+#: ../modules/logs/logs.php:215
 msgid "Details for logentry "
 msgstr ""
 
-#: ../modules/logs/logs.php:221
+#: ../modules/logs/logs.php:223
 msgid "Logfunction"
 msgstr ""
 
@@ -1597,51 +1628,51 @@ msgstr ""
 msgid "Confirm map reset"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:49
-#: ../modules/seatmap/seatmap_table.php:62
-#: ../modules/seatmap/seatmap_table.php:74
-#: ../modules/seatmap/seatmap_table.php:102
+#: ../modules/seatmap/seatmap_table.php:71
+#: ../modules/seatmap/seatmap_table.php:84
+#: ../modules/seatmap/seatmap_table.php:96
+#: ../modules/seatmap/seatmap_table.php:124
 msgid "Free"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:95
+#: ../modules/seatmap/seatmap_table.php:117
 msgid "N/A"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:131
+#: ../modules/seatmap/seatmap_table.php:153
 msgid "This seat is available"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:133
-#: ../modules/seatmap/seatmap_table.php:139
-#: ../modules/seatmap/seatmap_table.php:146
-#: ../modules/seatmap/seatmap_table.php:157
+#: ../modules/seatmap/seatmap_table.php:155
+#: ../modules/seatmap/seatmap_table.php:161
+#: ../modules/seatmap/seatmap_table.php:168
+#: ../modules/seatmap/seatmap_table.php:179
 msgid "Take seat"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:137
+#: ../modules/seatmap/seatmap_table.php:159
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:144
+#: ../modules/seatmap/seatmap_table.php:166
 msgid ""
 "This seat is protected by group. You are a member of a group with access."
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:150
+#: ../modules/seatmap/seatmap_table.php:172
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:155
+#: ../modules/seatmap/seatmap_table.php:177
 msgid ""
 "This seat is protected by a special right. You are a member of a group with "
 "access"
 msgstr ""
 
-#: ../modules/seatmap/seatmap_table.php:160
+#: ../modules/seatmap/seatmap_table.php:182
 msgid ""
 "This seat is protected by a special right. You are not member of a group "
 "with access. Too bad!"
@@ -1663,73 +1694,175 @@ msgstr ""
 msgid "Last visit"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:9
+#: ../modules/sleepers/setwake_gui.php:9
+msgid "User not found"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:14
+msgid "Set waking on user"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:21
+#: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:331
+msgid "Day"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:22
+#: ../modules/sleepers/setwake_gui.php:33
+msgid "Month"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:23
+#: ../modules/sleepers/setwake_gui.php:39
+msgid "Year"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:26
+msgid "Date"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:51
+#: ../modules/sleepers/setwake_gui.php:57 ../modules/sleepers/sleepers.php:336
+msgid "Hours"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:52
+#: ../modules/sleepers/setwake_gui.php:63
+msgid "Minutes"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:53
+#: ../modules/sleepers/setwake_gui.php:69
+msgid "Seconds"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:56
+msgid "Time"
+msgstr ""
+
+#: ../modules/sleepers/setwake_gui.php:78
+msgid "Submit"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:11
 msgid "Module not activated"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:15
+#: ../modules/sleepers/sleepers.php:20
 msgid "No access"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:75
+#: ../modules/sleepers/sleepers.php:101 ../modules/sleepers/sleepers.php:144
 msgid "Return to sleepers overview"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:79
+#: ../modules/sleepers/sleepers.php:148
 msgid "You must enter a search string"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:90
+#: ../modules/sleepers/sleepers.php:159
 msgid "Searching only users with tickets for this event"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:104
+#: ../modules/sleepers/sleepers.php:173
 msgid "Searching all users"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:120
+#: ../modules/sleepers/sleepers.php:189
 msgid "Tickets"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:120
+#: ../modules/sleepers/sleepers.php:189
 #: ../modules/ticketadmin/ticketadmin.php:195
 #: ../modules/ticketorder/ticketorder.php:26
 msgid "Status"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:131
+#: ../modules/sleepers/sleepers.php:200
 msgid "Sleeping since"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:137
+#: ../modules/sleepers/sleepers.php:206
 msgid "Not sleeping"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:166
+#: ../modules/sleepers/sleepers.php:235
 msgid "No tickets for this event"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:209
+#: ../modules/sleepers/sleepers.php:279
 msgid "Search for user:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:213
+#: ../modules/sleepers/sleepers.php:283
 msgid "Search users with tickets for this event only:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:223
+#: ../modules/sleepers/sleepers.php:295
 msgid "Number of sleeping users:"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:226
+#: ../modules/sleepers/sleepers.php:298
 msgid "Went to bed"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:234
+#: ../modules/sleepers/sleepers.php:298
+msgid "Wakeup"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:308
+msgid "No wakeup"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:308
+msgid "Set wakeup"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:310
+msgid "Loading"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:318
 msgid "View"
 msgstr ""
 
-#: ../modules/sleepers/sleepers.php:242
+#: ../modules/sleepers/sleepers.php:332
+msgid "Hour"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:333
+msgid "Min"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:334
+msgid "Sec"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:335
+msgid "Days"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:337
+msgid "Mins"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:338
+msgid "Secs"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:339
+msgid "%NAME% (%USERNAME%) shall be waken now!"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:340
+msgid "Waking alert!"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:341
+msgid "Wake me!"
+msgstr ""
+
+#: ../modules/sleepers/sleepers.php:351
 msgid "There are no sleeping users"
 msgstr ""
 
@@ -2104,7 +2237,7 @@ msgid "Yes"
 msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:338
-#: ../inc/shared_functions.php:324
+#: ../inc/shared_functions.php:323
 msgid "No"
 msgstr "Hayır"
 
@@ -2315,18 +2448,18 @@ msgstr ""
 msgid "All users"
 msgstr ""
 
-#: ../inc/shared_functions.php:329
+#: ../inc/shared_functions.php:328
 msgid "Read"
 msgstr "Oku"
 
-#: ../inc/shared_functions.php:334
+#: ../inc/shared_functions.php:333
 msgid "Write"
 msgstr "Yaz"
 
-#: ../inc/shared_functions.php:339
+#: ../inc/shared_functions.php:338
 msgid "Admin"
 msgstr "Yönetici"
 
-#: ../inc/shared_functions.php:696
+#: ../inc/shared_functions.php:695
 msgid "a.k.a."
 msgstr ""
