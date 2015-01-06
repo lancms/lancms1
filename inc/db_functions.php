@@ -10,13 +10,18 @@
 $mysqli = null;
 
 /**
+ * Holder of mysql connection.
+ */
+$mysqlLink = null;
+
+/**
  * Connects to database using config, supported types: mysql and mysqli (recommended)
  *
  * @param $loginInfo array Contains login info instead of params.
  * @return mixed returns mysqli class when using mysqli and link resource for mysql.
  */
 function db_connect($loginInfo=null) {
-    global $sql_type, $sql_host, $sql_user, $sql_pass, $sql_base, $mysqli;
+    global $sql_type, $sql_host, $sql_user, $sql_pass, $sql_base, $mysqlLink, $mysqli;
 
     // Use $loginInfo?
     if (is_array($loginInfo)) {
@@ -36,10 +41,10 @@ function db_connect($loginInfo=null) {
     switch ($sql_type)
     {
         case "mysql":
-            $res = mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
+            $mysqlLink = mysql_connect($sql_host, $sql_user, $sql_pass) or die("Could not connect to MySQL-host. Error is: ".mysql_error());
             ## This might jump to installer......
-            mysql_select_db($sql_base, $res) or die("Could not select MySQL DB. Error is: ".mysql_error());
-            return $res;
+            mysql_select_db($sql_base, $mysqlLink) or die("Could not select MySQL DB. Error is: ".mysql_error());
+            return $mysqlLink;
         case "mysqli":
             $mysqli = new mysqli($sql_host, $sql_user, $sql_pass, $sql_base);
             if ($mysqli->connect_error) {
@@ -58,11 +63,11 @@ function db_connect($loginInfo=null) {
  * @param $res
  */
 function db_close($res=null) {
-    global $sql_type,$mysqli;
+    global $sql_type,$mysqlLink,$mysqli;
 
     switch ($sql_type) {
         case "mysql":
-            mysql_close(($res == null ? null : $res));
+            mysql_close(($res == null ? $mysqlLink : $res));
             break;
         case "mysqli":
             if ($res == null)
@@ -86,11 +91,11 @@ function db_close($res=null) {
 function db_query($query, $res=null)
 {
     /* Function to do queries to/from DBs */
-    global $sql_type,$mysqli;
+    global $sql_type,$mysqli,$mysqlLink;
     switch ($sql_type)
     {
         case "mysql":
-            $q = mysql_query($query, $res) or die("MYSQL Error with query (".$query.") because of: ".mysql_error());
+            $q = mysql_query($query, ($res == null ? $mysqlLink : $res)) or die("MYSQL Error with query (".$query.") because of: ".mysql_error());
             break;
         case "mysqli":
             if ($res == null)
@@ -229,12 +234,12 @@ function db_field_name($query, $column_num) {
  */
 function db_escape($var, $res=null)
 {
-    global $sql_type,$mysqli;
+    global $sql_type,$mysqli,$mysqlLink;
     /* Function to escape strings before they are inserted to the DB. Should avoid some haxxoring, so should probably use it... */
     switch ($sql_type)
     {
         case "mysql":
-            $return = mysql_real_escape_string($var, $res);
+            $return = mysql_real_escape_string($var, ($res == null ? $mysqlLink : $res));
             break;
         case "mysqli":
             if ($res == null)
@@ -284,11 +289,11 @@ function db_num ($q)
  * @return int|mixed
  */
 function db_insert_id($res=null) {
-    global $sql_type,$mysqli;
+    global $sql_type,$mysqli,$mysqlLink;
     switch ($sql_type)
     {
         case "mysql":
-            $return = mysql_insert_id($res);
+            $return = mysql_insert_id(($res == null ? $mysqlLink : $res));
             break;
         case "mysqli":
             if ($res == null)

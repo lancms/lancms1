@@ -1,5 +1,8 @@
 <?php
 
+set_time_limit(0);
+ini_set("max_execution_time", 0);
+
 require("table.php");
 if(file_exists('../OverrideConfig.php')) require('../OverrideConfig.php');
 else require('../config.php');
@@ -27,10 +30,11 @@ if(!isset($_GET["demodata"]))
 	$tblq = db_query("SHOW TABLES");
 	while($table = db_fetch_assoc($tblq))
 	{
-		$db_tables[strtolower($table[0])] = new table($table[0], true);
+		// Seems that the index of $table might be different, just get
+        // first element in array by first getting array as numeric. 
+        $table = array_values($table);
+        $db_tables[strtolower($table[0])] = new table($table[0], true);
 	}
-
-
 
 	$file = file($db_file);
 	$pr_tbl = null;
