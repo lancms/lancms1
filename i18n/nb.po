@@ -7,14 +7,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-05 18:38+0100\n"
-"PO-Revision-Date: 2015-01-05 18:48+0000\n"
+"POT-Creation-Date: 2015-01-06 13:32+0100\n"
+"PO-Revision-Date: 2015-01-06 19:59+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-01-06 06:44+0000\n"
+"X-Launchpad-Export-Date: 2015-01-07 05:49+0000\n"
 "X-Generator: Launchpad (build 17286)\n"
 
 #: ../index.php:32
@@ -95,7 +95,7 @@ msgstr "Skriv inn ditt nick, epost eller navn her:"
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:146 ../modules/arrival/arrival.php:245
+#: ../index.php:146 ../modules/arrival/arrival.php:248
 #: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
@@ -137,8 +137,8 @@ msgstr "Opplastning feilet, kunne ikke flytte fil"
 msgid "Upload failed, file exists"
 msgstr "Opplastning feilet, fil eksisterer allerede"
 
-#: ../modules/arrival/arrival.php:31 ../modules/arrival/arrival.php:269
-#: ../modules/arrival/arrival.php:311 ../modules/sleepers/sleepers.php:281
+#: ../modules/arrival/arrival.php:31 ../modules/arrival/arrival.php:272
+#: ../modules/arrival/arrival.php:314 ../modules/sleepers/sleepers.php:280
 #: ../modules/useradmin/useradmin.php:31
 msgid "Search"
 msgstr "Søk"
@@ -153,17 +153,19 @@ msgstr "Søk brukere med billetter"
 
 #: ../modules/arrival/arrival.php:89 ../modules/crewlist/crewlist.php:24
 #: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
-#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
+#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
 msgid "Nick"
 msgstr "Brukernavn"
 
-#: ../modules/arrival/arrival.php:89 ../modules/arrival/arrival.php:162
-#: ../modules/arrival/arrival.php:170 ../modules/crewlist/crewlist.php:22
+#: ../modules/arrival/arrival.php:89 ../modules/arrival/arrival.php:165
+#: ../modules/arrival/arrival.php:173 ../modules/crewlist/crewlist.php:22
 #: ../modules/infoscreens/infoscreens.php:25
 #: ../modules/infoscreens/infoscreens.php:74
-#: ../modules/kioskadmin/kioskadmin.php:63
-#: ../modules/kioskadmin/kioskadmin.php:118 ../modules/profile/profile.php:13
-#: ../modules/sleepers/sleepers.php:189 ../modules/sleepers/sleepers.php:298
+#: ../modules/kioskadmin/kioskadmin.php:29
+#: ../modules/kioskadmin/kioskadmin.php:118
+#: ../modules/kioskadmin/kioskadmin.php:138
+#: ../modules/kioskadmin/kioskadmin.php:212 ../modules/profile/profile.php:13
+#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
 #: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:267
 msgid "Name"
 msgstr "Navn"
@@ -172,94 +174,94 @@ msgstr "Navn"
 msgid "Add new ticket"
 msgstr "Legg til billett"
 
-#: ../modules/arrival/arrival.php:134 ../modules/sleepers/sleepers.php:269
+#: ../modules/arrival/arrival.php:137 ../modules/sleepers/sleepers.php:268
 msgid "Found no matching users"
 msgstr "Fant ingen brukere som lignet søket"
 
-#: ../modules/arrival/arrival.php:147
+#: ../modules/arrival/arrival.php:150
 msgid "Back to search"
 msgstr "Tilbake til søk"
 
-#: ../modules/arrival/arrival.php:151
+#: ../modules/arrival/arrival.php:154
 msgid "Ticket"
 msgstr "Billett"
 
-#: ../modules/arrival/arrival.php:161
+#: ../modules/arrival/arrival.php:164
 #: ../modules/ticketadmin/ticketadmin.php:193
 #: ../modules/ticketorder/ticketorder.php:29
 msgid "Owner"
 msgstr "Eier"
 
-#: ../modules/arrival/arrival.php:169 ../modules/logs/logs.php:19
+#: ../modules/arrival/arrival.php:172 ../modules/logs/logs.php:19
 #: ../modules/logs/logs.php:218 ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:194
 #: ../modules/ticketorder/ticketorder.php:28
 msgid "User"
 msgstr "Bruker"
 
-#: ../modules/arrival/arrival.php:176
+#: ../modules/arrival/arrival.php:179
 msgid "Adress"
 msgstr "Adresse"
 
-#: ../modules/arrival/arrival.php:182
+#: ../modules/arrival/arrival.php:185
 msgid "E-mail"
 msgstr "E-post"
 
-#: ../modules/arrival/arrival.php:187 ../modules/profile/profile.php:23
+#: ../modules/arrival/arrival.php:190 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:268
 #: ../modules/wannabeadmin/wannabeadmin.php:268 ../inc/shared_config.php:148
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: ../modules/arrival/arrival.php:198
+#: ../modules/arrival/arrival.php:201
 #: ../modules/ticketorder/ticketorder.php:133
 msgid "Paid"
 msgstr "Betalt"
 
-#: ../modules/arrival/arrival.php:203
+#: ../modules/arrival/arrival.php:206
 #: ../modules/ticketorder/ticketorder.php:48
 msgid "Not paid"
 msgstr "Ikke betalt"
 
-#: ../modules/arrival/arrival.php:215 ../modules/arrival/arrival.php:220
+#: ../modules/arrival/arrival.php:218 ../modules/arrival/arrival.php:223
 msgid "Seated"
 msgstr "Har plass"
 
-#: ../modules/arrival/arrival.php:224
+#: ../modules/arrival/arrival.php:227
 msgid "Not seated"
 msgstr "Har ikke plass"
 
-#: ../modules/arrival/arrival.php:230
+#: ../modules/arrival/arrival.php:233
 msgid "Delete ticket"
 msgstr "Slett billett"
 
-#: ../modules/arrival/arrival.php:236
+#: ../modules/arrival/arrival.php:239
 msgid "Deleted"
 msgstr "Slettet"
 
-#: ../modules/arrival/arrival.php:248
+#: ../modules/arrival/arrival.php:251
 msgid "Change owner"
 msgstr "Bytt eier"
 
-#: ../modules/arrival/arrival.php:250
+#: ../modules/arrival/arrival.php:253
 msgid "Change user"
 msgstr "Bytt bruker"
 
-#: ../modules/arrival/arrival.php:265
+#: ../modules/arrival/arrival.php:268
 msgid "Search for new owner"
 msgstr "Søk etter ny eier"
 
-#: ../modules/arrival/arrival.php:281 ../modules/arrival/arrival.php:323
+#: ../modules/arrival/arrival.php:284 ../modules/arrival/arrival.php:326
 #: ../modules/ticketorder/ticketorder.php:75
 #: ../modules/ticketorder/ticketorder.php:108
 msgid "Found to many users matching, please specify"
 msgstr "Fant for mange brukere som passer, vennligst forbedre søket"
 
-#: ../modules/arrival/arrival.php:307
+#: ../modules/arrival/arrival.php:310
 msgid "Search for new user"
 msgstr "Søk etter ny bruker"
 
-#: ../modules/arrival/arrival.php:396
+#: ../modules/arrival/arrival.php:399
 msgid "Add ticket to user"
 msgstr "Legg til billett til bruker"
 
@@ -476,7 +478,8 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/eventadmin/eventadmin.php:232 ../modules/FAQ/FAQ.php:83
 #: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
 #: ../modules/infoscreens/infoscreens.php:237
-#: ../modules/kioskadmin/kioskadmin.php:129 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:123
+#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:60
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
 msgid "Save"
@@ -814,7 +817,9 @@ msgstr "Forhåndsvis"
 #: ../modules/infoscreens/infoscreens.php:80
 #: ../modules/infoscreens/infoscreens.php:115
 #: ../modules/infoscreens/infoscreens.php:119
-#: ../modules/sleepers/sleepers.php:342
+#: ../modules/kioskadmin/kioskadmin.php:39
+#: ../modules/kioskadmin/kioskadmin.php:161
+#: ../modules/sleepers/sleepers.php:341
 msgid "Remove"
 msgstr "Fjern"
 
@@ -844,6 +849,8 @@ msgstr "Opprett nytt lysbilde"
 
 #: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/infoscreens/infoscreens.php:78
+#: ../modules/kioskadmin/kioskadmin.php:36
+#: ../modules/kioskadmin/kioskadmin.php:159
 msgid "Edit"
 msgstr "Rediger"
 
@@ -920,41 +927,97 @@ msgstr "Administrer kredittkjøp"
 msgid "Print barcodes"
 msgstr "Skriv ut strekkoder"
 
-#: ../modules/kioskadmin/kioskadmin.php:38
+#: ../modules/kioskadmin/kioskadmin.php:24
+#: ../modules/kioskadmin/kioskadmin.php:131
+msgid "Back to kioskadmin overview"
+msgstr "Tilbake til kioskadministrasjon"
+
+#: ../modules/kioskadmin/kioskadmin.php:25
+msgid "Kiosk Ware types"
+msgstr "Kiosk varetyper"
+
+#: ../modules/kioskadmin/kioskadmin.php:29
+#: ../modules/kioskadmin/kioskadmin.php:142
+msgid "Actions"
+msgstr "Handlinger"
+
+#: ../modules/kioskadmin/kioskadmin.php:45
+msgid "No ware types created yet."
+msgstr "Ingen varetyper laget enda."
+
+#: ../modules/kioskadmin/kioskadmin.php:50
 msgid "Add new waretype"
 msgstr "Legg til ny varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:64
+#: ../modules/kioskadmin/kioskadmin.php:113
+msgid "Back to waretypes"
+msgstr "Tilbake til varetyper"
+
+#: ../modules/kioskadmin/kioskadmin.php:114
+msgid "Edit ware type"
+msgstr "Rediger vare type"
+
+#: ../modules/kioskadmin/kioskadmin.php:132
+msgid "Kiosk Wares"
+msgstr "Kioskvare"
+
+#: ../modules/kioskadmin/kioskadmin.php:139
 msgid "Type"
 msgstr "Type"
 
-#: ../modules/kioskadmin/kioskadmin.php:65
-#: ../modules/kioskadmin/kioskadmin.php:133
+#: ../modules/kioskadmin/kioskadmin.php:140
+#: ../modules/kioskadmin/kioskadmin.php:227
 msgid "Barcodes"
 msgstr "Strekkoder"
 
-#: ../modules/kioskadmin/kioskadmin.php:66
+#: ../modules/kioskadmin/kioskadmin.php:141
 msgid "Price (normal)"
 msgstr "Pris (normalt)"
 
-#: ../modules/kioskadmin/kioskadmin.php:92
+#: ../modules/kioskadmin/kioskadmin.php:167
+msgid "No wares created yet."
+msgstr "K"
+
+#: ../modules/kioskadmin/kioskadmin.php:181
 msgid "Add ware"
 msgstr "Legg til vare"
 
-#: ../modules/kioskadmin/kioskadmin.php:126
+#: ../modules/kioskadmin/kioskadmin.php:184
+msgid ""
+"No ware types exists to add wares, head over to '<a "
+"href='?module=kioskadmin&amp;action=wareTypes'>Admin waretype</a>' to create "
+"types."
+msgstr ""
+"Ingen varetyper finnes for å legge til varer, gå til '<a "
+"href='?module=kioskadmin&amp;action=wareTypes'>varetype administrasjon</a>' "
+"for å lage varetyper."
+
+#: ../modules/kioskadmin/kioskadmin.php:205
+msgid "Back to wares"
+msgstr "Tilbake til varer"
+
+#: ../modules/kioskadmin/kioskadmin.php:206
+msgid "Edit Kiosk Ware"
+msgstr "Endre varetype"
+
+#: ../modules/kioskadmin/kioskadmin.php:213
 msgid "Ware type"
 msgstr "Varetype"
 
-#: ../modules/kioskadmin/kioskadmin.php:127
+#: ../modules/kioskadmin/kioskadmin.php:221
 #: ../modules/ticketadmin/ticketadmin.php:17
 msgid "Price"
 msgstr "Pris"
 
-#: ../modules/kioskadmin/kioskadmin.php:141
+#: ../modules/kioskadmin/kioskadmin.php:230
+msgid "Click a barcode to delete it."
+msgstr "Klikk på en strekkode for å slette den."
+
+#: ../modules/kioskadmin/kioskadmin.php:240
 msgid "Add barcode"
 msgstr "Legg til strekkode"
 
-#: ../modules/kioskadmin/kioskadmin.php:215
+#: ../modules/kioskadmin/kioskadmin.php:336
 msgid "Mark credit as paid"
 msgstr "Marker kreditt som betalt"
 
@@ -1269,7 +1332,7 @@ msgstr "E-post"
 msgid "Mail sent (mass)"
 msgstr "E-post sendt (massesendt)"
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:441
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:323
 msgid "News"
 msgstr "Nyheter"
 
@@ -1381,11 +1444,11 @@ msgstr "Wannabeadministrasjon"
 msgid "Change comment"
 msgstr "Endre kommentar"
 
-#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:256
+#: ../modules/logs/logs.php:156 ../modules/sleepers/sleepers.php:255
 msgid "Add sleeper"
 msgstr "Legg til sovende"
 
-#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:250
+#: ../modules/logs/logs.php:157 ../modules/sleepers/sleepers.php:249
 msgid "Remove sleeper"
 msgstr "Fjern sovende"
 
@@ -1738,10 +1801,10 @@ msgstr "Brukeren ble ikke funnet"
 
 #: ../modules/sleepers/setwake_gui.php:14
 msgid "Set waking on user"
-msgstr "Sett vekking på bruker"
+msgstr "Sett vekking for bruker"
 
 #: ../modules/sleepers/setwake_gui.php:21
-#: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:331
+#: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:330
 msgid "Day"
 msgstr "Dag"
 
@@ -1760,7 +1823,7 @@ msgid "Date"
 msgstr "Dato"
 
 #: ../modules/sleepers/setwake_gui.php:51
-#: ../modules/sleepers/setwake_gui.php:57 ../modules/sleepers/sleepers.php:336
+#: ../modules/sleepers/setwake_gui.php:57 ../modules/sleepers/sleepers.php:335
 msgid "Hours"
 msgstr "Timer"
 
@@ -1790,117 +1853,121 @@ msgstr "Modulen ikke aktivert"
 msgid "No access"
 msgstr "Ingen tilgang"
 
-#: ../modules/sleepers/sleepers.php:101 ../modules/sleepers/sleepers.php:144
+#: ../modules/sleepers/sleepers.php:98 ../modules/sleepers/sleepers.php:141
 msgid "Return to sleepers overview"
 msgstr "Tilbake til oversikten over sovende"
 
-#: ../modules/sleepers/sleepers.php:148
+#: ../modules/sleepers/sleepers.php:145
 msgid "You must enter a search string"
 msgstr "Du må skrive inn en søkestreng"
 
-#: ../modules/sleepers/sleepers.php:159
+#: ../modules/sleepers/sleepers.php:156
 msgid "Searching only users with tickets for this event"
 msgstr "Søker kun på brukere med billetter til dette arrangementet"
 
-#: ../modules/sleepers/sleepers.php:173
+#: ../modules/sleepers/sleepers.php:170
 msgid "Searching all users"
 msgstr "Søker i alle brukere"
 
-#: ../modules/sleepers/sleepers.php:189
+#: ../modules/sleepers/sleepers.php:186
 msgid "Tickets"
 msgstr "Billetter"
 
-#: ../modules/sleepers/sleepers.php:189
+#: ../modules/sleepers/sleepers.php:186
 #: ../modules/ticketadmin/ticketadmin.php:195
 #: ../modules/ticketorder/ticketorder.php:26
 msgid "Status"
 msgstr "Status"
 
-#: ../modules/sleepers/sleepers.php:200
+#: ../modules/sleepers/sleepers.php:197
 msgid "Sleeping since"
 msgstr "Sovet siden"
 
-#: ../modules/sleepers/sleepers.php:206
+#: ../modules/sleepers/sleepers.php:203
 msgid "Not sleeping"
 msgstr "Sover ikke"
 
-#: ../modules/sleepers/sleepers.php:235
+#: ../modules/sleepers/sleepers.php:232
 msgid "No tickets for this event"
 msgstr "Ingen billetter til dette arrangementet"
 
-#: ../modules/sleepers/sleepers.php:279
+#: ../modules/sleepers/sleepers.php:234
+msgid "This user is a crew-member."
+msgstr "Denne brukeren er crew."
+
+#: ../modules/sleepers/sleepers.php:278
 msgid "Search for user:"
 msgstr "Søk etter bruker:"
 
-#: ../modules/sleepers/sleepers.php:283
+#: ../modules/sleepers/sleepers.php:282
 msgid "Search users with tickets for this event only:"
 msgstr "Søk bare etter brukere med billetter til dette arrangementet:"
 
-#: ../modules/sleepers/sleepers.php:295
+#: ../modules/sleepers/sleepers.php:294
 msgid "Number of sleeping users:"
 msgstr "Antall sovende brukere:"
 
-#: ../modules/sleepers/sleepers.php:298
+#: ../modules/sleepers/sleepers.php:297
 msgid "Went to bed"
 msgstr "Gikk å la seg"
 
-#: ../modules/sleepers/sleepers.php:298
+#: ../modules/sleepers/sleepers.php:297
 msgid "Wakeup"
 msgstr "Vekking"
 
-#: ../modules/sleepers/sleepers.php:308
+#: ../modules/sleepers/sleepers.php:307
 msgid "No wakeup"
 msgstr "Ingen vekking"
 
-#: ../modules/sleepers/sleepers.php:308
+#: ../modules/sleepers/sleepers.php:307
 msgid "Set wakeup"
 msgstr "Sett vekking"
 
-#: ../modules/sleepers/sleepers.php:310
+#: ../modules/sleepers/sleepers.php:309
 msgid "Loading"
 msgstr "Laster"
 
-#: ../modules/sleepers/sleepers.php:318
+#: ../modules/sleepers/sleepers.php:317
 msgid "View"
 msgstr "Vis"
 
-#: ../modules/sleepers/sleepers.php:332
+#: ../modules/sleepers/sleepers.php:331
 msgid "Hour"
 msgstr "Time"
 
-#: ../modules/sleepers/sleepers.php:333
+#: ../modules/sleepers/sleepers.php:332
 msgid "Min"
 msgstr "Min"
 
-#: ../modules/sleepers/sleepers.php:334
+#: ../modules/sleepers/sleepers.php:333
 msgid "Sec"
 msgstr "Sek"
 
-#: ../modules/sleepers/sleepers.php:335
+#: ../modules/sleepers/sleepers.php:334
 msgid "Days"
 msgstr "Dager"
 
-#: ../modules/sleepers/sleepers.php:337
+#: ../modules/sleepers/sleepers.php:336
 msgid "Mins"
 msgstr "Mins"
 
-#: ../modules/sleepers/sleepers.php:338
+#: ../modules/sleepers/sleepers.php:337
 msgid "Secs"
 msgstr "Seks"
 
-#: ../modules/sleepers/sleepers.php:339
+#: ../modules/sleepers/sleepers.php:338
 msgid "%NAME% (%USERNAME%) shall be waken now!"
 msgstr "%NAME% (%USERNAME%) skal vekkes nå!"
 
-#: ../modules/sleepers/sleepers.php:340
+#: ../modules/sleepers/sleepers.php:339
 msgid "Waking alert!"
-msgstr "Vekkings varsel!"
+msgstr "Advarsel om vekking!"
 
-#: ../modules/sleepers/sleepers.php:341
+#: ../modules/sleepers/sleepers.php:340
 msgid "Wake me!"
 msgstr "Vekk meg!"
 
-#: ../modules/sleepers/sleepers.php:351
+#: ../modules/sleepers/sleepers.php:350
 msgid "There are no sleeping users"
 msgstr "Det er ingen sovende brukere"
 
@@ -2277,7 +2344,7 @@ msgid "Yes"
 msgstr "Ja"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:338
-#: ../inc/shared_functions.php:323
+#: ../inc/shared_functions.php:205
 msgid "No"
 msgstr "Nei"
 
@@ -2490,18 +2557,18 @@ msgstr "Tillatt andre brukere å se min epost-adresse"
 msgid "All users"
 msgstr "Alle brukere"
 
-#: ../inc/shared_functions.php:328
+#: ../inc/shared_functions.php:210
 msgid "Read"
 msgstr "Lese"
 
-#: ../inc/shared_functions.php:333
+#: ../inc/shared_functions.php:215
 msgid "Write"
 msgstr "Skrive"
 
-#: ../inc/shared_functions.php:338
+#: ../inc/shared_functions.php:220
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:695
+#: ../inc/shared_functions.php:577
 msgid "a.k.a."
 msgstr "a.k.a."
