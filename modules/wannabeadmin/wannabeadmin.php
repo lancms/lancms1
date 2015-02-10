@@ -239,9 +239,11 @@ elseif($action == "listApplications") {
 			$content .= "</a></td>\n";
 			for($i=0;$i<count($crewlist);$i++) {
 			    
-			    $qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
-			    $rListMyComment = db_fetch($qListMyComment);
-			    $content .= "<td class=wannabeCommentStyle".$rListMyComment->approval.">";
+			    #$qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
+			    #$rListMyComment = db_fetch($qListMyComment);
+			    $qListAvgScore = db_query("SELECT ROUND(AVG(approval), 0) AS approval FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND userID = '$rListApplications->userID'");
+			    $rListAvgScore = db_fetch($qListAvgScore);
+			    $content .= "<td class=wannabeCommentStyle".$rListAvgScore->approval.">";
 			    $content .= "</td>\n";
 			} // End for 
 			$content .= "</tr>\n\n\n";
