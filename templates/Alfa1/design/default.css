@@ -234,8 +234,7 @@ blockquote
 #nav a
 {
 	display: block;
-	height: 2.0em;
-	padding: 0.3em 0.3em 0.3em 0.8em;
+	padding: 7px 9px;
 	border-bottom: 2px;
 	border-top: 2px;
 	color: #002a54;
