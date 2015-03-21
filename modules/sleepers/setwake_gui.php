@@ -26,13 +26,13 @@ if ($userinfo == false) {
             <td><strong><?php echo _("Date"); ?>:</strong></td>
             <td><select name="day"><option value="invalid" disabled="disabled"><?php echo _("Day"); ?></option>
                     <?php
-                    for ($day=0; $day < 31; $day++) {
+                    for ($day=0; $day <= 31; $day++) {
                         echo "<option value=\"$day\"" . (date("j") == $day ? ' selected="selected"' : '') . ">$day</option>\n";
                     }
                     ?></select></td>
             <td><select name="month"><option value="invalid" disabled="disabled"><?php echo _("Month"); ?></option>
                     <?php
-                    for ($month=0; $month < 31; $month++) {
+                    for ($month=0; $month <= 12; $month++) {
                         echo "<option value=\"$month\"" . (date("n") == $month ? ' selected="selected"' : '') . ">$month</option>\n";
                     }
                     ?></select></td>
@@ -56,13 +56,13 @@ if ($userinfo == false) {
             <td><strong><?php echo _("Time"); ?>:</strong></td>
             <td><select name="hours"><option value="invalid" disabled="disabled"><?php echo _("Hours"); ?></option>
                     <?php
-                    for ($hours=0; $hours < 23; $hours++) {
+                    for ($hours=0; $hours <= 23; $hours++) {
                         echo "<option value=\"$hours\"" . (date("G") == $hours ? ' selected="selected"' : '') . ">$hours</option>\n";
                     }
                     ?></select></td>
             <td><select name="minutes"><option value="invalid" disabled="disabled"><?php echo _("Minutes"); ?></option>
                     <?php
-                    for ($minutes=0; $minutes < 59; $minutes++) {
+                    for ($minutes=0; $minutes <= 59; $minutes++) {
                         echo "<option value=\"$minutes\"" . (date("i") == $minutes ? ' selected="selected"' : '') . ">$minutes</option>\n";
                     }
                     ?></select></td>
