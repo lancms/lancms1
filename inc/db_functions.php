@@ -103,7 +103,7 @@ function db_query($query, $res=null)
 
             $q = $res->query($query);
             if ($q == false) {
-                die("MYSQLi Error with query (".$query.") because of: ".$res->error);
+                die("MYSQLi Error with query (".htmlspecialchars($query).") because of: ".$res->error);
             }
 			break;
         default:
@@ -161,6 +161,34 @@ function db_fetch_assoc($query) {
                 return array();
             }
             $return = $query->fetch_assoc();
+            break;
+        default:
+            die("Something seriously wrong with variable sql_type in function " . __FUNCTION__);
+    } // End switch ($sql_type)
+
+    return $return;
+} // End function db_fetch
+
+/**
+ * returns all results as array
+ *
+ * @param $query
+ * @return array
+ */
+function db_fetch_all($query) {
+    global $sql_type;
+    /* Function to fetch results from db_query */
+    $return = array();
+
+    switch ($sql_type)
+    {
+        case "mysql":
+        case "mysqli":
+            if (db_num($query) > 0) {
+                while ($row = db_fetch($query)) {
+                    $return[] = $row;
+                }
+            }
             break;
         default:
             die("Something seriously wrong with variable sql_type in function " . __FUNCTION__);
