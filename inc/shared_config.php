@@ -207,6 +207,10 @@ $listingtype[1]['option'] = 1;
 $listingtype[2]['type'] = 'ticketsSold';
 $listingtype[2]['name'] = 'List all tickets sold';
 
+// ACL Access Denied errors
+$aclAccessDeniedErrors = array();
+$aclAccessDeniedErrors[1] = lang("You do not have access to this page.");
+
 ## Personal settings
 
 $userpersonalprefs[0]['type'] = 'checkbox';

@@ -522,17 +522,29 @@ function user_setpass ($userid, $md5)
 
 
 ##### user_getall - returns array with all userinfo->objects
-function user_getall ()
+function user_getall ($columns=array())
 {
 	global $sql_prefix;
 
-	$query = sprintf ('SELECT * FROM %s_users WHERE ID>1', $sql_prefix);
+    if (count($columns) < 1) {
+        $columns = array('*');
+    }
+
+    // Escape all variables
+    array_walk($columns, '_privateUserGetallWalk');
+
+    $query = 'SELECT ' . implode(", ", $columns) . ' FROM ' . $sql_prefix . '_users WHERE ID>1';
 	$result = db_query ($query);
+    $return = array();
 	while ($fetch = db_fetch ($result))
 	{
 		$return[] = $fetch;
 	}
-	return ($return);
+	return $return;
+}
+
+function _privateUserGetallWalk(&$item, $key) {
+    $item = db_escape($item);
 }
 
 ##### user_exists - returns true if userid exists, false if not
@@ -552,6 +564,23 @@ function user_exists ($userid)
 		return (false);
 	}
 
+}
+
+function user_find($query) {
+    global $sql_prefix;
+
+    $users = array();
+    if (empty($query))
+        return $users;
+
+    $usersQ = sprintf("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 AND
+      (nick LIKE '%%%s%%' OR firstName LIKE '%%%s%%' OR lastName LIKE '%%%s%%' OR CONCAT(firstName, ' ', lastName) LIKE '%%%s%%' OR EMail LIKE '%%%s%%') ORDER BY ID",
+        $sql_prefix."_users", $query, $query, $query, $query, $query);
+
+    $getUsers = db_query($usersQ);
+    if (db_num($getUsers) > 0) {
+        $users = db_fetch_assoc($getUsers);
+    }
 }
 
 function kiosk_item_price($wareID) {
@@ -690,4 +719,31 @@ function is_user_crew($userID, $eventID=null) {
 		$sql_prefix . "_groups", $sql_prefix . "_group_members", $userID, $eventID));
 
 	return db_num($query) > 0 ? true : false;
+}
+
+/**
+ * Returns the config by name provided from module config.
+ * If the config is not found the default-argument is returned.
+ *
+ * @param string $module
+ * @param string $name
+ * @param mixed $default
+ * @return mixed
+ */
+function getModuleConfig($module, $name, $default=false) {
+    global $_MODULECONFIG;
+
+    if (isset($_MODULECONFIG[$module]) && isset($_MODULECONFIG[$module][$name])) {
+        return $_MODULECONFIG[$module][$name];
+    }
+
+    return $default;
+}
+
+/**
+ * @param int $errorCode
+ */
+function printNoAccessError($errorCode=1) {
+    header("Location: index.php?aclDeniedCode=" . $errorCode);
+    die();
 }
