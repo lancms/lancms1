@@ -5,7 +5,7 @@ require __DIR__ . "/TicketType.php";
 
 class TicketManager {
 
-	protected static $_instance;
+    protected static $_instance;
 
     protected $_ticketTypes;
 
@@ -13,46 +13,46 @@ class TicketManager {
         $this->_ticketTypes = array(); // Initialize runtime cache of ticketTypes.
     }
 
-	/**
-	 * @return TicketManager
-	 */
-	public static function getInstance() {
-		if (self::$_instance == null)
-			self::$_instance = new self();
+    /**
+     * @return TicketManager
+     */
+    public static function getInstance() {
+        if (self::$_instance == null)
+            self::$_instance = new self();
 
-		return self::$_instance;
-	}
+        return self::$_instance;
+    }
 
-	/**
-	 * Provides an array of tickets on a user. Will search fields "user" and "owner"
-	 * 
-	 * @param int $userID
-	 * @param int $eventID If null then active event is used.
-	 * @return Ticket[]
-	 */
-	public function getTicketsOfUser($userID, $eventID=null) {
-		global $sessioninfo, $sql_prefix;
+    /**
+     * Provides an array of tickets on a user. Will search fields "user" and "owner"
+     * 
+     * @param int $userID
+     * @param int $eventID If null then active event is used.
+     * @return Ticket[]
+     */
+    public function getTicketsOfUser($userID, $eventID=null) {
+        global $sessioninfo, $sql_prefix;
 
-		if ($eventID == null) {
-			$eventID = $sessioninfo->eventID;
-		}
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
 
-		$result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND (`user` = %d OR `owner` = %d)", $sql_prefix, $eventID, $userID, $userID));
-		$num   = db_num($result);
+        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND (`user` = %d OR `owner` = %d)", $sql_prefix, $eventID, $userID, $userID));
+        $num   = db_num($result);
 
-		$tickets = array();
-		if ($num > 0) {
-			$i = 0;
-			while ($row = db_fetch_assoc($result)) {
-				$tickets[$i] = new Ticket($row['ticketID']);
-				$tickets[$i]->fillInfo($row);
+        $tickets = array();
+        if ($num > 0) {
+            $i = 0;
+            while ($row = db_fetch_assoc($result)) {
+                $tickets[$i] = new Ticket($row['ticketID']);
+                $tickets[$i]->fillInfo($row);
 
-				$i++;
-			}
-		}
+                $i++;
+            }
+        }
 
-		return $tickets;
-	}
+        return $tickets;
+    }
 
     /**
      * Provides the ticket type by ID.
@@ -90,5 +90,5 @@ class TicketManager {
 
         return $ticketType;
     }
-	
+    
 }
