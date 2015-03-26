@@ -2,29 +2,34 @@
 
 
 ######################################################
+$configValues = null;
 function config($config, $event = 1, $value = "NOTSET")
 {
-	global $sql_prefix;
-	$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE config = '".db_escape($config)."' AND eventID = '".db_escape($event)."'");
-	$num = db_num($query);
+	global $sql_prefix, $configValues;
+
+	// Speed performance by fetching all config values from database then reusing an array in runtime.
+	// FIXME: APC cache this?
+	if ($configValues == null) {
+		$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE eventID = '".db_escape($event)."'");
+		if (db_num($query) > 0) {
+			while($row = db_fetch_assoc($query)) {
+				$configValues[$event][$row['config']] = $row['value'];
+			}
+		}
+	}
+
 	if ($value == "NOTSET") // No value is set. We should only SELECT to find out what the value is.
 	{
-		$object = db_fetch($query);
-
-		if ($num == 0) // No such value exists. That probably means that noone has activated it yet, and therefor, it is false, or turned off
-		{
-			return FALSE;
+		if (isset($configValues[$event][$config]) == false) {
+			return false;
 		}
 
-		elseif ($object->value == 0) // The config exists, and the value is 0, which is turned off
-		{
-			return FALSE;
+		$value = $configValues[$event][$config];
+		if ($value == 0) {
+			return false;
 		}
-		else // If it exists, and it is not turned off; just output it
-		{
-//			echo "config: ".$config.", event = ".$event.", value = ".$object->value;
-			return $object->value;
-		}
+
+		return $value;
 	} // End if value == NOTSET
 	else // $value IS set, so we should write/update that config
 	{
@@ -41,6 +46,9 @@ function config($config, $event = 1, $value = "NOTSET")
 				WHERE config = '".db_escape($config)."' AND
 				eventID = '".db_escape($event)."'");
 		}
+
+		// Update runtime cache.
+		$configValues[$event][$config] = $value;
 	} // End else
 
 }
@@ -143,51 +151,69 @@ function acl_access($module, $subcategory=0, $event=1, $userID = "MYSELF", $chec
 
 ######################################################
 
+$langStrings = null;
+
 function lang($string, $module = "index")
 {
-	global $language; // Get default/current language
-	global $sql_prefix;
-	global $lang_method;
+	global $language, $sql_prefix, $lang_method, $langStrings;
 
 	if($lang_method == "gettext") {
 		 return _($string);
 	} else {
-	
 
-	// Check to see if that string exists
-	$q = db_query("SELECT * FROM ".$sql_prefix."_lang
-		WHERE string = '".db_escape($string)."'
-		AND language = '".db_escape($language)."'
-		AND module = '".db_escape($module)."'");
-
-	// How many occurences of string
-	$num = db_num($q);
-	if ($num == 0)
-	{
-		/* The string does not exist in the database, add it */
-		db_query("INSERT INTO ".$sql_prefix."_lang
-			SET string = '".db_escape($string)."',
-			language = '".db_escape($language)."',
-			module = '".db_escape($module)."'");
-		return $string;
-	} // End not exists
-
-	elseif ($num >= 2)
-	{
-		die("There is an error in the lang()-function, more than one existance of string: '".$string."' in module: '".$module."' for language: '".$language."'. FIX IT!");
-	}
-	else // String should have returned a result of one row
-	{
-		$r = db_fetch($q);
-		if ((empty($r->translated)) || (!isset($r->translated)))
-		{
-			return $string; // String has not been translated
+		// Fill language array if we need to.
+		if ($langStrings == null) {
+			$langStrings = array();
+			$q = db_query("SELECT * FROM ".$sql_prefix."_lang WHERE 1");
+			if (db_num($q) > 0) {
+				while($row = db_fetch_assoc($q)) {
+					$langStrings[$row['language']][$row['module']][] = $row['string'];
+				}
+			}
 		}
-		else
+
+		if (isset($langStrings[$language][$module])) {
+			foreach ($langStrings[$language][$module] as $key => $value) {
+				if (strcmp($string, $value)) {
+					return $value;
+				}
+			}
+		}	
+
+		// Check to see if that string exists
+		$q = db_query("SELECT * FROM ".$sql_prefix."_lang
+			WHERE string = '".db_escape($string)."'
+			AND language = '".db_escape($language)."'
+			AND module = '".db_escape($module)."'");
+
+		// How many occurences of string
+		$num = db_num($q);
+		if ($num == 0)
 		{
-			return $r->translated; // String has been translated.
+			/* The string does not exist in the database, add it */
+			db_query("INSERT INTO ".$sql_prefix."_lang
+				SET string = '".db_escape($string)."',
+				language = '".db_escape($language)."',
+				module = '".db_escape($module)."'");
+			return $string;
+		} // End not exists
+
+		elseif ($num >= 2)
+		{
+			die("There is an error in the lang()-function, more than one existance of string: '".$string."' in module: '".$module."' for language: '".$language."'. FIX IT!");
 		}
-	}
+		else // String should have returned a result of one row
+		{
+			$r = db_fetch($q);
+			if ((empty($r->translated)) || (!isset($r->translated)))
+			{
+				return $string; // String has not been translated
+			}
+			else
+			{
+				return $r->translated; // String has been translated.
+			}
+		}
 #	return _($string);
 	} // End else lang_method();
 }
