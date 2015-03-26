@@ -3,6 +3,10 @@
 require 'config.php';
 require 'inc/db_functions.php';
 
+// Include common libs
+require __DIR__ . "/inc/lib/SqlObject.php";
+require __DIR__ . "/inc/lib/TicketManager.php";
+
 
 # Start DB-connection
 db_connect();
