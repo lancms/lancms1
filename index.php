@@ -1,9 +1,22 @@
 <?php
 
+/*----------------------------------------------------------------*/
+/* Initialize parameters 									      */
+$design_menu = "";
+$design_eventmenu = "";
+$design_userinfo = "";
+$design_eventlist = "";
+$design_grouplist = "";
+$design_head = "";
+$facebook_likebox_url = "";
+$hide_smarty = false;
+$content = "";
+/*----------------------------------------------------------------*/
+
 require_once 'include.php';
-$module = $_GET['module'];
-$action = $_GET['action'];
-$api = $_GET['api'];
+$module = (isset($_GET['module']) ? $_GET['module']: '');
+$action = (isset($_GET['action']) ? $_GET['action']: '');
+$api = (isset($_GET['api']) ? $_GET['api']: '');
 // FIXME: error and hack-checking
 if (empty($module) && empty($api))
 {
@@ -14,9 +27,9 @@ if (empty($module) && empty($api))
 	$content .= display_systemstatic ("index", $sessioninfo->eventID);
 	$content .= display_news ($sessioninfo->eventID);
 }
-elseif (isset ($module) && file_exists ('modules/'.$module.'/'.$module.'.php'))
+elseif (isset ($module) && file_exists (__DIR__ . '/modules/'.$module.'/'.$module.'.php'))
 {
-	include ('modules/'.$module.'/'.$module.'.php');
+	include (__DIR__ . '/modules/'.$module.'/'.$module.'.php');
 } // End if isset module
 elseif (isset ($api) && file_exists ('modules/'.$api.'/api.php'))
 {
@@ -27,7 +40,6 @@ else
 {
 	$content = "Hello World!";
 }
-
 
 $design_menu .= "<li><a href=\"index.php\">".lang("Main page", "index")."</a></li>\n";
 
@@ -227,30 +239,56 @@ if($facebook_likebox_url != FALSE) {
 <div class="fb-like-box" data-href="'.$facebook_likebox_url.'" data-width="192" data-show-faces="true" data-stream="true" data-header="false"></div>
 ';
 }
-if(!$hide_smarty) {
+if(isset($hide_smarty) == false || !$hide_smarty) {
 
 	if ($sessioninfo->eventID > 1)
 	{
 		$smarty->assign ("eventinfo", $eventinfo);
 	}
 
-	$smarty->assign("grouplist", $design_grouplist);
-	$smarty->assign("eventlist", $design_eventlist);
-	$smarty->assign("userinfo", $design_userinfo);
-	$smarty->assign("sessioninfo", $sessioninfo);
-	$smarty->assign("eventmenu", $design_eventmenu);
-	$smarty->assign("menu", $design_menu);
+	if (isset($design_grouplist)) {
+		$smarty->assign("grouplist", $design_grouplist);
+	}
 
-	$smarty->assign("content", $content);
-	$smarty->assign("title", $design_title);
-	$smarty->assign("head", $design_head);
+	if (isset($design_eventlist)) {
+		$smarty->assign("eventlist", $design_eventlist);
+	}
+
+	if (isset($design_userinfo)) {
+		$smarty->assign("userinfo", $design_userinfo);
+	}
+
+	if (isset($sessioninfo)) {
+		$smarty->assign("sessioninfo", $sessioninfo);
+	}
+
+	if (isset($design_eventmenu)) {
+		$smarty->assign("eventmenu", $design_eventmenu);
+	}
+
+	if (isset($design_menu)) {
+		$smarty->assign("menu", $design_menu);
+	}
+
+	if (isset($content)) {
+		$smarty->assign("content", $content);
+	}
+
+	if (isset($design_title)) {
+		$smarty->assign("title", $design_title);
+	}
+
+	if (isset($design_head)) {
+		$smarty->assign("head", $design_head);
+	}
 
 	// for logo and link in the page footer
-	$smarty->assign("footer", $design_footer);
-
+	if (isset($design_footer)) {
+		$smarty->assign("footer", $design_footer);
+	}
 
 	$smarty_fetch = $smarty->fetch($smarty_display);
-	if ($smarty_fetch == "" or empty ($smarty_fetch) or (!$smarty_fetch))
+	if (isset($smarty_fetch) && ($smarty_fetch == "" or empty ($smarty_fetch) or (!$smarty_fetch)))
 	{
 		die("Could not display smarty. Are you sure you have write-access to the tmp/template*-folders?");
 	}

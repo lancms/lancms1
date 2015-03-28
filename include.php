@@ -58,7 +58,7 @@ if($hide_smarty != 1) {
 // If remote addr is set, include cron-stuff
 if(isset($_SERVER['REMOTE_ADDR'])) { 
 
-	if($use_SMS_system == "SMS4you.no" && !empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass)) {
+	if(isset($use_SMS_system) && $use_SMS_system == "SMS4you.no" && !empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass)) {
         	include_once 'inc/SMS/SMS4you.no.php';
 
 	}
