@@ -5,11 +5,12 @@
 $configValues = null;
 function config($config, $event = 1, $value = "NOTSET")
 {
-	global $sql_prefix, $configValues;
+	global $sessioninfo, $sql_prefix, $configValues;
 
 	// Speed performance by fetching all config values from database then reusing an array in runtime.
 	// FIXME: APC cache this?
 	if ($configValues == null) {
+		$configValues = array();
 		$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE eventID = '".db_escape($event)."'");
 		if (db_num($query) > 0) {
 			while($row = db_fetch_assoc($query)) {
@@ -34,11 +35,9 @@ function config($config, $event = 1, $value = "NOTSET")
 	else // $value IS set, so we should write/update that config
 	{
 		if($value == "disable") $value = 0;
-		if ($num == 0) // That config doesn't exists yet. Insert it
+		if (isset($configValues[$event][$config]) == false) // That config doesn't exists yet. Insert it
 		{
-			db_query("INSERT INTO ".$sql_prefix."_config SET config = '".db_escape($config)."',
-				value = '".db_escape($value)."',
-				eventID = '".db_escape($event)."'");
+			db_query("INSERT INTO ".$sql_prefix."_config(config,value,eventID)VALUES('".db_escape($config)."','".db_escape($value)."','".db_escape($event)."'");
 		}
 		else // That config exists. Update the existsing
 		{
@@ -174,7 +173,7 @@ function lang($string, $module = "index")
 
 		if (isset($langStrings[$language][$module])) {
 			foreach ($langStrings[$language][$module] as $key => $value) {
-				if (strcmp($string, $value)) {
+				if ($string == $value) {
 					return $value;
 				}
 			}
