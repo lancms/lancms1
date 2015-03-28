@@ -24,6 +24,53 @@ class TicketManager {
     }
 
     /**
+     * Provides an ticket by ID.
+     * 
+     * @see getTickets()
+     * @param int $ticketID
+     * @param int $eventID If null then active event is used.
+     * @return Ticket
+     */
+    public function getTicket($ticketID, $eventID=null) {
+        $res = $this->getTickets(array($ticketID), $eventID);
+        return count($res) > 0 ? $res[0] : null;
+    }
+
+    /**
+     * Provides an array of tickets by ID in the array provided.
+     * 
+     * @param array $ticketIDs Array of IDs.
+     * @param int $eventID If null then active event is used.
+     * @return Ticket[]
+     */
+    public function getTickets($ticketIDs, $eventID=null) {
+        global $sessioninfo, $sql_prefix;
+
+        if (is_array($ticketIDs) == false || count($ticketIDs) < 1)
+            return array();
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND `ticketID` IN (%s)", $sql_prefix, $eventID, implode(",", $ticketIDs)));
+        $num   = db_num($result);
+
+        $tickets = array();
+        if ($num > 0) {
+            $i = 0;
+            while ($row = db_fetch_assoc($result)) {
+                $tickets[$i] = new Ticket($row['ticketID']);
+                $tickets[$i]->fillInfo($row);
+
+                $i++;
+            }
+        }
+
+        return $tickets;
+    }
+
+    /**
      * Provides an array of tickets on a user. Will search fields "user" and "owner"
      * 
      * @param int $userID

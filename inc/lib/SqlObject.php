@@ -32,7 +32,7 @@ class SqlObject {
 
         $this->_info = array();
         $this->_orgInfo = array();
-        $this->_table = $sql_prefix . $table;
+        $this->_table = $sql_prefix . "_" . $table;
         $this->_idField = $idField;
         $this->_objectID = $objectID;
     }
@@ -66,7 +66,7 @@ class SqlObject {
         $toUpdate = array();
         foreach ($this->_info as $k=>$value) {
             if (array_key_exists($k, $this->_orgInfo) == false || $value != $this->_orgInfo[$k]) {
-                $toUpdate[] = $key . "='" . $value . "'";
+                $toUpdate[] = $k . "='" . $value . "'";
             }
         }
 

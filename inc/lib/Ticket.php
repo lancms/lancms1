@@ -57,6 +57,15 @@ class Ticket extends SqlObject {
     }
 
     /**
+     * Provides the owner user object of this ticket.
+     *
+     * @return User|null
+     */
+    public function getOwner() {
+        return UserManager::getInstance()->getUserByID($this->getOwnerID());
+    }
+
+    /**
      * Provides the UNIX timestamp this ticket was created.
      *
      * @return int
@@ -70,8 +79,17 @@ class Ticket extends SqlObject {
      *
      * @return int
      */
-    public function getCreator() {
+    public function getCreatorID() {
         return $this->_getField("creator", 0, 2);
+    }
+
+    /**
+     * Provides the creator user object of this ticket.
+     *
+     * @return User|null
+     */
+    public function getCreator() {
+        return UserManager::getInstance()->getUserByID($this->getCreatorID());
     }
 
     /**
@@ -81,6 +99,15 @@ class Ticket extends SqlObject {
      */
     public function getUserID() {
         return $this->_getField("user", 0, 2);
+    }
+
+    /**
+     * Provides the user user object of this ticket.
+     *
+     * @return User|null
+     */
+    public function getUser() {
+        return UserManager::getInstance()->getUserByID($this->getUserID());
     }
 
     /**
@@ -115,6 +142,14 @@ class Ticket extends SqlObject {
      */
     public function setPaid() {
         $this->_setField('paid', 'yes');
+        $this->commitChanges();
+    }
+
+    /**
+     * Sets this ticket as unpaid and updates the database.
+     */
+    public function setUnPaid() {
+        $this->_setField('paid', 'no');
         $this->commitChanges();
     }
 
