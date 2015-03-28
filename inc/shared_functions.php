@@ -11,10 +11,10 @@ function config($config, $event = 1, $value = "NOTSET")
 	// FIXME: APC cache this?
 	if ($configValues == null) {
 		$configValues = array();
-		$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE eventID = '".db_escape($event)."'");
+		$query = db_query("SELECT * FROM ".$sql_prefix."_config WHERE 1");
 		if (db_num($query) > 0) {
 			while($row = db_fetch_assoc($query)) {
-				$configValues[$event][$row['config']] = $row['value'];
+				$configValues[$row['eventID']][$row['config']] = $row['value'];
 			}
 		}
 	}
