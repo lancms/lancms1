@@ -7,109 +7,109 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lancms\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-01-06 13:32+0100\n"
-"PO-Revision-Date: 2015-03-24 12:22+0000\n"
-"Last-Translator: Åka Sikrom <Unknown>\n"
+"POT-Creation-Date: 2015-04-03 11:42+0200\n"
+"PO-Revision-Date: 2015-04-03 09:55+0000\n"
+"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmal <nb@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-04-03 05:35+0000\n"
+"X-Launchpad-Export-Date: 2015-04-04 05:32+0000\n"
 "X-Generator: Launchpad (build 17413)\n"
 
-#: ../index.php:32
+#: ../index.php:44
 msgid "Main page"
 msgstr "Hovedside"
 
-#: ../index.php:36
+#: ../index.php:48
 msgid "Global Admin"
 msgstr "Global admin"
 
-#: ../index.php:41
+#: ../index.php:53
 msgid "Register user"
 msgstr "Registrer bruker"
 
-#: ../index.php:45
+#: ../index.php:57
 msgid "My groups"
 msgstr "Mine grupper"
 
-#: ../index.php:64 ../modules/logs/logs.php:69
+#: ../index.php:76 ../modules/logs/logs.php:69
 msgid "FAQ"
 msgstr "FAQ"
 
-#: ../index.php:66
+#: ../index.php:78
 msgid "Seatmap"
 msgstr "Plasskart"
 
-#: ../index.php:68
+#: ../index.php:80
 msgid "Order ticket"
 msgstr "Bestill billett"
 
-#: ../index.php:70
+#: ../index.php:82
 msgid "Apply for crewposition"
 msgstr "Crewsøknad"
 
-#: ../index.php:72
+#: ../index.php:84
 msgid "Composignup"
 msgstr "Compopåmelding"
 
-#: ../index.php:74 ../modules/crewlist/crewlist.php:18
+#: ../index.php:86 ../modules/crewlist/crewlist.php:18
 msgid "Crewlist"
 msgstr "Crewliste"
 
-#: ../index.php:77 ../modules/arrival/arrival.php:25
+#: ../index.php:89 ../modules/arrival/arrival.php:25
 #: ../modules/logs/logs.php:50
 msgid "Arrival"
 msgstr "Ankomst"
 
-#: ../index.php:79 ../modules/logs/logs.php:118
+#: ../index.php:91 ../modules/logs/logs.php:118
 msgid "Reseller"
 msgstr "Forhandler"
 
-#: ../index.php:81 ../modules/logs/logs.php:174
+#: ../index.php:93 ../modules/logs/logs.php:174
 msgid "Kiosk"
 msgstr "Kiosk"
 
-#: ../index.php:83 ../modules/logs/logs.php:74
+#: ../index.php:95 ../modules/logs/logs.php:74
 msgid "Forum"
 msgstr "Forum"
 
-#: ../index.php:87 ../modules/logs/logs.php:155
+#: ../index.php:99 ../modules/logs/logs.php:155
 #: ../modules/sleepers/sleepers.php:23
 msgid "Sleepers"
 msgstr "Sovende"
 
-#: ../index.php:88
+#: ../index.php:100
 msgid "Dashboard"
 msgstr "Oversikt"
 
-#: ../index.php:98
+#: ../index.php:110
 msgid "Event Admin"
 msgstr "Arrangementadmin"
 
-#: ../index.php:110
+#: ../index.php:122
 msgid "Type your nick, email or name here:"
 msgstr "Skriv inn ditt nick, epost eller navn her:"
 
-#: ../index.php:142
+#: ../index.php:154
 msgid "You are logged in as:"
 msgstr "Du er logget inn som:"
 
-#: ../index.php:146 ../modules/arrival/arrival.php:248
+#: ../index.php:158 ../modules/arrival/arrival.php:248
 #: ../modules/logs/logs.php:59 ../modules/profile/profile.php:48
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
-#: ../index.php:147
+#: ../index.php:159
 msgid "Edit my preferences"
 msgstr "Rediger innstillinger"
 
-#: ../index.php:148 ../modules/edituserinfo/edituserinfo.php:14
+#: ../index.php:160 ../modules/edituserinfo/edituserinfo.php:14
 #: ../modules/edituserinfo/edituserinfo.php:27
 msgid "Change password"
 msgstr "Bytt passord"
 
-#: ../index.php:149 ../modules/logs/logs.php:100
+#: ../index.php:161 ../modules/logs/logs.php:100
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -166,7 +166,7 @@ msgstr "Brukernavn"
 #: ../modules/kioskadmin/kioskadmin.php:138
 #: ../modules/kioskadmin/kioskadmin.php:212 ../modules/profile/profile.php:13
 #: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
-#: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:267
+#: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:269
 msgid "Name"
 msgstr "Navn"
 
@@ -209,7 +209,7 @@ msgstr "E-post"
 
 #: ../modules/arrival/arrival.php:190 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:268
-#: ../modules/wannabeadmin/wannabeadmin.php:268 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:270 ../inc/shared_config.php:148
 msgid "Birthday"
 msgstr "Fødselsdag"
 
@@ -341,7 +341,7 @@ msgid "Number of persons in crew"
 msgstr "Antall personer i crew"
 
 #: ../modules/crewlist/crewlist.php:82
-#: ../modules/wannabeadmin/wannabeadmin.php:273
+#: ../modules/wannabeadmin/wannabeadmin.php:275
 msgid "Crew"
 msgstr "Crew"
 
@@ -587,7 +587,7 @@ msgstr "Rediger FAQ"
 msgid "Delete FAQ"
 msgstr "Slett FAQ"
 
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:320
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:322
 msgid "Question"
 msgstr "Spørsmål"
 
@@ -1332,7 +1332,7 @@ msgstr "E-post"
 msgid "Mail sent (mass)"
 msgstr "E-post sendt (massesendt)"
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:323
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:348
 msgid "News"
 msgstr "Nyheter"
 
@@ -1531,7 +1531,7 @@ msgstr "Kjønn"
 
 #: ../modules/profile/profile.php:24 ../modules/register/register.php:249
 #: ../modules/useradmin/useradmin.php:64
-#: ../modules/wannabeadmin/wannabeadmin.php:269
+#: ../modules/wannabeadmin/wannabeadmin.php:271
 msgid "Address"
 msgstr "Adresse"
 
@@ -1893,7 +1893,7 @@ msgstr "Ingen billetter til dette arrangementet"
 
 #: ../modules/sleepers/sleepers.php:234
 msgid "This user is a crew-member."
-msgstr "Denne brukeren er crew."
+msgstr "Denne brukeren er et crewmedlem."
 
 #: ../modules/sleepers/sleepers.php:278
 msgid "Search for user:"
@@ -2281,87 +2281,87 @@ msgstr "Legg til svaralternativ"
 msgid "Applicant"
 msgstr "Søker"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:259
+#: ../modules/wannabeadmin/wannabeadmin.php:261
 msgid "Application from:"
 msgstr "Søknadsskjema"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:260
+#: ../modules/wannabeadmin/wannabeadmin.php:262
 msgid "Back to list"
 msgstr "Tilbake til lista"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:273
+#: ../modules/wannabeadmin/wannabeadmin.php:275
 msgid "Response"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:288
-#: ../modules/wannabeadmin/wannabeadmin.php:503
+#: ../modules/wannabeadmin/wannabeadmin.php:290
+#: ../modules/wannabeadmin/wannabeadmin.php:505
 #: ../modules/wannabe/wannabe.php:32
 msgid "Nothing selected"
 msgstr "Ingenting valgt"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:291
-#: ../modules/wannabeadmin/wannabeadmin.php:506
+#: ../modules/wannabeadmin/wannabeadmin.php:293
+#: ../modules/wannabeadmin/wannabeadmin.php:508
 #: ../modules/wannabe/wannabe.php:35
 msgid "Of course!"
 msgstr "Selvfølgelig!"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:294
-#: ../modules/wannabeadmin/wannabeadmin.php:509
+#: ../modules/wannabeadmin/wannabeadmin.php:296
+#: ../modules/wannabeadmin/wannabeadmin.php:511
 #: ../modules/wannabe/wannabe.php:38
 msgid "Sure"
 msgstr "Sikkert"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:297
-#: ../modules/wannabeadmin/wannabeadmin.php:512
+#: ../modules/wannabeadmin/wannabeadmin.php:299
+#: ../modules/wannabeadmin/wannabeadmin.php:514
 #: ../modules/wannabe/wannabe.php:41
 msgid "Probably"
 msgstr "Kanskje"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:300
-#: ../modules/wannabeadmin/wannabeadmin.php:515
+#: ../modules/wannabeadmin/wannabeadmin.php:302
+#: ../modules/wannabeadmin/wannabeadmin.php:517
 #: ../modules/wannabe/wannabe.php:44
 msgid "I'd rather not"
 msgstr "Helst ikke"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:303
-#: ../modules/wannabeadmin/wannabeadmin.php:518
+#: ../modules/wannabeadmin/wannabeadmin.php:305
+#: ../modules/wannabeadmin/wannabeadmin.php:520
 #: ../modules/wannabe/wannabe.php:47
 msgid "Not at all"
 msgstr "Overhodet ikke"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:306
-#: ../modules/wannabeadmin/wannabeadmin.php:521
+#: ../modules/wannabeadmin/wannabeadmin.php:308
+#: ../modules/wannabeadmin/wannabeadmin.php:523
 #: ../modules/wannabe/wannabe.php:50
 msgid "Unknown option"
 msgstr "Ukjent alternativ"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:320
+#: ../modules/wannabeadmin/wannabeadmin.php:322
 msgid "Answer"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:337
+#: ../modules/wannabeadmin/wannabeadmin.php:339
 msgid "Yes"
 msgstr "Ja"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:338
-#: ../inc/shared_functions.php:205
+#: ../modules/wannabeadmin/wannabeadmin.php:340
+#: ../inc/shared_functions.php:230
 msgid "No"
 msgstr "Nei"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:403
-#: ../modules/wannabeadmin/wannabeadmin.php:423
+#: ../modules/wannabeadmin/wannabeadmin.php:405
+#: ../modules/wannabeadmin/wannabeadmin.php:425
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:445
+#: ../modules/wannabeadmin/wannabeadmin.php:447
 msgid "Change name"
 msgstr "Endre navn"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:461
+#: ../modules/wannabeadmin/wannabeadmin.php:463
 msgid "Add crew"
 msgstr "Legg til crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:529
+#: ../modules/wannabeadmin/wannabeadmin.php:531
 msgid "Save comment"
 msgstr "Lagre kommentar"
 
@@ -2549,26 +2549,30 @@ msgstr "Adresse"
 msgid "List all attendees on current event"
 msgstr "Vis alle deltagere på nåværende arrangement"
 
-#: ../inc/shared_config.php:214
+#: ../inc/shared_config.php:212
+msgid "You do not have access to this page."
+msgstr "Du har ikke tilgang til denne siden."
+
+#: ../inc/shared_config.php:218
 msgid "Allow other users to see my mailadress"
 msgstr "Tillatt andre brukere å se min epost-adresse"
 
-#: ../inc/shared_config.php:219
+#: ../inc/shared_config.php:223
 msgid "All users"
 msgstr "Alle brukere"
 
-#: ../inc/shared_functions.php:210
+#: ../inc/shared_functions.php:235
 msgid "Read"
 msgstr "Lese"
 
-#: ../inc/shared_functions.php:215
+#: ../inc/shared_functions.php:240
 msgid "Write"
 msgstr "Skrive"
 
-#: ../inc/shared_functions.php:220
+#: ../inc/shared_functions.php:245
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:577
+#: ../inc/shared_functions.php:631
 msgid "a.k.a."
 msgstr "a.k.a."
