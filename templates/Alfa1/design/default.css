@@ -510,3 +510,19 @@ td.ticket-error {
 	float: right;
 	display: inline-block;
 }
+
+p.nopadding {
+	margin: 0;
+}
+
+table.wannabe-application {
+	border-spacing: 0;
+}
+
+table.wannabe-application tr td {
+	padding: 5px 0;
+}
+
+table.wannabe-application tr.crew td {
+	border-bottom: 1px solid #cfcfcf;
+}

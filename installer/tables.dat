@@ -142,6 +142,7 @@ TABLE [prefix]_wannabeCrews
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	1,
 	crewname,	varchar(25),	,	,	,
+	description,	text,	,	,	,
 }
 
 TABLE [prefix]_wannabeCrewResponse

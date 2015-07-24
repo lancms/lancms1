@@ -438,14 +438,21 @@ elseif($action == "crews" || $action == "editcrew") {
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
 	
 	if(db_num($qListCrews) != 0) {
+		$content .= "<div class=\"crew-list\">";
 		$content .= "<table>";
 		while($rListCrews = db_fetch($qListCrews)) {
 			$content .= "<tr>";
 			if($action == "editcrew" && $_GET['crew'] == $rListCrews->ID) {
-				$content .= "<td><form method=POST action=?module=wannabeadmin&action=doEditcrew&crew=$rListCrews->ID>\n";
-				$content .= "<input type=text name=crewname value='$rListCrews->crewname'>\n";
-				$content .= "<input type=submit value='".lang("Change name", "wannabeadmin")."'>";
-				$content .= "</form>";
+				$content .= "<td><div class=\"newcrew-form\"><h2>" . lang("Edit crew", "wannabeadmin") . "</h2>";
+				$content .= "<form method=\"post\" action=\"?module=wannabeadmin&action=doEditcrew&crew=" . $rListCrews->ID . "\">\n";
+				$content .= "<p class=\"nopad\">\n";
+				$content .= "<input type=\"text\" value=\"$rListCrews->crewname\" placeholder=\"" . lang("Crew name...", "wannabeadmin") . "\" name=\"crewname\" /><br />\n";
+				$content .= "<textarea cols=\"40\" rows=\"4\" name=\"description\" placeholder=\"" . lang("Crew description...", "wannabeadmin") . "\">";
+				$content .= $rListCrews->description;
+				$content .= "</textarea><br />";
+				$content .= "<input type=\"submit\" value=\"".lang("Save changes")."\">";
+				$content .= "<button onclick=\"window.location = '?module=wannabeadmin&action=crews';\" type=\"button\">" . _("Cancel") . "</button></p>";
+				$content .= "</form></div>";
 			}
 			else {
 				$content .= "<td class=tdLink onClick='location.href=\"?module=wannabeadmin&action=editcrew&crew=$rListCrews->ID\"'>";
@@ -454,32 +461,38 @@ elseif($action == "crews" || $action == "editcrew") {
 			$content .= "</td></tr>\n";
 		} // End while (rListCrews)
 
-		$content .= "</table>";
+		$content .= "</table></div>";
 	}
 	if($action == "crews") {
 		// Don't display if editcrew-mode
+		$content .= "<div class=\"newcrew-form\"><h2>" . lang("Add new crew", "wannabeadmin") . "</h2>";
 		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddCrew\">\n";
-		$content .= "<p class=\"nopad\"><input type=\"text\" name=\"crewname\" />\n";
+		$content .= "<p class=\"nopad\"><input type=\"text\" placeholder=\"" . lang("Crew name...", "wannabeadmin") . "\" name=\"crewname\" /><br />\n";
+		$content .= "<textarea cols=\"40\" rows=\"4\" name=\"description\" placeholder=\"" . lang("Crew description...", "wannabeadmin") . "\"></textarea><br />";
 		$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
-		$content .= "</form>";
+		$content .= "</form></div>";
 	}
 }
 
 elseif($action == "doEditcrew" && isset($_GET['crew'])) {
 	$crew = db_escape($_GET['crew']);
 	$crewname = db_escape($_POST['crewname']);
+	$crewDescription = db_escape(isset($_POST["description"]) ? $_POST["description"] : "");
 
-	db_query("UPDATE ".$sql_prefix."_wannabeCrews SET crewname = '$crewname' WHERE eventID = '$eventID' AND ID = '$crew'");
+	db_query("UPDATE ".$sql_prefix."_wannabeCrews SET crewname = '$crewname', `description` = '" . $crewDescription . "' WHERE eventID = '$eventID' AND ID = '$crew'");
 	
 	$log_new['crewID'] = $crew;
 	$log_new['crewname'] = $crewname;
+	$log_new['description'] = $crewDescription;
 	log_add("wannabeadmin", "doEditcrew", serialize($log_new));
 
 	header("Location: ?module=wannabeadmin&action=crews");
 }
 elseif($action == "doAddCrew") {
 	$crewname = $_POST['crewname'];
-	db_query("INSERT INTO ".$sql_prefix."_wannabeCrews SET crewname = '".db_escape($crewname)."', eventID = $eventID");
+	$crewDescription = db_escape(isset($_POST["description"]) ? $_POST["description"] : "");
+
+	db_query(sprintf("INSERT INTO %s_wannabeCrews(eventID, crewname, description)VALUES(%s, '%s', '%s')", $sql_prefix, $eventID, $crewname, $crewDescription));
 	log_add("wannabeadmin", "doAddCrew", serialize($_POST));
 
 	header("Location: ?module=wannabeadmin&action=crews");
