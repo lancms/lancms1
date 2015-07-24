@@ -7,6 +7,7 @@ require 'inc/db_functions.php';
 require __DIR__ . "/inc/lib/SqlObject.php";
 require __DIR__ . "/inc/lib/UserManager.php";
 require __DIR__ . "/inc/lib/TicketManager.php";
+require __DIR__ . "/inc/lib/NewsArticleManager.php";
 
 
 # Start DB-connection

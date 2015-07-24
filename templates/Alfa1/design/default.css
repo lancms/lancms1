@@ -526,3 +526,34 @@ table.wannabe-application tr td {
 table.wannabe-application tr.crew td {
 	border-bottom: 1px solid #cfcfcf;
 }
+
+.news-section article {
+	margin: 10px 0;
+}
+
+.news-section article+article {
+	border-top: 1px solid #cfcfcf;
+}
+
+.news-section article header h3 {
+	margin: 2px 0;
+	font-size: 1.2em;
+}
+
+.news-section article header .meta {
+	color: #666666;
+	font-size: 0.94em;
+}
+
+.news-section article .content {
+	font-size: 1em;
+}
+
+table.news-editor tr td.top,
+table.news-editor tr th.top {
+	vertical-align: top;
+}
+
+table.news-editor tr th {
+	text-align: left;
+}

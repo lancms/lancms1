@@ -335,25 +335,27 @@ function display_news ($eventid=1)
 
 	if (!config ("enable_news", $eventid))
 	{
-		return (False);
+		return false;
 	}
 
 
-	$q = db_query ("SELECT * FROM ".$sql_prefix."_news WHERE eventID='".$eventid."'");
+	$articles = NewsArticleManger::getInstance()->getArticles($eventid, true);
 
-	if (!db_num($q))
-	{
-		return (False);
+	if (count($articles) < 1) {
+		return false;
 	}
-	$return = "<h2>".lang ("News", "news")."</h2>\n";
+	$return = "<div class=\"news-section\"><h2>".lang ("News", "news")."</h2>\n";
 
-	while ($news = db_fetch($q))
-	{
-		$return .= "<div class='newsbox'>\n";
-		$return .= stripslashes($news->content)."\n";
-		$return .= "</div>\n";
+	foreach ($articles as $article) {
+		$return .= "<article class='newsbox'>";
+		$return .= "<header><h3>" . $article->getHeader() . "</h3><div class=\"meta\">" . date("d.m.Y H:i:s", $article->getCreateTime()) . "</div></header>\n";
+		$return .= "<div class=\"content\">" . $article->getContent() . "</div>\n";
+		$return .= "</article>\n";
 	}
-	return ($return);
+
+	$return .= "</div>";
+
+	return $return;
 }
 
 
