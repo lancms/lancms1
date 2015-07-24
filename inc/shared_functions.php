@@ -37,7 +37,7 @@ function config($config, $event = 1, $value = "NOTSET")
 		if($value == "disable") $value = 0;
 		if (isset($configValues[$event][$config]) == false) // That config doesn't exists yet. Insert it
 		{
-			db_query("INSERT INTO ".$sql_prefix."_config(config,value,eventID)VALUES('".db_escape($config)."','".db_escape($value)."','".db_escape($event)."'");
+			db_query("INSERT INTO ".$sql_prefix."_config(config,value,eventID)VALUES('".db_escape($config)."','".db_escape($value)."','".db_escape($event)."')");
 		}
 		else // That config exists. Update the existsing
 		{
