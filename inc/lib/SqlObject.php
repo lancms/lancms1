@@ -23,7 +23,7 @@ class SqlObject {
      * what table, primary ID field and the ID of the object.
      * This information is required to make commitChanges() work.
      *
-     * @param $table The sql prefix will be added as prefix.
+     * @param $table string sql prefix will be added as prefix.
      * @param $idField
      * @param $objectID
      */
