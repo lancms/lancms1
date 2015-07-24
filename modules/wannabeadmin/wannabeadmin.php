@@ -35,6 +35,9 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 {
 	/* Admin questions */
 
+	$content .= "<div class=\"questions\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p>";
+	$content .= "<h2>" . _("Manage wannabe questions") . "</h2><p>" . _("Click on a question to edit it.") . "</p>";
+
 	// First. List up all the questions that exists
 	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
 		WHERE eventID = '".db_escape($eventID)."' ORDER BY questionOrder ASC, ID ASC");
@@ -73,6 +76,7 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 	// Displaying add new question-form
 	if($action == "questions")
 	{
+		$content .= "<div class=\"add-new\"><h2>" . _("Add new wannabe question") . "</h2>";
 		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=addQuestion\">\n";
 		$content .= "<p class=\"nopad\"><textarea name=\"question\" rows=\"10\" cols=\"60\">".lang("New question", "wannabeadmin")."</textarea></p>\n";
 		$content .= "<p class=\"nopad\"><select name=\"questionType\">\n";
@@ -83,14 +87,14 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 		/* End listing answer-types */
 		$content .= "</select></p>\n\n";
 		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add new question", "wannabeadmin")."' /></p>";
-		$content .= "</form>\n";
+		$content .= "</form></div>\n";
 	} // End if action == questions
 
 	// if action == editQuestion. Display edit-question-form
 	elseif($action == "editQuestion" && isset($_GET['questionID']))
 	{
-		// Add a link back to questionlist
-		$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Cancel edit", "wannabeadmin")."</a>\n\n";
+
+		$content .= "<div class=\"edit-question\"><h2>" . _("Edit wannabe question") . "</h2>";
 
 		// Get info about the question
 		$qGetQuestion = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
@@ -100,8 +104,9 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 
 		$content .= "<br /><form method=\"post\" action=\"?module=wannabeadmin&amp;action=changeQuestion&amp;questionID=$rGetQuestion->ID\">\n";
 		$content .= "<p class=\"nopad\"><textarea name=\"question\" cols=\"60\" rows=\"10\">".$rGetQuestion->question."</textarea></p>\n\n";
-		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Change question", "wannabeadmin")."' /></p>";
-		$content .= "</form>\n\n\n\n";
+		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Change question", "wannabeadmin")."' />";
+		$content .= "<button onclick=\"window.location='?module=wannabeadmin&amp;action=questions';\">".lang("Cancel edit", "wannabeadmin")."</button></p>";
+		$content .= "</form></div>\n\n\n\n";
 
 	} // End if action == editQuestion
 
@@ -153,6 +158,8 @@ elseif(($action == "questions" || $action == "editQuestion" || $action == "editA
 		} // End if rGetQuestion->questionType = select
 
 	} // end if action == editAnswers
+
+	$content .= "</div>";
 
 } // End if action == questions
 
@@ -217,6 +224,10 @@ elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access 
 
 elseif($action == "listApplications") {
 	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
+
+	$content .= "<div class=\"applications\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p>";
+	$content .= "<h2>" . _("Manage wannabe applications") . "</h2>";
+
 	$content .= "<table><tr>";
 	$content .= "<th>".lang("Applicant", "wannabeadmin")."</th>";
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = '$sessioninfo->eventID'");
@@ -249,7 +260,7 @@ elseif($action == "listApplications") {
 			$content .= "</tr>\n\n\n";
 		} // End while rListApplications
 	}
-		$content .= "</table>";
+		$content .= "</table></div>";
 
 } // End action=listApplications
 
@@ -436,6 +447,8 @@ elseif($action == "viewApplication" && !empty($_GET['user'])) {
 
 elseif($action == "crews" || $action == "editcrew") {
 	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
+
+	$content .= "<div class=\"crews\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p><p>" . _("Click on a crew to edit it.") . "</p>";
 	
 	if(db_num($qListCrews) != 0) {
 		$content .= "<div class=\"crew-list\">";
@@ -472,6 +485,8 @@ elseif($action == "crews" || $action == "editcrew") {
 		$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
 		$content .= "</form></div>";
 	}
+
+	$content .= "</div>";
 }
 
 elseif($action == "doEditcrew" && isset($_GET['crew'])) {
