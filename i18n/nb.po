@@ -1,21 +1,23 @@
-# Norwegian Bokmal translation for lancms
-# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
-# This file is distributed under the same license as the lancms package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
-#
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR LANCMS and it's creators
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011
+# Lars Åge Kamfjord <lars-transifex@kamfjord.org>, 2015
 msgid ""
 msgstr ""
-"Project-Id-Version: lancms\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
-"POT-Creation-Date: 2015-04-03 11:42+0200\n"
-"PO-Revision-Date: 2015-04-03 09:55+0000\n"
-"Last-Translator: Lars Åge Kamfjord <lars-launchpad@kamfjord.org>\n"
-"Language-Team: Norwegian Bokmal <nb@li.org>\n"
+"Project-Id-Version: LANCMS1\n"
+"Report-Msgid-Bugs-To: bugs.launchpad.net\n"
+"POT-Creation-Date: 2015-07-27 13:56+0200\n"
+"PO-Revision-Date: 2015-07-27 12:04+0000\n"
+"Last-Translator: Lars Åge Kamfjord <lars-transifex@kamfjord.org>\n"
+"Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/lancms1/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2015-04-04 05:32+0000\n"
-"X-Generator: Launchpad (build 17413)\n"
+"Language: nb\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../index.php:44
 msgid "Main page"
@@ -164,9 +166,10 @@ msgstr "Brukernavn"
 #: ../modules/kioskadmin/kioskadmin.php:29
 #: ../modules/kioskadmin/kioskadmin.php:118
 #: ../modules/kioskadmin/kioskadmin.php:138
-#: ../modules/kioskadmin/kioskadmin.php:212 ../modules/profile/profile.php:13
-#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
-#: ../modules/SMS/SMS.php:73 ../modules/wannabeadmin/wannabeadmin.php:269
+#: ../modules/kioskadmin/kioskadmin.php:212 ../modules/news/news.php:13
+#: ../modules/profile/profile.php:13 ../modules/sleepers/sleepers.php:186
+#: ../modules/sleepers/sleepers.php:297 ../modules/SMS/SMS.php:73
+#: ../modules/wannabeadmin/wannabeadmin.php:280
 msgid "Name"
 msgstr "Navn"
 
@@ -209,7 +212,7 @@ msgstr "E-post"
 
 #: ../modules/arrival/arrival.php:190 ../modules/profile/profile.php:23
 #: ../modules/register/register.php:268
-#: ../modules/wannabeadmin/wannabeadmin.php:270 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:281 ../inc/shared_config.php:148
 msgid "Birthday"
 msgstr "Fødselsdag"
 
@@ -341,7 +344,7 @@ msgid "Number of persons in crew"
 msgstr "Antall personer i crew"
 
 #: ../modules/crewlist/crewlist.php:82
-#: ../modules/wannabeadmin/wannabeadmin.php:275
+#: ../modules/wannabeadmin/wannabeadmin.php:286
 msgid "Crew"
 msgstr "Crew"
 
@@ -378,6 +381,7 @@ msgid "Creditsale"
 msgstr "Kredittsalg"
 
 #: ../modules/economy/economy.php:40
+#: ../modules/wannabeadmin/wannabeadmin.php:466
 msgid "Save changes"
 msgstr "Lagre endringer"
 
@@ -405,10 +409,13 @@ msgstr "Ny konto"
 msgid "Accountnumber already exists"
 msgstr "Kontonummer eksisterer allerede"
 
-#: ../modules/economy/economy.php:84 ../modules/SMS/SMS.php:106
-#: ../modules/ticketorder/ticketorder.php:223
+#: ../modules/economy/economy.php:84 ../modules/news/news.php:63
+#: ../modules/SMS/SMS.php:106 ../modules/ticketorder/ticketorder.php:223
 #: ../modules/ticketorder/ticketorder.php:227
 #: ../modules/ticketorder/ticketorder.php:231
+#: ../modules/wannabeadmin/wannabeadmin.php:38
+#: ../modules/wannabeadmin/wannabeadmin.php:228
+#: ../modules/wannabeadmin/wannabeadmin.php:451
 msgid "Back"
 msgstr "Tilbake"
 
@@ -479,7 +486,7 @@ msgstr "Ikke tilgang til å redigere brukerinfo"
 #: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
 #: ../modules/infoscreens/infoscreens.php:237
 #: ../modules/kioskadmin/kioskadmin.php:123
-#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:60
+#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
 #: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
 msgid "Save"
@@ -587,7 +594,7 @@ msgstr "Rediger FAQ"
 msgid "Delete FAQ"
 msgstr "Slett FAQ"
 
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:322
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.php:333
 msgid "Question"
 msgstr "Spørsmål"
 
@@ -850,7 +857,7 @@ msgstr "Opprett nytt lysbilde"
 #: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/infoscreens/infoscreens.php:78
 #: ../modules/kioskadmin/kioskadmin.php:36
-#: ../modules/kioskadmin/kioskadmin.php:159
+#: ../modules/kioskadmin/kioskadmin.php:159 ../modules/news/news.php:22
 msgid "Edit"
 msgstr "Rediger"
 
@@ -882,9 +889,7 @@ msgstr "Legg til"
 msgid ""
 "Screen ID is missing or invalid, it must be numeric and over zero. Go back "
 "and try again."
-msgstr ""
-"SkjermID mangler eller er ugyldig. Det må være numerisk og over null. Gå "
-"tilbake og prøv igjen."
+msgstr "SkjermID mangler eller er ugyldig. Det må være numerisk og over null. Gå tilbake og prøv igjen."
 
 #: ../modules/infoscreens/infoscreens.php:207
 msgid "Create a new slide"
@@ -902,9 +907,7 @@ msgstr "Du har glemt enten navn eller innehold. Gå tilbake og prøv på nytt."
 msgid ""
 "Slide ID is missing or invalid, it must be numeric and over zero. Go back "
 "and try again."
-msgstr ""
-"Lysbilde ID mangler eller er ugyldig, den må være tall og over null. Gå "
-"tilbake og prøv igjen."
+msgstr "Lysbilde ID mangler eller er ugyldig, den må være tall og over null. Gå tilbake og prøv igjen."
 
 #: ../modules/infoscreens/infoscreens.php:332
 #: ../modules/infoscreens/infoscreens.php:356
@@ -937,7 +940,7 @@ msgid "Kiosk Ware types"
 msgstr "Kiosk varetyper"
 
 #: ../modules/kioskadmin/kioskadmin.php:29
-#: ../modules/kioskadmin/kioskadmin.php:142
+#: ../modules/kioskadmin/kioskadmin.php:142 ../modules/news/news.php:13
 msgid "Actions"
 msgstr "Handlinger"
 
@@ -985,12 +988,9 @@ msgstr "Legg til vare"
 #: ../modules/kioskadmin/kioskadmin.php:184
 msgid ""
 "No ware types exists to add wares, head over to '<a "
-"href='?module=kioskadmin&amp;action=wareTypes'>Admin waretype</a>' to create "
-"types."
-msgstr ""
-"Ingen varetyper finnes for å legge til varer, gå til '<a "
-"href='?module=kioskadmin&amp;action=wareTypes'>varetype administrasjon</a>' "
-"for å lage varetyper."
+"href='?module=kioskadmin&amp;action=wareTypes'>Admin waretype</a>' to create"
+" types."
+msgstr "Ingen varetyper finnes for å legge til varer, gå til '<a href='?module=kioskadmin&amp;action=wareTypes'>varetype administrasjon</a>' for å lage varetyper."
 
 #: ../modules/kioskadmin/kioskadmin.php:205
 msgid "Back to wares"
@@ -1080,17 +1080,13 @@ msgstr "Nullstill passord"
 #: ../modules/login/login.php:96
 msgid ""
 "Your email hasn't been confirmed. Please go to the link sent in your email."
-msgstr ""
-"Din epostadresse har ikke blitt bekreftet. Vennligst gå til lenken som ble "
-"sendt til deg på epost."
+msgstr "Din epostadresse har ikke blitt bekreftet. Vennligst gå til lenken som ble sendt til deg på epost."
 
 #: ../modules/login/login.php:98
 #, php-format
 msgid ""
 "If you haven't gotten any email from us yet, <a href=\"%s\">resend email</a>"
-msgstr ""
-"Hvis du ikke har fått noen epost fra oss ennå, <a href=\"%s\">send på "
-"nytt</a>"
+msgstr "Hvis du ikke har fått noen epost fra oss ennå, <a href=\"%s\">send på nytt</a>"
 
 #: ../modules/login/login.php:104
 msgid "sorry, wrong password!"
@@ -1099,21 +1095,17 @@ msgstr "Beklager, feil passord!"
 #: ../modules/login/login.php:138
 msgid ""
 "The user has not confirmed his EMailAddress. Not able to reset password"
-msgstr ""
-"Brukeren har ikke bekreftet sin epost-adresse. Kan ikke nullstille passord"
+msgstr "Brukeren har ikke bekreftet sin epost-adresse. Kan ikke nullstille passord"
 
 #: ../modules/login/login.php:141
 msgid ""
-"You have already tried to reset your password today. Please check your mails "
-"inbox and junkfolder"
-msgstr ""
-"Du har allerede forsøkt å nullstille passordet ditt i dag. Sjekk "
-"epostkontoen din og spam-mappa."
+"You have already tried to reset your password today. Please check your mails"
+" inbox and junkfolder"
+msgstr "Du har allerede forsøkt å nullstille passordet ditt i dag. Sjekk epostkontoen din og spam-mappa."
 
 #: ../modules/login/login.php:145
 msgid "I confirm that this is my account, and I want to reset the password"
-msgstr ""
-"Jeg bekrefter at dette er min konto, og at jeg vil nullstille passordet"
+msgstr "Jeg bekrefter at dette er min konto, og at jeg vil nullstille passordet"
 
 #: ../modules/login/login.php:157
 msgid "Email not confirmed!"
@@ -1136,9 +1128,7 @@ msgstr "Epost sent. Sjekk din epostkonto og spammappe"
 msgid ""
 "Key or userID not found, or already used. You can only reset the password "
 "once with each key"
-msgstr ""
-"Nøkkel eller brukerID ikke funnet, eller allerede brukt. Du kan kun "
-"nullstille passordet en gang med hver nøkkel"
+msgstr "Nøkkel eller brukerID ikke funnet, eller allerede brukt. Du kan kun nullstille passordet en gang med hver nøkkel"
 
 #: ../modules/login/login.php:194
 msgid "Please provide your new password, two times"
@@ -1155,9 +1145,7 @@ msgstr "Passordene er ikke like. Gå tilbake og prøv igjen"
 #: ../modules/login/login.php:228
 #, php-format
 msgid "Password successfully reset. Please go back to <a href='%s'>Login</a>"
-msgstr ""
-"Passord har blitt nullstilt. Vennligst gå tilbake til <a "
-"href='%s'>innlogging</a>"
+msgstr "Passord har blitt nullstilt. Vennligst gå tilbake til <a href='%s'>innlogging</a>"
 
 #: ../modules/login/login.php:249
 msgid "Verify your account"
@@ -1168,25 +1156,16 @@ msgstr "Verifiser kontoen din"
 msgid ""
 "Hello %s.\n"
 "\n"
-"You have tried to login to your account on %s, but haven't verified your "
-"account.\n"
+"You have tried to login to your account on %s, but haven't verified your account.\n"
 "\n"
 "To verify your mailaddress, please go to <a href='%s'>%s</a>"
-msgstr ""
-"Hei %s.\n"
-"\n"
-"Du har forsøkt å logge inn på din konto på %s, men har ikke verifisert "
-"kontoen din.\n"
-"\n"
-"For å verifisere epostadressen din, gå til <a href='%s'>%s</a>"
+msgstr "Hei %s.\n\nDu har forsøkt å logge inn på din konto på %s, men har ikke verifisert kontoen din.\n\nFor å verifisere epostadressen din, gå til <a href='%s'>%s</a>"
 
 #: ../modules/login/login.php:257
 msgid ""
 "Email with verificationcode has been sent. Please wait for it to come (it "
 "might take a couple of minutes)."
-msgstr ""
-"Epost med verifiseringskode har blitt sendt. Vent på at den kommer (det kan "
-"ta noen minutter)."
+msgstr "Epost med verifiseringskode har blitt sendt. Vent på at den kommer (det kan ta noen minutter)."
 
 #: ../modules/logs/logs.php:14
 msgid "Last 30 logentries"
@@ -1332,11 +1311,11 @@ msgstr "E-post"
 msgid "Mail sent (mass)"
 msgstr "E-post sendt (massesendt)"
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:348
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:347
 msgid "News"
 msgstr "Nyheter"
 
-#: ../modules/logs/logs.php:109 ../modules/news/news.php:20
+#: ../modules/logs/logs.php:109 ../modules/news/news.php:33
 msgid "Add new article"
 msgstr "Legg til artikkel"
 
@@ -1516,9 +1495,57 @@ msgstr "LogFunksjon"
 msgid "Send Mail"
 msgstr "Send e-post"
 
+#: ../modules/news/news.php:12
+msgid "Manage news articles"
+msgstr "Administrer nyhetsartikler"
+
+#: ../modules/news/news.php:18
+msgid "Published"
+msgstr "Publisert"
+
+#: ../modules/news/news.php:18
+msgid "Draft"
+msgstr "Utkast"
+
 #: ../modules/news/news.php:19
-msgid "Add as global article"
-msgstr "Legg til som global artikkel"
+msgid "Global"
+msgstr "Global"
+
+#: ../modules/news/news.php:23 ../modules/static/static.php:63
+msgid "Delete"
+msgstr "Slett"
+
+#: ../modules/news/news.php:30
+msgid "Create new article"
+msgstr "Lag ny artikkel"
+
+#: ../modules/news/news.php:32
+msgid "Article header..."
+msgstr "Artikkeloverskrift"
+
+#: ../modules/news/news.php:62
+msgid "Edit article"
+msgstr "Rediger artikkel"
+
+#: ../modules/news/news.php:73
+msgid "Title"
+msgstr "Tittel"
+
+#: ../modules/news/news.php:74
+msgid "Content"
+msgstr "Innhold"
+
+#: ../modules/news/news.php:76
+msgid "Is active?"
+msgstr "Er aktiv?"
+
+#: ../modules/news/news.php:77
+msgid "Is global article?"
+msgstr "Er global artikkel?"
+
+#: ../modules/news/news.php:81
+msgid "Fant ikke artikkelen"
+msgstr "Fant ikke artikkelen"
 
 #: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
 msgid "Email"
@@ -1531,7 +1558,7 @@ msgstr "Kjønn"
 
 #: ../modules/profile/profile.php:24 ../modules/register/register.php:249
 #: ../modules/useradmin/useradmin.php:64
-#: ../modules/wannabeadmin/wannabeadmin.php:271
+#: ../modules/wannabeadmin/wannabeadmin.php:282
 msgid "Address"
 msgstr "Adresse"
 
@@ -1612,12 +1639,7 @@ msgid ""
 "You, or someone else has registered a new account on %s.\n"
 "\n"
 "To verify your mailaddress, please go to <a href='%s'>%s</a>"
-msgstr ""
-"Hei %s.\n"
-"\n"
-"Noen har registrert en ny konto på %s med din epostadresse.\n"
-"\n"
-"For å bekrefte registreringa, vennligst gå til <a href='%s'>%s</a>."
+msgstr "Hei %s.\n\nNoen har registrert en ny konto på %s med din epostadresse.\n\nFor å bekrefte registreringa, vennligst gå til <a href='%s'>%s</a>."
 
 #: ../modules/register/register.php:194
 msgid "User registered"
@@ -1745,39 +1767,30 @@ msgstr "Reserver plass"
 #: ../modules/seatmap/seatmap_table.php:159
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
-msgstr ""
-"Dette setet er passordbeskyttet. Hvis du kjenner til passordet kan du ta den."
+msgstr "Dette setet er passordbeskyttet. Hvis du kjenner til passordet kan du ta den."
 
 #: ../modules/seatmap/seatmap_table.php:166
 msgid ""
 "This seat is protected by group. You are a member of a group with access."
-msgstr ""
-"Denne plassen er kun tilgjengelig for en gruppe. Du er medlem av en gruppe "
-"med tilgang."
+msgstr "Denne plassen er kun tilgjengelig for en gruppe. Du er medlem av en gruppe med tilgang."
 
 #: ../modules/seatmap/seatmap_table.php:172
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
-msgstr ""
-"Denne plassen er reservert til en gruppe. Du er ikke medlem av en gruppe med "
-"tilgang. Synd!"
+msgstr "Denne plassen er reservert til en gruppe. Du er ikke medlem av en gruppe med tilgang. Synd!"
 
 #: ../modules/seatmap/seatmap_table.php:177
 msgid ""
 "This seat is protected by a special right. You are a member of a group with "
 "access"
-msgstr ""
-"Denne plassen er beskyttet av en rettighet. Du er medlem av en gruppe med "
-"tilgang."
+msgstr "Denne plassen er beskyttet av en rettighet. Du er medlem av en gruppe med tilgang."
 
 #: ../modules/seatmap/seatmap_table.php:182
 msgid ""
 "This seat is protected by a special right. You are not member of a group "
 "with access. Too bad!"
-msgstr ""
-"Denne plassen er beskyttet av en rettighet. Du er ikke medlem av en gruppe "
-"med tilgang. Synd!"
+msgstr "Denne plassen er beskyttet av en rettighet. Du er ikke medlem av en gruppe med tilgang. Synd!"
 
 #: ../modules/sessions/sessions.php:10
 msgid "Sessions"
@@ -2007,10 +2020,6 @@ msgstr "Meldingsinnhold"
 msgid "Edit access"
 msgstr "Rediger tilgang"
 
-#: ../modules/static/static.php:63
-msgid "Delete"
-msgstr "Slett"
-
 #: ../modules/static/static.php:64
 msgid "Undelete"
 msgstr "Gjenopprett"
@@ -2177,11 +2186,9 @@ msgstr "Kunne ikke finne den koden. Er du sikker på at du skrev den riktig?"
 
 #: ../modules/ticketorder/ticketorder.php:226
 msgid ""
-"Code found, but it's not for this event. Try finding a newer piece for paper "
-"with a newer code"
-msgstr ""
-"Kode funnet, men er ikke til dette arrangementet. Prøv å finne et nyere ark "
-"med en nyere kode."
+"Code found, but it's not for this event. Try finding a newer piece for paper"
+" with a newer code"
+msgstr "Kode funnet, men er ikke til dette arrangementet. Prøv å finne et nyere ark med en nyere kode."
 
 #: ../modules/ticketorder/ticketorder.php:230
 msgid "Code found, but it has already been used"
@@ -2239,129 +2246,171 @@ msgstr "Crew"
 msgid "View Applications"
 msgstr "Vis søknader"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:77
+#: ../modules/wannabeadmin/wannabeadmin.php:39
+msgid "Manage wannabe questions"
+msgstr "Administrer wannabespørsmål"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:39
+msgid "Click on a question to edit it."
+msgstr "Klikk på et spørsmål for å redigere det."
+
+#: ../modules/wannabeadmin/wannabeadmin.php:79
+msgid "Add new wannabe question"
+msgstr "Legg til nytt wannabespørsmål"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:81
 msgid "New question"
 msgstr "Nytt spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:80
+#: ../modules/wannabeadmin/wannabeadmin.php:84
 msgid "Text answer-field"
 msgstr "Tekst-spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:81
+#: ../modules/wannabeadmin/wannabeadmin.php:85
 msgid "Dropdown"
 msgstr "Nedtreksmeny"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:82
+#: ../modules/wannabeadmin/wannabeadmin.php:86
 msgid "Checkbox"
 msgstr "Avkrysningsboks"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:85
+#: ../modules/wannabeadmin/wannabeadmin.php:89
 msgid "Add new question"
 msgstr "Legg til spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:93
-#: ../modules/wannabeadmin/wannabeadmin.php:113
-#: ../modules/wannabeadmin/wannabeadmin.php:117
-msgid "Cancel edit"
-msgstr "Avbryt redigering"
+#: ../modules/wannabeadmin/wannabeadmin.php:97
+msgid "Edit wannabe question"
+msgstr "Rediger wannabespørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:103
+#: ../modules/wannabeadmin/wannabeadmin.php:107
 msgid "Change question"
 msgstr "Endre spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:136
+#: ../modules/wannabeadmin/wannabeadmin.php:108
+#: ../modules/wannabeadmin/wannabeadmin.php:118
+#: ../modules/wannabeadmin/wannabeadmin.php:122
+msgid "Cancel edit"
+msgstr "Avbryt redigering"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:141
 msgid "Change answer"
 msgstr "Endre svaralternativ"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:151
+#: ../modules/wannabeadmin/wannabeadmin.php:156
 msgid "Add answer"
 msgstr "Legg til svaralternativ"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:221
+#: ../modules/wannabeadmin/wannabeadmin.php:229
+msgid "Manage wannabe applications"
+msgstr "Administrer wannabesøknader"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:232
 msgid "Applicant"
 msgstr "Søker"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:261
+#: ../modules/wannabeadmin/wannabeadmin.php:272
 msgid "Application from:"
 msgstr "Søknadsskjema"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:262
+#: ../modules/wannabeadmin/wannabeadmin.php:273
 msgid "Back to list"
 msgstr "Tilbake til lista"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:275
+#: ../modules/wannabeadmin/wannabeadmin.php:286
 msgid "Response"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:290
-#: ../modules/wannabeadmin/wannabeadmin.php:505
+#: ../modules/wannabeadmin/wannabeadmin.php:301
+#: ../modules/wannabeadmin/wannabeadmin.php:533
 #: ../modules/wannabe/wannabe.php:32
 msgid "Nothing selected"
 msgstr "Ingenting valgt"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:293
-#: ../modules/wannabeadmin/wannabeadmin.php:508
+#: ../modules/wannabeadmin/wannabeadmin.php:304
+#: ../modules/wannabeadmin/wannabeadmin.php:536
 #: ../modules/wannabe/wannabe.php:35
 msgid "Of course!"
 msgstr "Selvfølgelig!"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:296
-#: ../modules/wannabeadmin/wannabeadmin.php:511
+#: ../modules/wannabeadmin/wannabeadmin.php:307
+#: ../modules/wannabeadmin/wannabeadmin.php:539
 #: ../modules/wannabe/wannabe.php:38
 msgid "Sure"
 msgstr "Sikkert"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:299
-#: ../modules/wannabeadmin/wannabeadmin.php:514
+#: ../modules/wannabeadmin/wannabeadmin.php:310
+#: ../modules/wannabeadmin/wannabeadmin.php:542
 #: ../modules/wannabe/wannabe.php:41
 msgid "Probably"
 msgstr "Kanskje"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:302
-#: ../modules/wannabeadmin/wannabeadmin.php:517
+#: ../modules/wannabeadmin/wannabeadmin.php:313
+#: ../modules/wannabeadmin/wannabeadmin.php:545
 #: ../modules/wannabe/wannabe.php:44
 msgid "I'd rather not"
 msgstr "Helst ikke"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:305
-#: ../modules/wannabeadmin/wannabeadmin.php:520
+#: ../modules/wannabeadmin/wannabeadmin.php:316
+#: ../modules/wannabeadmin/wannabeadmin.php:548
 #: ../modules/wannabe/wannabe.php:47
 msgid "Not at all"
 msgstr "Overhodet ikke"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:308
-#: ../modules/wannabeadmin/wannabeadmin.php:523
+#: ../modules/wannabeadmin/wannabeadmin.php:319
+#: ../modules/wannabeadmin/wannabeadmin.php:551
 #: ../modules/wannabe/wannabe.php:50
 msgid "Unknown option"
 msgstr "Ukjent alternativ"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:322
+#: ../modules/wannabeadmin/wannabeadmin.php:333
 msgid "Answer"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:339
+#: ../modules/wannabeadmin/wannabeadmin.php:350
 msgid "Yes"
 msgstr "Ja"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:340
+#: ../modules/wannabeadmin/wannabeadmin.php:351
 #: ../inc/shared_functions.php:230
 msgid "No"
 msgstr "Nei"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:405
-#: ../modules/wannabeadmin/wannabeadmin.php:425
+#: ../modules/wannabeadmin/wannabeadmin.php:416
+#: ../modules/wannabeadmin/wannabeadmin.php:436
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:447
-msgid "Change name"
-msgstr "Endre navn"
+#: ../modules/wannabeadmin/wannabeadmin.php:451
+msgid "Click on a crew to edit it."
+msgstr "Klikk på et crew for å redigere det."
+
+#: ../modules/wannabeadmin/wannabeadmin.php:459
+msgid "Edit crew"
+msgstr "Rediger crew"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:462
+#: ../modules/wannabeadmin/wannabeadmin.php:483
+msgid "Crew name..."
+msgstr "Crewnavn"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:463
+#: ../modules/wannabeadmin/wannabeadmin.php:484
+msgid "Crew description..."
+msgstr "Crewbeskrivelse"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:467
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:481
+msgid "Add new crew"
+msgstr "Legg til nytt crew"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:485
 msgid "Add crew"
 msgstr "Legg til crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:531
+#: ../modules/wannabeadmin/wannabeadmin.php:559
 msgid "Save comment"
 msgstr "Lagre kommentar"
 
@@ -2489,9 +2538,7 @@ msgstr "Vis antall ledige billetter i billettbestilling"
 msgid ""
 "Default option in kiosk to sell to credit when user is selected (otherwise "
 "cash payment is selected as default)"
-msgstr ""
-"Standardvalg i kiosk er å selge på kreditt når en bruker er valgt (ellers "
-"blir kontantbetaling valgt som standard)"
+msgstr "Standardvalg i kiosk er å selge på kreditt når en bruker er valgt (ellers blir kontantbetaling valgt som standard)"
 
 #: ../inc/shared_config.php:109
 msgid "January"
@@ -2573,6 +2620,6 @@ msgstr "Skrive"
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:631
+#: ../inc/shared_functions.php:633
 msgid "a.k.a."
 msgstr "a.k.a."
