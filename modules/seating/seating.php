@@ -28,7 +28,7 @@ else {
 if(!isset($action)) {
 #	$seatX = $_GET['seatX'];
 #	$seatY = $_GET['seatY'];
-	include_once 'modules/seatmap/seatmap.php';
+	include_once __DIR__ . '/../seatmap/seatmap.php';
 
 	if(!empty($_GET['seatX']) && !empty($_GET['seatY'])) {
         	// Display information about the seat

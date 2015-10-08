@@ -54,6 +54,24 @@ class TicketType extends SqlObject {
     }
 
     /**
+     * Provides the description of this ticket type.
+     *
+     * @return string
+     */
+    public function getDescription() {
+        return $this->_getField("description");
+    }
+
+    /**
+     * Sets new description of this ticket type.
+     *
+     * @param string $newDescription
+     */
+    public function setDescription($newDescription) {
+        $this->_setField("description", $newDescription);
+    }
+
+    /**
      * Provides the type of ticket type, see TICKET_TYPE_* constats in class.
      *
      * @return string
@@ -105,6 +123,38 @@ class TicketType extends SqlObject {
      */
     public function setMaxTickets($arg) {
         $this->_setField("maxTickets", $arg);
+    }
+
+    /**
+     * Provides the amount that user can order on this ticket.
+     * Zero defines that user has ordered the max allowed.
+     * 
+     * @param User $user
+     * @return int
+     */
+    public function getAmountUserCanOrder(User $user) {
+        global $maxTicketsPrUser;
+
+        $hasAmount = 0;
+        $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+
+        $tickets = $user->getTickets();
+        if (count($tickets) > 0) {
+            foreach ($tickets as $value) {
+                if ($value->getTicketTypeID() == $this->getTicketTypeID()) {
+                    $hasAmount++;
+                }
+            }
+        }
+        unset($tickets);
+
+        $restAmount = ($canAmount - $hasAmount);
+
+        if ($restAmount < 0) {
+            return 0;
+        }
+
+        return $restAmount;
     }
     
 }

@@ -1,0 +1,171 @@
+/* Responsive */
+
+
+/*
+ *
+ *
+ *
+ *
+ * TABLET
+ *
+ *
+ *
+ *
+ */
+@media(max-width:980px) {
+
+    body {
+        font-size: 13px;
+        line-height: 1.22857;
+    }
+
+    h1 {
+        font-size: 30px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+
+    h4 {
+        font-size: 14px;
+    }
+
+    h5 {
+        font-size: 12px;
+    }
+
+    h6 {
+        font-size: 10px;
+    }
+
+    .container {
+        width: 700px;
+        margin: 0 auto;
+    }
+
+    .page {
+        margin-top: 20px;
+    }
+
+    .left {
+        width: 120px;
+    }
+
+    .content {
+        width: 525px;
+    }
+
+    .left .box.events ul,
+    .left .box.groups ul {
+        padding-left: 24px;
+    }
+
+}
+
+/*
+ *
+ *
+ *
+ *
+ * MOBILE
+ *
+ *
+ *
+ *
+ */
+@media (max-width: 640px) {
+    #mobile-menu-button {
+        display: inline-block !important; 
+    }
+
+    .container {
+        width: 93%;
+    }
+
+    .logo h1 {
+        font-size: 25px;
+    }
+
+    .left {
+        display: none;
+    }
+
+    .content {
+        width: 100%;
+        clear: both;
+        float: none;
+        margin-left: 0;
+    }
+
+    .header {
+        padding: 10px 0;
+    }
+
+    nav.main-menu li {
+        display: none;
+    }
+
+    nav.main-menu li#mobile-menu-button {
+        display: block !important;
+    }
+
+    .table.ticket-table {
+        width: 100%;
+    }
+
+    table thead tr th, table tbody tr td {
+        padding: 10px 5px;
+    }
+
+    .arrival .ticket-status,
+    .arrival .ticket-users {
+        clear: both;
+        display: block;
+        float: none;
+        width: 100%;
+    }
+
+    .arrival .actions form {
+        display: block;
+        width: 100%;
+    }
+
+    .arrival .actions form+form {
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .arrival .actions form input {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .arrival .front form input[type=text] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .arrival .front form input[type=submit] {
+        float: right;
+    }
+
+    form.form .form-group label,
+    form.form .form-group .elements {
+        display: block;
+    }
+
+    form.form .form-group label {
+        width: 100%;
+    }
+
+    form.form .form-group .elements,
+    form.form .form-group .input {
+        width: 100%;
+    }
+
+}

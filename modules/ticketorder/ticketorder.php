@@ -1,321 +1,348 @@
 <?php
-$eventID = $sessioninfo->eventID;
-$userID = $sessioninfo->userID;
 
-// quick fix for missing acl
-if ($sessioninfo->userID <= 1)
-{
-	header ('Location: index.php');
-	die ();
+$eventID = $sessioninfo->eventID;
+$userID = -1;
+$user = null;
+
+if (isset($sessioninfo) && $sessioninfo->userID > 1) {
+    $userID = $sessioninfo->userID;
+    $user = UserManager::getInstance()->getUserByID($userID);
 }
 
-if(!config("enable_ticketorder", $eventID)) die("Ticketorder not enabled");
-$action = $_GET['action'];
-$ticket = $_GET['ticket'];
+$ticketManager = TicketManager::getInstance();
 
-if(!isset($action) || $action == "changeOwner" || $action == "changeUser" || $action == "findOwner" || $action == "findUser") {
-    // No action set, display tickets
+if(!config("enable_ticketorder", $eventID)) {
+    $content .= "<p>Ticketorder is not enabled.</p>";
+    return;
+}
 
-    $qDisplayTickets = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID' AND (owner = '$userID' OR user = '$userID') AND status != 'deleted'");
+$ticket = isset($_GET['ticket']) && is_numeric($_GET['ticket']) ? $_GET['ticket'] : 0;
 
-    if(db_num($qDisplayTickets) != 0) {
-        // The user has tickets to this event, display them
-        $content .= "<table>";
-	$content .= "<tr><th>".lang("Ticketnumber", "ticketorder");
-	$content .= "</th><th>".lang("Tickettype", "ticketorder");
-	$content .= "</th><th>".lang("Status", "ticketorder");
-	$content .= "</th><th>".lang("Map placement", "ticketorder");
-	$content .= "</th><th>".lang("User", "ticketorder");
-	$content .= "</th><th>".lang("Owner", "ticketorder");
+$content .= "
+        <h1 class=\"page-title\">" . _("Order ticket") . "</h1>
+        <div class=\"tickets\">";
 
+switch ($action) {
 
-        while($rDisplayTickets = db_fetch($qDisplayTickets)) {
-	$content .= "<tr><td>";
-	$content .= $rDisplayTickets->ticketID;
-	$content .= "</td><td>";
-	$qCheckTicketType = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID ='$eventID'
-	    AND ticketTypeID = '$rDisplayTickets->ticketType'");
-	$rCheckTicketType = db_fetch($qCheckTicketType);
-	$content .= $rCheckTicketType->name;
-	$content .= "</td><td>";
-	$content .= lang($rDisplayTickets->status, "ticketorder");
-	$content .= "</td><td>";
-	if($rDisplayTickets->status == 'notused' && config("seating_enabled", $sessioninfo->eventID)) {
-	    $content .= "<a href=\"?module=seating&ticketID=$rDisplayTickets->ticketID\">";
-	    $content .= lang("Place on map", "ticketorder");
-	    $content .= "</a>";
-	} elseif($rDisplayTickets->status == 'notpaid') {
-		$content .= lang("Not paid", "ticketorder");
-		if($rCheckTicketType->type == 'prepaid') $prepaid_amount = $prepaid_amount + $rCheckTicketType->price;
-	} elseif(!config("seating_enabled", $sessioninfo->eventID)) {
-		$content .= lang("Seating not enabled yet", "ticketorder");
-	} else {
-	    $qTicketUsedWhere = db_query("SELECT seatX,seatY FROM ".$sql_prefix."_seatReg_seatings
-	    	WHERE ticketID = ".$rDisplayTickets->ticketID);
-	    $rTicketUsedWhere = db_fetch($qTicketUsedWhere);
-	    $content .= "<a href=\"?module=seating&ticketID=$rDisplayTickets->ticketID&amp;seatX=$rTicketUsedWhere->seatX&amp;seatY=$rTicketUsedWhere->seatY\">";
-	    $content .= lang("Update map", "ticketorder");
-	    $content .= "</a>";
-	}
-	$content .= "</td><td>";
+    //==================================================================================
+    // Handle order
+    case "receipt":
 
-	if(($action == "changeUser" || $action == "findUser") && $ticket == $rDisplayTickets->ticketID && ($rDisplayTickets->owner == $sessioninfo->userID || acl_access("seating", "", $sessioninfo->eventID) == 'Admin')) {
-		$content .= "<form method=POST action=?module=ticketorder&action=findUser&ticket=$ticket>\n";
-		$content .= "<input type=text name=searchUser value='".$_POST['searchUser']."'>\n";
-		$content .= "<br><input type=submit value='".lang("Search user", "ticketorder")."'>\n";
-		$content .= "</form>\n";
-		if($action== "findUser") {
-			$search = db_escape($_POST['searchUser']);
-			$qFindUser = db_query("SELECT ID FROM ".$sql_prefix."_users
-				WHERE nick LIKE '%$search%'
-				OR firstName LIKE '%$search%'
-				OR lastName LIKE '%$search%'
-			");
-			if(db_num($qFindUser) > 30 ) {
-				$content .= lang("Found to many users matching, please specify", "ticketorder");
-			} // Found to many matches on search
-			else {
-				$content .= "<ul>";
-				while($rFindUser = db_fetch($qFindUser)) {
-					$content .= "<li><a href=?module=ticketorder&action=doChangeUser&ticket=$ticket&toUser=$rFindUser->ID>";
-					$content .= display_username($rFindUser->ID);
-					$content .= "</a></li>";
-				} // End while rFindUser
-				$content .= '</ul>';
-			} // End else (db_num())
-		} // End if action== FindUser
-	} elseif($rDisplayTickets->owner == $sessioninfo->userID && empty($action)) {
-		$content .= "<a href=?module=ticketorder&action=changeUser&ticket=$rDisplayTickets->ticketID>";
-		$content .= display_username($rDisplayTickets->user);
-		$content .= "</a>";
-	} else {
-		$content .= display_username($rDisplayTickets->user);
-	}
-	$content .= "</td><td>";
-	if(($action == "changeOwner" || $action == "findOwner") && $ticket == $rDisplayTickets->ticketID && ($rDisplayTickets->owner == $sessioninfo->userID || acl_access("seating", "", $sessioninfo->eventID) == 'Admin')) {
-		$content .= "<form method=POST action=?module=ticketorder&action=findOwner&ticket=$ticket>\n";
-		$content .= "<input type=text name=searchOwner value='".$_POST['searchOwner']."'>\n";
-		$content .= "<br><input type=submit value='".lang("Search owner", "ticketorder")."'>\n";
-		$content .= "</form>\n";
-		if($action== "findOwner") {
-			$search = db_escape($_POST['searchOwner']);
-			$qFindOwner = db_query("SELECT ID FROM ".$sql_prefix."_users
-				WHERE nick LIKE '%$search%'
-				OR firstName LIKE '%$search%'
-				OR lastName LIKE '%$search%'
-			");
-			if(db_num($qFindOwner) > 30) {
-				$content .= lang("Found to many users matching, please specify", "ticketorder");
-			} // Found to many matches on search
-			else {
-				$content .= "<ul>";
-				while($rFindOwner = db_fetch($qFindOwner)) {
-					$content .= "<li><a href=?module=ticketorder&action=doChangeOwner&ticket=$ticket&toOwner=$rFindOwner->ID>";
-					$content .= display_username($rFindOwner->ID);
-					$content .= "</a></li>";
-				} // End while rFindOwner
-			} // End else (db_num())
-		} // End if action== FindOwner
-	} elseif($rDisplayTickets->owner == $sessioninfo->userID && empty($action)) {
-		$content .= "<a href=?module=ticketorder&action=changeOwner&ticket=$rDisplayTickets->ticketID>";
-		$content .= display_username($rDisplayTickets->owner);
-		$content .= "</a>";
-	} else {
-		$content .= display_username($rDisplayTickets->owner);
-	}
-	$content .= "</td><td>";
-	if($rDisplayTickets->paid == 'no' && !in_array($rCheckTicketType->type, array('onsite-visitor', 'onsite-computer'))) {
-		$content .= "<a href=\"?module=ticketorder&action=cancelTicket&ticket=$rDisplayTickets->ticketID\">";
-		$content .= lang("Cancel ticket", "ticketorder");
-		$content .= "</a>";
-	} // End if
-	elseif($rDisplayTickets->paid == 'yes') {
-		$content .= lang("Paid", "ticketorder");
-	}
-	$content .= "</td></tr>";
-        } // End while
-        $content .= "</table>";
-    } // End if(db_num != 0);
+        if ($userID < 1) {
+            header("Location: ?module=ticketorder");
+            die();
+        }
+        
+        $orderInfo = $_SESSION["orderInfo" . $sessioninfo->userID];
 
-    $qListBuyTickets = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE eventID = '$eventID' AND type IN ('prepaid','preorder') AND active = 1");
-    if(db_num($qListBuyTickets) != 0 && db_num($qDisplayTickets) <$maxTicketsPrUser) {
-        $content .= "<table>\n";
-        while($rListBuyTickets = db_fetch($qListBuyTickets)) {
-		if($rListBuyTickets->maxTickets > 1) { // FIXME: Actually limit users from buying more than this
-			$qCheckSold = db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_tickets WHERE ticketType = '$rListBuyTickets->ticketTypeID'");
-			$rCheckSold = db_fetch($qCheckSold);
-			$free_tickets = $rListBuyTickets->maxTickets - $rCheckSold->amount;
-			if(config("show_free_tickets", $sessioninfo->eventID) == TRUE) $free_tickets_text = " (".$free_tickets." ".lang("free", "ticketorder").") ";
-		}
+        if (is_array($orderInfo)) {
+            $content .= "
+            <h3>Kvittering</h3>
+            <p>Din billett er blitt satt på din konto. Her er noen detaljer om bestillingen:</p>";
 
+            $content .= "<table class=\"table\">
+            <tr>
+                <td>Status</td>
+                <td>" . $orderInfo["status"] . "</td>
+            </tr>
+            <tr>
+                <td>Betalingsmåte</td>
+                <td>" . ($orderInfo["paymentMethod"] == "door" ? "Betal-i-døra" : $orderInfo["paymentMethod"]) . "</td>
+            </tr>
+            <tr>
+                <td>Dato</td>
+                <td>" . date("d.m.Y H:i:s", $orderInfo["start_time"]) . "</td>
+            </tr>
+            <tr>
+                <td>Billett-type</td>
+                <td>" . $orderInfo["ticketTypeType"] . "</td>
+            </tr>
+            <tr>
+                <td>Antall</td>
+                <td>" . $orderInfo["amount"] . "</td>
+            </tr>
+            <tr>
+                <td>Pris</td>
+                <td>" . number_format($orderInfo["price"]) . " kr</td>
+            </tr>";
 
-		# FIXME: !!!!! Hardcoded 'kr' for price!
-		$content .= "<tr><td>".$rListBuyTickets->name." (<i>"._('Price:')." ".$rListBuyTickets->price." kr</i>) ".$free_tickets_text."</td><td>\n\n";
-		$content .= "<form method=POST action=?module=ticketorder&action=buyticket&tickettype=$rListBuyTickets->ticketTypeID>\n";
-		$content .= "<input name=numTickets value=1>\n";
-		$content .= "<input type=submit value='".lang("Buy ticket")."'>\n";
-		$content .= "</form>\n\n";
-		$content .= "</td></tr>\n";
-        } // End while
-    } // End if(db_num(qListBuyTickets)
-    if(config("enable_reseller", $sessioninfo->eventID)) {
-	$content .= "<tr><td>".lang("Ticketcode from reseller", "ticketorder")."</td>\n";
-	$content .= "<form method=POST action=?module=ticketorder&action=buyticket>\n";
-	$content .= "<td><input type=text name=resellercode size=10>\n";
-	$content .= "<input type=submit value='".lang("Claim ticket", "ticketorder")."'>\n";
-	$content .= "</form></td></tr>";
-    } // End config(enable_reseller)
-    $content .= "</table>";
-    $content .= "<br /><br />";
-    $content .= display_systemstatic("ticketorder");
-    if($prepaid_amount > 1) {
-	$system_msg = display_systemstatic("ticketorder_unpaid_tickets");
-	$system_msg = str_replace("%%AMOUNT%%", $prepaid_amount, $system_msg);
-	$system_msg = str_replace("%%USERID%%", $sessioninfo->userID, $system_msg);
-	$content .= $system_msg;
-   } // End if
-} // End if !isset($action)
+            if ($orderInfo["paymentMethod"] == "stripe") {
+                $content .= "<tr><td>Stripe-REF</td><td>" . $orderInfo["stripeRef"] . "</td></tr>";
+            }
 
-elseif($action == "buyticket" && !empty($_GET['tickettype']) && !empty($_POST['numTickets'])) {
-    // Buy tickets
-    $numTickets = $_POST['numTickets'];
-    $tickettype = $_GET['tickettype'];
-    if($numTickets > $maxTicketsPrUser) $numTickets = $maxTicketsPrUser;
-    while($numTickets) {
-        // Check what type the ticket has
-        $qTicketType = db_query("SELECT type FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = ".db_escape($tickettype));
-        $rTicketType = db_fetch($qTicketType);
-        // Check how many tickets the user already has
-        $qUserNumTickets = db_query("SELECT COUNT(*) AS count FROM ".$sql_prefix."_tickets WHERE eventID = '$eventID'
-	AND (owner = '$sessioninfo->userID' OR user = '$sessioninfo->userID')");
-        $rUserNumTickets = db_fetch($qUserNumTickets);
-        if($rUserNumTickets->count >= $maxTicketsPrUser) {
-		 // Do noting if we've maxed maxTicketsPrUser
-		$logmsg['failed_add_maxtickets'] = $rUserNumTickets->count;
-	}
-        else { // If we have not yet reached maxTicketsPrUser, add the ticket
-	if($rTicketType->type == "prepaid") $status = 'notpaid';
-	elseif($rTicketType->type == 'preorder') $status = 'notused';
+            $content .= "
+            </table>";
+        } else {
+            $content .= "<h3>En feil oppstod!</h3><p>En feil skjedde, vi fant ingen ordre å vise resultat på.</p>";
+        }
 
-	db_query("INSERT INTO ".$sql_prefix."_tickets SET
-	    owner = '$sessioninfo->userID',
-	    creator = '$sessioninfo->userID',
-	    user = '$sessioninfo->userID',
-	    eventID = '$eventID',
-	    ticketType = '".db_escape($tickettype)."',
-	    status = '$status',
-	    createTime = ".time());
-        } // End else (maxTicketsPrUser)
-        $numTickets--; // Decrease numTickets
-    } // End while(numtickets
-    $logmsg['tickettype'] = $tickettype;
-    $logmsg['numTickets'] = $_POST['numTickets'];
-    log_add("ticketorder", "buyticket", serialize($logmsg));
-    header("Location: ?module=ticketorder");
-} // End action = buyticket
-elseif($action == "buyticket" && !empty($_POST['resellercode'])) {
-	$code = $_POST['resellercode'];
+        
 
-	$qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_ticketReseller WHERE resellerTicketID = '".db_escape($code)."'");
-	$rFindTicket = db_fetch($qFindTicket);
-	if(db_num($qFindTicket) == 0) {
-		$content .= lang("Could not find that code. Are you sure you typed it correctly?", "ticketorder");
-		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
-	}
-	elseif($rFindTicket->eventID != $sessioninfo->eventID) {
-		$content .= lang("Code found, but it's not for this event. Try finding a newer piece for paper with a newer code", "ticketorder");
-		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
-	}
-	elseif($rFindTicket->used == 'yes') {
-		$content .= lang("Code found, but it has already been used", "ticketorder");
-		$content .= "<a href='javascript:history.back()'>".lang("Back", "ticketorder")."</a>\n";
-	}	
-	else {
-		// Code can be used
-		db_query("UPDATE ".$sql_prefix."_ticketReseller SET used = 'yes' WHERE resellerTicketID = '".db_escape($code)."'");
-		db_query("INSERT INTO ".$sql_prefix."_tickets SET
-			paid= 'yes',
-			ticketType = '$rFindTicket->ticketType',
-			user = '$sessioninfo->userID',
-			owner = '$sessioninfo->userID',
-			creator = '$sessioninfo->userID',
-			eventID = '$sessioninfo->eventID',
-			status = 'notused',
-			createTime = '".time()."'");
-		header("Location: ?module=ticketorder");
-	}
-	
-} // End elseif action == buyticket && !empty(resellercode)	
-elseif($action == "doChangeOwner") {
-    $toOwner = $_GET['toOwner'];
-    $ticket = $_GET['ticket'];
+        unset($_SESSION["orderInfo" . $sessioninfo->userID]);
 
-    
-    $qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
-    $rFindTicket = db_fetch($qFindTicket);
+        break;
 
-    if($sessioninfo->userID != $rFindTicket->owner && acl_access("seating", "", $sessioninfo->eventID) != 'Admin');
-    else {
-        db_query("UPDATE ".$sql_prefix."_tickets SET owner = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
-    }
-	 $logmsg['new_user'] = $toOwner;
-    $logmsg['ticket'] = $ticket;
-	 log_add("ticketorder", "changeOwner", serialize($logmsg));
+    //==================================================================================
+    // Handle order
+    case "handleOrderTicket":
 
-	
-    header("Location: ?module=ticketorder");
-} // End elseif(action == doChangeOwner)
+        if ($userID < 1) {
+            header("Location: ?module=ticketorder");
+            die();
+        }
+        $orderInfo = array("status" => "failed", "dateTime" => time(), "userID" => $sessioninfo->userID);
 
-elseif($action == "doChangeUser") {
-    $toOwner = $_GET['toUser'];
-    $ticket = $_GET['ticket'];
+        $amount = 1;
+        $ticketType = $ticketManager->getTicketTypeByID($_SESSION["orderInfo" . $sessioninfo->userID]["ttID"]);
+        $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+        $ticketIDs = array();
 
-    
-    $qFindTicket = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
-    $rFindTicket = db_fetch($qFindTicket);
+        if ($ticketType instanceof TicketType === false) {
+            header("Location: index.php?module=ticketorder&msg=9");
+            die();
+        }
 
-    if($sessioninfo->userID != $rFindTicket->owner && acl_access("seating", "", $sessioninfo->eventID) != 'Admin');
-    else {
-        db_query("UPDATE ".$sql_prefix."_tickets SET user = '".db_escape($toOwner)."' WHERE ticketID = '".db_escape($ticket)."'");
-    }
-	 $logmsg['new_user'] = $toOwner;
-	 $logmsg['ticket'] = $ticket;
-	 log_add("ticketorder", "changeUser", serialize($logmsg));
-    header("Location: ?module=ticketorder");
-} // End elseif(action == doChangeOwner)
+        if ($amount > $canAmount) {
+            header("Location: index.php?module=ticketorder&msg=7");
+            die();
+        }
 
-elseif(($action == "cancelTicket" || $action == "doCancelTicket") && isset($_GET['ticket'])) {
-	$ticket = $_GET['ticket'];
+        // Add the ticket now, and set as paid later!
+        $newTicketMd5 = $user->validateAddTicketType($ticketType, $amount);
+        if ($newTicketMd5 === false) {
+            header("Location: index.php?module=ticketorder&msg=8");
+            die();
+        }
 
-	$qGetTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
-	$rGetTicketInfo = db_fetch($qGetTicketInfo);
+        $orderInfo["ticketType"] = $ticketType->getTicketTypeID();
+        $orderInfo["ticketTypeType"] = $ticketType->getType();
+        $orderInfo["ticketMD5"] = $newTicketMd5;
+        $orderInfo["start_time"] = time();
+        $price = floor($ticketType->getPrice() * $amount);
 
-	$allow_cancel = false;
-	
-	if(acl_access("ticketadmin", "", $sessioninfo->eventID) == ('Admin' || 'Write')) $allow_cancel = true;
-	elseif($sessioninfo->userID == $rGetTicketInfo->owner) $allow_cancel = true;
+        $orderInfo["price"] = $price;
+        $orderInfo["amount"] = $amount;
 
-	if($action == "cancelTicket" && $allow_cancel == true) {
-		$content .= lang("Are you sure you wish to delete this ticket?", "ticketorder");
-		$content .= "<br><a href=?module=ticketorder>".lang("No, this would be a mistake", "ticketorder")."</a> - ";
-		$content .= "<a href=?module=ticketorder&action=doCancelTicket&ticket=$ticket>".lang("Yes, I don't need it", "ticketorder")."</a>";
-	} elseif($action == "doCancelTicket" && $allow_cancel == true) {
-		
-		// Delete the ticket
-		db_query("DELETE FROM ".$sql_prefix."_tickets WHERE ticketID = '".db_escape($ticket)."'");
-		$logmsg[] = $rGetTicketInfo->ticketID;
-		$logmsg[] = $rGetTicketInfo->ticketType;
-		$logmsg[] = $rGetTicketInfo->owner;
-		$logmsg[] = $rGetTicketInfo->user;
-		$logmsg[] = $rGetTicketInfo->status;
-		$logmsg[] = $rGetTicketInfo->paid;
-		// Delete the seating for this ticket
-		$qGetSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
-		$rGetSeating = db_fetch($qGetSeating);
-		$logmsg[] = $rGetSeating->seatX."x".$rGetSeating->seatY."y";
-		db_query("DELETE FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '".db_escape($ticket)."'");
-		log_add("ticketorder", "cancelTicket", serialize($logmsg));
-		header("Location: ?module=ticketorder");
-	}
+        switch ($ticketType->getType()) {
+            case "onsite-visitor":
+                // Handle onsite visitor, just return.
+                $orderInfo["onSiteVisitor"] = true;
+                $orderInfo["status"] = "ordered";
+                $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
+                if (is_array($tickets) && count($tickets) > 0) {
+                    foreach ($tickets as $ticket) {
+                        $ticketIDs[] = $ticket->getTicketID();
+                    }
+                }
+                unset($tickets);
+                break;
 
-} // End elseif action == cancelTicket || action = doCancelTicket
+            case "preorder":
+                $paymentMethod = $requestPost->get("pay_method", "door");
+                $orderInfo["paymentMethod"] = $paymentMethod;
+
+                if ($paymentMethod == "stripe") {
+                    // We get from stripe:
+                    $stripeToken = $_POST["stripeToken"];
+                    $stripeTokenType = $_POST["stripeTokenType"];
+                    $stripeEmail = $_POST["stripeEmail"];
+
+                    $stripePrice = $price . "00";
+
+                    // Set your secret key: remember to change this to your live secret key in production
+                    // See your keys here https://dashboard.stripe.com/account/apikeys
+                    \Stripe\Stripe::setApiKey($stripePaymentConfig["secretKey"]);
+
+                    // Create the charge on Stripe's servers - this will charge the user's card
+                    try {
+                        $charge = \Stripe\Charge::create(
+                            array(
+                                "amount" => $stripePrice, // amount in cents, again
+                                "currency" => "nok",
+                                "source" => $stripeToken,
+                                "receipt_email" => $stripeEmail,
+                                "description" => "Charge: " . $ticketType->getName()
+                            )
+                        );
+
+                        $orderInfo["stripeRef"] = $charge->id;
+                        $orderInfo["stripeTime"] = $charge->created;
+                        $orderInfo["status"] = "paid";
+
+                        if ($charge->paid == true) {
+                            // Set tickets as paid.
+                            $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
+                            if (is_array($tickets) && count($tickets) > 0) {
+                                foreach ($tickets as $ticket) {
+                                    $ticket->setPaid();
+                                    $ticketIDs[] = $ticket->getTicketID();
+                                }
+                            }
+                            unset($tickets);
+                        } else {
+                            // TODO: Handle no tickets to set as paid!
+                        }
+                    } catch(\Stripe\Error\Card $e) {
+                        // no-op
+                    } catch(\Stripe\Error\InvalidRequest $e) {
+                        // no-op
+                    }
+                } else {
+                    // Just go!
+                    $orderInfo["status"] = "ordered";
+                    $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
+                    if (is_array($tickets) && count($tickets) > 0) {
+                        foreach ($tickets as $ticket) {
+                            $ticketIDs[] = $ticket->getTicketID();
+                        }
+                    }
+                    unset($tickets);
+                }
+                
+                break;
+        }
+
+        // Log this
+        TicketManager::getInstance()->logTicketPurchase(
+            $userID,
+            $eventID,
+            (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
+            time(),
+            (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
+            (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
+            $orderInfo["status"],
+            $ticketType,
+            $price,
+            $amount
+        );
+        
+        $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
+            $_SESSION["orderInfo" . $sessioninfo->userID], $orderInfo);
+        
+        header("Location: index.php?module=ticketorder&action=receipt");
+
+        die();
+
+    //==================================================================================
+    // Order a ticket
+    case "orderTicket":
+
+        if ($userID < 1) {
+            header("Location: ?module=ticketorder");
+            die();
+        }
+        $ttID = $requestGet->has("ttID") ? $requestGet->getInt("ttID", -1) : -1;
+        if ($ttID > 0) {
+            $ticketType = $ticketManager->getTicketTypeByID($ttID);
+            $amount = $requestGet->has("amount") ? $requestGet->getInt("amount", 1) : 1;
+            $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+
+            if ($amount > $canAmount) {
+                header("Location: index.php?module=ticketorder&msg=7");
+                die();
+            }
+
+            $_SESSION["orderInfo" . $sessioninfo->userID] = array("ttID" => $ttID, "newTickets" => $newTicketMd5);
+            $priceNormal = floor($ticketType->getPrice() * $amount);
+            $price = $priceNormal . "00";
+
+            if (file_exists(__DIR__ . "/types/" . $ticketType->getType() . ".php")) {
+                include __DIR__ . "/types/" . $ticketType->getType() . ".php";
+            } else {
+                $content .= "Filen : " . $ticketType->getType() . ".php ble ikke funnet";
+            }
+
+        } else {
+            header("Location: index.php?module=ticketorder&msg=2");
+            die();
+        }
+
+        break;
+
+    //==================================================================================
+    // List tickets
+    default:
+        $ticketTypes = $ticketManager->getTicketTypes();
+        $ticketTypes = array_filter($ticketTypes, "_filterTypes");
+
+        // Message to user
+        if (isset($_GET['msg']) && is_numeric($_GET['msg'])) {
+            $message = "";
+            $messageType = "success";
+
+            switch ($_GET['msg']) {
+                case 1:
+                    $message = _("Ticket ordered") . "!";
+                    break;
+
+                case 2:
+                    $message = _("Ticket not found");
+                    $messageType = "danger";
+                    break;
+
+                case 3:
+                case 4:
+                    $message = _("You have ordered the maximum tickets allowed");
+                    $messageType = "danger";
+                    break;
+
+                default:
+                    break;
+            }
+
+            $content .= "<div class=\"alert alert-$messageType\">$message</div>";
+        }
+
+        if (count($ticketTypes) > 0) {
+            $content .= "<p>" . _("Choose a ticket to order.") . "</p>
+            <div class=\"ticket-list\">";
+            foreach ($ticketTypes as $key => $ticketType) {
+
+                $content .= "<div class=\"ticket\">
+                <div class=\"title\"><h3>" . $ticketType->getName() . "</h3></div>
+                <div class=\"description\">" . $ticketType->getDescription() . "</div>";
+
+                $content .= "<div class=\"order\">";
+                if ($user instanceof User) {
+                    $canOrderAmount = $ticketType->getAmountUserCanOrder($user);
+                    if ($canOrderAmount > 0) {
+                        $content .= "<form action=\"index.php?\" method=\"get\">";                             
+                        // If $maxTicketsPrUser is set print a select element up to the max amount set.
+                        // Otherwise amount 1 is default.
+                        $content .= "<input type=\"hidden\" name=\"module\" value=\"ticketorder\" />";
+                        $content .= "<input type=\"hidden\" name=\"action\" value=\"orderTicket\" />";
+                        $content .= "<input type=\"hidden\" name=\"ttID\" value=\"" . $ticketType->getTicketTypeID() . "\" />";
+                        $content .= "<label for=\"amount-" . $key . "\">Amount:</label>
+                            &nbsp;<select id=\"amount-" . $key . "\" name=\"amount\">";
+                        for ($i=1; $i <= $canOrderAmount; $i++) {
+                            $content .= "<option value=\"$i\">$i</option>";
+                        }
+                        $content .= "</select>";
+
+                        $content .= "&nbsp;<input type=\"submit\" name=\"order-ticket\" value=\"" . _("Order ticket") . "\" />
+                        </form>";
+                    } else if ($canOrderAmount < 1) {
+                        $content .= "<span class=\"small italic\">" . _("You have ordered the maximum allowed") . "</span>";
+                    }
+                } else {
+                    $content .= "<span class=\"small italic\">" . _("You be logged in to order tickets") . "</span>";
+                }
+                $content .= "</div></div>";
+            }
+            $content .= "</div>";
+        } else {
+            $content .= "<div class=\"empty-text\">" . _("No tickets found") . "</div>";
+        }
+
+        break;
+
+}
+
+$content .= "</div>";
+
+function _filterTypes(&$var) {
+    if ($var->isEnabled() == false)
+        return false;
+
+    return true;
+}

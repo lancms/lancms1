@@ -64,6 +64,10 @@ if(!isset($action) || $action == "editticket") {
     $content .= "</td><td>\n";
     $content .= lang("Price of ticket", "ticketadmin");
     $content .= "</td></tr><tr><td>\n";
+    $content .= "<p class=\"nopad\"><textarea rows=\"4\" name=\"description\" cols=\"40\">$rGetTicketInfo->description</textarea></p>\n";
+    $content .= "</td><td>\n";
+    $content .= _("Description");
+    $content .= "</td></tr><tr><td>\n";
     $content .= "<select name=\"type\">\n";
         $content .= "<option value=\"prepaid\"";
         if($rGetTicketInfo->type == 'prepaid') $content .= " selected";
@@ -133,6 +137,7 @@ if(!isset($action) || $action == "editticket") {
 
 elseif($action == "addtickettype") {
     $name = db_escape($_POST['name']);
+    $description = db_escape($_POST['description']);
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
@@ -141,6 +146,7 @@ elseif($action == "addtickettype") {
 
     db_query("INSERT INTO ".$sql_prefix."_ticketTypes SET 
         name = '$name', 
+        description = '$description', 
         price = '$price', 
         type = '$type', 
         active = '$active',
@@ -160,6 +166,7 @@ elseif($action == "addtickettype") {
 
 elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
     $name = db_escape($_POST['name']);
+    $description = db_escape($_POST['description']);
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
@@ -168,6 +175,7 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
 
     db_query("UPDATE ".$sql_prefix."_ticketTypes SET
         name = '$name', 
+        description = '$description', 
         price = '$price', 
         type = '$type', 
         active = '$active',

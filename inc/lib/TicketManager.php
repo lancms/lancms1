@@ -2,6 +2,7 @@
 
 require __DIR__ . "/Ticket.php";
 require __DIR__ . "/TicketType.php";
+require __DIR__ . "/TicketSeat.php";
 
 class TicketManager {
 
@@ -54,6 +55,40 @@ class TicketManager {
         }
 
         $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND `ticketID` IN (%s)", $sql_prefix, $eventID, implode(",", $ticketIDs)));
+        $num   = db_num($result);
+
+        $tickets = array();
+        if ($num > 0) {
+            $i = 0;
+            while ($row = db_fetch_assoc($result)) {
+                $tickets[$i] = new Ticket($row['ticketID']);
+                $tickets[$i]->fillInfo($row);
+
+                $i++;
+            }
+        }
+
+        return $tickets;
+    }
+
+    /**
+     * Provides an array of tickets by md5 ID in the array provided.
+     * 
+     * @param array $ticketMD5s Array of md5.
+     * @param int $eventID If null then active event is used.
+     * @return Ticket[]
+     */
+    public function getTicketsByMD5($ticketMD5s, $eventID=null) {
+        global $sessioninfo, $sql_prefix;
+
+        if (is_array($ticketMD5s) == false || count($ticketMD5s) < 1)
+            return array();
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND `md5_ID` IN ('%s')", $sql_prefix, $eventID, implode("','", $ticketMD5s)));
         $num   = db_num($result);
 
         $tickets = array();
@@ -136,6 +171,68 @@ class TicketManager {
         }
 
         return $ticketType;
+    }
+
+    /**
+     * Provides the ticket types
+     * 
+     * @param int $eventID If null then active event is used.
+     * @return TicketType
+     */
+    public function getTicketTypes($eventID=null) {
+        global $sessioninfo, $sql_prefix;
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        $result = db_query(sprintf("SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d", $sql_prefix, $eventID));
+        $num   = db_num($result);
+
+        $ticketTypes = array();
+        if ($num > 0) {
+            $i = 0;
+            while($row = db_fetch_assoc($result)) {
+                $ticketTypes[$i] = new TicketType($row['ticketTypeID']);
+                $ticketTypes[$i]->fillInfo($row);
+                $i++;
+            }
+        }
+
+        return $ticketTypes;
+    }
+
+    /**
+     * @param int $userID
+     * @param int $eventID
+     * @param string $ticketID
+     * @param int $timestamp
+     * @param int $externalTime
+     * @param string $externalRef
+     * @param string $status
+     * @param TicketType $ticketType
+     * @param int $price
+     * @param int $amount Default 1
+     */
+    public function logTicketPurchase($userID, $eventID, $ticketID, $timestamp, $externalTime, $externalRef, $status, TicketType $ticketType, $price, $amount=1) {
+        // Integers
+        $userID = intval($userID);
+        $eventID = intval($eventID);
+        $timestamp = intval($timestamp);
+        $externalTime = intval($externalTime);
+        $amount = intval($amount);
+
+        // Strings, misc.
+        $externalRef = db_escape($externalRef);
+        $status = db_escape($status);
+        $price = db_escape($price);
+        $ticketID = db_escape($ticketID);
+
+        $query = sprintf("INSERT INTO `%s` (`ticketType`, `eventID`, `userID`, `ticketID`, `timestamp`, `externalTime`, `externalRef`, `price`, `amount`, `status`)
+VALUES (%d, %d, %d, '%s', %d, %d, '%s', '%s', %d, '%s');", db_prefix() . "_ticketLogs", $ticketType->getTicketTypeID(), $eventID, $userID, $ticketID,
+            $timestamp, $externalTime, $externalRef, $price, $amount, $status);
+
+        db_query($query);
     }
     
 }

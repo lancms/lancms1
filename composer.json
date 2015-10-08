@@ -1,0 +1,12 @@
+{
+    "require": {
+        "stripe/stripe-php": "^2.3",
+        "symfony/http-foundation": "^2.7",
+        "filp/whoops": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lancms\\Kiosk\\": "inc/lib/kiosk/"
+        }
+    }
+}

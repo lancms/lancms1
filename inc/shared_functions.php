@@ -1,6 +1,5 @@
 <?php
 
-
 ######################################################
 $configValues = null;
 function config($config, $event = 1, $value = "NOTSET")
@@ -393,7 +392,7 @@ function log_add ($logmodule, $logfunction, $lognew="0", $logold="0", $userid=0,
 	}
 	if ($userhost == 0)
 	{
-		$userhost = $_SERVER['REMOTE_HOST'];
+		$userhost = isset($_SERVER['REMOTE_HOST']) ? $_SERVER['REMOTE_HOST'] : null;
 		if (empty ($userhost))
 		{
 			$userhost = 'NULL';
@@ -748,6 +747,11 @@ function is_user_crew($userID, $eventID=null) {
 	return db_num($query) > 0 ? true : false;
 }
 
+function eventMenuItemCssClasses($module) {
+	$currentModule = (isset($_GET['module']) ? $_GET['module']: '');
+	return ($currentModule == $module ? ' class="active"' : '');
+}
+
 /**
  * Returns the config by name provided from module config.
  * If the config is not found the default-argument is returned.
@@ -758,19 +762,63 @@ function is_user_crew($userID, $eventID=null) {
  * @return mixed
  */
 function getModuleConfig($module, $name, $default=false) {
-    global $_MODULECONFIG;
+	global $_MODULECONFIG;
 
-    if (isset($_MODULECONFIG[$module]) && isset($_MODULECONFIG[$module][$name])) {
-        return $_MODULECONFIG[$module][$name];
-    }
+	if (isset($_MODULECONFIG[$module]) && isset($_MODULECONFIG[$module][$name])) {
+		return $_MODULECONFIG[$module][$name];
+	}
 
-    return $default;
+	return $default;
 }
 
 /**
  * @param int $errorCode
  */
 function printNoAccessError($errorCode=1) {
-    header("Location: index.php?aclDeniedCode=" . $errorCode);
-    die();
+	header("Location: index.php?aclDeniedCode=" . $errorCode);
+	die();
+}
+
+/**
+ * @param int $errorCode
+ */
+function printErrorPage($errorCode=1) {
+	header("Location: index.php?_error=" . $errorCode);
+	die();
+}
+
+/**
+ * @return string
+ */
+function getUrlBase() {
+	$scriptName = $_SERVER['SERVER_NAME'];
+	$httpBase = "http://";
+	$suffix = "";
+
+	if (isset($_SERVER['HTTPS']) && strlen(trim($_SERVER['HTTPS'])) > 0) {
+		$httpBase = "https://";
+	}
+
+	// Apply port if its not 80 or 443
+	if (isset($_SERVER['SERVER_PORT']) && (isset($_SERVER['PORT']) && $_SERVER['PORT'] != 80 && $_SERVER['SERVER_PORT'] != 443)) {
+		$suffix = ":" . $_SERVER['SERVER_PORT'];
+	}
+
+	return $httpBase . $scriptName . $suffix;
+}
+
+function getUserIP() {
+	$client = @$_SERVER['HTTP_CLIENT_IP'];
+	$forward = @$_SERVER['HTTP_X_FORWARDED_FOR'];
+	$remote = $_SERVER['REMOTE_ADDR'];
+
+	if (filter_var($client, FILTER_VALIDATE_IP)) {
+		$ip = $client;
+	} elseif (filter_var($forward, FILTER_VALIDATE_IP)) {
+		$ip = $forward;
+	} else {
+		$ip = $remote;
+	}
+
+	return $ip;
 }
