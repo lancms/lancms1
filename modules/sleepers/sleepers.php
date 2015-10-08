@@ -273,7 +273,7 @@ elseif ($action == 'searchsleeper')
 else // empty($action) or $action==*
 {
 
-	$content .= "<script type=\"text/javascript\" src=\"templates/Alfa1/js/wakeup.js\"></script>\n";
+	$content .= "<script type=\"text/javascript\" src=\"templates/ontime/js/wakeup.js\"></script>\n";
 	$content .= "<form action='?module=sleepers&action=searchsleeper' method='POST'>\n";
 	$content .= _('Search for user:')."<br />\n";
 	$content .= "<input type='text' name='searchstring' />\n";
