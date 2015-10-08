@@ -67,7 +67,7 @@ TABLE [prefix]_events
 	eventClosed,	tinyint(1),	,	,	0,
 	eventPublic,	tinyint(1),	,	,	0,
 	eventAutoURL,	varchar(100),	,	,	,
-	eventDesign,	varchar(35),	,	,	Alfa1,
+	eventDesign,	varchar(35),	,	,	ontime,
 }
 
 TABLE [prefix]_groups
