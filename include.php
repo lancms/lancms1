@@ -2,6 +2,8 @@
 
 use Symfony\Component\HttpFoundation\Request;
 
+error_reporting(E_ALL ^ E_NOTICE);
+
 session_start();
 
 require_once __DIR__ . '/vendor/autoload.php';
