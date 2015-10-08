@@ -11,15 +11,15 @@
     <meta charset="utf-8" />
     <?php echo $design_head; ?>
 
-    <link rel="stylesheet" href="<?php echo $siteUrl; ?>/templates/ontime/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="<?php echo $siteUrl; ?>/templates/ontime/css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/responsive.css" type="text/css" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $siteUrl; ?>/favicon.ico">
-    <link rel="apple-touch-icon" href="<?php echo $siteUrl; ?>/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.ico">
     
-    <script src="<?php echo $siteUrl; ?>/templates/ontime/js/jquery.min.js"></script>
-    <script src="<?php echo $siteUrl; ?>/templates/ontime/js/mobilemenu.js"></script>
-    <script src="<?php echo $siteUrl; ?>/templates/ontime/js/scripts.js"></script>
+    <script src="templates/ontime/js/jquery.min.js"></script>
+    <script src="templates/ontime/js/mobilemenu.js"></script>
+    <script src="templates/ontime/js/scripts.js"></script>
 
     <?php if ($eventinfo->eventname) { ?>
         <title><?php echo $eventinfo->eventname; ?></title>
