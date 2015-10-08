@@ -143,6 +143,7 @@ TABLE [prefix]_wannabeCrews
 	eventID,	int(11),	,	,	1,
 	crewname,	varchar(25),	,	,	,
 	description,	text,	,	,	,
+	groupID,	mediumint(9),	,	, 0 ,
 }
 
 TABLE [prefix]_wannabeCrewResponse
@@ -188,6 +189,8 @@ TABLE [prefix]_wannabeComment
 	approval,	tinyint(1),	,	,	,
 	userID,		int(11),	,	,	,
 	adminID,	int(11),	,	,	,
+	createdTime,int(11),	,	,	,
+	commentType,int(11),	,	,	,
 }
 
 TABLE [prefix]_seatReg
