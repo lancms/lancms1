@@ -152,7 +152,7 @@
         </div>
         <footer>
             <div class="container">
-                <p>Powered by <a href="http://launchpad.net/lancms/">lancms</a> by Mathias B&oslash;hn Grytemark, Lars &Aring;ge Kamfjord and Edvin Hultberg.</p>
+                <p>Powered by <a href="https://github.com/lancms/lancms1/">lancms</a> by Mathias B&oslash;hn Grytemark, Lars &Aring;ge Kamfjord and Edvin Hultberg.</p>
             </div>
         </footer>
     </div>
