@@ -199,7 +199,7 @@ elseif($action == "editPreferences" && isset($_GET['user'])) {
 		switch($userpersonalprefs[$i]['type']) {
 			case "checkbox":
 				$content .= "<input type='checkbox' name='$prefname'";
-				if($rFindPref->value == "on" || $userpersonalprefs[$i]['required_on']) $content .= " CHECKED";
+				if(is_object($rFindPref) && $rFindPref->value == "on" || $userpersonalprefs[$i]['required_on']) $content .= " CHECKED";
 				if($userpersonalprefs[$i]['required_on']) $content .= " DISABLED";
 				$content .= ">";
 
