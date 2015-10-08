@@ -13,9 +13,6 @@ if($action == "setCurrentEvent" && isset($eventID))
 		eventID = '$escape'
 		WHERE sID = '".$_SESSION[$lancms_session_cookie]."'");
 
-	var_dump($escape, $_SESSION[$lancms_session_cookie]);
-	die();
-
 	// Goto $_GET['gotomodule'] if exists
 	if(!empty($_GET['gotomodule']))
 		header("Location: index.php?module=".$_GET['gotomodule']);
