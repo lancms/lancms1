@@ -13,14 +13,26 @@ $language = "norwegian"; // The user might want to customize this him self... Mi
 
 $design_title = "lancms";
 
+// Define it to use smarty or a native solution by including a template file in php.
+$enableSmarty = false;
+
 // Facebook Login
 $facebook_appID = "";
 $facebook_login = FALSE;
 
 // Facebook likebox
 // Remove # and point to your Facebook page URL:
-#	$facebook_likebox_url = 'http://www.facebook.com/GlobeLAN'; 
+#	$facebook_likebox_url = 'http://www.facebook.com/GlobeLAN';
 
+//----------------------------------------------------------------------------
+// Payment config
+$stripePaymentConfig = array(
+    "secretKey" => "",
+    "privateKey" => "",
+    "imageLogo" => "",
+    "companyName" => ""
+);
+//----------------------------------------------------------------------------
 
 ## Mail settings
 $mail_from = 'noreply@globeorg.no';
@@ -40,8 +52,8 @@ $cron_type = 'include'; // Can be include or cron
 
 
 ## don't touch, includes override config if it exists
-if(file_exists("OverrideConfig.php")) {
-    include_once 'OverrideConfig.php';
+if(file_exists(__DIR__ . "/OverrideConfig.php")) {
+    include_once __DIR__ . '/OverrideConfig.php';
 }
 
 global $sql_type;

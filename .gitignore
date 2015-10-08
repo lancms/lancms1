@@ -1,3 +1,7 @@
 OverrideConfig.php
-tmp/
-.idea/
+tmp/*.*
+tmp/*/*.*
+.idea/*
+
+/vendor/
+composer.lock

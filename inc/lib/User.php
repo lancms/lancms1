@@ -6,8 +6,12 @@
  * @author edvin
  */
 class User extends SqlObject {
+
+    protected $_tickets;
     
     function __construct($id) {
+        $this->_tickets = null;
+
         parent::__construct("users", "ID", $id);
     }
 
@@ -179,12 +183,23 @@ class User extends SqlObject {
     }
 
     /**
-     * Provides the borthday timestamp.
+     * Provides the birthday timestamp.
      * 
      * @return int
      */
     public function getBirthdayTimestamp() {
         return mktime(0, 0, 0, $this->getBirthMonth(), $this->getBirthDay(), $this->getBirthYear());
+    }
+
+    /**
+     * Provides the current age of this user.
+     *
+     * @return int
+     */
+    public function getAge() {
+        $tz  = new DateTimeZone('Europe/Oslo');
+        $then = new DateTime("@" . $this->getBirthdayTimestamp(), $tz);
+        return $then->diff(new DateTime("now", $tz))->y;
     }
 
     /**
@@ -206,12 +221,223 @@ class User extends SqlObject {
     }
 
     /**
+     * Provides all groups this user is a member of, only for current event.
+     * 
+     * @return UserGroup[]
+     */
+    public function getGroups()
+    {
+        $groups = UserGroupManager::getInstance()->getUserGroups($this->getUserID());
+    }
+
+    /**
+     * @return UserGroup[]
+     */
+    public function getGroupsWhereAdmin()
+    {
+        $groups = UserGroupManager::getInstance()->getUserIsAdminGroups($this->getUserID());
+    }
+
+    /**
+     * Provides all groups this user is a member of, only for current event.
+     * 
+     * @return UserGroup[]
+     */
+    public function isAdminOfGroup(UserGroup $group)
+    {
+        $adminOf = $this->getGroupsWhereAdmin();
+        if (count($adminOf) > 0) {
+            foreach ($adminOf as $group) {
+                if ($adminOf->getGroupID() == $group->getGroupID())
+                    return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Provides the tickets of this user in an array of Ticket objects.
+     * 
+     * @return Ticket[]
+     */
+    public function getTickets() {
+        global $sql_prefix;
+
+        if ($this->_tickets == null) {
+            $this->_tickets = TicketManager::getInstance()->getTicketsOfUser($this->getUserID());
+        }
+
+        return $this->_tickets;
+    }
+
+    /**
+     * Adds a tickettype to this user i.e. creates a ticket in the _tickets table.
+     * 
+     * <p>See validateAddTicketType to handle max amount of tickets an user can order, ment for "ticketorder" module.</p>
+     * 
+     * @see validateAddTicketType()
+     * @param TicketType $ticketType The ticket type to add.
+     * @param int $amount Amount to add.
+     * @param User|null $creator If an moderator has added this ticket, send the mods User object.
+     * @return array Array of the new tickets md5 ID.
+     */
+    public function addTicketType(TicketType $ticketType, $amount = 1, $creator=null) {
+        global $sessioninfo, $sql_prefix, $maxTicketsPrUser;
+
+        if (($creator instanceof User) == false) {
+            $creator = $this;
+        }
+
+        $insertIDs = array();
+
+        for ($i=0; $i < $amount; $i++) { 
+            db_query(sprintf("INSERT INTO %s_tickets(`md5_ID`, `ticketType`, `eventID`, `owner`, `createTime`, `creator`, `user`)
+                VALUES('%s', %d, %d, %d, %d, %d, %d)",
+                $sql_prefix,
+                md5(rand() . time() . $this->getUserID()),
+                $ticketType->getTicketTypeID(),
+                $sessioninfo->eventID,
+                $this->getUserID(),
+                time(),
+                $creator->getUserID(),
+                $this->getUserID()));
+
+            // Find md5 ID from ticket ID
+            $qTicketMd5ID = db_query(sprintf("SELECT `md5_ID` FROM %s_tickets WHERE `ticketID`=%s", $sql_prefix, db_insert_id()));
+            if (db_num($qTicketMd5ID) < 0) continue;
+
+            $rows = db_fetch_assoc($qTicketMd5ID);
+            $insertIDs[] = $rows["md5_ID"];
+        }        
+
+        return $insertIDs;
+    }
+
+    /**
+     * Adds a tickettype to user and checks if user has ordered the maximum allowed then calls addTicketType().
+     * 
+     * @see addTicketType
+     * @param TicketType $ticketType The ticket type to add.
+     * @param int $amount Amount to add.
+     * @param User|null $creator If an moderator has added this ticket, send the mods User object.
+     * @return bool False if amount is reached, true on success.
+     */
+    public function validateAddTicketType(TicketType $ticketType, $amount = 1, $creator=null) {
+        global $sessioninfo, $sql_prefix, $maxTicketsPrUser;
+
+        // Validate that user has not ordered too much.
+        $hasAmount = 0;
+        $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+        $tickets = $this->getTickets();
+        if (count($tickets) > 0) {
+            foreach ($tickets as $value) {
+                if ($value->getTicketTypeID() == $ticketType->getTicketTypeID()) {
+                    $hasAmount++;
+                }
+            }
+        }
+
+        if ($hasAmount >= $canAmount)  
+            return false;
+
+        // Call Addtickettype too do the rest
+        $insertIDs = $this->addTicketType($ticketType, $amount, $crator);
+        return $insertIDs;
+    }
+
+    /**
      * Will compare this User object to another User object.
      * 
      * @return bool
      */
     public function equals(User $user) {
         return ($user->getUserID() == $this->getUserID());
+    }
+
+    //========================================================================
+    // SETTERS
+
+    /**
+     * Set the post number (zip-code) of this user. Do not treat this variable as a int as
+     * norwegian postcodes can start with zero.
+     * 
+     * @param string $arg
+     */
+    public function setPostNumber($arg) {
+        return $this->_setField('postNumber', $arg);
+    }
+
+    /**
+     * Set this users street address.
+     * 
+     * @param string $arg
+     */
+    public function setStreetAddress($arg) {
+        $this->_setField('street', $arg);
+    }
+
+    /**
+     * Set the gender of this user. Male or Female.
+     * 
+     * @param string $arg
+     */
+    public function setGender($arg) {
+        $this->_setField('gender', $arg);
+    }
+
+    /**
+     * Set the mobile phone number of this user.
+     * 
+     * @param string $arg
+     */
+    public function setCellPhone($arg) {
+        $this->_setField('cellphone', $arg);
+    }
+
+    /**
+     * Set the birthday year of this user.
+     * 
+     * @param int $arg
+     */
+    public function setBirthYear($arg) {
+        $this->_setField('birthYear', $arg);
+    }
+
+    /**
+     * Set the birthday month of this user.
+     * 
+     * @param int $arg
+     */
+    public function setBirthMonth($arg) {
+        $this->_setField('birthMonth', $arg);
+    }
+
+    /**
+     * Set the birthday day of this user.
+     * 
+     * @param int $arg
+     */
+    public function setBirthDay($arg) {
+        $this->_setField('birthDay', $arg);
+    }
+
+    /**
+     * Sets new email verification code.
+     * 
+     * @param boolean $arg
+     */
+    public function setEmailConfirmed($arg) {
+        $this->_setField('EMailConfirmed', $arg == true ? 1 : 0);
+    }
+
+    /**
+     * Sets new email verification code.
+     * 
+     * @param string $arg
+     */
+    public function setEmailVerifyCode($arg) {
+        $this->_setField('EMailVerifyCode', $arg);
     }
 
 }

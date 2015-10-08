@@ -3,594 +3,575 @@
 $eventID = $sessioninfo->eventID;
 $action = $_GET['action'];
 $acl_access = acl_access("wannabeadmin", "", $eventID);
+
 if($acl_access == 'No') die("You don't have access to this");
 
+$wannabeManager = \Wannabe\Manager::getInstance();
+$onlineUserID = $sessioninfo->userID;
 
-if($action == "adminWannabe")
-{
-	/* Adminlist for wannabe-actions */
+switch ($action) {
 
-    $content .= "<ul class=\"wannabeadmin-menu\">";
-	if($acl_access == "Admin")
-	{
-		// User has wannabe adminrights
-		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a></li>\n";
-		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a></li>\n";
+    // -------------------------------- [LIST QUESTIONS] -------------------------------- //
+    case "questions":
+        if ($acl_access != "Admin") die("You do not have sufficient privileges.");
 
-	} // End acl_access = Admin
+        $questions = $wannabeManager->getQuestions(array($eventID));
 
-	if($acl_access == 'Write' || $acl_access == 'Admin')
-	{
-		// User has wannabe write-access (may see and write comments)
-		$content .= "<li><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a></li>";
+        $content .= "<h1 class=\"page-title\">" . _("Edit wannabe questions") . "</h1>";
+        $content .= "<div class=\"action-toolbar\">
+            <div class=\"action\"><a href=\"?module=$module&amp;action=questions\">" . _("List questions") . "</a></div>
+            <div class=\"action\"><a href=\"?module=$module&amp;action=editQuestion&amp;questionID=-1\">" . _("New question") . "</a></div>
+        </div>";
 
-	} // End acl_access > Write
-    $content .= "</ul>";
+        // List questions.
+        if (count($questions) > 0) {
+            $content .= "<div class=\"table\">
+                <div class=\"row table-header\">
+                    <div class=\"cell\">" . _("Question") . "</div>
+                    <div class=\"cell\">" . _("Actions") . "</div>
+                </div>";
+            foreach ($questions as $question) {
+                $content .= "<div class=\"row\">
+                    <div class=\"cell\">" . $question->getQuestionData() . "</div>
+                    <div class=\"cell\">
+                        <a href=\"?module=$module&amp;action=editQuestion&amp;questionID=" . $question->getQuestionID() . "\">" . _("Edit") . "</a>
+                        <a href=\"?module=$module&amp;action=editQuestion&amp;questionID=" . $question->getQuestionID() . "&amp;delete=true\">" . _("Delete") . "</a>
+                    </div>
+                </div>";
+            }
+            $content .= "</div>";
+        } else {
+            $content .= "<div>" . _("No questions has been created yet.") . "</div>";
+        }
+
+        break;
+
+    // -------------------------------- [EDIT/NEW QUESTION] -------------------------------- //
+    case "editQuestion":
+        if ($acl_access != "Admin") die("You do not have sufficient privileges.");
+
+        $question = null;
+        $editMode = false;
+        $errors = array();
+
+        if (array_key_exists("questionID", $_GET) && intval($_GET["questionID"]) > 0) {
+            $question = $wannabeManager->getQuestionByID($_GET["questionID"], array($eventID));
+            if ($question instanceof \Wannabe\Question == false) {
+                $content .= "<div>The question was not found.</div>";
+                return; // Stop file!
+            }
+
+            // Delete?
+            if (array_key_exists("delete", $_GET) && $_GET["delete"] === "true") {
+                $wannabeManager->deleteQuestion($question); // Logged in method
+                header("Location: ?module=$module&action=questions&deletedQuestion=true");
+                die();
+            }
+
+            $editMode = true;
+        }
+
+        // Save the form?
+        if (array_key_exists("save-question", $_POST)) {
+            $questionData = (array_key_exists("questionData", $_POST) ? $_POST["questionData"] : "");
+            $questionType = (array_key_exists("questionType", $_POST) ? $_POST["questionType"] : "");
+
+            // Verify that all of the fields are filled in.
+            if (mb_strlen($questionData, "UTF-8") < 1 || strlen($questionType) < 1) {
+                $errors[] = array("<p>All fields are required!</p>");
+            } else {
+                // create question?
+                if ($editMode == false) {
+                    $question = new \Wannabe\Question(-1);
+                    $question->setQuestionEventID($eventID);
+                }
+
+                $question->setQuestionData($questionData);
+                $question->setQuestionType($questionType);
+                $question->commitChanges();
+
+                // Log this action.
+                $log['eventID'] = $eventID;
+                log_add ("wannabeadmin", "addWannabeQuestion", serialize($log));
+
+                header("Location: ?module=$module&action=questions&createdNew=true");
+                die();
+            }
+        }
+
+        $content .= "<h1 class=\"page-title\">" . _(($editMode ? "Edit" : "New") . " question") . "</h1>";
+        $content .= "<div class=\"action-toolbar\">
+            <div class=\"action\"><a href=\"?module=$module&amp;action=questions\">" . _("List questions") . "</a></div>
+        </div>";
+
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $content .= "<div class=\"error\">" . $error . "</div>";
+            }
+        }
+
+        // Print edit form
+        $content .= "<form action=\"?module=$module&amp;action=editQuestion&amp;questionID=" . ($editMode ? $question->getQuestionID() : "-1") . "\" method=\"post\">
+            <div class=\"table no-colour\">
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Question") . "</strong></div>
+                    <div class=\"cell\"><textarea name=\"questionData\" cols=\"50\" rows=\"5\">" . ($editMode ? $question->getQuestionData() : "") . "</textarea></div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Type") . "</strong></div>
+                    <div class=\"cell\">
+                        <select name=\"questionType\">";
+                        foreach ($wannabeManager->getQuestionTypes() as $type) {
+                            $langString = mb_strtoupper(mb_substr($type, 0, 1)) . mb_substr($type, 1);
+                            $content .= "<option value=\"$type\"" . ($editMode ? ($question->getQuestionType() == $type ? " selected" : "") : "") . ">" . _($langString) . "</option>";
+                        }
+                        $content .= "</select>
+                    </div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\">&nbsp;</div>
+                    <div class=\"cell\"><input type=\"submit\" name=\"save-question\" value=\"Save\" /></div>
+                </div>
+            </div>
+        </form>";       
+
+        break;
+
+    // -------------------------------- [LIST CREWS] -------------------------------- //
+    case "crews":
+        if ($acl_access != "Admin") die("You do not have sufficient privileges.");
+
+        $crews = $wannabeManager->getCrews(array($eventID));
+
+        $content .= "<h1 class=\"page-title\">" . _("Edit wannabe crews") . "</h1>";
+        $content .= "<div class=\"action-toolbar\">
+            <div class=\"action\"><a href=\"?module=$module&amp;action=crews\">" . _("List crews") . "</a></div>
+            <div class=\"action\"><a href=\"?module=$module&amp;action=editCrew&amp;crewID=-1\">" . _("New crew") . "</a></div>
+        </div>";
+
+        // List crews.
+        if (count($crews) > 0) {
+            $content .= "<div class=\"table\">
+                <div class=\"row table-header\">
+                    <div class=\"cell\">" . _("Crew") . "</div>
+                    <div class=\"cell\">" . _("Actions") . "</div>
+                </div>";
+            foreach ($crews as $crew) {
+                $content .= "<div class=\"row\">
+                    <div class=\"cell\">" . $crew->getName() . "</div>
+                    <div class=\"cell\">
+                        <a href=\"?module=$module&amp;action=editCrew&amp;crewID=" . $crew->getCrewID() . "\">" . _("Edit") . "</a>
+                        <a href=\"?module=$module&amp;action=editCrew&amp;crewID=" . $crew->getCrewID() . "&amp;delete=true\">" . _("Delete") . "</a>
+                    </div>
+                </div>";
+            }
+            $content .= "</div>";
+        } else {
+            $content .= "<div>" . _("No crews has been created yet.") . "</div>";
+        }
+
+        break;
+
+    // -------------------------------- [EDIT/NEW CREW] -------------------------------- //
+    case "editCrew":
+        if ($acl_access != "Admin") die("You do not have sufficient privileges.");
+
+        $crew = null;
+        $editMode = false;
+        $errors = array();
+
+        if (array_key_exists("crewID", $_GET) && intval($_GET["crewID"]) > 0) {
+            $crew = $wannabeManager->getCrewByID($_GET["crewID"], array($eventID));
+            if ($crew instanceof \Wannabe\Crew == false) {
+                $content .= "<div>The crew was not found.</div>";
+                return; // Stop file!
+            }
+
+            // Delete?
+            if (array_key_exists("delete", $_GET) && $_GET["delete"] === "true") {
+                $wannabeManager->deleteCrew($crew); // Logged in method
+                header("Location: ?module=$module&action=crews&deletedCrews=true");
+                die();
+            }
+
+            $editMode = true;
+        }
+
+        // Save the form?
+        if (array_key_exists("save-crew", $_POST)) {
+            $crewName = (array_key_exists("crewName", $_POST) ? $_POST["crewName"] : "");
+            $groupID = (array_key_exists("groupID", $_POST) ? $_POST["groupID"] : 0);
+
+            // Verify that all of the fields are filled in.
+            if (mb_strlen($crewName, "UTF-8") < 1) {
+                $errors[] = array("<p>All fields are required!</p>");
+            } else {
+                // create crew?
+                if ($editMode == false) {
+                    $crew = new \Wannabe\Crew(-1);
+                    $crew->setEventID($eventID);
+                }
+
+                $crew->setName($crewName);
+                $crew->setGroupID($groupID);
+                $crew->commitChanges();
+
+                // Log this action.
+                $log['eventID'] = $eventID;
+                log_add ("wannabeadmin", "addWannabeCrew", serialize($log));
+
+                header("Location: ?module=$module&action=crews&createdNew=true");
+                die();
+            }
+        }
+
+        $content .= "<h1 class=\"page-title\">" . _(($editMode ? "Edit" : "New") . " crew") . "</h1>";
+        $content .= "<div class=\"action-toolbar\">
+            <div class=\"action\"><a href=\"?module=$module&amp;action=crews\">" . _("List crews") . "</a></div>
+        </div>";
+
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                $content .= "<div class=\"error\">" . $error . "</div>";
+            }
+        }
+
+        // Print edit form
+        $content .= "<form action=\"?module=$module&amp;action=editCrew&amp;crewID=" . ($editMode ? $crew->getCrewID() : "-1") . "\" method=\"post\">
+            <div class=\"table no-colour\">
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Crew Name") . "</strong></div>
+                    <div class=\"cell\"><input type=\"text\" name=\"crewName\" value=\"" . ($editMode ? $crew->getName() : "") . "\" /></div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Crew group") . "</strong></div>
+                    <div class=\"cell\"><input type=\"text\" name=\"groupID\" value=\"" . ($editMode ? $crew->getGroupID() : "") . "\" /></div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\">&nbsp;</div>
+                    <div class=\"cell\"><input type=\"submit\" name=\"save-crew\" value=\"Save\" /></div>
+                </div>
+            </div>
+        </form>";     
+
+        break;
+
+    // -------------------------------- [LIST APPLICATIONS] -------------------------------- //
+    case "listApplications":
+        if($acl_access != 'Write' && $acl_access != 'Admin') die("You do not have sufficient privileges.");
+        $content .= "<h1 class=\"page-title\">" . _("List applications") . "</h1>";
+
+        $applications = $wannabeManager->getApplications();
+        $crews = $wannabeManager->getCrews(array($eventID));
+
+        $applicationTableTop = $applicationTableBottom = $waitingApplications = $finishedApplications = "";
+
+        if (count($applications) < 1) {
+            $content .= "<div><p>" . _("No applications has been sent.") . "</p></div>";
+        } else {
+            $applicationTableTop .= "<div class=\"table\">
+                <div class=\"row table-header\">
+                    <div class=\"cell\">" . _("User") . "</div>";
+
+            // Print table headers for each crew
+            if (count($crews) > 0) {
+                foreach ($crews as $crew) {
+                    $applicationTableTop .= "<div class=\"cell\">" . $crew->getName() . "</div>";
+                }
+            }
+
+            $applicationTableTop .= "</div>";
+            foreach ($applications as $application) {
+                $thisLine = "";
+                $user = $application->getUser();
+
+                $thisLine .= "<div class=\"row\">
+                    <div class=\"cell\">
+                        <a href=\"?module=$module&amp;action=viewApplication&amp;userID=" . $user->getUserID() . "\">" . $user->getNick() . "</a>
+                    </div>";
+
+                // Print table headers for each crew
+                if (count($crews) > 0) {
+                    foreach ($crews as $crew) {
+                        $thisLine .= "<div class=\"cell crew-approval-" . $application->getAverageScoreFromCrew($crew) . "\"></div>";
+                    }
+                }
+
+                $thisLine .= "</div>";
+
+                // Append to correct content.
+                if (1 == true) {
+                    $waitingApplications .= $thisLine;
+                } else {
+                    $finishedApplications .= $thisLine;
+                }
+            }
+            $applicationTableBottom .= "</div>";
+
+            if (mb_strlen($waitingApplications, "UTF-8") > 0) {
+                $content .= "<h3>" . _("Waiting applications") . "</h3>";
+                $content .= $applicationTableTop . $waitingApplications . $applicationTableBottom;
+            }
+
+            if (mb_strlen($finishedApplications, "UTF-8") > 0) {
+                $content .= "<h3>" . _("Finished applications") . "</h3>";
+                $content .= $applicationTableTop . $finishedApplications . $applicationTableBottom;
+            }
+        }
 
 
-} // End if action == "adminWannabe"
+        break;
 
+    // -------------------------------- [VIEW APPLICATION] -------------------------------- //
+    case "viewApplication":
+        if($acl_access != 'Write' && $acl_access != 'Admin') die("You do not have sufficient privileges.");
 
-elseif(($action == "questions" || $action == "editQuestion" || $action == "editAnswers") && $acl_access == "Admin")
-{
-	/* Admin questions */
+        if (array_key_exists("userID", $_GET) == false || intval($_GET["userID"]) < 1)
+            throw new Exception("Missing userID in GET");
 
-	$content .= "<div class=\"questions\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p>";
-	$content .= "<h2>" . _("Manage wannabe questions") . "</h2><p>" . _("Click on a question to edit it.") . "</p>";
+        $crews = $wannabeManager->getCrews(array($eventID));
+        $crewIDs = array();
 
-	// First. List up all the questions that exists
-	$qListQuestions = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
-		WHERE eventID = '".db_escape($eventID)."' ORDER BY questionOrder ASC, ID ASC");
+        if (count($crews) > 0) {
+            foreach ($crews as $crew) {
+                $crewIDs[] = $crew->getCrewID();
+            }
+        }
 
-	if(db_num($qListQuestions) != 0) {
-		$content .= '<table>';
+        $symRequest = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+        $questions = $wannabeManager->getQuestions(array($eventID));
+        $applicationUserID = intval($_GET["userID"]);
+        $application = $wannabeManager->getApplication($applicationUserID);
+        $applicant = $application->getUser();
+        $isAdminOfGroups = UserGroupManager::getInstance()->getUserIsAdminGroups($onlineUserID);
+        $crewGroups = UserGroupManager::getInstance()->getCrewsOfGroups($isAdminOfGroups);
 
-		while($rListQuestions = db_fetch($qListQuestions))
-		{
-			$content .= "<tr><td>\n";
-			$content .= "<a href=\"?module=wannabeadmin&amp;action=editQuestion&amp;questionID=$rListQuestions->ID\">";
-			$content .= $rListQuestions->question;
-			$content .= "</a>";
-			$content .= "</td><td>\n";
+        if ($application instanceof \Wannabe\Application == false) {
+            throw new Exception("The application was not found.");
+        }
 
-			// Questiontype is text. Can't edit answers
-			if($rListQuestions->questionType == "text")
-			{
-				$content .= $rListQuestions->questionType;
-			} // End if questionType == text
+        // Handle setPreference
+        if ($symRequest->query->has("setPreference") && $symRequest->query->getInt("setPreference") > 0
+            && $symRequest->request->has("pref") && $symRequest->request->getInt("pref") > 0) {
+            $createComment = true;
 
-			// Questiontype can have answers
-			else
-			{
-				$content .= "<a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;questionID=$rListQuestions->ID\">";
-				$content .= $rListQuestions->questionType;
-				$content .= "</a>\n";
-			} // End else (questiontype can have answers)
-			$content .= "</td></tr>\n\n";
-		} // End while rListQuestions
+            $crewID = $symRequest->query->getInt("setPreference");
+            $preference = $symRequest->request->getInt("pref");
 
-		$content .= "</table>\n\n\n\n";
-	}
+            // Has comment? Update it then.
+            $comments = $wannabeManager->getApplicationComments($applicant->getUserID(), $crewIDs);
+            $commentsByCrewID = array();
+            if (count($comments) > 0) {
+                foreach ($comments as $comment) {
+                    if ($comment->getCrewID() == $crewID && $comment->getAdminUserID() == $onlineUserID) {
+                        // Update the comment
+                        $createComment = false;
+                        $comment->setApproval($preference);
+                        $comment->commitChanges();
+                    }
+                }
+            }
 
-	// If action == questions, we are not editing any questions.
-	// Displaying add new question-form
-	if($action == "questions")
-	{
-		$content .= "<div class=\"add-new\"><h2>" . _("Add new wannabe question") . "</h2>";
-		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=addQuestion\">\n";
-		$content .= "<p class=\"nopad\"><textarea name=\"question\" rows=\"10\" cols=\"60\">".lang("New question", "wannabeadmin")."</textarea></p>\n";
-		$content .= "<p class=\"nopad\"><select name=\"questionType\">\n";
-		/* List up possible answer-types */
-		$content .= "<option value=\"text\">".lang("Text answer-field", "wannabeadmin")."</option>\n";
-		$content .= "<option value=\"select\">".lang("Dropdown", "wannabeadmin")."</option>\n";
-		$content .= "<option value=\"checkbox\">".lang("Checkbox", "wannabeadmin")."</option>\n";
-		/* End listing answer-types */
-		$content .= "</select></p>\n\n";
-		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add new question", "wannabeadmin")."' /></p>";
-		$content .= "</form></div>\n";
-	} // End if action == questions
+            // Create comment if we must.
+            if ($createComment) {
+                $wannabeManager->createApplicationComment($applicationUserID, $crewID, "", $preference, $onlineUserID, 1);
+            }
 
-	// if action == editQuestion. Display edit-question-form
-	elseif($action == "editQuestion" && isset($_GET['questionID']))
-	{
+            header("Location: index.php?module=$module&action=viewApplication&userID=$applicationUserID");
+            die();
+        }
 
-		$content .= "<div class=\"edit-question\"><h2>" . _("Edit wannabe question") . "</h2>";
+        // HANDLE COMMENT
+        else if ($symRequest->query->has("addComment") && count($crewGroups) > 0) {
+            $commentText = $symRequest->request->has("commenttext") ? $symRequest->request->get("commenttext") : "";
+            if (mb_strlen(trim($commentText), "UTF-8") > 0) {
+                $wannabeManager->createApplicationComment($applicationUserID, $crewGroups[0]->getCrewID(), $commentText, 0, $onlineUserID, 2);
+            }
 
-		// Get info about the question
-		$qGetQuestion = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
-			WHERE ID = '".db_escape($_GET['questionID'])."'");
-		$rGetQuestion = db_fetch($qGetQuestion);
+            header("Location: index.php?module=$module&action=viewApplication&userID=$applicationUserID");
+            die();
+        }
 
+        $content .= "<div class=\"wannabeadmin-app\"><h1 class=\"page-title\">" . $applicant->getFullName() . " (" . $applicant->getNick() . ")</h1>";
+        $content .= "
+        <div class=\"left-content\">
+            <h3>" . _("Userinfo") . "</h3>
+            <div class=\"user-info table\" style=\"width:auto;\">
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Name") . "</strong></div>
+                    <div class=\"cell\">" . $applicant->getFullName() . "</div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Birthday") . "</strong></div>
+                    <div class=\"cell\">" . date("d.m.Y", $applicant->getBirthdayTimestamp()) . " (" . $applicant->getAge() . " " . _("years old") . ")</div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Address") . "</strong></div>
+                    <div class=\"cell\">" . $applicant->getStreetAddress() . "<br />" . $applicant->getPostNumber() . "</div>
+                </div>
+            </div>
+        </div>
 
-		$content .= "<br /><form method=\"post\" action=\"?module=wannabeadmin&amp;action=changeQuestion&amp;questionID=$rGetQuestion->ID\">\n";
-		$content .= "<p class=\"nopad\"><textarea name=\"question\" cols=\"60\" rows=\"10\">".$rGetQuestion->question."</textarea></p>\n\n";
-		$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Change question", "wannabeadmin")."' />";
-		$content .= "<button onclick=\"window.location='?module=wannabeadmin&amp;action=questions';\">".lang("Cancel edit", "wannabeadmin")."</button></p>";
-		$content .= "</form></div>\n\n\n\n";
+        <div class=\"right-content\">
+            <h3>Crew Prefrences</h3>";
 
-	} // End if action == editQuestion
+        // Crew preferences.
+        if (count($crews) > 0) {
+            $content .= "<div class=\"crew-pref\">";
+            foreach ($crews as $crew) {
+                $score = $application->getCrewPreferenceScore($crew);
+                $content .= "<div class=\"pref-row pref-" . $crew->getCrewID() . "\">
+                    <div class=\"crewname\">" . $crew->getName() . "</div>
+                    <div class=\"pref-icons\">
+                        <span>" . $wannabeManager->getScoreLabel($score) . "</span>
+                        <div class=\"pref-icon pref-icon-$score\" title=\"" . $wannabeManager->getScoreLabel($score) . "\">&nbsp;</div>
+                    </div>
+                </div>";
+            }
+            $content .= "</div>";
+        }
 
-	// if action == editAnswer. Display edit-answer-form
-	elseif($action == "editAnswers" && !empty($_GET['questionID']))
-	{
-		// Add a link back to questionlist
-		if(empty($_GET['answerID']))
-			$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Cancel edit", "wannabeadmin")."</a>\n\n<br />";
-		// if in answer-mode: back to that question
-		else {
-			$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;questionID=".$_GET['questionID']."\">";
-			$content .= lang("Cancel edit", "wannabeadmin")."</a>\n\n<br />";
-		} // end else
+        $content .= "</div>";
+        $content .= "<div class=\"questions-answer table\">";
 
-		// Get info about the question
-		$qGetQuestion = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
-			WHERE ID = '".db_escape($_GET['questionID'])."'");
-		$rGetQuestion = db_fetch($qGetQuestion);
+        // Application responses.
+        if (count($questions) > 0) {
+            $content .= "
+            <div class=\"row table-header\">
+                <div class=\"cell\"><strong>" . _("Question") . "</strong></div>
+                <div class=\"cell\"><strong>" . _("Answer") . "</strong></div>
+            </div>";
+            foreach ($questions as $question) {
+                $response = $application->getResponseForQuestion($question);
+                $content .= "<div class=\"row\">
+                    <div class=\"cell\"><strong>" . $question->getQuestionData() . "</strong></div>
+                    <div class=\"cell\">" . ($response === null ? _("No answer given") : $response->getResponse()) . "</div>
+                </div>";
+            }
+        }
+        $content .= "</div>";
 
-		// Get the answers
-		$qGetAnswers = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestionInfo
-			WHERE questionID = $rGetQuestion->ID ORDER BY answerOrder ASC, ID ASC");
-		while($rGetAnswers = db_fetch($qGetAnswers)) {
-			if (!empty($_GET['answerID'])) $answerID = $_GET['answerID'];
+        // COMMENTS
+        $comments = $wannabeManager->getApplicationComments($applicant->getUserID(), $crewIDs);
+        $commentsByCrewID = array();
+        if (count($comments) > 0) {
+            foreach ($comments as $comment) {
+                $commentsByCrewID[$comment->getCrewID()][] = $comment;
+            }
+        }
 
+        $content .= "<h3>" . _("Comments") . "</h3><div class=\"left-content\">";
+        // Show preference bar from each crew.
+        if (count($crews) > 0) {
+            $content .= "<div class=\"crewadmin-pref crew-pref\">";
+            foreach ($crews as $crew) {
+                $comment =
+                $content .= "<div class=\"pref-row pref-" . $crew->getCrewID() . "\">
+                    <div class=\"crewname\">" . $crew->getName() . "</div>
+                    <div class=\"pref-icons\">";
 
-			if($rGetAnswers->ID == $answerID) {
-				// We are currently editing a answer
-				$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doChangeAnswer&amp;answerID=$answerID\">\n";
-				$content .= "<textarea name=\"response\" cols=\"60\" rows=\"10\">$rGetAnswers->response</textarea>\n";
-				$content .= "<br /><input type=\"submit\" value='".lang("Change answer", "wannabeadmin")."' />\n";
-				$content .= "</form>\n\n\n\n";
-			} // end if rGetAnswers->ID == answerID
+                if (isset($commentsByCrewID[$crew->getCrewID()]) && count($commentsByCrewID[$crew->getCrewID()]) > 0) {
+                    $numComments = count($commentsByCrewID[$crew->getCrewID()]);
+                    foreach ($commentsByCrewID[$crew->getCrewID()] as $comment) {
+                        /** @var $comment \Wannabe\AdminComment */
 
-			else {
-				$content .= "<br /><a href=\"?module=wannabeadmin&amp;action=editAnswers&amp;answerID=$rGetAnswers->ID&amp;questionID=".$_GET['questionID']."\">
-				$rGetAnswers->response</a>\n";
-			}
+                        if ($numComments == 1) {
+                            $content .= "<span>" . $comment->getAdminUser()->getNick() . "</span>";
+                        }
 
-		} // end while rGetAnswers
+                        $content .= "<div class=\"pref-icon pref-icon-" . $comment->getApproval() . "\" title=\"" . $comment->getAdminUser()->getNick() . "\">";
 
-		if($rGetQuestion->questionType == 'select' && empty($_GET['answerID'])) {
-			// This is a select-type question. Allow adding answers
-			$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddAnswer&amp;questionID=".$_GET['questionID']."\">";
-			$content .= "<p class=\"nopad\"><input type=\"text\" name=\"response\" /></p>";
-			$content .= "<p><input type=\"submit\" value='".lang("Add answer", "wannabeadmin")."' /></p>\n";
-			$content .= "</form>\n\n\n";
-		} // End if rGetQuestion->questionType = select
+                        if ($numComments > 1) {
+                            $content .= "&nbsp;";
+                        }
 
-	} // end if action == editAnswers
+                        $content .= "</div>";
+                    }
+                } else {
+                    $content .= "<div class=\"pref-icon pref-icon-0\" title=\"" . _("No response given") . "\">&nbsp;</div>";
+                }
 
-	$content .= "</div>";
+                $content .= "</div>
+                </div>";
+            }
+            $content .= "</div>";
+        }
 
-} // End if action == questions
+        // Set prefrence form
+        if (count($crewGroups) > 0) {
+            foreach ($crewGroups as $crew) {
+                $content .= "<div class=\"set-preference-form\"><strong>" . _("Set preference for") . " " . $crew->getName() . "</strong>";
+                $content .= "<form action=\"?module=$module&amp;action=viewApplication&amp;userID=$applicationUserID&amp;setPreference=" . $crew->getCrewID() . "\" method=\"post\">";
+                $content .= "   <input type=\"hidden\" name=\"applicationID\" value=\"$applicationUserID\" />";
+                $content .= "   <select name=\"pref\">";
+                $content .= "       <option value=\"-1\">" . _("Choose preference") . "</option>";
+                $content .= "       <option value=\"1\">" . _("Of course!") . "</option>";
+                $content .= "       <option value=\"2\">" . _("Sure") . "</option>";
+                $content .= "       <option value=\"3\">" . _("Probably") . "</option>";
+                $content .= "       <option value=\"4\">" . _("I'd rather not") . "</option>";
+                $content .= "       <option value=\"5\">" . _("Not at all") . "</option>";
+                $content .= "   </select>";
+                $content .= "   <input type=\"submit\" class=\"btn-small\" value=\"" . _("Set") . "\" />";
+                $content .= "</form></div>";
+            }
+        } else {
+            $content .= "<div><em>" . _("You are not admin of any crew and can therefor not set any preference.") . "</em></div>";
+        }
 
-elseif($action == "doAddAnswer" && $acl_access == "Admin") {
-	$response = $_POST['response'];
-	$questionID = $_GET['questionID'];
-	$extra = $_POST['extra'];
+        $content .= "</div>";
+        $content .= "<div class=\"right-content\">";
 
-	db_query("INSERT INTO ".$sql_prefix."_wannabeQuestionInfo SET
-		questionID = '".db_escape($questionID)."',
-		response = '".db_escape($response)."',
-		extra = '".db_escape($extra)."'");
+        if (count($comments) > 0) {
+            foreach ($comments as $comment) {
+                if ($comment->getCommentType() == \Wannabe\AdminComment::COMMENT_TYPE_ADMINPREF) continue;
+                if (mb_strlen(trim($comment->getComment()), "UTF-8") < 1) continue;
 
-	$log_new['questionID'] = $questionID;
-	$log_new['response'] = $response;
-	$log_new['extra'] = $extra;
-	log_add("wannabeadmin", "doAddAnswer", serialize($log_new));
+                $commentContent = nl2br(htmlspecialchars($comment->getComment()));
+                $content .= "<div class=\"comment\">
+                    <div class=\"meta\">" . $comment->getAdminUser()->getNick() . "</div>
+                    <div class=\"comment-content\">" . $commentContent . "</div>
+                </div>";
+            }
+        }
 
-	header("Location: ?module=wannabeadmin&action=editAnswers&questionID=".$questionID);
+        // Write new comment form
+        $content .= "
+        <button class=\"newcomment\" onclick=\"showNewComment();\">" . _("Write a comment") . "</button>
+        <div class=\"new-comment\">
+        <form action=\"?module=$module&amp;action=viewApplication&amp;userID=$applicationUserID&amp;addComment=true\" method=\"post\">
+            <textarea name=\"commenttext\" placeholder=\"" . _("Comment...") . "\"></textarea><br />
+            <div class=\"new-comment-button\"><input type=\"submit\" value=\"" . _("Send") . "\" /></div>
+        </form>
+        </div>";
 
-} // end action == doAddAnswer
+        $content .= "</div>";
 
-elseif($action == "addQuestion" && $acl_access == "Admin")
-{
-	$question = $_POST['question'];
-	$questionType = $_POST['questionType'];
+        // Set title
+        $content .= "</div>
+        <script>document.title = \"" . $applicant->getFullName() . " (" . $applicant->getNick() . ") - " . _("Application") . " - \" + document.title;</script>";
 
-	db_query("INSERT INTO ".$sql_prefix."_wannabeQuestions
-		SET eventID = ".db_escape($eventID).",
-		question = '".db_escape($question)."',
-		questionType = '".db_escape($questionType)."'
-		");
+        break;
 
-	// I've never got mysql_last_row() to work. Doing it manually
-	$qFindQuestion = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestions
-		WHERE question LIKE '".db_escape($question)."'
-		AND eventID = '".db_escape($eventID)."'
-		ORDER BY ID DESC
-		LIMIT 0,1");
-	$rFindQuestion = db_fetch($qFindQuestion);
-	$questionID = $rFindQuestion->ID;
-	
-	$log_new['question'] = $question;
-	$log_new['questionType'] = $questionType;
-	log_add("wannabeadmin", "addQuestion", serialize($log_new));
+    // -------------------------------- [INDEX] -------------------------------- //
+    default:
 
-	header("Location: ?module=wannabeadmin&action=editQuestion&questionID=".$questionID);
+        $content .= "<ul class=\"wannabeadmin-menu\">";
+        if($acl_access == "Admin")
+        {
+            // User has wannabe adminrights
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a></li>\n";
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a></li>\n";
 
-} // End if action == addQuestion
+        } // End acl_access = Admin
 
+        if($acl_access == 'Write' || $acl_access == 'Admin')
+        {
+            // User has wannabe write-access (may see and write comments)
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a></li>";
 
-elseif($action == "changeQuestion" && isset($_GET['questionID']) && $acl_access == 'Admin') {
-	$question = $_POST['question'];
-	db_query("UPDATE ".$sql_prefix."_wannabeQuestions SET question = '".db_escape($question)."' WHERE ID = '".db_escape($_GET['questionID'])."'");
+        } // End acl_access > Write
+        $content .= "</ul>";
 
-	$log_new['question'] = $question;
-	$log_new['questionID'] = $questionID;
-	log_add("wannabeadmin", "changeQuestion", serialize($log_new));
+        break;
 
-	header("Location: ?module=wannabeadmin&action=questions");
 }
-
-elseif($action == "listApplications") {
-	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
-
-	$content .= "<div class=\"applications\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p>";
-	$content .= "<h2>" . _("Manage wannabe applications") . "</h2>";
-
-	$content .= "<table><tr>";
-	$content .= "<th>".lang("Applicant", "wannabeadmin")."</th>";
-	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = '$sessioninfo->eventID'");
-	while($rListCrews = db_fetch($qListCrews)) {
-	    $content .= "<th>$rListCrews->crewname</th>\n";
-	    $crewlist[] = $rListCrews->ID;
-	}
-
-	$qListApplications = db_query("SELECT DISTINCT userID FROM ".$sql_prefix."_wannabeResponse res
-		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = $eventID");
-	
-	if(db_num($qListApplications) != 0) {
-	
-		while($rListApplications = db_fetch($qListApplications)) {
-			$content .= "<tr><td";
-			if(acl_access("crewlist", "", $sessioninfo->eventID, $rListApplications->userID, 0) != 'No') $content .= " class='wannabeCommentStyle1'";
-			$content .= ">";
-			$content .= "<a href=\"?module=wannabeadmin&action=viewApplication&user=$rListApplications->userID\">";
-			$content .= display_username($rListApplications->userID);
-			$content .= "</a></td>\n";
-			for($i=0;$i<count($crewlist);$i++) {
-			    
-			    #$qListMyComment = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND adminID = '$sessioninfo->userID' AND userID = '$rListApplications->userID'");
-			    #$rListMyComment = db_fetch($qListMyComment);
-			    $qListAvgScore = db_query("SELECT ROUND(AVG(approval), 0) AS approval FROM ".$sql_prefix."_wannabeComment WHERE crewID = '$crewlist[$i]' AND userID = '$rListApplications->userID'");
-			    $rListAvgScore = db_fetch($qListAvgScore);
-			    $content .= "<td class=wannabeCommentStyle".$rListAvgScore->approval.">";
-			    $content .= "</td>\n";
-			} // End for 
-			$content .= "</tr>\n\n\n";
-		} // End while rListApplications
-	}
-		$content .= "</table></div>";
-
-} // End action=listApplications
-
-elseif($action == "viewApplication" && !empty($_GET['user'])) {
-	// Add CSS for this action
-	$design_head .= '<link href="templates/shared/wannabe.css" rel="stylesheet" type="text/css">';
-	$user = $_GET['user'];
-
-	$content .= "<h2>".lang ("Application from:", "wannabeadmin")." ".display_username ($user)."</h2>";
-	$content .= "<a href=\"?module=wannabeadmin&action=listApplications\">".lang ("Back to list", "wannabeadmin")."</a>";
-
-	$content .= "<table>";
-
-	// Add information about the user
-	$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($user)."'");
-	$rFindUser = db_fetch($qFindUser);
-	$content .= "<tr><td>".lang("Name", "wannabeadmin")."</td><td>$rFindUser->firstName $rFindUser->lastName</td></tr>\n";
-	$content .= "<tr><td>".lang("Birthday", "wannabeadmin")."</td><td>$rFindUser->birthDay / $rFindUser->birthMonth $rFindUser->birthYear </td></tr>\n";
-	$content .= "<tr><td>".lang("Address", "wannabeadmin")."</td><td>$rFindUser->street $rFindUser->postNumber </td></tr>\n";
-
-
-	// Add information about what crews the user wants
-	$content .= "<tr><th>".lang ("Crew", "wannabeadmin")."</th><th>".lang ("Response", "wannabeadmin")."</th></tr>";
-
-	$qListCrewResponses = db_query("SELECT crew.crewname,
-		(SELECT response FROM ".$sql_prefix."_wannabeCrewResponse
-			WHERE userID = '".db_escape($user)."' AND crewID=crew.ID) AS response
-		FROM ".$sql_prefix."_wannabeCrews crew WHERE eventID = $eventID");
-	
-	$rListCrewResponseLoopCount = 1;
-	while($rListCrewResponses = db_fetch($qListCrewResponses)) {
-		$content .= "<tr class='wannabeCrewResponse".$rListCrewResponseLoopCount."'><td>";
-		$content .= $rListCrewResponses->crewname;
-		$content .= ":</td>\n<td>";
-//		$content .= lang("WannabeCrewListPreference".$rListCrewResponses->response, "wannabe_crewprefs");
-                switch($rListCrewResponses->response) {
-                                case "0":
-                                        $content .= lang("Nothing selected");
-                                        break;
-                                case "1":
-                                        $content .= lang("Of course!");
-                                        break;
-                                case "2":
-                                        $content .= lang("Sure");
-                                        break;
-                                case "3":
-                                        $content .= lang("Probably");
-                                        break;
-                                case "4":
-                                        $content .= lang("I'd rather not");
-                                        break;
-                                case "5":
-                                        $content .= lang("Not at all");
-                                        break;
-                                default:
-                                        $content .= lang("Unknown option");
-		} // End switch
-
-		$content .= "</td></tr>\n\n";
-
-		$rListCrewResponseLoopCount++;
-		if ($rListCrewResponseLoopCount == 3)
-		{
-			$rListCrewResponseLoopCount = 1;
-		}
-	} // End while rListCrewResponses
-	
-	$content .= "</table>";
-	$content .= "<table class='wannabeResponse'>";
-	$content .= "<tr><th>".lang ("Question", "wannabeadmin")."</th><th>".lang ("Answer", "wannabeadmin")."</th></tr>";
-
-	$qListResponse = db_query("SELECT ques.question,ques.questionType,res.response FROM ".$sql_prefix."_wannabeResponse res
-		JOIN ".$sql_prefix."_wannabeQuestions ques ON res.questionID=ques.ID WHERE ques.eventID = '$sessioninfo->eventID' AND 
-		res.userID = ".db_escape($user));
-
-	$rListResponseLoopCount = 1;
-	while($rListResponse = db_fetch($qListResponse)) {
-
-		$content .= "<tr class='wannabeResponse".$rListResponseLoopCount."'><td>";
-		$content .= $rListResponse->question;
-		$content .= "</td><td>";
-		switch ($rListResponse->questionType) {
-			case "text":
-				$content .= $rListResponse->response;
-				break;
-			case "checkbox":
-				if($rListResponse->response == "on") $content .= lang("Yes", "wannabeadmin");
-				else $content .= lang("No", "wannabeadmin");
-				break;
-			case "select":
-				$qGetDropdownAnswer = db_query("SELECT response FROM ".$sql_prefix."_wannabeQuestionInfo WHERE ID = ".$rListResponse->response);
-				$rGetDropdownAnswer = db_fetch($qGetDropdownAnswer);
-				$content .= $rGetDropdownAnswer->response;
-				break;
-			default:
-				$content .= "WTF in viewApplications->switch->default!";
-		} // End switch
-		$content .= "</td></tr>";
-		
-		$rListResponseLoopCount++;
-		if ($rListResponseLoopCount == 3)
-		{
-			$rListResponseLoopCount = 1;
-		}
-
-	} // End while rListResponse
-
-	$content .= "</table>";
-
-	$content .= "<table class='wannabecomments'>\n\n";
-
-	// FIXME: Ugly way of doing this...
-	$qListCrewHeaders = db_query("SELECT crewname FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-	$content .= "<tr><td class='wannabecomments'></td>";
-	while($rListCrewHeaders = db_fetch($qListCrewHeaders)) {
-		$content .= "<th class='wannabecomments'>";
-		$content .= $rListCrewHeaders->crewname;
-		$content .= "</th>";
-	} // End while rListCrewHeaders
-
-
-	// List admins that has said something
-	$qListAdmins = db_query("SELECT DISTINCT u.nick,c.adminID FROM ".$sql_prefix."_users u
-		JOIN ".$sql_prefix."_wannabeComment c ON u.ID=c.adminID
-		WHERE crewID IN (SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID)");
-
-	while($rListAdmins = db_fetch($qListAdmins)) {
-		$content .= "<tr><th class='wannabecomments'>";
-		$content .= $rListAdmins->nick;
-		$content .= "</th>";
-		if($rListAdmins->adminID == $sessioninfo->userID) {
-			$editcmt = TRUE; // Current user, allow changing comments
-			$admincmdused = TRUE; // User has commented, don't display in extra list below
-	
-		}
-		elseif($acl_access == 'Write' || $acl_access == 'Admin') {
-			$editcmt = TRUE;
-		}
-		else {
-			$editcmt = FALSE;
-			echo TRUE;
-		}
-		$qListCrews = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-		while($rListCrews = db_fetch($qListCrews)) {
-			$crewID = $rListCrews->ID;
-
-			$qListComments = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE userID = '".db_escape($user)."'
-				AND crewID = $crewID AND adminID = $rListAdmins->adminID");
-			$rListComments = db_fetch($qListComments);
-			$content .= "<td class=wannabeCommentStyle".$rListComments->approval.">";
-			if($editcmt) {
-				$content .= "<a href=\"?module=wannabeadmin&action=changeComment&crewID=$crewID&user=$user\">";
-				if(empty($rListComments->comment)) $content .= lang("Comment", "wannabeadmin");
-				else $content .= stripslashes($rListComments->comment);
-				$content .= "</a>";
-			}
-			else $content .= stripslashes($rListComments->comment);
-			$content .= "</td>\n";
-
-		} // End while rListCrews
-
-		$content .= "</tr>\n\n";
-	} // End while rListAdmins
-
-	if($acl_access != 'Read' && !$admincmdused) {
-		$qGetUsernick = db_query("SELECT nick FROM ".$sql_prefix."_users WHERE ID = $sessioninfo->userID");
-		$rGetUsernick = db_fetch($qGetUsernick);
-		$content .= "<tr><th>$rGetUsernick->nick</th>";
-		$qListCrewsAppend = db_query("SELECT ID FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-		while($rListCrewsAppend = db_fetch($qListCrewsAppend)) {
-			$content .= "<td>";
-			$content .= "<a href=\"?module=wannabeadmin&action=changeComment&crewID=".$rListCrewsAppend->ID."&user=$user\">";
-			$content .= lang("Comment", "wannabeadmin");
-			$content .= "</a></td>";
-		} // End while rListCrewsAppend
-	} // End if acl_access != read
-
-	$content .= "</table>";
-
-
-
-
-} // End elseif action == viewApplications
-
-elseif($action == "crews" || $action == "editcrew") {
-	$qListCrews = db_query("SELECT * FROM ".$sql_prefix."_wannabeCrews WHERE eventID = $eventID");
-
-	$content .= "<div class=\"crews\"><p><a href=\"?module=$module&amp;action=adminWannabe\">&laquo; " . _("Back") . "</a></p><p>" . _("Click on a crew to edit it.") . "</p>";
-	
-	if(db_num($qListCrews) != 0) {
-		$content .= "<div class=\"crew-list\">";
-		$content .= "<table>";
-		while($rListCrews = db_fetch($qListCrews)) {
-			$content .= "<tr>";
-			if($action == "editcrew" && $_GET['crew'] == $rListCrews->ID) {
-				$content .= "<td><div class=\"newcrew-form\"><h2>" . lang("Edit crew", "wannabeadmin") . "</h2>";
-				$content .= "<form method=\"post\" action=\"?module=wannabeadmin&action=doEditcrew&crew=" . $rListCrews->ID . "\">\n";
-				$content .= "<p class=\"nopad\">\n";
-				$content .= "<input type=\"text\" value=\"$rListCrews->crewname\" placeholder=\"" . lang("Crew name...", "wannabeadmin") . "\" name=\"crewname\" /><br />\n";
-				$content .= "<textarea cols=\"40\" rows=\"4\" name=\"description\" placeholder=\"" . lang("Crew description...", "wannabeadmin") . "\">";
-				$content .= $rListCrews->description;
-				$content .= "</textarea><br />";
-				$content .= "<input type=\"submit\" value=\"".lang("Save changes")."\">";
-				$content .= "<button onclick=\"window.location = '?module=wannabeadmin&action=crews';\" type=\"button\">" . _("Cancel") . "</button></p>";
-				$content .= "</form></div>";
-			}
-			else {
-				$content .= "<td class=tdLink onClick='location.href=\"?module=wannabeadmin&action=editcrew&crew=$rListCrews->ID\"'>";
-				$content .= $rListCrews->crewname;
-			}
-			$content .= "</td></tr>\n";
-		} // End while (rListCrews)
-
-		$content .= "</table></div>";
-	}
-	if($action == "crews") {
-		// Don't display if editcrew-mode
-		$content .= "<div class=\"newcrew-form\"><h2>" . lang("Add new crew", "wannabeadmin") . "</h2>";
-		$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doAddCrew\">\n";
-		$content .= "<p class=\"nopad\"><input type=\"text\" placeholder=\"" . lang("Crew name...", "wannabeadmin") . "\" name=\"crewname\" /><br />\n";
-		$content .= "<textarea cols=\"40\" rows=\"4\" name=\"description\" placeholder=\"" . lang("Crew description...", "wannabeadmin") . "\"></textarea><br />";
-		$content .= "<input type=\"submit\" value='".lang("Add crew", "wannabeadmin")."' /></p>";
-		$content .= "</form></div>";
-	}
-
-	$content .= "</div>";
-}
-
-elseif($action == "doEditcrew" && isset($_GET['crew'])) {
-	$crew = db_escape($_GET['crew']);
-	$crewname = db_escape($_POST['crewname']);
-	$crewDescription = db_escape(isset($_POST["description"]) ? $_POST["description"] : "");
-
-	db_query("UPDATE ".$sql_prefix."_wannabeCrews SET crewname = '$crewname', `description` = '" . $crewDescription . "' WHERE eventID = '$eventID' AND ID = '$crew'");
-	
-	$log_new['crewID'] = $crew;
-	$log_new['crewname'] = $crewname;
-	$log_new['description'] = $crewDescription;
-	log_add("wannabeadmin", "doEditcrew", serialize($log_new));
-
-	header("Location: ?module=wannabeadmin&action=crews");
-}
-elseif($action == "doAddCrew") {
-	$crewname = $_POST['crewname'];
-	$crewDescription = db_escape(isset($_POST["description"]) ? $_POST["description"] : "");
-
-	db_query(sprintf("INSERT INTO %s_wannabeCrews(eventID, crewname, description)VALUES(%s, '%s', '%s')", $sql_prefix, $eventID, $crewname, $crewDescription));
-	log_add("wannabeadmin", "doAddCrew", serialize($_POST));
-
-	header("Location: ?module=wannabeadmin&action=crews");
-} // End action == doAddCrew
-
-elseif($action == "changeComment" && !empty($_GET['crewID']) && !empty($_GET['user'])) {
-	$user = $_GET['user'];
-	$crewID = $_GET['crewID'];
-
-	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE adminID = $sessioninfo->userID
-		AND userID = '".db_escape($user)."' AND crewID = '".db_escape($crewID)."'");
-	$rCheckExisting = db_fetch($qCheckExisting);
-
-	$content .= "<form method=\"post\" action=\"?module=wannabeadmin&amp;action=doChangeComment&amp;user=$user&amp;crewID=$crewID\">\n";
-	$content .= "<select name=\"approval\">";
-	for($i=0;$i<6;$i++) {
-		$content .= "<option value=$i";
-		if($i==$rCheckExisting->approval) $content .= " SELECTED";
-#		$content .= ">".lang("wannabeAdminCmt".$i, "wannabeadmin_prefs")."</option>";
-		$content .= ">";
-                       switch($i) {
-                                case "0":
-                                        $content .= lang("Nothing selected");
-                                        break;
-                                case "1":
-                                        $content .= lang("Of course!");
-                                        break;
-                                case "2":
-                                        $content .= lang("Sure");
-                                        break;
-                                case "3":
-                                        $content .= lang("Probably");
-                                        break;
-                                case "4":
-                                        $content .= lang("I'd rather not");
-                                        break;
-                                case "5":
-                                        $content .= lang("Not at all");
-                                        break;
-                                default:
-                                        $content .= lang("Unknown option");
-                        } // End switch
-		$content .= "</option>\n";
-
-	
-	} // End for
-	$content .= "</select>\n\n";
-	$content .= "<br /><textarea name=\"comment\" rows=\"5\" cols=\"40\">$rCheckExisting->comment</textarea>";
-	$content .= "<br /><input type=\"submit\" value='".lang("Save comment", "wannabeadmin")."' />";
-	$content .= "</form>";
-} // End elseif action==changeComment
-
-
-elseif($action == "doChangeComment") {
-	$comment = $_POST['comment'];
-	$approval = $_POST['approval'];
-	$user = $_GET['user'];
-	$crewID = $_GET['crewID'];
-
-	$qCheckExisting = db_query("SELECT * FROM ".$sql_prefix."_wannabeComment WHERE adminID = $sessioninfo->userID
-		AND userID = '".db_escape($user)."' AND crewID = '".db_escape($crewID)."'");
-	if(db_num($qCheckExisting) > 0) {
-		db_query("UPDATE ".$sql_prefix."_wannabeComment
-			SET approval = '".db_escape($approval)."',
-			comment = '".db_escape($comment)."'
-			WHERE adminID = $sessioninfo->userID
-			AND userID = '".db_escape($user)."'
-			AND crewID = '".db_escape($crewID)."'");
-	} // End if db_num exists
-	else {
-		db_query(" INSERT INTO ".$sql_prefix."_wannabeComment
-			SET approval = '".db_escape($approval)."',
-			comment = '".db_escape($comment)."',
-			adminID = $sessioninfo->userID ,
-			userID = '".db_escape($user)."',
-			crewID = '".db_escape($crewID)."'");
-	} // End else
-
-	$log_new['comment'] = $comment;
-	$log_new['approval'] = $approval;
-	$log_new['user'] = $user;
-	$log_new['crewID'] = $crewID;
-	log_add("wannabeadmin", "doChangeComment", serialize($log_new));
-
-	header("Location: ?module=wannabeadmin&action=viewApplication&user=$user");
-} // End elseif action == doChangeComment

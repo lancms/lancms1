@@ -1,312 +1,447 @@
 <?php
 
-$action = $_GET['action'];
-
-if(!config("users_may_register")) die("users may not register yet");
-
-if (!($sessioninfo->userID <= 1 or acl_access ("userAdmin", "", $sessioninfo->eventID) != 'No'))
-{
-	header ('Location: index.php');
-	die ();
+if(!config("users_may_register")) {
+    $content .= "<p>users may not register yet</p>";
+    return; // Terminate this file.
 }
 
-if($action == "register")
-{
-	$username = $_POST['username'];
-	$pass1 = $_POST['pass1'];
-	$pass2 = $_POST['pass2'];
-	$EMail = $_POST['EMail'];
-	$firstName = $_POST['firstName'];
-	$lastName = $_POST['lastName'];
-	$gender = $_POST['gender'];
-	$birthDay = $_POST['birthDay'];
-	$birthMonth = $_POST['birthMonth'];
-	$birthYear = $_POST['birthYear'];
-	$address = $_POST['address'];
-	$postnumber = $_POST['postnumber'];
-	$cellphone = $_POST['cellphone'];
+if (!($sessioninfo->userID <= 1 or acl_access ("userAdmin", "", $sessioninfo->eventID) != 'No')) {
+    header ('Location: index.php');
+    die ();
+}
+
+$userManager = UserManager::getInstance();
+$errors = $userManager->getFormInSession("register_errors");
+$formData = $userManager->getFormInSession("register");
 
 
-	if(empty($username))
-		$register_invalid = lang("Please provide a username", "register");
-	if(strlen($username) <=1)
-		$register_invalid = lang("Please provide a username", "register");
-	if(!(strchr($email, "@")) && (strchr($email, ".")))
-		$register_invalud = lang("Please provide a valid email-address", "register");
+switch ($action) {
 
-	/* Check if the username is free */
-	$qCheckUsername = db_query("SELECT nick FROM ".$sql_prefix."_users
-		WHERE nick LIKE '".db_escape($username)."'");
-	if(db_num($qCheckUsername) != 0)
-	{
-		$register_invalid = lang("Username already in use", "register");
-		$username = FALSE;
-	} // end check if username is free
+    //==================================================================================
+    // Handle verifyMail
+    case "verifymail":
 
-	/* Check if the passwords match */
-	if ( $pass1 != $pass2)
-	{
-		$register_invalid = lang("Passwords does not match", "register");
-		$pass1 = FALSE;
-		$pass2 = FALSE;
-	} // End check if passwords match
+        $userCode = (isset($_GET['k']) ? $_GET['k'] : null);
 
-	/* Check if firstName is valid */
-	if(config("register_firstname_required"))
-	{
-		if(strlen($firstName) <=2)
-		{
-			$firstName = FALSE;
-			$register_invalid = lang("Firstname must be set", "register");
-		} // End if strlen firstName
-	} // End register_firstname_required
+        if ($userCode == null) {
+            $content .= "<p>Invalid verification code.</p>";
+        } else {
+            $user = $userManager->getUserByVerificationCode($userCode);
+            if ($user == null || $user->isEmailConfirmed() == true) {
+                $content .= "<p>Invalid verification code.</p>";
+            } else {
+                $user->setEmailConfirmed(true);
+                $user->setEmailVerifyCode("");
+                $user->commitChanges();
 
-	/* Check if lastName is valid */
-	if(config("register_lastname_required"))
-	{
-		if(strlen($lastName) <= 2)
-		{
-			$lastName = FALSE;
-			$register_invalid = lang("Lastname must be set", "register");
-		} // End if strlen lastName
+                $content .= "<h1 class=\"page-title\">" . _("User account verified") . "</h1>
+                <p>" . _("User account has been verified. You can now login.") . "</p>";
+            }
+        }
 
-	} // End register_lastname_required
-	if(config("userinfo_birthyear_required")) {
-		if($birthYear == "none") {
-			$register_invalid = lang("Birthyear has to be set", "register");
-		} // End if
-	} // End elseif userinfo_lastname_required
+        break;
 
-	if(config("userinfo_birthday_required")) {
-		if($birthDay == "none") {
-			$register_invalid = lang("Birthday has to be set", "register");
-		} // End if birthDay
-		if($birthMonth == "none") {
-			$register_invalid = lang("Birthmonth has to be set", "register");
-		} // End if birthMonth
-	} // End birthday_required
-	if(config("userinfo_gender_required")) {
-		if($gender != 'Male' AND $gender != 'Female')
-			$register_invalid = lang("You have to specify your gender", "register");
-	} // End if config(userinfo_gender_required)
-	if(config("userinfo_address_required")) {
-		if(!is_numeric($postnumber)) $register_invalid = lang("Postnumber has to be a number", "register");
-		if(strlen($address) <=3) $register_invalid = lang("Please specify your address", "registert");
-	} // End if config(userinfo_address_required)
+    //==================================================================================
+    // Print a success page
+    case "success":
 
-	// FIXME? Cellphone is optional, we may need some code to 1) make it required, 2) hide it completely or 3) something else
-	if (!empty($cellphone))
-	{
-		if (!is_numeric ($cellphone))
-		{
-			$register_invalid = lang ("Cellphone is supposed to be a number", "register");
-		}
-		// FIXME? Hardcoded lenght of cellphone numbers
-		if (strlen ($cellphone) != 8)
-		{
-			$register_invalid = lang ("Cellphone is supposed to be eight digits", "register");
-		}
+        $content .= "<h1 class=\"page-title\">" . _("User created") . "</h1>
+        <p>" . _("Your new user account has been created. Now you need to verify your email address. Please check your email index or spam folder to find the verification URL.") . "</p>";
 
-	}
+        break;
 
-	// If something went wrong in the registration;
-	// view the registration-page once more, with all fields marked.
-	// Otherwise; register the user
+    //==================================================================================
+    // Handle register
+    case "doRegister":
+        // Validate all fields.
 
-	if(!$register_invalid)
-	{
-		$genkey = md5(rand(1,10000) * time());
-		$hide_register = TRUE;
-		$md5_pass = md5($pass1);
-		db_query("INSERT INTO ".$sql_prefix."_users SET
-			nick = '".db_escape($username)."',
-			password = '$md5_pass',
-			EMail = '".db_escape($EMail)."',
-			firstName = '".db_escape($firstName)."',
-			lastName = '".db_escape($lastName)."',
-			gender = '".db_escape($gender)."',
-			birthDay = '".db_escape($birthDay)."',
-			birthMonth = '".db_escape($birthMonth)."',
-			birthYear = '".db_escape($birthYear)."',
-			street = '".db_escape($address)."',
-			postnumber = '".db_escape($postnumber)."',
-			cellphone = '".db_escape ($cellphone)."',
-			registerIP = '".$_SERVER['REMOTE_ADDR']."',
-			EMailVerifyCode = '".$genkey."',
-			registerTime = '".time()."'
-		");
+        $requiredFields = array("username", "firstName", "lastName", "password", "repassword", "email");
+        if(config("userinfo_gender_required"))
+            $requiredFields[] = "gender";
 
+        if(config("userinfo_birthday_required")) {
+            $requiredFields[] = "day";
+            $requiredFields[] = "month";
+        }
 
-		$newid = db_insert_id();
+        if (config("userinfo_birthyear_required"))
+            $requiredFields[] = "year";
 
-		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=register&action=verifymail&userID=$newid&verifycode=$genkey";
-		$email_subject = lang("Verify your new account");
-		$email_content = sprintf(lang("Hello %s.
+        if (config("userinfo_cellphone_required"))
+            $requiredFields[] = "cellphone";
 
-You, or someone else has registered a new account on %s.
+        $errors = array();
+        $saveFormData = array();
+        foreach ($requiredFields as $key => $value) {
+            if (isset($_POST[$value]) == false || strlen(trim($_POST[$value])) < 1) {
+                $errors[] = $value;
+            } else {
+                $saveFormData[$value] = $_POST[$value];
+            }
+        }
 
-To verify your mailaddress, please go to <a href='%s'>%s</a>"), '%%FIRSTNAME%%', $_SERVER['SERVER_NAME'], $url, $url);
+        // Do not save password and repassword in form data.
+        unset($saveFormData['password']);
+        unset($saveFormData['repassword']);
 
-		send_email($newid, $email_subject, $email_content);		
-		// Fix default preferences
-		for($i=0;$i<count($userpersonalprefs);$i++) {
-			if($userpersonalprefs[$i]['default_register'] == 1) {
-				$prefname = $userpersonalprefs[$i]['name'];
-				switch ($userpersonalprefs[$i]['type']) {
+        //===========================================================
+        $username   = $_POST["username"];
+        $password   = $_POST["password"];
+        $repassword = $_POST["repassword"];
+        $email      = $_POST["email"];
+        $firstName  = '';
+        $lastName   = '';
+        $address    = null;
+        $postCode   = null;
+        $gender     = null;
+        $birthDay   = null;
+        $birthMonth = null;
+        $birthYear  = null;
+        $cellPhone  = null;
 
-					case "checkbox":
-						db_query("INSERT INTO ".$sql_prefix."_userPreferences
-							SET userID = '$newid',
-							name = '$prefname',
-							value = 'on'");
-//						echo "FOO?";
-//						die();
-						break;
-				} // End switch
-			} // End if userpersonalprefs_default_register == 1
-		} // end for
+        if(config("register_firstname_required")) {
+            $firstName  = $_POST["firstName"];        
+        }
 
-		$logmsg['userid'] = $newid;
-		$logmsg['username'] = $username;
-		$logmsg['md5_pass'] = $md5_pass;
-		$logmsg['EMail'] = $EMail;
-		$logmsg['firstName'] = $firstName;
-		$logmsg['lastName'] = $lastName;
-		$logmsg['gender'] = $gender;
-		$logmsg['birthDay'] = $birthDay;
-		$logmsg['birthMonth'] = $birthMonth;
-		$logmsg['birthYear'] = $birthYear;
-		$logmsg['street'] = $address;
-		$logmsg['postnumber'] = $postnumber;
-		$logmsg['cellphone'] = $cellphone;
+        if(config("register_lastname_required")) {
+            $lastName   = $_POST["lastName"];        
+        }
 
-		if ($sessioninfo->userID <= 1)
-		{
-			// anonymous user registers = logtype 4
-			log_add ("register", "anonymous", serialize ($logmsg));
-		}
-		else
-		{
-			// logged in user registers a new one = logtype 5
-			log_add ("register", "registered", serialize ($logmsg));
-		}
+        if(config("userinfo_gender_required")) {
+            $gender = $_POST["gender"];        
+        }
 
-		$content .= lang("User registered", "register");
-	} // End if register_invalid = FALSE
+        if(config("userinfo_birthday_required")) {
+            $birthDay = $_POST["day"];
+            $birthMonth = $_POST["month"];
+        }
 
-} // End action = register
+        if (config("userinfo_birthyear_required")) {
+            $birthYear = $_POST["year"];        
+        }
 
+        if (config("userinfo_cellphone_required")) {
+            $cellPhone = $_POST["cellphone"];
+        }
 
+        if (config("userinfo_address_required")) {
+            $address = $_POST["address"];
+            $postCode = $_POST["postCode"];
+        }
+        
+        //===========================================================
+        // Username exists?
+        if ($userManager->getUserByNick($username) instanceof User) {
+            $errors[] = 'username';            
+            $userManager->saveFormInSession("register_errors", $errors);
 
-#module=register&action=verifymail&userID=$newid&verifycode=$genkey
-elseif($action == "verifymail" && isset($_GET['userID']) && isset($_GET['verifycode'])) {
-	$hide_register = TRUE;
-        $verifycode = $_GET['verifycode'];
-        $userID = $_GET['userID'];
+            header("Location: index.php?module=register&error=6");
+            die();
+        }
+        //===========================================================
+        // Valid email address?
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
+            $errors[] = 'email';
+            unset($saveFormData['email']);
+        }
+        //===========================================================
+        // Retyped correct password?
+        if ($password != $repassword) {
+            $errors[] = 'repassword';
+        }
+        //===========================================================
+        // Validate gender if set.
+        if ($gender !== null && $gender === -1) {
+            $errors[] = 'gender';
+            unset($saveFormData['gender']);
+        }
+        //===========================================================
+        // Validate birthday if set.
+        if ($birthDay !== null && $birthDay < 1) {
+            $errors[] = 'day';
+            unset($saveFormData['day']);
+        }
 
-        if($verifycode == NULL) $content .= _("Verifycationcode not valid");
-        else {
-                $qCheckUser = db_query("SELECT EMailConfirmed,EMail,EMailVerifyCode FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
-                $rCheckUser = db_fetch($qCheckUser);
+        if ($birthMonth !== null && $birthMonth < 1) {
+            $errors[] = 'month';
+            unset($saveFormData['month']);
+        }
 
-                if($rCheckUser->EMailConfirmed == 1) $content .= _("EMail was already verified. Not verified again");
-                elseif($rCheckUser->EMailVerifyCode != $verifycode) {
-                        $content .= "Verificationcode does not match. Try again";
-                        $log_new['tried_verifycode'] = $verifycode;
-                        $log_new['actual_verifycode'] = $rCheckUser->EMailVerifyCode;
+        if ($birthYear !== null && $birthYear < 1900) {
+            $errors[] = 'year';
+            unset($saveFormData['year']);
+        }
+        //===========================================================
+        // Validate cell phone if configured.
+        if ($cellPhone !== null && is_string($cellPhone) == false) {
+            $errors[] = 'cellphone';
+            unset($saveFormData['cellphone']);
+        }
+        //===========================================================
+        // Save both errors and form data in session.
+        if (count($saveFormData) > 0)
+            $userManager->saveFormInSession("register", $saveFormData);
 
-                        log_add("register", "failed_verifycode", serialize($log_new), "", $userID);
+        if (count($errors) > 0) {
+            $userManager->saveFormInSession("register_errors", $errors);
+            header("Location: index.php?module=register&error=true");
+            die();
+        }
+        //===========================================================
+
+        $createdUser = $userManager->createUser($username, $firstName, $lastName, $email, $password);
+
+        if ($createdUser === null) {
+            header("Location: index.php?module=register&error=5");
+            die();
+        }
+
+        for($i=0;$i<count($userpersonalprefs);$i++) {
+            if($userpersonalprefs[$i]['default_register'] == 1) {
+                $prefname = $userpersonalprefs[$i]['name'];
+                switch ($userpersonalprefs[$i]['type']) {
+
+                    case "checkbox":
+                        db_query("INSERT INTO ".$sql_prefix."_userPreferences
+                            SET userID = '" . $createdUser->getUserID() . "',
+                            name = '$prefname',
+                            value = 'on'");
+//                      echo "FOO?";
+//                      die();
+                        break;
+                } // End switch
+            } // End if userpersonalprefs_default_register == 1
+        } // end for
+
+        $userManager->sendEmailVerification($createdUser);
+        $userManager->resetFormInSession("register");
+        $userManager->resetFormInSession("register_errors");
+
+        //===========================================================
+        if ($gender !== null) {
+            $createdUser->setGender($gender);
+        }
+
+        if ($birthDay !== null) {
+            $createdUser->setBirthDay($birthDay);
+        }
+
+        if ($birthMonth !== null) {
+            $createdUser->setBirthMonth($birthMonth);
+        }
+
+        if ($birthYear !== null) {
+            $createdUser->setBirthYear($birthYear);
+        }
+
+        if ($cellPhone !== null) {
+            $createdUser->setCellPhone($cellPhone);
+        }
+
+        if ($address !== null) {
+            $createdUser->setStreetAddress($address);
+        }
+
+        if ($postCode !== null) {
+            $createdUser->setPostNumber($postCode);
+        }
+
+        $createdUser->commitChanges();
+        //===========================================================
+
+        header("Location: index.php?module=register&action=success&userID=" . $createdUser->getUserID());
+        die();
+
+        break;
+
+    //==================================================================================
+    // Display register form
+    default:
+        $content .= "<h1 class=\"page-title\">" . _("Register user") . "</h1>";
+
+        // Has errors? Print an alert.
+        if (isset($_GET['error']) && intval($_GET['error']) == 6) {
+            $content .= "<div class=\"alert alert-danger\">" . _("Username is taken, try another one.") . "</div>";
+        } else if (count($errors) > 0 && isset($_GET['error'])) {
+            $content .= "<div class=\"alert alert-danger\">" . _("Form did not validate, check for errors below") . "</div>";
+        }
+
+        $content .= "<div class=\"register-form\">
+            <form class=\"normal form\" action=\"index.php?module=register&amp;action=doRegister\" method=\"post\">
+                <div class=\"form-group\">
+                    <label for=\"username\">" . _("Username") . "</label>
+
+                    <div class=\"elements\">
+                        <input type=\"text\" id=\"username\" class=\"input " . checkForErrorsInput("username") . "\" name=\"username\" value=\"" . getInputValue("username") . "\" required />
+                    </div>
+                </div>";
+
+                if(config("register_firstname_required")) {
+                    $content .= "<div class=\"form-group\">
+                        <label for=\"firstName\">" . _("Firstname") . "</label>
+
+                        <div class=\"elements\">
+                            <input type=\"text\" id=\"firstName\" class=\"input " . checkForErrorsInput("firstName") . "\" name=\"firstName\" value=\"" . getInputValue("firstName") . "\" required />
+                        </div>
+                    </div>";
                 }
-                elseif($rCheckUser->EMailVerifyCode == $verifycode) {
-                        $content .= _("EMail verified. Welcome aboard");
-                        $log_new['verifycode'] = $verifycode;
-                        db_query("UPDATE ".$sql_prefix."_users SET EMailConfirmed = 1 WHERE ID = '".db_escape($userID)."'");
-                        log_add("register", "confirmed_verifycode", serialize($log_new), "", $userID);
-                } // End elseif EMailVerifyCode == verifycode
-        } // End else
-} // end action = verifymail
 
+                if(config("register_lastname_required")) {
+                    $content .= "<div class=\"form-group\">
+                        <label for=\"lastName\">" . _("Lastname") . "</label>
 
+                        <div class=\"elements\">
+                            <input type=\"text\" id=\"lastName\" class=\"input " . checkForErrorsInput("lastName") . "\" name=\"lastName\" value=\"" . getInputValue("lastName") . "\" required />
+                        </div>
+                    </div>";
+                }
 
-if(!isset($action) || $hide_register == FALSE)
-{
+                $content .= "<div class=\"form-group\">
+                    <label for=\"password\">" . _("Password") . "</label>
 
-	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_postnumber.js"></script>'."\n";
-	if($register_invalid) $content .= "<font color=red>$register_invalid</font><br><br>";
+                    <div class=\"elements\">
+                        <input type=\"password\" id=\"password\" class=\"input" . checkForErrorsInput("password") . "\" name=\"password\" required />
+                    </div>
+                </div>
+                <div class=\"form-group\">
+                    <label for=\"repassword\">" . _("Repeat password") . "</label>
 
-	$content .= "<form method=POST action=?module=register&amp;action=register>\n";
-	$content .= "<input type=text name=username value='$username'> ".lang("Username", "register");
-	$content .= "\n<br><input type=password name=pass1 value='$pass1'> ".lang("Password", "register");
-	$content .= "\n<br><input type=password name=pass2 value='$pass2'> ".lang("Password again", "register");
-	$content .= "\n<br><input type=text name=EMail value='$EMail'> ".lang("E-Mail", "register");
-	if(config("register_firstname_required"))
-		$content .= "\n<br><input type=text name=firstName value ='$firstName'> ".
-		lang("First name", "register");
-	if(config("register_lastname_required"))
-		$content .= "\n<br><input type=text name=lastName value='$lastName'> ".
-		lang("Last name", "register");
-	if(config("userinfo_address_required")) {
-		$content .= "\n<br><input type=text name=address value='$address'> ".lang("Address", "register");
-		$content .= "\n<br><input type=text size=5 name=postnumber ID='postnumber' value='$postnumber' onkeyup=\"suggest();\">".lang("Postnumber", "register")."<div ID='postplace' name='postplace'></div>";
-	}
+                    <div class=\"elements\">
+                        <input type=\"password\" id=\"repassword\" class=\"input" . checkForErrorsInput("repassword") . "\" name=\"repassword\" required />
+                    </div>
+                </div>
+                <div class=\"form-group\">
+                    <label for=\"email\">" . _("E-mail address") . "</label>
 
-	if(config("userinfo_gender_required")) {
-		$content .= "<br><select name=gender>\n";
-		$content .= "<option value=none>".lang("Gender", "register")."</option>\n";
-		$content .= "<option value=Male";
-		if($gender == "Male") $content .= " SELECTED";
-		$content .= ">".lang("Male", "register")."</option>\n";
-		$content .= "<option value=Female";
-		if($gender == "Female") $content .= " SELECTED";
-		$content .= ">".lang("Female", "register")."</option>\n";
-		$content .= "</select>";
-	} // End config(userinfo_gender_required)
+                    <div class=\"elements\">
+                        <input type=\"text\" id=\"email\" class=\"input\" name=\"email" . checkForErrorsInput("email") . "\" value=\"" . getInputValue("email") . "\" required />
+                    </div>
+                </div>";
 
+                if (config('userinfo_address_required')) {
+                    $content .= "<div class=\"form-group\">
+                        <label for=\"address\">" . _("Address") . "</label>
 
-	if(config("userinfo_birthday_required")) {
-		$content .= "\n<br><select name=birthDay>";
-		$content .= "<option value=none>".lang("Birthday", "register")."</option>";
-		for($day=1;$day<=31;$day++) {
-			$content .= "\n<option value=$day";
-			if($birthDay == $day) $content .= " SELECTED";
-			$content .= ">$day</option>";
-		} // End for
-		$content .= "</select>";
-		$content .= "<select name=birthMonth>";
-		$content .= "<option value=none>".lang("Birthmonth", "register")."</option>";
-		for($month=1;$month<=12;$month++) {
-			$content .= "\n<option value=$month";
-			if($birthMonth == $month) $content .= " SELECTED";
-			$content .= ">".$monthname[$month]."</option>";
-		} // End for
-		$content .= "</select>";
+                        <div class=\"elements\">
+                            <input type=\"text\" id=\"address\" class=\"input " . checkForErrorsInput("address") . "\" name=\"address\" value=\"" . getInputValue("address") . "\" required />
+                        </div>
+                    </div><div class=\"form-group\">
+                        <label for=\"postCode\">" . _("Postcode") . "</label>
 
-	} // End if config(userinfo_birthyear_required)
-	if(config("userinfo_birthyear_required")) {
-		$content .= "<select name=birthYear>";
-		$content .= "<option value=none>".lang("Birthyear", "register")."</option>";
-		for($year=1950;$year<=2009;$year++) {
-			$content .= "\n<option value=$year";
-			if($birthYear == $year) $content .= " SELECTED";
-			$content .= ">$year</option>";
-		} // End for
-		$content .= "</select>";
+                        <div class=\"elements\">
+                            <input type=\"text\" id=\"postCode\" class=\"input " . checkForErrorsInput("postCode") . "\" width=\"width:50px;\" name=\"postCode\" value=\"" . getInputValue("postCode") . "\" required />
+                        </div>
+                    </div>";
+                }
 
-	} // End if config(userinfo_birthyear_required)
+                if(config("userinfo_gender_required")) {
+                    $content .= "<div class=\"form-group\">
+                        <label for=\"gender\">" . _("Gender") . "</label>
 
-	// FIXME? Cellphone is optional
-	$content .= "<br />";
-	$content .= "<input type='text' name='cellphone' value='".$cellphone."' /> ".lang ("Cellphone", "register")." (".lang ("optional", "register").")";
+                        <div class=\"elements\">
+                            <select name=\"gender\" class=\"input " . checkForErrorsInput("gender") . "\" id=\"gender\">
+                                <option value=\"-1\">" . _("Gender") . "</option>
+                                <option" . (getInputValue("gender") == 'Male' ? ' selected' : '') . " value=\"Male\">" . lang("Male", "register") . "</option>
+                                <option" . (getInputValue("gender") == 'Female' ? ' selected' : '') . " value=\"Female\">" . lang("Female", "register") . "</option>
+                            </select>
+                        </div>
+                    </div>";
+                }
 
+                if(config("userinfo_birthday_required") || config("userinfo_birthyear_required")) {
+                    // Determine the first label ID. UU-stuff.
+                    $firstLabel = "";
+                    if(config("userinfo_birthday_required")) {
+                        $firstLabel = "day";
+                    } else if (config("userinfo_birthyear_required")) {
+                        $firstLabel = "year";
+                    }
 
-	$content .= "<br><input type=submit value='".lang("Create user", "register")."'>";
-	$content .= "</form>\n";
+                    $content .= "<div class=\"form-group\"><label for=\"$firstLabel\">" . _("Birthday") . "</label>
+                        <div class=\"elements\">";
 
-	// Here we should do config()-checks to see if we should ask the user about these stuff...
-	if(config("register_ask_postnumber") && config("register_postnumber_AJAX"))
-	{
-		$head .= "<!-- Here we can input AJAX-code for postnumbers -->";
-	} // End if AJAX postnumbers
+                    if (config("userinfo_birthday_required")) {
+                        // Days
+                        $content .= "<select id=\"day\" class=\"" . checkForErrorsInput("day") . "\" name=\"day\"><option value=\"-1\">" . _("Day") . "</option>";
 
-} // End elseif !isset $action
+                        $savedDay = getInputValue('day');
+                        for ($day=1; $day <= 31; $day++) { 
+                            $content .= "<option" . ($savedDay == $day ? ' selected' : '') . " value=\"$day\">$day</option>";
+                        }
+                        $content .= "</select>";
+
+                        // Months
+                        $content .= "<select id=\"month\" class=\"" . checkForErrorsInput("month") . "\" name=\"month\"><option value=\"-1\">" . _("Month") . "</option>";
+                        
+                        $savedMonth = getInputValue('month');
+                        for ($month=1; $month <= 12; $month++) { 
+                            $content .= "<option" . ($savedMonth == $month ? ' selected' : '') . " value=\"$month\">$month</option>";
+                        }
+                        $content .= "</select>";
+                    }
+
+                    if (config("userinfo_birthyear_required")) {
+                        // Years
+                        $content .= "<select id=\"year\" class=\"" . checkForErrorsInput("year") . "\" style=\"width:99px;\" name=\"year\"><option value=\"-1\">" . _("Year") . "</option>";
+                        $savedYear = getInputValue('year');
+                        for ($year=1900; $year <= date("Y"); $year++) {
+                            $content .= "<option" . ($savedYear == $year ? ' selected' : '') . " value=\"$year\">$year</option>";
+                        }
+                        $content .= "</select>";
+                    }
+
+                    $content .= "</div></div>";
+                }
+
+                if (config("userinfo_cellphone_required")) {
+                    $content .= "
+                    <div class=\"form-group\">
+                        <label for=\"cellphone\">" . _("Cell phone") . "</label>
+
+                        <div class=\"elements\">
+                            <input type=\"text\" id=\"cellphone\" class=\"input " . checkForErrorsInput("cellphone") . "\" name=\"cellphone\" required value=\"" . getInputValue("cellphone") . "\" />
+                        </div>
+                    </div>";
+                }
+
+                $content .= "<div class=\"form-group\">
+                    <input type=\"submit\" name=\"submit\" value=\"" . _("Create user") . "\" />
+                </div>
+            </form>
+        </div>";
+        break;
+
+}
+
+/**
+ * Checks if $errors has en error in $fieldName. Returns the string "error" if there is an error found.
+ * 
+ * @param string $fieldName
+ * @return string
+ */
+function checkForErrorsInput($fieldName) {
+    global $errors;
+
+    if (in_array($fieldName, $errors)) {
+        return "error";
+    }
+
+    return "";
+}
+
+/**
+ * Checks if $formData 
+ * 
+ * @param string $fieldName
+ * @return string
+ */
+function getInputValue($fieldName, $default="") {
+    global $formData;
+
+    if (isset($formData[$fieldName])) {
+        return $formData[$fieldName];
+    }
+
+    return $default;
+}
 

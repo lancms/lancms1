@@ -7,7 +7,6 @@ $acl_access = acl_access("crewlist", "", $sessioninfo->eventID);
 if($acl_access == 'No') die("No access");
 if(empty($action)) {
    // add design-file
-	$design_head .= '<link href="templates/shared/crewlist.css" rel="stylesheet" type="text/css">';
 
 	$qGetCrewMembers = db_query("SELECT DISTINCT gm.userID FROM ".$sql_prefix."_group_members gm 
 		JOIN ".$sql_prefix."_ACLs acl ON acl.groupID=gm.groupID
@@ -17,8 +16,8 @@ if(empty($action)) {
 
 	$content .= "<h2>"._("Crewlist")."</h2>\n";
 
-	$content .= '<table class="crewlist">';
-	$content .= "<tr><th>";
+	$content .= '<table class="table">';
+	$content .= "<thead><tr><th>";
 	$content .= lang("Name", "crewlist");
 	$content .= "</th><th>";
 	$content .= lang("Nick", "crewlist");
@@ -28,7 +27,7 @@ if(empty($action)) {
 	$content .= lang("Cellphone", "crewlist");
 	$content .= "</th><th>";
 	$content .= lang("Access", "crewlist");
-	$content .= "</th></tr>";
+	$content .= "</th></tr></thead><tbody>";
 
 	$listrowcount = 1;
 	while($rGetCrewMembers = db_fetch($qGetCrewMembers))
@@ -70,7 +69,7 @@ if(empty($action)) {
 			$listrowcount = 1;
 		}
 	} // End while
-	$content .= "</table>";
+	$content .= "</tbody></table>";
 
 
 	$content .= "<br /><br />\n<h3>"._("Number of persons in crew")."</h3>\n";

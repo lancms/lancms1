@@ -335,3 +335,13 @@ function db_insert_id($res=null) {
 
     return $return;
 }
+
+/**
+ * Provides the configured sql prefix for tables.
+ *
+ * @return string
+ */
+function db_prefix() {
+    global $sql_prefix;
+    return $sql_prefix;
+}
