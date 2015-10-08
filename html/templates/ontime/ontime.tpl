@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     {$head}
 
-    <link rel="stylesheet" href="{$siteUrl}/templates/ontime/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="{$siteUrl}/templates/ontime/css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/responsive.css" type="text/css" />
 
-    <link rel="shortcut icon" type="image/x-icon" href="{$siteUrl}/favicon.ico">
-    <link rel="apple-touch-icon" href="{$siteUrl}/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="favicon.ico">
     
-    <script src="{$siteUrl}/templates/ontime/js/jquery.min.js"></script>
-    <script src="{$siteUrl}/templates/ontime/js/mobilemenu.js"></script>
-    <script src="{$siteUrl}/templates/ontime/js/scripts.js"></script>
+    <script src="templates/ontime/js/jquery.min.js"></script>
+    <script src="templates/ontime/js/mobilemenu.js"></script>
+    <script src="templates/ontime/js/scripts.js"></script>
 
     {if $eventinfo->eventname}
         <title>{$eventinfo->eventname}</title>
@@ -144,15 +144,15 @@
         </div>
         <footer>
             <div class="container">
-                <p>Powered by <a href="http://launchpad.net/lancms/">lancms</a> by Mathias B&oslash;hn Grytemark, Lars &Aring;ge Kamfjord and Edvin Hultberg.</p>
+                <p>Powered by <a href="https://github.com/lancms/lancms1/">lancms</a> by Mathias B&oslash;hn Grytemark, Lars &Aring;ge Kamfjord and Edvin Hultberg.</p>
             </div>
         </footer>
     </div>
 </div>
 
 
-    <script src="{$siteUrl}/templates/ontime/js/jquery.min.js"></script>
-    <script src="{$siteUrl}/templates/ontime/js/mobilemenu.js"></script>
+    <script src="templates/ontime/js/jquery.min.js"></script>
+    <script src="templates/ontime/js/mobilemenu.js"></script>
     <script>
     $(document).ready(function(){
         var mob = $(window).mobileMenu();
