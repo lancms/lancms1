@@ -46,7 +46,7 @@ if($language == 'norwegian') $lang = 'nb_NO.utf8';
 putenv("LANGUAGE=$lang");
 putenv("LANG=$lang");
 setlocale (LC_ALL, $lang);
-bindtextdomain("messages", "./i18n");
+bindtextdomain("messages", __DIR__ . "/i18n");
 bind_textdomain_codeset("messages", "UTF-8");
 textdomain("messages");
 
