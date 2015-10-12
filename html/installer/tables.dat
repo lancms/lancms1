@@ -222,6 +222,7 @@ TABLE [prefix]_ticketTypes
 	ticketTypeID,	int(11),		PRI,	NOT NULL, 	,		auto_increment
 	eventID	,	int(11),	,	NOT NULL, ,
 	name,		varchar(35),	,	,	,
+	description,text		,	,	,	,
 	type,		enum('onsite-computer','onsite-visitor','prepaid','preorder','reseller'), , , preorder,
 	price,		int(5),		,	,	0,
 	active,		tinyint(1),		,	,	1,
