@@ -8,7 +8,9 @@ if($sessioninfo->userID == 1) die(lang("Please login to apply for crew", "wannab
 if(!isset($action)) {
 	$content .= "<div class=\"crew-application\">";
 	$content .= "<h2>".lang ("Apply as crew", "wannabe")."</h2>";
-	if($_GET['Application'] == 'saved') $content .= "<h1>"._("Your application is saved")."</h1>";
+	if($_GET['Application'] == 'saved') {
+		$content .= "<div class='alert alert-success'>"._("Your application is saved")."</div>";
+	}
 
 	$content .= "<table>";
 	$content .= "<form method=\"post\" action=\"?module=wannabe&action=doApplication\">";
