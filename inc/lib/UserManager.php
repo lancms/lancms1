@@ -94,7 +94,7 @@ class UserManager {
             return null;
 
         $user = null;
-        $result = db_query(sprintf("SELECT * FROM `%s_users` WHERE `nick`='%s'", $sql_prefix, $userNick));
+        $result = db_query(sprintf("SELECT * FROM `%s_users` WHERE `nick`='%s'", $sql_prefix, db_escape($userNick)));
         if (db_num($result) > 0) {
             $row = db_fetch_assoc($result);
             $user = new User($row['ID']);
@@ -104,6 +104,27 @@ class UserManager {
         }
 
         return $user;
+    }
+
+    /**
+     * Indicates if a user exists in the database by email.
+     *
+     * @param string $userEmail The email
+     * @return User|null
+     */
+    public function userExistsByEmail($userEmail) {
+        global $sql_prefix;
+
+        if (strlen(trim($userEmail)) < 1)
+            return false;
+
+        // FIXME: Should `EMailConfirmed` = 1 be in the where statement?
+        $result = db_query(sprintf("SELECT * FROM `%s_users` WHERE `EMail`='%s'", $sql_prefix, db_escape($userEmail)));
+        if (db_num($result) > 0) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

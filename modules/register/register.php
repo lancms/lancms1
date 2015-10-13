@@ -138,12 +138,24 @@ switch ($action) {
             header("Location: index.php?module=register&error=6");
             die();
         }
+
         //===========================================================
         // Valid email address?
         if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
             $errors[] = 'email';
             unset($saveFormData['email']);
         }
+
+        //===========================================================
+        // Email exists?
+        if ($userManager->userExistsByEmail($email)) {
+            $errors[] = 'email';
+            $userManager->saveFormInSession("register_errors", $errors);
+
+            header("Location: index.php?module=register&error=7");
+            die();
+        }
+
         //===========================================================
         // Retyped correct password?
         if ($password != $repassword) {
@@ -262,6 +274,8 @@ switch ($action) {
         // Has errors? Print an alert.
         if (isset($_GET['error']) && intval($_GET['error']) == 6) {
             $content .= "<div class=\"alert alert-danger\">" . _("Username is taken, try another one.") . "</div>";
+        } else if (isset($_GET['error']) && intval($_GET['error']) == 7) {
+            $content .= "<div class=\"alert alert-danger\">" . _("Email is taken, try another one.") . "</div>";
         } else if (count($errors) > 0 && isset($_GET['error'])) {
             $content .= "<div class=\"alert alert-danger\">" . _("Form did not validate, check for errors below") . "</div>";
         }
