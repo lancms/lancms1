@@ -6,11 +6,12 @@ $action = $_GET['action'];
 if($sessioninfo->userID == 1) die(lang("Please login to apply for crew", "wannabe"));
 
 if(!isset($action)) {
+	$content .= "<div class=\"crew-application\">";
 	$content .= "<h2>".lang ("Apply as crew", "wannabe")."</h2>";
 	if($_GET['Application'] == 'saved') $content .= "<h1>"._("Your application is saved")."</h1>";
 
 	$content .= "<table>";
-	$content .= "<form method=POST action=?module=wannabe&action=doApplication>";
+	$content .= "<form method=\"post\" action=\"?module=wannabe&action=doApplication\">";
 
 	// First, list up possible crews
 	$qListCrews = db_query("SELECT crew.ID,crew.crewname,crew.description,
@@ -25,7 +26,7 @@ if(!isset($action)) {
 		$content .= "</td><td>";
 		$content .= "<select id=\"crew-".$rListCrews->ID."\" name=crew".$rListCrews->ID.">\n";
 		for($i=0;$i<6;$i++) {
-			$content .= "<option value=$i";
+			$content .= "<option value=\"$i\"";
 			if($rListCrews->response == $i) $content .= " SELECTED";
 			$content .= ">";
 			switch($i) {
@@ -72,12 +73,12 @@ if(!isset($action)) {
 
 		switch($rListQuestions->questionType) {
 			case "text":
-				$content .= "<textarea name=appID_".$rListQuestions->ID." cols=65 rows=10>$rMyResponse->response</textarea>";
+				$content .= "<textarea name=\"appID_".$rListQuestions->ID."\" cols=\"65\" rows=\"10\">$rMyResponse->response</textarea>";
 				break;
 
 			case "select":
 				$qFindSelect = db_query("SELECT * FROM ".$sql_prefix."_wannabeQuestionInfo WHERE questionID = $rListQuestions->ID");
-				$content .= "<select name=appID_".$rListQuestions->ID.">";
+				$content .= "<select name=\"appID_".$rListQuestions->ID."\">";
 
 				while($rFindSelect = db_fetch($qFindSelect)) {
 					$content .= "<option value='".$rFindSelect->ID."'";
@@ -89,7 +90,7 @@ if(!isset($action)) {
 			case "radio":
 				break;
 			case "checkbox":
-				$content .= "<input type=checkbox name=appID_".$rListQuestions->ID;
+				$content .= "<input type=\"checkbox\" name=\"appID_".$rListQuestions->ID."\"";
 				if($rMyResponse->response == "on") $content .= " CHECKED";
 				$content .= ">";
 				break;
@@ -99,11 +100,12 @@ if(!isset($action)) {
 
 
 	} // End while rListQuestions
-	$content .= "<tr><td></td><td><input type=submit value='".lang("Save", "wannabe")."'></form>";
-	$content .= "<form method=POST action=?module=wannabe&action=removeApplication>\n";
-	$content .= "<input type=submit value='".lang("Delete application", "wannabe")."'></form>";
+	$content .= "<tr><td></td><td><input type=\"submit\" value='".lang("Save", "wannabe")."'></form>";
+	$content .= "<form method=\"post\" action=\"?module=wannabe&action=removeApplication\">\n";
+	$content .= "<input type=\"submit\" value='".lang("Delete application", "wannabe")."'></form>";
 	$content .= "</td></tr>";
 	$content .= "</table>";
+	$content .= "</div>";
 
 } // End if(!isset($action))
 
@@ -157,8 +159,8 @@ elseif($action == "doApplication") {
 
 elseif($action == "removeApplication" ) {
 	$content .= lang("Are you sure you want to delete your crewapplication?", "wannabe");
-	$content .= "<br><a href=?module=wannabe&action=doRemoveApplication>".lang("Yes, I'm sure", "wannabe")."</a> - ";
-	$content .= "<a href=?module=wannabe>".lang("No, I still wish to apply for crew", "wannabe")."</a>";
+	$content .= "<br><a href=\"?module=wannabe&action=doRemoveApplication\">".lang("Yes, I'm sure", "wannabe")."</a> - ";
+	$content .= "<a href=\"?module=wannabe\">".lang("No, I still wish to apply for crew", "wannabe")."</a>";
 }
 
 elseif($action == "doRemoveApplication") {

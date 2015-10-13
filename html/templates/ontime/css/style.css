@@ -1007,3 +1007,8 @@ div.table.no-colour .row:nth-child(2n) .cell {
 .ticket .disclaimer {
     
 }
+
+.crew-application table tr td,
+.crew-application table tr th {
+    padding: 5px 0;
+}
