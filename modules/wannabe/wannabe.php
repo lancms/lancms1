@@ -13,16 +13,17 @@ if(!isset($action)) {
 	$content .= "<form method=POST action=?module=wannabe&action=doApplication>";
 
 	// First, list up possible crews
-	$qListCrews = db_query("SELECT crew.ID,crew.crewname,
+	$qListCrews = db_query("SELECT crew.ID,crew.crewname,crew.description,
 		(SELECT response FROM ".$sql_prefix."_wannabeCrewResponse
 			WHERE crewID=crew.ID AND userID = $sessioninfo->userID) AS response
 		FROM ".$sql_prefix."_wannabeCrews crew
 		WHERE crew.eventID = $eventID");
 	while($rListCrews = db_fetch($qListCrews)) {
 		$content .= "<tr><td>";
-		$content .= $rListCrews->crewname;
+		$content .= "<strong><label for=\"crew-".$rListCrews->ID."\">" . $rListCrews->crewname . "</label></strong><br />";
+		$content .= "" . $rListCrews->description . "";
 		$content .= "</td><td>";
-		$content .= "<select name=crew".$rListCrews->ID.">\n";
+		$content .= "<select id=\"crew-".$rListCrews->ID."\" name=crew".$rListCrews->ID.">\n";
 		for($i=0;$i<6;$i++) {
 			$content .= "<option value=$i";
 			if($rListCrews->response == $i) $content .= " SELECTED";

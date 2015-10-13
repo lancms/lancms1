@@ -200,6 +200,7 @@ switch ($action) {
         // Save the form?
         if (array_key_exists("save-crew", $_POST)) {
             $crewName = (array_key_exists("crewName", $_POST) ? $_POST["crewName"] : "");
+            $crewDescription = (array_key_exists("description", $_POST) ? $_POST["description"] : "");
             $groupID = (array_key_exists("groupID", $_POST) ? $_POST["groupID"] : 0);
 
             // Verify that all of the fields are filled in.
@@ -213,6 +214,7 @@ switch ($action) {
                 }
 
                 $crew->setName($crewName);
+                $crew->setDescription($crewDescription);
                 $crew->setGroupID($groupID);
                 $crew->commitChanges();
 
@@ -242,6 +244,10 @@ switch ($action) {
                 <div class=\"row\">
                     <div class=\"cell\"><strong>" . _("Crew Name") . "</strong></div>
                     <div class=\"cell\"><input type=\"text\" name=\"crewName\" value=\"" . ($editMode ? $crew->getName() : "") . "\" /></div>
+                </div>
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Crew description") . "</strong></div>
+                    <div class=\"cell\"><input type=\"text\" name=\"description\" value=\"" . ($editMode ? $crew->getDescription() : "") . "\" /></div>
                 </div>
                 <div class=\"row\">
                     <div class=\"cell\"><strong>" . _("Crew group") . "</strong></div>

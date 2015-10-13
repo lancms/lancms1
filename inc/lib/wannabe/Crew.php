@@ -34,11 +34,29 @@ class Crew extends \EventSqlObject {
 
     /**
      * Set new name of this crew
-     * 
+     *
      * @param string $newName
      */
     public function setName($newName) {
         $this->_setField("crewname", $newName);
+    }
+
+    /**
+     * Provides the description of this crew.
+     *
+     * @return string
+     */
+    public function getDescription() {
+        return $this->_getField("description", "", 1);
+    }
+
+    /**
+     * Set new description of this crew
+     *
+     * @param string $newDescription
+     */
+    public function setDescription($newDescription) {
+        $this->_setField("description", $newDescription);
     }
 
     public function getAdmins() {
