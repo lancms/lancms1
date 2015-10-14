@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: LANCMS1\n"
 "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-"POT-Creation-Date: 2015-10-14 12:43+0200\n"
-"PO-Revision-Date: 2015-10-14 10:53+0000\n"
+"POT-Creation-Date: 2015-10-14 18:29+0200\n"
+"PO-Revision-Date: 2015-10-14 16:37+0000\n"
 "Last-Translator: Lars Åge Kamfjord <lars-transifex@kamfjord.org>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/lancms/lancms1/language/nb/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:23
-#: ../modules/logs/logs.php:50
+#: ../modules/logs/logs.php:50 ../html/index.php:113
 msgid "Arrival"
 msgstr "Ankomst"
 
@@ -149,7 +149,7 @@ msgid "Deleted"
 msgstr "Slettet"
 
 #: ../modules/arrival/arrival.old.php:268 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:48
+#: ../modules/profile/profile.php:48 ../html/index.php:196
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
@@ -336,7 +336,7 @@ msgstr "Meld meg av"
 msgid "Signup has closed"
 msgstr "Påmelding er avsluttet"
 
-#: ../modules/crewlist/crewlist.php:17
+#: ../modules/crewlist/crewlist.php:17 ../html/index.php:108
 msgid "Crewlist"
 msgstr "Crewliste"
 
@@ -466,7 +466,7 @@ msgid "Accounts"
 msgstr "Kontoer"
 
 #: ../modules/edituserinfo/edituserinfo.php:14
-#: ../modules/edituserinfo/edituserinfo.php:27
+#: ../modules/edituserinfo/edituserinfo.php:27 ../html/index.php:198
 msgid "Change password"
 msgstr "Bytt passord"
 
@@ -1271,7 +1271,7 @@ msgstr "Grupperettighet endret"
 msgid "Configuration change"
 msgstr "Konfigurasjon endret"
 
-#: ../modules/logs/logs.php:69
+#: ../modules/logs/logs.php:69 ../html/index.php:84
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -1283,7 +1283,7 @@ msgstr "FAQ lagt til"
 msgid "FAQ deleted"
 msgstr "FAQ slettet"
 
-#: ../modules/logs/logs.php:74
+#: ../modules/logs/logs.php:74 ../html/index.php:125
 msgid "Forum"
 msgstr "Forum"
 
@@ -1339,7 +1339,7 @@ msgstr "Feilet passord ved innlogging"
 msgid "Successful login"
 msgstr "Vellykket innlogging"
 
-#: ../modules/logs/logs.php:100
+#: ../modules/logs/logs.php:100 ../html/index.php:199
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -1375,7 +1375,7 @@ msgstr "Anonym registrerte ny bruker"
 msgid "User registered new user"
 msgstr "Bruker registrerte ny bruker"
 
-#: ../modules/logs/logs.php:118
+#: ../modules/logs/logs.php:118 ../html/index.php:117
 msgid "Reseller"
 msgstr "Forhandler"
 
@@ -1468,6 +1468,7 @@ msgid "Change comment"
 msgstr "Endre kommentar"
 
 #: ../modules/logs/logs.php:155 ../modules/sleepers/sleepers.php:23
+#: ../html/index.php:130
 msgid "Sleepers"
 msgstr "Sovende"
 
@@ -1507,7 +1508,7 @@ msgstr "SMS"
 msgid "SMS sent"
 msgstr "SMS sendt"
 
-#: ../modules/logs/logs.php:174
+#: ../modules/logs/logs.php:174 ../html/index.php:121
 msgid "Kiosk"
 msgstr "Kiosk"
 
@@ -1776,7 +1777,7 @@ msgid ""
 "verification URL."
 msgstr "Din nye brukerkonto har blitt opprettet. Nå må du bekrefte din epostadresse. Vennligst sjekk epostklienten din eller \"Uønsket epost\"-mappen for å finne bekreftelsesadressen"
 
-#: ../modules/register/register.php:272
+#: ../modules/register/register.php:272 ../html/index.php:54
 msgid "Register user"
 msgstr "Registrer bruker"
 
@@ -2308,7 +2309,7 @@ msgid "Yes, I don't need it"
 msgstr "Ja, jeg trenger den ikke"
 
 #: ../modules/ticketorder/ticketorder.php:22
-#: ../modules/ticketorder/ticketorder.php:322
+#: ../modules/ticketorder/ticketorder.php:322 ../html/index.php:92
 msgid "Order ticket"
 msgstr "Bestill billett"
 
@@ -2356,7 +2357,7 @@ msgstr "Ingen bruker med den IDen"
 msgid "Betal med kort"
 msgstr "Betalt med kort"
 
-#: ../modules/usertickets/usertickets.php:21
+#: ../modules/usertickets/usertickets.php:21 ../html/index.php:96
 msgid "My tickets"
 msgstr "Mine billetter"
 
@@ -2619,11 +2620,11 @@ msgstr "Ingen svar gitt"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:509
 msgid "Set preference for"
-msgstr ""
+msgstr "Sett preferanse for"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:513
 msgid "Choose preference"
-msgstr ""
+msgstr "Velg preferanse"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:520
 msgid "Set"
@@ -2631,7 +2632,7 @@ msgstr "Sett"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:524
 msgid "You are not admin of any crew and can therefor not set any preference."
-msgstr ""
+msgstr "Du er ikke admin for noen crew og kan derfor ikke sette noen preferanser"
 
 #: ../modules/wannabeadmin/wannabeadmin.php:545
 msgid "Write a comment"
@@ -2858,3 +2859,71 @@ msgstr "Admin"
 #: ../inc/shared_functions.php:637
 msgid "a.k.a."
 msgstr "a.k.a."
+
+#: ../html/index.php:45
+msgid "Main page"
+msgstr "Hovedside"
+
+#: ../html/index.php:49
+msgid "Global Admin"
+msgstr "Global admin"
+
+#: ../html/index.php:58
+msgid "My groups"
+msgstr "Mine grupper"
+
+#: ../html/index.php:88
+msgid "Seatmap"
+msgstr "Plasskart"
+
+#: ../html/index.php:100
+msgid "Apply for crewposition"
+msgstr "Søk crew"
+
+#: ../html/index.php:104
+msgid "Composignup"
+msgstr "Compopåmelding"
+
+#: ../html/index.php:134
+msgid "Dashboard"
+msgstr "Oversikt"
+
+#: ../html/index.php:140
+msgid "Event Admin"
+msgstr "Arrangementsadmin"
+
+#: ../html/index.php:160
+msgid "Type your nick, email or name here:"
+msgstr "Skriv inn ditt brukernavn, epost eller navn her:"
+
+#: ../html/index.php:192
+msgid "You are logged in as:"
+msgstr "Du er logget inn som:"
+
+#: ../html/index.php:197
+msgid "Edit my preferences"
+msgstr "Rediger mine innstillinger"
+
+#: ../html/party.php:33
+msgid "There are no screens for this event"
+msgstr "Det er ingen skjermer for dette arrangementet"
+
+#: ../html/party.php:65
+msgid "There are no queue for this screen"
+msgstr "Det er ingen kø for denne skjermen"
+
+#: ../html/upload.php:15
+msgid "No such file directory"
+msgstr "Ingen slik fil eller mappe"
+
+#: ../html/upload.php:16
+msgid "File directory not writable"
+msgstr "Mappe er ikke skrivbar"
+
+#: ../html/upload.php:25
+msgid "Upload failed, could not move file"
+msgstr "Opplastning feilet, kunne ikke flytte filen"
+
+#: ../html/upload.php:27
+msgid "Upload failed, file exists"
+msgstr "Opplastningen feilet, fil eksisterer"
