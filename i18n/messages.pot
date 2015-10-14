@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2015-10-14 15:24+0200\n"
+        "POT-Creation-Date: 2015-10-14 18:29+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Content-Transfer-Encoding: 8bit\n"
 
 #: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:23
-#: ../modules/logs/logs.php:50
+#: ../modules/logs/logs.php:50 ../html/index.php:113
 msgid   "Arrival"
 msgstr  ""
 
@@ -146,7 +146,7 @@ msgid   "Deleted"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:268 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:48
+#: ../modules/profile/profile.php:48 ../html/index.php:196
 msgid   "Edit userinfo"
 msgstr  ""
 
@@ -333,7 +333,7 @@ msgstr  ""
 msgid   "Signup has closed"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:17
+#: ../modules/crewlist/crewlist.php:17 ../html/index.php:108
 msgid   "Crewlist"
 msgstr  ""
 
@@ -463,7 +463,7 @@ msgid   "Accounts"
 msgstr  ""
 
 #: ../modules/edituserinfo/edituserinfo.php:14
-#: ../modules/edituserinfo/edituserinfo.php:27
+#: ../modules/edituserinfo/edituserinfo.php:27 ../html/index.php:198
 msgid   "Change password"
 msgstr  ""
 
@@ -1262,7 +1262,7 @@ msgstr  ""
 msgid   "Configuration change"
 msgstr  ""
 
-#: ../modules/logs/logs.php:69
+#: ../modules/logs/logs.php:69 ../html/index.php:84
 msgid   "FAQ"
 msgstr  ""
 
@@ -1274,7 +1274,7 @@ msgstr  ""
 msgid   "FAQ deleted"
 msgstr  ""
 
-#: ../modules/logs/logs.php:74
+#: ../modules/logs/logs.php:74 ../html/index.php:125
 msgid   "Forum"
 msgstr  ""
 
@@ -1330,7 +1330,7 @@ msgstr  ""
 msgid   "Successful login"
 msgstr  ""
 
-#: ../modules/logs/logs.php:100
+#: ../modules/logs/logs.php:100 ../html/index.php:199
 msgid   "Logout"
 msgstr  ""
 
@@ -1366,7 +1366,7 @@ msgstr  ""
 msgid   "User registered new user"
 msgstr  ""
 
-#: ../modules/logs/logs.php:118
+#: ../modules/logs/logs.php:118 ../html/index.php:117
 msgid   "Reseller"
 msgstr  ""
 
@@ -1459,6 +1459,7 @@ msgid   "Change comment"
 msgstr  ""
 
 #: ../modules/logs/logs.php:155 ../modules/sleepers/sleepers.php:23
+#: ../html/index.php:130
 msgid   "Sleepers"
 msgstr  ""
 
@@ -1498,7 +1499,7 @@ msgstr  ""
 msgid   "SMS sent"
 msgstr  ""
 
-#: ../modules/logs/logs.php:174
+#: ../modules/logs/logs.php:174 ../html/index.php:121
 msgid   "Kiosk"
 msgstr  ""
 
@@ -1765,7 +1766,7 @@ msgid   "Your new user account has been created. Now you need to verify your "
         "the verification URL."
 msgstr  ""
 
-#: ../modules/register/register.php:272
+#: ../modules/register/register.php:272 ../html/index.php:54
 msgid   "Register user"
 msgstr  ""
 
@@ -2293,7 +2294,7 @@ msgid   "Yes, I don't need it"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.php:22
-#: ../modules/ticketorder/ticketorder.php:322
+#: ../modules/ticketorder/ticketorder.php:322 ../html/index.php:92
 msgid   "Order ticket"
 msgstr  ""
 
@@ -2341,7 +2342,7 @@ msgstr  ""
 msgid   "Betal med kort"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:21
+#: ../modules/usertickets/usertickets.php:21 ../html/index.php:96
 msgid   "My tickets"
 msgstr  ""
 
@@ -2842,4 +2843,72 @@ msgstr  ""
 
 #: ../inc/shared_functions.php:637
 msgid   "a.k.a."
+msgstr  ""
+
+#: ../html/index.php:45
+msgid   "Main page"
+msgstr  ""
+
+#: ../html/index.php:49
+msgid   "Global Admin"
+msgstr  ""
+
+#: ../html/index.php:58
+msgid   "My groups"
+msgstr  ""
+
+#: ../html/index.php:88
+msgid   "Seatmap"
+msgstr  ""
+
+#: ../html/index.php:100
+msgid   "Apply for crewposition"
+msgstr  ""
+
+#: ../html/index.php:104
+msgid   "Composignup"
+msgstr  ""
+
+#: ../html/index.php:134
+msgid   "Dashboard"
+msgstr  ""
+
+#: ../html/index.php:140
+msgid   "Event Admin"
+msgstr  ""
+
+#: ../html/index.php:160
+msgid   "Type your nick, email or name here:"
+msgstr  ""
+
+#: ../html/index.php:192
+msgid   "You are logged in as:"
+msgstr  ""
+
+#: ../html/index.php:197
+msgid   "Edit my preferences"
+msgstr  ""
+
+#: ../html/party.php:33
+msgid   "There are no screens for this event"
+msgstr  ""
+
+#: ../html/party.php:65
+msgid   "There are no queue for this screen"
+msgstr  ""
+
+#: ../html/upload.php:15
+msgid   "No such file directory"
+msgstr  ""
+
+#: ../html/upload.php:16
+msgid   "File directory not writable"
+msgstr  ""
+
+#: ../html/upload.php:25
+msgid   "Upload failed, could not move file"
+msgstr  ""
+
+#: ../html/upload.php:27
+msgid   "Upload failed, file exists"
 msgstr  ""
