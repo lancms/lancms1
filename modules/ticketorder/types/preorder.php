@@ -12,8 +12,8 @@ $content .= "
                 </div>
                 <div class=\"payment-info cell\">
                     <label for=\"payment-1\">
-                        <div class='name'>" . _("Betal med kort") . "</div>
-                        <div class='description'>" . _("Med dette valget betaler du for billett(ene) nå og får velge plass på alle.") . "</div>
+                        <div class='name'>" . _("Betal med kort nå") . "</div>
+                        <div class='description'>" . _("Betal med kort nå og få umiddelbar tilgang til å velge plass for alle billetter.") . "</div>
                     </label>
                 </div>
             </div>
@@ -23,8 +23,8 @@ $content .= "
                 </div>
                 <div class=\"payment-info cell\">
                     <label for=\"payment-2\">
-                        <div class='name'>" . _("Betal i døra") . "</div>
-                        <div class='description'>" . _("Med dette valget betaler du når du ankommer i døra til GlobeLAN 25. Du kan kun reservere en plass her å nå.") . "</div>
+                        <div class='name'>" . _("Betal i døra senere") . "</div>
+                        <div class='description'>Med dette valget betaler du når du ankommer arrangementet som støtter følgende betalingsmetoder i døra: kort, kontant</div>
                     </label>
                 </div>
             </div>
