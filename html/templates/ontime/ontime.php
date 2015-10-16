@@ -33,7 +33,7 @@
     <div id="mobilemenu">
         <div class="inner">
             <div class="section">
-                <div class="title">Hovedmeny</div>
+                <div class="title"><?php echo _("Main menu"); ?></div>
                 <div class="section-content">
                     <nav>
                         <ul>
@@ -44,7 +44,7 @@
             </div>
             <?php if ($design_eventmenu) { ?>
             <div class="section">
-                <div class="title">Eventenu</div>
+                <div class="title"><?php _("Eventmenu"); ?></div>
                 <div class="section-content">
                     <?php echo $design_eventmenu; ?>
                 </div>
@@ -52,7 +52,7 @@
             <?php }
             if ($design_userinfo) { ?>
             <div class="section">
-                <div class="title">Userinfo</div>
+                <div class="title"><?php echo _("Userinfo"); ?></div>
                 <div class="section-content">
                     <?php echo $design_userinfo; ?>
                 </div>
@@ -60,7 +60,7 @@
             <?php }
             if ($design_eventlist) { ?>
             <div class="section">
-                <div class="title">Events</div>
+                <div class="title"><?php _("Events"); ?></div>
                 <div class="section-content">
                     <ul>
                             <?php echo $design_eventlist; ?>
@@ -70,7 +70,7 @@
             <?php }
             if ($design_grouplist) { ?>
             <div class="section">
-                <div class="title">Groups</div>
+                <div class="title"><?php echo _("My groups"); ?></div>
                 <div class="section-content">
                     <ul><?php echo $design_grouplist; ?></ul>
                 </div>
@@ -112,11 +112,11 @@
                 <?php echo $design_eventmenu; ?>
                 <div class="box userinfo">
                     <div class="title">
-                        <h2><?php if ($sessioninfo->userID <= 1) { ?>
-                            Login
-                        <?php } else { ?>
-                            Userinfo
-                        <?php } ?></h2>
+                        <h2><?php if ($sessioninfo->userID <= 1) {
+                            echo _("Login");
+                        } else {
+                            echo _("Userinfo");
+                        } ?></h2>
                     </div>
                     <div class="cont">
                         <?php echo $design_userinfo; ?>
@@ -124,7 +124,7 @@
                 </div>
                 <div class="box events">
                     <div class="title">
-                        <h2>Events</h2>
+                        <h2><?php echo _("Events"); ?></h2>
                     </div>
                     <div class="cont">
                         <ul>
@@ -135,7 +135,7 @@
                 <?php if ($design_grouplist) { ?>
                     <div class="box groups">
                         <div class="title">
-                            <h2>Groups</h2>
+                            <h2><?php echo _("My groups"); ?></h2>
                         </div>
                         <div class="cont">
                             <ul>
@@ -152,7 +152,7 @@
         </div>
         <footer>
             <div class="container">
-                <p>Powered by <a href="https://github.com/lancms/lancms1/">lancms</a> by Mathias B&oslash;hn Grytemark, Lars &Aring;ge Kamfjord and Edvin Hultberg.</p>
+                <p><?php echo _("Powered by"); ?> <a href="https://github.com/lancms/lancms1/">lancms</a></p>
             </div>
         </footer>
     </div>

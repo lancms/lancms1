@@ -1012,3 +1012,7 @@ div.table.no-colour .row:nth-child(2n) .cell {
 .crew-application table tr th {
     padding: 5px;
 }
+
+input.login {
+    margin-top: 10px;
+}

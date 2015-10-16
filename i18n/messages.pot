@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2015-07-27 17:51+0200\n"
+        "POT-Creation-Date: 2015-10-14 18:39+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,24 +17,24 @@ msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Content-Transfer-Encoding: 8bit\n"
 
 #: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:23
-#: ../modules/logs/logs.php:50
+#: ../modules/logs/logs.php:50 ../html/index.php:113
 msgid   "Arrival"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:31
 #: ../modules/arrival/arrival.old.php:292
 #: ../modules/arrival/arrival.old.php:334 ../modules/arrival/arrival.php:78
-#: ../modules/arrival/arrival.php:248 ../modules/sleepers/sleepers.php:280
+#: ../modules/arrival/arrival.php:270 ../modules/sleepers/sleepers.php:280
 #: ../modules/useradmin/useradmin.php:31
 #: ../modules/usertickets/usertickets.php:75
 msgid   "Search"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:251
+#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:273
 msgid   "Search all users"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:254
+#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:276
 msgid   "Search users with tickets"
 msgstr  ""
 
@@ -47,8 +47,8 @@ msgstr  ""
 #: ../modules/arrival/arrival.old.php:109
 #: ../modules/arrival/arrival.old.php:185
 #: ../modules/arrival/arrival.old.php:193 ../modules/arrival/arrival.php:90
-#: ../modules/arrival/arrival.php:209 ../modules/arrival/arrival.php:218
-#: ../modules/arrival/arrival.php:295 ../modules/crewlist/crewlist.php:21
+#: ../modules/arrival/arrival.php:231 ../modules/arrival/arrival.php:240
+#: ../modules/arrival/arrival.php:317 ../modules/crewlist/crewlist.php:21
 #: ../modules/infoscreens/infoscreens.php:25
 #: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/kioskadmin/kioskadmin.php:29
@@ -58,9 +58,9 @@ msgstr  ""
 #: ../modules/profile/profile.php:13 ../modules/sleepers/sleepers.php:186
 #: ../modules/sleepers/sleepers.php:297 ../modules/SMS/SMS.php:73
 #: ../modules/usertickets/usertickets.php:87
-#: ../modules/usertickets/usertickets.php:209
+#: ../modules/usertickets/usertickets.php:380
 #: ../modules/wannabeadmin/wannabeadmin.old.php:269
-#: ../modules/wannabeadmin/wannabeadmin.php:336
+#: ../modules/wannabeadmin/wannabeadmin.php:407
 msgid   "Name"
 msgstr  ""
 
@@ -80,20 +80,20 @@ msgstr  ""
 msgid   "Ticket"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:208
+#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:230
 #: ../modules/ticketadmin/ticketadmin.php:201
 #: ../modules/ticketorder/ticketorder.old.php:29
-#: ../modules/usertickets/usertickets.php:210
+#: ../modules/usertickets/usertickets.php:381
 msgid   "Owner"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:217
+#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:239
 #: ../modules/logs/logs.php:19 ../modules/logs/logs.php:218
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:202
 #: ../modules/ticketorder/ticketorder.old.php:28
-#: ../modules/usertickets/usertickets.php:210
-#: ../modules/wannabeadmin/wannabeadmin.php:265
+#: ../modules/usertickets/usertickets.php:381
+#: ../modules/wannabeadmin/wannabeadmin.php:280
 msgid   "User"
 msgstr  ""
 
@@ -105,35 +105,35 @@ msgstr  ""
 msgid   "E-mail"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:213
-#: ../modules/arrival/arrival.php:221 ../modules/profile/profile.php:23
+#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:235
+#: ../modules/arrival/arrival.php:243 ../modules/profile/profile.php:23
 #: ../modules/register/register.old.php:268
-#: ../modules/register/register.php:360
+#: ../modules/register/register.php:374
 #: ../modules/wannabeadmin/wannabeadmin.old.php:270
-#: ../modules/wannabeadmin/wannabeadmin.php:340 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:411 ../inc/shared_config.php:148
 msgid   "Birthday"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:221
 #: ../modules/ticketorder/ticketorder.old.php:133
-#: ../modules/usertickets/usertickets.php:227
+#: ../modules/usertickets/usertickets.php:399
 msgid   "Paid"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:226
 #: ../modules/ticketorder/ticketorder.old.php:48
-#: ../modules/usertickets/usertickets.php:224
+#: ../modules/usertickets/usertickets.php:396
 msgid   "Not paid"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:238
-#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:196
-#: ../modules/usertickets/usertickets.php:233
+#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:218
+#: ../modules/usertickets/usertickets.php:410
 msgid   "Seated"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:247
-#: ../modules/usertickets/usertickets.php:231
+#: ../modules/usertickets/usertickets.php:408
 msgid   "Not seated"
 msgstr  ""
 
@@ -146,17 +146,17 @@ msgid   "Deleted"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:268 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:48
+#: ../modules/profile/profile.php:48 ../html/index.php:196
 msgid   "Edit userinfo"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:271
-#: ../modules/usertickets/usertickets.php:250
+#: ../modules/usertickets/usertickets.php:436
 msgid   "Change owner"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:273
-#: ../modules/usertickets/usertickets.php:251
+#: ../modules/usertickets/usertickets.php:437
 msgid   "Change user"
 msgstr  ""
 
@@ -194,81 +194,86 @@ msgstr  ""
 msgid   "No users found"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:145
+#: ../modules/arrival/arrival.php:155
 msgid   "Unused"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:147
+#: ../modules/arrival/arrival.php:157
+#: ../modules/usertickets/usertickets.php:404
 msgid   "Used"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:154
+#: ../modules/arrival/arrival.php:164
+msgid   "Mark used"
+msgstr  ""
+
+#: ../modules/arrival/arrival.php:173
 msgid   "Mark paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:157
+#: ../modules/arrival/arrival.php:176
 msgid   "Mark unpaid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:189 ../modules/useradmin/useradmin.php:59
+#: ../modules/arrival/arrival.php:208 ../modules/useradmin/useradmin.php:59
 msgid   "ID"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:191
+#: ../modules/arrival/arrival.php:210
 #: ../modules/wannabeadmin/wannabeadmin.old.php:340
-#: ../inc/shared_functions.php:230
+#: ../inc/shared_functions.php:229
 msgid   "No"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:193
+#: ../modules/arrival/arrival.php:212
 #: ../modules/wannabeadmin/wannabeadmin.old.php:339
 msgid   "Yes"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:199
-#: ../modules/usertickets/usertickets.php:180
+#: ../modules/arrival/arrival.php:221
+#: ../modules/usertickets/usertickets.php:345
 msgid   "Ticket has been deleted"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:201 ../modules/sleepers/sleepers.php:186
+#: ../modules/arrival/arrival.php:223 ../modules/sleepers/sleepers.php:186
 #: ../modules/ticketadmin/ticketadmin.php:203
 #: ../modules/ticketorder/ticketorder.old.php:26
-#: ../modules/usertickets/usertickets.php:212
+#: ../modules/usertickets/usertickets.php:383
 msgid   "Status"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:202
+#: ../modules/arrival/arrival.php:224
 msgid   "Ticket is paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:202
+#: ../modules/arrival/arrival.php:224
 msgid   "Ticket is not paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:211 ../modules/arrival/arrival.php:219
+#: ../modules/arrival/arrival.php:233 ../modules/arrival/arrival.php:241
 #: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
 msgid   "Email"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:212 ../modules/arrival/arrival.php:220
+#: ../modules/arrival/arrival.php:234 ../modules/arrival/arrival.php:242
 #: ../modules/profile/profile.php:24 ../modules/register/register.old.php:249
-#: ../modules/register/register.php:323 ../modules/useradmin/useradmin.php:64
+#: ../modules/register/register.php:337 ../modules/useradmin/useradmin.php:64
 #: ../modules/wannabeadmin/wannabeadmin.old.php:271
-#: ../modules/wannabeadmin/wannabeadmin.php:344
+#: ../modules/wannabeadmin/wannabeadmin.php:415
 msgid   "Address"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:243
+#: ../modules/arrival/arrival.php:265
 msgid   "Administer tickets on users."
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:295 ../modules/sleepers/sleepers.php:186
+#: ../modules/arrival/arrival.php:317 ../modules/sleepers/sleepers.php:186
 msgid   "Tickets"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:324
-#: ../modules/ticketorder/ticketorder.php:131
-#: ../modules/usertickets/usertickets.php:281
+#: ../modules/arrival/arrival.php:346
+#: ../modules/ticketorder/ticketorder.php:334
+#: ../modules/usertickets/usertickets.php:483
 msgid   "No tickets found"
 msgstr  ""
 
@@ -328,7 +333,7 @@ msgstr  ""
 msgid   "Signup has closed"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:17
+#: ../modules/crewlist/crewlist.php:17 ../html/index.php:108
 msgid   "Crewlist"
 msgstr  ""
 
@@ -353,8 +358,7 @@ msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:81
 #: ../modules/wannabeadmin/wannabeadmin.old.php:275
-#: ../modules/wannabeadmin/wannabeadmin.php:153
-#: ../modules/wannabeadmin/wannabeadmin.php:354
+#: ../modules/wannabeadmin/wannabeadmin.php:156
 msgid   "Crew"
 msgstr  ""
 
@@ -459,7 +463,7 @@ msgid   "Accounts"
 msgstr  ""
 
 #: ../modules/edituserinfo/edituserinfo.php:14
-#: ../modules/edituserinfo/edituserinfo.php:27
+#: ../modules/edituserinfo/edituserinfo.php:27 ../html/index.php:198
 msgid   "Change password"
 msgstr  ""
 
@@ -500,7 +504,7 @@ msgstr  ""
 #: ../modules/kioskadmin/kioskadmin.php:123
 #: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
 #: ../modules/static/static.php:124 ../modules/static/static.php:234
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:101
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:105
 msgid   "Save"
 msgstr  ""
 
@@ -607,9 +611,9 @@ msgid   "Delete FAQ"
 msgstr  ""
 
 #: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:27
-#: ../modules/wannabeadmin/wannabeadmin.php:114
-#: ../modules/wannabeadmin/wannabeadmin.php:369
+#: ../modules/wannabeadmin/wannabeadmin.php:30
+#: ../modules/wannabeadmin/wannabeadmin.php:117
+#: ../modules/wannabeadmin/wannabeadmin.php:447
 msgid   "Question"
 msgstr  ""
 
@@ -839,7 +843,7 @@ msgstr  ""
 #: ../modules/kioskadmin/kioskadmin.php:39
 #: ../modules/kioskadmin/kioskadmin.php:161
 #: ../modules/sleepers/sleepers.php:341
-#: ../modules/usertickets/usertickets.php:257
+#: ../modules/usertickets/usertickets.php:447
 msgid   "Remove"
 msgstr  ""
 
@@ -871,8 +875,8 @@ msgstr  ""
 #: ../modules/infoscreens/infoscreens.php:78
 #: ../modules/kioskadmin/kioskadmin.php:36
 #: ../modules/kioskadmin/kioskadmin.php:159 ../modules/news/news.php:22
-#: ../modules/wannabeadmin/wannabeadmin.php:34
-#: ../modules/wannabeadmin/wannabeadmin.php:160
+#: ../modules/wannabeadmin/wannabeadmin.php:37
+#: ../modules/wannabeadmin/wannabeadmin.php:163
 msgid   "Edit"
 msgstr  ""
 
@@ -896,7 +900,8 @@ msgstr  ""
 msgid   "Wait"
 msgstr  ""
 
-#: ../modules/infoscreens/infoscreens.php:144 ../modules/kiosk/kiosk.php:21
+#: ../modules/infoscreens/infoscreens.php:144
+#: ../modules/kiosk/kiosk_old.php:21
 msgid   "Add"
 msgstr  ""
 
@@ -954,9 +959,9 @@ msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:29
 #: ../modules/kioskadmin/kioskadmin.php:142 ../modules/news/news.php:13
-#: ../modules/usertickets/usertickets.php:213
-#: ../modules/wannabeadmin/wannabeadmin.php:28
-#: ../modules/wannabeadmin/wannabeadmin.php:154
+#: ../modules/usertickets/usertickets.php:384
+#: ../modules/wannabeadmin/wannabeadmin.php:31
+#: ../modules/wannabeadmin/wannabeadmin.php:157
 msgid   "Actions"
 msgstr  ""
 
@@ -981,7 +986,7 @@ msgid   "Kiosk Wares"
 msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:139
-#: ../modules/wannabeadmin/wannabeadmin.php:118
+#: ../modules/wannabeadmin/wannabeadmin.php:121
 msgid   "Type"
 msgstr  ""
 
@@ -1037,35 +1042,35 @@ msgstr  ""
 msgid   "Mark credit as paid"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:26
+#: ../modules/kiosk/kiosk_old.php:26
 msgid   "Currently selling to:"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:30
+#: ../modules/kiosk/kiosk_old.php:30
 msgid   "Remove user"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:51
+#: ../modules/kiosk/kiosk_old.php:51
 msgid   "Add one more item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:52
+#: ../modules/kiosk/kiosk_old.php:52
 msgid   "Remove one item"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:60
+#: ../modules/kiosk/kiosk_old.php:60
 msgid   "SELL"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:66
+#: ../modules/kiosk/kiosk_old.php:66
 msgid   "Add to users credit"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:68
+#: ../modules/kiosk/kiosk_old.php:68
 msgid   "User pays cash"
 msgstr  ""
 
-#: ../modules/kiosk/kiosk.php:99
+#: ../modules/kiosk/kiosk_old.php:99
 msgid   "User not found!"
 msgstr  ""
 
@@ -1073,100 +1078,100 @@ msgstr  ""
 msgid   "Show list"
 msgstr  ""
 
-#: ../modules/login/login.old.php:20 ../modules/login/login.php:20
+#: ../modules/login/login.beta.php:20 ../modules/login/login.php:20
 msgid   "Sorry, too many users, try to narrow down the search"
 msgstr  ""
 
-#: ../modules/login/login.old.php:25 ../modules/login/login.php:25
+#: ../modules/login/login.beta.php:25 ../modules/login/login.php:25
 msgid   "Sorry, no such user found"
 msgstr  ""
 
-#: ../modules/login/login.old.php:60 ../modules/login/login.php:60
+#: ../modules/login/login.beta.php:60 ../modules/login/login.php:60
 msgid   "Log in as:"
 msgstr  ""
 
-#: ../modules/login/login.old.php:62 ../modules/login/login.php:62
+#: ../modules/login/login.beta.php:62 ../modules/login/login.php:62
 msgid   "Password:"
 msgstr  ""
 
-#: ../modules/login/login.old.php:68 ../modules/login/login.php:68
+#: ../modules/login/login.beta.php:68 ../modules/login/login.php:68
 msgid   "Reset password"
 msgstr  ""
 
-#: ../modules/login/login.old.php:97 ../modules/login/login.php:97
+#: ../modules/login/login.beta.php:97 ../modules/login/login.php:97
 msgid   "Your email hasn't been confirmed. Please go to the link sent in your "
         "email."
 msgstr  ""
 
-#: ../modules/login/login.old.php:99 ../modules/login/login.php:99
+#: ../modules/login/login.beta.php:99 ../modules/login/login.php:99
 #, php-format
 msgid   "If you haven't gotten any email from us yet, <a href=\"%s\">resend "
         "email</a>"
 msgstr  ""
 
-#: ../modules/login/login.old.php:105 ../modules/login/login.php:105
+#: ../modules/login/login.beta.php:105 ../modules/login/login.php:105
 msgid   "sorry, wrong password!"
 msgstr  ""
 
-#: ../modules/login/login.old.php:139 ../modules/login/login.php:139
+#: ../modules/login/login.beta.php:139 ../modules/login/login.php:139
 msgid   "The user has not confirmed his EMailAddress. Not able to reset "
         "password"
 msgstr  ""
 
-#: ../modules/login/login.old.php:142 ../modules/login/login.php:142
+#: ../modules/login/login.beta.php:142 ../modules/login/login.php:142
 msgid   "You have already tried to reset your password today. Please check "
         "your mails inbox and junkfolder"
 msgstr  ""
 
-#: ../modules/login/login.old.php:146 ../modules/login/login.php:146
+#: ../modules/login/login.beta.php:146 ../modules/login/login.php:146
 msgid   "I confirm that this is my account, and I want to reset the password"
 msgstr  ""
 
-#: ../modules/login/login.old.php:158 ../modules/login/login.php:158
+#: ../modules/login/login.beta.php:158 ../modules/login/login.php:158
 msgid   "Email not confirmed!"
 msgstr  ""
 
-#: ../modules/login/login.old.php:159 ../modules/login/login.php:159
+#: ../modules/login/login.beta.php:159 ../modules/login/login.php:159
 msgid   "Multiple attempts at password reset. Not done"
 msgstr  ""
 
-#: ../modules/login/login.old.php:170 ../modules/login/login.php:170
+#: ../modules/login/login.beta.php:170 ../modules/login/login.php:170
 #, php-format
 msgid   "Password reset for %s"
 msgstr  ""
 
-#: ../modules/login/login.old.php:179 ../modules/login/login.php:179
+#: ../modules/login/login.beta.php:179 ../modules/login/login.php:179
 msgid   "Email sent. Please check your inbox and spamfolder"
 msgstr  ""
 
-#: ../modules/login/login.old.php:192 ../modules/login/login.old.php:216
+#: ../modules/login/login.beta.php:192 ../modules/login/login.beta.php:216
 #: ../modules/login/login.php:192 ../modules/login/login.php:216
 msgid   "Key or userID not found, or already used. You can only reset the "
         "password once with each key"
 msgstr  ""
 
-#: ../modules/login/login.old.php:195 ../modules/login/login.php:195
+#: ../modules/login/login.beta.php:195 ../modules/login/login.php:195
 msgid   "Please provide your new password, two times"
 msgstr  ""
 
-#: ../modules/login/login.old.php:199 ../modules/login/login.php:199
+#: ../modules/login/login.beta.php:199 ../modules/login/login.php:199
 msgid   "Set new password"
 msgstr  ""
 
-#: ../modules/login/login.old.php:218 ../modules/login/login.php:218
+#: ../modules/login/login.beta.php:218 ../modules/login/login.php:218
 msgid   "Passwords don't match. Go back and try again"
 msgstr  ""
 
-#: ../modules/login/login.old.php:229 ../modules/login/login.php:229
+#: ../modules/login/login.beta.php:229 ../modules/login/login.php:229
 #, php-format
 msgid   "Password successfully reset. Please go back to <a href='%s'>Login</a>"
 msgstr  ""
 
-#: ../modules/login/login.old.php:250 ../modules/login/login.php:250
+#: ../modules/login/login.beta.php:250 ../modules/login/login.php:250
 msgid   "Verify your account"
 msgstr  ""
 
-#: ../modules/login/login.old.php:251 ../modules/login/login.php:251
+#: ../modules/login/login.beta.php:251 ../modules/login/login.php:251
 #, php-format
 msgid   "Hello %s.\n"
         "\n"
@@ -1176,7 +1181,7 @@ msgid   "Hello %s.\n"
         "To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr  ""
 
-#: ../modules/login/login.old.php:258 ../modules/login/login.php:258
+#: ../modules/login/login.beta.php:258 ../modules/login/login.php:258
 msgid   "Email with verificationcode has been sent. Please wait for it to "
         "come (it might take a couple of minutes)."
 msgstr  ""
@@ -1257,7 +1262,7 @@ msgstr  ""
 msgid   "Configuration change"
 msgstr  ""
 
-#: ../modules/logs/logs.php:69
+#: ../modules/logs/logs.php:69 ../html/index.php:84
 msgid   "FAQ"
 msgstr  ""
 
@@ -1269,7 +1274,7 @@ msgstr  ""
 msgid   "FAQ deleted"
 msgstr  ""
 
-#: ../modules/logs/logs.php:74
+#: ../modules/logs/logs.php:74 ../html/index.php:125
 msgid   "Forum"
 msgstr  ""
 
@@ -1325,7 +1330,7 @@ msgstr  ""
 msgid   "Successful login"
 msgstr  ""
 
-#: ../modules/logs/logs.php:100
+#: ../modules/logs/logs.php:100 ../html/index.php:199
 msgid   "Logout"
 msgstr  ""
 
@@ -1337,7 +1342,7 @@ msgstr  ""
 msgid   "Mail sent (mass)"
 msgstr  ""
 
-#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:347
+#: ../modules/logs/logs.php:108 ../inc/shared_functions.php:351
 msgid   "News"
 msgstr  ""
 
@@ -1361,7 +1366,7 @@ msgstr  ""
 msgid   "User registered new user"
 msgstr  ""
 
-#: ../modules/logs/logs.php:118
+#: ../modules/logs/logs.php:118 ../html/index.php:117
 msgid   "Reseller"
 msgstr  ""
 
@@ -1454,6 +1459,7 @@ msgid   "Change comment"
 msgstr  ""
 
 #: ../modules/logs/logs.php:155 ../modules/sleepers/sleepers.php:23
+#: ../html/index.php:130
 msgid   "Sleepers"
 msgstr  ""
 
@@ -1493,7 +1499,7 @@ msgstr  ""
 msgid   "SMS sent"
 msgstr  ""
 
-#: ../modules/logs/logs.php:174
+#: ../modules/logs/logs.php:174 ../html/index.php:121
 msgid   "Kiosk"
 msgstr  ""
 
@@ -1550,8 +1556,8 @@ msgid   "Global"
 msgstr  ""
 
 #: ../modules/news/news.php:23 ../modules/static/static.php:63
-#: ../modules/wannabeadmin/wannabeadmin.php:35
-#: ../modules/wannabeadmin/wannabeadmin.php:161
+#: ../modules/wannabeadmin/wannabeadmin.php:38
+#: ../modules/wannabeadmin/wannabeadmin.php:164
 msgid   "Delete"
 msgstr  ""
 
@@ -1588,7 +1594,7 @@ msgid   "Fant ikke artikkelen"
 msgstr  ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.old.php:255
-#: ../modules/register/register.php:339 ../modules/register/register.php:343
+#: ../modules/register/register.php:353 ../modules/register/register.php:357
 #: ../inc/shared_config.php:181
 msgid   "Gender"
 msgstr  ""
@@ -1689,13 +1695,13 @@ msgid   "EMail verified. Welcome aboard"
 msgstr  ""
 
 #: ../modules/register/register.old.php:238
-#: ../modules/register/register.php:272 ../modules/SMS/SMS.php:72
+#: ../modules/register/register.php:286 ../modules/SMS/SMS.php:72
 #: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:134
 msgid   "Username"
 msgstr  ""
 
 #: ../modules/register/register.old.php:239
-#: ../modules/register/register.php:300
+#: ../modules/register/register.php:314
 msgid   "Password"
 msgstr  ""
 
@@ -1716,12 +1722,12 @@ msgid   "Last name"
 msgstr  ""
 
 #: ../modules/register/register.old.php:258
-#: ../modules/register/register.php:344
+#: ../modules/register/register.php:358
 msgid   "Male"
 msgstr  ""
 
 #: ../modules/register/register.old.php:261
-#: ../modules/register/register.php:345
+#: ../modules/register/register.php:359
 msgid   "Female"
 msgstr  ""
 
@@ -1738,7 +1744,7 @@ msgid   "optional"
 msgstr  ""
 
 #: ../modules/register/register.old.php:302
-#: ../modules/register/register.php:408
+#: ../modules/register/register.php:422
 msgid   "Create user"
 msgstr  ""
 
@@ -1760,54 +1766,58 @@ msgid   "Your new user account has been created. Now you need to verify your "
         "the verification URL."
 msgstr  ""
 
-#: ../modules/register/register.php:260
+#: ../modules/register/register.php:272 ../html/index.php:54
 msgid   "Register user"
 msgstr  ""
 
-#: ../modules/register/register.php:264
+#: ../modules/register/register.php:276
 msgid   "Username is taken, try another one."
 msgstr  ""
 
-#: ../modules/register/register.php:266
+#: ../modules/register/register.php:278
+msgid   "Email is taken, try another one."
+msgstr  ""
+
+#: ../modules/register/register.php:280
 msgid   "Form did not validate, check for errors below"
 msgstr  ""
 
-#: ../modules/register/register.php:281 ../modules/useradmin/useradmin.php:61
+#: ../modules/register/register.php:295 ../modules/useradmin/useradmin.php:61
 msgid   "Firstname"
 msgstr  ""
 
-#: ../modules/register/register.php:291 ../modules/useradmin/useradmin.php:62
+#: ../modules/register/register.php:305 ../modules/useradmin/useradmin.php:62
 msgid   "Lastname"
 msgstr  ""
 
-#: ../modules/register/register.php:307
+#: ../modules/register/register.php:321
 msgid   "Repeat password"
 msgstr  ""
 
-#: ../modules/register/register.php:314
+#: ../modules/register/register.php:328
 msgid   "E-mail address"
 msgstr  ""
 
-#: ../modules/register/register.php:329
+#: ../modules/register/register.php:343
 msgid   "Postcode"
 msgstr  ""
 
-#: ../modules/register/register.php:365 ../modules/sleepers/setwake_gui.php:21
+#: ../modules/register/register.php:379 ../modules/sleepers/setwake_gui.php:21
 #: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:330
 msgid   "Day"
 msgstr  ""
 
-#: ../modules/register/register.php:374 ../modules/sleepers/setwake_gui.php:22
+#: ../modules/register/register.php:388 ../modules/sleepers/setwake_gui.php:22
 #: ../modules/sleepers/setwake_gui.php:33
 msgid   "Month"
 msgstr  ""
 
-#: ../modules/register/register.php:385 ../modules/sleepers/setwake_gui.php:23
+#: ../modules/register/register.php:399 ../modules/sleepers/setwake_gui.php:23
 #: ../modules/sleepers/setwake_gui.php:39
 msgid   "Year"
 msgstr  ""
 
-#: ../modules/register/register.php:399
+#: ../modules/register/register.php:413
 msgid   "Cell phone"
 msgstr  ""
 
@@ -2218,7 +2228,7 @@ msgid   "no"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.old.php:45
-#: ../modules/usertickets/usertickets.php:254
+#: ../modules/usertickets/usertickets.php:440
 msgid   "Place on map"
 msgstr  ""
 
@@ -2284,31 +2294,31 @@ msgid   "Yes, I don't need it"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.php:22
-#: ../modules/ticketorder/ticketorder.php:119
+#: ../modules/ticketorder/ticketorder.php:322 ../html/index.php:92
 msgid   "Order ticket"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:75
+#: ../modules/ticketorder/ticketorder.php:275
 msgid   "Ticket ordered"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:79
+#: ../modules/ticketorder/ticketorder.php:279
 msgid   "Ticket not found"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:85
+#: ../modules/ticketorder/ticketorder.php:285
 msgid   "You have ordered the maximum tickets allowed"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:97
+#: ../modules/ticketorder/ticketorder.php:297
 msgid   "Choose a ticket to order."
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:122
+#: ../modules/ticketorder/ticketorder.php:325
 msgid   "You have ordered the maximum allowed"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:125
+#: ../modules/ticketorder/ticketorder.php:328
 msgid   "You be logged in to order tickets"
 msgstr  ""
 
@@ -2328,51 +2338,63 @@ msgstr  ""
 msgid   "No user with ID"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:21
+#: ../modules/usertickets/payticket.php:6
+msgid   "Betal med kort"
+msgstr  ""
+
+#: ../modules/usertickets/usertickets.php:21 ../html/index.php:96
 msgid   "My tickets"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:184
+#: ../modules/usertickets/usertickets.php:349
 msgid   "An error occurred during the deletion of the ticket"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:189
+#: ../modules/usertickets/usertickets.php:354
 msgid   "Tickets has been deleted"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:200
+#: ../modules/usertickets/usertickets.php:358
+msgid   "Ticket has been paid!"
+msgstr  ""
+
+#: ../modules/usertickets/usertickets.php:371
 msgid   "This table lists all tickets you have ordered for this event."
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:208
+#: ../modules/usertickets/usertickets.php:379
 msgid   "Ticket id"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:211
+#: ../modules/usertickets/usertickets.php:382
 msgid   "Seat"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:267
+#: ../modules/usertickets/usertickets.php:446
+msgid   "Pay now"
+msgstr  ""
+
+#: ../modules/usertickets/usertickets.php:463
 msgid   "Delete selected"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:17
-#: ../modules/wannabeadmin/wannabeadmin.php:397
+#: ../modules/wannabeadmin/wannabeadmin.php:568
 msgid   "Questions"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:18
-#: ../modules/wannabeadmin/wannabeadmin.php:398
+#: ../modules/wannabeadmin/wannabeadmin.php:569
 msgid   "Crews"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:25
-#: ../modules/wannabeadmin/wannabeadmin.php:405
+#: ../modules/wannabeadmin/wannabeadmin.php:576
 msgid   "View Applications"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:77
-#: ../modules/wannabeadmin/wannabeadmin.php:20
+#: ../modules/wannabeadmin/wannabeadmin.php:23
 msgid   "New question"
 msgstr  ""
 
@@ -2428,49 +2450,53 @@ msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:290
 #: ../modules/wannabeadmin/wannabeadmin.old.php:505
-#: ../modules/wannabe/wannabe.php:32
+#: ../modules/wannabe/wannabe.php:36
 msgid   "Nothing selected"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:293
 #: ../modules/wannabeadmin/wannabeadmin.old.php:508
-#: ../modules/wannabe/wannabe.php:35
+#: ../modules/wannabeadmin/wannabeadmin.php:514
+#: ../modules/wannabe/wannabe.php:39
 msgid   "Of course!"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:296
 #: ../modules/wannabeadmin/wannabeadmin.old.php:511
-#: ../modules/wannabe/wannabe.php:38
+#: ../modules/wannabeadmin/wannabeadmin.php:515
+#: ../modules/wannabe/wannabe.php:42
 msgid   "Sure"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:299
 #: ../modules/wannabeadmin/wannabeadmin.old.php:514
-#: ../modules/wannabe/wannabe.php:41
+#: ../modules/wannabeadmin/wannabeadmin.php:516
+#: ../modules/wannabe/wannabe.php:45
 msgid   "Probably"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:302
 #: ../modules/wannabeadmin/wannabeadmin.old.php:517
-#: ../modules/wannabe/wannabe.php:44
+#: ../modules/wannabeadmin/wannabeadmin.php:517
+#: ../modules/wannabe/wannabe.php:48
 msgid   "I'd rather not"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:305
 #: ../modules/wannabeadmin/wannabeadmin.old.php:520
-#: ../modules/wannabe/wannabe.php:47
+#: ../modules/wannabeadmin/wannabeadmin.php:518
+#: ../modules/wannabe/wannabe.php:51
 msgid   "Not at all"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:308
 #: ../modules/wannabeadmin/wannabeadmin.old.php:523
-#: ../modules/wannabe/wannabe.php:50
+#: ../modules/wannabe/wannabe.php:54
 msgid   "Unknown option"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:355
-#: ../modules/wannabeadmin/wannabeadmin.php:370
+#: ../modules/wannabeadmin/wannabeadmin.php:448
 msgid   "Answer"
 msgstr  ""
 
@@ -2491,106 +2517,150 @@ msgstr  ""
 msgid   "Save comment"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:17
+#: ../modules/wannabeadmin/wannabeadmin.php:20
 msgid   "Edit wannabe questions"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:19
-#: ../modules/wannabeadmin/wannabeadmin.php:101
+#: ../modules/wannabeadmin/wannabeadmin.php:22
+#: ../modules/wannabeadmin/wannabeadmin.php:104
 msgid   "List questions"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:41
+#: ../modules/wannabeadmin/wannabeadmin.php:44
 msgid   "No questions has been created yet."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:99
+#: ../modules/wannabeadmin/wannabeadmin.php:102
 msgid   " question"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:143
+#: ../modules/wannabeadmin/wannabeadmin.php:146
 msgid   "Edit wannabe crews"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:145
-#: ../modules/wannabeadmin/wannabeadmin.php:225
+#: ../modules/wannabeadmin/wannabeadmin.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:232
 msgid   "List crews"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:146
+#: ../modules/wannabeadmin/wannabeadmin.php:149
 msgid   "New crew"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:167
+#: ../modules/wannabeadmin/wannabeadmin.php:170
 msgid   "No crews has been created yet."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:223
+#: ../modules/wannabeadmin/wannabeadmin.php:230
 msgid   " crew"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:238
+#: ../modules/wannabeadmin/wannabeadmin.php:245
 msgid   "Crew Name"
 msgstr  ""
 
+#: ../modules/wannabeadmin/wannabeadmin.php:249
+msgid   "Crew description"
+msgstr  ""
+
 #: ../modules/wannabeadmin/wannabeadmin.php:253
+msgid   "Crew group"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:268
 msgid   "List applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:261
+#: ../modules/wannabeadmin/wannabeadmin.php:276
 msgid   "No applications has been sent."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:303
+#: ../modules/wannabeadmin/wannabeadmin.php:318
 msgid   "Waiting applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:308
+#: ../modules/wannabeadmin/wannabeadmin.php:323
 msgid   "Finished applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:333
-#: ../modules/wannabeadmin/wannabeadmin.php:386
-msgid   "Application"
+#: ../modules/wannabeadmin/wannabeadmin.php:404
+msgid   "Userinfo"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:341
+#: ../modules/wannabeadmin/wannabeadmin.php:412
 msgid   "years old"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:359
-msgid   "Preference for"
+#: ../modules/wannabeadmin/wannabeadmin.php:454
+msgid   "No answer given"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:376
-msgid   "No answer given"
+#: ../modules/wannabeadmin/wannabeadmin.php:469
+msgid   "Comments"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:497
+msgid   "No response given"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:509
+msgid   "Set preference for"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:513
+msgid   "Choose preference"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:520
+msgid   "Set"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:524
+msgid   "You are not admin of any crew and can therefor not set any "
+        "preference."
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:545
+msgid   "Write a comment"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:548
+msgid   "Comment..."
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:549
+msgid   "Send"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:557
+msgid   "Application"
 msgstr  ""
 
 #: ../modules/wannabe/wannabe.php:6
 msgid   "Please login to apply for crew"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:9
+#: ../modules/wannabe/wannabe.php:10
 msgid   "Apply as crew"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:10
+#: ../modules/wannabe/wannabe.php:12
 msgid   "Your application is saved"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:103
+#: ../modules/wannabe/wannabe.php:107
 msgid   "Delete application"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:158
+#: ../modules/wannabe/wannabe.php:163
 msgid   "Are you sure you want to delete your crewapplication?"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:159
+#: ../modules/wannabe/wannabe.php:164
 msgid   "Yes, I'm sure"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:160
+#: ../modules/wannabe/wannabe.php:165
 msgid   "No, I still wish to apply for crew"
 msgstr  ""
 
@@ -2759,18 +2829,86 @@ msgstr  ""
 msgid   "All users"
 msgstr  ""
 
-#: ../inc/shared_functions.php:235
+#: ../inc/shared_functions.php:234
 msgid   "Read"
 msgstr  ""
 
-#: ../inc/shared_functions.php:240
+#: ../inc/shared_functions.php:239
 msgid   "Write"
 msgstr  ""
 
-#: ../inc/shared_functions.php:245
+#: ../inc/shared_functions.php:244
 msgid   "Admin"
 msgstr  ""
 
-#: ../inc/shared_functions.php:633
+#: ../inc/shared_functions.php:637
 msgid   "a.k.a."
+msgstr  ""
+
+#: ../html/index.php:45
+msgid   "Main page"
+msgstr  ""
+
+#: ../html/index.php:49
+msgid   "Global Admin"
+msgstr  ""
+
+#: ../html/index.php:58
+msgid   "My groups"
+msgstr  ""
+
+#: ../html/index.php:88
+msgid   "Seatmap"
+msgstr  ""
+
+#: ../html/index.php:100
+msgid   "Apply for crewposition"
+msgstr  ""
+
+#: ../html/index.php:104
+msgid   "Composignup"
+msgstr  ""
+
+#: ../html/index.php:134
+msgid   "Dashboard"
+msgstr  ""
+
+#: ../html/index.php:140
+msgid   "Event Admin"
+msgstr  ""
+
+#: ../html/index.php:160
+msgid   "Type your nick, email or name here:"
+msgstr  ""
+
+#: ../html/index.php:192
+msgid   "You are logged in as:"
+msgstr  ""
+
+#: ../html/index.php:197
+msgid   "Edit my preferences"
+msgstr  ""
+
+#: ../html/party.php:33
+msgid   "There are no screens for this event"
+msgstr  ""
+
+#: ../html/party.php:65
+msgid   "There are no queue for this screen"
+msgstr  ""
+
+#: ../html/upload.php:15
+msgid   "No such file directory"
+msgstr  ""
+
+#: ../html/upload.php:16
+msgid   "File directory not writable"
+msgstr  ""
+
+#: ../html/upload.php:25
+msgid   "Upload failed, could not move file"
+msgstr  ""
+
+#: ../html/upload.php:27
+msgid   "Upload failed, file exists"
 msgstr  ""
