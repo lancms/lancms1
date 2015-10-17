@@ -257,6 +257,21 @@ TABLE [prefix]_tickets
 	paidTime,	int(11),	,	,	0,
 }
 
+TABLE [prefix]_ticketLogs
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	eventID,	int(11),		,	,	,
+	ticketID,	int(11),		,	,   ,
+	ticketType,	int(11),		,	,	,
+	userID,		int(11),		,	,	,
+	timestamp,		int(11),		,	,	,
+	externalTime,		int(11),	,	,	,
+	externalRef,		varchar(230),	,	,
+	price,		varchar(100),		,	,	,
+	amount,		varchar(100), 	, 	,	,
+	status,		varchar(230),	,	,	,
+}
+
 TABLE [prefix]_economy_accounts
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
