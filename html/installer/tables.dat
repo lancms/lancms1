@@ -245,6 +245,7 @@ TABLE [prefix]_tickets
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
 	ticketID,		int(11),		PRI,	NOT NULL, ,		auto_increment
+	md5_ID,		varchar(230),		,	,	,
 	ticketType,		int(11),		,	,	,
 	eventID,		int(11),		,	,	,
 	owner,		int(11),		,	,	,
