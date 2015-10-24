@@ -18,35 +18,71 @@ $maxTicketsPrUser = 5;
 
 
 ## eventconfigs
-
-$eventconfig['checkbox'][0]['config'] = 'enable_ticketorder';
-$eventconfig['checkbox'][0]['name'] = _("Activate ticketorder");
-$eventconfig['checkbox'][1]['config'] = 'enable_FAQ';
-$eventconfig['checkbox'][1]['name'] = _("Activate FAQ");
-$eventconfig['checkbox'][2]['config'] = 'seating_enabled';
-$eventconfig['checkbox'][2]['name'] = _("Activate seating");
-$eventconfig['checkbox'][3]['config'] = 'seating_public';
-$eventconfig['checkbox'][3]['name'] = _("Show link to seating");
-$eventconfig['checkbox'][4]['config'] = 'enable_wannabe';
-$eventconfig['checkbox'][4]['name'] = _("Activate wannabesystem");
-$eventconfig['checkbox'][5]['config'] = 'enable_composystem';
-$eventconfig['checkbox'][5]['name'] = _("Activate composystem");
-$eventconfig['checkbox'][6]['config'] = 'enable_reseller';
-$eventconfig['checkbox'][6]['name'] = _("Activate reseller");
-$eventconfig['checkbox'][7]['config'] = 'enable_crewlist';
-$eventconfig['checkbox'][7]['name'] = _("Activate crewlist");
-$eventconfig['checkbox'][8]['config'] = 'enable_news';
-$eventconfig['checkbox'][8]['name'] = _("Activate news");
-$eventconfig['checkbox'][9]['config'] = 'enable_kiosk';
-$eventconfig['checkbox'][9]['name'] = _("Activate kiosksystem");
-$eventconfig['checkbox'][10]['config'] = 'enable_forum';
-$eventconfig['checkbox'][10]['name'] = _("Activate forum");
-$eventconfig['checkbox'][11]['config'] = 'enable_sleepers';
-$eventconfig['checkbox'][11]['name'] = _("Activate sleepsystem");
-$eventconfig['checkbox'][12]['config'] = 'show_free_tickets';
-$eventconfig['checkbox'][12]['name'] = _("Show number of free tickets in ticketorder");
-$eventconfig['checkbox'][13]['config'] = 'kiosk_userSale_credit_default';
-$eventconfig['checkbox'][13]['name'] = _("Default option in kiosk to sell to credit when user is selected (otherwise cash payment is selected as default)");
+$eventconfig = array(
+    // Checkbox
+    "checkbox" => array(
+        array(
+            "config" => "enable_ticketorder",
+            "name" => _("Activate ticketorder")
+        ),
+        array(
+            "config" => "enable_usertickets",
+            "name" => _("Activate usertickets")
+        ),
+        array(
+            "config" => "enable_FAQ",
+            "name" => _("Activate FAQ")
+        ),
+        array(
+            "config" => "seating_enabled",
+            "name" => _("Activate seating")
+        ),
+        array(
+            "config" => "seating_public",
+            "name" => _("Show link to seating")
+        ),
+        array(
+            "config" => "enable_wannabe",
+            "name" => _("Activate wannabesystem")
+        ),
+        array(
+            "config" => "enable_composystem",
+            "name" => _("Activate composystem")
+        ),
+        array(
+            "config" => "enable_reseller",
+            "name" => _("Activate reseller")
+        ),
+        array(
+            "config" => "enable_crewlist",
+            "name" => _("Activate crewlist")
+        ),
+        array(
+            "config" => "enable_news",
+            "name" => _("Activate news")
+        ),
+        array(
+            "config" => "enable_kiosk",
+            "name" => _("Activate kiosk")
+        ),
+        array(
+            "config" => "enable_forum",
+            "name" => _("Activate forum")
+        ),
+        array(
+            "config" => "enable_sleepers",
+            "name" => _("Activate sleepsystem")
+        ),
+        array(
+            "config" => "show_free_tickets",
+            "name" => _("Show number of free tickets in ticketorder")
+        ),
+        array(
+            "config" => "kiosk_userSale_credit_default",
+            "name" => _("Default option in kiosk to sell to credit when user is selected (otherwise cash payment is selected as default)")
+        ),
+    )
+);
 
 
 
