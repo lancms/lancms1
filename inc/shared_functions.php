@@ -353,7 +353,7 @@ function display_news ($eventid=1)
 	foreach ($articles as $article) {
 		$return .= "<article class='newsbox'>";
 		$return .= "<header><h3>" . $article->getHeader() . "</h3><div class=\"meta\">" . date("d.m.Y H:i:s", $article->getCreateTime()) . "</div></header>\n";
-		$return .= "<div class=\"content\">" . $article->getContent() . "</div>\n";
+		$return .= "<div class=\"article-content\">" . $article->getContent() . "</div>\n";
 		$return .= "</article>\n";
 	}
 
