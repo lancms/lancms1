@@ -230,6 +230,10 @@ h1.page-title {
     border-spacing: 0;
 }
 
+.table.full-width {
+    width: 100%;
+}
+
 .table thead tr th,
 .table tbody tr td.head {
     font-weight: 700;

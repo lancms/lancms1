@@ -10,7 +10,7 @@ if($action == "newsadmin" && ($acl == 'Admin' || $acl == 'Write')) {
 	$articles = $manager->getArticles($sessioninfo->eventID);
 	if (count($articles) > 0) {
 		$content .= "<h2>" . _("Manage news articles") . "</h2>";
-		$content .= "<table class='better-table'><tbody><tr><th>" . _("Name") . "</th><th>" . _("Actions") . "</th></tr>";
+		$content .= "<table class='table full-width'><tbody><tr><th>" . _("Name") . "</th><th>" . _("Actions") . "</th></tr>";
 		foreach ($articles as $article) {
 			$content .= "
 			<tr>
@@ -69,7 +69,7 @@ elseif($action == "editArticle" && ($acl == 'Write' || $acl == 'Admin') && !empt
 		$isGlobal = ($article->isGlobal() ? " checked=\"checked\"" : "");
 
 		$content .= "<form method=\"post\" action=\"?module=news&action=doEditArticle&articleID=" . $article->getArticleID() . "\">";
-		$content .= "<table class='news-editor'>\n";
+		$content .= "<table class='table full-width news-editor'>\n";
 		$content .= "<tr><th>" . _("Title") . "</th><td><input type=\"text\" name=\"header\" value='" . $article->getHeader() . "'></td></tr>\n";
 		$content .= "<tr><th class='top'>" . _("Content") . "</th><td><textarea name=\"content\" class='mceEditor' rows=\"25\" cols=\"60\">";
 		$content .= $article->getContent() . "</textarea></td></tr>";
