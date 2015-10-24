@@ -215,6 +215,21 @@ switch ($action) {
             $price,
             $amount
         );
+
+        $glLog = array(
+            "userID" => $userID,
+            "eventID" => $eventID,
+            "ticketIDs" => (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
+            "time" => time(),
+            "stripeTime" => (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
+            "stripeRef" => (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
+            "status" => $orderInfo["status"],
+            "ticketType" => $ticketType,
+            "price" => $price,
+            "amount" => $amount
+        );
+
+        log_add("ticketorder", "handleticketpurchase", serialize($glLog));
         
         $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
             $_SESSION["orderInfo" . $sessioninfo->userID], $orderInfo);
