@@ -10,6 +10,9 @@ namespace Wannabe;
  */
 class Application {
 
+    const APPLICATION_STATUS_WAITING  = "waiting";
+    const APPLICATION_STATUS_FINISHED = "finished";
+
     /**
      * @var QuestionResponse[]
      */
@@ -29,6 +32,13 @@ class Application {
      * @var \User
      */
     protected $_user;
+
+    /**
+     * See APPLICATION_STATUS_*
+     *
+     * @var string
+     */
+    protected $_applicationStatus;
 
     /**
      * Application constructor.
@@ -149,6 +159,48 @@ class Application {
         if ($totalCommentsForCrew < 1 || $totalScoreForCrew < 1) return 0;
 
         return floor($totalScoreForCrew / $totalCommentsForCrew);
+    }
+
+    /**
+     * Shorthand method to check if an application is finished.
+     *
+     * @return bool
+     */
+    public function isFinished()
+    {
+        return $this->getStatus() == self::APPLICATION_STATUS_FINISHED;
+    }
+
+    /**
+     * Provides the current status of this application.
+     * An application is finished when the applicant is in a group.
+     *
+     * See APPLICATION_STATUS_*
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        if (is_null($this->_applicationStatus)) {
+            $this->_resolveApplicationStatus();
+        }
+
+        return $this->_applicationStatus;
+    }
+
+    /**
+     * Internal method to resolve the status of this application.
+     */
+    protected function _resolveApplicationStatus()
+    {
+        // An application is finished if a user is in a group.
+        $userGroups = $this->getUser()->getGroups();
+
+        if (count($userGroups) > 0) {
+            $this->_applicationStatus = self::APPLICATION_STATUS_FINISHED;
+        } else {
+            $this->_applicationStatus = self::APPLICATION_STATUS_WAITING;
+        }
     }
 
 }
