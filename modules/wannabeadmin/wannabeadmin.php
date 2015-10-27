@@ -475,10 +475,14 @@ switch ($action) {
 
         // COMMENTS
         $comments = $wannabeManager->getApplicationComments($applicant->getUserID(), $crewIDs);
-        $commentsByCrewID = array();
+        $commentsByCrewID = $preferenceByCrewID = array();
         if (count($comments) > 0) {
             foreach ($comments as $comment) {
-                $commentsByCrewID[$comment->getCrewID()][] = $comment;
+                if ($comment->getCommentType() == \Wannabe\AdminComment::COMMENT_TYPE_ADMINPREF) {
+                    $preferenceByCrewID[$comment->getCrewID()][] = $comment;
+                } else {
+                    $commentsByCrewID[$comment->getCrewID()][] = $comment;
+                }
             }
         }
 
@@ -492,9 +496,9 @@ switch ($action) {
                     <div class=\"crewname\">" . $crew->getName() . "</div>
                     <div class=\"pref-icons\">";
 
-                if (isset($commentsByCrewID[$crew->getCrewID()]) && count($commentsByCrewID[$crew->getCrewID()]) > 0) {
-                    $numComments = count($commentsByCrewID[$crew->getCrewID()]);
-                    foreach ($commentsByCrewID[$crew->getCrewID()] as $comment) {
+                $numComments = count($preferenceByCrewID[$crew->getCrewID()]);
+                if (isset($preferenceByCrewID[$crew->getCrewID()]) && $numComments > 0) {
+                    foreach ($preferenceByCrewID[$crew->getCrewID()] as $comment) {
                         /** @var $comment \Wannabe\AdminComment */
 
                         if ($numComments == 1) {
