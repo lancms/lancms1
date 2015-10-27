@@ -322,7 +322,7 @@ switch ($action) {
                 $thisLine .= "</div>";
 
                 // Append to correct content.
-                if (1 == true) {
+                if (!$application->isFinished()) {
                     $waitingApplications .= $thisLine;
                 } else {
                     $finishedApplications .= $thisLine;
