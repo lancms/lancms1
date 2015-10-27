@@ -227,7 +227,7 @@ class Manager {
      */
     public function getCrews($eventIDs=array()) {
         // Allow to filter on event, if it's -1 then get all.
-        $query = "SELECT `ID`,`eventID`,`crewname`,`groupID` FROM `" . db_prefix() . "_wannabeCrews`";
+        $query = "SELECT `ID`,`eventID`,`description`,`crewname`,`groupID` FROM `" . db_prefix() . "_wannabeCrews`";
 
         // sanatize our array
         $eventIDs = array_map("intval", $eventIDs);
@@ -300,7 +300,7 @@ class Manager {
             throw new \InvalidArgumentException("Invalid argument given to method, expected an int over zero.");
         }
 
-        $query = sprintf("SELECT `ID`,`eventID`,`crewname`,`groupID` FROM `" . db_prefix() . "_wannabeCrews` WHERE `ID`=%s", $crewID);
+        $query = sprintf("SELECT `ID`,`eventID`,`crewname`,`description`,`groupID` FROM `" . db_prefix() . "_wannabeCrews` WHERE `ID`=%s", $crewID);
 
         // Apply event filer if set and valid.
         $eventIDs = array_map("intval", $eventIDs);
