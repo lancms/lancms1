@@ -74,20 +74,19 @@ elseif($action == "doChangeGroupAccess" && isset($_GET['groupID']))
 elseif($action == "groupManagement")
 {
 	// Action to manage groups
-	$qListGroups = db_query("SELECT * FROM ".$sql_prefix."_groups
-		WHERE eventID = '$eventID' ORDER BY groupname ASC");
+	$groups = UserGroupManager::getInstance()->getEventGroups();
+
 	// If error is set; display error.
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br /><br />\n";
 
-	if(db_num($qListGroups) != 0) {
-		$content .= '<table>';
-		while($rListGroups = db_fetch($qListGroups))
-		{
+	if(count($groups) > 0) {
+		$content .= '<table class="table full-width">';
+		foreach ($groups as $group) {
 			// list up all groups associated with this event
-			$content .= "<tr><td><a href=\"?module=groups&amp;action=listGroup&amp;groupID=$rListGroups->ID\">";
-			$content .= $rListGroups->groupname."</a>";
+			$content .= "<tr><td><a href=\"?module=groups&amp;action=listGroup&amp;groupID=" . $group->getGroupID() . "\">";
+			$content .= $group->getName() . "</a>";
 			if(acl_access("eventadmin", "", $sessioninfo->eventID) == 'Admin') {
-				$content .= "</td><td><a href=\"?module=eventadmin&amp;action=groupRights&amp;groupID=$rListGroups->ID\">";
+				$content .= "</td><td><a href=\"?module=eventadmin&amp;action=groupRights&amp;groupID=" . $group->getGroupID() . "\">";
 				$content .= lang("Change group rights", "eventadmin")."</a>";
 			}
 			$content .= "</td></tr>";
