@@ -227,7 +227,7 @@ class User extends SqlObject {
      */
     public function getGroups()
     {
-        $groups = UserGroupManager::getInstance()->getUserGroups($this->getUserID());
+        return UserGroupManager::getInstance()->getUserGroups($this->getUserID());
     }
 
     /**
@@ -235,7 +235,7 @@ class User extends SqlObject {
      */
     public function getGroupsWhereAdmin()
     {
-        $groups = UserGroupManager::getInstance()->getUserIsAdminGroups($this->getUserID());
+        return UserGroupManager::getInstance()->getUserIsAdminGroups($this->getUserID());
     }
 
     /**
