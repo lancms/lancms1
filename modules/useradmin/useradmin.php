@@ -39,6 +39,7 @@ elseif ($action == 'listall' || $action == 'search')
 	$content .= "<h2>".lang("List of all users", "useradmin")."</h2>";
 	$content .= "<a href='index.php?module=useradmin'>".lang("Back to user administration", "useradmin")."</a>";
 
+
 	if($action == "listall") $users = user_getall ();
 	else {
 		$s = db_escape($_GET['search']);
@@ -49,68 +50,63 @@ elseif ($action == 'listall' || $action == 'search')
 			OR lastName LIKE '%$s%'
 			OR EMail LIKE '%$s%'
 		");
+		$users = array();
 		while($rFindUsers = db_fetch($qFindUsers)) {
 			$users[] = $rFindUsers;
 		} // End while
 	} // End else
 
-	$content .= "<table class='userlist'>";
-	$content .= "<tr>";
-	$content .= "<th>".lang("ID", "useradmin")."</th>";
-	$content .= "<th>".lang("Username", "useradmin")."</th>";
-	$content .= "<th>".lang("Firstname", "useradmin")."</th>";
-	$content .= "<th>".lang("Lastname", "useradmin")."</th>";
-	$content .= "<th>".lang("Email", "useradmin")."</th>";
-	$content .= "<th>".lang("Address", "useradmin")."</th>";
-	$content .= "<th>".lang("Postnumber", "useradmin")."</th>";
-	$content .= "<th>".lang("Cellphone", "useradmin")."</th>";
-	$content .= "</tr>";
+	if (count($users) > 0) {
+		$content .= "<table class='userlist'>";
+		$content .= "<tr>";
+		$content .= "<th>".lang("ID", "useradmin")."</th>";
+		$content .= "<th>".lang("Username", "useradmin")."</th>";
+		$content .= "<th>".lang("Firstname", "useradmin")."</th>";
+		$content .= "<th>".lang("Lastname", "useradmin")."</th>";
+		$content .= "<th>".lang("Email", "useradmin")."</th>";
+		$content .= "<th>".lang("Address", "useradmin")."</th>";
+		$content .= "<th>".lang("Postnumber", "useradmin")."</th>";
+		$content .= "<th>".lang("Cellphone", "useradmin")."</th>";
+		$content .= "</tr>";
 
-	$ucount = 1;
+		$ucount = 1;
 
-	# FIXME: move this function to a better place
-	function uadl ($userid, $str)
-	{
-			  $a = "<a href='index.php?module=useradmin&action=details&userid=".$userid."'>";
-			  $end = "</a>";
-			  return ($a.$str.$end);
+		# FIXME: move this function to a better place
+		function uadl ($userid, $str)
+		{
+				  $a = "<a href='index.php?module=useradmin&action=details&userid=".$userid."'>";
+				  $end = "</a>";
+				  return ($a.$str.$end);
+		}
+
+		foreach ($users as $ui) {
+			if ($ui->globaladmin > 0) {
+				$content .= "<tr class='userrow0'>";
+			} else {
+				$content .= "<tr class='userrow".$ucount."'>";
+			}
+
+			$content .= "<td>".uadl($ui->ID, $ui->ID)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->nick)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->firstName)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->lastName)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->EMail)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->street)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->postNumber)."</td>";
+			$content .= "<td>".uadl($ui->ID, $ui->cellphone)."</td>";
+
+			$content .= "</tr>\n";
+
+			$ucount++;
+			if ($ucount == 3) {
+				$ucount = 1;
+			}
+		}
+		$content .= "</table>";
+	} else {
+		$content .= "<p>" . _("No users was found") . "</p>";
 	}
 
-
-
-	foreach ($users as $ui)
-	{
-
-#		$onclick = "onClick='location.href=\"index.php?module=useradmin&action=details&userid=".$ui->ID."\"'";
-	
-		if ($ui->globaladmin > 0)
-		{
-			$content .= "<tr class='userrow0'>";
-		}
-		else
-		{
-			$content .= "<tr class='userrow".$ucount."'>";
-		}
-
-		$content .= "<td>".uadl($ui->ID, $ui->ID)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->nick)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->firstName)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->lastName)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->EMail)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->street)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->postNumber)."</td>";
-		$content .= "<td>".uadl($ui->ID, $ui->cellphone)."</td>";
-
-		$content .= "</tr>\n";
-
-		$ucount++;
-		if ($ucount == 3)
-		{
-			$ucount = 1;
-		}
-	}
-
-	$content .= "</table>";
 
 }
 elseif ($action == 'details')
