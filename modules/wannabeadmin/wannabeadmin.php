@@ -251,7 +251,23 @@ switch ($action) {
                 </div>
                 <div class=\"row\">
                     <div class=\"cell\"><strong>" . _("Crew group") . "</strong></div>
-                    <div class=\"cell\"><input type=\"text\" name=\"groupID\" value=\"" . ($editMode ? $crew->getGroupID() : "") . "\" /></div>
+                    <div class=\"cell\">
+                        <select name=\"groupID\">
+                            <option value=\"-1\">" . _("Choose group") . "</option>";
+
+                            // List each group
+                            $groups = UserGroupManager::getInstance()->getEventGroups();
+                            if (count($groups) > 0) {
+                                foreach ($groups as $key => $group) {
+                                    $selected = ($crew->getGroupID() == $group->getGroupID() ? " selected" : "");
+                                    $content .= "<option value=\"" . $group->getGroupID() . "\"$selected>" . $group->getName() . "</option>";
+                                }
+
+                            }
+
+                            $content .= "
+                        </select>
+                    </div>
                 </div>
                 <div class=\"row\">
                     <div class=\"cell\">&nbsp;</div>

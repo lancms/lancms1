@@ -22,6 +22,38 @@ class UserGroupManager
     }
 
     /**
+     * Provides all access groups of the provided event.
+     *
+     * @param int|null $eventID If null the current event is used.
+     * @return UserGroup[]
+     * @throws Exception
+     */
+    public function getEventGroups($eventID = null)
+    {
+        global $sessioninfo;
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        if (intval($eventID) < 1) {
+            throw new Exception("Argument must be an int.");
+        }
+
+        $getEventGroupIDs = db_query(sprintf("SELECT `ID` FROM `%s_groups` WHERE `eventID` = %d", db_prefix(), $eventID));
+        if (db_num($getEventGroupIDs) < 1) {
+            return array();
+        }
+
+        $groupIDs = array();
+        while ($row = db_fetch_assoc($getEventGroupIDs)) {
+            $groupIDs[] = $row["ID"];
+        }
+
+        return $this->getGroupsByID($groupIDs);
+    }
+
+    /**
      * Provides group instances from an array of IDs.
      * 
      * @param array $groupIDs
