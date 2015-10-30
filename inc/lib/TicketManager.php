@@ -106,6 +106,19 @@ class TicketManager {
     }
 
     /**
+     * Shorthand for fetching a single ticket by md5 ID.
+     *
+     * @see getTicketsByMD5()
+     * @param string $ticketMD5
+     * @param int|null $eventID
+     * @return Ticket|null
+     */
+    public function getTicketByMD5($ticketMD5, $eventID=null) {
+        $result = $this->getTicketsByMD5(array($ticketMD5), $eventID);
+        return (is_array($result) && count($result) > 0 ? $result[0] : null);
+    }
+
+    /**
      * Provides an array of tickets on a user. Will search fields "user" and "owner"
      * 
      * @param int $userID
