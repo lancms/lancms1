@@ -77,11 +77,8 @@ switch ($action) {
                 </form>
             </div>';
 
-            $searchString = db_escape($_POST['query']);
-            if (strlen($_POST['query']) > 0) {
-                $str = db_escape(htmlspecialchars($_POST['query']));
-
-                $result = UserManager::getInstance()->searchUsers($str);
+            if (strlen($userQueryValue) > 0) {
+                $result = UserManager::getInstance()->searchUsers($userQueryValue);
 
                 if (count($result) > 0) {
                     $content .= "<table class=\"table ticket-table\"><thead><tr><th>" . _("Name") . "</th></tr></thead><tbody>";
