@@ -29,11 +29,11 @@ switch ($action) {
     // Ticket detail display
     case "changeuser":
 
-        $ticketID = isset($_GET['ticket']) && is_numeric($_GET['ticket']) ? intval($_GET['ticket']) : -1;
+        $ticketID = $requestGet->has("ticket") ? $requestGet->getAlnum("ticket") : -1;
         if ($ticketID < 1) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
-            $ticket = $ticketManager->getTicket($ticketID);
+            $ticket = $ticketManager->getTicketByMD5($ticketID);
             $changeType = (isset($_GET['type']) ? $_GET['type'] : 'user');
             
             /* HANDLERS */
@@ -108,10 +108,11 @@ switch ($action) {
     // Ticket detail display
     case "ticketdetail":
 
-        if (!$requestGet->has("ticket")) {
+        $ticketID = $requestGet->has("ticket") ? $requestGet->getAlnum("ticket") : -1;
+        if ($ticketID < 1) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
-            $ticket = $ticketManager->getTicketsByMD5(array($requestGet->get("ticket")));
+            $ticket = $ticketManager->getTicketsByMD5(array($ticketID));
             if (count($ticket) < 1) {
                 $content .= "<p>Fant ikke billetten.</p>";
                 die();
