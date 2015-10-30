@@ -26,11 +26,12 @@ body {
     font-size: 14px;
     line-height: 1.42857;
     color: #333;
+    overflow: auto;
 }
 
 #hole-page,
 body.sidebar-expanded {
-    overflow: hidden;
+    overflow: visible;
 }
 
 p {
