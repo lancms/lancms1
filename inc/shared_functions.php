@@ -597,6 +597,12 @@ function user_exists ($userid)
 
 }
 
+/**
+ * Searches after users in the database by nick, firstName, lastName, firstName and lastName, and email ordered by user ID.
+ *
+ * @param $query
+ * @return array
+ */
 function user_find($query) {
     global $sql_prefix;
 
@@ -610,8 +616,10 @@ function user_find($query) {
 
     $getUsers = db_query($usersQ);
     if (db_num($getUsers) > 0) {
-        $users = db_fetch_assoc($getUsers);
+        $users = db_fetch_all($getUsers);
     }
+
+	return $users;
 }
 
 function kiosk_item_price($wareID) {
