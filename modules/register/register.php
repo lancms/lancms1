@@ -132,7 +132,7 @@ switch ($action) {
         //===========================================================
         // Username exists?
         if ($userManager->getUserByNick($username) instanceof User) {
-            $errors[] = 'username';            
+            $errors[] = 'Username is taken.';
             $userManager->saveFormInSession("register_errors", $errors);
 
             header("Location: index.php?module=register&error=6");
@@ -142,14 +142,14 @@ switch ($action) {
         //===========================================================
         // Valid email address?
         if (filter_var($email, FILTER_VALIDATE_EMAIL) == false) {
-            $errors[] = 'email';
+            $errors[] = 'Email is not valid.';
             unset($saveFormData['email']);
         }
 
         //===========================================================
         // Email exists?
         if ($userManager->userExistsByEmail($email)) {
-            $errors[] = 'email';
+            $errors[] = 'Email already in use.';
             $userManager->saveFormInSession("register_errors", $errors);
 
             header("Location: index.php?module=register&error=7");
@@ -159,34 +159,34 @@ switch ($action) {
         //===========================================================
         // Retyped correct password?
         if ($password != $repassword) {
-            $errors[] = 'repassword';
+            $errors[] = 'Wrong re-typed password';
         }
         //===========================================================
         // Validate gender if set.
         if ($gender !== null && $gender === -1) {
-            $errors[] = 'gender';
+            $errors[] = 'Gender is required';
             unset($saveFormData['gender']);
         }
         //===========================================================
         // Validate birthday if set.
         if ($birthDay !== null && $birthDay < 1) {
-            $errors[] = 'day';
+            $errors[] = 'Day is required';
             unset($saveFormData['day']);
         }
 
         if ($birthMonth !== null && $birthMonth < 1) {
-            $errors[] = 'month';
+            $errors[] = 'Month is required';
             unset($saveFormData['month']);
         }
 
         if ($birthYear !== null && $birthYear < 1900) {
-            $errors[] = 'year';
+            $errors[] = 'Year is required';
             unset($saveFormData['year']);
         }
         //===========================================================
         // Validate cell phone if configured.
         if ($cellPhone !== null && is_string($cellPhone) == false) {
-            $errors[] = 'cellphone';
+            $errors[] = 'Cellphone is required and must be numeric';
             unset($saveFormData['cellphone']);
         }
         //===========================================================
@@ -277,7 +277,11 @@ switch ($action) {
         } else if (isset($_GET['error']) && intval($_GET['error']) == 7) {
             $content .= "<div class=\"alert alert-danger\">" . _("Email is taken, try another one.") . "</div>";
         } else if (count($errors) > 0 && isset($_GET['error'])) {
-            $content .= "<div class=\"alert alert-danger\">" . _("Form did not validate, check for errors below") . "</div>";
+            $content .= "<div class=\"alert alert-danger\"><strong>" . _("Form did not validate, check for errors below") . "</strong><br /><ul>";
+            foreach ($errors as $error) {
+                $content .= "<li>" . $error . "</li>";
+            }
+            $content .= "</ul></div>";
         }
 
         $content .= "<div class=\"register-form\">
