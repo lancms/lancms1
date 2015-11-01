@@ -57,11 +57,14 @@ class UserGroupManager
      * Provides group instances from an array of IDs.
      * 
      * @param array $groupIDs
+     * @param int|null $eventID
      * @return UserGroup[]
      * @throws Exception
      */
-    public function getGroupsByID(array $groupIDs)
+    public function getGroupsByID(array $groupIDs, $eventID = null)
     {
+        global $sessioninfo;
+
         if (!is_array($groupIDs))
             throw new Exception("Array of group IDs is not an array...");
 
@@ -70,6 +73,10 @@ class UserGroupManager
 
         if (count($groupIDs) < 1)
             throw new Exception("Array of group IDs must contain something..");
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
 
         $groups = array();
 
@@ -86,7 +93,13 @@ class UserGroupManager
         // Is there any groups to fetch?
         if (count($groupIDs) > 0) {
             // create query
-            $qGroups = db_query(sprintf("SELECT `ID`,`eventID`,`groupname`,`groupType` FROM `%s_groups` WHERE `ID` IN (%s)", db_prefix(), implode(",", $groupIDs)));
+            $query = "SELECT `ID`,`eventID`,`groupname`,`groupType` FROM `" . db_prefix() . "_groups` WHERE `ID` IN (" . implode(",", $groupIDs) . ")";
+
+            if (intval($eventID) > 0) {
+                $query .= " AND `eventID` = $eventID";
+            }
+
+            $qGroups = db_query($query);
             $nGroups = db_num($qGroups);
 
             if ($qGroups != false && $nGroups > 0) {
@@ -98,6 +111,13 @@ class UserGroupManager
                     $this->_runtimeGroups[$row["ID"]] = $group;
                 }
             }
+        }
+
+        // Filter with event ID
+        if (intval($eventID) > 0) {
+            $groups = array_filter($groups, function ($group) use ($eventID) {
+                return ($group->getEventID() == $eventID);
+            });
         }
 
         return $groups;
@@ -141,21 +161,13 @@ class UserGroupManager
         // The groups into an array of ids
         $groupIDs = array();
         while ($row = db_fetch_assoc($result)) {
-            $groupIDs[] = $row["groupID"];
+            $groupIDs[] = intval($row["groupID"]);
         }
 
         // Fetch groups
-        $groups = $this->getGroupsByID($groupIDs);
+        $groups = $this->getGroupsByID($groupIDs, $eventID);
         if (count($groups) < 1)
             return array();
-
-        // Filter out eventIDs?
-        if (intval($eventID) > 0) {
-            foreach ($groups as $key => $group) {
-                if ($group->getEventID() != $eventID)
-                    unset($groups[$key]);
-            }
-        }
 
         return $groups;
     }
@@ -164,7 +176,6 @@ class UserGroupManager
      * Provides all groups of an user where access is admin.
      * 
      * @param int $userID
-     * @param int|null $eventID
      * @return UserGroup[]
      */
     public function getUserIsAdminGroups($userID)
@@ -186,17 +197,9 @@ class UserGroupManager
         }
 
         // Fetch groups
-        $groups = $this->getGroupsByID($groupIDs);
+        $groups = $this->getGroupsByID($groupIDs, $eventID);
         if (count($groups) < 1)
             return array();
-
-        // Filter out eventIDs?
-        if (intval($eventID) > 0) {
-            foreach ($groups as $key => $group) {
-                if ($group->getEventID() != $eventID)
-                    unset($groups[$key]);
-            }
-        }
 
         return $groups;
     }
