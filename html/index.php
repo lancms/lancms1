@@ -218,7 +218,7 @@ while($rEventList = db_fetch($qEventList))
 		} // End if acl_access
 		// Else we should not do anything
 	} // End if eventPublic =0
-	else $design_eventlist .= "<li>$rEventList->eventname</li>\n";
+	else $design_eventlist .= "<li><span>$rEventList->eventname</span></li>\n";
 }
 
 // This should probably list something... What groups you are member of?

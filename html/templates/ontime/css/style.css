@@ -29,9 +29,12 @@ body {
     overflow: auto;
 }
 
-#hole-page,
 body.sidebar-expanded {
-    overflow: visible;
+    overflow: hidden;
+}
+
+#hole-page {
+    overflow: hidden;
 }
 
 p {
@@ -172,7 +175,8 @@ h1.page-title {
     padding: 0;
 }
 
-#mobilemenu .section ul li a {
+#mobilemenu .section ul li a,
+#mobilemenu .section ul li span {
     display: block;
     padding: 10px;
     color: #ffffff;
