@@ -4,6 +4,8 @@
  * Arrival module, this is a rewrite of the old module.
  */
 
+use \Symfony\Component\HttpFoundation\Request;
+
 $ticketManager = TicketManager::getInstance();
 $usertable = $sql_prefix . "_users";
 $ticketstable = $sql_prefix."_tickets";
@@ -19,6 +21,10 @@ $acl_seating = acl_access("seating", "", $sessioninfo->eventID);
 if ($acl_ticket == 'No')
     printNoAccessError();
 
+$request = Request::createFromGlobals();
+$requestGet = $request->query;
+$requestPost = $request->request;
+
 $content .= "
         <h1 class=\"page-title\">" . _("Arrival") . "</h1>
         <div class=\"arrival\">";
@@ -29,8 +35,8 @@ switch ($action) {
     // Ticket detail display
     case "changeuser":
 
-        $ticketID = $requestGet->has("ticket") ? $requestGet->getAlnum("ticket") : -1;
-        if ($ticketID < 1) {
+        $ticketID = $requestGet->has("ticket") ? $requestGet->get("ticket") : null;
+        if (strlen(trim($ticketID)) < 1) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
             $ticket = $ticketManager->getTicketByMD5($ticketID);
@@ -108,8 +114,8 @@ switch ($action) {
     // Ticket detail display
     case "ticketdetail":
 
-        $ticketID = $requestGet->has("ticket") ? $requestGet->getAlnum("ticket") : -1;
-        if ($ticketID < 1) {
+        $ticketID = $requestGet->has("ticket") ? $requestGet->get("ticket") : null;
+        if (strlen(trim($ticketID)) < 1) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
             $ticket = $ticketManager->getTicketsByMD5(array($ticketID));
@@ -121,7 +127,7 @@ switch ($action) {
             $ticket = $ticket[0];
 
             /* HANDLERS */
-            if (isset($_GET['handle'])) {
+            if ($requestGet->get("handle")) {
                 $ret = "index.php?module=$thisModule&action=ticketdetail&ticket=" . $ticketID;
 
                 switch ($_GET['handle']) {
@@ -254,18 +260,21 @@ switch ($action) {
     default:
 
         $scopeSelected = 'search_all';
-        if (isset($_POST['scope']) && $_POST['scope'] == 'tickets')
+        if ($requestGet->has("scope") && $requestGet->getAlpha("scope") == 'tickets') {
             $scopeSelected = 'search_tickets';
+        }
 
         $userQueryValue = "";
-        if (isset($_POST['query'])) {
-            $userQueryValue = htmlspecialchars($_POST['query']);
+        if ($requestGet->has("query")) {
+            $userQueryValue = htmlspecialchars($requestGet->get("query"));
         }
 
         $content .= '
         <p>' . _("Administer tickets on users.") . '</p>
         <div class=\"front\">
-            <form class="normal inline" action="index.php?module=' . $thisModule . '&action=searchUser" method="post">
+            <form class="normal inline" action="index.php" method="get">
+                <input type="hidden" name="module" value="' . $thisModule . '" />
+                <input type="hidden" name="action" value="searchUser" />
                 <div class="form-group">
                     <input type="text" id="query-arrival" name="query" value="' . $userQueryValue . '" />
                     <input type="submit" name="doSearch" value="' . _("Search") . '" />
@@ -280,18 +289,16 @@ switch ($action) {
         </div>';
 
         // Check if from has been submitted.
-        if (isset($_POST['doSearch'])) {
-            $scope = isset($_POST['scope']) ? $_POST['scope'] : 'all';
+        if ($requestGet->has("doSearch")) {
+            $scope = $requestGet->has("scope") ? $requestGet->get("scope") : 'all';
 
             $result = array();
             $resultCount = 0;
 
             // Verify there is a search query
-            $searchString = db_escape($_POST['query']);
-            if (strlen($_POST['query']) > 0 || $scope == "tickets") {
+            $searchString = db_escape($userQueryValue);
+            if (strlen(trim($searchString)) > 0 || $scope == "tickets") {
                 $query = null;
-
-                $str = db_escape(htmlspecialchars($_POST['query']));
 
                 if ($scope == 'all') {
                     $query = sprintf("SELECT nick, firstName, lastName as lastName, ID FROM %s WHERE
@@ -300,7 +307,7 @@ switch ($action) {
                         lastName LIKE '%%%s%%' OR
                         CONCAT(firstName, ' ', lastName) LIKE '%%%s%%' OR
                         EMail LIKE '%%%s%%'
-                        ) ORDER BY ID", $usertable, $str, $str, $str, $str, $str);
+                        ) ORDER BY ID", $usertable, $searchString, $searchString, $searchString, $searchString, $searchString);
                 } else if ($scope == "tickets") {
                     $query = sprintf("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName,
                         u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID AND
@@ -309,7 +316,7 @@ switch ($action) {
                         u.lastName LIKE '%%%s%%' OR
                         CONCAT(u.firstName, ' ', u.lastName) LIKE '%%%s%%' OR
                         EMail LIKE '%%%s%%'
-                        ) ORDER BY u.ID", $usertable, $ticketstable, $sessioninfo->eventID, $str, $str, $str, $str, $str);
+                        ) ORDER BY u.ID", $usertable, $ticketstable, $sessioninfo->eventID, $searchString, $searchString, $searchString, $searchString, $searchString);
                 }
 
                 $result = db_query($query);
@@ -321,7 +328,7 @@ switch ($action) {
                     while ($row = db_fetch($result)) {
                         $cssClass = ($i++ % 2 == 0 ? 'odd' : 'even');
 
-                        $tickets = $ticketManager->getTicketsOfUser($row->ID, null, array(''));
+                        $tickets = $ticketManager->getTicketsOfUser($row->ID, null);
                         $content .= "<tr class=\"$cssClass\"><td>" . $row->firstName . " " . $row->lastName . " (" . $row->nick . ")</td><td>";
 
                         // Output tickets
