@@ -159,6 +159,7 @@ TABLE [prefix]_wannabeQuestions
 	ID,		int(11),	PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	,
 	question,	text,		,	,	,
+	progName,	varchar(150),	,	,	,
 	questionType,	enum('text', 'select', 'radio', 'checkbox'), , , ,
 	questionOrder,	int(2)		,	,	0,		
 }

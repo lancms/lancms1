@@ -9,6 +9,10 @@ if($acl_access == 'No') die("You don't have access to this");
 $wannabeManager = \Wannabe\Manager::getInstance();
 $onlineUserID = $sessioninfo->userID;
 
+$request     = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+$requestGet  = $request->query;
+$requestPost = $request->request;
+
 switch ($action) {
 
     // -------------------------------- [LIST QUESTIONS] -------------------------------- //
@@ -54,15 +58,15 @@ switch ($action) {
         $editMode = false;
         $errors = array();
 
-        if (array_key_exists("questionID", $_GET) && intval($_GET["questionID"]) > 0) {
-            $question = $wannabeManager->getQuestionByID($_GET["questionID"], array($eventID));
+        if ($requestGet->has("questionID") && intval($requestGet->get("questionID")) > 0) {
+            $question = $wannabeManager->getQuestionByID($requestGet->getDigits("questionID"), array($eventID));
             if ($question instanceof \Wannabe\Question == false) {
                 $content .= "<div>The question was not found.</div>";
                 return; // Stop file!
             }
 
             // Delete?
-            if (array_key_exists("delete", $_GET) && $_GET["delete"] === "true") {
+            if ($requestGet->has("delete") && $requestGet->getBoolean("delete") === true) {
                 $wannabeManager->deleteQuestion($question); // Logged in method
                 header("Location: ?module=$module&action=questions&deletedQuestion=true");
                 die();
@@ -72,9 +76,10 @@ switch ($action) {
         }
 
         // Save the form?
-        if (array_key_exists("save-question", $_POST)) {
-            $questionData = (array_key_exists("questionData", $_POST) ? $_POST["questionData"] : "");
-            $questionType = (array_key_exists("questionType", $_POST) ? $_POST["questionType"] : "");
+        if ($requestPost->has("save-question")) {
+            $questionData = $requestPost->get("questionData", "");
+            $questionType = $requestPost->get("questionType", "");
+            $progName = $requestPost->get("prog_name", "");
 
             // Verify that all of the fields are filled in.
             if (mb_strlen($questionData, "UTF-8") < 1 || strlen($questionType) < 1) {
@@ -88,6 +93,7 @@ switch ($action) {
 
                 $question->setQuestionData($questionData);
                 $question->setQuestionType($questionType);
+                $question->setProgrammaticName($progName);
                 $question->commitChanges();
 
                 // Log this action.
@@ -113,6 +119,10 @@ switch ($action) {
         // Print edit form
         $content .= "<form action=\"?module=$module&amp;action=editQuestion&amp;questionID=" . ($editMode ? $question->getQuestionID() : "-1") . "\" method=\"post\">
             <div class=\"table no-colour\">
+                <div class=\"row\">
+                    <div class=\"cell\"><strong>" . _("Programmatic name") . "</strong></div>
+                    <div class=\"cell\"><input name=\"prog_name\" type=\"text\" value=\"" . ($editMode ? $question->getProgrammaticName() : "") . "\" /></div>
+                </div>
                 <div class=\"row\">
                     <div class=\"cell\"><strong>" . _("Question") . "</strong></div>
                     <div class=\"cell\"><textarea name=\"questionData\" cols=\"50\" rows=\"5\">" . ($editMode ? $question->getQuestionData() : "") . "</textarea></div>

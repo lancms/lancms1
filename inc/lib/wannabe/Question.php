@@ -85,4 +85,24 @@ class Question extends \SqlObject {
         $this->_setField("questionType", $questionType);
     }
 
+    /**
+     * Provides the programmatic name of this question.
+     *
+     * @return string|null
+     */
+    public function getProgrammaticName()
+    {
+        return $this->_getField("progName");
+    }
+
+    /**
+     * Set the programmatic name of this question.
+     *
+     * @param string $progName
+     */
+    public function setProgrammaticName($progName)
+    {
+        $this->_setField("progName", $progName);
+    }
+
 }
