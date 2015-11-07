@@ -479,7 +479,7 @@ class Manager {
     public function createApplicationComment($userID, $crewID, $comment, $approval, $adminID, $type = -1, $createdTime = 0) {
         global $sessioninfo;
 
-        $query = db_query(sprintf(
+        db_query(sprintf(
             "INSERT INTO `%s_wannabeComment`(`crewID`,`comment`,`approval`,`userID`,`adminID`,`createdTime`,`commentType`)VALUES(%d, '%s', %d, %d, %d, %d, %d)",
             db_prefix(),
             $crewID,
