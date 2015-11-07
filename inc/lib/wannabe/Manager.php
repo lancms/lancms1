@@ -4,6 +4,7 @@ namespace Wannabe;
 
 use LanException\InvalidArgumentException;
 use LanException\SQLException;
+use PHPExcel;
 
 require_once __DIR__ . "/Question.php";
 require_once __DIR__ . "/QuestionResponse.php";
@@ -50,7 +51,7 @@ class Manager {
      */
     public function getQuestions($eventIDs=array()) {
         // Allow to filter on event, if it's -1 then get all.
-        $query = "SELECT `ID`,`eventID`,`question`,`questionType`,`questionOrder` FROM `" . db_prefix() . "_wannabeQuestions`";
+        $query = "SELECT `ID`,`eventID`,`question`,`questionType`,`questionOrder`,`progName` FROM `" . db_prefix() . "_wannabeQuestions`";
 
         // sanatize our array
         $eventIDs = array_map("intval", $eventIDs);
@@ -124,7 +125,7 @@ class Manager {
             throw new InvalidArgumentException("Invalid argument given to method, expected an int over zero.");
         }
 
-        $query = sprintf("SELECT `ID`,`eventID`,`question`,`questionType`,`questionOrder` FROM `" . db_prefix() . "_wannabeQuestions` WHERE `ID`=%s", $questionID);
+        $query = sprintf("SELECT `ID`,`eventID`,`question`,`questionType`,`questionOrder`,`progName` FROM `" . db_prefix() . "_wannabeQuestions` WHERE `ID`=%s", $questionID);
 
         // Apply event filer if set and valid.
         if (count($eventIDs) > 0) {
@@ -415,6 +416,20 @@ class Manager {
     }
 
     /**
+     * Provides approved applications.
+     *
+     * @param null $eventID
+     * @return Application[]
+     */
+    public function getApprovedApplications($eventID=null)
+    {
+        return array_filter($this->getApplications($eventID), function ($application) {
+            /** @var Application $application */
+            return $application->isFinished();
+        });
+    }
+
+    /**
      * @param int|null $userID
      * @param int|null $eventID
      * @return Application
@@ -514,6 +529,88 @@ class Manager {
             default:
                 return lang("Unknown option");
         } // End switch
+    }
+
+    /**
+     * @param null $eventID
+     * @return Application[]|null
+     */
+    public function getAllergiesApplication($eventID = null)
+    {
+        $applications = $this->getApprovedApplications($eventID);
+
+        // Make sure we have applications
+        if (!is_array($applications) || count($applications) < 1) {
+            return null;
+        }
+
+        return array_filter($this->getApplications($eventID), function ($application) {
+            /** @var Application $application */
+            $questions = $application->getResponses();
+            if (!is_array($questions) || count($questions) < 1) {
+                return false;
+            }
+
+            foreach ($questions as $question) {
+                /** @var $question QuestionResponse */
+                if ($question->isAllergicResponse() && $question->hasResponse()) {
+                    return true;
+                }
+            }
+
+            return false;
+        });
+    }
+
+    /**
+     * @return null|PHPExcel
+     * @throws \PHPExcel_Exception
+     */
+    public function getExcelOfAllergies()
+    {
+        $applications = $this->getAllergiesApplication();
+
+        // Make sure we have applications
+        if (!is_array($applications) || count($applications) < 1) {
+            return null;
+        }
+
+        // Create document
+        $excel = new PHPExcel();
+        $excel->getProperties()->setCreator("Lancms")
+                               ->setLastModifiedBy("Lancms")
+                               ->setTitle(_("Wannabe Allergies"))
+                               ->setSubject(_("Wannabe Allergies"))
+                               ->setDescription(_("Wannabe Allergies"));
+
+        // Set header
+        $excel->setActiveSheetIndex(0)->setCellValueByColumnAndRow(0, 1, "Person");
+        $excel->setActiveSheetIndex(0)->setCellValueByColumnAndRow(1, 1, "Allergi");
+
+        $row = 2;
+        foreach ($applications as $application) {
+            /** @var Application $application */
+            $questions = $application->getResponses();
+            $allergi = "";
+            if (is_array($questions) || count($questions) > 0) {
+                foreach ($questions as $question) {
+                    /** @var $question QuestionResponse */
+                    if ($question->isAllergicResponse() && $question->hasResponse()) {
+                        $allergi = $question->getResponse();
+                    }
+                }
+            }
+
+            $excel->setActiveSheetIndex(0)->setCellValueByColumnAndRow(0, $row, $application->getUser()->getFullName());
+            $excel->setActiveSheetIndex(0)->setCellValueByColumnAndRow(1, $row, $allergi);
+
+            $row++;
+        }
+
+        // make excel open the first sheet
+        $excel->setActiveSheetIndex(0);
+
+        return $excel;
     }
 
 }

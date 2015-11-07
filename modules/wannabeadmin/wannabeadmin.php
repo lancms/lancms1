@@ -588,6 +588,32 @@ switch ($action) {
 
         break;
 
+    // -------------------------------- [EXPORT ALLERGIES] -------------------------------- //
+    case "allergies":
+
+        $excel = $wannabeManager->getExcelOfAllergies();
+
+        if (is_null($excel)) {
+            $content .= "Oooooopps, en feil skjedde...";
+        } else {
+            // Redirect output to a client’s web browser (Excel5)
+            header('Content-Type: application/vnd.ms-excel');
+            header('Content-Disposition: attachment;filename="lancms_allergies.xls"');
+            header('Cache-Control: max-age=0');
+
+            // If you're serving to IE over SSL, then the following may be needed
+            header ('Expires: Mon, 26 Jul 1997 05:00:00 GMT'); // Date in the past
+            header ('Last-Modified: '.gmdate('D, d M Y H:i:s').' GMT'); // always modified
+            header ('Cache-Control: cache, must-revalidate'); // HTTP/1.1
+            header ('Pragma: public'); // HTTP/1.0
+
+            $objWriter = PHPExcel_IOFactory::createWriter($excel, 'Excel5');
+            $objWriter->save('php://output');
+            exit;
+        }
+
+        break;
+
     // -------------------------------- [INDEX] -------------------------------- //
     default:
 
@@ -595,15 +621,16 @@ switch ($action) {
         if($acl_access == "Admin")
         {
             // User has wannabe adminrights
-            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=questions\">".lang("Questions", "wannabeadmin")."</a></li>\n";
-            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=crews\">".lang("Crews", "wannabeadmin")."</a></li>\n";
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=questions\">"._("Questions")."</a></li>\n";
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=crews\">"._("Crews")."</a></li>\n";
 
         } // End acl_access = Admin
 
         if($acl_access == 'Write' || $acl_access == 'Admin')
         {
             // User has wannabe write-access (may see and write comments)
-            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=listApplications\">".lang("View Applications", "wannabeadmin")."</a></li>";
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=listApplications\">"._("View Applications")."</a></li>";
+            $content .= "<li><a href=\"?module=wannabeadmin&amp;action=allergies\">"._("Export allergies")."</a></li>\n";
 
         } // End acl_access > Write
         $content .= "</ul>";

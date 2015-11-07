@@ -115,4 +115,30 @@ class QuestionResponse extends \SqlObject {
         $this->_setField("response", $arg);
     }
 
+    /**
+     * Indicates if this response has data.
+     *
+     * @return bool
+     */
+    public function hasResponse()
+    {
+        return strlen($this->getResponse()) > 0;
+    }
+
+    /**
+     * Indicates if this response is for allergies.
+     *
+     * @return bool
+     */
+    public function isAllergicResponse()
+    {
+        $question = $this->getQuestion();
+
+        if (!$question instanceof Question) {
+            return false;
+        }
+
+        return ($question->getProgrammaticName() == "allergies");
+    }
+
 }
