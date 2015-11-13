@@ -6,8 +6,10 @@ $content .= "
                 <p>Ved å betale i døra betaler du når du ankommer GlobeLAN og får kun reservere en plass med en billett.</p>
 
                 <div class=\"actions pull-right\">
-                    <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
-                    <button type=\"button\" class=\"btn-green btn-small\" onclick=\"doPayment('door');\">Fullfør</button>
+                    <form action=\"?module=ticketorder&action=handleOrderTicket\" method=\"post\" id=\"payment-chooser-form1\">
+                        <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
+                        <button type=\"button\" class=\"btn-green btn-small\">Fullfør</button>
+                    </form>
                 </div>
             </div>
 
