@@ -7,7 +7,7 @@ $content .= "
 
                 <div class=\"actions pull-right\">
                     <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
-                    <button type=\"button\" class=\"btn-green btn-small\" onclick=\"doPayment(\"door\");\">Fullfør</button>
+                    <button type=\"button\" class=\"btn-green btn-small\" onclick=\"doPayment('door');\">Fullfør</button>
                 </div>
             </div>
 
