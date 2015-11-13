@@ -8,7 +8,7 @@ $content .= "
                 <div class=\"actions pull-right\">
                     <form action=\"?module=ticketorder&action=handleOrderTicket\" method=\"post\" id=\"payment-chooser-form1\">
                         <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
-                        <button type=\"button\" class=\"btn-green btn-small\">Fullfør</button>
+                        <button type=\"submit\" class=\"btn-green btn-small\">Fullfør</button>
                     </form>
                 </div>
             </div>
