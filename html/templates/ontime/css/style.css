@@ -34,7 +34,7 @@ body.sidebar-expanded {
 }
 
 #hole-page {
-    overflow: hidden;
+    overflow: auto;
 }
 
 p {
@@ -1014,7 +1014,7 @@ div.table.no-colour .row:nth-child(2n) .cell {
 }
 
 .ticket .disclaimer {
-    
+
 }
 
 .crew-application table tr td,
