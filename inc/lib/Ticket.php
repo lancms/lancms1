@@ -2,7 +2,7 @@
 
 /**
  * Represents a ticket that is attatched to a user and owner. TicketType represents a ticket that can be ordered.
- * 
+ *
  * @author edvin
  */
 class Ticket extends SqlObject {
@@ -13,7 +13,7 @@ class Ticket extends SqlObject {
     const TICKET_STATUS_DELETED = 'deleted';
 
     protected $_seat;
-    
+
     function __construct($id) {
         $this->_seat = -1; // Initial value, used to determine if there is a runtime cached seat object.
         parent::__construct("tickets", "ticketID", $id);
@@ -138,7 +138,7 @@ class Ticket extends SqlObject {
 
     /**
      * Provides if this ticket is paid.
-     * 
+     *
      * @return boolean
      */
     public function isPaid() {
@@ -147,7 +147,7 @@ class Ticket extends SqlObject {
 
     /**
      * Provides the UNIX timestamp of when this ticket was marked as paid.
-     * 
+     *
      * @return int
      */
     public function getPaidTime() {
@@ -155,8 +155,8 @@ class Ticket extends SqlObject {
     }
 
     /**
-     * Provides the seat object for this ticket if any. 
-     * 
+     * Provides the seat object for this ticket if any.
+     *
      * @return TicketSeat|null
      */
     public function getSeat() {
@@ -179,7 +179,7 @@ class Ticket extends SqlObject {
 
     /**
      * Indicates if this ticket has a seat on the seatmap.
-     * 
+     *
      * @see getSeat()
      * @return bool
      */
@@ -189,7 +189,7 @@ class Ticket extends SqlObject {
 
     /**
      * Indicates if this ticket can be seated.
-     * 
+     *
      * @see getSeat()
      * @return bool
      */
@@ -218,7 +218,7 @@ class Ticket extends SqlObject {
 
         // Fetch all tickets on user.
         $tickets = TicketManager::getInstance()->getTicketsOfUser($this->getUserID());
-        
+
         if (is_array($tickets) && count($tickets) > 0) {
             foreach ($tickets as $ticket) {
                 if (!$ticket->isPaid() && $ticket->hasSeat()) {
@@ -235,6 +235,15 @@ class Ticket extends SqlObject {
      */
     public function setUsed() {
         $this->_setField('status', self::TICKET_STATUS_USED);
+        $this->commitChanges();
+    }
+
+    /**
+     * Set this ticket as deleted.
+     * Will also commit changes.
+     */
+    public function setDeleted() {
+        $this->_setField('status', self::TICKET_STATUS_DELETED);
         $this->commitChanges();
     }
 
@@ -256,7 +265,7 @@ class Ticket extends SqlObject {
 
     /**
      * Sets a new user of this ticket, you must call commitChanges() after setting values.
-     * 
+     *
      * @param int $userID
      */
     public function setUser($userID) {
@@ -265,11 +274,25 @@ class Ticket extends SqlObject {
 
     /**
      * Sets a new owner of this ticket, you must call commitChanges() after setting values.
-     * 
+     *
      * @param int $userID
      */
     public function setOwner($userID) {
         $this->_setField('owner', intval($userID));
+    }
+
+    /**
+     * Remove any seat this ticket has.
+     *
+     * @return bool
+     */
+    public function removeSeat() {
+        if ($this->getSeat() instanceof TicketSeat) {
+            $this->getSeat()->deleteSeat();
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -279,10 +302,9 @@ class Ticket extends SqlObject {
      */
     public function deleteTicket() {
         // Delete seat if any.
-        if ($this->getSeat() instanceof TicketSeat) {
-            $this->getSeat()->deleteSeat();
-        }
+        $this->removeSeat();
 
+        // Delete the ticket from database.
         $res = db_query(sprintf("DELETE FROM %s_tickets WHERE ticketID = %d AND eventID = %d", db_prefix(), $this->getTicketID(), $this->getEventID()));
         if ($res !== true) {
             return false;

@@ -41,7 +41,7 @@ switch ($action) {
         } else {
             $ticket = $ticketManager->getTicketByMD5($ticketID);
             $changeType = (isset($_GET['type']) ? $_GET['type'] : 'user');
-            
+
             /* HANDLERS */
             if (isset($_GET['set']) && is_numeric($_GET['set']) == true && intval($_GET['set']) > 0) {
                 $ret = "index.php?module=$thisModule&action=ticketdetail&ticket=" . $ticketID . "&changed=" . $changeType;
@@ -130,7 +130,7 @@ switch ($action) {
             if ($requestGet->get("handle")) {
                 $ret = "index.php?module=$thisModule&action=ticketdetail&ticket=" . $ticketID;
 
-                switch ($_GET['handle']) {
+                switch ($requestGet->get('handle')) {
                     case "markpaid":
                         $ticket->setPaid();
                         $ret .= "&setaspaid=true";
@@ -144,6 +144,12 @@ switch ($action) {
                     case "setused":
                         $ticket->setUsed();
                         $ret .= "&setasused=true";
+                        break;
+
+                    case "delete":
+                        $ticket->setDeleted();
+                        $ticket->removeSeat(); // Remove seat.
+                        $ret .= "&deleted=true";
                         break;
 
                     default:
@@ -205,8 +211,8 @@ switch ($action) {
             }
 
             // Delete ticket
-            if ($acl_ticket == 'Admin') {
-                $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=delete&amp;ticket=" . $ticketID . "\">";
+            if ($acl_ticket == 'Admin' && $ticket->getStatus() != Ticket::TICKET_STATUS_DELETED) {
+                $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=$action&amp;ticket=" . $ticketID . "&amp;handle=delete\">";
                 $content .= "<input type=\"submit\" name=\"deleteticket\" class=\"btn-red\" value=\"Delete\" />";
                 $content .= "</form>";
             }
@@ -236,7 +242,7 @@ switch ($action) {
             // Owner information.
             $content .= "<tr><td class=\"head grey\" colspan=\"2\">" . _("Owner") . "</td></tr>";
             $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td>" . $owner->getNick() . "</td></tr>";
-            if ($user->equals($owner) == false) {   
+            if ($user->equals($owner) == false) {
                 $content .= "<tr><td><strong>" . _("Email") . "</strong></td><td>" . $owner->getEmail() . "</td></tr>";
                 $content .= "<tr><td><strong>" . _("Address") . "</strong></td><td>" . $owner->getStreetAddress() . "<br />" . $owner->getPostNumber() . " " . $owner->getPostPlace() . "</td></tr>";
                 $content .= "<tr><td><strong>" . _("Birthday") . "</strong></td><td>" . date("d.M.Y", $owner->getBirthdayTimestamp()) . "</td></tr>";
