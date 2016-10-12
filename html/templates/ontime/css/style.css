@@ -1006,6 +1006,8 @@ div.table.no-colour .row:nth-child(2n) .cell {
 
 .wannabeadmin-app .comment .meta .date {
 	float: right;
+	font-size: 0.7rem;
+	color: #b9b9b9;
 }
 
 .wannabeadmin-app .new-comment {
