@@ -564,7 +564,10 @@ switch ($action) {
 
                 $commentContent = nl2br(htmlspecialchars($comment->getComment()));
                 $content .= "<div class=\"comment\">
-                    <div class=\"meta\">" . $comment->getAdminUser()->getNick() . "</div>
+                    <div class=\"meta\">
+                        <div class=\"name\">" . $comment->getAdminUser()->getNick() . "</div>
+                        <div class=\"date\">" . date("d.m.Y H:i", $comment->getCreatedTime()) . "</div>
+                    </div>
                     <div class=\"comment-content\">" . $commentContent . "</div>
                 </div>";
             }
