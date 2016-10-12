@@ -11,7 +11,7 @@
     <meta charset="utf-8" />
     <?php echo $design_head; ?>
 
-    <link rel="stylesheet" href="templates/ontime/css/style.css?v=1.0.2" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/style.css?v=1.0.3" type="text/css" />
     <link rel="stylesheet" href="templates/ontime/css/responsive.css" type="text/css" />
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
