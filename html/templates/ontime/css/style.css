@@ -993,6 +993,21 @@ div.table.no-colour .row:nth-child(2n) .cell {
     margin-top: 2px;
 }
 
+.wannabeadmin-app .comment::after,
+.wannabeadmin-app .comment::before {
+	clear: both;
+	display: table;
+	content: "";
+}
+
+.wannabeadmin-app .comment .meta .name {
+	float: left;
+}
+
+.wannabeadmin-app .comment .meta .date {
+	float: right;
+}
+
 .wannabeadmin-app .new-comment {
     display: none;
     overflow: hidden;
