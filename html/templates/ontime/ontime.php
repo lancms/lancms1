@@ -19,6 +19,7 @@
     
     <script src="templates/ontime/js/jquery.min.js"></script>
     <script src="templates/ontime/js/mobilemenu.js"></script>
+    <script src="templates/ontime/js/timeago.min.js"></script>
     <script src="templates/ontime/js/scripts.js"></script>
 
     <?php if ($eventinfo->eventname) { ?>
