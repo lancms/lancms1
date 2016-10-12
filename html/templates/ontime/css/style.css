@@ -1000,14 +1000,15 @@ div.table.no-colour .row:nth-child(2n) .cell {
 	content: "";
 }
 
-.wannabeadmin-app .comment .meta .name {
-	float: left;
+.wannabeadmin-app .comment .meta .name,
+.wannabeadmin-app .comment .meta .date {
+	display: inline-block;
+	vertical-align: middle;
 }
 
 .wannabeadmin-app .comment .meta .date {
-	float: right;
 	font-size: 0.7rem;
-	color: #b9b9b9;
+	color: #999999;
 }
 
 .wannabeadmin-app .new-comment {
