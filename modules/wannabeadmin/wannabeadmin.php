@@ -566,7 +566,7 @@ switch ($action) {
                 $content .= "<div class=\"comment\">
                     <div class=\"meta\">
                         <div class=\"name\">" . $comment->getAdminUser()->getNick() . "</div>
-                        <div class=\"date\"><span class=\"timeago-js\" datetime=\"" . date("Y-m-d H:i:s") . "\"></span></div>
+                        <div class=\"date\"><span class=\"timeago-js\" datetime=\"" . date("Y-m-d H:i:s", $comment->getCreatedTime()) . "\"></span></div>
                     </div>
                     <div class=\"comment-content\">" . $commentContent . "</div>
                 </div>";
