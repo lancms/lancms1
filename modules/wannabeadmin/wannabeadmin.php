@@ -424,7 +424,9 @@ switch ($action) {
             die();
         }
 
-        $content .= "<div class=\"wannabeadmin-app\"><h1 class=\"page-title\">" . $applicant->getFullName() . " (" . $applicant->getNick() . ")</h1>";
+        $content .= "<div class=\"wannabeadmin-app\">";
+        $content .= '<div class="back-button"><a href="index.php?module=wannabeadmin&amp;action=listApplications">' . lang('Go back') . '</a></div>';
+        $content .= "<h1 class=\"page-title\">" . $applicant->getFullName() . " (" . $applicant->getNick() . ")</h1>";
         $content .= "
         <div class=\"left-content\">
             <h3>" . _("Userinfo") . "</h3>

@@ -943,6 +943,10 @@ div.table.no-colour .row:nth-child(2n) .cell {
     background-color: #ff0000;
 }
 
+.wannabeadmin-app .back-button {
+	margin-bottom: 10px;
+}
+
 .wannabeadmin-app .set-preference-form {
     margin-top: 10px;
 }
