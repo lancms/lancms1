@@ -993,8 +993,8 @@ div.table.no-colour .row:nth-child(2n) .cell {
     margin-top: 2px;
 }
 
-.wannabeadmin-app .comment::after,
-.wannabeadmin-app .comment::before {
+.wannabeadmin-app .comment .meta::after,
+.wannabeadmin-app .comment .meta::before {
 	clear: both;
 	display: table;
 	content: "";
