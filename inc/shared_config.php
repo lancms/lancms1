@@ -217,7 +217,7 @@ $userprefs[8]['name'] = 'gender';
 $userprefs[8]['displayName'] = lang('Gender');
 $userprefs[8]['mandatory'] = config("userinfo_gender_required");
 $userprefs[8]['edit_userAdmin'] = 'Write'; // Require Write-access in userAdmin to change this
-$userprefs[8]['dropdown_values'] = array ('Male' => 'Male', 'Female' => 'Female');
+$userprefs[8]['dropdown_values'] = array ('Male' => 'Male', 'Female' => 'Female', 'Other' => 'Other');
 
 $userprefs[9]['type'] = 'text';
 $userprefs[9]['name'] = 'cellphone';

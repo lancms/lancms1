@@ -138,7 +138,7 @@ class User extends SqlObject {
     }
 
     /**
-     * Provides the gender of this user. Male or Female.
+     * Provides the gender of this user. Male, Female or Other.
      * 
      * @return string
      */
@@ -378,7 +378,7 @@ class User extends SqlObject {
     }
 
     /**
-     * Set the gender of this user. Male or Female.
+     * Set the gender of this user. Male, Female or Other
      * 
      * @param string $arg
      */
