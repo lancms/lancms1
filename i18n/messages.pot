@@ -7,7 +7,7 @@
 msgid   ""
 msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-        "POT-Creation-Date: 2015-10-14 18:39+0200\n"
+        "POT-Creation-Date: 2016-10-14 20:25+0200\n"
         "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
         "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
         "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,39 +16,74 @@ msgstr  "Project-Id-Version: LANCMS 1.0-alpha\n"
         "Content-Type: text/plain; charset=CHARSET\n"
         "Content-Transfer-Encoding: 8bit\n"
 
-#: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:23
-#: ../modules/logs/logs.php:50 ../html/index.php:113
-msgid   "Arrival"
+#: ../modules/FAQ/FAQ.php:53
+msgid   "Edit FAQ"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:31
-#: ../modules/arrival/arrival.old.php:292
-#: ../modules/arrival/arrival.old.php:334 ../modules/arrival/arrival.php:78
-#: ../modules/arrival/arrival.php:270 ../modules/sleepers/sleepers.php:280
-#: ../modules/useradmin/useradmin.php:31
-#: ../modules/usertickets/usertickets.php:75
-msgid   "Search"
+#: ../modules/FAQ/FAQ.php:56
+msgid   "Delete FAQ"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:273
-msgid   "Search all users"
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.old.php:322
+#: ../modules/wannabeadmin/wannabeadmin.php:34
+#: ../modules/wannabeadmin/wannabeadmin.php:127
+#: ../modules/wannabeadmin/wannabeadmin.php:475
+msgid   "Question"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:276
-msgid   "Search users with tickets"
+#: ../modules/FAQ/FAQ.php:64
+msgid   "Add question"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:109 ../modules/crewlist/crewlist.php:23
-#: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
-#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
-msgid   "Nick"
+#: ../modules/FAQ/FAQ.php:83 ../modules/edituserinfo/edituserinfo.php:109
+#: ../modules/edituserinfo/edituserinfo.php:213
+#: ../modules/eventadmin/eventadmin.php:151
+#: ../modules/eventadmin/eventadmin.php:202
+#: ../modules/eventadmin/eventadmin.php:231
+#: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
+#: ../modules/infoscreens/infoscreens.php:237
+#: ../modules/kioskadmin/kioskadmin.php:123
+#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
+#: ../modules/static/static.php:124 ../modules/static/static.php:234
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:105
+msgid   "Save"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:109
+#: ../modules/SMS/SMS.php:19
+msgid   "Create SMS"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:24
+msgid   "Select recipient(s):"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
+msgid   "Preview SMS"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
+msgid   "Number of characters entered:"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:66
+msgid   "Recipients"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:68
+msgid   "Sends to group:"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:72 ../modules/register/register.old.php:238
+#: ../modules/register/register.php:290 ../modules/useradmin/useradmin.php:63
+#: ../inc/shared_config.php:170
+msgid   "Username"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:73 ../modules/arrival/arrival.old.php:109
 #: ../modules/arrival/arrival.old.php:185
-#: ../modules/arrival/arrival.old.php:193 ../modules/arrival/arrival.php:90
-#: ../modules/arrival/arrival.php:231 ../modules/arrival/arrival.php:240
-#: ../modules/arrival/arrival.php:317 ../modules/crewlist/crewlist.php:21
+#: ../modules/arrival/arrival.old.php:193 ../modules/arrival/arrival.php:96
+#: ../modules/arrival/arrival.php:244 ../modules/arrival/arrival.php:253
+#: ../modules/arrival/arrival.php:331 ../modules/crewlist/crewlist.php:21
 #: ../modules/infoscreens/infoscreens.php:25
 #: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/kioskadmin/kioskadmin.php:29
@@ -56,12 +91,59 @@ msgstr  ""
 #: ../modules/kioskadmin/kioskadmin.php:138
 #: ../modules/kioskadmin/kioskadmin.php:212 ../modules/news/news.php:13
 #: ../modules/profile/profile.php:13 ../modules/sleepers/sleepers.php:186
-#: ../modules/sleepers/sleepers.php:297 ../modules/SMS/SMS.php:73
-#: ../modules/usertickets/usertickets.php:87
-#: ../modules/usertickets/usertickets.php:380
+#: ../modules/sleepers/sleepers.php:297
+#: ../modules/usertickets/usertickets.php:84
+#: ../modules/usertickets/usertickets.php:377
 #: ../modules/wannabeadmin/wannabeadmin.old.php:269
-#: ../modules/wannabeadmin/wannabeadmin.php:407
+#: ../modules/wannabeadmin/wannabeadmin.php:435
 msgid   "Name"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:74
+msgid   "Number"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:100
+msgid   "Message content"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:106 ../modules/economy/economy.php:84
+#: ../modules/news/news.php:63 ../modules/ticketorder/ticketorder.old.php:223
+#: ../modules/ticketorder/ticketorder.old.php:227
+#: ../modules/ticketorder/ticketorder.old.php:231
+msgid   "Back"
+msgstr  ""
+
+#: ../modules/SMS/SMS.php:107 ../modules/eventadmin/eventadmin.php:37
+msgid   "Send SMS"
+msgstr  ""
+
+#: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:29
+#: ../modules/logs/logs.php:50 ../html/index.php:113
+msgid   "Arrival"
+msgstr  ""
+
+#: ../modules/arrival/arrival.old.php:31
+#: ../modules/arrival/arrival.old.php:292
+#: ../modules/arrival/arrival.old.php:334 ../modules/arrival/arrival.php:84
+#: ../modules/arrival/arrival.php:286 ../modules/sleepers/sleepers.php:280
+#: ../modules/useradmin/useradmin.php:31
+#: ../modules/usertickets/usertickets.php:75
+msgid   "Search"
+msgstr  ""
+
+#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:289
+msgid   "Search all users"
+msgstr  ""
+
+#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:292
+msgid   "Search users with tickets"
+msgstr  ""
+
+#: ../modules/arrival/arrival.old.php:109 ../modules/crewlist/crewlist.php:23
+#: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
+#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
+msgid   "Nick"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:115
@@ -80,20 +162,20 @@ msgstr  ""
 msgid   "Ticket"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:230
+#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:243
 #: ../modules/ticketadmin/ticketadmin.php:201
 #: ../modules/ticketorder/ticketorder.old.php:29
-#: ../modules/usertickets/usertickets.php:381
+#: ../modules/usertickets/usertickets.php:378
 msgid   "Owner"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:239
+#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:252
 #: ../modules/logs/logs.php:19 ../modules/logs/logs.php:218
 #: ../modules/sessions/sessions.php:15
 #: ../modules/ticketadmin/ticketadmin.php:202
 #: ../modules/ticketorder/ticketorder.old.php:28
-#: ../modules/usertickets/usertickets.php:381
-#: ../modules/wannabeadmin/wannabeadmin.php:280
+#: ../modules/usertickets/usertickets.php:378
+#: ../modules/wannabeadmin/wannabeadmin.php:306
 msgid   "User"
 msgstr  ""
 
@@ -105,35 +187,35 @@ msgstr  ""
 msgid   "E-mail"
 msgstr  ""
 
-#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:235
-#: ../modules/arrival/arrival.php:243 ../modules/profile/profile.php:23
+#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:248
+#: ../modules/arrival/arrival.php:256 ../modules/profile/profile.php:23
 #: ../modules/register/register.old.php:268
-#: ../modules/register/register.php:374
+#: ../modules/register/register.php:379
 #: ../modules/wannabeadmin/wannabeadmin.old.php:270
-#: ../modules/wannabeadmin/wannabeadmin.php:411 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:439 ../inc/shared_config.php:184
 msgid   "Birthday"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:221
 #: ../modules/ticketorder/ticketorder.old.php:133
-#: ../modules/usertickets/usertickets.php:399
+#: ../modules/usertickets/usertickets.php:396
 msgid   "Paid"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:226
 #: ../modules/ticketorder/ticketorder.old.php:48
-#: ../modules/usertickets/usertickets.php:396
+#: ../modules/usertickets/usertickets.php:393
 msgid   "Not paid"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:238
-#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:218
-#: ../modules/usertickets/usertickets.php:410
+#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:231
+#: ../modules/usertickets/usertickets.php:407
 msgid   "Seated"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:247
-#: ../modules/usertickets/usertickets.php:408
+#: ../modules/usertickets/usertickets.php:405
 msgid   "Not seated"
 msgstr  ""
 
@@ -151,12 +233,12 @@ msgid   "Edit userinfo"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:271
-#: ../modules/usertickets/usertickets.php:436
+#: ../modules/usertickets/usertickets.php:433
 msgid   "Change owner"
 msgstr  ""
 
 #: ../modules/arrival/arrival.old.php:273
-#: ../modules/usertickets/usertickets.php:437
+#: ../modules/usertickets/usertickets.php:434
 msgid   "Change user"
 msgstr  ""
 
@@ -179,101 +261,101 @@ msgstr  ""
 msgid   "Add ticket to user"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:63 ../modules/usertickets/usertickets.php:60
+#: ../modules/arrival/arrival.php:69 ../modules/usertickets/usertickets.php:60
 msgid   "Changing user on this ticket, search after a user and then click the "
         "name."
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:65 ../modules/usertickets/usertickets.php:62
+#: ../modules/arrival/arrival.php:71 ../modules/usertickets/usertickets.php:62
 msgid   "Changing owner on this ticket, search after a user and then click "
         "the name."
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:100 ../modules/groups/groups.php:113
-#: ../modules/usertickets/usertickets.php:97
+#: ../modules/arrival/arrival.php:106 ../modules/groups/groups.php:113
+#: ../modules/usertickets/usertickets.php:94
 msgid   "No users found"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:155
+#: ../modules/arrival/arrival.php:168
 msgid   "Unused"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:157
-#: ../modules/usertickets/usertickets.php:404
+#: ../modules/arrival/arrival.php:170
+#: ../modules/usertickets/usertickets.php:401
 msgid   "Used"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:164
+#: ../modules/arrival/arrival.php:177
 msgid   "Mark used"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:173
+#: ../modules/arrival/arrival.php:186
 msgid   "Mark paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:176
+#: ../modules/arrival/arrival.php:189
 msgid   "Mark unpaid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:208 ../modules/useradmin/useradmin.php:59
+#: ../modules/arrival/arrival.php:221 ../modules/useradmin/useradmin.php:62
 msgid   "ID"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:210
+#: ../modules/arrival/arrival.php:223
 #: ../modules/wannabeadmin/wannabeadmin.old.php:340
 #: ../inc/shared_functions.php:229
 msgid   "No"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:212
+#: ../modules/arrival/arrival.php:225
 #: ../modules/wannabeadmin/wannabeadmin.old.php:339
 msgid   "Yes"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:221
-#: ../modules/usertickets/usertickets.php:345
+#: ../modules/arrival/arrival.php:234
+#: ../modules/usertickets/usertickets.php:342
 msgid   "Ticket has been deleted"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:223 ../modules/sleepers/sleepers.php:186
+#: ../modules/arrival/arrival.php:236 ../modules/sleepers/sleepers.php:186
 #: ../modules/ticketadmin/ticketadmin.php:203
 #: ../modules/ticketorder/ticketorder.old.php:26
-#: ../modules/usertickets/usertickets.php:383
+#: ../modules/usertickets/usertickets.php:380
 msgid   "Status"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:224
+#: ../modules/arrival/arrival.php:237
 msgid   "Ticket is paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:224
+#: ../modules/arrival/arrival.php:237
 msgid   "Ticket is not paid"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:233 ../modules/arrival/arrival.php:241
-#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
+#: ../modules/arrival/arrival.php:246 ../modules/arrival/arrival.php:254
+#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:66
 msgid   "Email"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:234 ../modules/arrival/arrival.php:242
+#: ../modules/arrival/arrival.php:247 ../modules/arrival/arrival.php:255
 #: ../modules/profile/profile.php:24 ../modules/register/register.old.php:249
-#: ../modules/register/register.php:337 ../modules/useradmin/useradmin.php:64
+#: ../modules/register/register.php:341 ../modules/useradmin/useradmin.php:67
 #: ../modules/wannabeadmin/wannabeadmin.old.php:271
-#: ../modules/wannabeadmin/wannabeadmin.php:415
+#: ../modules/wannabeadmin/wannabeadmin.php:443
 msgid   "Address"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:265
+#: ../modules/arrival/arrival.php:279
 msgid   "Administer tickets on users."
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:317 ../modules/sleepers/sleepers.php:186
+#: ../modules/arrival/arrival.php:331 ../modules/sleepers/sleepers.php:186
 msgid   "Tickets"
 msgstr  ""
 
-#: ../modules/arrival/arrival.php:346
-#: ../modules/ticketorder/ticketorder.php:334
-#: ../modules/usertickets/usertickets.php:483
+#: ../modules/arrival/arrival.php:360
+#: ../modules/ticketorder/ticketorder.php:349
+#: ../modules/usertickets/usertickets.php:480
 msgid   "No tickets found"
 msgstr  ""
 
@@ -337,13 +419,13 @@ msgstr  ""
 msgid   "Crewlist"
 msgstr  ""
 
-#: ../modules/crewlist/crewlist.php:25 ../inc/shared_config.php:192
+#: ../modules/crewlist/crewlist.php:25 ../inc/shared_config.php:228
 msgid   "EMail"
 msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:27 ../modules/profile/profile.php:21
 #: ../modules/register/register.old.php:299
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:188
+#: ../modules/useradmin/useradmin.php:69 ../inc/shared_config.php:224
 msgid   "Cellphone"
 msgstr  ""
 
@@ -358,7 +440,7 @@ msgstr  ""
 
 #: ../modules/crewlist/crewlist.php:81
 #: ../modules/wannabeadmin/wannabeadmin.old.php:275
-#: ../modules/wannabeadmin/wannabeadmin.php:156
+#: ../modules/wannabeadmin/wannabeadmin.php:166
 msgid   "Crew"
 msgstr  ""
 
@@ -420,13 +502,6 @@ msgstr  ""
 
 #: ../modules/economy/economy.php:83
 msgid   "Accountnumber already exists"
-msgstr  ""
-
-#: ../modules/economy/economy.php:84 ../modules/news/news.php:63
-#: ../modules/SMS/SMS.php:106 ../modules/ticketorder/ticketorder.old.php:223
-#: ../modules/ticketorder/ticketorder.old.php:227
-#: ../modules/ticketorder/ticketorder.old.php:231
-msgid   "Back"
 msgstr  ""
 
 #: ../modules/economy/economy.php:126
@@ -494,20 +569,6 @@ msgstr  ""
 msgid   "Not access to edit userinfo"
 msgstr  ""
 
-#: ../modules/edituserinfo/edituserinfo.php:109
-#: ../modules/edituserinfo/edituserinfo.php:213
-#: ../modules/eventadmin/eventadmin.php:152
-#: ../modules/eventadmin/eventadmin.php:203
-#: ../modules/eventadmin/eventadmin.php:232 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
-#: ../modules/infoscreens/infoscreens.php:237
-#: ../modules/kioskadmin/kioskadmin.php:123
-#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
-#: ../modules/static/static.php:124 ../modules/static/static.php:234
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:105
-msgid   "Save"
-msgstr  ""
-
 #: ../modules/edituserinfo/edituserinfo.php:261
 msgid   "Not access to edit profile picture"
 msgstr  ""
@@ -556,10 +617,6 @@ msgstr  ""
 msgid   "Newsadmin"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:37 ../modules/SMS/SMS.php:107
-msgid   "Send SMS"
-msgstr  ""
-
 #: ../modules/eventadmin/eventadmin.php:39
 msgid   "Kioskadmin"
 msgstr  ""
@@ -577,72 +634,29 @@ msgstr  ""
 msgid   "Mass-mailer"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:91
+#: ../modules/eventadmin/eventadmin.php:90
 msgid   "Change group rights"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:102
+#: ../modules/eventadmin/eventadmin.php:101
 msgid   "Add group"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:135
+#: ../modules/eventadmin/eventadmin.php:134
 msgid   "Group name already exists"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:142
+#: ../modules/eventadmin/eventadmin.php:141
 #: ../modules/globaladmin/globaladmin.php:145
 msgid   "Config successfully saved"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:182
+#: ../modules/eventadmin/eventadmin.php:181
 msgid   "Editing group rights for:"
 msgstr  ""
 
-#: ../modules/eventadmin/eventadmin.php:183
+#: ../modules/eventadmin/eventadmin.php:182
 msgid   "Back to groups"
-msgstr  ""
-
-#: ../modules/FAQ/FAQ.php:53
-msgid   "Edit FAQ"
-msgstr  ""
-
-#: ../modules/FAQ/FAQ.php:56
-msgid   "Delete FAQ"
-msgstr  ""
-
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:30
-#: ../modules/wannabeadmin/wannabeadmin.php:117
-#: ../modules/wannabeadmin/wannabeadmin.php:447
-msgid   "Question"
-msgstr  ""
-
-#: ../modules/FAQ/FAQ.php:64
-msgid   "Add question"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:16
-msgid   "Enabled"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:17
-msgid   "Disabled"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:28
-msgid   "Change forum"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:32
-msgid   "Add forum"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:35
-msgid   "Forum name"
-msgstr  ""
-
-#: ../modules/forumadmin/forumadmin.php:36
-msgid   "Forum description"
 msgstr  ""
 
 #: ../modules/forum/forum.php:21
@@ -683,6 +697,30 @@ msgstr  ""
 
 #: ../modules/forum/forum.php:128
 msgid   "Add reply"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid   "Enabled"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid   "Disabled"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid   "Change forum"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid   "Add forum"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid   "Forum name"
+msgstr  ""
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid   "Forum description"
 msgstr  ""
 
 #: ../modules/globaladmin/globaladmin.php:10
@@ -792,6 +830,7 @@ msgid   "Create clan"
 msgstr  ""
 
 #: ../modules/groups/groups.php:49
+#: ../modules/wannabeadmin/wannabeadmin.php:428
 msgid   "Go back"
 msgstr  ""
 
@@ -843,7 +882,7 @@ msgstr  ""
 #: ../modules/kioskadmin/kioskadmin.php:39
 #: ../modules/kioskadmin/kioskadmin.php:161
 #: ../modules/sleepers/sleepers.php:341
-#: ../modules/usertickets/usertickets.php:447
+#: ../modules/usertickets/usertickets.php:444
 msgid   "Remove"
 msgstr  ""
 
@@ -875,8 +914,8 @@ msgstr  ""
 #: ../modules/infoscreens/infoscreens.php:78
 #: ../modules/kioskadmin/kioskadmin.php:36
 #: ../modules/kioskadmin/kioskadmin.php:159 ../modules/news/news.php:22
-#: ../modules/wannabeadmin/wannabeadmin.php:37
-#: ../modules/wannabeadmin/wannabeadmin.php:163
+#: ../modules/wannabeadmin/wannabeadmin.php:41
+#: ../modules/wannabeadmin/wannabeadmin.php:173
 msgid   "Edit"
 msgstr  ""
 
@@ -900,8 +939,7 @@ msgstr  ""
 msgid   "Wait"
 msgstr  ""
 
-#: ../modules/infoscreens/infoscreens.php:144
-#: ../modules/kiosk/kiosk_old.php:21
+#: ../modules/infoscreens/infoscreens.php:144 ../modules/kiosk/kiosk.php:21
 msgid   "Add"
 msgstr  ""
 
@@ -932,6 +970,38 @@ msgstr  ""
 msgid   "You did something wrong. Go back and try again."
 msgstr  ""
 
+#: ../modules/kiosk/kiosk.php:26
+msgid   "Currently selling to:"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:30
+msgid   "Remove user"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:51
+msgid   "Add one more item"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:52
+msgid   "Remove one item"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:60
+msgid   "SELL"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:66
+msgid   "Add to users credit"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:68
+msgid   "User pays cash"
+msgstr  ""
+
+#: ../modules/kiosk/kiosk.php:99
+msgid   "User not found!"
+msgstr  ""
+
 #: ../modules/kioskadmin/kioskadmin.php:12
 msgid   "Admin waretypes"
 msgstr  ""
@@ -959,9 +1029,9 @@ msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:29
 #: ../modules/kioskadmin/kioskadmin.php:142 ../modules/news/news.php:13
-#: ../modules/usertickets/usertickets.php:384
-#: ../modules/wannabeadmin/wannabeadmin.php:31
-#: ../modules/wannabeadmin/wannabeadmin.php:157
+#: ../modules/usertickets/usertickets.php:381
+#: ../modules/wannabeadmin/wannabeadmin.php:35
+#: ../modules/wannabeadmin/wannabeadmin.php:167
 msgid   "Actions"
 msgstr  ""
 
@@ -986,7 +1056,7 @@ msgid   "Kiosk Wares"
 msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:139
-#: ../modules/wannabeadmin/wannabeadmin.php:121
+#: ../modules/wannabeadmin/wannabeadmin.php:131
 msgid   "Type"
 msgstr  ""
 
@@ -1040,38 +1110,6 @@ msgstr  ""
 
 #: ../modules/kioskadmin/kioskadmin.php:336
 msgid   "Mark credit as paid"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:26
-msgid   "Currently selling to:"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:30
-msgid   "Remove user"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:51
-msgid   "Add one more item"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:52
-msgid   "Remove one item"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:60
-msgid   "SELL"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:66
-msgid   "Add to users credit"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:68
-msgid   "User pays cash"
-msgstr  ""
-
-#: ../modules/kiosk/kiosk_old.php:99
-msgid   "User not found!"
 msgstr  ""
 
 #: ../modules/listing/listing.php:45
@@ -1556,8 +1594,8 @@ msgid   "Global"
 msgstr  ""
 
 #: ../modules/news/news.php:23 ../modules/static/static.php:63
-#: ../modules/wannabeadmin/wannabeadmin.php:38
-#: ../modules/wannabeadmin/wannabeadmin.php:164
+#: ../modules/wannabeadmin/wannabeadmin.php:42
+#: ../modules/wannabeadmin/wannabeadmin.php:174
 msgid   "Delete"
 msgstr  ""
 
@@ -1594,13 +1632,13 @@ msgid   "Fant ikke artikkelen"
 msgstr  ""
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.old.php:255
-#: ../modules/register/register.php:353 ../modules/register/register.php:357
-#: ../inc/shared_config.php:181
+#: ../modules/register/register.php:357 ../modules/register/register.php:361
+#: ../inc/shared_config.php:217
 msgid   "Gender"
 msgstr  ""
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.old.php:250
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:176
+#: ../modules/useradmin/useradmin.php:68 ../inc/shared_config.php:212
 msgid   "Postnumber"
 msgstr  ""
 
@@ -1694,14 +1732,8 @@ msgstr  ""
 msgid   "EMail verified. Welcome aboard"
 msgstr  ""
 
-#: ../modules/register/register.old.php:238
-#: ../modules/register/register.php:286 ../modules/SMS/SMS.php:72
-#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:134
-msgid   "Username"
-msgstr  ""
-
 #: ../modules/register/register.old.php:239
-#: ../modules/register/register.php:314
+#: ../modules/register/register.php:318
 msgid   "Password"
 msgstr  ""
 
@@ -1713,21 +1745,21 @@ msgstr  ""
 msgid   "E-Mail"
 msgstr  ""
 
-#: ../modules/register/register.old.php:244 ../inc/shared_config.php:138
+#: ../modules/register/register.old.php:244 ../inc/shared_config.php:174
 msgid   "First name"
 msgstr  ""
 
-#: ../modules/register/register.old.php:247 ../inc/shared_config.php:143
+#: ../modules/register/register.old.php:247 ../inc/shared_config.php:179
 msgid   "Last name"
 msgstr  ""
 
 #: ../modules/register/register.old.php:258
-#: ../modules/register/register.php:358
+#: ../modules/register/register.php:362
 msgid   "Male"
 msgstr  ""
 
 #: ../modules/register/register.old.php:261
-#: ../modules/register/register.php:359
+#: ../modules/register/register.php:363
 msgid   "Female"
 msgstr  ""
 
@@ -1744,7 +1776,7 @@ msgid   "optional"
 msgstr  ""
 
 #: ../modules/register/register.old.php:302
-#: ../modules/register/register.php:422
+#: ../modules/register/register.php:427
 msgid   "Create user"
 msgstr  ""
 
@@ -1782,42 +1814,46 @@ msgstr  ""
 msgid   "Form did not validate, check for errors below"
 msgstr  ""
 
-#: ../modules/register/register.php:295 ../modules/useradmin/useradmin.php:61
+#: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:64
 msgid   "Firstname"
 msgstr  ""
 
-#: ../modules/register/register.php:305 ../modules/useradmin/useradmin.php:62
+#: ../modules/register/register.php:309 ../modules/useradmin/useradmin.php:65
 msgid   "Lastname"
 msgstr  ""
 
-#: ../modules/register/register.php:321
+#: ../modules/register/register.php:325
 msgid   "Repeat password"
 msgstr  ""
 
-#: ../modules/register/register.php:328
+#: ../modules/register/register.php:332
 msgid   "E-mail address"
 msgstr  ""
 
-#: ../modules/register/register.php:343
+#: ../modules/register/register.php:347
 msgid   "Postcode"
 msgstr  ""
 
-#: ../modules/register/register.php:379 ../modules/sleepers/setwake_gui.php:21
+#: ../modules/register/register.php:364
+msgid   "Other"
+msgstr  ""
+
+#: ../modules/register/register.php:384 ../modules/sleepers/setwake_gui.php:21
 #: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:330
 msgid   "Day"
 msgstr  ""
 
-#: ../modules/register/register.php:388 ../modules/sleepers/setwake_gui.php:22
+#: ../modules/register/register.php:393 ../modules/sleepers/setwake_gui.php:22
 #: ../modules/sleepers/setwake_gui.php:33
 msgid   "Month"
 msgstr  ""
 
-#: ../modules/register/register.php:399 ../modules/sleepers/setwake_gui.php:23
+#: ../modules/register/register.php:404 ../modules/sleepers/setwake_gui.php:23
 #: ../modules/sleepers/setwake_gui.php:39
 msgid   "Year"
 msgstr  ""
 
-#: ../modules/register/register.php:413
+#: ../modules/register/register.php:418
 msgid   "Cell phone"
 msgstr  ""
 
@@ -2071,38 +2107,6 @@ msgstr  ""
 msgid   "There are no sleeping users"
 msgstr  ""
 
-#: ../modules/SMS/SMS.php:19
-msgid   "Create SMS"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:24
-msgid   "Select recipient(s):"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
-msgid   "Preview SMS"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
-msgid   "Number of characters entered:"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:66
-msgid   "Recipients"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:68
-msgid   "Sends to group:"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:74
-msgid   "Number"
-msgstr  ""
-
-#: ../modules/SMS/SMS.php:100
-msgid   "Message content"
-msgstr  ""
-
 #: ../modules/static/static.php:60
 msgid   "Edit access"
 msgstr  ""
@@ -2228,7 +2232,7 @@ msgid   "no"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.old.php:45
-#: ../modules/usertickets/usertickets.php:440
+#: ../modules/usertickets/usertickets.php:437
 msgid   "Place on map"
 msgstr  ""
 
@@ -2294,31 +2298,31 @@ msgid   "Yes, I don't need it"
 msgstr  ""
 
 #: ../modules/ticketorder/ticketorder.php:22
-#: ../modules/ticketorder/ticketorder.php:322 ../html/index.php:92
+#: ../modules/ticketorder/ticketorder.php:337 ../html/index.php:92
 msgid   "Order ticket"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:275
+#: ../modules/ticketorder/ticketorder.php:290
 msgid   "Ticket ordered"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:279
+#: ../modules/ticketorder/ticketorder.php:294
 msgid   "Ticket not found"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:285
+#: ../modules/ticketorder/ticketorder.php:300
 msgid   "You have ordered the maximum tickets allowed"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:297
+#: ../modules/ticketorder/ticketorder.php:312
 msgid   "Choose a ticket to order."
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:325
+#: ../modules/ticketorder/ticketorder.php:340
 msgid   "You have ordered the maximum allowed"
 msgstr  ""
 
-#: ../modules/ticketorder/ticketorder.php:328
+#: ../modules/ticketorder/ticketorder.php:343
 msgid   "You be logged in to order tickets"
 msgstr  ""
 
@@ -2334,7 +2338,11 @@ msgstr  ""
 msgid   "Back to user administration"
 msgstr  ""
 
-#: ../modules/useradmin/useradmin.php:126
+#: ../modules/useradmin/useradmin.php:107
+msgid   "No users was found"
+msgstr  ""
+
+#: ../modules/useradmin/useradmin.php:122
 msgid   "No user with ID"
 msgstr  ""
 
@@ -2346,55 +2354,130 @@ msgstr  ""
 msgid   "My tickets"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:349
+#: ../modules/usertickets/usertickets.php:346
 msgid   "An error occurred during the deletion of the ticket"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:354
+#: ../modules/usertickets/usertickets.php:351
 msgid   "Tickets has been deleted"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:358
+#: ../modules/usertickets/usertickets.php:355
 msgid   "Ticket has been paid!"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:371
+#: ../modules/usertickets/usertickets.php:368
 msgid   "This table lists all tickets you have ordered for this event."
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:379
+#: ../modules/usertickets/usertickets.php:376
 msgid   "Ticket id"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:382
+#: ../modules/usertickets/usertickets.php:379
 msgid   "Seat"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:446
+#: ../modules/usertickets/usertickets.php:443
 msgid   "Pay now"
 msgstr  ""
 
-#: ../modules/usertickets/usertickets.php:463
+#: ../modules/usertickets/usertickets.php:460
 msgid   "Delete selected"
 msgstr  ""
 
+#: ../modules/wannabe/wannabe.php:6
+msgid   "Please login to apply for crew"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:10
+msgid   "Apply as crew"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:12
+msgid   "Your application is saved"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:36
+#: ../modules/wannabeadmin/wannabeadmin.old.php:290
+#: ../modules/wannabeadmin/wannabeadmin.old.php:505
+msgid   "Nothing selected"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:39
+#: ../modules/wannabeadmin/wannabeadmin.old.php:293
+#: ../modules/wannabeadmin/wannabeadmin.old.php:508
+#: ../modules/wannabeadmin/wannabeadmin.php:546
+msgid   "Of course!"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:42
+#: ../modules/wannabeadmin/wannabeadmin.old.php:296
+#: ../modules/wannabeadmin/wannabeadmin.old.php:511
+#: ../modules/wannabeadmin/wannabeadmin.php:547
+msgid   "Sure"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:45
+#: ../modules/wannabeadmin/wannabeadmin.old.php:299
+#: ../modules/wannabeadmin/wannabeadmin.old.php:514
+#: ../modules/wannabeadmin/wannabeadmin.php:548
+msgid   "Probably"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:48
+#: ../modules/wannabeadmin/wannabeadmin.old.php:302
+#: ../modules/wannabeadmin/wannabeadmin.old.php:517
+#: ../modules/wannabeadmin/wannabeadmin.php:549
+msgid   "I'd rather not"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:51
+#: ../modules/wannabeadmin/wannabeadmin.old.php:305
+#: ../modules/wannabeadmin/wannabeadmin.old.php:520
+#: ../modules/wannabeadmin/wannabeadmin.php:550
+msgid   "Not at all"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:54
+#: ../modules/wannabeadmin/wannabeadmin.old.php:308
+#: ../modules/wannabeadmin/wannabeadmin.old.php:523
+msgid   "Unknown option"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:107
+msgid   "Delete application"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:163
+msgid   "Are you sure you want to delete your crewapplication?"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:164
+msgid   "Yes, I'm sure"
+msgstr  ""
+
+#: ../modules/wannabe/wannabe.php:165
+msgid   "No, I still wish to apply for crew"
+msgstr  ""
+
 #: ../modules/wannabeadmin/wannabeadmin.old.php:17
-#: ../modules/wannabeadmin/wannabeadmin.php:568
+#: ../modules/wannabeadmin/wannabeadmin.php:629
 msgid   "Questions"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:18
-#: ../modules/wannabeadmin/wannabeadmin.php:569
+#: ../modules/wannabeadmin/wannabeadmin.php:630
 msgid   "Crews"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:25
-#: ../modules/wannabeadmin/wannabeadmin.php:576
+#: ../modules/wannabeadmin/wannabeadmin.php:637
 msgid   "View Applications"
 msgstr  ""
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:77
-#: ../modules/wannabeadmin/wannabeadmin.php:23
+#: ../modules/wannabeadmin/wannabeadmin.php:27
 msgid   "New question"
 msgstr  ""
 
@@ -2448,55 +2531,8 @@ msgstr  ""
 msgid   "Response"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.old.php:290
-#: ../modules/wannabeadmin/wannabeadmin.old.php:505
-#: ../modules/wannabe/wannabe.php:36
-msgid   "Nothing selected"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:293
-#: ../modules/wannabeadmin/wannabeadmin.old.php:508
-#: ../modules/wannabeadmin/wannabeadmin.php:514
-#: ../modules/wannabe/wannabe.php:39
-msgid   "Of course!"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:296
-#: ../modules/wannabeadmin/wannabeadmin.old.php:511
-#: ../modules/wannabeadmin/wannabeadmin.php:515
-#: ../modules/wannabe/wannabe.php:42
-msgid   "Sure"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:299
-#: ../modules/wannabeadmin/wannabeadmin.old.php:514
-#: ../modules/wannabeadmin/wannabeadmin.php:516
-#: ../modules/wannabe/wannabe.php:45
-msgid   "Probably"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:302
-#: ../modules/wannabeadmin/wannabeadmin.old.php:517
-#: ../modules/wannabeadmin/wannabeadmin.php:517
-#: ../modules/wannabe/wannabe.php:48
-msgid   "I'd rather not"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:305
-#: ../modules/wannabeadmin/wannabeadmin.old.php:520
-#: ../modules/wannabeadmin/wannabeadmin.php:518
-#: ../modules/wannabe/wannabe.php:51
-msgid   "Not at all"
-msgstr  ""
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:308
-#: ../modules/wannabeadmin/wannabeadmin.old.php:523
-#: ../modules/wannabe/wannabe.php:54
-msgid   "Unknown option"
-msgstr  ""
-
 #: ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:448
+#: ../modules/wannabeadmin/wannabeadmin.php:476
 msgid   "Answer"
 msgstr  ""
 
@@ -2517,151 +2553,135 @@ msgstr  ""
 msgid   "Save comment"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:20
+#: ../modules/wannabeadmin/wannabeadmin.php:24
 msgid   "Edit wannabe questions"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:22
-#: ../modules/wannabeadmin/wannabeadmin.php:104
+#: ../modules/wannabeadmin/wannabeadmin.php:26
+#: ../modules/wannabeadmin/wannabeadmin.php:110
 msgid   "List questions"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:44
+#: ../modules/wannabeadmin/wannabeadmin.php:48
 msgid   "No questions has been created yet."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:102
+#: ../modules/wannabeadmin/wannabeadmin.php:108
 msgid   " question"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:146
+#: ../modules/wannabeadmin/wannabeadmin.php:123
+msgid   "Programmatic name"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:156
 msgid   "Edit wannabe crews"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:148
-#: ../modules/wannabeadmin/wannabeadmin.php:232
+#: ../modules/wannabeadmin/wannabeadmin.php:158
+#: ../modules/wannabeadmin/wannabeadmin.php:242
 msgid   "List crews"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:149
+#: ../modules/wannabeadmin/wannabeadmin.php:159
 msgid   "New crew"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:170
+#: ../modules/wannabeadmin/wannabeadmin.php:180
 msgid   "No crews has been created yet."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:230
+#: ../modules/wannabeadmin/wannabeadmin.php:240
 msgid   " crew"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:245
+#: ../modules/wannabeadmin/wannabeadmin.php:255
 msgid   "Crew Name"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:249
+#: ../modules/wannabeadmin/wannabeadmin.php:259
 msgid   "Crew description"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:253
+#: ../modules/wannabeadmin/wannabeadmin.php:263
 msgid   "Crew group"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:268
+#: ../modules/wannabeadmin/wannabeadmin.php:266
+msgid   "Choose group"
+msgstr  ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:294
 msgid   "List applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:276
+#: ../modules/wannabeadmin/wannabeadmin.php:302
 msgid   "No applications has been sent."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:318
+#: ../modules/wannabeadmin/wannabeadmin.php:344
 msgid   "Waiting applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:323
+#: ../modules/wannabeadmin/wannabeadmin.php:349
 msgid   "Finished applications"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:404
+#: ../modules/wannabeadmin/wannabeadmin.php:432
 msgid   "Userinfo"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:412
+#: ../modules/wannabeadmin/wannabeadmin.php:440
 msgid   "years old"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:454
+#: ../modules/wannabeadmin/wannabeadmin.php:482
 msgid   "No answer given"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:469
+#: ../modules/wannabeadmin/wannabeadmin.php:501
 msgid   "Comments"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:497
+#: ../modules/wannabeadmin/wannabeadmin.php:529
 msgid   "No response given"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:509
+#: ../modules/wannabeadmin/wannabeadmin.php:541
 msgid   "Set preference for"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:513
+#: ../modules/wannabeadmin/wannabeadmin.php:545
 msgid   "Choose preference"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:520
+#: ../modules/wannabeadmin/wannabeadmin.php:552
 msgid   "Set"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:524
+#: ../modules/wannabeadmin/wannabeadmin.php:556
 msgid   "You are not admin of any crew and can therefor not set any "
         "preference."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:545
+#: ../modules/wannabeadmin/wannabeadmin.php:580
 msgid   "Write a comment"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:548
+#: ../modules/wannabeadmin/wannabeadmin.php:583
 msgid   "Comment..."
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:549
+#: ../modules/wannabeadmin/wannabeadmin.php:584
 msgid   "Send"
 msgstr  ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:557
+#: ../modules/wannabeadmin/wannabeadmin.php:592
 msgid   "Application"
 msgstr  ""
 
-#: ../modules/wannabe/wannabe.php:6
-msgid   "Please login to apply for crew"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:10
-msgid   "Apply as crew"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:12
-msgid   "Your application is saved"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:107
-msgid   "Delete application"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:163
-msgid   "Are you sure you want to delete your crewapplication?"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:164
-msgid   "Yes, I'm sure"
-msgstr  ""
-
-#: ../modules/wannabe/wannabe.php:165
-msgid   "No, I still wish to apply for crew"
+#: ../modules/wannabeadmin/wannabeadmin.php:638
+msgid   "Export allergies"
 msgstr  ""
 
 #: ../inc/shared_config.php:5
@@ -2704,128 +2724,132 @@ msgstr  ""
 msgid   "Right-protected seat"
 msgstr  ""
 
-#: ../inc/shared_config.php:23
+#: ../inc/shared_config.php:26
 msgid   "Activate ticketorder"
 msgstr  ""
 
-#: ../inc/shared_config.php:25
+#: ../inc/shared_config.php:30
+msgid   "Activate usertickets"
+msgstr  ""
+
+#: ../inc/shared_config.php:34
 msgid   "Activate FAQ"
 msgstr  ""
 
-#: ../inc/shared_config.php:27
+#: ../inc/shared_config.php:38
 msgid   "Activate seating"
 msgstr  ""
 
-#: ../inc/shared_config.php:29
+#: ../inc/shared_config.php:42
 msgid   "Show link to seating"
 msgstr  ""
 
-#: ../inc/shared_config.php:31
+#: ../inc/shared_config.php:46
 msgid   "Activate wannabesystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:33
+#: ../inc/shared_config.php:50
 msgid   "Activate composystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:35
+#: ../inc/shared_config.php:54
 msgid   "Activate reseller"
 msgstr  ""
 
-#: ../inc/shared_config.php:37
+#: ../inc/shared_config.php:58
 msgid   "Activate crewlist"
 msgstr  ""
 
-#: ../inc/shared_config.php:39
+#: ../inc/shared_config.php:62
 msgid   "Activate news"
 msgstr  ""
 
-#: ../inc/shared_config.php:41
-msgid   "Activate kiosksystem"
+#: ../inc/shared_config.php:66
+msgid   "Activate kiosk"
 msgstr  ""
 
-#: ../inc/shared_config.php:43
+#: ../inc/shared_config.php:70
 msgid   "Activate forum"
 msgstr  ""
 
-#: ../inc/shared_config.php:45
+#: ../inc/shared_config.php:74
 msgid   "Activate sleepsystem"
 msgstr  ""
 
-#: ../inc/shared_config.php:47
+#: ../inc/shared_config.php:78
 msgid   "Show number of free tickets in ticketorder"
 msgstr  ""
 
-#: ../inc/shared_config.php:49
+#: ../inc/shared_config.php:82
 msgid   "Default option in kiosk to sell to credit when user is selected "
         "(otherwise cash payment is selected as default)"
 msgstr  ""
 
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:145
 msgid   "January"
 msgstr  ""
 
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:146
 msgid   "February"
 msgstr  ""
 
-#: ../inc/shared_config.php:111
+#: ../inc/shared_config.php:147
 msgid   "March"
 msgstr  ""
 
-#: ../inc/shared_config.php:112
+#: ../inc/shared_config.php:148
 msgid   "April"
 msgstr  ""
 
-#: ../inc/shared_config.php:113
+#: ../inc/shared_config.php:149
 msgid   "May"
 msgstr  ""
 
-#: ../inc/shared_config.php:114
+#: ../inc/shared_config.php:150
 msgid   "June"
 msgstr  ""
 
-#: ../inc/shared_config.php:115
+#: ../inc/shared_config.php:151
 msgid   "July"
 msgstr  ""
 
-#: ../inc/shared_config.php:116
+#: ../inc/shared_config.php:152
 msgid   "August"
 msgstr  ""
 
-#: ../inc/shared_config.php:117
+#: ../inc/shared_config.php:153
 msgid   "September"
 msgstr  ""
 
-#: ../inc/shared_config.php:118
+#: ../inc/shared_config.php:154
 msgid   "October"
 msgstr  ""
 
-#: ../inc/shared_config.php:119
+#: ../inc/shared_config.php:155
 msgid   "November"
 msgstr  ""
 
-#: ../inc/shared_config.php:120
+#: ../inc/shared_config.php:156
 msgid   "December"
 msgstr  ""
 
-#: ../inc/shared_config.php:171
+#: ../inc/shared_config.php:207
 msgid   "Streetadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:197
+#: ../inc/shared_config.php:233
 msgid   "List all attendees on current event"
 msgstr  ""
 
-#: ../inc/shared_config.php:212
+#: ../inc/shared_config.php:248
 msgid   "You do not have access to this page."
 msgstr  ""
 
-#: ../inc/shared_config.php:218
+#: ../inc/shared_config.php:254
 msgid   "Allow other users to see my mailadress"
 msgstr  ""
 
-#: ../inc/shared_config.php:223
+#: ../inc/shared_config.php:259
 msgid   "All users"
 msgstr  ""
 
@@ -2841,7 +2865,7 @@ msgstr  ""
 msgid   "Admin"
 msgstr  ""
 
-#: ../inc/shared_functions.php:637
+#: ../inc/shared_functions.php:645
 msgid   "a.k.a."
 msgstr  ""
 

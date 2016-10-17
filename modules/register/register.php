@@ -361,6 +361,7 @@ switch ($action) {
                                 <option value=\"-1\">" . _("Gender") . "</option>
                                 <option" . (getInputValue("gender") == 'Male' ? ' selected' : '') . " value=\"Male\">" . lang("Male", "register") . "</option>
                                 <option" . (getInputValue("gender") == 'Female' ? ' selected' : '') . " value=\"Female\">" . lang("Female", "register") . "</option>
+										  <option" . (getInputValue("gender") == 'Other' ? ' selected' : '') . " value=\"Other\">" . lang("Other", "register") . "</option>
                             </select>
                         </div>
                     </div>";
