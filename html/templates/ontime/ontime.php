@@ -4,6 +4,8 @@
  * This is a PHP version of ontime template since Smarty started to argue...
  */
 
+$assetsVersion = '?v=1.1.0';
+
 ?><!DOCTYPE html>
 <html xml:lang="en" lang="en">
 <head>
@@ -11,16 +13,15 @@
     <meta charset="utf-8" />
     <?php echo $design_head; ?>
 
-    <link rel="stylesheet" href="templates/ontime/css/style.css?v=1.0.4" type="text/css" />
-    <link rel="stylesheet" href="templates/ontime/css/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="templates/ontime/css/style.css<?php echo $assetsVersion; ?>" type="text/css" />
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.ico">
     
-    <script src="templates/ontime/js/jquery.min.js"></script>
-    <script src="templates/ontime/js/mobilemenu.js"></script>
-    <script src="templates/ontime/js/timeago.min.js"></script>
-    <script src="templates/ontime/js/scripts.js"></script>
+    <script src="templates/ontime/js/jquery.min.js<?php echo $assetsVersion; ?>"></script>
+    <script src="templates/ontime/js/mobilemenu.js<?php echo $assetsVersion; ?>"></script>
+    <script src="templates/ontime/js/timeago.min.js<?php echo $assetsVersion; ?>"></script>
+    <script src="templates/ontime/js/scripts.js<?php echo $assetsVersion; ?>"></script>
 
     <?php if ($eventinfo->eventname) { ?>
         <title><?php echo $eventinfo->eventname; ?></title>
