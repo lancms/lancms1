@@ -24,7 +24,7 @@ switch ($action) {
         $userCode = (array_key_exists('verifycode', $_GET) ? $_GET['verifycode'] : null);
 
         if ($userCode == null) {
-            $content .= "<p>Invalid verification code.</p>";
+            $content .= "<p>No verification code found in parameters.</p>";
         } else {
             $user = $userManager->getUserByVerificationCode($userCode);
             if ($user == null || $user->isEmailConfirmed() == true) {
