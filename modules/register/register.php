@@ -21,7 +21,7 @@ switch ($action) {
     // Handle verifyMail
     case "verifymail":
 
-        $userCode = (isset($_GET['k']) ? $_GET['k'] : null);
+        $userCode = (array_key_exists('verifycode', $_GET) ? $_GET['verifycode'] : null);
 
         if ($userCode == null) {
             $content .= "<p>Invalid verification code.</p>";
