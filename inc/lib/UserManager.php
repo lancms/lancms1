@@ -22,7 +22,7 @@ class UserManager {
 
     /**
      * Provides multiple users by array of IDs
-     * 
+     *
      * @param array $userIDs
      * @return User[]|null
      */
@@ -54,7 +54,7 @@ class UserManager {
     /**
      * Provides an user from the database by ID. Will return null if the user is not found or the
      * argument is not an int over zero.
-     * 
+     *
      * @param int $userID
      * @return User|null
      */
@@ -65,7 +65,7 @@ class UserManager {
 
     /**
      * Provides online user objects.
-     * 
+     *
      * @return User
      * @throws Exception
      */
@@ -83,7 +83,7 @@ class UserManager {
 
     /**
      * Provides an user from the database by username or nick.
-     * 
+     *
      * @param string $userNick
      * @return User|null
      */
@@ -129,7 +129,7 @@ class UserManager {
 
     /**
      * Provides an user from the database by email verification code. If null is returned the code might be invalid.
-     * 
+     *
      * @param string $userCode
      * @return User|null
      */
@@ -154,7 +154,7 @@ class UserManager {
 
     /**
      * Creates an user into the database, returns the User object if the user was created otherwise null.
-     * 
+     *
      * @param string $nick
      * @param string $firstName
      * @param string $lastName
@@ -212,7 +212,7 @@ class UserManager {
         $user->commitChanges();
 
         $url = getUrlBase();
-        $verifyUrl = $url . "/index.php?module=register&action=verifymail&k=" . $code;
+        $verifyUrl = $url . "/index.php?module=register&action=verifymail&verifycode=" . $code;
 
         $message = sprintf("Hello %s
 
@@ -236,7 +236,7 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
 
     /**
      * Save form data in session.
-     * 
+     *
      * @param string $formName The unique identifier to this form.
      * @param array $data This array will be serialized into session.
      */
@@ -247,7 +247,7 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
     /**
      * Provides the saved form data if any of form name.
      * Returns an empty array if form name is not found in session.
-     * 
+     *
      * @param string $formName The unique identifier to this form.
      * @return array
      */
@@ -273,7 +273,7 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
 
     /**
      * Provides an array of users matching $str
-     * 
+     *
      * @param string $str
      * @return array
      */
