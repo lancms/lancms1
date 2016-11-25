@@ -31,7 +31,7 @@ $content .= "
         </div>
         <div class=\"pull-right submit-button\">
             <button type=\"button\" class=\"btn-grey\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
-            <input type=\"button\" class=\"btn-small\" name=\"select\" onclick=\"return handlePaymentSubmit();\" value=\"" . _("Gå videre") . "\" />
+            <input type=\"button\" name=\"select\" onclick=\"return handlePaymentSubmit();\" value=\"" . _("Gå videre") . "\" />
         </div>
     </div>
 
