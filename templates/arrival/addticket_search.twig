@@ -1,8 +1,6 @@
 <p></p>
 <div class="form">
-    <form class="normal inline" action="index.php?" method="post">
-        <input type="hidden" name="module" value="{{ module }}" />
-        <input type="hidden" name="action" value="addticket" />
+    <form class="normal inline" action="index.php?module={{ module }}&amp;action=addticket" method="post">
         <div class="form-group">
             <input type="text" name="query" value="{{ query|e }}" placeholder="{{ trans('Search for user') }}" />
             <input type="submit" value="{{ trans('Search') }}" />
@@ -11,10 +9,7 @@
 </div>
 
 {% if searchResult|length > 0 %}
-    <form action="index.php?" method="post">
-        <input type="hidden" name="module" value="{{ module }}" />
-        <input type="hidden" name="action" value="addticket" />
-        
+    <form action="index.php?module={{ module }}&amp;action=addticket" method="post">
         <table class="table ticket-table">
             <thead>
                 <tr>
