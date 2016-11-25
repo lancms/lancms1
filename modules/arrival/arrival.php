@@ -268,7 +268,7 @@ switch ($action) {
     case "addticket":
         // This page allows someone to add a ticket on an user.
         
-        $userIds = ($request->has('userids') ? $request->get('userids') : '');
+        $userIds = ($request->request->has('userids') ? $request->request->get('userids') : '');
         $userIds = array_filter(
             array_map('trim', explode(',', $userIds)),
             function($item) {
@@ -282,7 +282,7 @@ switch ($action) {
             // Has selected some users.
             // TODO: Show tickets.
         } else {
-            $query = ($request->has('query') ? $request->get('query') : '');
+            $query = ($request->request->has('query') ? $request->request->get('query') : '');
             
             if (strlen($query) > 0) {
                 $searchResultUsers = UserManager::getInstance()->searchUsers($query);
