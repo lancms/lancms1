@@ -1,0 +1,20 @@
+<p></p>
+<div class="form">
+    <form class="normal inline" action="index.php?" method="post">
+        <input type="hidden" name="module" value="'.$thisModule.'" />
+        <input type="hidden" name="action" value="addticket" />
+        <div class="form-group">
+            <input type="text" name="query" value="{{ query|e }}" placeholder="Søk etter bruker..." />
+            <input type="submit" value="Søk" />
+        </div>
+    </form>
+</div>
+{% if searchResult|length > 0 %}
+    <ul>
+        {% for user in searchResult %}
+            <li>{{ user.getFullName() }}</li>
+        {% endfor %}
+    </ul>
+{% elseif query|length > 2 %}
+    <p>No users found</p>
+{% endif %}

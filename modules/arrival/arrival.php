@@ -262,6 +262,42 @@ switch ($action) {
         }
 
         break;
+        
+    //==================================================================================
+    // Add ticket on a user.
+    case "addticket":
+        // This page allows someone to add a ticket on an user.
+        
+        $userIds = ($request->has('userids') ? $request->get('userids') : '');
+        $userIds = array_filter(
+            array_map('trim', explode(',', $userIds)),
+            function($item) {
+                return is_numeric($item) && $item > 0;
+            }
+        );
+        
+        $searchResultUsers = array();
+        
+        if (count($userIds) > 0) {
+            // Has selected some users.
+            // TODO: Show tickets.
+        } else {
+            $query = ($request->has('query') ? $request->get('query') : '');
+            
+            if (strlen($query) > 0) {
+                $searchResultUsers = UserManager::getInstance()->searchUsers($query);
+            }
+            
+            $content .= $twigEnvironment->render(
+                'arrival/addticket_search.twig',
+                array(
+                    'query' => $query,
+                    'searchResult' => $searchResultUsers,
+                )
+            );
+        }
+        
+        break;
 
     //==================================================================================
     // Search users

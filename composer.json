@@ -2,7 +2,8 @@
     "require": {
         "stripe/stripe-php": "^2.3",
         "symfony/http-foundation": "^2.7",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "twig/twig": "^1.28"
     },
     "require-dev": {
         "filp/whoops": "^1.1"
