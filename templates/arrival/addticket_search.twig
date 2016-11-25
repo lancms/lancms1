@@ -1,20 +1,40 @@
 <p></p>
 <div class="form">
     <form class="normal inline" action="index.php?" method="post">
-        <input type="hidden" name="module" value="'.$thisModule.'" />
+        <input type="hidden" name="module" value="{{ module }}" />
         <input type="hidden" name="action" value="addticket" />
         <div class="form-group">
-            <input type="text" name="query" value="{{ query|e }}" placeholder="Søk etter bruker..." />
-            <input type="submit" value="Søk" />
+            <input type="text" name="query" value="{{ query|e }}" placeholder="{{ trans('Search for user') }}" />
+            <input type="submit" value="{{ trans('Search') }}" />
         </div>
     </form>
 </div>
+
 {% if searchResult|length > 0 %}
-    <ul>
-        {% for user in searchResult %}
-            <li>{{ user.getFullName() }}</li>
-        {% endfor %}
-    </ul>
+    <form action="index.php?" method="post">
+        <input type="hidden" name="module" value="{{ module }}" />
+        <input type="hidden" name="action" value="addticket" />
+        
+        <table class="table ticket-table">
+            <thead>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>{{ trans('Username') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in searchResult %}
+                <tr>
+                    <td><input type="checkbox" name="userids" value="{{ user.getUserID() }}" /></td>
+                    <td>{{ user.getFullName() }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="{{ trans('Add tickets') }}" />
+        </div>
+    </form>
 {% elseif query|length > 2 %}
     <p>No users found</p>
 {% endif %}

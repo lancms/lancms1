@@ -291,6 +291,7 @@ switch ($action) {
             $content .= $twigEnvironment->render(
                 'arrival/addticket_search.twig',
                 array(
+                    'module' => $thisModule,
                     'query' => $query,
                     'searchResult' => $searchResultUsers,
                 )
