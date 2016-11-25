@@ -241,7 +241,7 @@ switch ($action) {
 
             // Owner information.
             $content .= "<tr><td class=\"head grey\" colspan=\"2\">" . _("Owner") . "</td></tr>";
-            $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td>" . $owner->getFullName() . "</td></tr>";
+            $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td><a href=\"index.php?module=profile&amp;user=" . $owner->getUserID() . "\">" . $owner->getFullName() . "</a></td></tr>";
             $content .= "<tr><td><strong>" . _("Nick") . "</strong></td><td>" . $owner->getNick() . "</td></tr>";
             if ($user->equals($owner) == false) {
                 $content .= "<tr><td><strong>" . _("Email") . "</strong></td><td>" . $owner->getEmail() . "</td></tr>";
@@ -251,7 +251,7 @@ switch ($action) {
 
             // User information.
             $content .= "<tr><td class=\"head grey\" colspan=\"2\">" . _("User") . "</td></tr>";
-            $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td>" . $user->getFullName() . "</td></tr>";
+            $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td><a href=\"index.php?module=profile&amp;user=" . $user->getUserID() . "\">" . $user->getFullName() . "</a></td></tr>";
             $content .= "<tr><td><strong>" . _("Nick") . "</strong></td><td>" . $user->getNick() . "</td></tr>";
             $content .= "<tr><td><strong>" . _("Email") . "</strong></td><td>" . $user->getEmail() . "</td></tr>";
             $content .= "<tr><td><strong>" . _("Address") . "</strong></td><td>" . $user->getStreetAddress() . "<br />" . $user->getPostNumber() . " " . $user->getPostPlace() . "</td></tr>";
