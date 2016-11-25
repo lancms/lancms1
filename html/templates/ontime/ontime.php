@@ -4,7 +4,7 @@
  * This is a PHP version of ontime template since Smarty started to argue...
  */
 
-$assetsVersion = '?v=1.1.0';
+$assetsVersion = '?v=1.2.0';
 
 ?><!DOCTYPE html>
 <html xml:lang="en" lang="en">
