@@ -439,8 +439,8 @@ switch ($action) {
                         <td>" . $ticket->getTicketID() . "</td>
                         <td>" . $ticketTypeName . "</td>
                         <td>
-                            " . $owner . ($isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span>" : "") . "<br />
-                            " . $user . ($isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>" : "") . "
+                            " . $owner . (!$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span>" : "") . "<br />
+                            " . $user . (!$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>" : "") . "
                         </td>
                         <td>" . $seat . "<br />
                             " . ($canSeat && !$isDeleted ? "<span class=\"small\">[<a href=\"?module=seating&ticketID=" . $ticket->getTicketID() . "\">" . lang("Place on map", "ticketorder") . "</a>]</span>" : "") . "
