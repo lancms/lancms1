@@ -59,6 +59,8 @@ class SqlObject {
     public function fillInfo($arr) {
         $this->_info = $arr;
         $this->_orgInfo = $arr;
+		
+		return $this;
     }
 
     public function getInfo() {

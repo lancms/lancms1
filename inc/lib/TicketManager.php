@@ -189,26 +189,29 @@ class TicketManager {
     /**
      * Provides the ticket types
      * 
+     * @param array|null $ids Filter by IDs.
      * @param int $eventID If null then active event is used.
      * @return TicketType
      */
-    public function getTicketTypes($eventID=null) {
+    public function getTicketTypes($ids = null, $eventID=null) {
         global $sessioninfo, $sql_prefix;
 
         if ($eventID == null) {
             $eventID = $sessioninfo->eventID;
         }
+        
+        $query = sprintf('SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d', $sql_prefix, $eventID);
+        
+        if ((is_array($ids)) && (count($ids) > 0)) {
+            $query .= sprintf(' AND ticketTypeID IN (%s)', db_escape(implode(',', $ids)));
+        }
 
-        $result = db_query(sprintf("SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d", $sql_prefix, $eventID));
-        $num   = db_num($result);
+        $result = db_query($query);
 
         $ticketTypes = array();
-        if ($num > 0) {
-            $i = 0;
+        if (db_num($result) > 0) {
             while($row = db_fetch_assoc($result)) {
-                $ticketTypes[$i] = new TicketType($row['ticketTypeID']);
-                $ticketTypes[$i]->fillInfo($row);
-                $i++;
+                $ticketTypes[] = (new TicketType($row['ticketTypeID']))->fillInfo($row);
             }
         }
 

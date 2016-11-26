@@ -1,0 +1,32 @@
+<p>{{ trans('Finished, summary:') }}</p>
+<table class="table ticket-table">
+    <thead>
+        <tr>
+            <th>
+                {{ trans('Username') }}
+            </th>
+            <th>
+                {{ trans('Tickets') }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in data %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>
+                <table>
+                <tbody>
+                    {% for ticket in user.tickets %}
+                        <tr>
+                            <td><img style="width:15px; height:15px;" src="/images/icons/{{ (ticket.result ? 'yes' : 'no') }}.png" /></td>
+                            <td>{{ ticket.name }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+                </table>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

@@ -14,6 +14,20 @@ $content = "";
 /*----------------------------------------------------------------*/
 
 require_once __DIR__ . '/../include.php';
+
+// Create the twig instance.
+$twigEnvironment = new Twig_Environment(
+    new Twig_Loader_Filesystem(realpath(__DIR__.'/../templates/')),
+    array(
+        'cache' => '/tmp/lancms_twig_cache/',
+        //'debug' => true,
+    )
+);
+$twigEnvironment->addExtension(new Twig_Extension_Debug());
+$twigEnvironment->addFunction(new Twig_SimpleFunction('trans', function ($string) {
+    return _($string);
+}));
+
 $module = (isset($_GET['module']) ? $_GET['module']: '');
 $action = (isset($_GET['action']) ? $_GET['action']: '');
 $api = (isset($_GET['api']) ? $_GET['api']: '');

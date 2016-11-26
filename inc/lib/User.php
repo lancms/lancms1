@@ -255,6 +255,18 @@ class User extends SqlObject {
 
         return false;
     }
+    
+    /**
+     * Indicates if this user is a crew.
+     *
+     * @param int|null $eventId 
+     *
+     * @return boolean 
+     */
+    public function isCrew($eventId = null)
+    {
+        return is_user_crew($this->getUserID(), $eventId);
+    }
 
     /**
      * Provides the tickets of this user in an array of Ticket objects.

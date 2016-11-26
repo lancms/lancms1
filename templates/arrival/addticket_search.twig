@@ -1,0 +1,60 @@
+<p>{{ trans('Search for users to add a ticket to. One can filter by crew, even without a query.') }}</p>
+<div class="form">
+    <form class="normal inline" action="index.php?module={{ module }}&amp;action=addticket" method="post">
+        <div class="form-group">
+            <input type="text" name="query" value="{{ query|e }}" placeholder="{{ trans('Search for user') }}" />
+        </div>
+        <div class="form-group">
+            <label for="filter-crew">
+                <input type="checkbox" id="filter-crew" name="f_crew"{{ (filterCrew ? ' checked' : '') }} value="1" />
+                {{ trans('Filter by crew') }}
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="{{ trans('Search') }}" />
+        </div>
+    </form>
+</div>
+
+<p>&nbsp;</p>
+
+{% if searchResult|length > 0 %}
+    <form action="index.php?module={{ module }}&amp;action=addticket" method="post">
+        <table class="table ticket-table">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" onClick="toggle(this)" name="check_all" value="" />
+                        {{ trans('Username') }}
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for user in searchResult %}
+                <tr>
+                    <td>
+                        <label for="user-{{ user.ID }}">
+                            <input type="checkbox" name="userids[]" value="{{ user.ID }}" id="user-{{ user.ID }}" />
+                            {{ user.firstName ~ ' ' ~ user.lastName ~ ' (' ~ user.nick ~ ')' }}
+                        </label>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <div class="form-group">
+            <input type="submit" value="{{ trans('Add tickets') }}" />
+        </div>
+    </form>
+    
+    <script>
+    function toggle(source) {
+        checkboxes = document.getElementsByName('userids[]');
+        for(var i=0, n=checkboxes.length;i<n;i++) {
+            checkboxes[i].checked = source.checked;
+        }
+    }
+    </script>
+{% elseif query %}
+    <p>No users found</p>
+{% endif %}
