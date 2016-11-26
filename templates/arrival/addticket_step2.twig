@@ -1,0 +1,44 @@
+<p>{{ trans('Add a ticket type to these users.') }}</p>
+<table class="table ticket-table">
+    <thead>
+        <tr>
+            <th>
+                {{ trans('Username') }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+        <tr>
+            <td>{{ user.getFullName() ~ ' (' ~ user.getNick() ~ ')' }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<h3>{{ trans('Select ticket types') }}</h3>
+<form action="index.php?module={{ module }}&amp;action=addticket" method="post">
+    {% for userId in userIds %}
+        <input type="hidden" name="userids[]" value="{{ userId }}" />
+    {% endfor %}
+    <div class="form-group tickets">
+        <div class="payment-options table no-colour">
+            {% for key, ticket in tickets %}
+            <div class="payment-option row">
+                <div class="payment-radio cell">
+                    <input type="checkbox" name="tickettypes[]" id="payment-{{ key }}" value="{{ ticket.getTicketTypeID() }}" />
+                </div>
+                <div class="payment-info cell">
+                    <label for="payment-{{ key }}">
+                        <div class='name'>{{ ticket.getName() }}</div>
+                        <div class='description'>{{ ticket.getDescription() }}</div>
+                    </label>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <button type="submit">{{ trans('Add ticket type') }}</button>
+    </div>
+</form>

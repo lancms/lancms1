@@ -268,9 +268,17 @@ switch ($action) {
     case "addticket":
         // This page allows someone to add a ticket on an user.
         
-        $userIds = ($request->request->has('userids') ? $request->request->get('userids') : '');
+        $userIds = ($request->request->has('userids') ? $request->request->get('userids') : array());
         $userIds = array_filter(
-            array_map('trim', explode(',', $userIds)),
+            array_map('trim', $userIds),
+            function($item) {
+                return is_numeric($item) && $item > 0;
+            }
+        );
+        
+        $ticketTypeIds = ($request->request->has('tickettypes') ? $request->request->get('tickettypes') : array());
+        $ticketTypeIds = array_filter(
+            array_map('trim', $ticketTypeIds),
             function($item) {
                 return is_numeric($item) && $item > 0;
             }
@@ -279,13 +287,69 @@ switch ($action) {
         $searchResultUsers = array();
         
         if (count($userIds) > 0) {
-            // Has selected some users.
-            // TODO: Show tickets.
-        } else {
-            $query = ($request->request->has('query') ? $request->request->get('query') : '');
+            $users = UserManager::getInstance()->getUsersByID($userIds);
+            $dataForTwig = array();
             
-            if (strlen($query) > 0) {
+            // Has selected ticket types?
+            if (count($ticketTypeIds) > 0) {
+                $ticketTypes = $ticketManager->getTicketTypes($ticketTypeIds);
+                
+                // Add the ticket types per user.
+                foreach ($users as $user) {
+                    $dataForTwig[$user->getUserID()] = array(
+                        'name' => sprintf('%s (%s)', $user->getFullName(), $user->getNick()),
+                        'tickets' => array(),
+                    );
+                    
+                    // Loop each ticket type.
+                    foreach ($ticketTypes as $ticketType) {
+                        // If we can validateAddTicketType, add it.
+                        $dataForTwig[$user->getUserID()]['tickets'][] = array(
+                            'result' => $user->validateAddTicketType($ticketType),
+                            'name' => $ticketType->getName(),
+                        );
+                    }
+                }
+                
+                $content .= $twigEnvironment->render(
+                    'arrival/addticket_summary.twig',
+                    array(
+                        'module' => $thisModule,
+                        'data' => $dataForTwig,
+                    )
+                );
+            } else {
+                // Has selected some users.
+                // TODO: Show tickets.
+                $ticketTypes = $ticketManager->getTicketTypes();
+                
+                $content .= $twigEnvironment->render(
+                    'arrival/addticket_step2.twig',
+                    array(
+                        'module' => $thisModule,
+                        'userIds' => $userIds,
+                        'users' => $users,
+                        'tickets' => $ticketTypes,
+                    )
+                );
+            }
+        } else {
+            $query = ($request->request->has('query') ? $request->request->get('query') : null);
+            $filterCrew = ($request->request->has('f_crew') ? $request->request->getBoolean('f_crew') : false);
+            
+            // Allow to search for everyone, so we can add crew ticket on everyone. :-D
+            if (strlen($query) > 2) {
                 $searchResultUsers = UserManager::getInstance()->searchUsers($query);
+            } else if (( ! is_null($query)) && ($filterCrew)) {
+                // Only get all if we want to filter by crew.
+                $searchResultUsers = user_getall(array('ID', 'nick', 'firstName', 'lastName'));
+            }
+                
+            // Should we filter by crew?
+            if ($filterCrew) {
+                $searchResultUsers = array_filter($searchResultUsers, function($user) {
+                    return is_user_crew($user->ID);
+                });
             }
             
             $content .= $twigEnvironment->render(
@@ -293,6 +357,7 @@ switch ($action) {
                 array(
                     'module' => $thisModule,
                     'query' => $query,
+                    'filterCrew' => $filterCrew,
                     'searchResult' => $searchResultUsers,
                 )
             );
@@ -315,8 +380,10 @@ switch ($action) {
         }
 
         $content .= '
+        <div class="links"><a href="index.php?module='.$thisModule.'&amp;action=addticket">Legg til billett på bruker</a></div>
+        <br />
         <p>' . _("Administer tickets on users.") . '</p>
-        <div class=\"front\">
+        <div class="front">
             <form class="normal inline" action="index.php" method="get">
                 <input type="hidden" name="module" value="' . $thisModule . '" />
                 <input type="hidden" name="action" value="searchUser" />

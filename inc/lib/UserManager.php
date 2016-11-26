@@ -279,6 +279,6 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
      */
     public function searchUsers($str) {
         return user_find($str);
-    }
+    } 
 
 }
