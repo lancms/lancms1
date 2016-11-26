@@ -835,3 +835,16 @@ function getUserIP() {
 
 	return $ip;
 }
+
+/**
+ * Flip array_map
+ *
+ * @param array $array    
+ * @param callback $callback 
+ *
+ * @return array 
+ */
+function map_array($array, $callback)
+{
+	return array_map($callback, $array);
+}

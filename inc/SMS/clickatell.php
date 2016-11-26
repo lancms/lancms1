@@ -10,7 +10,7 @@ if ((is_array($rFindJobs)) && (count($rFindJobs) > 0)) {
         $sendToTelephones = explode(',', $job->toUser);
         
         // We must append 47 to all phone numbers, clickatell requires this.
-        $sendToTelephones = array_map($sendToTelephones, function($number) {
+        $sendToTelephones = map_array($sendToTelephones, function($number) {
             return '47' . $number;
         });
         
