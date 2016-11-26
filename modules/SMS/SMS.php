@@ -124,13 +124,32 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
 	}
 
 	$qFindUsers = db_query($SQL);
-	while($rFindUsers = db_fetch($qFindUsers)) {
-		db_query("INSERT INTO ".$sql_prefix."_cronjobs
-			SET cronModule = 'SMS',
-			toUser = '$rFindUsers->cellphone',
-			senderID = '$sessioninfo->userID',
-			content = '".db_escape($_POST['message'])."'");
-	} // End while
+    $rFindUsers = db_fetch_all($qFindUsers);
+    
+    if ((is_array($rFindUsers)) && (count($rFindUsers) > 0)) {
+        $cellphones = [];
+        
+        foreach ($rFindUsers as $user) {
+            $phoneNumber = (int) $user->cellphone;
+            
+            if ($phoneNumber > 0) {
+                $cellphones[] = $phoneNumber;
+            }
+        }
+        
+        // Now, send to cellphones.
+        if (count($cellphones) > 0) {
+            
+        	db_query(
+                sprintf(
+                    "INSERT INTO %s_cronjobs SET cronModule = 'SMS', toUser = '%s', senderID = '%s', content = '%s'",
+                    $sql_prefix, implode(',', $cellphone), $sessioninfo->userID, db_escape($_POST['message'])
+                )
+            );
+            
+        }
+    }
+        
 	$log_new['toListName'] = $smsList[$toSmsList]['name'];
 	$log_new['message'] = $_POST['message'];
 	log_add("SMS", "sendSMS", serialize($log_new));
