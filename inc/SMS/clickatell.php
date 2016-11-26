@@ -14,8 +14,7 @@ if ((is_array($rFindJobs)) && (count($rFindJobs) > 0)) {
             return '47' . $number;
         });
         
-        $message = str_replace(" ", "%20", $job->content);
-        $message = utf8_decode($message);
+        $message = utf8_decode($job->content);
         $URL = sprintf(
             'https://api.clickatell.com/http/sendmsg?user=%s&password=%s&api_id=3600328&to=%s&text=%s',
     		$SMS_user,

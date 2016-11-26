@@ -137,12 +137,14 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
             }
         }
         
-        // Now, send to cellphones.
-        if (count($cellphones) > 0) {
-        	db_query(
+        // Explode into several chunks of 15 users at the time.
+        $cellPhoneGroups = array_chunk($cellphones, 15);
+        
+        foreach ($cellPhoneGroups as $group) {
+            db_query(
                 sprintf(
                     "INSERT INTO %s_cronjobs SET cronModule = 'SMS', toUser = '%s', senderID = '%s', content = '%s'",
-                    $sql_prefix, db_escape(implode(',', $cellphones)), $sessioninfo->userID, db_escape($_POST['message'])
+                    $sql_prefix, db_escape(implode(',', $group)), $sessioninfo->userID, db_escape($_POST['message'])
                 )
             );
         }
