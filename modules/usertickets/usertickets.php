@@ -387,6 +387,8 @@ switch ($action) {
                 if (count($tickets) > 0) {
                     foreach ($tickets as $key => $ticket) {
                         if (($ticket instanceof Ticket) == false) continue;
+                        
+                        $isDeleted = ($ticket->getStatus() == Ticket::TICKET_STATUS_DELETED);
 
                         $ticketTypeName = $owner = $user = "<em>Ukjent</em>";
 
@@ -396,10 +398,17 @@ switch ($action) {
                             $status = _("Paid");
                             $statusColumnCss = "paid";
                         }
-
-                        if ($ticket->getStatus() == Ticket::TICKET_STATUS_USED) {
-                            $status = _("Used");
-                            $statusColumnCss = "used";
+                        
+                        switch ($ticket->getStatus()) {
+                            case Ticket::TICKET_STATUS_USED:
+                                $status = _("Used");
+                                $statusColumnCss = "used";
+                                break;
+                                
+                            case Ticket::TICKET_STATUS_DELETED:
+                                $status = _("Deleted");
+                                $statusColumnCss = "deleted";
+                                break;
                         }
 
                         $seat = _("Not seated");
@@ -421,7 +430,7 @@ switch ($action) {
                             $explainCantSeat = true;
 
                         $content .= "<tr><td>";
-                        if ($ticket->isPaid() === false && $ticket->getTicketType()->getType() == "preorder") {
+                        if (( ! $isDeleted) && ($ticket->isPaid() === false && $ticket->getTicketType()->getType() == "preorder")) {
                             $canDelete++;
                             $content .= "<input type=\"checkbox\" class=\"checkbox-ticketSelect\" name=\"ticketIDs[]\" value=\"" . $ticket->getTicketID() . "\" />";
                         }
@@ -430,16 +439,16 @@ switch ($action) {
                         <td>" . $ticket->getTicketID() . "</td>
                         <td>" . $ticketTypeName . "</td>
                         <td>
-                            " . $owner . "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span><br />
-                            " . $user . "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>
+                            " . $owner . ($isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span>" : "") . "<br />
+                            " . $user . ($isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>" : "") . "
                         </td>
                         <td>" . $seat . "<br />
-                            " . ($canSeat ? "<span class=\"small\">[<a href=\"?module=seating&ticketID=" . $ticket->getTicketID() . "\">" . lang("Place on map", "ticketorder") . "</a>]</span>" : "") . "
+                            " . ($canSeat && !$isDeleted ? "<span class=\"small\">[<a href=\"?module=seating&ticketID=" . $ticket->getTicketID() . "\">" . lang("Place on map", "ticketorder") . "</a>]</span>" : "") . "
                         </td>
                         <td class=\"ticket-" . $statusColumnCss . "\">" . $status . "</td>
                         <td>";
 
-                        if ($ticket->isPaid() === false && $ticket->getTicketType()->getType() == "preorder") {
+                        if (( ! $isDeleted) && ($ticket->isPaid() === false && $ticket->getTicketType()->getType() == "preorder")) {
                             $content .= "<a href=\"index.php?module=usertickets&amp;action=payTicket&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Pay now") . "</a><br />";
                             $content .= "<a href=\"index.php?module=usertickets&amp;action=deletesingle&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Remove") . "</a>";
                         } else {
