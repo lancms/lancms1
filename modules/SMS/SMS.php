@@ -143,7 +143,7 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
         	db_query(
                 sprintf(
                     "INSERT INTO %s_cronjobs SET cronModule = 'SMS', toUser = '%s', senderID = '%s', content = '%s'",
-                    $sql_prefix, implode(',', $cellphone), $sessioninfo->userID, db_escape($_POST['message'])
+                    $sql_prefix, db_escape(implode(',', $cellphones)), $sessioninfo->userID, db_escape($_POST['message'])
                 )
             );
             
