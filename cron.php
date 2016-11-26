@@ -7,11 +7,8 @@ if(!isset($_SERVER['REMOTE_ADDR'])) {
 if ((isset($use_SMS_system)) && (!empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass))) {
 	switch ($use_SMS_system) {
 		case 'SMS4you.no':
-			include_once 'inc/SMS/SMS4you.no.php';
-			break;
-			
 		case 'clickatell':
-		
+			include_once 'inc/SMS/'.$use_SMS_system.'.php';
 			break;
 	}
 }
