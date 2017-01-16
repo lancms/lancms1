@@ -269,8 +269,8 @@ switch ($action) {
                             $groups = UserGroupManager::getInstance()->getEventGroups();
                             if (count($groups) > 0) {
                                 foreach ($groups as $key => $group) {
-                                    $selected = ($crew->getGroupID() == $group->getGroupID() ? " selected" : "");
-                                    $content .= "<option value=\"" . $group->getGroupID() . "\"$selected>" . $group->getName() . "</option>";
+                                    $selected = ( ! is_null($crew)) && ($crew->getGroupID() == $group->getGroupID());
+                                    $content .= "<option value=\"" . $group->getGroupID() . "\"" . ($selected ? " selected" : "") . ">" . $group->getName() . "</option>";
                                 }
 
                             }
