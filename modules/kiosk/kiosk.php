@@ -84,19 +84,26 @@ elseif($action == "addWare") {
 	$ware = $_REQUEST['ware'];
 
 	$qFindBarcode = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE barcode = '".db_escape($ware)."'");
+	$qFindBadge = db_query("SELECT * FROM ".$sql_prefix."_membershipCard WHERE cardID = '".db_escape($ware)."' AND eventID IN ($sessioninfo->eventID, 1)");
 	if(db_num($qFindBarcode) != 0) {
 		$rFindBarcode = db_fetch($qFindBarcode);
 		$wareID = $rFindBarcode->wareID;
 	}
-	elseif(stristr($ware, "UID")) {
+	elseif(stristr($ware, "UID1")) { // Reset to default userID
 		$checkingUser =TRUE;
-		$userID = str_replace("UID", "", $ware);
-
-		if(user_exists($userID)) {
-			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE 
-				sID = '$sessioninfo->sID'");
-		} // End if user_Exists
-		else die(_("User not found!"));
+		$userID = 1;
+//		$userID = str_replace("UID", "", $ware);
+//
+//		if(user_exists($userID)) {
+//			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE 
+//				sID = '$sessioninfo->sID'");
+//		} // End if user_Exists
+//		else die(_("User not found!"));
+   }
+   elseif(db_num($qFindBadge) != 0) { //Badge found
+		$checkingUser = TRUE;
+		$rFindBadge = db_fetch($qFindBadge);
+		$userID = $rFindBadge->userID;
 	}
 	else { // Assume we've used AJAX search, and that $ware is an ID
 		$qFindWareID = db_query("SELECT * FROM ".$sql_prefix."_kiosk_wares WHERE ID = '".db_escape($ware)."'");
@@ -122,7 +129,16 @@ elseif($action == "addWare") {
 				AND wareID = $wareID");
 		} // End else
 	} // End if checkingUser == FALSE
+	
+	elseif($checkingUser) {
+		if(user_exists($userID)) {
+			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE sID = '$sessioninfo->sID'");
+		} // End if user exists
+
+	}
+	
 	header("Location: ?module=kiosk");
+	
 } // End addWare
 
 elseif($action == "removeWare") {
