@@ -1,6 +1,8 @@
 <?php
 
-if(acl_access("eventadmin", "", $sessioninfo->eventID) != ('Admin' || 'Write')) die("No access");
+$acl = acl_access("eventadmin", "", $sessioninfo->eventID);
+if($acl != 'Admin' && $acl != 'Write') die("No access");
+
 $action = $_GET['action'];
 
 
