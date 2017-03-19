@@ -158,7 +158,7 @@ elseif($action == "doResetPassword" && !empty($_GET['userID'])) {
 	if($rGetUser->EMailConfirmed == 0) $content .= lang("Email not confirmed!");
 	elseif($rGetUser->lastPasswordReset >= time()-86400) $content .= lang("Multiple attempts at password reset. Not done");
 	else {
-		$genkey = md5(serialize($rGetUser) * time() * rand(0,100000));
+		$genkey = md5($rGetUser->ID * time() * rand(0,100000);
 
 		db_query("UPDATE ".$sql_prefix."_users SET passwordResetCode = '$genkey', lastPasswordReset = '".time()."' WHERE ID = '".db_escape($userID)."'");
 		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=login&action=newPassword&userID=$userID&key=$genkey";
