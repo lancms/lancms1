@@ -4,7 +4,7 @@
  * This is a PHP version of ontime template since Smarty started to argue...
  */
 
-$assetsVersion = '?v=1.2.0';
+$assetsVersion = '?v=1.2.1';
 
 ?><!DOCTYPE html>
 <html xml:lang="en" lang="en">
@@ -17,7 +17,7 @@ $assetsVersion = '?v=1.2.0';
 
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="favicon.ico">
-    
+
     <script src="templates/ontime/js/jquery.min.js<?php echo $assetsVersion; ?>"></script>
     <script src="templates/ontime/js/mobilemenu.js<?php echo $assetsVersion; ?>"></script>
     <script src="templates/ontime/js/timeago.min.js<?php echo $assetsVersion; ?>"></script>
