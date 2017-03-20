@@ -6,7 +6,8 @@
         "twig/twig": "^1.28"
     },
     "require-dev": {
-        "filp/whoops": "^1.1"
+        "filp/whoops": "^1.1",
+        "symfony/var-dumper": "^3.2"
     },
     "autoload": {
         "psr-4": {

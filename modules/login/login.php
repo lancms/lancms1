@@ -152,15 +152,24 @@ elseif($action == "resetPassword" && !empty($_GET['userID'])) {
 
 elseif($action == "doResetPassword" && !empty($_GET['userID'])) {
 	$userID = $_GET['userID'];
-        $qGetUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
+        $qGetUser = db_query(sprintf(
+			"SELECT * FROM %s_users WHERE ID = '%d'", $sql_prefix, $userID
+		));
         $rGetUser = db_fetch($qGetUser);
 
 	if($rGetUser->EMailConfirmed == 0) $content .= lang("Email not confirmed!");
 	elseif($rGetUser->lastPasswordReset >= time()-86400) $content .= lang("Multiple attempts at password reset. Not done");
 	else {
 		$genkey = md5($rGetUser->ID * time() * rand(0,100000));
-
-		db_query("UPDATE ".$sql_prefix."_users SET passwordResetCode = '$genkey', lastPasswordReset = '".time()."' WHERE ID = '".db_escape($userID)."'");
+		
+		db_query(sprintf(
+			"UPDATE %s_users SET passwordResetCode = '%s', lastPasswordReset = %d WHERE ID = %d",
+			$sql_prefix,
+			db_escape($genkey),
+			time(),
+			$userID
+		));
+		
 		$url = "http://".$_SERVER['SERVER_NAME'].$_SERVER['PHP_SELF']."?module=login&action=newPassword&userID=$userID&key=$genkey";
 		$email_content = sprintf(lang("<p>Hello %s %s.</p>
 <br />
