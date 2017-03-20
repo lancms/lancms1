@@ -1,0 +1,32 @@
+<h2>{{ user.allName ~ ' (' ~ user.nick ~ ')' }}</h2>
+
+<p><a href="?module=kioskadmin&amp;action=credit">{{ trans('Back to credit') }}</a></p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>{{ trans('Product') }}</th>
+            <th>{{ trans('Amount') }}</th>
+            <th>{{ trans('Price') }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for product in products %}
+        <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.amount|number_format }}</td>
+            <td>{{ product.price|number_format ~ ' kr' }}</td>
+        </tr>
+        {% endfor %}
+
+        <tr>
+            <td><strong>Sum</strong></td>
+            <td>{{ sums.amount }}</td>
+            <td>{{ sums.price|number_format ~ ' kr' }}</td>
+        </tr>
+    </tbody>
+</table>
+
+<form method="post" action="?module=kioskadmin&amp;action=markcreditpaid&amp;user={{ user.ID }}">
+    <button type="submit">{{ trans("Mark credit as paid") }}</button>
+</form>

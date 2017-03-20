@@ -130,7 +130,7 @@ elseif($action == "editWaretype" && isset($_GET['wareType'])) {
 elseif($action == "wares") {
 	$content .= "<p><a href=\"?module=kioskadmin\">" . _("Back to kioskadmin overview") . "</a></p>";
 	$content .= "<h2>" . _("Kiosk Wares") . "</h2>";
-	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName,wares.price FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types 
+	$qFindWares = db_query("SELECT wares.ID,wares.name,types.typeName,wares.price FROM ".$sql_prefix."_kiosk_wares wares JOIN ".$sql_prefix."_kiosk_waretypes types
 		ON wares.wareType=types.ID");
 
 	if (db_num($qFindWares) > 0) {
@@ -234,7 +234,7 @@ elseif($action == "editWare" && !empty($_GET['wareID'])) {
 		} // End while
 		$content .= "</ul>";
 	}
-	
+
 	$content .= "<form method=POST action='?module=kioskadmin&action=addBarcode&wareID=$wareID'>\n";
 	$content .= "<br /><input type=text name=barcode>\n";
 	$content .= "<br /><input type=submit value='".lang("Add barcode", "kioskadmin")."'>\n";
@@ -257,7 +257,7 @@ elseif($action == "doEditWare" && !empty($_GET['wareID'])) {
 	$name = $_POST['name'];
 	$wareType = $_POST['wareType'];
 	$price = $_POST['price'];
-	
+
 	db_query("UPDATE ".$sql_prefix."_kiosk_wares SET
 		wareType = '".db_escape($wareType)."',
 		name = '".db_escape($name)."',
@@ -273,11 +273,11 @@ elseif($action == "doEditWare" && !empty($_GET['wareID'])) {
 elseif($action == "addBarcode" && !empty($_GET['wareID'])) {
 	$wareID = $_GET['wareID'];
 	$barcode = $_POST['barcode'];
-	
+
 	$qFindBarcode = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE barcode = '".db_escape($barcode)."'");
 	if(db_num($qFindBarcode) == 0) {
-		db_query("INSERT INTO ".$sql_prefix."_kiosk_barcodes 
-			SET wareID = '".db_escape($wareID)."', 
+		db_query("INSERT INTO ".$sql_prefix."_kiosk_barcodes
+			SET wareID = '".db_escape($wareID)."',
 			barcode = '".db_escape($barcode)."'");
 		$log_new['wareID'] = $wareID;
 		$log_new['barcode'] = $barcode;
@@ -303,43 +303,66 @@ elseif($action == "rmBarcode" && !empty($_GET['barcode']) && !empty($_GET['wareI
 elseif($action == "credit") {
 	$qFindCredits = db_query("SELECT u.nick,u.ID,SUM(totalPrice) AS totalPrice FROM ".$sql_prefix."_kiosk_sales ks JOIN ".$sql_prefix."_users u ON u.ID=ks.soldTo WHERE ks.credit = 1 AND creditPaid = 0 AND ks.totalPrice >0 AND eventID = '$sessioninfo->eventID' GROUP BY u.nick ORDER BY totalPrice DESC");
 
-	$content .= "<table>";
+    $content .= '<h2>'._('Credit').'</h2>';
+
+	$content .= "<table class='table'><thead><tr><th>"._('Name')."</th><th>"._('Amount')."</th></tr></thead>";
+    $content .= "<tbody>";
 	while($rFindCredits = db_fetch($qFindCredits)) {
 		$content .= "<tr><td>";
 		$content .= user_profile($rFindCredits->ID);
 		$content .= "</td><td>\n";
 		$content .= "<a href='?module=kioskadmin&action=viewCreditSales&user=$rFindCredits->ID'>";
-		$content .= $rFindCredits->totalPrice;
+		$content .= number_format($rFindCredits->totalPrice) . ' kr';
 		$content .= "</a></td></tr>";
 	} // End while
+    $content .= "</tbody>";
 	$content .= "</table>\n\n";
 } // End action = credit
 
 elseif($action == 'viewCreditSales' && !empty($_GET['user'])) {
 	$user = $_GET['user'];
 
-	$qFindWares = db_query("SELECT kw.ID,kw.name,kw.price,kw.wareType,ksi.amount FROM (".$sql_prefix."_kiosk_saleitems ksi LEFT JOIN ".$sql_prefix."_kiosk_sales ks ON ks.ID=ksi.saleID) LEFT JOIN ".$sql_prefix."_kiosk_wares kw ON ksi.wareID=kw.ID WHERE ks.credit=1 AND ks.soldTo = '".db_escape($user)."' AND ks.totalPrice > 0 AND ks.eventID = '$sessioninfo->eventID' ORDER BY kw.name ASC");
-	$content .= "<table>";
-	while($rFindWares = db_fetch($qFindWares)) {
-		$content .= "<tr><td>";
-		$content .= $rFindWares->name;
-		$content .= "</td><td>";
-		$content .= $rFindWares->amount;
-		$content .= "</td><td>";
-		$content .= $rFindWares->price;
-		$content .= "</td></tr>";
+    $userInfo = user_info((int) $user);
 
-	} // End while rFindWares
-	$content .= "</table>";
+    if ($userInfo !== false) {
+        $qFindWares = db_query(sprintf(
+            "SELECT kw.ID as kwID, kw.name, kw.price, kw.wareType, ksi.amount
+            FROM (%s_kiosk_saleitems ksi LEFT JOIN %s_kiosk_sales ks ON ks.ID=ksi.saleID)
+            LEFT JOIN %s_kiosk_wares kw ON ksi.wareID=kw.ID
+            WHERE ks.credit=1 AND ks.soldTo = %d AND ks.totalPrice > 0 AND ks.eventID = %d
+            ORDER BY kw.name ASC",
+            $sql_prefix, $sql_prefix, $sql_prefix,
+            $user, $sessioninfo->eventID
+        ));
+        $rFindWares = db_fetch_all($qFindWares);
 
-	$content .= "<form method=POST action='?module=kioskadmin&action=markcreditpaid&user=$user'>";
-	$content .= "<input type=submit value='"._("Mark credit as paid")."'>";
-	$content .= "</form>";
+        $sumAmount = $sumPrice = 0;
+
+        foreach ($rFindWares as $product) {
+            $amount = (int) $product->amount;
+            $sumAmount += $amount;
+            $sumPrice += ((int) $product->price) * $amount;
+        }
+
+        $content .= $twigEnvironment->render(
+            'kioskadmin/credit.twig',
+            array(
+                'user' => $userInfo,
+                'sums' => array(
+                    'amount' => $sumAmount,
+                    'price' => $sumPrice,
+                ),
+                'products' => $rFindWares,
+            )
+        );
+    } else {
+        $content .= '<p>User was not found.</p>';
+    }
 } // End action = viewCreditSales
 
 elseif($action == "markcreditpaid" && !empty($_GET['user'])) {
 	$user = $_GET['user'];
-	
+
 	db_query("UPDATE ".$sql_prefix."_kiosk_sales SET creditPaid = 1 WHERE soldTo = '".db_escape($user)."' AND creditPaid = 0 AND credit = 1 AND eventID = '$sessioninfo->eventID'");
 	$log_new = serialize($user);
 	log_add("kioskadmin", "markcreditpaid", $log_new);
