@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+    web:
+        build: docker/nginx
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./html:/app/html
+        depends_on:
+            - php
+        networks:
+            backend:
+
+    php:
+        build: docker/php
+        restart: always
+        volumes:
+            - ./:/app
+        depends_on:
+            - db
+        networks:
+            backend:
+                aliases:
+                    - php
+
+    db:
+        image: mariadb:10.1
+        environment:
+            MYSQL_ROOT_PASSWORD: secret
+            MYSQL_USER: lancms1
+            MYSQL_PASSWORD: secret
+            MYSQL_DATABASE: lancms
+        restart: always
+        volumes:
+            - db_data:/var/lib/mysql
+        networks:
+            backend:
+                aliases:
+                    - db
+
+networks:
+    backend:
+
+volumes:
+    db_data:
