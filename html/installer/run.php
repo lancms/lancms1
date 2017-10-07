@@ -34,7 +34,7 @@ if(!isset($_GET["demodata"]))
 	while($table = db_fetch_assoc($tblq))
 	{
 		// Seems that the index of $table might be different, just get
-        // first element in array by first getting array as numeric. 
+        // first element in array by first getting array as numeric.
         $table = array_values($table);
         $db_tables[strtolower($table[0])] = new table($table[0], true);
 	}
@@ -56,8 +56,8 @@ if(!isset($_GET["demodata"]))
 			{
 				$tblname = $tblname[1];
 				$pr_tbl = str_replace("[prefix]", $sql_prefix, $tblname);
-				$curtbl = & new table($pr_tbl);
-				$file_tables[strtolower($pr_tbl)] = &$curtbl;
+				$curtbl = new table($pr_tbl);
+				$file_tables[strtolower($pr_tbl)] = $curtbl;
 				continue;
 			}
 		}
