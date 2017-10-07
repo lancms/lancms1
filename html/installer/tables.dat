@@ -6,23 +6,23 @@ TABLE [prefix]_users
 {
 #	NAME			TYPE			KEY		NULL	DEFAULT		EXTRA
 	ID,			int(11), 		PRI, 	   	,	  ,		auto_increment
-	nick,			varchar(35),	  	,	  	 ,	NOT NULL,	
-	password, 		varchar(50),	   	,		YES,	  ,	
-	EMail, 			varchar(50),	   	,		YES,	  ,	
+	nick,			varchar(35),	  	,	  	 ,	NOT NULL,
+	password, 		varchar(50),	   	,		YES,	  ,
+	EMail, 			varchar(50),	   	,		YES,	  ,
 	EMailConfirmed,		tinyint(1)		,		YES,	0,
-	globaladmin, 		tinyint(1),		,		YES,	 0,	
-	firstName, 		varchar(40),	   	,		YES,	  ,	
-	lastName, 		varchar(40),	   	,		YES,	  ,	
-	MSNAddress, 		varchar(35),	   	,		YES,	  ,	
-	ICQAddress, 		int(12),		,		YES,	  ,	
-	postNumber, 		int(5),			,		YES,	  ,	
-	postPlace, 		varchar(35),	   	,		YES,	  ,	
+	globaladmin, 		tinyint(1),		,		YES,	 0,
+	firstName, 		varchar(40),	   	,		YES,	  ,
+	lastName, 		varchar(40),	   	,		YES,	  ,
+	MSNAddress, 		varchar(35),	   	,		YES,	  ,
+	ICQAddress, 		int(12),		,		YES,	  ,
+	postNumber, 		int(5),			,		YES,	  ,
+	postPlace, 		varchar(35),	   	,		YES,	  ,
 	street,			varchar(50),		,		YES,
 	street2,		varchar(50),		,		YES,	,
-	registerTime, 		int(11),		,		YES,	 0,	
+	registerTime, 		int(11),		,		YES,	 0,
 	registerIP, 		varchar(15),	   	,		YES,	000.000.000.000,
 	EMailVerifyCode, 	varchar(40),	   	,		YES,	  ,
-	userInfoVerified, 	tinyint(1),		,		YES,	 0,	
+	userInfoVerified, 	tinyint(1),		,		YES,	 0,
 	gender,			enum('Male', 'Female','Other'),	,		NO,	,
 	cellphone,		varchar(20),		,		YES,	0,
 	phone,			varchar(20),		,		YES,	0,
@@ -39,7 +39,7 @@ TABLE [prefix]_users
 TABLE [prefix]_config
 {
 #	NAME	TYPE	KEY	NULL	DEFAULT	EXTRA
-        config,	varchar(32), PRI, 	,	,		
+        config,	varchar(32), PRI, 	,	,
         value,	varchar(32),	NOT NULL,	,
         eventID,	int(11),	PRI,	,	1,
 }
@@ -161,7 +161,7 @@ TABLE [prefix]_wannabeQuestions
 	question,	text,		,	,	,
 	progName,	varchar(150),	,	,	,
 	questionType,	enum('text', 'select', 'radio', 'checkbox'), , , ,
-	questionOrder,	int(2)		,	,	0,		
+	questionOrder,	int(2)		,	,	0,
 }
 
 TABLE [prefix]_wannabeQuestionInfo
@@ -289,15 +289,15 @@ TABLE [prefix]_economy_bankaccounts
 	accountID,	int(11),		PRI,	,	,		auto_increment
 	eventID,	int(11),	,	,	,		,
 	type,		enum('creditcard', 'bankaccount', 'cash'), , , , ,
-	
+
 }
 
 TABLE [prefix]_economy_receipt
 {
 #       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
 	ID,		int(11),	PRI,	,	,		auto_increment
-	eventID,	int(11),	,	,	1,		
-	from_location,	text,		,	,	,		
+	eventID,	int(11),	,	,	1,
+	from_location,	text,		,	,	,
 	timestamp,	text,		,	,	,
 	description,	text,		,	,	,
 	amount,		int(6),		,	0,	,
@@ -318,7 +318,7 @@ TABLE [prefix]_compos
 TABLE [prefix]_compoSignup
 {
 #       NAME            TYPE            KEY     NULL    DEFAULT         EXTRA
-	compoID,	int(11),	PRI,	NOT NULL, ,		
+	compoID,	int(11),	PRI,	NOT NULL, ,
 	clanID,		int(11),	PRI,	,	1,
 	userID,		int(11),	PRI,	,	1,
 }
@@ -376,7 +376,7 @@ TABLE [prefix]_logs
 	userIP,		int unsigned,	,	,	,
 	userHost,	text,				,	,	,
 	logType,		int(11),			,	,	,
-	logTextNew,	text,				,	,	,	
+	logTextNew,	text,				,	,	,
 	logTextOld,	text,				,	,	,
 	logURL,		text,				,	,	,
 	logTime,		timestamp,		,	,	current_timestamp,
@@ -410,7 +410,7 @@ TABLE [prefix]_kiosk_wares
 {
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
 	ID,			int(11),		PRI,	,	,		auto_increment
-	wareType,		int(11),		,	,	,		
+	wareType,		int(11),		,	,	,
 	name,			varchar(35),		,	,	,
 	price,			int(4),			,	,	0,
 }
@@ -419,21 +419,21 @@ TABLE [prefix]_kiosk_waretypes
 {
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
 	ID,			int(11),		PRI,	,	,		auto_increment
-	typeName,		varchar(35),		,	,	,		
+	typeName,		varchar(35),		,	,	,
 	typeColor,		varchar(10),		,	,	black,
 }
 
 TABLE [prefix]_kiosk_barcodes
 {
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
-	barcode,		varchar(40),		PRI,	NOT NULL,	,	
+	barcode,		varchar(40),		PRI,	NOT NULL,	,
 	wareID,			int(11),		,	NOT NULL,	,
 }
 
 TABLE [prefix]_kiosk_shopbasket
 {
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
-	sID,			varchar(35),		PRI,	NOT NULL, ,		
+	sID,			varchar(35),		PRI,	NOT NULL, ,
 	wareID,			int(11),		PRI,	NOT NULL, ,
 	amount,			int(3),			,	,	1,
 }
@@ -442,7 +442,7 @@ TABLE [prefix]_kiosk_sales
 {
 #       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
 	ID,			int(11),		PRI,	,	,		auto_increment
-	salesPerson,		int(11),		,	NOT NULL, 1,	
+	salesPerson,		int(11),		,	NOT NULL, 1,
 	saleTime,		int(11),		,	,	0,
 	eventID,		int(11),		,	,	1,
 	soldTo,			int(11),		,	,	1,
@@ -457,7 +457,7 @@ TABLE [prefix]_kiosk_saleitems
 	saleID,			int(11),		PRI,	NOT NULL, ,
 	wareID,			int(11),		PRI,	NOT NULL, ,
 	amount,			int(5),			,	,	0,
-	
+
 }
 
 TABLE [prefix]_postnumber
@@ -526,13 +526,13 @@ TABLE [prefix]_infoscreensSlides
 	ID, int(11), PRI, , , auto_increment
 	eventID, int(11), , , 1,
 	name, varchar(25), , , ,
-	content, text, , , , 
+	content, text, , , ,
 }
 
 TABLE [prefix]_infoscreensQueues
 {
 	ID, int(11), PRI, , , auto_increment
-	eventID, int(11), , , 1, 
+	eventID, int(11), , , 1,
 	slideID, int(11), , , ,
 	screenID, int(11), , , ,
 	wait, int(11), , , 60,

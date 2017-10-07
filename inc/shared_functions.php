@@ -176,7 +176,7 @@ function lang($string, $module = "index")
 					return $value;
 				}
 			}
-		}	
+		}
 
 		// Check to see if that string exists
 		$q = db_query("SELECT * FROM ".$sql_prefix."_lang
@@ -842,10 +842,10 @@ function getUserIP() {
 /**
  * Flip array_map
  *
- * @param array $array    
- * @param callback $callback 
+ * @param array $array
+ * @param callback $callback
  *
- * @return array 
+ * @return array
  */
 function map_array($array, $callback)
 {
