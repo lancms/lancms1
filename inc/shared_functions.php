@@ -391,6 +391,9 @@ function log_add ($logmodule, $logfunction, $lognew="0", $logold="0", $userid=0,
 	{
 		$eventid = $sessioninfo->eventID;
 	}
+
+	if (!is_numeric($eventid)) $eventid = 0;
+
 	if ($userip == 0)
 	{
 		$userip = $_SERVER['REMOTE_ADDR'];
