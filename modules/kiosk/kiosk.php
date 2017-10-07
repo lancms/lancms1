@@ -13,6 +13,16 @@ if(empty($action)) {
 
 #	$design_head .= '<link href="modules/kiosk/suggest.css" rel="stylesheet" type="text/css" />';
 
+    $error = $_GET['error'] ?? null;
+
+    switch ($error) {
+        case 1:
+            $content .= '<div class="alert alert-danger">' . lang('Ware not found', 'kiosk') . '</div>';
+            break;
+
+        default: break;
+    }
+
 	$content .= "<table>";
 	$content .= "<tr><td colspan=2>";
 	$content .= "<form method='POST' action='?module=kiosk&action=addWare' name='barfield'>\n";
@@ -81,7 +91,12 @@ if(empty($action)) {
 
 elseif($action == "addWare") {
 
-	$ware = $_REQUEST['ware'];
+	$ware = $_REQUEST['ware'] ?? '';
+
+    if (empty($ware)) {
+        header('Location: ?module=kiosk&error=1');
+        exit;
+    }
 
 	$qFindBarcode = db_query("SELECT * FROM ".$sql_prefix."_kiosk_barcodes WHERE barcode = '".db_escape($ware)."'");
 	$qFindBadge = db_query("SELECT * FROM ".$sql_prefix."_membershipCard WHERE cardID = '".db_escape($ware)."' AND eventID IN ($sessioninfo->eventID, 1)");
@@ -95,7 +110,7 @@ elseif($action == "addWare") {
 //		$userID = str_replace("UID", "", $ware);
 //
 //		if(user_exists($userID)) {
-//			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE 
+//			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE
 //				sID = '$sessioninfo->sID'");
 //		} // End if user_Exists
 //		else die(_("User not found!"));
@@ -113,7 +128,7 @@ elseif($action == "addWare") {
 		} // End if db_num == 1
 	} // End else
 	if(!$checkingUser) {
-		$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket 
+		$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket
 			WHERE sID = '$sessioninfo->sID'
 			AND wareID = '$wareID'");
 
@@ -129,22 +144,22 @@ elseif($action == "addWare") {
 				AND wareID = $wareID");
 		} // End else
 	} // End if checkingUser == FALSE
-	
+
 	elseif($checkingUser) {
 		if(user_exists($userID)) {
 			db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '".db_escape($userID)."' WHERE sID = '$sessioninfo->sID'");
 		} // End if user exists
 
 	}
-	
+
 	header("Location: ?module=kiosk");
-	
+
 } // End addWare
 
 elseif($action == "removeWare") {
 	$ware = $_REQUEST['ware'];
 
-	$qFindAmount = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE 
+	$qFindAmount = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE
 		sID = '$sessioninfo->sID'
 		AND wareID = '".db_escape($ware)."'
 		");
@@ -158,18 +173,18 @@ elseif($action == "removeWare") {
 	} // End else
 	header("Location: ?module=kiosk");
 } // End if action = removeWare
- 
+
 elseif($action == "sell") {
 	if($_POST['credit'] == 'yes' AND $sessioninfo->kioskSaleTo > 1) $credit = 1;
 	else $credit = 0;
-	$qCreateSale = db_query("INSERT INTO ".$sql_prefix."_kiosk_sales 
+	$qCreateSale = db_query("INSERT INTO ".$sql_prefix."_kiosk_sales
 		SET salesPerson = '$sessioninfo->userID',
 		saleTime = '".time()."',
 		soldTo = '".$sessioninfo->kioskSaleTo."',
 		credit = '$credit',
 		eventID = '$sessioninfo->eventID'");
-	$qSaleID = db_query("SELECT ID FROM ".$sql_prefix."_kiosk_sales 
-		WHERE salesPerson = '$sessioninfo->userID' 
+	$qSaleID = db_query("SELECT ID FROM ".$sql_prefix."_kiosk_sales
+		WHERE salesPerson = '$sessioninfo->userID'
 		AND eventID = '$sessioninfo->eventID'
 		ORDER BY ID DESC LIMIT 0,1");
 	$rSaleID = db_fetch($qSaleID);
@@ -178,7 +193,7 @@ elseif($action == "sell") {
 
 	$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID'");
 	while($rFindBasket = db_fetch($qFindBasket)) {
-		db_query("INSERT INTO ".$sql_prefix."_kiosk_saleitems 
+		db_query("INSERT INTO ".$sql_prefix."_kiosk_saleitems
 			SET saleID = '$saleID',
 			wareID = '$rFindBasket->wareID',
 			amount = '$rFindBasket->amount'
@@ -191,6 +206,6 @@ elseif($action == "sell") {
 	db_query("UPDATE ".$sql_prefix."_kiosk_sales SET totalPrice = '$total_price' WHERE ID = '$saleID'");
 	db_query("UPDATE ".$sql_prefix."_session SET kioskSaleTo = '1' WHERE sID = '$sessioninfo->sID'");
 	header("Location: ?module=kiosk");
-	
-	
+
+
 } // End action == sell
