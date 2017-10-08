@@ -1,0 +1,35 @@
+{
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "file-loader": "^1.1.5",
+    "font-awesome": "^4.7.0",
+    "font-awesome-webpack": "^0.0.5-beta.2",
+    "glob": "^7.1.2",
+    "hogan.js": "^3.0.2",
+    "immediate": "^3.2.3",
+    "less": "^2.7.2",
+    "lodash.debounce": "^4.0.8",
+    "mustache-loader": "^1.2.0",
+    "node-sass": "^4.5.3",
+    "popper.js": "^1.12.5",
+    "promise-polyfill": "^6.0.2",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.0",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.6.0",
+    "webpack-extraneous-file-cleanup-plugin": "^1.0.3",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack -p; babel-node compile_stylesheets.js",
+    "watch": "cross-env NODE_ENV=development webpack -w"
+  }
+}

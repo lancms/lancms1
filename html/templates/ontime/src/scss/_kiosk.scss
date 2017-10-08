@@ -1,0 +1,51 @@
+.kiosk-cart-table {
+  .cart {
+    &-header, &-row {
+      border-bottom: 1px solid #999;
+      padding: 5px 0;
+    }
+
+    &-header {
+      > div {
+        font-weight: 700;
+      }
+    }
+
+    &-row {
+      &-amount {
+        &:hover {
+          .amount-number {
+            border-color: black;
+            cursor: pointer;
+          }
+        }
+
+        .amount-number {
+          border: 1px solid transparent;
+        }
+
+        a, span {
+          display: flex;
+          align-items: center;
+          line-height: normal;
+        }
+
+        .plus {
+          margin-right: .2rem;
+        }
+
+        .minus {
+          margin-left: .2rem;
+        }
+      }
+
+      &.sum-row {
+        margin-top: 1.4rem;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: darkred;
+        border-bottom: none;
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ class EventSqlObject extends SqlObject {
 
     /**
      * Provides the crew eventID
-     * 
+     *
      * @return int
      */
     public function getEventID() {

@@ -1,0 +1,35 @@
+<div class="kiosk-cart-table mb-2 flex flex-column">
+    <div class="cart-header flex flex-row justify-content-end">
+        <div class="w-70">{{ trans('Name') }}</div>
+        <div class="w-40 text-right">{{ trans('Amount') }}</div>
+        <div class="w-20 text-right">{{ trans('Price per') }}</div>
+        <div class="w-20 text-right">{{ trans('Price') }}</div>
+    </div>
+    {% if not cart.items %}
+        <div class="cart-row flex flex-row w-100">
+            <em class="text-muted">{{ trans('No products in cart') }}</em>
+        </div>
+    {% endif %}
+    {% for item in cart.items %}
+        <div class="cart-row flex flex-row w-100 on-visible">
+            <div class="w-70">
+                <span>{{ item.getProduct().getName() }}</span>
+                <a class="on-visible-trigger" href="?module=kiosk&amp;action=removeWare&amp;ware={{ item.getProduct().getId() }}"><i class="text-danger fa fa-trash"></i></a>
+            </div>
+            <div class="w-40 cart-row-amount flex flex-row justify-content-end align-items-center">
+                <a class="plus on-visible-trigger" href="?module=kiosk&amp;action=addWare&amp;ware={{ item.getProduct().getId() }}">
+                    <i class="text-black fa fa-plus"></i>
+                </a>
+                <span>{{ item.getAmount()|number_format }}</span>
+                <a class="minus on-visible-trigger" href="?module=kiosk&amp;action=removeWare&amp;ware={{ item.getProduct().getId() }}">
+                    <i class="text-black fa fa-minus"></i>
+                </a>
+            </div>
+            <div class="w-20 text-right">{{ item.getProduct().getPrice()|number_format }} kr</div>
+            <div class="w-20 text-right">{{ item.getPrice()|number_format }} kr</div>
+        </div>
+    {% endfor %}
+    <div class="cart-row sum-row flex flex-row justify-content-end">
+        <div class="w-100 text-right">{{ trans('Total') }} {{ cart.sum|number_format }} kr</div>
+    </div>
+</div>

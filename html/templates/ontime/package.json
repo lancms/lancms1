@@ -1,8 +1,14 @@
 {
-  "dependencies": {
-    "node-sass": "^3.10.1"
+  "devDependencies": {
+    "cross-env": "^5.0.5",
+    "css-loader": "^0.28.7",
+    "extract-text-webpack-plugin": "^3.0.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "webpack": "^3.6.0"
   },
   "scripts": {
-    "sass": "./node_modules/.bin/node-sass --output-style compressed src/scss/style.scss -o css/"
+    "build": "cross-env NODE_ENV=production webpack -p",
+    "watch": "cross-env NODE_ENV=development webpack -w"
   }
 }

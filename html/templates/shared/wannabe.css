@@ -1,45 +1,39 @@
 td.wannabeCommentStyle0 {
-/*	background-color: red; */
-}
-td.wannabeCommentStyle1 {
-    background-color: green;
-}
-td.wannabeCommentStyle2 {
-    background-color: yellow;
-    color: black;
-}
-td.wannabeCommentStyle3 {
-    background-color: grey;
-}
-td.wannabeCommentStyle4 {
-    background-color: orange;
-}
-td.wannabeCommentStyle5 {
-    background-color: red;
-}
-th.wannabecomments {
-	border: solid 1px black;
-}
-table.wannabecomments {
-	width: 100%;
-}
+  /*	background-color: red; */ }
 
-tr.wannabeCrewResponse1
-{
-	background-color: #999;
-}
-tr.wannabeCrewResponse2
-{
-	background-color: #777;
-}
+td.wannabeCommentStyle1 {
+  background-color: green; }
+
+td.wannabeCommentStyle2 {
+  background-color: yellow;
+  color: black; }
+
+td.wannabeCommentStyle3 {
+  background-color: grey; }
+
+td.wannabeCommentStyle4 {
+  background-color: orange; }
+
+td.wannabeCommentStyle5 {
+  background-color: red; }
+
+th.wannabecomments {
+  border: solid 1px black; }
+
+table.wannabecomments {
+  width: 100%; }
+
+tr.wannabeCrewResponse1 {
+  background-color: #999; }
+
+tr.wannabeCrewResponse2 {
+  background-color: #777; }
 
 table.wannabeResponse {
-	width: 100%;
-}
-tr.wannabeResponse1
-{
-	background-color: #999;
-}
-tr.wannabeResponse2
-{
-	background-color: #777;
+  width: 100%; }
+
+tr.wannabeResponse1 {
+  background-color: #999; }
+
+tr.wannabeResponse2 {
+  background-color: #777; }

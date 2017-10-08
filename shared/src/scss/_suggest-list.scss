@@ -1,0 +1,23 @@
+.suggest-list {
+  width: 100%;
+  border: 1px solid #eceeef;
+  background-color: #fff;
+  box-shadow: 0px 3px 3px rgb(234, 222, 222);
+
+  &-item {
+    display: block;
+    padding: .6rem;
+
+    &:hover, &:focus {
+      background-color: #eceeef;
+
+      &, a {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &-container {
+    position: relative;
+  }
+}

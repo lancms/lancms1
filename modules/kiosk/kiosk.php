@@ -1,93 +1,43 @@
 <?php
+use Lancms\Kiosk;
+use Lancms\KioskSession;
 
 $acl = acl_access("kiosk_sales", "", $sessioninfo->eventID);
 if($acl == 'No') die("Error, no access!");
 
-$action = $_GET['action'];
+$action = $_GET['action'] ?? '';
+
+$kiosk = new Kiosk();
+$session = new KioskSession($kiosk, $sessioninfo->sID);
 
 if(empty($action)) {
 
-	$design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_suggest.js"></script>'."\n";
+	// $design_head .= '<script type="text/javascript" src="inc/AJAX/ajax_suggest.js"></script>'."\n";
 #	$design_head .= '<script type="text/javascript"> document.forms[\'barfield\'].ware.focus(); </script>';
 
 
 #	$design_head .= '<link href="modules/kiosk/suggest.css" rel="stylesheet" type="text/css" />';
 
-    $error = $_GET['error'] ?? null;
+    $sellTo = null;
 
-    switch ($error) {
-        case 1:
-            $content .= '<div class="alert alert-danger">' . lang('Ware not found', 'kiosk') . '</div>';
-            break;
-
-        default: break;
+    if (($sellToId = $sessioninfo->kioskSaleTo) > 1) {
+        $sellTo = [
+            'id' => $sellToId,
+            'nick' => display_username($sellToId),
+        ];
     }
 
-	$content .= "<table>";
-	$content .= "<tr><td colspan=2>";
-	$content .= "<form method='POST' action='?module=kiosk&action=addWare' name='barfield'>\n";
-	$content .= "<input type=text name='ware' id='ware' tabindex=1 onkeyup=\"suggest();\" autocomplete=\"off\"/>";
-	$content .= "<div id='suggest'></div>";
-	$content .= "<input type=submit value='".lang("Add", "kiosk")."'>\n";
-	$content .= "</form>\n\n";
-	$content .= "<script type='text/javascript' language='javascript'>document.forms['barfield'].elements['ware'].focus()</script>\n";
-	$content .= "</td><td>";
-	if($sessioninfo->kioskSaleTo > 1) {
-		$content .= _("Currently selling to:");
-		$content .= " ".display_username($sessioninfo->kioskSaleTo);
-		$content .= "<form method=POST action='?module=kiosk&action=addWare' name='resetSaleTo'>\n";
-		$content .= "<input type='hidden' name='ware' value='UID1'>";
-		$content .= "<input type=submit value='"._("Remove user")."'>";
-		$content .= "</form>\n";
-	} // End kioskSaleTo
-	$content .= "</td></tr>";
-
-	$content .= "<tr><td>";
-	$content .= "<table border=1>";
-	$qFindBasket = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID'");
-	while($rFindBasket = db_fetch($qFindBasket)) {
-		$content .= "<tr><td>";
-		$qFindWare = db_query("SELECT * FROM ".$sql_prefix."_kiosk_wares WHERE ID = '$rFindBasket->wareID'");
-		$rFindWare = db_fetch($qFindWare);
-		$content .= $rFindWare->name;
-		$content .= "</td><td>";
-		$content .= $rFindBasket->amount; // FIXME: Needs to have menues and crewprices
-		$content .= "</td><td>";
-		$price = kiosk_item_price($rFindBasket->wareID) * $rFindBasket->amount;
-		$content .= $price;
-		$total_price = $total_price + $price;
-		$total_warecount = $total_warecount + 1;
-		$content .= "</td><td>";
-		$content .= "<a href=?module=kiosk&action=addWare&ware=$rFindBasket->wareID><img src='inc/images/plus-15px.png' border=0 alt='".lang("Add one more item", "kiosk")."' /></a> ";
-		$content .= "<a href=?module=kiosk&action=removeWare&ware=$rFindBasket->wareID><img src='inc/images/minus-15px.png' border=0 alt='".lang("Remove one item", "kiosk")."' /></a>";
-		$content .= "</td></tr>";
-	}
-	$content .= "</table>";
-	$content .= "</td><td>";
-	if($total_warecount > 0) {
-		$content .= "<font size=36 color=red>$total_price</font>";
-		$content .= "<form method=POST action=?module=kiosk&action=sell>";
-		$content .= "<input type=submit value='".lang("SELL", "kiosk")."'>";
-
-	        if($sessioninfo->kioskSaleTo > 1) {
-        	        if(config("kiosk_userSale_credit_default", $sessioninfo->eventID)) $credit_yes = 'checked';
-                	else $credit_no = 'checked';
-	                $content .= "<br /><input type=radio name=credit value='yes' $credit_yes>";
-        	        $content .= _("Add to users credit");
-                	$content .= "<br /><input type=radio name=credit value='no' $credit_no>";
-	                $content .= _("User pays cash");
-	        } // End kioskSaleTo > 1
-
-
-	} // End if total_warecount > 0
-	$content .= "</form>\n\n";
-	$content .= "</td></tr>";
-	$content .= "</table>";
-
+    $content .= $twigEnvironment->render('kiosk/gui.twig', [
+        'error' => $_GET['error'] ?? null,
+        'sellTo' => $sellTo,
+        'cart' => [
+            'items' => $session->getCartProducts(),
+            'sum' => $session->getTotalSumPrice(),
+        ],
+        'creditDefault' => config("kiosk_userSale_credit_default", $sessioninfo->eventID),
+    ]);
 
 }
-
-
 
 elseif($action == "addWare") {
 
@@ -157,7 +107,7 @@ elseif($action == "addWare") {
 } // End addWare
 
 elseif($action == "removeWare") {
-	$ware = $_REQUEST['ware'];
+	$ware = $_REQUEST['ware'] ?? '';
 
 	$qFindAmount = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE
 		sID = '$sessioninfo->sID'

@@ -396,6 +396,11 @@ button,
     background-image: none;
     border: 1px solid transparent;
     border-radius: 4px;
+
+    &.disabled,
+    &:disabled {
+      opacity: .65;
+    }
 }
 
 input[type=submit].top,

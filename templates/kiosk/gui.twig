@@ -1,0 +1,39 @@
+<div class="kiosk-gui">
+    {% if error == 1 %}
+        <div class="alert alert-danger">{{ trans('Ware not found', 'kiosk') }}</div>
+    {% endif %}
+
+    <form method="post" action="?module=kiosk&action=addWare" class="mb-2" name="barfield">
+        <div class="flex flex-row">
+            <div class="w-100 kiosk-suggestions">
+                <input type="text" class="ware" name="ware" id="kiosk-suggest" tabindex="1" autocomplete="off" />
+            </div>
+            <button type="submit">{{ trans('Add', 'kiosk') }}</button>
+        </div>
+    </form>
+
+    {% if sellTo %}
+        <div class="mb-2 flex flex-row align-items-center">
+            <div class="w-80 mr-2">Currently selling to: {{ sellTo.nick }}</div>
+            <div class="w-20">
+                <form method="post" action="?module=kiosk&amp;action=addWare" name="resetSaleTo">
+                    <input type="hidden" name="ware" value="UID1" />
+                    <button type="submit">{{ trans('Remove user') }}</button>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+
+    {% include 'kiosk/table.gui.twig' %}
+
+    <form method="post" action="?module=kiosk&amp;action=sell">
+        <div class="ml-auto w-20 flex flex-column">
+            {% if sellTo %}
+                <label><input name="credit" value="yes" type="radio" {% if creditDefault %} checked{% endif %}>Add to users credit</label>
+                <label><input name="credit" value="no" class="mb-1" {% if not creditDefault %} checked{% endif %} type="radio">User pays cash</label>
+            {% endif %}
+
+            <button type="submit"{% if not cart.items %} disabled title="{{ trans('No items in the cart, cannot sell.') }}"{% endif %} name="SELL">SELL</button>
+        </div>
+    </form>
+</div>

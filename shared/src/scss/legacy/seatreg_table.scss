@@ -1,0 +1,49 @@
+table#seatRegTable {
+    text-align: center;
+    padding: 0px;
+    border: solid #000 0px;
+
+}
+
+.seatNormalUser {
+    background-color: red;
+    font-size: 12px;
+}
+.seatNormalUserFree {
+    background-color: green;
+    font-size: 12px;
+}
+
+.seatUnknownCell {
+    background-color: pink;
+}
+
+.seatWall {
+    background-color: black;
+    padding: 5px;
+    border: 0px;
+}
+
+.seatBlank {
+    background-color: white;
+}
+
+.seatDoor {
+    background-color: blue;
+}
+
+.seatPassword {
+    background-color: orange;
+    font-size: 12px;
+}
+
+.seatGroup {
+    background-color: purple;
+    font-size: 12px;
+}
+
+.seatCurrentSelected {
+    background-color: yellow;
+    color: black;
+    font-size: 12px;
+}

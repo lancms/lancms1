@@ -851,3 +851,8 @@ function map_array($array, $callback)
 {
 	return array_map($callback, $array);
 }
+
+function array_first(array $array)
+{
+	return array_values($array)[0] ?? null;
+}

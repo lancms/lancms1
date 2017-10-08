@@ -1,0 +1,29 @@
+.flex {
+  display: flex;
+
+  &-row {
+    flex-flow: row;
+  }
+
+  &-column {
+    flex-flow: column;
+  }
+}
+
+.justify-content {
+  &-end {
+    justify-content: flex-end;
+  }
+}
+
+.align {
+  &-items {
+    &-center {
+      align-items: center;
+    }
+
+    &-end {
+      align-items: flex-end;
+    }
+  }
+}

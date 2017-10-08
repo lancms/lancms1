@@ -1,22 +1,14 @@
-table.userlist
-{
-	font-size: 90%;
-}
-tr.userrow0
-{
-	background-color: darkgreen;
-}
-tr.userrow1
-{
-	background-color: #555;
-}
-tr.userrow2
-{
-	background-color: #777;
-}
+table.userlist {
+  font-size: 90%; }
 
+tr.userrow0 {
+  background-color: darkgreen; }
 
-h2.userred
-{
-	color: red;
-}
+tr.userrow1 {
+  background-color: #555; }
+
+tr.userrow2 {
+  background-color: #777; }
+
+h2.userred {
+  color: red; }

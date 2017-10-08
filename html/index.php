@@ -20,7 +20,7 @@ $twigEnvironment = new Twig_Environment(
     new Twig_Loader_Filesystem(realpath(__DIR__.'/../templates/')),
     array(
         'cache' => '/tmp/lancms_twig_cache/',
-        //'debug' => true,
+        // 'debug' => true,
     )
 );
 $twigEnvironment->addExtension(new Twig_Extension_Debug());
@@ -182,7 +182,7 @@ if($sessioninfo->userID == 1)
         window.fbAsyncInit = function() {
           FB.init({
             appId      : '".$facebook_appID."',
-            status     : true, 
+            status     : true,
             cookie     : true,
             xfbml      : true,
             oauth      : true,
@@ -291,6 +291,10 @@ if($facebook_likebox_url != FALSE) {
 <div class="fb-like-box" data-href="'.$facebook_likebox_url.'" data-width="192" data-show-faces="true" data-stream="true" data-header="false"></div>
 ';
 }
+
+$design_head .= '<script async defer src="templates/shared/lancms.js"></script>' . PHP_EOL;
+$design_head .= '<link rel="stylesheet" type="text/css" media="all" href="templates/shared/lancms.css" />' . PHP_EOL;
+
 if(!$hide_smarty) {
 
 	if ($enableSmarty == true) {
