@@ -22,8 +22,6 @@ $requestPost = $request->request;
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/inc/db_functions.php';
 
-require_once __DIR__ . "/inc/lib/HtmlElement.php";
-
 // Include common libs
 require_once __DIR__ . "/inc/lib/SqlObject.php";
 require_once __DIR__ . "/inc/lib/EventSqlObject.php";
@@ -81,7 +79,7 @@ if($hide_smarty != 1 && $enableSmarty == true) {
 
 #if($cron_type != 'cron') {
 // If remote addr is set, include cron-stuff
-if(isset($_SERVER['REMOTE_ADDR'])) { 
+if(isset($_SERVER['REMOTE_ADDR'])) {
 
 	if(isset($use_SMS_system) && $use_SMS_system == "SMS4you.no" && !empty($SMS_from) && !empty($SMS_user) && !empty($SMS_pass)) {
         	include_once __DIR__ . '/inc/SMS/SMS4you.no.php';
