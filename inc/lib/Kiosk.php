@@ -20,7 +20,7 @@ class Kiosk
         $this->sqlPrefix = db_prefix();
     }
 
-    private function fetchAllProducts(): void
+    private function fetchAllProducts()
     {
         if (is_null($this->products)) {
             $qProducts = db_query(sprintf("SELECT * FROM %s_kiosk_wares", $this->sqlPrefix));

@@ -24,7 +24,7 @@ class KioskProduct extends SqlObject
         return $this->_getField('name');
     }
 
-    public function setName(string $name): void
+    public function setName(string $name)
     {
         $this->_setField('name', $name);
     }
@@ -34,7 +34,7 @@ class KioskProduct extends SqlObject
         return (float) $this->_getField('price', -1, 2);
     }
 
-    public function setPrice(float $price): void
+    public function setPrice(float $price)
     {
         $this->_setField('price', $price);
     }
