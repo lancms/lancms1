@@ -75,7 +75,7 @@ if ($userinfo == false) {
         </tr>
         <!-- END time -->
         <tr>
-            <td><input type="submit" name="submit" value="<?php echo _("Submit"); ?>"></td>
+            <td><input type="submit" class="btn" name="submit" value="<?php echo _("Submit"); ?>"></td>
         </tr>
         </tbody>
     </table>

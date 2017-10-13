@@ -74,8 +74,9 @@ h6 {
 }
 
 .container {
-    width: 980px;
-    margin: 0 auto;
+  display: flex;
+  width: 980px;
+  margin: 0 auto;
 }
 
 .page {
@@ -264,8 +265,12 @@ h1.page-title {
     text-decoration: none;
 }
 
+.footer {
+  justify-content: center;
+}
+
 .main-menu {
-    float: right;
+  margin-left: auto;
 }
 
 .main-menu ul {
@@ -296,7 +301,6 @@ h1.page-title {
     display: block;
     position: relative;
     min-height: 1px;
-    float: left;
     width: 725px;
 }
 
@@ -379,9 +383,6 @@ select {
     width: auto;
 }
 
-input[type=submit],
-input[type=button],
-button,
 .btn {
     display: inline-block;
     padding: 6px 12px;
@@ -403,58 +404,46 @@ button,
     }
 }
 
-input[type=submit].top,
-input[type=button].top,
-button.top,
+.btn {
+  &-inline {
+    display: inline-block;
+  }
+
+  &-empty {
+    padding: 0;
+    border: none;
+    background: transparent;
+  }
+}
+
 .btn.top {
     margin-top: 8px;
 }
 
-input[type=submit],
-input[type=button],
-button,
 .btn {
     color: #FFF;
     background-color: #337AB7;
     border-color: #2E6DA4;
 }
 
-input[type=submit].btn-red,
-input[type=button].btn-red,
-button.btn-red,
 .btn.btn-red {
     color: #fff;
     background-color: #d9534f;
     border-color: #d43f3a;
 }
 
-input[type=submit].btn-grey,
-input[type=button].btn-grey,
-button.btn-grey,
 .btn.btn-grey {
     background-color: #F2ECEC;
     border-color: #696969;
     color: #000000;
 }
 
-input[type=submit]:focus,
-input[type=submit]:hover,
-input[type=button]:focus,
-input[type=button]:hover,
-button:focus,
-button:hover,
 .btn:focus,
 .btn:hover {
     background-color: #286090;
     border-color: #204D74;
 }
 
-input[type=submit].btn-red:hover,
-input[type=submit].btn-red:focus,
-input[type=button].btn-red:hover,
-input[type=button].btn-red:focus,
-button.btn-red:hover,
-button.btn-red:focus,
 .btn.btn-red:hover,
 .btn.btn-red:focus {
     color: #fff;
@@ -462,21 +451,12 @@ button.btn-red:focus,
     border-color: #ac2925;
 }
 
-input[type=submit].btn-grey:hover,
-input[type=submit].btn-grey:focus,
-input[type=button].btn-grey:hover,
-input[type=button].btn-grey:focus,
-button.btn-grey:hover,
-button.btn-grey:focus,
 .btn.btn-grey:hover,
 .btn.btn-grey:focus {
     background-color: #D0CACA;
     border-color: #3F3C3C;
 }
 
-input[type=submit].btn-small,
-input[type=button].btn-small,
-button.btn-small,
 .btn-small {
     padding: 5px 10px;
     font-size: 12px;
@@ -516,46 +496,43 @@ button.btn-small,
     --------------------------------------------*/
 .left {
     width: 230px;
-    float: left;
     position: relative;
     min-height: 20px;
     margin-bottom: 20px;
 }
 
 .left .box {
-    border: 1px solid #DDD;
-    margin-bottom: -1px;
-    background-color: #FFF;
-    float: left;
-    width: 100%;
-    border-radius: 4px;
-    clear: both;
-}
-
-.left .box+.box {
-    margin-top: 20px;
+  border: 1px solid #DDD;
+  margin-bottom: 1rem;
+  background-color: #FFF;
+  width: 100%;
+  border-radius: 4px;
 }
 
 .left .box .cont {
-    position: relative;
-    display: block;
-    float: left;
-    width: 100%;
+	padding-top: .6rem;
+	padding-right: .6rem;
+	padding-left: .6rem;
+  display: block;
+  width: 100%;
 }
 
-.left .box .cont p {
-    padding: 10px;
+.left .box .cont p,
+.left .box .cont form {
+  padding-bottom: .5rem;
 }
 
 .left .box .title {
-    color: #777;
-    background-color: #EEE;
-    border-bottom: 0 none;
-    position: relative;
-    min-height: 1px;
-    float: left;
-    display: block;
-    width: 100%;
+  color: #777;
+  font-size: 1.1rem;
+  margin: 0;
+  padding: .6rem;
+  background-color: #EEE;
+  border-bottom: 0 none;
+  position: relative;
+  min-height: 1px;
+  display: block;
+  width: 100%;
 }
 
 .left .box .title h2 {

@@ -60,7 +60,7 @@ elseif($action == "password" && !empty($_GET['userID']))
     $content .= "<p>".lang("Log in as:", "login")."&nbsp;&nbsp;&nbsp;".$userinfo->nick."</p>\n";
     $content .= "<form name='password' method=\"post\" action=\"?module=login&amp;action=login&amp;userID=$userID\">\n";
     $content .= "<p>".lang("Password:", "login")." <input class=\"login\" type=\"password\" name=\"password\" /></p>\n";
-    $content .= "<p><input class=\"login\" type=\"submit\" value=\"Login\" /></p>\n";
+    $content .= "<p><input class=\"login btn\" type=\"submit\" value=\"Login\" /></p>\n";
     $content .= "</form>\n";
     $content .= "\n\n";
     $content .= "<script type='text/javascript' language='javascript'>document.forms['password'].elements['password'].focus()</script>\n";
@@ -205,7 +205,7 @@ elseif($action == "newPassword" && !empty($_GET['userID'])&& !empty($_GET['key']
         $content .= "<form method=POST action='?module=login&action=doNewPassword&userID=$userID&key=$key'>\n";
         $content .= "<br /><input type='password' size=10 name='password1'>\n";
         $content .= "<br /><input type='password' size=10 name='password2'>\n";
-        $content .= "<br /><input type='submit' value='".lang("Set new password")."'>\n";
+        $content .= "<br /><input type='submit' class='btn' value='".lang("Set new password")."'>\n";
         $content .= "</form>\n\n";
     } // End else
 

@@ -113,32 +113,32 @@ $assetsVersion = '?v=1.2.1';
             <div class="left">
                 <?php echo $design_eventmenu; ?>
                 <div class="box userinfo">
-                    <div class="title">
-                        <h2><?php if ($sessioninfo->userID <= 1) {
+                    <h2 class="title">
+                        <span><?php if ($sessioninfo->userID <= 1) {
                             echo _("Login");
                         } else {
                             echo _("Userinfo");
-                        } ?></h2>
-                    </div>
+                        } ?></span>
+                    </h2>
                     <div class="cont">
                         <?php echo $design_userinfo; ?>
                     </div>
                 </div>
                 <div class="box events">
-                    <div class="title">
-                        <h2><?php echo _("Events"); ?></h2>
-                    </div>
+                    <h2 class="title">
+                        <span><?php echo _("Events"); ?></span>
+                    </h2>
                     <div class="cont">
-                        <ul>
+                        <ul class="nav">
                             <?php echo $design_eventlist; ?>
                         </ul>
                     </div>
                 </div>
                 <?php if ($design_grouplist) { ?>
                     <div class="box groups">
-                        <div class="title">
-                            <h2><?php echo _("My groups"); ?></h2>
-                        </div>
+                        <h2 class="title">
+                            <span><?php echo _("My groups"); ?></span>
+                        </h2>
                         <div class="cont">
                             <ul>
                                 <?php echo $design_grouplist; ?>
@@ -153,7 +153,7 @@ $assetsVersion = '?v=1.2.1';
             <div class="clear"></div>
         </div>
         <footer>
-            <div class="container">
+            <div class="container footer">
                 <p><?php echo _("Powered by"); ?> <a href="https://github.com/lancms/lancms1/">lancms</a></p>
             </div>
         </footer>

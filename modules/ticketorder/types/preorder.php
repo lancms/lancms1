@@ -30,8 +30,8 @@ $content .= "
             </div>
         </div>
         <div class=\"pull-right submit-button\">
-            <button type=\"button\" class=\"btn-grey\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
-            <input type=\"button\" name=\"select\" onclick=\"return handlePaymentSubmit();\" value=\"" . _("Gå videre") . "\" />
+            <button type=\"button\" class=\"btn-grey btn\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>
+            <input type=\"button\" name=\"select\" class=\"btn\" onclick=\"return handlePaymentSubmit();\" value=\"" . _("Gå videre") . "\" />
         </div>
     </div>
 
@@ -54,7 +54,7 @@ $content .= "
                 </script>
             </div>
             <div class=\"actions\" style=\"text-align:center;\">
-                <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"cancelPayment();\">Avbryt</button>
+                <button type=\"button\" class=\"btn btn-grey btn-small\" onclick=\"cancelPayment();\">Avbryt</button>
             </div>
         </form>
     </div>
@@ -67,9 +67,9 @@ $content .= "
         <form action=\"?module=ticketorder&action=handleOrderTicket\" method=\"post\" id=\"payment-chooser-form1\">
             <input type=\"hidden\" name=\"pay_method\" value=\"door\" />
             <input type=\"hidden\" name=\"ttID\" value=\"" . $ticketType->getTicketTypeID() . "\" />
-            
-            <button type=\"button\" class=\"btn-grey btn-small\" onclick=\"cancelPayment();\">Avbryt</button>
-            <button type=\"submit\" class=\"btn-green btn-small\">Fullfør</button>
+
+            <button type=\"button\" class=\"btn btn-grey btn-small\" onclick=\"cancelPayment();\">Avbryt</button>
+            <button type=\"submit\" class=\"btn btn-green btn-small\">Fullfør</button>
         </form>
         </div>
     </div>

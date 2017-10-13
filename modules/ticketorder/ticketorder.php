@@ -32,7 +32,7 @@ switch ($action) {
             header("Location: ?module=ticketorder");
             die();
         }
-        
+
         $orderInfo = $_SESSION["orderInfo" . $sessioninfo->userID];
 
         if (is_array($orderInfo)) {
@@ -76,7 +76,7 @@ switch ($action) {
             $content .= "<h3>En feil oppstod!</h3><p>En feil skjedde, vi fant ingen ordre å vise resultat på.</p>";
         }
 
-        
+
 
         unset($_SESSION["orderInfo" . $sessioninfo->userID]);
 
@@ -198,7 +198,7 @@ switch ($action) {
                     }
                     unset($tickets);
                 }
-                
+
                 break;
         }
 
@@ -230,10 +230,10 @@ switch ($action) {
         );
 
         log_add("ticketorder", "handleticketpurchase", serialize($glLog));
-        
+
         $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
             $_SESSION["orderInfo" . $sessioninfo->userID], $orderInfo);
-        
+
         header("Location: index.php?module=ticketorder&action=receipt");
 
         die();
@@ -321,7 +321,7 @@ switch ($action) {
                 if ($user instanceof User) {
                     $canOrderAmount = $ticketType->getAmountUserCanOrder($user);
                     if ($canOrderAmount > 0) {
-                        $content .= "<form action=\"index.php?\" method=\"get\">";                             
+                        $content .= "<form action=\"index.php?\" method=\"get\">";
                         // If $maxTicketsPrUser is set print a select element up to the max amount set.
                         // Otherwise amount 1 is default.
                         $content .= "<input type=\"hidden\" name=\"module\" value=\"ticketorder\" />";
@@ -334,7 +334,7 @@ switch ($action) {
                         }
                         $content .= "</select>";
 
-                        $content .= "&nbsp;<input type=\"submit\" name=\"order-ticket\" value=\"" . _("Order ticket") . "\" />
+                        $content .= "&nbsp;<input type=\"submit\" class=\"btn\" name=\"order-ticket\" value=\"" . _("Order ticket") . "\" />
                         </form>";
                     } else if ($canOrderAmount < 1) {
                         $content .= "<span class=\"small italic\">" . _("You have ordered the maximum allowed") . "</span>";

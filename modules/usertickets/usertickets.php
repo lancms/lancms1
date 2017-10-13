@@ -32,7 +32,7 @@ switch ($action) {
         } else {
             $ticket = TicketManager::getInstance()->getTicket($ticketID);
             $changeType = (isset($_GET['type']) ? $_GET['type'] : 'user');
-            
+
             /* HANDLERS */
             if (isset($_GET['set']) && is_numeric($_GET['set']) == true && intval($_GET['set']) > 0) {
                 $ret = "index.php?module=usertickets&changed=" . $changeType;
@@ -72,7 +72,7 @@ switch ($action) {
                 <form class="normal inline" action="index.php?module=usertickets&action=change&type=' . $changeType . '&ticketID=' . $ticketID . '" method="post">
                     <div class="form-group">
                         <input type="text" id="query-arrival" name="query" value="' . $userQueryValue . '" />
-                        <input type="submit" name="doSearch" value="' . _("Search") . '" />
+                        <input type="submit" class="btn" name="doSearch" value="' . _("Search") . '" />
                     </div>
                 </form>
             </div>';
@@ -122,7 +122,7 @@ switch ($action) {
             $msg = 0;
             if ($deleteTicket instanceof Ticket) {
                 $msg = 1;
-                
+
                 if (!$deleteTicket->deleteTicket()) {
                     $msg = 2;
                 }
@@ -231,7 +231,7 @@ switch ($action) {
                 $content .= "
                 </table>";
                 }
-            
+
         } else {
             $content .= "<h3>En feil oppstod!</h3><p>En feil skjedde, vi fant ingen ordre å vise resultat på.</p>";
         }
@@ -387,7 +387,7 @@ switch ($action) {
                 if (count($tickets) > 0) {
                     foreach ($tickets as $key => $ticket) {
                         if (($ticket instanceof Ticket) == false) continue;
-                        
+
                         $isDeleted = ($ticket->getStatus() == Ticket::TICKET_STATUS_DELETED);
 
                         $ticketTypeName = $owner = $user = "<em>Ukjent</em>";
@@ -398,13 +398,13 @@ switch ($action) {
                             $status = _("Paid");
                             $statusColumnCss = "paid";
                         }
-                        
+
                         switch ($ticket->getStatus()) {
                             case Ticket::TICKET_STATUS_USED:
                                 $status = _("Used");
                                 $statusColumnCss = "used";
                                 break;
-                                
+
                             case Ticket::TICKET_STATUS_DELETED:
                                 $status = _("Deleted");
                                 $statusColumnCss = "deleted";
@@ -417,7 +417,7 @@ switch ($action) {
                         }
 
                         if ($ticket->getOwner() instanceof User)
-                            $owner = $ticket->getOwner()->getFullName();                
+                            $owner = $ticket->getOwner()->getFullName();
 
                         if ($ticket->getUser() instanceof User)
                             $user = $ticket->getUser()->getFullName();

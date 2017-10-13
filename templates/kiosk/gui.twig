@@ -8,7 +8,7 @@
             <div class="w-100 kiosk-suggestions">
                 <input type="text" class="ware" name="ware" id="kiosk-suggest" tabindex="1" autocomplete="off" />
             </div>
-            <button type="submit">{{ trans('Add', 'kiosk') }}</button>
+            <button type="submit" class="btn">{{ trans('Add', 'kiosk') }}</button>
         </div>
     </form>
 
@@ -18,7 +18,7 @@
             <div class="w-20">
                 <form method="post" action="?module=kiosk&amp;action=addWare" name="resetSaleTo">
                     <input type="hidden" name="ware" value="UID1" />
-                    <button type="submit">{{ trans('Remove user') }}</button>
+                    <button type="submit" class="btn">{{ trans('Remove user') }}</button>
                 </form>
             </div>
         </div>
@@ -33,7 +33,7 @@
                 <label><input name="credit" value="no" class="mb-1" {% if not creditDefault %} checked{% endif %} type="radio">User pays cash</label>
             {% endif %}
 
-            <button type="submit"{% if not cart.items %} disabled title="{{ trans('No items in the cart, cannot sell.') }}"{% endif %} name="SELL">SELL</button>
+            <button type="submit" class="btn"{% if not cart.items %} disabled title="{{ trans('No items in the cart, cannot sell.') }}"{% endif %} name="SELL">SELL</button>
         </div>
     </form>
 </div>

@@ -100,15 +100,15 @@ switch ($action) {
         $cellPhone  = null;
 
         if(config("register_firstname_required")) {
-            $firstName  = $_POST["firstName"];        
+            $firstName  = $_POST["firstName"];
         }
 
         if(config("register_lastname_required")) {
-            $lastName   = $_POST["lastName"];        
+            $lastName   = $_POST["lastName"];
         }
 
         if(config("userinfo_gender_required")) {
-            $gender = $_POST["gender"];        
+            $gender = $_POST["gender"];
         }
 
         if(config("userinfo_birthday_required")) {
@@ -117,7 +117,7 @@ switch ($action) {
         }
 
         if (config("userinfo_birthyear_required")) {
-            $birthYear = $_POST["year"];        
+            $birthYear = $_POST["year"];
         }
 
         if (config("userinfo_cellphone_required")) {
@@ -128,7 +128,7 @@ switch ($action) {
             $address = $_POST["address"];
             $postCode = $_POST["postCode"];
         }
-        
+
         //===========================================================
         // Username exists?
         if ($userManager->getUserByNick($username) instanceof User) {
@@ -384,16 +384,16 @@ switch ($action) {
                         $content .= "<select id=\"day\" class=\"" . checkForErrorsInput("day") . "\" name=\"day\"><option value=\"-1\">" . _("Day") . "</option>";
 
                         $savedDay = getInputValue('day');
-                        for ($day=1; $day <= 31; $day++) { 
+                        for ($day=1; $day <= 31; $day++) {
                             $content .= "<option" . ($savedDay == $day ? ' selected' : '') . " value=\"$day\">$day</option>";
                         }
                         $content .= "</select>";
 
                         // Months
                         $content .= "<select id=\"month\" class=\"" . checkForErrorsInput("month") . "\" name=\"month\"><option value=\"-1\">" . _("Month") . "</option>";
-                        
+
                         $savedMonth = getInputValue('month');
-                        for ($month=1; $month <= 12; $month++) { 
+                        for ($month=1; $month <= 12; $month++) {
                             $content .= "<option" . ($savedMonth == $month ? ' selected' : '') . " value=\"$month\">$month</option>";
                         }
                         $content .= "</select>";
@@ -424,7 +424,7 @@ switch ($action) {
                 }
 
                 $content .= "<div class=\"form-group\">
-                    <input type=\"submit\" name=\"submit\" value=\"" . _("Create user") . "\" />
+                    <input type=\"submit\" class=\"btn\" name=\"submit\" value=\"" . _("Create user") . "\" />
                 </div>
             </form>
         </div>";
@@ -434,7 +434,7 @@ switch ($action) {
 
 /**
  * Checks if $errors has en error in $fieldName. Returns the string "error" if there is an error found.
- * 
+ *
  * @param string $fieldName
  * @return string
  */
@@ -449,8 +449,8 @@ function checkForErrorsInput($fieldName) {
 }
 
 /**
- * Checks if $formData 
- * 
+ * Checks if $formData
+ *
  * @param string $fieldName
  * @return string
  */
@@ -463,4 +463,3 @@ function getInputValue($fieldName, $default="") {
 
     return $default;
 }
-

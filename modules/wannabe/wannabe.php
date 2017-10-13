@@ -102,9 +102,9 @@ if(!isset($action)) {
 
 
 	} // End while rListQuestions
-	$content .= "<tr><td></td><td><input type=\"submit\" value='".lang("Save", "wannabe")."'></form>";
+	$content .= "<tr><td></td><td><input type=\"submit\" class=\"btn\" value='".lang("Save", "wannabe")."'></form>";
 	$content .= "<form method=\"post\" action=\"?module=wannabe&action=removeApplication\">\n";
-	$content .= "<input type=\"submit\" value='".lang("Delete application", "wannabe")."'></form>";
+	$content .= "<input type=\"submit\" class=\"btn btn-red\" value='".lang("Delete application", "wannabe")."'></form>";
 	$content .= "</td></tr>";
 	$content .= "</table>";
 	$content .= "</div>";

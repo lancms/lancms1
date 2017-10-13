@@ -137,7 +137,7 @@ elseif ($action == 'searchsleeper')
 
 	$str = $_REQUEST['searchstring'];
 	$scope = $_POST['scope'];
-	
+
 	$content .= "<a href='?module=sleepers'>"._("Return to sleepers overview")."</a>\n";
 
 	if (empty ($str) or $str == "")
@@ -154,8 +154,8 @@ elseif ($action == 'searchsleeper')
 		{
 			$str = db_escape ($str);
 			$content .= "<p>"._("Searching only users with tickets for this event")."</p>";
-			
-			$usersQ = sprintf ("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName, u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID AND 
+
+			$usersQ = sprintf ("SELECT DISTINCT u.nick as nick, u.firstName as firstName, u.lastName as lastName, u.ID as ID FROM %s as u, %s as t WHERE t.eventID=%s AND t.user=u.ID AND
 			(u.nick LIKE '%%%s%%' OR
 			u.firstName LIKE '%%%s%%' OR
 			u.lastName LIKE '%%%s%%' OR
@@ -168,8 +168,8 @@ elseif ($action == 'searchsleeper')
 		{
 			$str = db_escape ($str);
 			$content .= "<p>"._("Searching all users")."</p>";
-			
-			$usersQ = sprintf ("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 AND 
+
+			$usersQ = sprintf ("SELECT nick, firstName, lastName, ID FROM %s WHERE ID > 1 AND
 				(nick LIKE '%%%s%%' OR
 				firstName LIKE '%%%s%%' OR
 				lastName LIKE '%%%s%%' OR
@@ -203,7 +203,7 @@ elseif ($action == 'searchsleeper')
 						$status = _("Not sleeping");
 						$sleeping = 0;
 					}
-					
+
 					$ticketsQ = sprintf ('SELECT ticket.paid, ticket.status, type.name FROM %s AS ticket, %s AS type WHERE ticket.user=%s AND ticket.eventID=%s and ticket.status!="deleted" and ticket.ticketType=type.ticketTypeID', $ticketstable, $sql_prefix."_ticketTypes", $user->ID, $sessioninfo->eventID);
 					$ticketsR = db_query ($ticketsQ);
 					$ticketsC = db_num ($ticketsR);
@@ -241,22 +241,22 @@ elseif ($action == 'searchsleeper')
 					$content .= sprintf ("<td %s>%s</td>", $border, $user->firstName." ".$user->lastName);
 					$content .= sprintf ("<td %s>%s</td>", $border, $tickets);
 					$content .= sprintf ("<td %s>%s</td>", $border, $status);
-					
+
 					$content .= sprintf ("<td %s>", $border);
 					if ($sleeping)
 					{
 						$content .= sprintf ("<form action='?module=sleepers&action=removesleeper&userid=%s' method='POST'>", $user->ID);
-						$content .= sprintf ("<input type='submit' value='%s' />", _('Remove sleeper'));
+						$content .= sprintf ("<input type='submit' class='btn' value='%s' />", _('Remove sleeper'));
 						$content .= "</form>";
 					}
 					else
 					{
 						$content .= sprintf ("<form action='?module=sleepers&action=addsleeper&userid=%s' method='POST'>", $user->ID);
-						$content .= sprintf ("<input type='submit' value='%s' />", _('Add sleeper'));
+						$content .= sprintf ("<input type='submit' class='btn' value='%s' />", _('Add sleeper'));
 						$content .= "</form>";
 					}
 					$content .= sprintf ("</td>");
-					
+
 					$content .= "</tr>\n";
 					unset ($status);
 					unset ($tickets);
@@ -277,7 +277,7 @@ else // empty($action) or $action==*
 	$content .= "<form action='?module=sleepers&action=searchsleeper' method='POST'>\n";
 	$content .= _('Search for user:')."<br />\n";
 	$content .= "<input type='text' name='searchstring' />\n";
-	$content .= "<input type='submit' value='"._('Search')."' />\n";
+	$content .= "<input type='submit' class='btn' value='"._('Search')."' />\n";
 	$content .= "<br />\n";
 	$content .= _("Search users with tickets for this event only:")." <input type='checkbox' CHECKED name='scope' value='tickets' />\n";
 	$content .= "</form>\n";
@@ -314,7 +314,7 @@ else // empty($action) or $action==*
 			$content .= sprintf ("<td %s>%s</td>\n", $border, $name);
 			$content .= sprintf ("<td %s>%s</td>\n", $border, $sleeper->sleepTimestamp);
 			$content .= sprintf ("<td id=\"wakeup-" . $sleeper->ID . "\" %s>%s</td>\n", $border, $wakeupText);
-			$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' value='%s'></form></td>\n", $border, $sleeper->ID, _("View"));
+			$content .= sprintf ("<td %s><form method='POST' action='?module=sleepers&action=searchsleeper&searchstring=%s'><input type='submit' class='btn' value='%s'></form></td>\n", $border, $sleeper->ID, _("View"));
 			$content .= "</tr>\n";
 
 			// Add javascript for user if has wakeup.

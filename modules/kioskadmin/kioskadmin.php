@@ -33,10 +33,10 @@ elseif($action == "wareTypes") {
 			$content .= $rWareTypes->typeName . "</td><td>";
 
 			// Edit button
-			$content .= "<form style='display:inline;' action='?module=kioskadmin&action=editWaretype&wareType=" . $rWareTypes->ID . "' method='post'><input type='submit' value='" . _("Edit") . "' /></form>";
+			$content .= "<form style='display:inline;' action='?module=kioskadmin&action=editWaretype&wareType=" . $rWareTypes->ID . "' method='post'><input type='submit' class='btn' value='" . _("Edit") . "' /></form>";
 
 			// Delete button
-			$content .= "&nbsp;<form style='display:inline;' action='?module=kioskadmin&action=rmWaretype&wareType=" . $rWareTypes->ID . "' method='post'><input type='submit' value='" . _("Remove") . "' /></form>";
+			$content .= "&nbsp;<form style='display:inline;' action='?module=kioskadmin&action=rmWaretype&wareType=" . $rWareTypes->ID . "' method='post'><input type='submit' class='btn btn-red' value='" . _("Remove") . "' /></form>";
 			$content .= "</td></tr>";
 		} // End while
 
@@ -47,7 +47,7 @@ elseif($action == "wareTypes") {
 
 	$content .= "<br /><form method=POST action=?module=kioskadmin&action=addWareType>\n";
 	$content .= "<input type=text name='name'>\n";
-	$content .= "<input type=submit value='".lang("Add new waretype", "kioskadmin")."'>\n";
+	$content .= "<input type='submit' class='btn' value='".lang("Add new waretype", "kioskadmin")."'>\n";
 	$content .= "</form>";
 
 }
@@ -120,7 +120,7 @@ elseif($action == "editWaretype" && isset($_GET['wareType'])) {
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-			<td><input type='submit' value='" . _("Save") . "' /></td>
+			<td><input type='submit' class='btn' value='" . _("Save") . "' /></td>
 		</tr>
 	</table>
 	</form>";
@@ -156,9 +156,9 @@ elseif($action == "wares") {
 
 			// Action links
 			$content .= "<form style='display:inline;' action='?module=kioskadmin&action=editWare&wareID=" . $rFindWares->ID . "' method='post'>
-			<input type='submit' value='" . _("Edit") . "' /></form>";
+			<input type='submit' class='btn' value='" . _("Edit") . "' /></form>";
 			$content .= "&nbsp;<form style='display:inline;' action='?module=kioskadmin&action=rmWare&wareID=" . $rFindWares->ID . "' method='post'>
-			<input type='submit' value='" . _("Remove") . "' /></form>";
+			<input type='submit' class='btn btn-red' value='" . _("Remove") . "' /></form>";
 
 			$content .= "</td></tr>";
 		} // End while
@@ -178,7 +178,7 @@ elseif($action == "wares") {
 			$content .= "<option value='$rFindTypes->ID'>$rFindTypes->typeName</option>";
 		} // End while
 		$content .= "</select>\n";
-		$content .= "<br /><input type=submit value='" . lang("Add ware", "kioskadmin") . "'>";
+		$content .= "<br /><input type='submit' class='btn' value='" . lang("Add ware", "kioskadmin") . "'>";
 		$content .= "</form>\n";
 	} else {
 		$content .= "<p><em>" . _("No ware types exists to add wares, head over to '<a href='?module=kioskadmin&amp;action=wareTypes'>Admin waretype</a>' to create types.") . "</em></p>";
@@ -220,7 +220,7 @@ elseif($action == "editWare" && !empty($_GET['wareID'])) {
         $content .= "</select></td></tr>\n";
 	$content .= "<tr><td><strong>".lang("Price", "kioskadmin")."</strong></td><td><input type=text size=4 name=price value='$rGetWare->price'></td></tr>\n";
 
-	$content .= "<tr><td>&nbsp;</td><td><input type=submit value='".lang("Save", "kioskadmin")."'></td></tr>";
+	$content .= "<tr><td>&nbsp;</td><td><input type='submit' class='btn' value='".lang("Save", "kioskadmin")."'></td></tr>";
 	$content .= "</table></form>";
 
 	$content .= "<br /><hr><br />";
@@ -237,7 +237,7 @@ elseif($action == "editWare" && !empty($_GET['wareID'])) {
 
 	$content .= "<form method=POST action='?module=kioskadmin&action=addBarcode&wareID=$wareID'>\n";
 	$content .= "<br /><input type=text name=barcode>\n";
-	$content .= "<br /><input type=submit value='".lang("Add barcode", "kioskadmin")."'>\n";
+	$content .= "<br /><input type='submit' class='btn' value='".lang("Add barcode", "kioskadmin")."'>\n";
 	$content .= "</form>";
 
 }

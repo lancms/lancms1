@@ -140,10 +140,10 @@ switch ($action) {
                 </div>
                 <div class=\"row\">
                     <div class=\"cell\">&nbsp;</div>
-                    <div class=\"cell\"><input type=\"submit\" name=\"save-question\" value=\"Save\" /></div>
+                    <div class=\"cell\"><input type=\"submit\" class=\"btn\" name=\"save-question\" value=\"Save\" /></div>
                 </div>
             </div>
-        </form>";       
+        </form>";
 
         break;
 
@@ -281,10 +281,10 @@ switch ($action) {
                 </div>
                 <div class=\"row\">
                     <div class=\"cell\">&nbsp;</div>
-                    <div class=\"cell\"><input type=\"submit\" name=\"save-crew\" value=\"Save\" /></div>
+                    <div class=\"cell\"><input type=\"submit\" class=\"btn\" name=\"save-crew\" value=\"Save\" /></div>
                 </div>
             </div>
-        </form>";     
+        </form>";
 
         break;
 
@@ -549,7 +549,7 @@ switch ($action) {
                 $content .= "       <option value=\"4\">" . _("I'd rather not") . "</option>";
                 $content .= "       <option value=\"5\">" . _("Not at all") . "</option>";
                 $content .= "   </select>";
-                $content .= "   <input type=\"submit\" class=\"btn-small\" value=\"" . _("Set") . "\" />";
+                $content .= "   <input type=\"submit\" class=\"btn btn-small\" value=\"" . _("Set") . "\" />";
                 $content .= "</form></div>";
             }
         } else {
@@ -581,7 +581,7 @@ switch ($action) {
         <div class=\"new-comment\">
         <form action=\"?module=$module&amp;action=viewApplication&amp;userID=$applicationUserID&amp;addComment=true\" method=\"post\">
             <textarea name=\"commenttext\" placeholder=\"" . _("Comment...") . "\"></textarea><br />
-            <div class=\"new-comment-button\"><input type=\"submit\" value=\"" . _("Send") . "\" /></div>
+            <div class=\"new-comment-button\"><input type=\"submit\" class=\"btn\" value=\"" . _("Send") . "\" /></div>
         </form>
         </div>";
 

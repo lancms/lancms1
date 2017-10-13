@@ -24,7 +24,7 @@ if ($action == 'password')
 	$content .= "<form action='index.php?module=edituserinfo&action=savepassword' method='POST'>";
 	$content .= "<input name='npass1' type='password' /> ".lang ("New password", "edituserinfo")."<br />";
 	$content .= "<input name='npass2' type='password' /> ".lang ("Confirm new password", "edituserinfo")."<br />";
-	$content .= "<input type='submit' value='".lang ("Change password", "edituserinfo")."' />";
+	$content .= "<input type='submit' class='btn' value='".lang ("Change password", "edituserinfo")."' />";
 	$content .= "</form>";
 }
 elseif ($action == 'savepassword')
@@ -106,7 +106,7 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 			$content .= $rGetUserinfo[$name];
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_end'] == 1) $content .= "</td></tr>\n\n\n";
 	} // End for
-	$content .= "<tr><td><input type=submit value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";
+	$content .= "<tr><td><input type=submit class='btn' value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";
 	$content .= "</form></table>\n\n";
 
 } // End action == editUserinfo
@@ -210,7 +210,7 @@ elseif($action == "editPreferences" && isset($_GET['user'])) {
 		$content .= "</td></tr>";
 
 	} // End for
-	$content .= "<tr><td></td><td><input type=submit value='".lang("Save", "edituserinfo")."'></tr>";
+	$content .= "<tr><td></td><td><input type=submit class='btn' value='".lang("Save", "edituserinfo")."'></tr>";
 	$content .= "</form></table>";
 } // end elseif action = editPreferences
 
@@ -227,7 +227,7 @@ elseif($action == "doEditPreferences" && isset($_GET['user'])) {
 		if($userpersonalprefs[$i]['required_on'] == 1) $POST = "on";
 		$qFindPref = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE userID = '".db_escape($userID)."' AND name = '$prefname'");
 		$numFindPref = db_num($qFindPref);
-		
+
 		if($numFindPref == 0) {
 			db_query("INSERT INTO ".$sql_prefix."_userPreferences
 				SET userID = '".db_escape($userID)."',
@@ -270,7 +270,7 @@ elseif($action == "profilePicture" && isset($_GET['user'])) {
 	$content .= '<input type="hidden" name="file_type" value="profilepic" />';
 	$content .= _("Choose file to upload: ");
 	$content .= "<input name=uploadfile type=file />";
-	$content .= "<input type=submit value='"._("Upload picture")."' />";
+	$content .= "<input type=submit class='btn' value='"._("Upload picture")."' />";
 	$content .= "</form>";
 
 }

@@ -124,6 +124,29 @@ elseif($action == "removeWare") {
 	header("Location: ?module=kiosk");
 } // End if action = removeWare
 
+elseif($action == "updateWare") {
+	$ware = $_REQUEST['ware'] ?? '';
+	$newAmount = (int) $_POST['amount'] ?? 0;
+
+    if ($newAmount < 1) {
+		db_query(sprintf(
+            'DELETE FROM %s_kiosk_shopbasket WHERE sID = \'%s\' AND wareID = %d',
+            db_prefix(),
+            db_escape($sessioninfo->sID),
+            db_escape($ware)
+        ));
+	} else {
+		db_query(sprintf(
+            'UPDATE %s_kiosk_shopbasket SET amount = %d WHERE sID = \'%s\' AND wareID = %d',
+            db_prefix(),
+            db_escape($newAmount),
+            db_escape($sessioninfo->sID),
+            db_escape($ware)
+        ));
+	} // End else
+	header("Location: ?module=kiosk");
+} // End if action = removeWare
+
 elseif($action == "sell") {
 	if($_POST['credit'] == 'yes' AND $sessioninfo->kioskSaleTo > 1) $credit = 1;
 	else $credit = 0;

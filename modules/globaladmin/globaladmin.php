@@ -39,7 +39,7 @@ if(!isset($action))
 		$content .= "<a href=?module=globaladmin&eventID=$rListEvents->ID&action=toggleClosed>";
 		if($rListEvents->eventClosed == 0)
 			$closedImage = 'images/icons/yes.png';
-		else 
+		else
 			$closedImage = 'images/icons/no.png';
 		$content .= "<img src=\"$closedImage\" width=\"50%\"></a>";
 
@@ -59,7 +59,7 @@ if(!isset($action))
 			$content .= "<option ".$design_selected." value='".$design."'>".$design."</option>";
 		}
 
-		$content .= "</select><input type='submit' value='"._("Change")."' /></form>";
+		$content .= "</select><input type='submit' class=\"btn\" value='"._("Change")."' /></form>";
 
 
 		$content .= "</td></tr>\n\n\n";
@@ -194,7 +194,7 @@ elseif($action == "doConfig") {
                 } // End while
         } // End for
 
-		
+
 	log_add("globalconfig", "doConfig", serialize($log_new), serialize($log_old));
 	header("Location: ?module=globaladmin&action=config&action=config&saved=OK");
 }
@@ -219,7 +219,7 @@ elseif($action == "listGlobalRights") {
 		$content .= "</td><td>";
 		$content .= $rFindGroups->groupname;
 		$content .= "</td><td>";
-		$content .= $rFindGroups->accessmodule;	
+		$content .= $rFindGroups->accessmodule;
 		$content .= "</td><td>";
 		$content .= $rFindGroups->access;
 		$content .= "</td></tr>\n";
@@ -258,7 +258,7 @@ elseif ($action == "setDesign" and isset ($_REQUEST['eventID']) and isset ($_REQ
 	$design = $_REQUEST['design'];
 
 	$designs = list_designs ();
-	
+
 	if (in_array ($design, $designs))
 	{
 		// db_query() handles errors.

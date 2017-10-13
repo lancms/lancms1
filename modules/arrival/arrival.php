@@ -81,7 +81,7 @@ switch ($action) {
                 <form class="normal inline" action="index.php?module=' . $thisModule . '&action=changeuser&type=' . $changeType . '&ticket=' . $ticketID . '" method="post">
                     <div class="form-group">
                         <input type="text" id="query-arrival" name="query" value="' . $userQueryValue . '" />
-                        <input type="submit" name="doSearch" value="' . _("Search") . '" />
+                        <input type="submit" class="btn" name="doSearch" value="' . _("Search") . '" />
                     </div>
                 </form>
             </div>';
@@ -262,12 +262,12 @@ switch ($action) {
         }
 
         break;
-        
+
     //==================================================================================
     // Add ticket on a user.
     case "addticket":
         // This page allows someone to add a ticket on an user.
-        
+
         $userIds = ($request->request->has('userids') ? $request->request->get('userids') : array());
         $userIds = array_filter(
             array_map('trim', $userIds),
@@ -275,7 +275,7 @@ switch ($action) {
                 return is_numeric($item) && $item > 0;
             }
         );
-        
+
         $ticketTypeIds = ($request->request->has('tickettypes') ? $request->request->get('tickettypes') : array());
         $ticketTypeIds = array_filter(
             array_map('trim', $ticketTypeIds),
@@ -283,24 +283,24 @@ switch ($action) {
                 return is_numeric($item) && $item > 0;
             }
         );
-        
+
         $searchResultUsers = array();
-        
+
         if (count($userIds) > 0) {
             $users = UserManager::getInstance()->getUsersByID($userIds);
             $dataForTwig = array();
-            
+
             // Has selected ticket types?
             if (count($ticketTypeIds) > 0) {
                 $ticketTypes = $ticketManager->getTicketTypes($ticketTypeIds);
-                
+
                 // Add the ticket types per user.
                 foreach ($users as $user) {
                     $dataForTwig[$user->getUserID()] = array(
                         'name' => sprintf('%s (%s)', $user->getFullName(), $user->getNick()),
                         'tickets' => array(),
                     );
-                    
+
                     // Loop each ticket type.
                     foreach ($ticketTypes as $ticketType) {
                         // If we can validateAddTicketType, add it.
@@ -310,7 +310,7 @@ switch ($action) {
                         );
                     }
                 }
-                
+
                 $content .= $twigEnvironment->render(
                     'arrival/addticket_summary.twig',
                     array(
@@ -322,7 +322,7 @@ switch ($action) {
                 // Has selected some users.
                 // TODO: Show tickets.
                 $ticketTypes = $ticketManager->getTicketTypes();
-                
+
                 $content .= $twigEnvironment->render(
                     'arrival/addticket_step2.twig',
                     array(
@@ -336,7 +336,7 @@ switch ($action) {
         } else {
             $query = ($request->request->has('query') ? $request->request->get('query') : null);
             $filterCrew = ($request->request->has('f_crew') ? $request->request->getBoolean('f_crew') : false);
-            
+
             // Allow to search for everyone, so we can add crew ticket on everyone. :-D
             if (strlen($query) > 2) {
                 $searchResultUsers = UserManager::getInstance()->searchUsers($query);
@@ -344,14 +344,14 @@ switch ($action) {
                 // Only get all if we want to filter by crew.
                 $searchResultUsers = user_getall(array('ID', 'nick', 'firstName', 'lastName'));
             }
-                
+
             // Should we filter by crew?
             if ($filterCrew) {
                 $searchResultUsers = array_filter($searchResultUsers, function($user) {
                     return is_user_crew($user->ID);
                 });
             }
-            
+
             $content .= $twigEnvironment->render(
                 'arrival/addticket_search.twig',
                 array(
@@ -362,7 +362,7 @@ switch ($action) {
                 )
             );
         }
-        
+
         break;
 
     //==================================================================================
@@ -389,7 +389,7 @@ switch ($action) {
                 <input type="hidden" name="action" value="searchUser" />
                 <div class="form-group">
                     <input type="text" id="query-arrival" name="query" value="' . $userQueryValue . '" />
-                    <input type="submit" name="doSearch" value="' . _("Search") . '" />
+                    <input type="submit" class="btn" name="doSearch" value="' . _("Search") . '" />
                 </div>
                 <div class="form-group">
                     <label for="search_all"><input type="radio" id="search_all" name="scope" value="all"' . ($scopeSelected == 'search_all' ? ' checked' : '') . ' /> ' . _("Search all users") . '</label>
