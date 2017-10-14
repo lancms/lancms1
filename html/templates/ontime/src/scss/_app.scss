@@ -511,15 +511,21 @@ select {
 
 .left .box .cont {
 	padding-top: .6rem;
-	padding-right: .6rem;
-	padding-left: .6rem;
   display: block;
   width: 100%;
 }
 
-.left .box .cont p,
-.left .box .cont form {
-  padding-bottom: .5rem;
+.left .box .cont .pad {
+  padding-left: .6rem;
+  padding-right: .6rem;
+}
+
+.left .box .cont .bot {
+	padding-bottom: .6rem;
+}
+
+.left .box .cont p {
+  margin-bottom: 0;
 }
 
 .left .box .title {

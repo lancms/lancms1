@@ -168,7 +168,7 @@ if ($sessioninfo->eventID > 1)
 if($sessioninfo->userID == 1)
 {
 	// User is not logged in
-	$design_userinfo .= "<form style=\"margin: 10px;\" method=\"get\" action=\"index.php\">\n";
+	$design_userinfo .= "<form class=\"pad bot\" method=\"get\" action=\"index.php\">\n";
 	$design_userinfo .= "<input type=\"hidden\" name=\"module\" value=\"login\" />\n";
 	$design_userinfo .= "<input type=\"hidden\" name=\"action\" value=\"finduser\" />\n";
 	$design_userinfo .= "".lang ("Type your nick, email or name here:", "index")."\n";
@@ -203,7 +203,7 @@ if($sessioninfo->userID == 1)
 
 else {
 	// User actually is logged in!
-	$design_userinfo .= "<p>" . lang("You are logged in as:", "index");
+	$design_userinfo .= "<p class=\"pad bot\">" . lang("You are logged in as:", "index");
 	$design_userinfo .= "<br />";
 	$design_userinfo .= display_username($sessioninfo->userID);
 	$design_userinfo .= "</p><div class=\"menu top-border no-radius-top\"><ul>";

@@ -129,9 +129,11 @@ $assetsVersion = '?v=1.2.1';
                         <span><?php echo _("Events"); ?></span>
                     </h2>
                     <div class="cont">
-                        <ul class="nav">
-                            <?php echo $design_eventlist; ?>
-                        </ul>
+                        <nav class="bot pad">
+                            <ul class="nav">
+                                <?php echo $design_eventlist; ?>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
                 <?php if ($design_grouplist) { ?>
