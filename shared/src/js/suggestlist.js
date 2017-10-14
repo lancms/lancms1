@@ -46,7 +46,9 @@ export default class SuggestList {
     this.container.classList.add('suggest-list-container');
     this.input.classList.add('suggest-list-open');
     this.listElement = parseFromHtml(suggestListTemplate({ items }))[0];
-    this.listPopperInstance = new Popper(this.input, this.listElement);
+    this.listPopperInstance = new Popper(this.input, this.listElement, {
+      placement: 'top-end',
+    });
     insertAfter(this.listElement, this.input);
 
     this.previousItems = items;
