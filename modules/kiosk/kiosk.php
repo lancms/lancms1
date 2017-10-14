@@ -107,20 +107,12 @@ elseif($action == "addWare") {
 } // End addWare
 
 elseif($action == "removeWare") {
-	$ware = $_REQUEST['ware'] ?? '';
+	$ware = (int) $_REQUEST['ware'] ?? '';
 
-	$qFindAmount = db_query("SELECT * FROM ".$sql_prefix."_kiosk_shopbasket WHERE
-		sID = '$sessioninfo->sID'
-		AND wareID = '".db_escape($ware)."'
-		");
-	$rFindAmount = db_fetch($qFindAmount);
-	if($rFindAmount->amount == 1) {
-		db_query("DELETE FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
-	} // End if amount = 1
-	else {
-		db_query("UPDATE ".$sql_prefix."_kiosk_shopbasket SET amount = amount - 1
-			WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
-	} // End else
+    if ($ware > 0) {
+    	db_query("DELETE FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
+    }
+
 	header("Location: ?module=kiosk");
 } // End if action = removeWare
 
