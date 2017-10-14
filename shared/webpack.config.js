@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const ExtraneousFileCleanupPlugin = require('webpack-extraneous-file-cleanup-plugin');
@@ -30,6 +31,7 @@ module.exports = {
     alias: {
       '@': resolve('src/js'),
       '%': resolve('src/scss'),
+      'vue$': 'vue/dist/vue.esm.js',
     },
   },
 
@@ -46,14 +48,16 @@ module.exports = {
           fallback: 'style-loader',
         }),
       },
+
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: 'babel-loader',
       },
+
       {
-        test: /\.html$/,
-        use: 'mustache-loader',
+        test: /\.vue$/,
+        use: 'vue-loader',
       },
 
       // the url-loader uses DataUrls.
@@ -65,5 +69,8 @@ module.exports = {
 
   plugins: [
     extractTextPlugin,
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
+    }),
   ],
 };

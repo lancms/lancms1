@@ -5,8 +5,8 @@
 
     <form method="post" action="?module=kiosk&action=addWare" class="mb-2" name="barfield">
         <div class="flex flex-row">
-            <div class="w-100 kiosk-suggestions">
-                <input type="text" class="ware" name="ware" id="kiosk-suggest" tabindex="1" autocomplete="off" />
+            <div class="w-100 kiosk-suggestions" id="kiosk-suggest">
+                <lancms-suggest input-name="ware" url="?api=kiosk&action=searchitems&search=$query$"></lancms-suggest>
             </div>
             <button type="submit" class="btn">{{ trans('Add', 'kiosk') }}</button>
         </div>

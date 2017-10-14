@@ -1,28 +1,25 @@
-import SuggestList from '@/suggestlist';
+import Vue from 'vue';
 import immediate from 'immediate';
+import LancmsSuggest from '@/Suggest.vue';
+
+const isDevelopment = process.env.NODE_ENV === 'development';
+Vue.config.silent = !isDevelopment;
+Vue.config.devtools = isDevelopment;
+Vue.config.performance = isDevelopment;
+Vue.config.productionTip = isDevelopment;
 
 export default class KioskGui {
   constructor(element) {
-    this.suggestList = null;
     this.element = element;
   }
 
   init() {
-    const wareContainer = this.element.querySelector('.kiosk-suggestions');
-
-    this.suggestList = new SuggestList({
-      container: wareContainer,
-      input: wareContainer.querySelector('input'),
-      url: '?api=kiosk&action=searchitems&search=$query$',
+    new Vue({
+      el: this.element.querySelector('#kiosk-suggest'),
+      components: {
+        LancmsSuggest,
+      },
     });
-    this.suggestList.init();
-
-    // Allow to set amount in
-    // const amountNumbers = this.element.querySelectorAll('.amount-number');
-    //
-    // for (const numberElement of amountNumbers) {
-    //   numberElement.addEventListener('click', this.handleAmountClick.bind(this), false);
-    // }
   }
 }
 
@@ -37,9 +34,4 @@ export function create(sel, parent = null) {
       gui.init();
     });
   }
-
-  if (elements.length > 0) {
-    elements[0].querySelector('input').focus();
-  }
-
 }
