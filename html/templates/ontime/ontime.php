@@ -142,9 +142,11 @@ $assetsVersion = '?v=1.2.1';
                             <span><?php echo _("My groups"); ?></span>
                         </h2>
                         <div class="cont">
-                            <ul>
-                                <?php echo $design_grouplist; ?>
-                            </ul>
+                            <nav class="bot pad">
+                                <ul class="nav">
+                                    <?php echo $design_grouplist; ?>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 <?php } ?>
