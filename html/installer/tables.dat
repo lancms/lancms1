@@ -39,7 +39,7 @@ TABLE [prefix]_users
 TABLE [prefix]_config
 {
 #	NAME	TYPE	KEY	NULL	DEFAULT	EXTRA
-        config,	varchar(32), PRI, 	,	,
+        config,	varchar(255), PRI, 	,	,
         value,	varchar(32),	NOT NULL,	,
         eventID,	int(11),	PRI,	,	1,
 }
