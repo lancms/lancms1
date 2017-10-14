@@ -41,7 +41,7 @@ if(empty($action)) {
 
 elseif($action == "addWare") {
 
-	$ware = $_REQUEST['ware'] ?? '';
+	$ware = (int) $_REQUEST['ware'] ?? '';
 
     if (empty($ware)) {
         header('Location: ?module=kiosk&error=1');
