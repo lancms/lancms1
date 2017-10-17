@@ -140,7 +140,11 @@ class UserManager {
             return null;
 
         $user = null;
-        $result = db_query(sprintf("SELECT * FROM `%s_users` WHERE `EMailVerifyCode`='%s'", $sql_prefix, $userCode));
+        $result = db_query(sprintf(
+            "SELECT * FROM `%s_users` WHERE `EMailVerifyCode`='%s'",
+            $sql_prefix,
+            db_escape($userCode)
+        ));
         if (db_num($result) > 0) {
             $row = db_fetch_assoc($result);
             $user = new User($row['ID']);
@@ -279,6 +283,6 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
      */
     public function searchUsers($str) {
         return user_find($str);
-    } 
+    }
 
 }
