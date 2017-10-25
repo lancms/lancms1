@@ -292,8 +292,8 @@ if($facebook_likebox_url != FALSE) {
 ';
 }
 
-$design_head .= '<script async defer src="templates/shared/lancms.js"></script>' . PHP_EOL;
-$design_head .= '<link rel="stylesheet" type="text/css" media="all" href="templates/shared/lancms.css" />' . PHP_EOL;
+$design_head .= '<script src="templates/shared/lancms.js?v1"></script>' . PHP_EOL;
+$design_head .= '<link rel="stylesheet" type="text/css" media="all" href="templates/shared/lancms.css?v1" />' . PHP_EOL;
 
 if(!$hide_smarty) {
 

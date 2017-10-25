@@ -8,6 +8,6 @@ if (!window.Promise) {
   window.Promise = Promise;
 }
 
-(function() {
+window.addEventListener('load', function() {
   kioskCreate('.kiosk-gui');
-})();
+});
