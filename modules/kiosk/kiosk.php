@@ -41,7 +41,7 @@ if(empty($action)) {
 
 elseif($action == "addWare") {
 
-	$ware = (int) $_REQUEST['ware'] ?? '';
+	$ware = $_REQUEST['ware'] ?? '';
 
     if (empty($ware)) {
         header('Location: ?module=kiosk&error=1');
@@ -107,7 +107,7 @@ elseif($action == "addWare") {
 } // End addWare
 
 elseif($action == "removeWare") {
-	$ware = (int) $_REQUEST['ware'] ?? '';
+	$ware = $_REQUEST['ware'] ?? '';
 
     if ($ware > 0) {
     	db_query("DELETE FROM ".$sql_prefix."_kiosk_shopbasket WHERE sID = '$sessioninfo->sID' AND wareID = '".db_escape($ware)."'");
