@@ -1332,24 +1332,6 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs").
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Vis sesjoner")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globaladmin")."' AND string = '".db_escape("List sessions")."'");
 
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Aktiver forum")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("eventconfigoption")."' AND string = '".db_escape("enable_forum")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Forum")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Forum")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Start ny tråd")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Start new thread")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Trådnavn")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Thread name")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Innhold")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Thread content")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til tråd")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Add thread")."'");
-
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Endret grupperettigheter")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_groups__changeGroupRights")."'");
 
@@ -1388,24 +1370,6 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs").
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Wannabeadmin: kommentar endret")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_wannabeadmin__doChangeComment")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Bruker:")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("User:")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Navn:")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Name:")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt svar")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("New reply")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Ny forumtråd")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_forum__newThread")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Legg til svar")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Add reply")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Nytt forumsvar")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("logs")."' AND string = '".db_escape("log_forum__newpost")."'");
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Epost")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("edituserinfo_prefs")."' AND string = '".db_escape("EMail")."'");
@@ -1466,9 +1430,6 @@ WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("globala
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Skriv inn ditt nick, epost eller navn her:")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("index")."' AND string = '".db_escape("Type your nick, email or name here:")."'");
-
-db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Siste innlegg av:")."'
-WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("forum")."' AND string = '".db_escape("Last post by: ")."'");
 
 db_query("UPDATE ".$sql_prefix."_lang SET translated = '".db_escape("Navn")."'
 WHERE language = '".db_escape("norwegian")."' AND module = '".db_escape("profile")."' AND string = '".db_escape("Name")."'");

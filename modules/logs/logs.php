@@ -70,10 +70,6 @@ if (acl_access ("logview", "", $sessioninfo->eventID) != 'No')
 					if($f == "addFAQ") $func = lang("FAQ added");
 					elseif($f == "deleteFAQ") $func = lang("FAQ deleted");
 					break;
-				case "forum":
-					$mod = lang("Forum");
-					if($f == "newpost") $func = lang("New post added");
-					break;
 				case "globaladmin":
 					$mod = lang("Globaladmin");
 					if($f == "doAddEvent") $func = lang("Event added");

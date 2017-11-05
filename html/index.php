@@ -135,10 +135,6 @@ if ($sessioninfo->eventID > 1)
 		$links[] = "<li" . eventMenuItemCssClasses('kiosk') . "><a href=\"?module=kiosk\">".lang("Kiosk", "index")."</a></li>\n";
 	}
 
-	if (config("enable_forum", $sessioninfo->eventID)) {
-		$links[] = "<li" . eventMenuItemCssClasses('forum') . "><a href=\"?module=forum\">".lang("Forum", "index")."</a></li>\n";
-	}
-
 	$acl_sleepers = acl_access("sleepers", "", $sessioninfo->eventID);
 	if ((config ('enable_sleepers', $sessioninfo->eventID)) and ($acl_sleepers == 'Admin' or $acl_sleepers == 'Write')) {
 		$links[] = "<li" . eventMenuItemCssClasses('sleepers') . "><a href=\"?module=sleepers\">".lang("Sleepers", "index")."</a></li>\n";
