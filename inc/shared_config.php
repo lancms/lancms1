@@ -199,7 +199,7 @@ $userprefs[5]['name'] = 'birthYear';
 $userprefs[5]['mandatory'] = config("userinfo_birthyear_required");
 $userprefs[5]['group_pref'] = 1;
 $userprefs[5]['group_pref_end'] = 1;
-for($i=1950;$i<2009;$i++) $userprefs_birthYear_values[$i] = $i;
+for($i=1950;$i<=date("Y");$i++) $userprefs_birthYear_values[$i] = $i;
 $userprefs[5]['dropdown_values'] = $userprefs_birthYear_values;
 
 $userprefs[6]['type'] = 'text';
