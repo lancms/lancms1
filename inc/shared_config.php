@@ -95,6 +95,7 @@ $globalconfig['checkbox'][] = 'userinfo_birthday_required';
 $globalconfig['checkbox'][] = 'userinfo_birthyear_required';
 $globalconfig['checkbox'][] = 'userinfo_gender_required';
 $globalconfig['checkbox'][] = 'userinfo_address_required';
+$globalconfig['checkbox'][] = 'userinfo_cellphone_required';
 $globalconfig['text'][] = 'hostname';
 
 
@@ -222,6 +223,7 @@ $userprefs[8]['dropdown_values'] = array ('Male' => 'Male', 'Female' => 'Female'
 $userprefs[9]['type'] = 'text';
 $userprefs[9]['name'] = 'cellphone';
 $userprefs[9]['displayName'] = lang('Cellphone');
+$userprefs[9]['mandatory'] = config("userinfo_cellphone_required");
 
 $userprefs[10]['type'] = 'text';
 $userprefs[10]['name'] = 'EMail';
