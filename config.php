@@ -1,7 +1,7 @@
 <?php
 
 ## DB-connection
-$sql_type = "mysql"; // SQL type. mysqli or mysql, recommended is mysqli because mysql is deprecated.
+$sql_type = "mysqli"; // SQL type. mysqli or mysql, recommended is mysqli because mysql is deprecated.
 $sql_host = "localhost"; // SQL Host
 $sql_user = "lancms"; // SQL username
 $sql_pass = "ComPuterParty"; // Very very secret, if you read this, you should probably go shoot yourself, just to be safe
