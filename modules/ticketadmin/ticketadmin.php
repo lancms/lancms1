@@ -214,6 +214,7 @@ elseif($action == "listTickets") {
 		$content .= user_profile($rGetTickets->user);
 		$content .= "</td><td>";
 		if($rGetTickets->status == 'used') $content .= _("used");
+		elseif($rGetTickets->status == 'deleted') $content .= _("deleted");
 		else $content .= _("not used");
 #		$content .= lang($rGetTickets->status, "ticketorder");
 		$content .= "</td><td>";
