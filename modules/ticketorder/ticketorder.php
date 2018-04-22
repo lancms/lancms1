@@ -92,7 +92,7 @@ switch ($action) {
         }
         $orderInfo = array("status" => "failed", "dateTime" => time(), "userID" => $sessioninfo->userID);
 
-        $amount = 1;
+        $amount = $_SESSION["orderInfo" . $sessioninfo->userID]['amount'] ?? 1;
         $ticketType = $ticketManager->getTicketTypeByID($_SESSION["orderInfo" . $sessioninfo->userID]["ttID"]);
         $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
         $ticketIDs = array();
@@ -257,7 +257,7 @@ switch ($action) {
                 die();
             }
 
-            $_SESSION["orderInfo" . $sessioninfo->userID] = array("ttID" => $ttID, "newTickets" => $newTicketMd5);
+            $_SESSION["orderInfo" . $sessioninfo->userID] = array("ttID" => $ttID, "amount" => $amount, "newTickets" => $newTicketMd5);
             $priceNormal = floor($ticketType->getPrice() * $amount);
             $price = $priceNormal . "00";
 
