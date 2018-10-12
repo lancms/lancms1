@@ -1,16 +1,13 @@
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 function resolve(p) {
   return path.join(__dirname, p);
 }
 
-const extractTextPlugin = new ExtractTextPlugin({
-  filename: 'css/[name].css',
-  disable: false,
-});
-
 module.exports = {
+  mode: 'production',
+
   entry: {
     style: resolve('src/scss/style.scss'),
   },
@@ -24,16 +21,18 @@ module.exports = {
     rules: [
       {
         test: /\.(c|sa|sc)ss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          //resolve-url-loader may be chained before sass-loader if necessary
-          use: ['css-loader', 'sass-loader']
-        }),
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
 
   plugins: [
-    extractTextPlugin,
+    new MiniCssExtractPlugin({
+      filename: 'css/[name].css',
+    }),
   ],
 };
