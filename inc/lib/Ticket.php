@@ -10,6 +10,7 @@ class Ticket extends SqlObject {
     const TICKET_STATUS_NOTPAID = 'notpaid';
     const TICKET_STATUS_NOTUSED = 'notused';
     const TICKET_STATUS_USED    = 'used';
+    const TICKET_STATUS_ARRIVED = 'arrived';
     const TICKET_STATUS_DELETED = 'deleted';
 
     protected $_seat;
@@ -293,6 +294,16 @@ class Ticket extends SqlObject {
         }
 
         return false;
+    }
+
+    public function setIsArrived()
+    {
+        $this->_setField('status', self::TICKET_STATUS_ARRIVED);
+    }
+
+    public function hasArrived(): bool
+    {
+        return $this->_getField('status') === self::TICKET_STATUS_ARRIVED;
     }
 
     /**

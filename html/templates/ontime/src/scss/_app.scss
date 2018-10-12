@@ -674,6 +674,12 @@ footer p {
     background-color: #35ED09;
 }
 
+.arrival .ticket-label.arrived,
+.arrival .ticket-status .arrived,
+.ticket-notpaid {
+    background-color: #35ED09;
+}
+
 .arrival .ticket-label.deleted,
 .arrival .ticket-status .deleted,
 .ticket-deleted {

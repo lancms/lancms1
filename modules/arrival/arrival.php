@@ -141,6 +141,12 @@ switch ($action) {
                         $ret .= "&setasunpaid=true";
                         break;
 
+                    case 'markarrived':
+                        $ticket->setIsArrived();
+                        $ticket->commitChanges();
+                        $ret .= '&setasarrived=true';
+                        break;
+
                     case "setused":
                         $ticket->setUsed();
                         $ret .= "&setasused=true";
@@ -165,9 +171,14 @@ switch ($action) {
             $user  = $ticket->getUser();
 
             // Ticket status
-            $status = _("Unused");
-            if ($ticket->getStatus() == Ticket::TICKET_STATUS_USED) {
-                $status = _("Used");
+            switch ($ticket->getStatus()) {
+                case Ticket::TICKET_STATUS_USED:
+                    $status = _('Used');
+                    break;
+
+                default:
+                    $status = _('Unused');
+                    break;
             }
 
             $content .= "<div class=\"ticket-detail\"><div class=\"actions\">";
@@ -182,16 +193,23 @@ switch ($action) {
             }
 
             // Paid button
+            $renderPaidBtn = true;
             $paidHandle = "markpaid";
             $paidHandleButton = _("Mark paid");
             if ($ticket->isPaid()) {
-                $paidHandle = "markunpaid";
-                $paidHandleButton = _("Mark unpaid");
+                if (!$ticket->hasArrived()) {
+                    $paidHandle = "markarrived";
+                    $paidHandleButton = _("Mark arrived");
+                } else {
+                    $renderPaidBtn = false;
+                }
             }
 
-            $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=ticketdetail&amp;ticket=" . $ticketID . "&amp;handle=$paidHandle\">";
-            $content .= "<input type=\"submit\" name=\"setaspaid\" class=\"btn-grey\" value=\"$paidHandleButton\" />";
-            $content .= "</form>";
+            if ($renderPaidBtn) {
+                $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=ticketdetail&amp;ticket=" . $ticketID . "&amp;handle=$paidHandle\">";
+                $content .= "<input type=\"submit\" name=\"setaspaid\" class=\"btn-grey\" value=\"$paidHandleButton\" />";
+                $content .= "</form>";
+            }
 
             // Change owner
             $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=changeuser&amp;type=owner&amp;ticket=" . $ticketID . "\">";
@@ -234,7 +252,18 @@ switch ($action) {
                 $content .= "<tr><td colspan=\"2\" class=\"deleted\">" . _("Ticket has been deleted") . "</td></tr>";
             } else {
                 $content .= "<tr><td><strong>" . _("Status") . "</strong></td><td>" . $status . "</td></tr>";
-                $content .= "<tr><td colspan=\"2\" class=\"" . ($ticket->isPaid() ? ' paid' : ' unpaid') . "\">" . ($ticket->isPaid() ? _("Ticket is paid") : _("Ticket is not paid")) . "</td></tr>";
+
+                $content .= '<tr>';
+
+                if ($ticket->hasArrived()) {
+                    $content .= '<td colspan="2" class="arrived">' . _('Arrived') . '</td>';
+                } else if ($ticket->isPaid()) {
+                    $content .= '<td colspan="2" class="paid">' . _('Paid') . '</td>';
+                } else {
+                    $content .= '<td colspan="2" class="unpaid">' . _('Unpaid') . '</td>';
+                }
+
+                $content .= '</tr>';
             }
 
             $content .= "</table></div><div class=\"ticket-users\"><table class=\"table\">";
