@@ -29,7 +29,6 @@ TABLE [prefix]_users
 	birthYear,		int(4),			,		YES,	0,
 	birthMonth,		int(2),			,		YES,	0,
 	birthDay,		int(2),			,		YES,	0,
-	forumPosts,		int(5),			,		,	0,
 	lastPasswordReset,	int(11),		,		YES,	0,
 	passwordResetCode,	varchar(40),		,		,	,
 	facebookID,		int(15),		,		YES,	0,
@@ -469,38 +468,6 @@ TABLE [prefix]_postnumber
 	country,		tinyint(3),		,	,	0,
 	county,			int(5),			,	,	,
 	comments,		text,			,	,	,
-}
-
-TABLE [prefix]_forums
-{
-#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
-        ID,                     int(11),                PRI,    ,       ,               auto_increment
-	eventID,		int(11),		,	NOT NULL,	,
-	name,			varchar(35),		,	,	,
-	description,		text,			,	,	,
-	disabled,		tinyint(1),		,	,	0,
-}
-
-TABLE [prefix]_forumThreads
-{
-#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
-        ID,                     int(11),                PRI,    ,       ,               auto_increment
-	forumID,		int(11),		,	,	,
-	threadTopic,		text,			,	,	,
-	threadStarter,		int(11),		,	,	,
-	threadDeleted,		tinyint(1),		,	,	0,
-	threadLocked,		tinyint(1),		,	,	0,
-	lastPost,		int(10)			,	,	0,
-}
-
-TABLE [prefix]_forumPosts
-{
-#       NAME                    TYPE                    KEY     NULL    DEFAULT         EXTRA
-        ID,                     int(11),                PRI,    ,       ,               auto_increment
-	threadID,		int(11),		,	,	,
-	postAuthor,		int(11),		,	,	,
-	postTimestamp,		int(10),		,	,	0,
-	postContent,		text,			,	,	,
 }
 
 TABLE [prefix]_infoscreens

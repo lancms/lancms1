@@ -39,11 +39,9 @@ if(!isset($action))
 	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<li><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a></li>";
 	if(acl_access("kiosk_admin", "", $eventID) != 'No')
 		$content .= "<li><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a></li>\n";
-	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin') 
-		$content .= "<li><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("infoscreen", "", $sessioninfo->eventID) != 'No')
 		$content .= "<li><a href='?module=infoscreens'>"._("Infoscreens")."</a></li>\n";
-	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList)) 
+	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList))
 		$content .= "<li><a href='?module=mail&action=massmail'>"._("Mass-mailer")."</a></li>\n";
 
     $content .= "</ul>";
@@ -294,10 +292,10 @@ elseif($action == "eventaccess") {
 		$content .= "<tr class='listRow$row'><td>";
 		$content .= $rListGroups->groupname;
 		$content .= "</td><td>";
-		$qCheckAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs 
-			WHERE access != 'No' 
-			AND accessmodule = 'eventAttendee' 
-			AND eventID = '$sessioninfo->eventID' 
+		$qCheckAccess = db_query("SELECT * FROM ".$sql_prefix."_ACLs
+			WHERE access != 'No'
+			AND accessmodule = 'eventAttendee'
+			AND eventID = '$sessioninfo->eventID'
 			AND groupID = '$rListGroups->ID'");
 		if(db_num($qCheckAccess) == 0) {
 			$content .= "<a href=?module=eventadmin&action=doChangeRights&groupID=$rListGroups->ID&accessmodule=eventAttendee&groupRight=Read>";
@@ -314,4 +312,3 @@ elseif($action == "eventaccess") {
 	$content .= "</table>";
 
 } // End if action == eventaccess
-		

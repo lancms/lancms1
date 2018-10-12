@@ -66,10 +66,6 @@ $eventconfig = array(
             "name" => _("Activate kiosk")
         ),
         array(
-            "config" => "enable_forum",
-            "name" => _("Activate forum")
-        ),
-        array(
             "config" => "enable_sleepers",
             "name" => _("Activate sleepsystem")
         ),
