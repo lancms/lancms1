@@ -216,23 +216,23 @@ class UserManager {
         $user->commitChanges();
 
         $url = getUrlBase();
-        $verifyUrl = $url . "/index.php?module=register&action=verifymail&verifycode=" . $code;
+        $verifyUrl = $url . '/index.php?module=register&action=verifymail&verifycode=' . $code;
 
-        $message = sprintf("Hello %s
+        $message = sprintf('Hello %s
 
 You, or someone has created an account on %s with this e-mail address.
 
 To verify your account please open the web address under (or click it)
 %s
 
-Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
+Sent by LANCMS to %s because the user %s was created on the site %s at %s.',
             $user->getFullName(),
             $url,
             $verifyUrl,
             $user->getEmail(),
             $user->getNick(),
             $url,
-            date("d.m.Y H:i:s", $user->getRegisterTime()));
+            date('d.m.Y H:i:s', $user->getRegisterTime()));
 
         send_email($user->getUserID(), 'Verify your user account', $message);
         return true;
