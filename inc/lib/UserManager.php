@@ -234,7 +234,7 @@ Sent by LANCMS to %s because the user %s was created on the site %s at %s.",
             $url,
             date("d.m.Y H:i:s", $user->getRegisterTime()));
 
-        mail($user->getEmail(), "Verify your user account", $message);
+        send_email($user->getUserID(), 'Verify your user account', $message);
         return true;
     }
 
