@@ -127,7 +127,7 @@ switch ($action) {
             case "onsite-visitor":
                 // Handle onsite visitor, just return.
                 $orderInfo["onSiteVisitor"] = true;
-                $orderInfo["status"] = "ordered";
+                $orderInfo["status"] = "notused";
                 $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
                 if (is_array($tickets) && count($tickets) > 0) {
                     foreach ($tickets as $ticket) {
@@ -189,7 +189,7 @@ switch ($action) {
                     }
                 } else {
                     // Just go!
-                    $orderInfo["status"] = "ordered";
+                    $orderInfo["status"] = "notused";
                     $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
                     if (is_array($tickets) && count($tickets) > 0) {
                         foreach ($tickets as $ticket) {
