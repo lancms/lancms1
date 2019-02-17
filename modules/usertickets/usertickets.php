@@ -405,10 +405,17 @@ switch ($action) {
                                 $statusColumnCss = "used";
                                 break;
 
+                            case Ticket::TICKET_STATUS_ARRIVED:
+                                $status = _("Arrived");
+                                $statusColumnCss = "paid";
+                                break;
+
                             case Ticket::TICKET_STATUS_DELETED:
                                 $status = _("Deleted");
                                 $statusColumnCss = "deleted";
                                 break;
+
+                            default: break;
                         }
 
                         $seat = _("Not seated");
