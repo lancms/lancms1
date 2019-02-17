@@ -13,6 +13,12 @@ $language = "norwegian"; // The user might want to customize this him self... Mi
 
 $design_title = "lancms";
 
+/**
+ * Allow pay on arrival?
+ * @var int
+ */
+$ticketOrderAllowPreorderPayOnArrival = false;
+
 // Define it to use smarty or a native solution by including a template file in php.
 $enableSmarty = false;
 

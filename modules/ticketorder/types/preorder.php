@@ -6,9 +6,11 @@ $content .= "
         <h3>Hvordan ønsker du å betale?</h3>
         <p>Pris <strong>" . number_format($priceNormal) . " kr</strong> for <strong>" . $amount . "x " . $ticketType->getName() . "</strong></p>
         <div class=\"payment-options table no-colour\">
-            <div class=\"payment-option row\">
+            <div class=\"payment-option row\">";
+
+$content .= "
                 <div class=\"payment-radio cell\">
-                    <input type=\"radio\" name=\"pay_method_bla\" id=\"payment-1\" value=\"stripe\" />
+                    <input type=\"radio\" checked name=\"pay_method_bla\" id=\"payment-1\" value=\"stripe\" />
                 </div>
                 <div class=\"payment-info cell\">
                     <label for=\"payment-1\">
@@ -16,18 +18,24 @@ $content .= "
                         <div class='description'>" . _("Betal med kort nå og få umiddelbar tilgang til å velge plass for alle billetter.") . "</div>
                     </label>
                 </div>
+            </div>";
+
+if ($ticketOrderAllowPreorderPayOnArrival) {
+    $content .= "
+        <div class=\"payment-option row\">
+            <div class=\"payment-radio cell\">
+                <input type=\"radio\" name=\"pay_method_bla\" id=\"payment-2\" value=\"door\" />
             </div>
-            <div class=\"payment-option row\">
-                <div class=\"payment-radio cell\">
-                    <input type=\"radio\" name=\"pay_method_bla\" id=\"payment-2\" value=\"door\" />
-                </div>
-                <div class=\"payment-info cell\">
-                    <label for=\"payment-2\">
-                        <div class='name'>" . _("Betal i døra senere") . "</div>
-                        <div class='description'>Med dette valget betaler du når du ankommer arrangementet som støtter følgende betalingsmetoder i døra: kort, kontant</div>
-                    </label>
-                </div>
+            <div class=\"payment-info cell\">
+                <label for=\"payment-2\">
+                    <div class='name'>" . _("Betal i døra senere") . "</div>
+                    <div class='description'>Med dette valget betaler du når du ankommer arrangementet som støtter følgende betalingsmetoder i døra: kort, kontant</div>
+                </label>
             </div>
+        </div>";
+}
+
+$content .= "
         </div>
         <div class=\"pull-right submit-button\">
             <button type=\"button\" class=\"btn-grey btn\" onclick=\"window.location = '?module=ticketorder';\">Avbryt</button>

@@ -141,7 +141,7 @@ switch ($action) {
                 $paymentMethod = $requestPost->get("pay_method", "door");
                 $orderInfo["paymentMethod"] = $paymentMethod;
 
-                if ($paymentMethod == "stripe") {
+                if ($ticketOrderAllowPreorderPayOnArrival || $paymentMethod == "stripe") {
                     // We get from stripe:
                     $stripeToken = $_POST["stripeToken"];
                     $stripeTokenType = $_POST["stripeTokenType"];
