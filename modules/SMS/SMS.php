@@ -125,21 +125,21 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
 
 	$qFindUsers = db_query($SQL);
     $rFindUsers = db_fetch_all($qFindUsers);
-    
+
     if ((is_array($rFindUsers)) && (count($rFindUsers) > 0)) {
         $cellphones = [];
-        
+
         foreach ($rFindUsers as $user) {
-            $phoneNumber = (int) $user->cellphone;
-            
-            if ($phoneNumber > 0) {
+            $phoneNumber = preg_replace('/[^0-9]/', '', $user->cellphone);
+
+            if (is_numeric($phoneNumber) && $phoneNumber > 0) {
                 $cellphones[] = $phoneNumber;
             }
         }
-        
-        // Explode into several chunks of 15 users at the time.
-        $cellPhoneGroups = array_chunk($cellphones, 15);
-        
+
+        // Explode into several chunks of 5 users at the time.
+        $cellPhoneGroups = array_chunk($cellphones, 5);
+
         foreach ($cellPhoneGroups as $group) {
             db_query(
                 sprintf(
