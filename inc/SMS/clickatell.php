@@ -6,13 +6,10 @@ $rFindJobs = db_fetch_all($qFindJobs);
 
 if ((is_array($rFindJobs)) && (count($rFindJobs) > 0)) {
     foreach ($rFindJobs as $job) {
-
         $sendToTelephones = explode(',', $job->toUser);
         $phoneNumbers = array();
 
-        foreach ($phoneNumbers as $number) {
-            $numberLength = strlen($number);
-
+        foreach ($sendToTelephones as $number) {
             switch (strlen($number)) {
                 case 8:
                     $phoneNumbers[] = '47' . $number;
