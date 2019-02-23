@@ -128,7 +128,8 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 		
 	default:
 	    // Unknown type. Just create something
-	    $content .= "<td class=seatUnknownCell>$type</td>\n";
+		#	    $content .= "<td class=seatUnknownCell>$type</td>\n";
+		$content .= "<td class='seatUnknownCell'>".$GetSeatedUser->nick."</td>\n";
         } // End switch
     } // End else
 
