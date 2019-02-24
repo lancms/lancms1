@@ -231,10 +231,10 @@ elseif($action == 'doChangeGroupRights' && !empty($groupID) && !empty($_GET['use
 	}
 
 	$access = $_POST['groupRights'];
-	
+
 	$log_new['userID'] = $_GET['userID'];
 	$log_new['groupID'] = $groupID;
-	
+
 	if($access == "No") {
 		db_query("DELETE FROM ".$sql_prefix."_group_members WHERE groupID = '".db_escape($groupID)."'
 			AND userID = '".db_escape($_GET['userID'])."'");

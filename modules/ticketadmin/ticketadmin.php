@@ -81,7 +81,7 @@ if(!isset($action) || $action == "editticket") {
         $content .= "<option value=\"prepaid\"";
         if($rGetTicketInfo->type == 'prepaid') $content .= " selected";
         $content .= ">".lang("Prepaid ticket", "ticketadmin")."</option>\n";
-    
+
         $content .= "<option value=\"preorder\"";
         if($rGetTicketInfo->type == 'preorder') $content .= " selected";
         $content .= ">".lang("Preordered ticket", "ticketadmin")."</option>\n";
@@ -139,7 +139,7 @@ if(!isset($action) || $action == "editticket") {
 	$content .= "<form method=POST action=?module=ticketadmin&action=addReseller&ticketType=$rGetTicketInfo->ticketTypeID>";
 	while($rFindGroups = db_fetch($qFindGroups));
 	$content .= "</table>";
-	
+
    } // if action == editticket && type = reseller
 
 } // End if !isset($action)
@@ -213,7 +213,7 @@ elseif($action == "listTickets") {
         $content .= "</th><th>".lang("Map placement", "ticketorder");
 	$content .= "</th><th>".lang("Paid?", "ticketorder");
 	$content .= "</th></tr>\n\n";
-	
+
 	while($rGetTickets = db_fetch($qGetTickets)) {
 		$content .= "<tr><td>";
 		$content .= $rGetTickets->ticketID;
@@ -228,7 +228,7 @@ elseif($action == "listTickets") {
 #		$content .= lang($rGetTickets->status, "ticketorder");
 		$content .= "</td><td>";
 		$content .= "<a href='?module=seating&ticketID=$rGetTickets->ticketID'>";
-		
+
 		$qFindSeating = db_query("SELECT * FROM ".$sql_prefix."_seatReg_seatings WHERE ticketID = '$rGetTickets->ticketID'");
 		if(db_num($qFindSeating) == 1) {
 			$rFindSeating = db_fetch($qFindSeating);

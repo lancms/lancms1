@@ -39,11 +39,11 @@ if(!isset($action))
 	if($sendSMS_ACL == 'Admin' || $sendSMS_ACL == 'Write') $content .= "<li><a href=?module=SMS>".lang("Send SMS", "eventadmin")."</a></li>";
 	if(acl_access("kiosk_admin", "", $eventID) != 'No')
 		$content .= "<li><a href='?module=kioskadmin'>".lang("Kioskadmin", "eventadmin")."</a></li>\n";
-	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin') 
+	if(acl_access("forum", "", $sessioninfo->eventID) == 'Admin')
 		$content .= "<li><a href='?module=forumadmin'>".lang("Forumadmin", "eventadmin")."</a></li>\n";
 	if(acl_access("infoscreen", "", $sessioninfo->eventID) != 'No')
 		$content .= "<li><a href='?module=infoscreens'>"._("Infoscreens")."</a></li>\n";
-	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList)) 
+	if(acl_access("globaladmin", "", $sessioninfo->eventID != 'No') && !empty($mailList))
 		$content .= "<li><a href='?module=mail&action=massmail'>"._("Mass-mailer")."</a></li>\n";
 
     $content .= "</ul>";
@@ -315,4 +315,4 @@ elseif($action == "eventaccess") {
 	$content .= "</table>";
 
 } // End if action == eventaccess
-		
+

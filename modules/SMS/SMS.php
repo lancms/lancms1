@@ -53,18 +53,18 @@ elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
 		die ("No such group?");
 	}
 	$qCellphone = db_query ($SQL);
-	
+
 	if (!db_num($qCellphone))
 	{
 		# FIXME: die ()
 		die ("No users in group..?");
 	}
-	
+
 
 	$content .= "<h2>"._("Preview SMS")."</h2>\n";
 
 	$content .= "<h3>"._("Recipients")."</h3>\n";
-	
+
 	$content .= "<p>"._("Sends to group:")." <strong>".$smsList[$toSmsList]['name']."</strong></p>\n";
 
 	$content .= "<table>\n";
@@ -81,7 +81,7 @@ elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
 		{
 			$rownum = 1;
 		}
-		
+
 		$qUser = db_query ("SELECT * FROM ".$sql_prefix."_users WHERE ID='".db_escape($rCellphone->ID)."'");
 		$rUser = db_fetch ($qUser);
 
@@ -96,7 +96,7 @@ elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
 		unset ($qUser);
 	}
 	$content .= "</table>\n";
-	
+
 	$content .= "<h3>"._("Message content")."</h3>\n";
 	# FIXME? Hardcoded textarea width and height
 	$content .= "<textarea style='width: 300px; height: 200px;' disabled>".htmlentities($msgcontent)."</textarea>\n";
@@ -109,7 +109,7 @@ elseif ($action == "previewSMS" && isset ($_POST['toSmsList']))
 	$content .= "<input type='hidden' name='message' value='".$_POST['message']."' />\n";
 	$content .= "</form>\n";
 }
-	
+
 
 
 
@@ -149,7 +149,7 @@ elseif($action == "sendSMS" && isset($_POST['toSmsList'])) {
             );
         }
     }
-        
+
 	$log_new['toListName'] = $smsList[$toSmsList]['name'];
 	$log_new['message'] = $_POST['message'];
 	log_add("SMS", "sendSMS", serialize($log_new));
