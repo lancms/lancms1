@@ -1,21 +1,18 @@
 const webpack = require('webpack');
 const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const ExtraneousFileCleanupPlugin = require('webpack-extraneous-file-cleanup-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 function resolve(p) {
   return path.join(__dirname, p);
 }
 
-const extractTextPlugin = new ExtractTextPlugin({
-  filename: (getPath) => getPath('[name].css').replace('css/js', 'css'),
-  disable: false,
-});
-
 module.exports = {
+  mode: 'production',
+
   entry: {
     lancms: [
-      'font-awesome-webpack',
+      'font-awesome/css/font-awesome.css',
       resolve('src/scss/lancms.scss'),
       resolve('src/js/lancms.js'),
     ],
@@ -39,14 +36,13 @@ module.exports = {
     rules: [
       {
         test: /\.(c|sa|sc)ss$/,
-        use: ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader',
-          }, {
-            loader: 'sass-loader',
-          }],
-          fallback: 'style-loader',
-        }),
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          "css-loader",
+          "sass-loader"
+        ],
       },
 
       {
@@ -60,15 +56,28 @@ module.exports = {
         use: 'vue-loader',
       },
 
-      // the url-loader uses DataUrls.
-      // the file-loader emits files.
-      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
-      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'fonts/',
+            publicPath: '/templates/shared/fonts/',
+          },
+        }],
+      },
     ],
   },
 
   plugins: [
-    extractTextPlugin,
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      filename: "[name].css",
+      chunkFilename: "[id].css"
+    }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': '"' + process.env.NODE_ENV + '"',
     }),
