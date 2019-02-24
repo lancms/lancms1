@@ -2,7 +2,7 @@
 $eventID = $sessioninfo->eventID;
 
 if(acl_access("ticketadmin", "", $eventID) != 'Admin') die("You do not have ticketadmin-rights");
-$action = $_GET['action'];
+$action = $_GET['action'] ?? null;
 
 
 if(!isset($action) || $action == "editticket") {
@@ -50,6 +50,15 @@ if(!isset($action) || $action == "editticket") {
     $content .= "<table>\n";
     $content .= "<tr><td>\n";
     // If we're editing a ticket, display values of ticket, else, addticket
+
+    $rGetTicketInfo = new \stdClass();
+    $rGetTicketInfo->type = '';
+    $rGetTicketInfo->name = '';
+    $rGetTicketInfo->price = '';
+    $rGetTicketInfo->description = '';
+    $rGetTicketInfo->active = false;
+    $rGetTicketInfo->maxTickets = 0;
+
     if($action == "editticket" && isset($_GET['editticket'])) {
         $qGetTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
         $rGetTicketInfo = db_fetch($qGetTicketInfo);

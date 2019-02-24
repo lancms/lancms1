@@ -4,7 +4,7 @@ $acl = acl_access("dashboard", "", $sessioninfo->eventID);
 if($acl == 'No') die(_("No access to dashboard"));
 
 
-$action = $_GET['dashboard'];
+$action = $_GET['dashboard'] ?? null;
 
 if(empty($action)) {
 	$design_head .= "<meta http-equiv='refresh' content='10'>";

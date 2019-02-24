@@ -1,6 +1,6 @@
 <?php
 
-$action = $_GET['action'];
+$action = $_GET['action'] ?? null;
 $eventID = $sessioninfo->eventID;
 
 $acl_eventadmin = acl_access("eventadmin", "", $eventID);
@@ -140,14 +140,15 @@ elseif($action == "addGroup" && !empty($_POST['groupname']))
 
 elseif($action == "config") {
 	if($acl_eventadmin != 'Admin') die("No access to admin event");
-	if($_GET['saved'] == "OK") $content .= _("Config successfully saved");
+	if(isset($_GET['saved']) && $_GET['saved'] == "OK") $content .= _("Config successfully saved");
 
 	$content .= "<form method=\"post\" action='?module=eventadmin&amp;action=doConfig'>\n";
-	for($i=0;$i<count($eventconfig['checkbox']);$i++) {
-		$cfg_current = config($eventconfig['checkbox'][$i]['config'], $eventID);
-		$content .= "<p class=\"nopad\"><input type=\"checkbox\" name='".$eventconfig['checkbox'][$i]['config']."'";
+
+    foreach ($eventconfig['checkbox'] as $eventConfigCheckbox) {
+		$cfg_current = config($eventConfigCheckbox['config'], $eventID);
+		$content .= "<p class=\"nopad\"><input type=\"checkbox\" name='".$eventConfigCheckbox['config']."'";
 		if($cfg_current) $content .= " CHECKED";
-		$content .= " /> ".$eventconfig['checkbox'][$i]['name']."</p>\n";
+		$content .= " /> ".$eventConfigCheckbox['name']."</p>\n";
 	} // End for
 
 	$content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Save", "eventadmin_config")."' /></p></form>";

@@ -36,7 +36,7 @@ elseif(($action == 'listGroup') || ($action == 'addGroupMember') || ($action == 
 {
 	/* this action list the "group main page" */
 	// FIXME: ACL...
-	$searchUser = $_POST['searchUser'];
+	$searchUser = $_POST['searchUser'] ?? null;
 
 	// Display errormsg if it is set
 	if(isset($_GET['errormsg'])) $content .= $_GET['errormsg']."<br />\n";
