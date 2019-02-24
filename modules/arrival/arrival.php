@@ -235,7 +235,59 @@ switch ($action) {
                 $content .= "</form>";
             }
 
-            $content .= "</div><div class=\"ticket-status\"><table class=\"table\">";
+            $content .= "</div>";
+
+            $isBirthdayValid = false;
+            $isAddressValid = false;
+
+            $street = trim($user->getStreetAddress());
+            $postNumber = trim($user->getPostNumber());
+
+            if ($street !== '' && strlen($postNumber) === 4) {
+                $isAddressValid = true;
+            }
+
+            try {
+                $birthYear = $user->getBirthYear();
+                $birthMonth = $user->getBirthMonth();
+                $birthDay = $user->getBirthDay();
+                $asString = $birthYear . '-' . $birthMonth . '-' . $birthDay;
+
+                $birthday = DateTimeImmutable::createFromFormat('Y-n-j', $asString);
+                if ($birthday instanceof DateTimeImmutable && $birthday->format('Y-n-j') === $asString) {
+                    $isBirthdayValid = true;
+                }
+            } catch (\Exception $e) {
+                if ($e instanceof ErrorException) throw $e;
+            }
+
+            if (!$isBirthdayValid || !$isAddressValid) {
+                $content .= '<div class="alert alert-danger">';
+                $content .= '<div>There has been detected some issues with ';
+
+                if (!$isBirthdayValid) {
+                    $content .= '<strong>' . mb_strtolower(_('Birthday')) . '</strong>';
+
+                    if (!$isAddressValid) {
+                        $content .= ' and ';
+                    }
+                }
+                if (!$isAddressValid) {
+                    $content .= '<strong>' . mb_strtolower(_('Address')) . '</strong>';
+                }
+
+                $content .= ' on the user of this ticket. </div>';
+                $content .= '<div>Please correct this info by clicking the name of the user of this ticket.</div>';
+                $content .= '</div>';
+            }
+
+            $content .= '<style type="text/css">.invalid-row td{background-color:#f2dede;}</style>';
+
+            $content .= '<div class="alert alert-info">
+                <div>Verify the address and birthday of this user before giving access to the event.</div>
+                <div>After the user information is verified, ensure to mark this ticket as used.</div>
+            </div>';
+            $content .= "<div class=\"ticket-status\"><table class=\"table\">";
             $content .= "<tr><td><strong>" . _("ID") . "</strong></td><td>" . $ticket->getMd5ID() . "</td></tr>";
 
             $hasSeatString = _("No");
@@ -283,8 +335,8 @@ switch ($action) {
             $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td><a href=\"index.php?module=profile&amp;user=" . $user->getUserID() . "\">" . $user->getFullName() . "</a></td></tr>";
             $content .= "<tr><td><strong>" . _("Nick") . "</strong></td><td>" . $user->getNick() . "</td></tr>";
             $content .= "<tr><td><strong>" . _("Email") . "</strong></td><td>" . $user->getEmail() . "</td></tr>";
-            $content .= "<tr><td><strong>" . _("Address") . "</strong></td><td>" . $user->getStreetAddress() . "<br />" . $user->getPostNumber() . " " . $user->getPostPlace() . "</td></tr>";
-            $content .= "<tr><td><strong>" . _("Birthday") . "</strong></td><td>" . date("d.M.Y", $user->getBirthdayTimestamp()) . "</td></tr>";
+            $content .= "<tr class=\"" . (!$isAddressValid ? 'invalid-row' : '') . "\"><td><strong>" . _("Address") . "</strong></td><td>" . $user->getStreetAddress() . "<br />" . $user->getPostNumber() . " " . $user->getPostPlace() . "</td></tr>";
+            $content .= "<tr class=\"" . (!$isBirthdayValid ? 'invalid-row' : '') . "\"><td><strong>" . _("Birthday") . "</strong></td><td>" . date("d.M.Y", $user->getBirthdayTimestamp()) . "</td></tr>";
 
 
             $content .= "</table></div></div>";
