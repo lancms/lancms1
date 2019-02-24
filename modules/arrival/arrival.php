@@ -281,7 +281,7 @@ switch ($action) {
                 $content .= '</div>';
             }
 
-            $content .= '<style type="text/css">.invalid-row td{background-color:#f2dede;}</style>';
+            $content .= '<style type="text/css">.info-row td{background-color: #d9edf7;} .invalid-row td{background-color:#f2dede;}</style>';
 
             $content .= '<div class="alert alert-info">
                 <div>Verify the address and birthday of this user before giving access to the event.</div>
@@ -335,8 +335,8 @@ switch ($action) {
             $content .= "<tr><td><strong>" . _("Name") . "</strong></td><td><a href=\"index.php?module=profile&amp;user=" . $user->getUserID() . "\">" . $user->getFullName() . "</a></td></tr>";
             $content .= "<tr><td><strong>" . _("Nick") . "</strong></td><td>" . $user->getNick() . "</td></tr>";
             $content .= "<tr><td><strong>" . _("Email") . "</strong></td><td>" . $user->getEmail() . "</td></tr>";
-            $content .= "<tr class=\"" . (!$isAddressValid ? 'invalid-row' : '') . "\"><td><strong>" . _("Address") . "</strong></td><td>" . $user->getStreetAddress() . "<br />" . $user->getPostNumber() . " " . $user->getPostPlace() . "</td></tr>";
-            $content .= "<tr class=\"" . (!$isBirthdayValid ? 'invalid-row' : '') . "\"><td><strong>" . _("Birthday") . "</strong></td><td>" . date("d.M.Y", $user->getBirthdayTimestamp()) . "</td></tr>";
+            $content .= "<tr class=\"" . (!$isAddressValid ? 'invalid-row' : 'info-row') . "\"><td><strong>" . _("Address") . "</strong></td><td>" . $user->getStreetAddress() . "<br />" . $user->getPostNumber() . " " . $user->getPostPlace() . "</td></tr>";
+            $content .= "<tr class=\"" . (!$isBirthdayValid ? 'invalid-row' : 'info-row') . "\"><td><strong>" . _("Birthday") . "</strong></td><td>" . date("d.M.Y", $user->getBirthdayTimestamp()) . "</td></tr>";
 
 
             $content .= "</table></div></div>";
