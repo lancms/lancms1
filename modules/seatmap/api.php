@@ -13,12 +13,16 @@ $export['eventinfo']['name'] = $eventinfo->eventname;
 if(config("seating_enabled", $eventID)) $export['seating_enabled'] = true;
 else $export['seating_enabled'] = false;
 
+$export['seats']['open'] = 0;
+$export['seats']['not_open'] = "0";
+$export['seats']['password_reserved'] = 0;
 
 
-$seatQ = db_query("SELECT type,COUNT(*) AS amount FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' AND type IN ('d','n') GROUP BY type");
+$seatQ = db_query("SELECT type,COUNT(*) AS amount FROM ".$sql_prefix."_seatReg WHERE eventID = '$eventID' AND type IN ('d','n', 'p') GROUP BY type");
 while($seatR = db_fetch($seatQ)) {
 	if($seatR->type == 'd') $export['seats']['open'] = $seatR->amount;
 	if($seatR->type == 'n') $export['seats']['not_open'] = $seatR->amount;
+	if($seatR->type == 'p') $export['seats']['password_reserved'] = $seatR->amount;
 }
 $seatsTakenQ = db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_seatReg_seatings WHERE eventID = '$eventID'");
 $seatsTakenR = db_fetch($seatsTakenQ);
