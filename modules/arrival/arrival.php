@@ -223,7 +223,7 @@ switch ($action) {
 
             // Change seating
             if ($acl_seating == 'Write' || $acl_seating == 'Admin') {
-                $content .= "<form method=\"post\" action=\"index.php?module=seating&amp;ticket=" . $ticketID . "\">";
+                $content .= "<form method=\"post\" action=\"index.php?module=seating&amp;ticketID=" . $ticket->getTicketID() . "\">";
                 $content .= "<input type=\"submit\" name=\"changeseat\" class=\"btn-grey\" value=\"Change seat\" />";
                 $content .= "</form>";
             }
