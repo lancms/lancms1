@@ -43,7 +43,7 @@ if(!isset($action)) {
 			$rFindTicket = db_fetch($qFindTicket);
 #			$qFindUser = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '$rFindTicket->user'");
 #			$rFindUser = db_fetch($qFindUser);
-			$content .= user_profile($rFindTicket->user);
+			#$content .= user_profile($rFindTicket->user);
 #			$content .= $rFindUser->firstName." ".$rFindUser->lastName." ".lang("a.k.a.", "seating")." ".$rFindUser->nick;
 #			if($sessioninfo->userID != 1 && $rFindUser->EMail != '') {
 #				$qCheckMailSetting = db_query("SELECT * FROM ".$sql_prefix."_userPreferences WHERE name = 'allowViewMail' AND userID = '$rFindTicket->user'");
