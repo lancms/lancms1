@@ -96,6 +96,8 @@ $globalconfig['checkbox'][] = 'userinfo_birthyear_required';
 $globalconfig['checkbox'][] = 'userinfo_gender_required';
 $globalconfig['checkbox'][] = 'userinfo_address_required';
 $globalconfig['checkbox'][] = 'userinfo_cellphone_required';
+$globalconfig['checkbox'][] = 'userinfo_relative_name_required';
+$globalconfig['checkbox'][] = 'userinfo_relative_cellphone_required';
 $globalconfig['text'][] = 'hostname';
 
 
@@ -228,6 +230,16 @@ $userprefs[9]['mandatory'] = config("userinfo_cellphone_required");
 $userprefs[10]['type'] = 'text';
 $userprefs[10]['name'] = 'EMail';
 $userprefs[10]['displayName'] = lang('EMail');
+
+$userprefs[11]['type'] = 'text';
+$userprefs[11]['name'] = 'relative_name';
+$userprefs[11]['displayName'] = lang('Relative name');
+$userprefs[11]['mandatory'] = config("userinfo_relative_name_required");
+
+$userprefs[12]['type'] = 'text';
+$userprefs[12]['name'] = 'relative_cellphone';
+$userprefs[12]['displayName'] = lang('Relative cellphone');
+$userprefs[12]['mandatory'] = config("userinfo_relative_cellphone_required");
 
 
 ## SpecialListings

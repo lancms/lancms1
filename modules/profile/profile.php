@@ -23,6 +23,20 @@ if ($useradminread != "No")
 	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Birthday'), $border, $user->birthDay.". ".$user->birthMonth." ".$user->birthYear);
 	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Address'), $border, $user->street);
 	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Postnumber'), $border, $user->postNumber);
+
+	$relativeName = $user->relative_name ?? null;
+	$relativeCellphone = $user->relative_cellphone ?? null;
+
+	$relativeString = 'None';
+	if (is_string($relativeName) && $relativeName !== '') {
+	    $relativeString = htmlspecialchars($relativeName);
+
+	    if (is_string($relativeCellphone) && $relativeCellphone !== '') {
+	        $relativeString .= ', ' . htmlspecialchars($relativeCellphone);
+        }
+    }
+
+	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Relative'), $border, $relativeString);
 }
 
 

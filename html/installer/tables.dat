@@ -34,6 +34,8 @@ TABLE [prefix]_users
 	passwordResetCode,	varchar(40),		,		,	,
 	facebookID,		int(15),		,		YES,	0,
 	lastLoginTime,	datetime,		,		YES,	,
+	relative_name, varchar(230),       ,       YES,    ,
+	relative_cellphone, varchar(230),       ,       YES,    ,
 }
 
 TABLE [prefix]_config
