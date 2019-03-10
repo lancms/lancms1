@@ -36,7 +36,7 @@ if ($useradminread != "No")
         }
     }
 
-	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Relative'), $border, $relativeString);
+	$content .= sprintf ("<tr><th %s>%s</th><td %s>%s</td></tr>\n", $border, _('Guardian'), $border, $relativeString);
 }
 
 

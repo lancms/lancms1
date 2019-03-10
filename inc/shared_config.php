@@ -233,12 +233,12 @@ $userprefs[10]['displayName'] = lang('EMail');
 
 $userprefs[11]['type'] = 'text';
 $userprefs[11]['name'] = 'relative_name';
-$userprefs[11]['displayName'] = lang('Relative name');
+$userprefs[11]['displayName'] = lang('Guardian name');
 $userprefs[11]['mandatory'] = config("userinfo_relative_name_required");
 
 $userprefs[12]['type'] = 'text';
 $userprefs[12]['name'] = 'relative_cellphone';
-$userprefs[12]['displayName'] = lang('Relative cellphone');
+$userprefs[12]['displayName'] = lang('Guardian cellphone');
 $userprefs[12]['mandatory'] = config("userinfo_relative_cellphone_required");
 
 
