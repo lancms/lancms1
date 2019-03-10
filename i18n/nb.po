@@ -1,17 +1,18 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR LANCMS and it's creators
-# This file is distributed under the same license as the PACKAGE package.
+# This file is distributed under the same license as the LANCMS package.
 # 
 # Translators:
+# Edvin Hultberg <hultberg@mittnett.net>, 2019
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
-# Lars Åge Kamfjord <lars-transifex@kamfjord.org>, 2015
+# Lars Åge Kamfjord <lars-transifex@kamfjord.org>, 2015,2019
 msgid ""
 msgstr ""
 "Project-Id-Version: LANCMS1\n"
 "Report-Msgid-Bugs-To: bugs.launchpad.net\n"
-"POT-Creation-Date: 2015-10-14 18:29+0200\n"
-"PO-Revision-Date: 2015-10-14 16:37+0000\n"
-"Last-Translator: Lars Åge Kamfjord <lars-transifex@kamfjord.org>\n"
+"POT-Creation-Date: 2019-03-10 12:14+0000\n"
+"PO-Revision-Date: 2019-03-10 12:56+0000\n"
+"Last-Translator: Edvin Hultberg <hultberg@mittnett.net>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/lancms/lancms1/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,53 +20,137 @@ msgstr ""
 "Language: nb\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:23
-#: ../modules/logs/logs.php:50 ../html/index.php:113
-msgid "Arrival"
-msgstr "Ankomst"
+#: ../modules/FAQ/FAQ.php:53
+msgid "Edit FAQ"
+msgstr "Rediger FAQ"
 
-#: ../modules/arrival/arrival.old.php:31
-#: ../modules/arrival/arrival.old.php:292
-#: ../modules/arrival/arrival.old.php:334 ../modules/arrival/arrival.php:78
-#: ../modules/arrival/arrival.php:270 ../modules/sleepers/sleepers.php:280
-#: ../modules/useradmin/useradmin.php:31
-#: ../modules/usertickets/usertickets.php:75
-msgid "Search"
-msgstr "Søk"
+#: ../modules/FAQ/FAQ.php:56
+msgid "Delete FAQ"
+msgstr "Slett FAQ"
 
-#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:273
-msgid "Search all users"
-msgstr "Søk alle brukere"
+#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.old.php:322
+#: ../modules/wannabeadmin/wannabeadmin.php:34
+#: ../modules/wannabeadmin/wannabeadmin.php:127
+#: ../modules/wannabeadmin/wannabeadmin.php:475
+msgid "Question"
+msgstr "Spørsmål"
 
-#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:276
-msgid "Search users with tickets"
-msgstr "Søk brukere med billetter"
+#: ../modules/FAQ/FAQ.php:64
+msgid "Add question"
+msgstr "Legg til spørsmål"
 
-#: ../modules/arrival/arrival.old.php:109 ../modules/crewlist/crewlist.php:23
-#: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
-#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
-msgid "Nick"
+#: ../modules/FAQ/FAQ.php:83 ../modules/edituserinfo/edituserinfo.php:109
+#: ../modules/edituserinfo/edituserinfo.php:213
+#: ../modules/eventadmin/eventadmin.php:154
+#: ../modules/eventadmin/eventadmin.php:205
+#: ../modules/eventadmin/eventadmin.php:234
+#: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
+#: ../modules/infoscreens/infoscreens.php:237
+#: ../modules/kioskadmin/kioskadmin.php:123
+#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
+#: ../modules/static/static.php:124 ../modules/static/static.php:234
+#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:105
+msgid "Save"
+msgstr "Lagre"
+
+#: ../modules/SMS/SMS.php:19
+msgid "Create SMS"
+msgstr "Opprett SMS"
+
+#: ../modules/SMS/SMS.php:24
+msgid "Select recipient(s):"
+msgstr "Velg mottager(e):"
+
+#: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
+msgid "Preview SMS"
+msgstr "Forhåndsvis SMS"
+
+#: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
+msgid "Number of characters entered:"
+msgstr "Antall tegn lagt inn:"
+
+#: ../modules/SMS/SMS.php:66
+msgid "Recipients"
+msgstr "Mottakere"
+
+#: ../modules/SMS/SMS.php:68
+msgid "Sends to group:"
+msgstr "Send til gruppe:"
+
+#: ../modules/SMS/SMS.php:72 ../modules/register/register.old.php:238
+#: ../modules/register/register.php:290 ../modules/useradmin/useradmin.php:63
+#: ../inc/shared_config.php:173
+msgid "Username"
 msgstr "Brukernavn"
 
-#: ../modules/arrival/arrival.old.php:109
+#: ../modules/SMS/SMS.php:73 ../modules/arrival/arrival.old.php:109
 #: ../modules/arrival/arrival.old.php:185
-#: ../modules/arrival/arrival.old.php:193 ../modules/arrival/arrival.php:90
-#: ../modules/arrival/arrival.php:231 ../modules/arrival/arrival.php:240
-#: ../modules/arrival/arrival.php:317 ../modules/crewlist/crewlist.php:21
+#: ../modules/arrival/arrival.old.php:193 ../modules/arrival/arrival.php:96
+#: ../modules/arrival/arrival.php:325 ../modules/arrival/arrival.php:335
+#: ../modules/arrival/arrival.php:518 ../modules/crewlist/crewlist.php:21
 #: ../modules/infoscreens/infoscreens.php:25
 #: ../modules/infoscreens/infoscreens.php:74
 #: ../modules/kioskadmin/kioskadmin.php:29
 #: ../modules/kioskadmin/kioskadmin.php:118
 #: ../modules/kioskadmin/kioskadmin.php:138
-#: ../modules/kioskadmin/kioskadmin.php:212 ../modules/news/news.php:13
+#: ../modules/kioskadmin/kioskadmin.php:212
+#: ../modules/kioskadmin/kioskadmin.php:308 ../modules/news/news.php:13
 #: ../modules/profile/profile.php:13 ../modules/sleepers/sleepers.php:186
-#: ../modules/sleepers/sleepers.php:297 ../modules/SMS/SMS.php:73
-#: ../modules/usertickets/usertickets.php:87
-#: ../modules/usertickets/usertickets.php:380
+#: ../modules/sleepers/sleepers.php:297
+#: ../modules/usertickets/usertickets.php:84
+#: ../modules/usertickets/usertickets.php:377
 #: ../modules/wannabeadmin/wannabeadmin.old.php:269
-#: ../modules/wannabeadmin/wannabeadmin.php:407
+#: ../modules/wannabeadmin/wannabeadmin.php:435
 msgid "Name"
 msgstr "Navn"
+
+#: ../modules/SMS/SMS.php:74
+msgid "Number"
+msgstr "Nummer"
+
+#: ../modules/SMS/SMS.php:100
+msgid "Message content"
+msgstr "Meldingsinnhold"
+
+#: ../modules/SMS/SMS.php:106 ../modules/economy/economy.php:84
+#: ../modules/news/news.php:63 ../modules/ticketorder/ticketorder.old.php:223
+#: ../modules/ticketorder/ticketorder.old.php:227
+#: ../modules/ticketorder/ticketorder.old.php:231
+msgid "Back"
+msgstr "Tilbake"
+
+#: ../modules/SMS/SMS.php:107 ../modules/eventadmin/eventadmin.php:39
+msgid "Send SMS"
+msgstr "Send SMS"
+
+#: ../modules/arrival/arrival.old.php:25 ../modules/arrival/arrival.php:29
+#: ../modules/logs/logs.php:50 ../html/index.php:127
+msgid "Arrival"
+msgstr "Ankomst"
+
+#: ../modules/arrival/arrival.old.php:31
+#: ../modules/arrival/arrival.old.php:292
+#: ../modules/arrival/arrival.old.php:334 ../modules/arrival/arrival.php:84
+#: ../modules/arrival/arrival.php:473 ../modules/sleepers/sleepers.php:280
+#: ../modules/useradmin/useradmin.php:31
+#: ../modules/usertickets/usertickets.php:75
+msgid "Search"
+msgstr "Søk"
+
+#: ../modules/arrival/arrival.old.php:36 ../modules/arrival/arrival.php:476
+msgid "Search all users"
+msgstr "Søk alle brukere"
+
+#: ../modules/arrival/arrival.old.php:38 ../modules/arrival/arrival.php:479
+msgid "Search users with tickets"
+msgstr "Søk brukere med billetter"
+
+#: ../modules/arrival/arrival.old.php:109 ../modules/arrival/arrival.php:326
+#: ../modules/arrival/arrival.php:336 ../modules/crewlist/crewlist.php:23
+#: ../modules/groups/groups.php:55 ../modules/profile/profile.php:15
+#: ../modules/sleepers/sleepers.php:186 ../modules/sleepers/sleepers.php:297
+msgid "Nick"
+msgstr "Brukernavn"
 
 #: ../modules/arrival/arrival.old.php:115
 msgid "Add new ticket"
@@ -83,20 +168,20 @@ msgstr "Tilbake til søk"
 msgid "Ticket"
 msgstr "Billett"
 
-#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:230
-#: ../modules/ticketadmin/ticketadmin.php:201
+#: ../modules/arrival/arrival.old.php:184 ../modules/arrival/arrival.php:324
+#: ../modules/ticketadmin/ticketadmin.php:210
 #: ../modules/ticketorder/ticketorder.old.php:29
-#: ../modules/usertickets/usertickets.php:381
+#: ../modules/usertickets/usertickets.php:378
 msgid "Owner"
 msgstr "Eier"
 
-#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:239
+#: ../modules/arrival/arrival.old.php:192 ../modules/arrival/arrival.php:334
 #: ../modules/logs/logs.php:19 ../modules/logs/logs.php:218
 #: ../modules/sessions/sessions.php:15
-#: ../modules/ticketadmin/ticketadmin.php:202
+#: ../modules/ticketadmin/ticketadmin.php:211
 #: ../modules/ticketorder/ticketorder.old.php:28
-#: ../modules/usertickets/usertickets.php:381
-#: ../modules/wannabeadmin/wannabeadmin.php:280
+#: ../modules/usertickets/usertickets.php:378
+#: ../modules/wannabeadmin/wannabeadmin.php:306
 msgid "User"
 msgstr "Bruker"
 
@@ -108,35 +193,35 @@ msgstr "Adresse"
 msgid "E-mail"
 msgstr "E-post"
 
-#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:235
-#: ../modules/arrival/arrival.php:243 ../modules/profile/profile.php:23
-#: ../modules/register/register.old.php:268
-#: ../modules/register/register.php:374
+#: ../modules/arrival/arrival.old.php:210 ../modules/arrival/arrival.php:269
+#: ../modules/arrival/arrival.php:330 ../modules/arrival/arrival.php:339
+#: ../modules/profile/profile.php:23 ../modules/register/register.old.php:268
+#: ../modules/register/register.php:379
 #: ../modules/wannabeadmin/wannabeadmin.old.php:270
-#: ../modules/wannabeadmin/wannabeadmin.php:411 ../inc/shared_config.php:148
+#: ../modules/wannabeadmin/wannabeadmin.php:439 ../inc/shared_config.php:187
 msgid "Birthday"
 msgstr "Fødselsdag"
 
-#: ../modules/arrival/arrival.old.php:221
+#: ../modules/arrival/arrival.old.php:221 ../modules/arrival/arrival.php:313
 #: ../modules/ticketorder/ticketorder.old.php:133
-#: ../modules/usertickets/usertickets.php:399
+#: ../modules/usertickets/usertickets.php:398
 msgid "Paid"
 msgstr "Betalt"
 
 #: ../modules/arrival/arrival.old.php:226
 #: ../modules/ticketorder/ticketorder.old.php:48
-#: ../modules/usertickets/usertickets.php:396
+#: ../modules/usertickets/usertickets.php:395
 msgid "Not paid"
 msgstr "Ikke betalt"
 
 #: ../modules/arrival/arrival.old.php:238
-#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:218
-#: ../modules/usertickets/usertickets.php:410
+#: ../modules/arrival/arrival.old.php:243 ../modules/arrival/arrival.php:301
+#: ../modules/usertickets/usertickets.php:423
 msgid "Seated"
 msgstr "Har plass"
 
 #: ../modules/arrival/arrival.old.php:247
-#: ../modules/usertickets/usertickets.php:408
+#: ../modules/usertickets/usertickets.php:421
 msgid "Not seated"
 msgstr "Har ikke plass"
 
@@ -145,21 +230,22 @@ msgid "Delete ticket"
 msgstr "Slett billett"
 
 #: ../modules/arrival/arrival.old.php:259
+#: ../modules/usertickets/usertickets.php:414
 msgid "Deleted"
 msgstr "Slettet"
 
 #: ../modules/arrival/arrival.old.php:268 ../modules/logs/logs.php:59
-#: ../modules/profile/profile.php:48 ../html/index.php:196
+#: ../modules/profile/profile.php:62 ../html/index.php:210
 msgid "Edit userinfo"
 msgstr "Rediger brukerinfo"
 
 #: ../modules/arrival/arrival.old.php:271
-#: ../modules/usertickets/usertickets.php:436
+#: ../modules/usertickets/usertickets.php:449
 msgid "Change owner"
 msgstr "Bytt eier"
 
 #: ../modules/arrival/arrival.old.php:273
-#: ../modules/usertickets/usertickets.php:437
+#: ../modules/usertickets/usertickets.php:450
 msgid "Change user"
 msgstr "Bytt bruker"
 
@@ -182,103 +268,109 @@ msgstr "Søk etter ny bruker"
 msgid "Add ticket to user"
 msgstr "Legg til billett til bruker"
 
-#: ../modules/arrival/arrival.php:63 ../modules/usertickets/usertickets.php:60
+#: ../modules/arrival/arrival.php:69 ../modules/usertickets/usertickets.php:60
 msgid ""
 "Changing user on this ticket, search after a user and then click the name."
 msgstr "Endrer bruker på denne billetten, søk etter en bruker og klikk på navnet."
 
-#: ../modules/arrival/arrival.php:65 ../modules/usertickets/usertickets.php:62
+#: ../modules/arrival/arrival.php:71 ../modules/usertickets/usertickets.php:62
 msgid ""
 "Changing owner on this ticket, search after a user and then click the name."
 msgstr "Endrer eier på denne billetten, søk etter en bruker og klikk på navnet."
 
-#: ../modules/arrival/arrival.php:100 ../modules/groups/groups.php:113
-#: ../modules/usertickets/usertickets.php:97
+#: ../modules/arrival/arrival.php:106 ../modules/groups/groups.php:113
+#: ../modules/usertickets/usertickets.php:94
 msgid "No users found"
 msgstr "Ingen brukere funnet"
 
-#: ../modules/arrival/arrival.php:155
-msgid "Unused"
-msgstr "Ubrukt"
-
-#: ../modules/arrival/arrival.php:157
+#: ../modules/arrival/arrival.php:176
 #: ../modules/usertickets/usertickets.php:404
 msgid "Used"
 msgstr "Brukt"
 
-#: ../modules/arrival/arrival.php:164
-msgid "Mark used"
-msgstr "Marker brukt"
+#: ../modules/arrival/arrival.php:180
+msgid "Unused"
+msgstr "Ubrukt"
 
-#: ../modules/arrival/arrival.php:173
+#: ../modules/arrival/arrival.php:188
+msgid "Mark used"
+msgstr "Merk brukt"
+
+#: ../modules/arrival/arrival.php:198
 msgid "Mark paid"
 msgstr "Marker betalt"
 
-#: ../modules/arrival/arrival.php:176
-msgid "Mark unpaid"
-msgstr "Marker ubetalt"
+#: ../modules/arrival/arrival.php:202
+msgid "Mark arrived"
+msgstr "Merk ankommet "
 
-#: ../modules/arrival/arrival.php:208 ../modules/useradmin/useradmin.php:59
+#: ../modules/arrival/arrival.php:276 ../modules/arrival/arrival.php:329
+#: ../modules/arrival/arrival.php:338 ../modules/profile/profile.php:24
+#: ../modules/register/register.old.php:249
+#: ../modules/register/register.php:341 ../modules/useradmin/useradmin.php:67
+#: ../modules/wannabeadmin/wannabeadmin.old.php:271
+#: ../modules/wannabeadmin/wannabeadmin.php:443
+msgid "Address"
+msgstr "Adresse"
+
+#: ../modules/arrival/arrival.php:291 ../modules/useradmin/useradmin.php:62
 msgid "ID"
 msgstr "ID"
 
-#: ../modules/arrival/arrival.php:210
+#: ../modules/arrival/arrival.php:293
 #: ../modules/wannabeadmin/wannabeadmin.old.php:340
 #: ../inc/shared_functions.php:229
 msgid "No"
 msgstr "Nei"
 
-#: ../modules/arrival/arrival.php:212
+#: ../modules/arrival/arrival.php:295
 #: ../modules/wannabeadmin/wannabeadmin.old.php:339
 msgid "Yes"
 msgstr "Ja"
 
-#: ../modules/arrival/arrival.php:221
-#: ../modules/usertickets/usertickets.php:345
+#: ../modules/arrival/arrival.php:304
+#: ../modules/usertickets/usertickets.php:342
 msgid "Ticket has been deleted"
 msgstr "Billett har blitt slettet"
 
-#: ../modules/arrival/arrival.php:223 ../modules/sleepers/sleepers.php:186
-#: ../modules/ticketadmin/ticketadmin.php:203
+#: ../modules/arrival/arrival.php:306 ../modules/sleepers/sleepers.php:186
+#: ../modules/ticketadmin/ticketadmin.php:212
 #: ../modules/ticketorder/ticketorder.old.php:26
-#: ../modules/usertickets/usertickets.php:383
+#: ../modules/usertickets/usertickets.php:380
 msgid "Status"
 msgstr "Status"
 
-#: ../modules/arrival/arrival.php:224
-msgid "Ticket is paid"
-msgstr "Billett er betalt"
+#: ../modules/arrival/arrival.php:311
+#: ../modules/usertickets/usertickets.php:409
+msgid "Arrived"
+msgstr "Ankommet"
 
-#: ../modules/arrival/arrival.php:224
-msgid "Ticket is not paid"
-msgstr "Billett er ikke betalt"
+#: ../modules/arrival/arrival.php:315
+msgid "Unpaid"
+msgstr "Ubetalt"
 
-#: ../modules/arrival/arrival.php:233 ../modules/arrival/arrival.php:241
-#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:63
+#: ../modules/arrival/arrival.php:328 ../modules/arrival/arrival.php:337
+#: ../modules/profile/profile.php:20 ../modules/useradmin/useradmin.php:66
 msgid "Email"
 msgstr "E-post"
 
-#: ../modules/arrival/arrival.php:234 ../modules/arrival/arrival.php:242
-#: ../modules/profile/profile.php:24 ../modules/register/register.old.php:249
-#: ../modules/register/register.php:337 ../modules/useradmin/useradmin.php:64
-#: ../modules/wannabeadmin/wannabeadmin.old.php:271
-#: ../modules/wannabeadmin/wannabeadmin.php:415
-msgid "Address"
-msgstr "Adresse"
-
-#: ../modules/arrival/arrival.php:265
+#: ../modules/arrival/arrival.php:466
 msgid "Administer tickets on users."
 msgstr "Administrer billetter på brukere."
 
-#: ../modules/arrival/arrival.php:317 ../modules/sleepers/sleepers.php:186
+#: ../modules/arrival/arrival.php:518 ../modules/sleepers/sleepers.php:186
 msgid "Tickets"
 msgstr "Billetter"
 
-#: ../modules/arrival/arrival.php:346
-#: ../modules/ticketorder/ticketorder.php:334
-#: ../modules/usertickets/usertickets.php:483
+#: ../modules/arrival/arrival.php:547
+#: ../modules/ticketorder/ticketorder.php:349
+#: ../modules/usertickets/usertickets.php:501
 msgid "No tickets found"
 msgstr "Ingen billetter funnet"
+
+#: ../modules/badge/badge.php:45
+msgid "Add badge"
+msgstr ""
 
 #: ../modules/compoadmin/compoadmin.php:18
 msgid "Signup is open"
@@ -336,17 +428,17 @@ msgstr "Meld meg av"
 msgid "Signup has closed"
 msgstr "Påmelding er avsluttet"
 
-#: ../modules/crewlist/crewlist.php:17 ../html/index.php:108
+#: ../modules/crewlist/crewlist.php:17 ../html/index.php:122
 msgid "Crewlist"
 msgstr "Crewliste"
 
-#: ../modules/crewlist/crewlist.php:25 ../inc/shared_config.php:192
+#: ../modules/crewlist/crewlist.php:25 ../inc/shared_config.php:232
 msgid "EMail"
 msgstr "E-post"
 
 #: ../modules/crewlist/crewlist.php:27 ../modules/profile/profile.php:21
 #: ../modules/register/register.old.php:299
-#: ../modules/useradmin/useradmin.php:66 ../inc/shared_config.php:188
+#: ../modules/useradmin/useradmin.php:69 ../inc/shared_config.php:227
 msgid "Cellphone"
 msgstr "Mobil"
 
@@ -361,7 +453,7 @@ msgstr "Antall personer i crew"
 
 #: ../modules/crewlist/crewlist.php:81
 #: ../modules/wannabeadmin/wannabeadmin.old.php:275
-#: ../modules/wannabeadmin/wannabeadmin.php:156
+#: ../modules/wannabeadmin/wannabeadmin.php:166
 msgid "Crew"
 msgstr "Crew"
 
@@ -410,6 +502,7 @@ msgid "Accountnumber"
 msgstr "Kontonummer"
 
 #: ../modules/economy/economy.php:65 ../modules/economy/economy.php:130
+#: ../modules/kioskadmin/kioskadmin.php:308
 msgid "Amount"
 msgstr "Beløp"
 
@@ -425,13 +518,6 @@ msgstr "Ny konto"
 msgid "Accountnumber already exists"
 msgstr "Kontonummer eksisterer allerede"
 
-#: ../modules/economy/economy.php:84 ../modules/news/news.php:63
-#: ../modules/SMS/SMS.php:106 ../modules/ticketorder/ticketorder.old.php:223
-#: ../modules/ticketorder/ticketorder.old.php:227
-#: ../modules/ticketorder/ticketorder.old.php:231
-msgid "Back"
-msgstr "Tilbake"
-
 #: ../modules/economy/economy.php:126
 msgid "From"
 msgstr "Fra"
@@ -441,7 +527,7 @@ msgid "Timestamp (YYYY-MM-DD HH:MM)"
 msgstr "Tidspunkt (ÅÅÅÅ-MM-DD TT:MM)"
 
 #: ../modules/economy/economy.php:129
-#: ../modules/ticketadmin/ticketadmin.php:69
+#: ../modules/ticketadmin/ticketadmin.php:78
 msgid "Description"
 msgstr "Beskrivelse"
 
@@ -466,7 +552,7 @@ msgid "Accounts"
 msgstr "Kontoer"
 
 #: ../modules/edituserinfo/edituserinfo.php:14
-#: ../modules/edituserinfo/edituserinfo.php:27 ../html/index.php:198
+#: ../modules/edituserinfo/edituserinfo.php:27 ../html/index.php:212
 msgid "Change password"
 msgstr "Bytt passord"
 
@@ -497,20 +583,6 @@ msgstr "Passordet ble endret"
 msgid "Not access to edit userinfo"
 msgstr "Ikke tilgang til å redigere brukerinfo"
 
-#: ../modules/edituserinfo/edituserinfo.php:109
-#: ../modules/edituserinfo/edituserinfo.php:213
-#: ../modules/eventadmin/eventadmin.php:152
-#: ../modules/eventadmin/eventadmin.php:203
-#: ../modules/eventadmin/eventadmin.php:232 ../modules/FAQ/FAQ.php:83
-#: ../modules/globaladmin/globaladmin.php:164 ../modules/groups/groups.php:82
-#: ../modules/infoscreens/infoscreens.php:237
-#: ../modules/kioskadmin/kioskadmin.php:123
-#: ../modules/kioskadmin/kioskadmin.php:223 ../modules/news/news.php:78
-#: ../modules/static/static.php:124 ../modules/static/static.php:234
-#: ../modules/translate/translate.php:33 ../modules/wannabe/wannabe.php:105
-msgid "Save"
-msgstr "Lagre"
-
 #: ../modules/edituserinfo/edituserinfo.php:261
 msgid "Not access to edit profile picture"
 msgstr "Ikke tilgang til å redigere profilbilde"
@@ -531,122 +603,79 @@ msgstr "Arrangementskonfigurasjon"
 msgid "Group Management"
 msgstr "Gruppeadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:21
+#: ../modules/eventadmin/eventadmin.php:20
+msgid "Badge management"
+msgstr ""
+
+#: ../modules/eventadmin/eventadmin.php:23
 msgid "Edit static pages"
 msgstr "Rediger statiske sider"
 
-#: ../modules/eventadmin/eventadmin.php:23
+#: ../modules/eventadmin/eventadmin.php:25
 msgid "Edit FAQs"
 msgstr "Rediger Ofte Stilte Spørsmål"
 
-#: ../modules/eventadmin/eventadmin.php:25
+#: ../modules/eventadmin/eventadmin.php:27
 msgid "WannabeCrew"
 msgstr "WannabeCrew"
 
-#: ../modules/eventadmin/eventadmin.php:27
+#: ../modules/eventadmin/eventadmin.php:29
 msgid "Seatreg Admin"
 msgstr "Plassregistreringsadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:29
+#: ../modules/eventadmin/eventadmin.php:31
 msgid "Ticket Admin"
 msgstr "Billettadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:33
+#: ../modules/eventadmin/eventadmin.php:35
 msgid "Compoadmin"
 msgstr "Compoadmin"
 
-#: ../modules/eventadmin/eventadmin.php:35
+#: ../modules/eventadmin/eventadmin.php:37
 msgid "Newsadmin"
 msgstr "Nyhetsadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:37 ../modules/SMS/SMS.php:107
-msgid "Send SMS"
-msgstr "Send SMS"
-
-#: ../modules/eventadmin/eventadmin.php:39
+#: ../modules/eventadmin/eventadmin.php:41
 msgid "Kioskadmin"
 msgstr "Kioskadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:41
+#: ../modules/eventadmin/eventadmin.php:43
 msgid "Forumadmin"
 msgstr "Forumadministrasjon"
 
-#: ../modules/eventadmin/eventadmin.php:43
+#: ../modules/eventadmin/eventadmin.php:45
 #: ../modules/infoscreens/infoscreens.php:14 ../modules/logs/logs.php:160
 msgid "Infoscreens"
 msgstr "Infoskjermer"
 
-#: ../modules/eventadmin/eventadmin.php:45
+#: ../modules/eventadmin/eventadmin.php:47
 msgid "Mass-mailer"
 msgstr "Masseutsending av epost"
 
-#: ../modules/eventadmin/eventadmin.php:91
+#: ../modules/eventadmin/eventadmin.php:92
 msgid "Change group rights"
 msgstr "Endre gruppetilganger"
 
-#: ../modules/eventadmin/eventadmin.php:102
+#: ../modules/eventadmin/eventadmin.php:103
 msgid "Add group"
 msgstr "Legg til gruppe"
 
-#: ../modules/eventadmin/eventadmin.php:135
+#: ../modules/eventadmin/eventadmin.php:136
 msgid "Group name already exists"
 msgstr "Gruppenavn eksisterer allerede"
 
-#: ../modules/eventadmin/eventadmin.php:142
+#: ../modules/eventadmin/eventadmin.php:143
 #: ../modules/globaladmin/globaladmin.php:145
 msgid "Config successfully saved"
 msgstr "Konfigurasjon lagret"
 
-#: ../modules/eventadmin/eventadmin.php:182
+#: ../modules/eventadmin/eventadmin.php:184
 msgid "Editing group rights for:"
 msgstr "Rediger grupperettigheter for:"
 
-#: ../modules/eventadmin/eventadmin.php:183
+#: ../modules/eventadmin/eventadmin.php:185
 msgid "Back to groups"
 msgstr "Tilbake til grupper"
-
-#: ../modules/FAQ/FAQ.php:53
-msgid "Edit FAQ"
-msgstr "Rediger FAQ"
-
-#: ../modules/FAQ/FAQ.php:56
-msgid "Delete FAQ"
-msgstr "Slett FAQ"
-
-#: ../modules/FAQ/FAQ.php:63 ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:30
-#: ../modules/wannabeadmin/wannabeadmin.php:117
-#: ../modules/wannabeadmin/wannabeadmin.php:447
-msgid "Question"
-msgstr "Spørsmål"
-
-#: ../modules/FAQ/FAQ.php:64
-msgid "Add question"
-msgstr "Legg til spørsmål"
-
-#: ../modules/forumadmin/forumadmin.php:16
-msgid "Enabled"
-msgstr "Aktivert"
-
-#: ../modules/forumadmin/forumadmin.php:17
-msgid "Disabled"
-msgstr "Deaktivert"
-
-#: ../modules/forumadmin/forumadmin.php:28
-msgid "Change forum"
-msgstr "Endre forum"
-
-#: ../modules/forumadmin/forumadmin.php:32
-msgid "Add forum"
-msgstr "Legg til forum"
-
-#: ../modules/forumadmin/forumadmin.php:35
-msgid "Forum name"
-msgstr "Forumnavn"
-
-#: ../modules/forumadmin/forumadmin.php:36
-msgid "Forum description"
-msgstr "Forumbeskrivelse"
 
 #: ../modules/forum/forum.php:21
 msgid "Start new thread"
@@ -687,6 +716,30 @@ msgstr "Nytt svar"
 #: ../modules/forum/forum.php:128
 msgid "Add reply"
 msgstr "Legg til svar"
+
+#: ../modules/forumadmin/forumadmin.php:16
+msgid "Enabled"
+msgstr "Aktivert"
+
+#: ../modules/forumadmin/forumadmin.php:17
+msgid "Disabled"
+msgstr "Deaktivert"
+
+#: ../modules/forumadmin/forumadmin.php:28
+msgid "Change forum"
+msgstr "Endre forum"
+
+#: ../modules/forumadmin/forumadmin.php:32
+msgid "Add forum"
+msgstr "Legg til forum"
+
+#: ../modules/forumadmin/forumadmin.php:35
+msgid "Forum name"
+msgstr "Forumnavn"
+
+#: ../modules/forumadmin/forumadmin.php:36
+msgid "Forum description"
+msgstr "Forumbeskrivelse"
 
 #: ../modules/globaladmin/globaladmin.php:10
 msgid "Event name"
@@ -795,6 +848,7 @@ msgid "Create clan"
 msgstr "Opprett klan"
 
 #: ../modules/groups/groups.php:49
+#: ../modules/wannabeadmin/wannabeadmin.php:428
 msgid "Go back"
 msgstr "Gå tilbake"
 
@@ -846,7 +900,7 @@ msgstr "Forhåndsvis"
 #: ../modules/kioskadmin/kioskadmin.php:39
 #: ../modules/kioskadmin/kioskadmin.php:161
 #: ../modules/sleepers/sleepers.php:341
-#: ../modules/usertickets/usertickets.php:447
+#: ../modules/usertickets/usertickets.php:465
 msgid "Remove"
 msgstr "Fjern"
 
@@ -878,8 +932,8 @@ msgstr "Opprett nytt lysbilde"
 #: ../modules/infoscreens/infoscreens.php:78
 #: ../modules/kioskadmin/kioskadmin.php:36
 #: ../modules/kioskadmin/kioskadmin.php:159 ../modules/news/news.php:22
-#: ../modules/wannabeadmin/wannabeadmin.php:37
-#: ../modules/wannabeadmin/wannabeadmin.php:163
+#: ../modules/wannabeadmin/wannabeadmin.php:41
+#: ../modules/wannabeadmin/wannabeadmin.php:173
 msgid "Edit"
 msgstr "Rediger"
 
@@ -904,7 +958,6 @@ msgid "Wait"
 msgstr "Ventetid"
 
 #: ../modules/infoscreens/infoscreens.php:144
-#: ../modules/kiosk/kiosk_old.php:21
 msgid "Add"
 msgstr "Legg til"
 
@@ -964,9 +1017,9 @@ msgstr "Kiosk varetyper"
 
 #: ../modules/kioskadmin/kioskadmin.php:29
 #: ../modules/kioskadmin/kioskadmin.php:142 ../modules/news/news.php:13
-#: ../modules/usertickets/usertickets.php:384
-#: ../modules/wannabeadmin/wannabeadmin.php:31
-#: ../modules/wannabeadmin/wannabeadmin.php:157
+#: ../modules/usertickets/usertickets.php:381
+#: ../modules/wannabeadmin/wannabeadmin.php:35
+#: ../modules/wannabeadmin/wannabeadmin.php:167
 msgid "Actions"
 msgstr "Handlinger"
 
@@ -991,7 +1044,7 @@ msgid "Kiosk Wares"
 msgstr "Kioskvare"
 
 #: ../modules/kioskadmin/kioskadmin.php:139
-#: ../modules/wannabeadmin/wannabeadmin.php:121
+#: ../modules/wannabeadmin/wannabeadmin.php:131
 msgid "Type"
 msgstr "Type"
 
@@ -1044,41 +1097,9 @@ msgstr "Klikk på en strekkode for å slette den."
 msgid "Add barcode"
 msgstr "Legg til strekkode"
 
-#: ../modules/kioskadmin/kioskadmin.php:336
-msgid "Mark credit as paid"
-msgstr "Marker kreditt som betalt"
-
-#: ../modules/kiosk/kiosk_old.php:26
-msgid "Currently selling to:"
-msgstr "Selger til:"
-
-#: ../modules/kiosk/kiosk_old.php:30
-msgid "Remove user"
-msgstr "Fjern bruker"
-
-#: ../modules/kiosk/kiosk_old.php:51
-msgid "Add one more item"
-msgstr "Legg til en ting til"
-
-#: ../modules/kiosk/kiosk_old.php:52
-msgid "Remove one item"
-msgstr "Fjern en ting"
-
-#: ../modules/kiosk/kiosk_old.php:60
-msgid "SELL"
-msgstr "SELG"
-
-#: ../modules/kiosk/kiosk_old.php:66
-msgid "Add to users credit"
-msgstr "Legg til brukerens kreditt"
-
-#: ../modules/kiosk/kiosk_old.php:68
-msgid "User pays cash"
-msgstr "Bruker betaler kontant"
-
-#: ../modules/kiosk/kiosk_old.php:99
-msgid "User not found!"
-msgstr "Fant ikke brukeren!"
+#: ../modules/kioskadmin/kioskadmin.php:306
+msgid "Credit"
+msgstr "Kreditt"
 
 #: ../modules/listing/listing.php:45
 msgid "Show list"
@@ -1134,52 +1155,52 @@ msgstr "Du har allerede forsøkt å nullstille passordet ditt i dag. Sjekk epost
 msgid "I confirm that this is my account, and I want to reset the password"
 msgstr "Jeg bekrefter at dette er min konto, og at jeg vil nullstille passordet"
 
-#: ../modules/login/login.beta.php:158 ../modules/login/login.php:158
+#: ../modules/login/login.beta.php:158 ../modules/login/login.php:160
 msgid "Email not confirmed!"
 msgstr "Epost ikke bekreftet!"
 
-#: ../modules/login/login.beta.php:159 ../modules/login/login.php:159
+#: ../modules/login/login.beta.php:159 ../modules/login/login.php:161
 msgid "Multiple attempts at password reset. Not done"
 msgstr "Flere forsøk på å nullstille passordet. Ikke utført."
 
-#: ../modules/login/login.beta.php:170 ../modules/login/login.php:170
+#: ../modules/login/login.beta.php:170 ../modules/login/login.php:179
 #, php-format
 msgid "Password reset for %s"
 msgstr "Nullstill passord for %s"
 
-#: ../modules/login/login.beta.php:179 ../modules/login/login.php:179
+#: ../modules/login/login.beta.php:179 ../modules/login/login.php:188
 msgid "Email sent. Please check your inbox and spamfolder"
 msgstr "Epost sent. Sjekk din epostkonto og spammappe"
 
 #: ../modules/login/login.beta.php:192 ../modules/login/login.beta.php:216
-#: ../modules/login/login.php:192 ../modules/login/login.php:216
+#: ../modules/login/login.php:201 ../modules/login/login.php:225
 msgid ""
 "Key or userID not found, or already used. You can only reset the password "
 "once with each key"
 msgstr "Nøkkel eller brukerID ikke funnet, eller allerede brukt. Du kan kun nullstille passordet en gang med hver nøkkel"
 
-#: ../modules/login/login.beta.php:195 ../modules/login/login.php:195
+#: ../modules/login/login.beta.php:195 ../modules/login/login.php:204
 msgid "Please provide your new password, two times"
 msgstr "Vennligst skriv inn ditt nye passord, to ganger."
 
-#: ../modules/login/login.beta.php:199 ../modules/login/login.php:199
+#: ../modules/login/login.beta.php:199 ../modules/login/login.php:208
 msgid "Set new password"
 msgstr "Sett nytt passord"
 
-#: ../modules/login/login.beta.php:218 ../modules/login/login.php:218
+#: ../modules/login/login.beta.php:218 ../modules/login/login.php:227
 msgid "Passwords don't match. Go back and try again"
 msgstr "Passordene er ikke like. Gå tilbake og prøv igjen"
 
-#: ../modules/login/login.beta.php:229 ../modules/login/login.php:229
+#: ../modules/login/login.beta.php:229 ../modules/login/login.php:238
 #, php-format
 msgid "Password successfully reset. Please go back to <a href='%s'>Login</a>"
 msgstr "Passord har blitt nullstilt. Vennligst gå tilbake til <a href='%s'>innlogging</a>"
 
-#: ../modules/login/login.beta.php:250 ../modules/login/login.php:250
+#: ../modules/login/login.beta.php:250 ../modules/login/login.php:259
 msgid "Verify your account"
 msgstr "Verifiser kontoen din"
 
-#: ../modules/login/login.beta.php:251 ../modules/login/login.php:251
+#: ../modules/login/login.beta.php:251 ../modules/login/login.php:260
 #, php-format
 msgid ""
 "Hello %s.\n"
@@ -1189,7 +1210,7 @@ msgid ""
 "To verify your mailaddress, please go to <a href='%s'>%s</a>"
 msgstr "Hei %s.\n\nDu har forsøkt å logge inn på din konto på %s, men har ikke verifisert kontoen din.\n\nFor å verifisere epostadressen din, gå til <a href='%s'>%s</a>"
 
-#: ../modules/login/login.beta.php:258 ../modules/login/login.php:258
+#: ../modules/login/login.beta.php:258 ../modules/login/login.php:267
 msgid ""
 "Email with verificationcode has been sent. Please wait for it to come (it "
 "might take a couple of minutes)."
@@ -1271,7 +1292,7 @@ msgstr "Grupperettighet endret"
 msgid "Configuration change"
 msgstr "Konfigurasjon endret"
 
-#: ../modules/logs/logs.php:69 ../html/index.php:84
+#: ../modules/logs/logs.php:69 ../html/index.php:98
 msgid "FAQ"
 msgstr "FAQ"
 
@@ -1283,7 +1304,7 @@ msgstr "FAQ lagt til"
 msgid "FAQ deleted"
 msgstr "FAQ slettet"
 
-#: ../modules/logs/logs.php:74 ../html/index.php:125
+#: ../modules/logs/logs.php:74 ../html/index.php:139
 msgid "Forum"
 msgstr "Forum"
 
@@ -1339,7 +1360,7 @@ msgstr "Feilet passord ved innlogging"
 msgid "Successful login"
 msgstr "Vellykket innlogging"
 
-#: ../modules/logs/logs.php:100 ../html/index.php:199
+#: ../modules/logs/logs.php:100 ../html/index.php:213
 msgid "Logout"
 msgstr "Logg ut"
 
@@ -1375,7 +1396,7 @@ msgstr "Anonym registrerte ny bruker"
 msgid "User registered new user"
 msgstr "Bruker registrerte ny bruker"
 
-#: ../modules/logs/logs.php:118 ../html/index.php:117
+#: ../modules/logs/logs.php:118 ../html/index.php:131
 msgid "Reseller"
 msgstr "Forhandler"
 
@@ -1468,7 +1489,7 @@ msgid "Change comment"
 msgstr "Endre kommentar"
 
 #: ../modules/logs/logs.php:155 ../modules/sleepers/sleepers.php:23
-#: ../html/index.php:130
+#: ../html/index.php:144
 msgid "Sleepers"
 msgstr "Sovende"
 
@@ -1508,7 +1529,7 @@ msgstr "SMS"
 msgid "SMS sent"
 msgstr "SMS sendt"
 
-#: ../modules/logs/logs.php:174 ../html/index.php:121
+#: ../modules/logs/logs.php:174 ../html/index.php:135
 msgid "Kiosk"
 msgstr "Kiosk"
 
@@ -1565,8 +1586,8 @@ msgid "Global"
 msgstr "Global"
 
 #: ../modules/news/news.php:23 ../modules/static/static.php:63
-#: ../modules/wannabeadmin/wannabeadmin.php:38
-#: ../modules/wannabeadmin/wannabeadmin.php:164
+#: ../modules/wannabeadmin/wannabeadmin.php:42
+#: ../modules/wannabeadmin/wannabeadmin.php:174
 msgid "Delete"
 msgstr "Slett"
 
@@ -1603,17 +1624,21 @@ msgid "Fant ikke artikkelen"
 msgstr "Fant ikke artikkelen"
 
 #: ../modules/profile/profile.php:22 ../modules/register/register.old.php:255
-#: ../modules/register/register.php:353 ../modules/register/register.php:357
-#: ../inc/shared_config.php:181
+#: ../modules/register/register.php:357 ../modules/register/register.php:361
+#: ../inc/shared_config.php:220
 msgid "Gender"
 msgstr "Kjønn"
 
 #: ../modules/profile/profile.php:25 ../modules/register/register.old.php:250
-#: ../modules/useradmin/useradmin.php:65 ../inc/shared_config.php:176
+#: ../modules/useradmin/useradmin.php:68 ../inc/shared_config.php:215
 msgid "Postnumber"
 msgstr "Postnummer"
 
-#: ../modules/profile/profile.php:34
+#: ../modules/profile/profile.php:39
+msgid "Guardian"
+msgstr "Foresatt"
+
+#: ../modules/profile/profile.php:48
 msgid "Groupmemberships"
 msgstr "Gruppemedlemskap"
 
@@ -1704,14 +1729,8 @@ msgstr "Epostadressen har allerede blitt verifisert. Ikke verifisert igjen."
 msgid "EMail verified. Welcome aboard"
 msgstr "Epost-adressen verfisert. Velkommen ombord"
 
-#: ../modules/register/register.old.php:238
-#: ../modules/register/register.php:286 ../modules/SMS/SMS.php:72
-#: ../modules/useradmin/useradmin.php:60 ../inc/shared_config.php:134
-msgid "Username"
-msgstr "Brukernavn"
-
 #: ../modules/register/register.old.php:239
-#: ../modules/register/register.php:314
+#: ../modules/register/register.php:318
 msgid "Password"
 msgstr "Passord"
 
@@ -1723,21 +1742,21 @@ msgstr "Gjenta passord"
 msgid "E-Mail"
 msgstr "E-post"
 
-#: ../modules/register/register.old.php:244 ../inc/shared_config.php:138
+#: ../modules/register/register.old.php:244 ../inc/shared_config.php:177
 msgid "First name"
 msgstr "Fornavn"
 
-#: ../modules/register/register.old.php:247 ../inc/shared_config.php:143
+#: ../modules/register/register.old.php:247 ../inc/shared_config.php:182
 msgid "Last name"
 msgstr "Etternavn"
 
 #: ../modules/register/register.old.php:258
-#: ../modules/register/register.php:358
+#: ../modules/register/register.php:362
 msgid "Male"
 msgstr "Mann"
 
 #: ../modules/register/register.old.php:261
-#: ../modules/register/register.php:359
+#: ../modules/register/register.php:363
 msgid "Female"
 msgstr "Kvinne"
 
@@ -1754,7 +1773,7 @@ msgid "optional"
 msgstr "valgfritt"
 
 #: ../modules/register/register.old.php:302
-#: ../modules/register/register.php:422
+#: ../modules/register/register.php:427
 msgid "Create user"
 msgstr "Opprett bruker"
 
@@ -1777,7 +1796,7 @@ msgid ""
 "verification URL."
 msgstr "Din nye brukerkonto har blitt opprettet. Nå må du bekrefte din epostadresse. Vennligst sjekk epostklienten din eller \"Uønsket epost\"-mappen for å finne bekreftelsesadressen"
 
-#: ../modules/register/register.php:272 ../html/index.php:54
+#: ../modules/register/register.php:272 ../html/index.php:68
 msgid "Register user"
 msgstr "Registrer bruker"
 
@@ -1793,42 +1812,46 @@ msgstr "Epostadressen er i bruk alt, prøv en annen"
 msgid "Form did not validate, check for errors below"
 msgstr "Skjema lot seg ikke bekrefte. Sjekk etter feil under"
 
-#: ../modules/register/register.php:295 ../modules/useradmin/useradmin.php:61
+#: ../modules/register/register.php:299 ../modules/useradmin/useradmin.php:64
 msgid "Firstname"
 msgstr "Fornavn"
 
-#: ../modules/register/register.php:305 ../modules/useradmin/useradmin.php:62
+#: ../modules/register/register.php:309 ../modules/useradmin/useradmin.php:65
 msgid "Lastname"
 msgstr "Etternavn"
 
-#: ../modules/register/register.php:321
+#: ../modules/register/register.php:325
 msgid "Repeat password"
 msgstr "Passord igjen"
 
-#: ../modules/register/register.php:328
+#: ../modules/register/register.php:332
 msgid "E-mail address"
 msgstr "Epost-adresse"
 
-#: ../modules/register/register.php:343
+#: ../modules/register/register.php:347
 msgid "Postcode"
 msgstr "Postnummer"
 
-#: ../modules/register/register.php:379 ../modules/sleepers/setwake_gui.php:21
+#: ../modules/register/register.php:364
+msgid "Other"
+msgstr ""
+
+#: ../modules/register/register.php:384 ../modules/sleepers/setwake_gui.php:21
 #: ../modules/sleepers/setwake_gui.php:27 ../modules/sleepers/sleepers.php:330
 msgid "Day"
 msgstr "Dag"
 
-#: ../modules/register/register.php:388 ../modules/sleepers/setwake_gui.php:22
+#: ../modules/register/register.php:393 ../modules/sleepers/setwake_gui.php:22
 #: ../modules/sleepers/setwake_gui.php:33
 msgid "Month"
 msgstr "Måned"
 
-#: ../modules/register/register.php:399 ../modules/sleepers/setwake_gui.php:23
+#: ../modules/register/register.php:404 ../modules/sleepers/setwake_gui.php:23
 #: ../modules/sleepers/setwake_gui.php:39
 msgid "Year"
 msgstr "År"
 
-#: ../modules/register/register.php:413
+#: ../modules/register/register.php:418
 msgid "Cell phone"
 msgstr "Mobilnummer"
 
@@ -1879,40 +1902,40 @@ msgstr "Ledig"
 msgid "N/A"
 msgstr "N/A"
 
-#: ../modules/seatmap/seatmap_table.php:153
+#: ../modules/seatmap/seatmap_table.php:154
 msgid "This seat is available"
 msgstr "Plassen er ledig"
 
-#: ../modules/seatmap/seatmap_table.php:155
-#: ../modules/seatmap/seatmap_table.php:161
-#: ../modules/seatmap/seatmap_table.php:168
-#: ../modules/seatmap/seatmap_table.php:179
+#: ../modules/seatmap/seatmap_table.php:156
+#: ../modules/seatmap/seatmap_table.php:162
+#: ../modules/seatmap/seatmap_table.php:169
+#: ../modules/seatmap/seatmap_table.php:180
 msgid "Take seat"
 msgstr "Reserver plass"
 
-#: ../modules/seatmap/seatmap_table.php:159
+#: ../modules/seatmap/seatmap_table.php:160
 msgid ""
 "This seat is password-protected. If you know the password, you can take it"
 msgstr "Dette setet er passordbeskyttet. Hvis du kjenner til passordet kan du ta den."
 
-#: ../modules/seatmap/seatmap_table.php:166
+#: ../modules/seatmap/seatmap_table.php:167
 msgid ""
 "This seat is protected by group. You are a member of a group with access."
 msgstr "Denne plassen er kun tilgjengelig for en gruppe. Du er medlem av en gruppe med tilgang."
 
-#: ../modules/seatmap/seatmap_table.php:172
+#: ../modules/seatmap/seatmap_table.php:173
 msgid ""
 "This seat is protected by group. You are not member of a group with access. "
 "Too bad!"
 msgstr "Denne plassen er reservert til en gruppe. Du er ikke medlem av en gruppe med tilgang. Synd!"
 
-#: ../modules/seatmap/seatmap_table.php:177
+#: ../modules/seatmap/seatmap_table.php:178
 msgid ""
 "This seat is protected by a special right. You are a member of a group with "
 "access"
 msgstr "Denne plassen er beskyttet av en rettighet. Du er medlem av en gruppe med tilgang."
 
-#: ../modules/seatmap/seatmap_table.php:182
+#: ../modules/seatmap/seatmap_table.php:183
 msgid ""
 "This seat is protected by a special right. You are not member of a group "
 "with access. Too bad!"
@@ -2085,38 +2108,6 @@ msgstr "Vekk meg!"
 msgid "There are no sleeping users"
 msgstr "Det er ingen sovende brukere"
 
-#: ../modules/SMS/SMS.php:19
-msgid "Create SMS"
-msgstr "Opprett SMS"
-
-#: ../modules/SMS/SMS.php:24
-msgid "Select recipient(s):"
-msgstr "Velg mottager(e):"
-
-#: ../modules/SMS/SMS.php:34 ../modules/SMS/SMS.php:64
-msgid "Preview SMS"
-msgstr "Forhåndsvis SMS"
-
-#: ../modules/SMS/SMS.php:38 ../modules/SMS/SMS.php:103
-msgid "Number of characters entered:"
-msgstr "Antall tegn lagt inn:"
-
-#: ../modules/SMS/SMS.php:66
-msgid "Recipients"
-msgstr "Mottakere"
-
-#: ../modules/SMS/SMS.php:68
-msgid "Sends to group:"
-msgstr "Send til gruppe:"
-
-#: ../modules/SMS/SMS.php:74
-msgid "Number"
-msgstr "Nummer"
-
-#: ../modules/SMS/SMS.php:100
-msgid "Message content"
-msgstr "Meldingsinnhold"
-
 #: ../modules/static/static.php:60
 msgid "Edit access"
 msgstr "Rediger tilgang"
@@ -2142,7 +2133,7 @@ msgid "Add group access"
 msgstr "Legg til gruppetilgang"
 
 #: ../modules/ticketadmin/ticketadmin.php:14
-#: ../modules/ticketadmin/ticketadmin.php:200
+#: ../modules/ticketadmin/ticketadmin.php:209
 #: ../modules/ticketorder/ticketorder.old.php:24
 msgid "Ticketnumber"
 msgstr "Billettnummer"
@@ -2164,85 +2155,89 @@ msgstr "Antall billetter"
 msgid "Sold tickets of type (total/seated/paid)"
 msgstr "Solgte billetter etter type (totalt/valgt plass/betalt)"
 
-#: ../modules/ticketadmin/ticketadmin.php:61
+#: ../modules/ticketadmin/ticketadmin.php:70
 msgid "Name of ticket"
 msgstr "Navn på billettype"
 
-#: ../modules/ticketadmin/ticketadmin.php:65
+#: ../modules/ticketadmin/ticketadmin.php:74
 msgid "Price of ticket"
 msgstr "Billettpris"
 
-#: ../modules/ticketadmin/ticketadmin.php:74
+#: ../modules/ticketadmin/ticketadmin.php:83
 msgid "Prepaid ticket"
 msgstr "Forhåndsbetalt billett"
 
-#: ../modules/ticketadmin/ticketadmin.php:78
+#: ../modules/ticketadmin/ticketadmin.php:87
 msgid "Preordered ticket"
 msgstr "Forhåndsbestilt billett"
 
-#: ../modules/ticketadmin/ticketadmin.php:82
+#: ../modules/ticketadmin/ticketadmin.php:91
 msgid "Onsite ticket with computer"
 msgstr "Onsite billett med PC"
 
-#: ../modules/ticketadmin/ticketadmin.php:86
+#: ../modules/ticketadmin/ticketadmin.php:95
 msgid "Onsite ticket without computer"
 msgstr "Onsite billett uten PC"
 
-#: ../modules/ticketadmin/ticketadmin.php:90
+#: ../modules/ticketadmin/ticketadmin.php:99
 msgid "Prepaid ticket reseller"
 msgstr "Forhåndsbetalt billett hos forhandler"
 
-#: ../modules/ticketadmin/ticketadmin.php:94
+#: ../modules/ticketadmin/ticketadmin.php:103
 msgid "Type of ticket"
 msgstr "Billettype"
 
-#: ../modules/ticketadmin/ticketadmin.php:100
+#: ../modules/ticketadmin/ticketadmin.php:109
 msgid "Tickettype is active?"
 msgstr "Er billettypen aktiv?"
 
-#: ../modules/ticketadmin/ticketadmin.php:108
+#: ../modules/ticketadmin/ticketadmin.php:117
 msgid "Max tickets to sell"
 msgstr "Maksimum antall billetter å selge"
 
-#: ../modules/ticketadmin/ticketadmin.php:110
+#: ../modules/ticketadmin/ticketadmin.php:119
 msgid "Edit tickettype"
 msgstr "Rediger billettype"
 
-#: ../modules/ticketadmin/ticketadmin.php:111
+#: ../modules/ticketadmin/ticketadmin.php:120
 msgid "Add tickettype"
 msgstr "Legg til billettype"
 
-#: ../modules/ticketadmin/ticketadmin.php:204
+#: ../modules/ticketadmin/ticketadmin.php:213
 #: ../modules/ticketorder/ticketorder.old.php:27
 msgid "Map placement"
 msgstr "Kartplassering"
 
-#: ../modules/ticketadmin/ticketadmin.php:205
+#: ../modules/ticketadmin/ticketadmin.php:214
 msgid "Paid?"
 msgstr "Betalt?"
 
-#: ../modules/ticketadmin/ticketadmin.php:216
+#: ../modules/ticketadmin/ticketadmin.php:225
 msgid "used"
 msgstr "brukt"
 
-#: ../modules/ticketadmin/ticketadmin.php:217
+#: ../modules/ticketadmin/ticketadmin.php:226
+msgid "deleted"
+msgstr "slettet"
+
+#: ../modules/ticketadmin/ticketadmin.php:227
 msgid "not used"
 msgstr "ikke brukt"
 
-#: ../modules/ticketadmin/ticketadmin.php:227
+#: ../modules/ticketadmin/ticketadmin.php:237
 msgid "No seat chosen"
 msgstr "Ikke valgt sete"
 
-#: ../modules/ticketadmin/ticketadmin.php:231
+#: ../modules/ticketadmin/ticketadmin.php:241
 msgid "yes"
 msgstr "ja"
 
-#: ../modules/ticketadmin/ticketadmin.php:232
+#: ../modules/ticketadmin/ticketadmin.php:242
 msgid "no"
 msgstr "nei"
 
 #: ../modules/ticketorder/ticketorder.old.php:45
-#: ../modules/usertickets/usertickets.php:440
+#: ../modules/usertickets/usertickets.php:456
 msgid "Place on map"
 msgstr "Plasser på kart"
 
@@ -2309,31 +2304,31 @@ msgid "Yes, I don't need it"
 msgstr "Ja, jeg trenger den ikke"
 
 #: ../modules/ticketorder/ticketorder.php:22
-#: ../modules/ticketorder/ticketorder.php:322 ../html/index.php:92
+#: ../modules/ticketorder/ticketorder.php:337 ../html/index.php:106
 msgid "Order ticket"
 msgstr "Bestill billett"
 
-#: ../modules/ticketorder/ticketorder.php:275
+#: ../modules/ticketorder/ticketorder.php:290
 msgid "Ticket ordered"
 msgstr "Billett bestilt"
 
-#: ../modules/ticketorder/ticketorder.php:279
+#: ../modules/ticketorder/ticketorder.php:294
 msgid "Ticket not found"
 msgstr "Billett ikke funnet"
 
-#: ../modules/ticketorder/ticketorder.php:285
+#: ../modules/ticketorder/ticketorder.php:300
 msgid "You have ordered the maximum tickets allowed"
 msgstr "Du har bestilt maksimum antall billetter tillatt."
 
-#: ../modules/ticketorder/ticketorder.php:297
+#: ../modules/ticketorder/ticketorder.php:312
 msgid "Choose a ticket to order."
 msgstr "Velg en billett å bestille."
 
-#: ../modules/ticketorder/ticketorder.php:325
+#: ../modules/ticketorder/ticketorder.php:340
 msgid "You have ordered the maximum allowed"
 msgstr "Du har bestilt maksimalt tillatte billeter."
 
-#: ../modules/ticketorder/ticketorder.php:328
+#: ../modules/ticketorder/ticketorder.php:343
 msgid "You be logged in to order tickets"
 msgstr "Du må være logget inn for å bestille billetter"
 
@@ -2349,67 +2344,146 @@ msgstr "Liste over alle brukere"
 msgid "Back to user administration"
 msgstr "Tilbake til brukeradministrasjon"
 
-#: ../modules/useradmin/useradmin.php:126
+#: ../modules/useradmin/useradmin.php:107
+msgid "No users was found"
+msgstr "Ingen brukere funnet"
+
+#: ../modules/useradmin/useradmin.php:122
 msgid "No user with ID"
 msgstr "Ingen bruker med den IDen"
 
 #: ../modules/usertickets/payticket.php:6
 msgid "Betal med kort"
-msgstr "Betalt med kort"
+msgstr "Betal med kort"
 
-#: ../modules/usertickets/usertickets.php:21 ../html/index.php:96
+#: ../modules/usertickets/usertickets.php:21 ../html/index.php:110
 msgid "My tickets"
 msgstr "Mine billetter"
 
-#: ../modules/usertickets/usertickets.php:349
+#: ../modules/usertickets/usertickets.php:346
 msgid "An error occurred during the deletion of the ticket"
 msgstr "En feil skjedde ved sletting av billetten"
 
-#: ../modules/usertickets/usertickets.php:354
+#: ../modules/usertickets/usertickets.php:351
 msgid "Tickets has been deleted"
 msgstr "Billetter har blitt slettet"
 
-#: ../modules/usertickets/usertickets.php:358
+#: ../modules/usertickets/usertickets.php:355
 msgid "Ticket has been paid!"
-msgstr "Billetter har blitt betalt!"
+msgstr "Billett har blitt betalt!"
 
-#: ../modules/usertickets/usertickets.php:371
+#: ../modules/usertickets/usertickets.php:368
 msgid "This table lists all tickets you have ordered for this event."
 msgstr "Denne tabellen viser alle billetter du har bestilt til dette arrangementet."
 
-#: ../modules/usertickets/usertickets.php:379
+#: ../modules/usertickets/usertickets.php:376
 msgid "Ticket id"
 msgstr "Billett ID"
 
-#: ../modules/usertickets/usertickets.php:382
+#: ../modules/usertickets/usertickets.php:379
 msgid "Seat"
 msgstr "Plass"
 
-#: ../modules/usertickets/usertickets.php:446
+#: ../modules/usertickets/usertickets.php:464
 msgid "Pay now"
 msgstr "Betal nå"
 
-#: ../modules/usertickets/usertickets.php:463
+#: ../modules/usertickets/usertickets.php:481
 msgid "Delete selected"
 msgstr "Slett valgte"
 
+#: ../modules/wannabe/wannabe.php:6
+msgid "Please login to apply for crew"
+msgstr "Vennligst logg inn for å levere crewsøknad"
+
+#: ../modules/wannabe/wannabe.php:10
+msgid "Apply as crew"
+msgstr "Lever crewsøknad"
+
+#: ../modules/wannabe/wannabe.php:12
+msgid "Your application is saved"
+msgstr "Din søknad ble lagret"
+
+#: ../modules/wannabe/wannabe.php:36
+#: ../modules/wannabeadmin/wannabeadmin.old.php:290
+#: ../modules/wannabeadmin/wannabeadmin.old.php:505
+msgid "Nothing selected"
+msgstr "Ingenting valgt"
+
+#: ../modules/wannabe/wannabe.php:39
+#: ../modules/wannabeadmin/wannabeadmin.old.php:293
+#: ../modules/wannabeadmin/wannabeadmin.old.php:508
+#: ../modules/wannabeadmin/wannabeadmin.php:546
+msgid "Of course!"
+msgstr "Selvfølgelig!"
+
+#: ../modules/wannabe/wannabe.php:42
+#: ../modules/wannabeadmin/wannabeadmin.old.php:296
+#: ../modules/wannabeadmin/wannabeadmin.old.php:511
+#: ../modules/wannabeadmin/wannabeadmin.php:547
+msgid "Sure"
+msgstr "Sikkert"
+
+#: ../modules/wannabe/wannabe.php:45
+#: ../modules/wannabeadmin/wannabeadmin.old.php:299
+#: ../modules/wannabeadmin/wannabeadmin.old.php:514
+#: ../modules/wannabeadmin/wannabeadmin.php:548
+msgid "Probably"
+msgstr "Kanskje"
+
+#: ../modules/wannabe/wannabe.php:48
+#: ../modules/wannabeadmin/wannabeadmin.old.php:302
+#: ../modules/wannabeadmin/wannabeadmin.old.php:517
+#: ../modules/wannabeadmin/wannabeadmin.php:549
+msgid "I'd rather not"
+msgstr "Helst ikke"
+
+#: ../modules/wannabe/wannabe.php:51
+#: ../modules/wannabeadmin/wannabeadmin.old.php:305
+#: ../modules/wannabeadmin/wannabeadmin.old.php:520
+#: ../modules/wannabeadmin/wannabeadmin.php:550
+msgid "Not at all"
+msgstr "Overhodet ikke"
+
+#: ../modules/wannabe/wannabe.php:54
+#: ../modules/wannabeadmin/wannabeadmin.old.php:308
+#: ../modules/wannabeadmin/wannabeadmin.old.php:523
+msgid "Unknown option"
+msgstr "Ukjent alternativ"
+
+#: ../modules/wannabe/wannabe.php:107
+msgid "Delete application"
+msgstr "Slett søknad"
+
+#: ../modules/wannabe/wannabe.php:163
+msgid "Are you sure you want to delete your crewapplication?"
+msgstr "Er du sikker på at du vil slette crewsøknaden din?"
+
+#: ../modules/wannabe/wannabe.php:164
+msgid "Yes, I'm sure"
+msgstr "Ja, jeg er sikker"
+
+#: ../modules/wannabe/wannabe.php:165
+msgid "No, I still wish to apply for crew"
+msgstr "Nei, jeg vil fortsatt søke crew"
+
 #: ../modules/wannabeadmin/wannabeadmin.old.php:17
-#: ../modules/wannabeadmin/wannabeadmin.php:568
+#: ../modules/wannabeadmin/wannabeadmin.php:629
 msgid "Questions"
 msgstr "Spørsmål"
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:18
-#: ../modules/wannabeadmin/wannabeadmin.php:569
+#: ../modules/wannabeadmin/wannabeadmin.php:630
 msgid "Crews"
 msgstr "Crew"
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:25
-#: ../modules/wannabeadmin/wannabeadmin.php:576
+#: ../modules/wannabeadmin/wannabeadmin.php:637
 msgid "View Applications"
 msgstr "Vis søknader"
 
 #: ../modules/wannabeadmin/wannabeadmin.old.php:77
-#: ../modules/wannabeadmin/wannabeadmin.php:23
+#: ../modules/wannabeadmin/wannabeadmin.php:27
 msgid "New question"
 msgstr "Nytt spørsmål"
 
@@ -2463,55 +2537,8 @@ msgstr "Tilbake til lista"
 msgid "Response"
 msgstr "Svar"
 
-#: ../modules/wannabeadmin/wannabeadmin.old.php:290
-#: ../modules/wannabeadmin/wannabeadmin.old.php:505
-#: ../modules/wannabe/wannabe.php:36
-msgid "Nothing selected"
-msgstr "Ingenting valgt"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:293
-#: ../modules/wannabeadmin/wannabeadmin.old.php:508
-#: ../modules/wannabeadmin/wannabeadmin.php:514
-#: ../modules/wannabe/wannabe.php:39
-msgid "Of course!"
-msgstr "Selvfølgelig!"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:296
-#: ../modules/wannabeadmin/wannabeadmin.old.php:511
-#: ../modules/wannabeadmin/wannabeadmin.php:515
-#: ../modules/wannabe/wannabe.php:42
-msgid "Sure"
-msgstr "Sikkert"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:299
-#: ../modules/wannabeadmin/wannabeadmin.old.php:514
-#: ../modules/wannabeadmin/wannabeadmin.php:516
-#: ../modules/wannabe/wannabe.php:45
-msgid "Probably"
-msgstr "Kanskje"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:302
-#: ../modules/wannabeadmin/wannabeadmin.old.php:517
-#: ../modules/wannabeadmin/wannabeadmin.php:517
-#: ../modules/wannabe/wannabe.php:48
-msgid "I'd rather not"
-msgstr "Helst ikke"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:305
-#: ../modules/wannabeadmin/wannabeadmin.old.php:520
-#: ../modules/wannabeadmin/wannabeadmin.php:518
-#: ../modules/wannabe/wannabe.php:51
-msgid "Not at all"
-msgstr "Overhodet ikke"
-
-#: ../modules/wannabeadmin/wannabeadmin.old.php:308
-#: ../modules/wannabeadmin/wannabeadmin.old.php:523
-#: ../modules/wannabe/wannabe.php:54
-msgid "Unknown option"
-msgstr "Ukjent alternativ"
-
 #: ../modules/wannabeadmin/wannabeadmin.old.php:322
-#: ../modules/wannabeadmin/wannabeadmin.php:448
+#: ../modules/wannabeadmin/wannabeadmin.php:476
 msgid "Answer"
 msgstr "Svar"
 
@@ -2532,151 +2559,135 @@ msgstr "Legg til crew"
 msgid "Save comment"
 msgstr "Lagre kommentar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:20
+#: ../modules/wannabeadmin/wannabeadmin.php:24
 msgid "Edit wannabe questions"
 msgstr "Rediger crewsøknadsspørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:22
-#: ../modules/wannabeadmin/wannabeadmin.php:104
+#: ../modules/wannabeadmin/wannabeadmin.php:26
+#: ../modules/wannabeadmin/wannabeadmin.php:110
 msgid "List questions"
 msgstr "Vis spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:44
+#: ../modules/wannabeadmin/wannabeadmin.php:48
 msgid "No questions has been created yet."
 msgstr "Ingen spørsmål har blitt opprettet ennå."
 
-#: ../modules/wannabeadmin/wannabeadmin.php:102
+#: ../modules/wannabeadmin/wannabeadmin.php:108
 msgid " question"
 msgstr "spørsmål"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:146
+#: ../modules/wannabeadmin/wannabeadmin.php:123
+msgid "Programmatic name"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:156
 msgid "Edit wannabe crews"
 msgstr "Rediger crewsøknadscrewene"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:148
-#: ../modules/wannabeadmin/wannabeadmin.php:232
+#: ../modules/wannabeadmin/wannabeadmin.php:158
+#: ../modules/wannabeadmin/wannabeadmin.php:242
 msgid "List crews"
 msgstr "List crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:149
+#: ../modules/wannabeadmin/wannabeadmin.php:159
 msgid "New crew"
 msgstr "Nytt crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:170
+#: ../modules/wannabeadmin/wannabeadmin.php:180
 msgid "No crews has been created yet."
 msgstr "Ingen crew har blitt opprettet ennå."
 
-#: ../modules/wannabeadmin/wannabeadmin.php:230
+#: ../modules/wannabeadmin/wannabeadmin.php:240
 msgid " crew"
 msgstr "crew"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:245
+#: ../modules/wannabeadmin/wannabeadmin.php:255
 msgid "Crew Name"
 msgstr "Crewnavn"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:249
+#: ../modules/wannabeadmin/wannabeadmin.php:259
 msgid "Crew description"
 msgstr "Crewbeskrivelse"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:253
+#: ../modules/wannabeadmin/wannabeadmin.php:263
 msgid "Crew group"
 msgstr "Crewgruppe"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:268
+#: ../modules/wannabeadmin/wannabeadmin.php:266
+msgid "Choose group"
+msgstr "Velg gruppe"
+
+#: ../modules/wannabeadmin/wannabeadmin.php:294
 msgid "List applications"
 msgstr "Vis søknader"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:276
+#: ../modules/wannabeadmin/wannabeadmin.php:302
 msgid "No applications has been sent."
 msgstr "Ingen søknader har blitt sendt inn ennå."
 
-#: ../modules/wannabeadmin/wannabeadmin.php:318
+#: ../modules/wannabeadmin/wannabeadmin.php:344
 msgid "Waiting applications"
 msgstr "Ventende søknader"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:323
+#: ../modules/wannabeadmin/wannabeadmin.php:349
 msgid "Finished applications"
 msgstr "Fullførte søknader"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:404
+#: ../modules/wannabeadmin/wannabeadmin.php:432
 msgid "Userinfo"
 msgstr "Brukerinfo"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:412
+#: ../modules/wannabeadmin/wannabeadmin.php:440
 msgid "years old"
 msgstr "år gammel"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:454
+#: ../modules/wannabeadmin/wannabeadmin.php:482
 msgid "No answer given"
 msgstr "Ingen svar gitt"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:469
+#: ../modules/wannabeadmin/wannabeadmin.php:501
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:497
+#: ../modules/wannabeadmin/wannabeadmin.php:529
 msgid "No response given"
-msgstr "Ingen svar gitt"
+msgstr ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:509
+#: ../modules/wannabeadmin/wannabeadmin.php:541
 msgid "Set preference for"
-msgstr "Sett preferanse for"
-
-#: ../modules/wannabeadmin/wannabeadmin.php:513
-msgid "Choose preference"
-msgstr "Velg preferanse"
-
-#: ../modules/wannabeadmin/wannabeadmin.php:520
-msgid "Set"
-msgstr "Sett"
-
-#: ../modules/wannabeadmin/wannabeadmin.php:524
-msgid "You are not admin of any crew and can therefor not set any preference."
-msgstr "Du er ikke admin for noen crew og kan derfor ikke sette noen preferanser"
+msgstr ""
 
 #: ../modules/wannabeadmin/wannabeadmin.php:545
+msgid "Choose preference"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:552
+msgid "Set"
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:556
+msgid "You are not admin of any crew and can therefor not set any preference."
+msgstr ""
+
+#: ../modules/wannabeadmin/wannabeadmin.php:580
 msgid "Write a comment"
 msgstr "Skriv en kommentar"
 
-#: ../modules/wannabeadmin/wannabeadmin.php:548
+#: ../modules/wannabeadmin/wannabeadmin.php:583
 msgid "Comment..."
-msgstr "Kommentar..."
+msgstr ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:549
+#: ../modules/wannabeadmin/wannabeadmin.php:584
 msgid "Send"
-msgstr "Send"
+msgstr ""
 
-#: ../modules/wannabeadmin/wannabeadmin.php:557
+#: ../modules/wannabeadmin/wannabeadmin.php:592
 msgid "Application"
 msgstr "Søknad"
 
-#: ../modules/wannabe/wannabe.php:6
-msgid "Please login to apply for crew"
-msgstr "Vennligst logg inn for å levere crewsøknad"
-
-#: ../modules/wannabe/wannabe.php:10
-msgid "Apply as crew"
-msgstr "Lever crewsøknad"
-
-#: ../modules/wannabe/wannabe.php:12
-msgid "Your application is saved"
-msgstr "Din søknad ble lagret"
-
-#: ../modules/wannabe/wannabe.php:107
-msgid "Delete application"
-msgstr "Slett søknad"
-
-#: ../modules/wannabe/wannabe.php:163
-msgid "Are you sure you want to delete your crewapplication?"
-msgstr "Er du sikker på at du vil slette crewsøknaden din?"
-
-#: ../modules/wannabe/wannabe.php:164
-msgid "Yes, I'm sure"
-msgstr "Ja, jeg er sikker"
-
-#: ../modules/wannabe/wannabe.php:165
-msgid "No, I still wish to apply for crew"
-msgstr "Nei, jeg vil fortsatt søke crew"
+#: ../modules/wannabeadmin/wannabeadmin.php:638
+msgid "Export allergies"
+msgstr "Eksporter allergier"
 
 #: ../inc/shared_config.php:5
 msgid "Blank"
@@ -2718,129 +2729,141 @@ msgstr "Ikke åpnet ennå"
 msgid "Right-protected seat"
 msgstr "Rettighetsbeskyttet plass"
 
-#: ../inc/shared_config.php:23
+#: ../inc/shared_config.php:26
 msgid "Activate ticketorder"
 msgstr "Aktiver billettbestilling"
 
-#: ../inc/shared_config.php:25
+#: ../inc/shared_config.php:30
+msgid "Activate usertickets"
+msgstr "Aktiver brukerbilletter"
+
+#: ../inc/shared_config.php:34
 msgid "Activate FAQ"
 msgstr "Aktiver FAQ"
 
-#: ../inc/shared_config.php:27
+#: ../inc/shared_config.php:38
 msgid "Activate seating"
 msgstr "Aktiver plassregistrering"
 
-#: ../inc/shared_config.php:29
+#: ../inc/shared_config.php:42
 msgid "Show link to seating"
 msgstr "Vis lenke til plassregistrering"
 
-#: ../inc/shared_config.php:31
+#: ../inc/shared_config.php:46
 msgid "Activate wannabesystem"
 msgstr "Aktiver wannabesystemet"
 
-#: ../inc/shared_config.php:33
+#: ../inc/shared_config.php:50
 msgid "Activate composystem"
 msgstr "Aktiver composystemet"
 
-#: ../inc/shared_config.php:35
+#: ../inc/shared_config.php:54
 msgid "Activate reseller"
 msgstr "Aktiver forhandler-systemet"
 
-#: ../inc/shared_config.php:37
+#: ../inc/shared_config.php:58
 msgid "Activate crewlist"
 msgstr "Aktiver crewliste"
 
-#: ../inc/shared_config.php:39
+#: ../inc/shared_config.php:62
 msgid "Activate news"
 msgstr "Aktiver nyheter"
 
-#: ../inc/shared_config.php:41
-msgid "Activate kiosksystem"
-msgstr "Aktiver kiosksystemet"
+#: ../inc/shared_config.php:66
+msgid "Activate kiosk"
+msgstr "Aktiver kiosk"
 
-#: ../inc/shared_config.php:43
+#: ../inc/shared_config.php:70
 msgid "Activate forum"
 msgstr "Aktiver forum"
 
-#: ../inc/shared_config.php:45
+#: ../inc/shared_config.php:74
 msgid "Activate sleepsystem"
 msgstr "Aktiver sovesystem"
 
-#: ../inc/shared_config.php:47
+#: ../inc/shared_config.php:78
 msgid "Show number of free tickets in ticketorder"
 msgstr "Vis antall ledige billetter i billettbestilling"
 
-#: ../inc/shared_config.php:49
+#: ../inc/shared_config.php:82
 msgid ""
 "Default option in kiosk to sell to credit when user is selected (otherwise "
 "cash payment is selected as default)"
 msgstr "Standardvalg i kiosk er å selge på kreditt når en bruker er valgt (ellers blir kontantbetaling valgt som standard)"
 
-#: ../inc/shared_config.php:109
+#: ../inc/shared_config.php:148
 msgid "January"
 msgstr "Januar"
 
-#: ../inc/shared_config.php:110
+#: ../inc/shared_config.php:149
 msgid "February"
 msgstr "Februar"
 
-#: ../inc/shared_config.php:111
+#: ../inc/shared_config.php:150
 msgid "March"
 msgstr "Mars"
 
-#: ../inc/shared_config.php:112
+#: ../inc/shared_config.php:151
 msgid "April"
 msgstr "April"
 
-#: ../inc/shared_config.php:113
+#: ../inc/shared_config.php:152
 msgid "May"
 msgstr "Mai"
 
-#: ../inc/shared_config.php:114
+#: ../inc/shared_config.php:153
 msgid "June"
 msgstr "Juni"
 
-#: ../inc/shared_config.php:115
+#: ../inc/shared_config.php:154
 msgid "July"
 msgstr "Juli"
 
-#: ../inc/shared_config.php:116
+#: ../inc/shared_config.php:155
 msgid "August"
 msgstr "August"
 
-#: ../inc/shared_config.php:117
+#: ../inc/shared_config.php:156
 msgid "September"
 msgstr "September"
 
-#: ../inc/shared_config.php:118
+#: ../inc/shared_config.php:157
 msgid "October"
 msgstr "Oktober"
 
-#: ../inc/shared_config.php:119
+#: ../inc/shared_config.php:158
 msgid "November"
 msgstr "November"
 
-#: ../inc/shared_config.php:120
+#: ../inc/shared_config.php:159
 msgid "December"
 msgstr "Desember"
 
-#: ../inc/shared_config.php:171
+#: ../inc/shared_config.php:210
 msgid "Streetadress"
 msgstr "Adresse"
 
-#: ../inc/shared_config.php:197
+#: ../inc/shared_config.php:236
+msgid "Guardian name"
+msgstr "Foresattes navn"
+
+#: ../inc/shared_config.php:241
+msgid "Guardian cellphone"
+msgstr "Foresattes mobilnummer"
+
+#: ../inc/shared_config.php:247
 msgid "List all attendees on current event"
 msgstr "Vis alle deltagere på nåværende arrangement"
 
-#: ../inc/shared_config.php:212
+#: ../inc/shared_config.php:262
 msgid "You do not have access to this page."
 msgstr "Du har ikke tilgang til denne siden."
 
-#: ../inc/shared_config.php:218
+#: ../inc/shared_config.php:268
 msgid "Allow other users to see my mailadress"
 msgstr "Tillatt andre brukere å se min epost-adresse"
 
-#: ../inc/shared_config.php:223
+#: ../inc/shared_config.php:273
 msgid "All users"
 msgstr "Alle brukere"
 
@@ -2856,74 +2879,74 @@ msgstr "Skrive"
 msgid "Admin"
 msgstr "Admin"
 
-#: ../inc/shared_functions.php:637
+#: ../inc/shared_functions.php:648
 msgid "a.k.a."
 msgstr "a.k.a."
 
-#: ../html/index.php:45
+#: ../html/index.php:59
 msgid "Main page"
 msgstr "Hovedside"
 
-#: ../html/index.php:49
+#: ../html/index.php:63
 msgid "Global Admin"
-msgstr "Global admin"
+msgstr ""
 
-#: ../html/index.php:58
+#: ../html/index.php:72
 msgid "My groups"
-msgstr "Mine grupper"
+msgstr ""
 
-#: ../html/index.php:88
+#: ../html/index.php:102
 msgid "Seatmap"
 msgstr "Plasskart"
 
-#: ../html/index.php:100
+#: ../html/index.php:114
 msgid "Apply for crewposition"
-msgstr "Søk crew"
+msgstr ""
 
-#: ../html/index.php:104
+#: ../html/index.php:118
 msgid "Composignup"
-msgstr "Compopåmelding"
+msgstr ""
 
-#: ../html/index.php:134
+#: ../html/index.php:148
 msgid "Dashboard"
-msgstr "Oversikt"
+msgstr ""
 
-#: ../html/index.php:140
+#: ../html/index.php:154
 msgid "Event Admin"
-msgstr "Arrangementsadmin"
+msgstr ""
 
-#: ../html/index.php:160
+#: ../html/index.php:174
 msgid "Type your nick, email or name here:"
-msgstr "Skriv inn ditt brukernavn, epost eller navn her:"
+msgstr ""
 
-#: ../html/index.php:192
+#: ../html/index.php:206
 msgid "You are logged in as:"
-msgstr "Du er logget inn som:"
+msgstr "Du er innlogget som:"
 
-#: ../html/index.php:197
+#: ../html/index.php:211
 msgid "Edit my preferences"
-msgstr "Rediger mine innstillinger"
+msgstr "Rediger mine preferanser"
 
 #: ../html/party.php:33
 msgid "There are no screens for this event"
-msgstr "Det er ingen skjermer for dette arrangementet"
+msgstr ""
 
 #: ../html/party.php:65
 msgid "There are no queue for this screen"
-msgstr "Det er ingen kø for denne skjermen"
+msgstr ""
 
 #: ../html/upload.php:15
 msgid "No such file directory"
-msgstr "Ingen slik fil eller mappe"
+msgstr ""
 
 #: ../html/upload.php:16
 msgid "File directory not writable"
-msgstr "Mappe er ikke skrivbar"
+msgstr ""
 
 #: ../html/upload.php:25
 msgid "Upload failed, could not move file"
-msgstr "Opplastning feilet, kunne ikke flytte filen"
+msgstr ""
 
 #: ../html/upload.php:27
 msgid "Upload failed, file exists"
-msgstr "Opplastningen feilet, fil eksisterer"
+msgstr ""
