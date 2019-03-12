@@ -118,17 +118,33 @@ class TicketType extends SqlObject {
 
     /**
      * Set new maxTickets for ticket type.
-     * 
+     *
      * @param int $arg
      */
     public function setMaxTickets($arg) {
         $this->_setField("maxTickets", $arg);
     }
 
+    public function getNumAvailable(): int
+    {
+        global $sql_prefix, $sessioninfo;
+
+        $eventID = (int) $sessioninfo->eventID;
+        $ticketTypeID = (int) $this->getTicketTypeID();
+
+        $countSql = 'SELECT COUNT(ticketID) AS num FROM ' . $sql_prefix . '_tickets';
+        $countSql .= ' WHERE eventID = ' . $eventID . ' AND ticketType = ' . $ticketTypeID . ' AND status != \'deleted\'';
+        $countQuery = db_query($countSql);
+        $numTickets = (int) (db_fetch_assoc($countQuery)['num'] ?? 0);
+        $maxTickets = $this->getMaxTickets();
+
+        return $maxTickets - $numTickets;
+    }
+
     /**
      * Provides the amount that user can order on this ticket.
      * Zero defines that user has ordered the max allowed.
-     * 
+     *
      * @param User $user
      * @return int
      */

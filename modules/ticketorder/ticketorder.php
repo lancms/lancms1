@@ -95,6 +95,7 @@ switch ($action) {
         $amount = $_SESSION["orderInfo" . $sessioninfo->userID]['amount'] ?? 1;
         $ticketType = $ticketManager->getTicketTypeByID($_SESSION["orderInfo" . $sessioninfo->userID]["ttID"]);
         $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+        $availableTickets = $ticketType->getNumAvailable();
         $ticketIDs = array();
 
         if ($ticketType instanceof TicketType === false) {
@@ -104,6 +105,11 @@ switch ($action) {
 
         if ($amount > $canAmount) {
             header("Location: index.php?module=ticketorder&msg=7");
+            die();
+        }
+
+        if ($amount > $availableTickets) {
+            header('Location: index.php?module=ticketorder&msg=10');
             die();
         }
 
@@ -141,7 +147,7 @@ switch ($action) {
                 $paymentMethod = $requestPost->get("pay_method", "door");
                 $orderInfo["paymentMethod"] = $paymentMethod;
 
-                if ($ticketOrderAllowPreorderPayOnArrival || $paymentMethod == "stripe") {
+                if ($paymentMethod == "stripe") {
                     // We get from stripe:
                     $stripeToken = $_POST["stripeToken"];
                     $stripeTokenType = $_POST["stripeTokenType"];
@@ -187,7 +193,7 @@ switch ($action) {
                     } catch(\Stripe\Error\InvalidRequest $e) {
                         // no-op
                     }
-                } else {
+                } else if ($ticketOrderAllowPreorderPayOnArrival) {
                     // Just go!
                     $orderInfo["status"] = "notused";
                     $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
@@ -197,6 +203,9 @@ switch ($action) {
                         }
                     }
                     unset($tickets);
+                } else {
+                    header('Location: index.php?module=ticketorder&msg=11');
+                    die();
                 }
 
                 break;
@@ -301,6 +310,11 @@ switch ($action) {
                     $messageType = "danger";
                     break;
 
+                case 10:
+                    $message = _('There are no more tickets available.');
+                    $messageType = 'danger';
+                    break;
+
                 default:
                     break;
             }
@@ -320,7 +334,9 @@ switch ($action) {
                 $content .= "<div class=\"order\">";
                 if ($user instanceof User) {
                     $canOrderAmount = $ticketType->getAmountUserCanOrder($user);
-                    if ($canOrderAmount > 0) {
+                    $available = $ticketType->getNumAvailable();
+
+                    if ($available > 0 && $canOrderAmount > 0) {
                         $content .= "<form action=\"index.php?\" method=\"get\">";
                         // If $maxTicketsPrUser is set print a select element up to the max amount set.
                         // Otherwise amount 1 is default.
@@ -336,6 +352,8 @@ switch ($action) {
 
                         $content .= "&nbsp;<input type=\"submit\" class=\"btn\" name=\"order-ticket\" value=\"" . _("Order ticket") . "\" />
                         </form>";
+                    } else if ($available < 1) {
+                        $content .= "<span class=\"small italic\">" . _('There are no more tickets available') . "</span>";
                     } else if ($canOrderAmount < 1) {
                         $content .= "<span class=\"small italic\">" . _("You have ordered the maximum allowed") . "</span>";
                     }
