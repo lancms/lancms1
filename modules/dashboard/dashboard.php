@@ -29,7 +29,7 @@ if(empty($action)) {
 	$qCountTicketsSold = db_query("SELECT COUNT(*) AS amount FROM ".$sql_prefix."_tickets t
 	JOIN ".$sql_prefix."_ticketTypes tt
 	ON tt.ticketTypeID=t.ticketType
-	WHERE t.paid='yes' AND tt.eventID = '$sessioninfo->eventID'");
+	WHERE t.paid='yes' AND t.status != 'deleted' AND tt.eventID = '$sessioninfo->eventID'");
 	$rCountTicketsSold = db_fetch($qCountTicketsSold);
 	$content .= $rCountTicketsSold->amount;
 	$content .= "</td><td>";
