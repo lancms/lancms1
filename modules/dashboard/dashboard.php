@@ -46,7 +46,7 @@ if(empty($action)) {
 
 	// Details
 	$content .= "<tr><td>";
-	$qFindTicketDetails = db_query("SELECT COUNT(*) AS amount,tt.name AS name FROM ".$sql_prefix."_tickets t JOIN ".$sql_prefix."_ticketTypes tt ON t.ticketType = tt.ticketTypeID WHERE tt.eventID = '$sessioninfo->eventID' AND t.paid='yes' GROUP BY tt.name ORDER BY amount DESC");
+	$qFindTicketDetails = db_query("SELECT COUNT(*) AS amount,tt.name AS name FROM ".$sql_prefix."_tickets t JOIN ".$sql_prefix."_ticketTypes tt ON t.ticketType = tt.ticketTypeID WHERE tt.eventID = '$sessioninfo->eventID' AND t.paid='yes' AND t.status != 'deleted' GROUP BY tt.name ORDER BY amount DESC");
 	while($rFindTicketDetails = db_fetch($qFindTicketDetails)) {
 		$content .= "<br /><b>".$rFindTicketDetails->name."</b>: ";
 		$content .= $rFindTicketDetails->amount;
