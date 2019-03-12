@@ -35,6 +35,16 @@ class TicketType extends SqlObject {
         return $this->_getField("eventID", 0, 2);
     }
 
+    public function allowSeating(): bool
+    {
+        return $this->_getField('allowSeating', false, 3);
+    }
+
+    public function setAllowSeating(bool $flag)
+    {
+        $this->_setField('allowSeating', $flag ? 1 : 0);
+    }
+
     /**
      * Provides the name of this ticket type.
      *

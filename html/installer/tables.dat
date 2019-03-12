@@ -229,6 +229,7 @@ TABLE [prefix]_ticketTypes
 	type,		enum('onsite-computer','onsite-visitor','prepaid','preorder','reseller'), , , preorder,
 	price,		int(5),		,	,	0,
 	active,		tinyint(1),		,	,	1,
+	allowSeating,	tinyint(1),		,	,	1,
 	maxTickets,	int(5),		,	,	,		,
 }
 

@@ -388,6 +388,8 @@ switch ($action) {
                     foreach ($tickets as $key => $ticket) {
                         if (($ticket instanceof Ticket) == false) continue;
 
+                        $ticketType = $ticket->getTicketType();
+
                         $isDeleted = ($ticket->getStatus() == Ticket::TICKET_STATUS_DELETED);
 
                         $ticketTypeName = $owner = $user = "<em>Ukjent</em>";
@@ -429,15 +431,15 @@ switch ($action) {
                         if ($ticket->getUser() instanceof User)
                             $user = $ticket->getUser()->getFullName();
 
-                        if ($ticket->getTicketType() instanceof TicketType)
-                            $ticketTypeName = $ticket->getTicketType()->getName();
+                        if ($ticketType instanceof TicketType)
+                            $ticketTypeName = $ticketType->getName();
 
                         $canSeat = $ticket->canSeat();
                         if (!$canSeat && !$ticket->isPaid())
                             $explainCantSeat = true;
 
                         $content .= "<tr><td>";
-                        if (( ! $isDeleted) && ($ticket->isPaid() === false && $ticket->getTicketType()->getType() == "preorder")) {
+                        if (( ! $isDeleted) && ($ticket->isPaid() === false && $ticketType->getType() == "preorder")) {
                             $canDelete++;
                             $content .= "<input type=\"checkbox\" class=\"checkbox-ticketSelect\" name=\"ticketIDs[]\" value=\"" . $ticket->getTicketID() . "\" />";
                         }
@@ -451,7 +453,7 @@ switch ($action) {
                         </td>
                         <td>" . $seat;
 
-                        if ($canSeat && !$isDeleted && config('seating_public', $sessioninfo->eventID)) {
+                        if ($ticketType->allowSeating() && $canSeat && !$isDeleted && config('seating_public', $sessioninfo->eventID)) {
                             $content .= '<br />';
                             $content .= '<span class="small">[<a href="?module=seating&ticketID=' . $ticket->getTicketID() . '">' . lang('Place on map', 'ticketorder') . '</a>]</span>';
                         }

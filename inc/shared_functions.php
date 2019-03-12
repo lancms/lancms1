@@ -272,6 +272,14 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
 	ticketID = '$ticketID'");
         $rTicketInfo = db_fetch($qTicketInfo);
 
+        $qTicketType = db_query('SELECT allowSeating FROM ' . $sql_prefix . '_ticketTypes
+        WHERE eventID = ' . $eventID . ' AND ticketTypeID = ' . $rTicketInfo->ticketType);
+        $rTicketType = db_fetch($qTicketType);
+
+        if (!$rTicketType->allowSeating) {
+            return false;
+        }
+
         if($rTicketInfo->owner == $sessioninfo->userID || $rTicketInfo->user == $sessioninfo->userID) {
 			$type = $rSeatInfo->type;
 			switch ($type) {

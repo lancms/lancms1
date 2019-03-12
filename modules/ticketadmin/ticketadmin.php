@@ -57,6 +57,7 @@ if(!isset($action) || $action == "editticket") {
     $rGetTicketInfo->price = '';
     $rGetTicketInfo->description = '';
     $rGetTicketInfo->active = false;
+    $rGetTicketInfo->allowSeating = true;
     $rGetTicketInfo->maxTickets = 0;
 
     if($action == "editticket" && isset($_GET['editticket'])) {
@@ -108,6 +109,12 @@ if(!isset($action) || $action == "editticket") {
     $content .= "</td><td>\n";
     $content .= lang("Tickettype is active?", "ticketadmin");
     $content .= "</td></tr><tr><td>\n";
+    $content .= "<p class=\"nopad\"><input type=\"checkbox\" name=\"allowSeating\" value=\"1\"";
+    if($rGetTicketInfo->allowSeating) $content .= " checked";
+    $content .= " /></p>\n";
+    $content .= "</td><td>\n";
+    $content .= lang("Allow seating with this ticket?", "ticketadmin");
+    $content .= "</td></tr><tr><td>\n";
     $content .= "<input type=text size=5 name=maxTickets";
     if($rGetTicketInfo->maxTickets > 0) $maxTickets = $rGetTicketInfo->maxTickets;
     else $maxTickets = 0;
@@ -150,6 +157,8 @@ elseif($action == "addtickettype") {
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
+    if($_POST['allowSeating'] == 1) $allowSeating = 1;
+    else $allowSeating = 0;
     if($_POST['active'] == 1) $active = 1;
     else $active = 0;
 
@@ -157,6 +166,7 @@ elseif($action == "addtickettype") {
         name = '$name', 
         description = '$description', 
         price = '$price', 
+        allowSeating = '$allowSeating', 
         type = '$type', 
         active = '$active',
 	maxTickets = '$maxTickets',
@@ -179,6 +189,8 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
+    if($_POST['allowSeating'] == 1) $allowSeating = 1;
+    else $allowSeating = 0;
     if($_POST['active'] == 1) $active = 1;
     else $active = 0;
 
@@ -188,11 +200,13 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
         price = '$price', 
         type = '$type', 
         active = '$active',
+        allowSeating = '$allowSeating',
 	maxTickets = '$maxTickets'
         WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
     $log_new['name'] = $name;
     $log_new['price'] = $price;
     $log_new['type'] = $type;
+    $log_new['allowSeating'] = $allowSeating;
     $log_new['active'] = $active;
     $log_new['maxTickets'] = $maxTickets;
 
