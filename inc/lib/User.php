@@ -2,13 +2,13 @@
 
 /**
  * Represents a user in lancms.
- * 
+ *
  * @author edvin
  */
 class User extends SqlObject {
 
     protected $_tickets;
-    
+
     function __construct($id) {
         $this->_tickets = null;
 
@@ -17,7 +17,7 @@ class User extends SqlObject {
 
     /**
      * Provides the user ID
-     * 
+     *
      * @return int
      */
     public function getUserID() {
@@ -26,7 +26,7 @@ class User extends SqlObject {
 
     /**
      * Provides the nick of this user.
-     * 
+     *
      * @return string
      */
     public function getNick() {
@@ -35,7 +35,7 @@ class User extends SqlObject {
 
     /**
      * Provides the email address of this user.
-     * 
+     *
      * @return string
      */
     public function getEmail() {
@@ -44,7 +44,7 @@ class User extends SqlObject {
 
     /**
      * Provides this users first name. Use getFullName() to get both first and last name in one string.
-     * 
+     *
      * @see getFullName()
      * @return string
      */
@@ -54,7 +54,7 @@ class User extends SqlObject {
 
     /**
      * Provides this users last name. Use getFullName() to get both first and last name in one string.
-     * 
+     *
      * @see getFullName()
      * @return string
      */
@@ -64,7 +64,7 @@ class User extends SqlObject {
 
     /**
      * Provides the full name of this user, will join getFirstName() and getLastName() together.
-     * 
+     *
      * @see getFirstName()
      * @see getLastName()
      * @return string
@@ -76,7 +76,7 @@ class User extends SqlObject {
     /**
      * Provides the post number (zip-code) of this user. Do not treat this variable as a int as
      * norwegian postcodes can start with zero.
-     * 
+     *
      * @return string
      */
     public function getPostNumber() {
@@ -85,7 +85,7 @@ class User extends SqlObject {
 
     /**
      * Provides the post district of this user.
-     * 
+     *
      * @return string
      */
     public function getPostPlace() {
@@ -94,7 +94,7 @@ class User extends SqlObject {
 
     /**
      * Provides this users street address.
-     * 
+     *
      * @return string
      */
     public function getStreetAddress() {
@@ -103,7 +103,7 @@ class User extends SqlObject {
 
     /**
      * Provides this users street address number 2.
-     * 
+     *
      * @return string
      */
     public function getStreetAddress2() {
@@ -112,7 +112,7 @@ class User extends SqlObject {
 
     /**
      * Provides the UNIX timestamp of when this user is registered.
-     * 
+     *
      * @return int
      */
     public function getRegisterTime() {
@@ -121,7 +121,7 @@ class User extends SqlObject {
 
     /**
      * Provides the IP address of this user when it was created.
-     * 
+     *
      * @return string
      */
     public function getRegisterIP() {
@@ -130,7 +130,7 @@ class User extends SqlObject {
 
     /**
      * Indicates if this user has its user info verified.
-     * 
+     *
      * @return bool
      */
     public function isUserInfoVerified() {
@@ -139,7 +139,7 @@ class User extends SqlObject {
 
     /**
      * Provides the gender of this user. Male, Female or Other.
-     * 
+     *
      * @return string
      */
     public function getGender() {
@@ -148,7 +148,7 @@ class User extends SqlObject {
 
     /**
      * Provides mobile phone number of this user.
-     * 
+     *
      * @return string
      */
     public function getCellPhone() {
@@ -157,7 +157,7 @@ class User extends SqlObject {
 
     /**
      * Provides the birthday year of this user.
-     * 
+     *
      * @return int
      */
     public function getBirthYear() {
@@ -166,7 +166,7 @@ class User extends SqlObject {
 
     /**
      * Provides the birthday month of this user.
-     * 
+     *
      * @return int
      */
     public function getBirthMonth() {
@@ -175,7 +175,7 @@ class User extends SqlObject {
 
     /**
      * Provides the birthday day of this user.
-     * 
+     *
      * @return int
      */
     public function getBirthDay() {
@@ -184,7 +184,7 @@ class User extends SqlObject {
 
     /**
      * Provides the birthday timestamp.
-     * 
+     *
      * @return int
      */
     public function getBirthdayTimestamp() {
@@ -204,7 +204,7 @@ class User extends SqlObject {
 
     /**
      * Indicates if this user is verified.
-     * 
+     *
      * @return bool
      */
     public function isEmailConfirmed() {
@@ -213,7 +213,7 @@ class User extends SqlObject {
 
     /**
      * Provides the email verification code.
-     * 
+     *
      * @return string
      */
     public function getEmailVerifyCode() {
@@ -222,7 +222,7 @@ class User extends SqlObject {
 
     /**
      * Provides all groups this user is a member of, only for current event.
-     * 
+     *
      * @return UserGroup[]
      */
     public function getGroups()
@@ -240,7 +240,7 @@ class User extends SqlObject {
 
     /**
      * Provides all groups this user is a member of, only for current event.
-     * 
+     *
      * @return UserGroup[]
      */
     public function isAdminOfGroup(UserGroup $group)
@@ -255,13 +255,13 @@ class User extends SqlObject {
 
         return false;
     }
-    
+
     /**
      * Indicates if this user is a crew.
      *
-     * @param int|null $eventId 
+     * @param int|null $eventId
      *
-     * @return boolean 
+     * @return boolean
      */
     public function isCrew($eventId = null)
     {
@@ -280,7 +280,7 @@ class User extends SqlObject {
 
     /**
      * Provides the tickets of this user in an array of Ticket objects.
-     * 
+     *
      * @return Ticket[]
      */
     public function getTickets() {
@@ -295,9 +295,9 @@ class User extends SqlObject {
 
     /**
      * Adds a tickettype to this user i.e. creates a ticket in the _tickets table.
-     * 
+     *
      * <p>See validateAddTicketType to handle max amount of tickets an user can order, ment for "ticketorder" module.</p>
-     * 
+     *
      * @see validateAddTicketType()
      * @param TicketType $ticketType The ticket type to add.
      * @param int $amount Amount to add.
@@ -313,7 +313,7 @@ class User extends SqlObject {
 
         $insertIDs = array();
 
-        for ($i=0; $i < $amount; $i++) { 
+        for ($i=0; $i < $amount; $i++) {
             db_query(sprintf("INSERT INTO %s_tickets(`md5_ID`, `ticketType`, `eventID`, `owner`, `createTime`, `creator`, `user`)
                 VALUES('%s', %d, %d, %d, %d, %d, %d)",
                 $sql_prefix,
@@ -331,14 +331,14 @@ class User extends SqlObject {
 
             $rows = db_fetch_assoc($qTicketMd5ID);
             $insertIDs[] = $rows["md5_ID"];
-        }        
+        }
 
         return $insertIDs;
     }
 
     /**
      * Adds a tickettype to user and checks if user has ordered the maximum allowed then calls addTicketType().
-     * 
+     *
      * @see addTicketType
      * @param TicketType $ticketType The ticket type to add.
      * @param int $amount Amount to add.
@@ -360,7 +360,7 @@ class User extends SqlObject {
             }
         }
 
-        if ($hasAmount >= $canAmount)  
+        if ($hasAmount >= $canAmount)
             return false;
 
         // Call Addtickettype too do the rest
@@ -370,7 +370,7 @@ class User extends SqlObject {
 
     /**
      * Will compare this User object to another User object.
-     * 
+     *
      * @return bool
      */
     public function equals(User $user) {
@@ -383,7 +383,7 @@ class User extends SqlObject {
     /**
      * Set the post number (zip-code) of this user. Do not treat this variable as a int as
      * norwegian postcodes can start with zero.
-     * 
+     *
      * @param string $arg
      */
     public function setPostNumber($arg) {
@@ -392,7 +392,7 @@ class User extends SqlObject {
 
     /**
      * Set this users street address.
-     * 
+     *
      * @param string $arg
      */
     public function setStreetAddress($arg) {
@@ -401,7 +401,7 @@ class User extends SqlObject {
 
     /**
      * Set the gender of this user. Male, Female or Other
-     * 
+     *
      * @param string $arg
      */
     public function setGender($arg) {
@@ -410,7 +410,7 @@ class User extends SqlObject {
 
     /**
      * Set the mobile phone number of this user.
-     * 
+     *
      * @param string $arg
      */
     public function setCellPhone($arg) {
@@ -419,7 +419,7 @@ class User extends SqlObject {
 
     /**
      * Set the birthday year of this user.
-     * 
+     *
      * @param int $arg
      */
     public function setBirthYear($arg) {
@@ -428,7 +428,7 @@ class User extends SqlObject {
 
     /**
      * Set the birthday month of this user.
-     * 
+     *
      * @param int $arg
      */
     public function setBirthMonth($arg) {
@@ -437,7 +437,7 @@ class User extends SqlObject {
 
     /**
      * Set the birthday day of this user.
-     * 
+     *
      * @param int $arg
      */
     public function setBirthDay($arg) {
@@ -446,7 +446,7 @@ class User extends SqlObject {
 
     /**
      * Sets new email verification code.
-     * 
+     *
      * @param boolean $arg
      */
     public function setEmailConfirmed($arg) {
@@ -455,7 +455,7 @@ class User extends SqlObject {
 
     /**
      * Sets new email verification code.
-     * 
+     *
      * @param string $arg
      */
     public function setEmailVerifyCode($arg) {

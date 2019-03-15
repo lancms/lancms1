@@ -2,7 +2,7 @@
 
 /**
  * Represents a ticket type in the CMS. Contains the price and type of ticket.
- * 
+ *
  * @author edvin
  */
 class TicketType extends SqlObject {
@@ -12,7 +12,7 @@ class TicketType extends SqlObject {
     const TICKET_TYPE_PREPAID        = 'prepaid';
     const TICKET_TYPE_PREORDER       = 'preorder';
     const TICKET_TYPE_RESELLER       = 'reseller';
-    
+
     function __construct($id) {
         parent::__construct("ticketTypes", "ticketTypeID", $id);
     }
@@ -92,7 +92,7 @@ class TicketType extends SqlObject {
 
     /**
      * Provides the price of this ticket type.
-     * 
+     *
      * @return int
      */
     public function getPrice() {
@@ -101,7 +101,7 @@ class TicketType extends SqlObject {
 
     /**
      * Set new price for ticket type.
-     * 
+     *
      * @param int $newPrice
      */
     public function setPrice($newPrice) {
@@ -110,7 +110,7 @@ class TicketType extends SqlObject {
 
     /**
      * Indicates if this ticket type is active/enabled.
-     * 
+     *
      * @return boolean
      */
     public function isEnabled() {
@@ -119,7 +119,7 @@ class TicketType extends SqlObject {
 
     /**
      * Provides the max available tickets.
-     * 
+     *
      * @return int
      */
     public function getMaxTickets() {
@@ -182,5 +182,5 @@ class TicketType extends SqlObject {
 
         return $restAmount;
     }
-    
+
 }

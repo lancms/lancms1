@@ -50,7 +50,7 @@ if(!isset($action)) {
 #				$rCheckMailSetting = db_fetch($qCheckMailSetting);
 #				if($rCheckMailSetting->value == 'on') $content .= "<br />".lang("Contact this user: ", "seating").$rFindUser->EMail;
 #			} // End if sessioninfo->userID != 1
-		} // End db_num > 0	
+		} // End db_num > 0
 	} // End !empty
 
 	$content .= "<br /><br />";
@@ -69,7 +69,6 @@ elseif($_GET['action'] == "takeseat") {
     $newlog['seatX'] = $seatX;
     $newlog['seatY'] = $seatY;
     $newlog['password'] = $password;
-
 
     if(seating_rights($seatX, $seatY, $ticketID, $eventID, $password)) {
         // We have rights to seat that ticket. Update DB
