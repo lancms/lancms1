@@ -193,21 +193,9 @@ switch ($action) {
             }
 
             // Paid button
-            $renderPaidBtn = true;
-            $paidHandle = "markpaid";
-            $paidHandleButton = _("Mark paid");
-            if ($ticket->isPaid()) {
-                if (!$ticket->hasArrived()) {
-                    $paidHandle = "markarrived";
-                    $paidHandleButton = _("Mark arrived");
-                } else {
-                    $renderPaidBtn = false;
-                }
-            }
-
-            if ($renderPaidBtn) {
-                $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=ticketdetail&amp;ticket=" . $ticketID . "&amp;handle=$paidHandle\">";
-                $content .= "<input type=\"submit\" name=\"setaspaid\" class=\"btn-grey\" value=\"$paidHandleButton\" />";
+            if (!$ticket->isPaid()) {
+                $content .= "<form method=\"post\" action=\"index.php?module=$thisModule&amp;action=ticketdetail&amp;ticket=" . $ticketID . "&amp;handle=markpaid\">";
+                $content .= "<input type=\"submit\" name=\"setaspaid\" class=\"btn-grey\" value=\"" . _("Mark paid") . "\" />";
                 $content .= "</form>";
             }
 
@@ -239,6 +227,8 @@ switch ($action) {
 
             $isBirthdayValid = false;
             $isAddressValid = false;
+            $birthday = null;
+            $canMarkArrived = true;
 
             $street = trim($user->getStreetAddress());
             $postNumber = trim($user->getPostNumber());
@@ -276,17 +266,53 @@ switch ($action) {
                     $content .= '<strong>' . mb_strtolower(_('Address')) . '</strong>';
                 }
 
+                $canMarkArrived = false;
+
                 $content .= ' on the user of this ticket. </div>';
                 $content .= '<div>Please correct this info by clicking the name of the user of this ticket.</div>';
                 $content .= '</div>';
             }
 
+            $today = new DateTimeImmutable();
+            $legalAge = $today->sub(new DateInterval('P18Y'));
+            if ($isBirthdayValid
+                && $birthday instanceof DateTimeImmutable
+                && $birthday > $legalAge
+                && (trim($user->getGuardianName()) === ''
+                || trim($user->getGuardianCellPhone()) === '')) {
+                $content .= '<div class="alert alert-danger">';
+                $content .= _('This person is not of age (18+) and has no guardian contact entered. This must be filled in before allowing arrival.');
+                $content .= '</div>';
+                $canMarkArrived = false;
+            }
+
             $content .= '<style type="text/css">.info-row td{background-color: #d9edf7;} .invalid-row td{background-color:#f2dede;}</style>';
 
-            $content .= '<div class="alert alert-info">
-                <div>Verify the address and birthday of this user before giving access to the event.</div>
-                <div>After the user information is verified, ensure to mark this ticket as used.</div>
-            </div>';
+            if ($request->query->getBoolean('markedarrived')) {
+                $content .= '<div class="alert alert-success">' . _('This ticket is now marked as arrived, ribbons can now be issued') . '</div>';
+            }
+
+            if ($ticket->getStatus() !== Ticket::TICKET_STATUS_ARRIVED) {
+                $content .= '<div class="alert alert-info">
+                    <div>Verify the address and birthday of this user before giving access to the event.</div>
+                    <div>After the user information is verified, ensure to mark this ticket as used.</div>
+                </div>';
+
+                if ($canMarkArrived && $request->query->getBoolean('markarrived')) {
+                    $ticket->setIsArrived();
+                    $ticket->commitChanges();
+                    log_add('arrival', 'mark_arrived');
+                    header('Location: index.php?module=' . $thisModule . '&action=ticketdetail&ticket=' . $ticketID . '&markedarrived=true');
+                    die();
+                }
+
+                $content .= '<div style="width:100%; margin:1rem 0; text-align: center">
+                    <form action="index.php?module=' . $thisModule . '&amp;action=ticketdetail&amp;markarrived=true&amp;ticket=' . $ticketID . '" method="post">
+                        <button type="submit" ' . (!$canMarkArrived ? 'disabled' : '') . ' class="btn btn-lg" style="padding:1.2rem; font-size:120%;">Mark as arrived</button>
+                    </form>
+                </div>';
+            }
+
             $content .= "<div class=\"ticket-status\"><table class=\"table\">";
             $content .= "<tr><td><strong>" . _("ID") . "</strong></td><td>" . $ticket->getMd5ID() . "</td></tr>";
 
@@ -539,7 +565,7 @@ switch ($action) {
                                 }
 
                                 $content .= "<div class=\"ticket-label$extraCss\">";
-                                $content .= "<a href=\"index.php?module=arrival&amp;action=ticketdetail&amp;ticket=" . $value->getMd5ID() . "\">" . $value->getTicketType()->getName() . "</a>";
+                                $content .= "<a href=\"index.php?module=arrival&amp;action=ticketdetail&amp;ticket=" . $value->getMd5ID() . "\">" . $value->getTicketType()->getName() . ' (' . ($value->getStatus() !== Ticket::TICKET_STATUS_ARRIVED ? 'Not arrived' : 'Arrived') . ')' . "</a>";
                                 $content .= "</div>";
                             }
                             $content .= "</div>";

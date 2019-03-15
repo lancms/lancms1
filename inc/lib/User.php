@@ -268,6 +268,16 @@ class User extends SqlObject {
         return is_user_crew($this->getUserID(), $eventId);
     }
 
+    public function getGuardianName(): string
+    {
+        return (string) ($this->_info['relative_name'] ?? '');
+    }
+
+    public function getGuardianCellPhone(): string
+    {
+        return (string) ($this->_info['relative_cellphone'] ?? '');
+    }
+
     /**
      * Provides the tickets of this user in an array of Ticket objects.
      * 
