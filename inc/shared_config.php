@@ -14,7 +14,7 @@ $seattype['n'] = _('Not opened yet');
 $seattype['r'] = _('Right-protected seat');
 
 
-$maxTicketsPrUser = 5;
+$maxTicketsPrUser = 1;
 
 
 ## eventconfigs
