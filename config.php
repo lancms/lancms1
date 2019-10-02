@@ -35,6 +35,7 @@ $facebook_login = FALSE;
 $stripePaymentConfig = array(
     "secretKey" => "",
     "privateKey" => "",
+    "webhookSecret" => "",
     "imageLogo" => "",
     "companyName" => ""
 );
@@ -50,7 +51,7 @@ $design_footer['logo'] = 'http://default.globeorg.no/go.png';
 $design_footer['width'] = 69;
 $design_footer['height'] = 90;
 $design_footer['url'] = 'http://default.globeorg.no/';
-	
+
 
 # cron type
 $cron_type = 'include'; // Can be include or cron

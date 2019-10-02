@@ -259,6 +259,7 @@ TABLE [prefix]_tickets
 	status,		enum('notpaid','notused','used','deleted','arrived'), , ,	notused,
 	paid,		enum('yes','no'),	,	,	no
 	paidTime,	int(11),	,	,	0,
+	orderReference,	varchar(230),	,	,	,
 }
 
 TABLE [prefix]_ticketLogs

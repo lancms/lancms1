@@ -155,6 +155,11 @@ class Ticket extends SqlObject {
         return $this->_getField("paidTime", 0, 2);
     }
 
+    public function setPaidTime(\DateTimeInterface $time): void
+    {
+        $this->_setField("paidTime", $time->getTimestamp());
+    }
+
     /**
      * Provides the seat object for this ticket if any.
      *
@@ -322,6 +327,11 @@ class Ticket extends SqlObject {
         }
 
         return true;
+    }
+
+    public function setOrderReference(string $orderReference): void
+    {
+        $this->_setField('orderReference', $orderReference);
     }
 
 }

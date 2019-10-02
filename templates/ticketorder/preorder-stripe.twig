@@ -1,0 +1,19 @@
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+var stripe = Stripe('{{ stripePaymentConfigPrivateKey }}');
+stripe.redirectToCheckout({
+    // Make the id field from the Checkout Session creation API response
+    // available to this file, so you can provide it as parameter here
+    // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
+    sessionId: '{{ checkoutSessionId }}'
+}).then(function (result) {
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `result.error.message`.
+});
+</script>
+<div class="disclaimer">
+    Angrerettsloven gjelder ikke ved kjøp via GlobeLAN PartySys. Lovens kapittel fem paragraf 19 omhandler begrensninger i loven:
+    <em>«Ved annet fjernsalg gjelder angreretten ikke for enkeltstående tjenester dersom selgeren ved avtaleinngåelsen forplikter seg til å levere tjenesten på et bestemt tidspunkt eller inennfor et bestemt tidsrom»</em>
+    Enkeltstående tjenester har blitt tolket av myndighetene til å gjelde for eksempel underholdningsarrangement som teater, kino, konsert og datatreff.
+</div>

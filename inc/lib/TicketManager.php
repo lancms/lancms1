@@ -26,7 +26,7 @@ class TicketManager {
 
     /**
      * Provides an ticket by ID.
-     * 
+     *
      * @see getTickets()
      * @param int $ticketID
      * @param int $eventID If null then active event is used.
@@ -39,7 +39,7 @@ class TicketManager {
 
     /**
      * Provides an array of tickets by ID in the array provided.
-     * 
+     *
      * @param array $ticketIDs Array of IDs.
      * @param int $eventID If null then active event is used.
      * @return Ticket[]
@@ -73,7 +73,7 @@ class TicketManager {
 
     /**
      * Provides an array of tickets by md5 ID in the array provided.
-     * 
+     *
      * @param array $ticketMD5s Array of md5.
      * @param int $eventID If null then active event is used.
      * @return Ticket[]
@@ -106,6 +106,41 @@ class TicketManager {
     }
 
     /**
+     * Provides an array of tickets by order reference.
+     *
+     * @param string $orderReference the order reference
+     * @param int $eventID If null then active event is used.
+     * @return Ticket[]
+     */
+    public function getTicketsByOrderReference($orderReference, $eventID=null) {
+        global $sessioninfo, $sql_prefix;
+
+        if (empty($orderReference))
+            return array();
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND `orderReference` = '%s'",
+            $sql_prefix, $eventID, db_escape($orderReference)));
+        $num = db_num($result);
+
+        $tickets = array();
+        if ($num > 0) {
+            $i = 0;
+            while ($row = db_fetch_assoc($result)) {
+                $tickets[$i] = new Ticket($row['ticketID']);
+                $tickets[$i]->fillInfo($row);
+
+                $i++;
+            }
+        }
+
+        return $tickets;
+    }
+
+    /**
      * Shorthand for fetching a single ticket by md5 ID.
      *
      * @see getTicketsByMD5()
@@ -120,7 +155,7 @@ class TicketManager {
 
     /**
      * Provides an array of tickets on a user. Will search fields "user" and "owner"
-     * 
+     *
      * @param int $userID
      * @param int $eventID If null then active event is used.
      * @return Ticket[]
@@ -151,7 +186,7 @@ class TicketManager {
 
     /**
      * Provides the ticket type by ID.
-     * 
+     *
      * @param int $ticketTypeID
      * @param int $eventID If null then active event is used.
      * @return TicketType
@@ -177,7 +212,7 @@ class TicketManager {
         if ($num > 0) {
             $row = db_fetch_assoc($result);
             $ticketType = new TicketType($row['ticketTypeID']);
-            $ticketType->fillInfo($row); 
+            $ticketType->fillInfo($row);
 
             // Store to runtime cache
             $this->_ticketTypes[$row['ticketTypeID']] = $ticketType;
@@ -188,7 +223,7 @@ class TicketManager {
 
     /**
      * Provides the ticket types
-     * 
+     *
      * @param array|null $ids Filter by IDs.
      * @param int $eventID If null then active event is used.
      * @return TicketType
@@ -199,9 +234,9 @@ class TicketManager {
         if ($eventID == null) {
             $eventID = $sessioninfo->eventID;
         }
-        
+
         $query = sprintf('SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d', $sql_prefix, $eventID);
-        
+
         if ((is_array($ids)) && (count($ids) > 0)) {
             $query .= sprintf(' AND ticketTypeID IN (%s)', db_escape(implode(',', $ids)));
         }
@@ -250,5 +285,5 @@ VALUES (%d, %d, %d, '%s', %d, %d, '%s', '%s', %d, '%s');", db_prefix() . "_ticke
 
         db_query($query);
     }
-    
+
 }

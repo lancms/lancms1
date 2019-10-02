@@ -169,13 +169,41 @@ switch ($action) {
         if ($ticketID < 1) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
-            $ticket = TicketManager::getInstance()->getTicket($ticketID);
+            $ticketManager = TicketManager::getInstance();
+            $ticket = $ticketManager->getTicket($ticketID);
             if ($ticket->isPaid()) {
                 header("Location: index.php?module=usertickets");
                 die();
             }
 
-            include __DIR__ . "/payticket.php";
+            $ticketType = $ticket->getTicketType();
+            $user = $ticket->getUser();
+
+            $schemeAndHost = $request->getSchemeAndHttpHost();
+
+            \Stripe\Stripe::setApiKey($stripePaymentConfig["secretKey"]);
+        	$session = \Stripe\Checkout\Session::create([
+        		'payment_method_types' => ['card'],
+        		'line_items' => [[
+        			'name' => $ticketType->getName(),
+        			'description' => $ticketType->getDescription(),
+        			'amount' => $ticketType->getPrice() . "00",
+        			'currency' => 'nok',
+        			'quantity' => 1,
+        		]],
+        		'client_reference_id' => base64_encode($user->getUserID() . '|' . $ticketType->getTicketTypeID() . '|' . $amount),
+        		'success_url' => $schemeAndHost . '/?module=ticketorder&action=handleStripeSuccess&ttID=' . $ticketType->getTicketTypeID() . '&session_id={CHECKOUT_SESSION_ID}',
+        		'cancel_url' => $schemeAndHost . '/?module=ticketorder&action=cancel',
+        	]);
+
+            $ticket->setOrderReference($session->id);
+            $ticket->commitChanges();
+
+            $content .= $twigEnvironment->render('ticketorder/preorder-stripe.twig', [
+        		'ticketType' => $ticketType,
+        		'checkoutSessionId' => $session->id,
+        		'stripePaymentConfigPrivateKey' => $stripePaymentConfig['privateKey'],
+        	]);
         }
         break;
 

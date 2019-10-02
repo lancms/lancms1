@@ -82,6 +82,50 @@ switch ($action) {
 
         break;
 
+    case "handleStripeSuccess":
+        if ($userID < 1) {
+            header("Location: ?module=ticketorder");
+            die();
+        }
+        $orderInfo = array("status" => "failed", "dateTime" => time(), "userID" => $sessioninfo->userID);
+
+        $ttID = $requestGet->get('ttID');
+
+        $amount = $_SESSION["orderInfo" . $sessioninfo->userID]['amount'] ?? 1;
+        $ticketType = $ticketManager->getTicketTypeByID($ttID);
+        $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
+        $availableTickets = $ticketType->getNumAvailable();
+        $ticketIDs = array();
+
+        if (($ticketType instanceof TicketType) === false) {
+            header("Location: index.php?module=ticketorder&msg=9");
+            die();
+        }
+
+        $orderInfo["ticketType"] = $ticketType->getTicketTypeID();
+        $orderInfo["ticketTypeType"] = $ticketType->getType();
+        $orderInfo["start_time"] = time();
+        $price = floor($ticketType->getPrice() * $amount);
+
+        $orderInfo["price"] = $price;
+        $orderInfo["amount"] = $amount;
+
+        $checkoutSessionId = $requestGet->get('session_id');
+        $tickets = $ticketManager->getTicketsByOrderReference($checkoutSessionId);
+        if (count($tickets) > 0) {
+            $orderInfo["status"] = 'paid';
+        }
+        $orderInfo["ticketMD5"] = array_map(function(Ticket $ticket): string {
+            return $ticket->getMd5ID();
+        }, $tickets);
+
+        $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
+            $_SESSION["orderInfo" . $sessioninfo->userID] ?? [], $orderInfo);
+
+        header("Location: index.php?module=ticketorder&action=receipt");
+
+        die();
+
     //==================================================================================
     // Handle order
     case "handleOrderTicket":
@@ -129,6 +173,8 @@ switch ($action) {
         $orderInfo["price"] = $price;
         $orderInfo["amount"] = $amount;
 
+        $logPurchase = true;
+
         switch ($ticketType->getType()) {
             case "onsite-visitor":
                 // Handle onsite visitor, just return.
@@ -148,51 +194,13 @@ switch ($action) {
                 $orderInfo["paymentMethod"] = $paymentMethod;
 
                 if ($paymentMethod == "stripe") {
-                    // We get from stripe:
-                    $stripeToken = $_POST["stripeToken"];
-                    $stripeTokenType = $_POST["stripeTokenType"];
-                    $stripeEmail = $_POST["stripeEmail"];
-
-                    $stripePrice = $price . "00";
-
-                    // Set your secret key: remember to change this to your live secret key in production
-                    // See your keys here https://dashboard.stripe.com/account/apikeys
-                    \Stripe\Stripe::setApiKey($stripePaymentConfig["secretKey"]);
-
-                    // Create the charge on Stripe's servers - this will charge the user's card
-                    try {
-                        $charge = \Stripe\Charge::create(
-                            array(
-                                "amount" => $stripePrice, // amount in cents, again
-                                "currency" => "nok",
-                                "source" => $stripeToken,
-                                "receipt_email" => $stripeEmail,
-                                "description" => "Charge: " . $ticketType->getName()
-                            )
-                        );
-
-                        $orderInfo["stripeRef"] = $charge->id;
-                        $orderInfo["stripeTime"] = $charge->created;
-                        $orderInfo["status"] = "paid";
-
-                        if ($charge->paid == true) {
-                            // Set tickets as paid.
-                            $tickets = $ticketManager->getTicketsByMD5($orderInfo["ticketMD5"]);
-                            if (is_array($tickets) && count($tickets) > 0) {
-                                foreach ($tickets as $ticket) {
-                                    $ticket->setPaid();
-                                    $ticketIDs[] = $ticket->getTicketID();
-                                }
-                            }
-                            unset($tickets);
-                        } else {
-                            // TODO: Handle no tickets to set as paid!
-                        }
-                    } catch(\Stripe\Error\Card $e) {
-                        // no-op
-                    } catch(\Stripe\Error\InvalidRequest $e) {
-                        // no-op
+                    $logPurchase = false; // logging done in webhook!
+                    $checkoutSessionId = $requestGet->get('session_id');
+                    $tickets = $ticketManager->getTicketsByOrderReference($checkoutSessionId);
+                    if (count($tickets) > 0) {
+                        $orderInfo["status"] = 'paid';
                     }
+                    $orderInfo[] = '';
                 } else if ($ticketOrderAllowPreorderPayOnArrival) {
                     // Just go!
                     $orderInfo["status"] = "notused";
@@ -211,34 +219,36 @@ switch ($action) {
                 break;
         }
 
-        // Log this
-        TicketManager::getInstance()->logTicketPurchase(
-            $userID,
-            $eventID,
-            (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
-            time(),
-            (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
-            (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
-            $orderInfo["status"],
-            $ticketType,
-            $price,
-            $amount
-        );
+        if ($logPurchase) {
+            // Log this
+            TicketManager::getInstance()->logTicketPurchase(
+                $userID,
+                $eventID,
+                (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
+                time(),
+                (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
+                (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
+                $orderInfo["status"],
+                $ticketType,
+                $price,
+                $amount
+            );
 
-        $glLog = array(
-            "userID" => $userID,
-            "eventID" => $eventID,
-            "ticketIDs" => (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
-            "time" => time(),
-            "stripeTime" => (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
-            "stripeRef" => (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
-            "status" => $orderInfo["status"],
-            "ticketType" => $ticketType,
-            "price" => $price,
-            "amount" => $amount
-        );
+            $glLog = array(
+                "userID" => $userID,
+                "eventID" => $eventID,
+                "ticketIDs" => (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
+                "time" => time(),
+                "stripeTime" => (isset($orderInfo["stripeTime"]) ? $orderInfo["stripeTime"] : 0),
+                "stripeRef" => (isset($orderInfo["stripeRef"]) ? $orderInfo["stripeRef"] : ""),
+                "status" => $orderInfo["status"],
+                "ticketType" => $ticketType,
+                "price" => $price,
+                "amount" => $amount
+            );
 
-        log_add("ticketorder", "handleticketpurchase", serialize($glLog));
+            log_add("ticketorder", "handleticketpurchase", serialize($glLog));
+        }
 
         $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
             $_SESSION["orderInfo" . $sessioninfo->userID], $orderInfo);

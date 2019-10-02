@@ -16,15 +16,15 @@ $content = "";
 require_once __DIR__ . '/../include.php';
 
 // Create the twig instance.
-$twigEnvironment = new Twig_Environment(
-    new Twig_Loader_Filesystem(realpath(__DIR__.'/../templates/')),
+$twigEnvironment = new \Twig\Environment(
+    new \Twig\Loader\FilesystemLoader(realpath(__DIR__.'/../templates/')),
     array(
-        'cache' => '/tmp/lancms_twig_cache/',
-        // 'debug' => true,
+        // 'cache' => '/tmp/lancms_twig_cache/',
+        'debug' => true,
     )
 );
-$twigEnvironment->addExtension(new Twig_Extension_Debug());
-$twigEnvironment->addFunction(new Twig_SimpleFunction('trans', function ($string) {
+$twigEnvironment->addExtension(new \Twig\Extension\DebugExtension());
+$twigEnvironment->addFunction(new \Twig\TwigFunction('trans', function ($string) {
     return _($string);
 }));
 
