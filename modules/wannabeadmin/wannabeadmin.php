@@ -395,7 +395,7 @@ switch ($action) {
             $commentsByCrewID = array();
             if (count($comments) > 0) {
                 foreach ($comments as $comment) {
-                    if ($comment->getCrewID() == $crewID && $comment->getAdminUserID() == $onlineUserID) {
+                    if ($comment->getCrewID() == $crewID && $comment->getCommentType() == \Wannabe\AdminComment::COMMENT_TYPE_ADMINPREF && $comment->getAdminUserID() == $onlineUserID) {
                         // Update the comment
                         $createComment = false;
                         $comment->setApproval($preference);
