@@ -20,6 +20,10 @@ if (isset($_POST['select'], $_POST['pay_method_bla'])) {
                 'cancel_url' => $schemeAndHost . '/?module=ticketorder&action=cancel',
             ]);
 
+            if (empty($session->id)) {
+                throw new RuntimeException('Missing session ID from stripe.');
+            }
+
         	// create pending tickets for this intent.
         	$newTicketMd5s = $user->validateAddTicketType($ticketType, $amount);
         	$newTickets = $ticketManager->getTicketsByMD5($newTicketMd5s);
