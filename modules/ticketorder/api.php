@@ -38,13 +38,21 @@ try {
 
 // Handle the checkout.session.completed event
 if ($event->type === 'checkout.session.completed') {
-    $stripeCreatedTimestamp = $event->data->created;
+    $stripeCreatedTimestamp = $event->created;
     $session = $event->data->object;
     $now = new DateTimeImmutable();
 
     $ticketTypes = [];
     $userIDs = [];
     $ticketIDs = [];
+
+    $externalReferenceSql = 'SELECT l.ticketType FROM ' . db_prefix() . '_ticketLogs AS l WHERE l.externalRef = \'%s\' AND l.eventID = %d LIMIT 1';
+
+    $isTicketLogged = function ($externalRef) use ($eventID, $externalReferenceSql): bool {
+        $query = db_query(sprintf($externalReferenceSql, db_escape($externalRef), $eventID));
+
+        return db_num($query) > 0;
+    };
 
     $tickets = $ticketManager->getTicketsByOrderReference($session->id);
     if (count($tickets) > 0) {
@@ -55,57 +63,48 @@ if ($event->type === 'checkout.session.completed') {
                 $ticket->setPaidTime($now);
                 $ticket->commitChanges();
 
-                $ticketIDs[] = $ticket->getTicketID();
-                $userIDs[] = $ticket->getUserID();
                 $ticketType = $ticket->getTicketType();
                 $ticketTypes[$ticketType->getTicketTypeID()] = $ticketType;
             }
+
+            // some tickets have not been logged.
+            if (!$isTicketLogged($ticket->getOrderReference())) {
+                $amount = 1;
+                $price = floor($ticketType->getPrice() * $amount);
+
+                // Log this
+                TicketManager::getInstance()->logTicketPurchase(
+                    $userID,
+                    $eventID,
+                    $ticket->getTicketID(),
+                    $now->getTimestamp(),
+                    $stripeCreatedTimestamp,
+                    $ticket->getOrderReference(),
+                    Ticket::TICKET_STATUS_PAID,
+                    $ticketType,
+                    $price,
+                    $amount,
+                    $session->payment_intent
+                );
+
+                $glLog = array(
+                    "userID" => $userID,
+                    "eventID" => $eventID,
+                    "ticketIDs" => (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
+                    "time" => $now->getTimestamp(),
+                    "stripeTime" => $stripeCreatedTimestamp,
+                    "stripeRef" => $ticket->getOrderReference(),
+                    "stripePaymentIntent" => $session->payment_intent ?? '',
+                    "status" => Ticket::TICKET_STATUS_PAID,
+                    "ticketType" => $ticketType,
+                    "price" => $price,
+                    "amount" => $amount
+                );
+
+                log_add("ticketorder", "handleticketpurchase", serialize($glLog));
+            }
         }
     }
-
-    $userIDs = array_unique($userIDs, SORT_NUMERIC);
-
-    if (count($ticketTypes) !== 1 || count($userIDs) !== 1) {
-        http_response_code(401);
-        exit(0);
-    }
-
-    $userID = reset($userIDs);
-
-    /** @var TicketType $ticketType */
-    $ticketType = reset($ticketTypes);
-
-    $amount = count($tickets);
-    $price = floor($ticketType->getPrice() * $amount);
-
-    // Log this
-    TicketManager::getInstance()->logTicketPurchase(
-        $userID,
-        $eventID,
-        (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
-        $now->getTimestamp(),
-        $stripeCreatedTimestamp,
-        $session->id,
-        Ticket::TICKET_STATUS_PAID,
-        $ticketType,
-        $price,
-        $amount
-    );
-
-    $glLog = array(
-        "userID" => $userID,
-        "eventID" => $eventID,
-        "ticketIDs" => (count($ticketIDs) > 0 ? implode(", ", $ticketIDs) : ""),
-        "time" => $now->getTimestamp(),
-        "stripeTime" => $stripeCreatedTimestamp,
-        "stripeRef" => $session->id,
-        "status" => Ticket::TICKET_STATUS_PAID,
-        "ticketType" => $ticketType,
-        "price" => $price,
-        "amount" => $amount
-    );
-
-    log_add("ticketorder", "handleticketpurchase", serialize($glLog));
 }
 
 http_response_code(200);

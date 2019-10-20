@@ -272,6 +272,7 @@ TABLE [prefix]_ticketLogs
 	timestamp,		int(11),		,	,	,
 	externalTime,		int(11),	,	,	,
 	externalRef,		varchar(230),	,	,
+	externalRef2,		varchar(230),	,	,
 	price,		varchar(100),		,	,	,
 	amount,		varchar(100), 	, 	,	,
 	status,		varchar(230),	,	,	,

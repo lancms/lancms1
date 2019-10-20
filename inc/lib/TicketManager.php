@@ -265,7 +265,7 @@ class TicketManager {
      * @param int $price
      * @param int $amount Default 1
      */
-    public function logTicketPurchase($userID, $eventID, $ticketID, $timestamp, $externalTime, $externalRef, $status, TicketType $ticketType, $price, $amount=1) {
+    public function logTicketPurchase($userID, $eventID, $ticketID, $timestamp, $externalTime, $externalRef, $status, TicketType $ticketType, $price, $amount=1, $externalRef2 = '') {
         // Integers
         $userID = intval($userID);
         $eventID = intval($eventID);
@@ -279,9 +279,9 @@ class TicketManager {
         $price = db_escape($price);
         $ticketID = db_escape($ticketID);
 
-        $query = sprintf("INSERT INTO `%s` (`ticketType`, `eventID`, `userID`, `ticketID`, `timestamp`, `externalTime`, `externalRef`, `price`, `amount`, `status`)
+        $query = sprintf("INSERT INTO `%s` (`ticketType`, `eventID`, `userID`, `ticketID`, `timestamp`, `externalTime`, `externalRef`, `externalRef2`, `price`, `amount`, `status`)
 VALUES (%d, %d, %d, '%s', %d, %d, '%s', '%s', %d, '%s');", db_prefix() . "_ticketLogs", $ticketType->getTicketTypeID(), $eventID, $userID, $ticketID,
-            $timestamp, $externalTime, $externalRef, $price, $amount, $status);
+            $timestamp, $externalTime, $externalRef, $price, $amount, $status, db_escape($externalRef2));
 
         db_query($query);
     }

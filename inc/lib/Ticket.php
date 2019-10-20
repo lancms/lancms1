@@ -334,4 +334,9 @@ class Ticket extends SqlObject {
         $this->_setField('orderReference', $orderReference);
     }
 
+    public function getOrderReference(): string
+    {
+        return $this->_getField('orderReference');
+    }
+
 }
