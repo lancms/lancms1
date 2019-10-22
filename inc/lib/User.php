@@ -42,6 +42,10 @@ class User extends SqlObject {
         return $this->_getField('EMail');
     }
 
+    public function getPassword(): string {
+        return $this->_getField('password');
+    }
+
     /**
      * Provides this users first name. Use getFullName() to get both first and last name in one string.
      *

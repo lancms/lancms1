@@ -56,7 +56,7 @@ $design_footer['url'] = 'http://default.globeorg.no/';
 # cron type
 $cron_type = 'include'; // Can be include or cron
 
-
+$apiAuthenticationApps = [];
 
 ## don't touch, includes override config if it exists
 if(file_exists(__DIR__ . "/OverrideConfig.php")) {
