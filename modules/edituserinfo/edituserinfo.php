@@ -55,7 +55,9 @@ elseif ($action == 'savepassword')
 }
 
 elseif($action == "editUserinfo" && isset($_GET['user'])) {
-	// Edit userinfo
+    $arrivalRef = $_GET['arrivalref'] ?? null;
+
+    // Edit userinfo
 	$user = $_GET['user'];
 	$userAdmin_acl = acl_access("userAdmin", "", 1);
 	if($user == $sessioninfo->userID);
@@ -106,12 +108,19 @@ elseif($action == "editUserinfo" && isset($_GET['user'])) {
 			$content .= $rGetUserinfo[$name];
 		if($userprefs[$i]['group_pref'] != 1 || $userprefs[$i]['group_pref_end'] == 1) $content .= "</td></tr>\n\n\n";
 	} // End for
-	$content .= "<tr><td><input type=submit class='btn' value='".lang("Save", "edituserinfo")."'></td></tr>\n\n";
+	$content .= "<tr><td><input type=submit class='btn' value='".lang("Save", "edituserinfo")."'>";
+	if (is_array($arrivalRef)) {
+        $content .= "<input type='hidden' name='arrivalref[ticket]' value='" . $arrivalRef['ticket'] . "' /><br />";
+        $content .= "<button type='submit' name='save' value='true_arrival' class='btn'>".lang("Save and back to arrival", "edituserinfo")."</button>";
+    }
+	$content .= "</td></tr>\n\n";
 	$content .= "</form></table>\n\n";
 
 } // End action == editUserinfo
 
 elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
+    $arrivalRef = $_POST['arrivalref'] ?? null;
+
 	$user = $_GET['user'];
 	$userAdmin_acl = acl_access("userAdmin", "", 1);
 	if($user == $sessioninfo->userID);
@@ -176,7 +185,11 @@ elseif($action == "doEditUserinfo" && isset($_GET['user'])) {
 
 	log_add("edituser", "doEditUserinfo", serialize($lognew), serialize($logold));
 
-	header("Location: ?module=edituserinfo&action=editUserinfo&user=$user&edited=success");
+	if (is_array($arrivalRef) && isset($arrivalRef['ticket'])) {
+        header('Location: ?module=arrival&action=ticketdetail&ticket=' . $arrivalRef['ticket']);
+    } else {
+        header('Location: ?module=edituserinfo&action=editUserinfo&user=' . $user . '&edited=success');
+    }
 
 
 } // End elseif action == doEditUserinfo

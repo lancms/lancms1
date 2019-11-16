@@ -2,6 +2,8 @@
 
 $userid = $_GET['user'];
 
+$arrivalRef = $_GET['arrivalref'] ?? null;
+
 $useradminread = acl_access ("userAdmin", "", 1);
 
 $userR = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userid)."'");
@@ -59,6 +61,11 @@ $content .= "</table>\n";
 if ($useradminread != "No")
 {
 	$content .= "<br />\n";
-	$content .= sprintf ("<form method='POST' action='?module=edituserinfo&action=editUserinfo&user=%s'><input type='submit' value='%s' /></form>\n", $user->ID, _('Edit userinfo'));
+
+	$editUrl = '?module=edituserinfo&action=editUserinfo&user=' . $user->ID;
+	if (is_array($arrivalRef)) {
+        $editUrl .= '&' . http_build_query(['arrivalref' => $arrivalRef]);
+    }
+	$content .= sprintf ("<form method='POST' action='%s'><input type='submit' value='%s' /></form>\n", $editUrl, _('Edit userinfo'));
 }
 
