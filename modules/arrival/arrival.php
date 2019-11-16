@@ -476,9 +476,9 @@ switch ($action) {
     // Search users
     default:
 
-        $scopeSelected = 'search_all';
-        if ($requestGet->has("scope") && $requestGet->getAlpha("scope") == 'tickets') {
-            $scopeSelected = 'search_tickets';
+        $scopeSelected = 'search_tickets';
+        if ($requestGet->has("scope") && $requestGet->getAlpha("scope") == 'all') {
+            $scopeSelected = 'search_all';
         }
 
         $userQueryValue = "";
@@ -499,17 +499,17 @@ switch ($action) {
                     <input type="submit" class="btn" name="doSearch" value="' . _("Search") . '" />
                 </div>
                 <div class="form-group">
-                    <label for="search_all"><input type="radio" id="search_all" name="scope" value="all"' . ($scopeSelected == 'search_all' ? ' checked' : '') . ' /> ' . _("Search all users") . '</label>
+                    <label for="search_tickets"><input type="radio" id="search_tickets" name="scope" value="tickets"' . ($scopeSelected == 'search_tickets' ? ' checked' : '') . ' /> ' . _("Search users with tickets") . '</label>
                 </div>
                 <div class="form-group">
-                    <label for="search_tickets"><input type="radio" id="search_tickets" name="scope" value="tickets"' . ($scopeSelected == 'search_tickets' ? ' checked' : '') . ' /> ' . _("Search users with tickets") . '</label>
+                    <label for="search_all"><input type="radio" id="search_all" name="scope" value="all"' . ($scopeSelected == 'search_all' ? ' checked' : '') . ' /> ' . _("Search all users") . '</label>
                 </div>
             </form>
         </div>';
 
         // Check if from has been submitted.
         if ($requestGet->has("doSearch")) {
-            $scope = $requestGet->has("scope") ? $requestGet->get("scope") : 'all';
+            $scope = $requestGet->has("scope") ? $requestGet->get("scope") : 'tickets';
 
             $result = array();
             $resultCount = 0;
