@@ -15,7 +15,7 @@
     "immediate": "^3.2.3",
     "lodash.debounce": "^4.0.8",
     "mini-css-extract-plugin": "^0.5.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.13.1",
     "popper.js": "^1.12.5",
     "promise-polyfill": "^8.1.0",
     "sass-loader": "^7.1.0",
