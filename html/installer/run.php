@@ -47,7 +47,7 @@ if(!isset($_GET["demodata"]))
 	{
 		$line = trim($line);
 
-		if($line{0} == '#' || empty($line))
+		if($line[0] == '#' || empty($line))
 			continue;
 
 		if(!$pr_tbl)
@@ -63,9 +63,9 @@ if(!isset($_GET["demodata"]))
 		}
 		else
 		{
-			if($line{0} == '{')
+			if($line[0] == '{')
 				continue;
-			if($line{0} == '}')
+			if($line[0] == '}')
 			{
 				$pr_tbl = null;
 				continue;
