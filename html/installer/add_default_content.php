@@ -17,4 +17,4 @@ if(db_num(db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = 2")) == 0)
 if(db_num(db_query("SELECT * FROM ".$sql_prefix."_kiosk_waretypes WHERE ID = 1")) == 0)
 	db_query("INSERT INTO ".$sql_prefix."_kiosk_waretypes SET ID = 1, typeName = 'Other'");
 
-require_once ('postnumber/list/norwegian.php');
+#require_once ('postnumber/list/norwegian.php');
