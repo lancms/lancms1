@@ -12,7 +12,7 @@ if(db_num(db_query("SELECT * FROM ".$sql_prefix."_groups WHERE ID = 1")) == 0)
 
 # Add a global admin with password "admin"
 if(db_num(db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = 2")) == 0)
-	db_query("INSERT INTO ".$sql_prefix."_users SET ID = 2, globaladmin = 1, nick = 'globaladmin', password = '".md5("admin")."', EMailConfirmed = 1");
+	db_query("INSERT INTO ".$sql_prefix."_users SET ID = 2, globaladmin = 1, nick = 'globaladmin', password = '".password_hash("admin", PASSWORD_DEFAULT)."', EMailConfirmed = 1");
 
 if(db_num(db_query("SELECT * FROM ".$sql_prefix."_kiosk_waretypes WHERE ID = 1")) == 0)
 	db_query("INSERT INTO ".$sql_prefix."_kiosk_waretypes SET ID = 1, typeName = 'Other'");

@@ -78,7 +78,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
     $get_user = db_query("SELECT * FROM ".$sql_prefix."_users WHERE ID = ".db_escape($userID));
     $userinfo = db_fetch($get_user);
 
-    if(md5($password) == $userinfo->password && $userinfo->EMailConfirmed == 1)
+    if(password_verify($password,$userinfo->password) && $userinfo->EMailConfirmed == 1)
     {
         // Passwords match. Login the user
         db_query("UPDATE ".$sql_prefix."_session SET userID = '".db_escape($userID)."'
@@ -92,7 +92,7 @@ elseif($action == "login" && isset($_GET['userID']) && isset($_POST['password'])
         header("Location: index.php"); // Move to index.php, should give a new userinfo-box
     } // End if passwords match
 
-    elseif(md5($password) == $userinfo->password && $userinfo->EMailConfirmed != 1) {
+    elseif(password_verify($password,$userinfo->password) && $userinfo->EMailConfirmed != 1) {
         // Password is correct, but users mail isn't confirmed
         $content .= _("Your email hasn't been confirmed. Please go to the link sent in your email.");
         $content .= "<br /><br />";
@@ -228,7 +228,7 @@ elseif($action == "doNewPassword" && !empty($_GET['userID'])&& !empty($_GET['key
         else {
 
         db_query("UPDATE ".$sql_prefix."_users SET
-            password = '".md5($pwd1)."',
+            password = '".password_hash($pwd1, PASSWORD_DEFAULT)."',
             passwordResetCode = NULL
             WHERE ID = '".db_escape($userID)."'");
 

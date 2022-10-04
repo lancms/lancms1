@@ -174,7 +174,7 @@ class UserManager {
             'firstName' => $firstName,
             'lastName' => $lastName,
             'EMail' => $email,
-            'password' => md5($password),
+            'password' => password_hash($password, PASSWORD_DEFAULT),
             'registerIP' => getUserIP(),
             'registerTime' => time(),
             'EMailConfirmed' => 0
