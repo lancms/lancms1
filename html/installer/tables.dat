@@ -51,7 +51,7 @@ TABLE [prefix]_session
 {
 #	NAME		TYPE		KEY	NULL	DEFAULT			EXTRA
 	sID,		varchar(35),	PRI,	,	,
-	userIP,		varchar(15),	,	,	000.000.000.000,
+	userIP,		varchar(45),	,	,	000.000.000.000,
 	userID,		int(11),	,	,	1,
 	userAgent,	text,		,	,	,
 	eventID,	int(11),	,	,	1,
