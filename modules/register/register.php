@@ -230,7 +230,7 @@ switch ($action) {
         $userManager->resetFormInSession("register_errors");
 
         //===========================================================
-        if ($gender !== null) {
+        if ($gender !== null && $gender !== '-1') {
             $createdUser->setGender($gender);
         }
 
