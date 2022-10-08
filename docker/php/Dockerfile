@@ -1,4 +1,4 @@
-FROM php:7.1-fpm
+FROM php:7.4.24-fpm
 
 RUN apt-get update
 RUN apt-get install -y libmcrypt-dev \
