@@ -81,7 +81,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 	    else {
 		if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
-		else $content .= lang("Free", "seatmap");
+		else $content .= lang("Passord", "seatmap");
 	    }
 	    $content .= "</a>";
 	    $content .= "</td>";
@@ -93,7 +93,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    if(!empty($GetSeatedUser->nick)) $content .= $GetSeatedUser->nick;
 	    else {
 	    	if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
-		else $content .= lang("Free", "seatmap");
+		else $content .= lang("Crew", "seatmap");
 	    }
 	    $content .= "</a>";
 	    $content .= "</td>";
