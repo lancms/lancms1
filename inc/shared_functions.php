@@ -338,6 +338,8 @@ function display_nick ($userID) {
 	if(strpos($nick, '@') && strpos($nick, '.')) {
 		$nick = strstr($nick, '@', true);
 	}
+
+	return $nick;
 }
 
 function display_systemstatic($message, $eventID=1) {
