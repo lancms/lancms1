@@ -325,6 +325,21 @@ function display_username($userID) {
 	return $rCheckUserinfo->firstname." ".$rCheckUserinfo->lastname." (".$rCheckUserinfo->nick.")";
 } // End display_username($userID)
 
+
+// Display nick in listings
+function display_nick ($userID) {
+	global $sql_prefix;
+
+	$qCheckUserInfo = db_query("SELECT nick FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
+	$rCheckUserInfo = db_fetch($qCheckUserInfo);
+
+	$nick = $rCheckUserInfo = $rCheckUserInfo;
+
+	if(strpos($nick, '@') && strpos($nick, '.')) {
+		$nick = strstr($nick, '@', true);
+	}
+}
+
 function display_systemstatic($message, $eventID=1) {
 	global $sql_prefix;
 
