@@ -37,7 +37,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
     $seatY = $rGetSeats->seatY;
     $type = $rGetSeats->type;
 
-    $qGetSeatedUser = db_query("SELECT users.nick AS nick FROM (".$sql_prefix."_users users 
+    $qGetSeatedUser = db_query("SELECT users.nick AS nick,users.ID FROM (".$sql_prefix."_users users 
 		JOIN ".$sql_prefix."_tickets tickets ON tickets.user=users.ID) JOIN ".$sql_prefix."_seatReg_seatings seatings 
 		ON tickets.ticketID=seatings.ticketID 
 		WHERE seatings.eventID = '$sessioninfo->eventID'
