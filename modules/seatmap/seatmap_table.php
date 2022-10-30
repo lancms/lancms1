@@ -78,7 +78,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    // Type is password-protected
 	    $content .= "<td class=seatPassword>";
 	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
-	    if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);;
+	    if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);
 	    else {
 		if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
 		else $content .= lang("Reservert", "seatmap");
@@ -90,7 +90,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 	    // Type is group-protected
 	    $content .= "<td class=seatGroup>";
 	    $content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
-	    if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);;
+	    if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);
 	    else {
 	    	if(!empty($rGetSeats->name)) $content .= $rGetSeats->name;
 		else $content .= lang("Crew", "seatmap");
@@ -120,7 +120,7 @@ while($rGetSeats = db_fetch($qGetSeats)) {
 		// Type is right-protected
 		$content .= "<td class=seatGroup>";
 		$content .= "<a href=\"?module=seating&amp;ticketID=$ticketID&amp;seatX=$seatX&amp;seatY=$seatY$suffixSeatingUrl\">";
-		if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);;
+		if(!empty($GetSeatedUser->nick)) $content .= display_nick($GetSeatedUser->ID);
 		else $content .= _("Free");
 		$content .= "</a>";
 		$content .= "</td>";
