@@ -333,7 +333,7 @@ function display_nick ($userID) {
 	$qCheckUserInfo = db_query("SELECT nick FROM ".$sql_prefix."_users WHERE ID = '".db_escape($userID)."'");
 	$rCheckUserInfo = db_fetch($qCheckUserInfo);
 
-	$nick = $rCheckUserInfo = $rCheckUserInfo->nick;
+	$nick = $rCheckUserInfo->nick;
 
 	if(strpos($nick, '@') && strpos($nick, '.')) {
 		$nick = strstr($nick, '@', true);
