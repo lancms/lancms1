@@ -279,6 +279,9 @@ function seating_rights($seatX, $seatY, $ticketID, $eventID, $password = 0) {
         if (!$rTicketType->allowSeating) {
             return false;
         }
+		if($rTicketType->type == 'preorder' && $rTicketInfo->paid == 'no' ) {
+			return false;
+		}
 
         if($rTicketInfo->owner == $sessioninfo->userID || $rTicketInfo->user == $sessioninfo->userID) {
 			$type = $rSeatInfo->type;
