@@ -122,7 +122,7 @@ class TicketManager {
             $eventID = $sessioninfo->eventID;
         }
 
-        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `eventID` = %d AND `orderReference` = '%s'",
+        $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `orderReference` = '%s'",
             $sql_prefix, $eventID, db_escape($orderReference)));
         $num = db_num($result);
 
