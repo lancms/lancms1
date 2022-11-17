@@ -58,17 +58,17 @@ if ($event->type === 'checkout.session.completed') {
     if (count($tickets) > 0) {
         foreach ($tickets as $ticket) {
             /** @var Ticket $ticket */
-            if (!$ticket->isPaid()) {
+            //if (!$ticket->isPaid()) {
                 $ticket->setPaid();
                 $ticket->setPaidTime($now);
                 $ticket->commitChanges();
 
                 $ticketType = $ticket->getTicketType();
                 $ticketTypes[$ticketType->getTicketTypeID()] = $ticketType;
-            }
+            //}
 
             // some tickets have not been logged.
-           /*  if (!$isTicketLogged($ticket->getOrderReference())) {
+            if (!$isTicketLogged($ticket->getOrderReference())) {
                 $amount = 1;
                 $price = floor($ticketType->getPrice() * $amount);
 
@@ -86,7 +86,7 @@ if ($event->type === 'checkout.session.completed') {
                     $amount,
                     $session->payment_intent
                 );
-            } */
+            
 
                 $glLog = array(
                     "userID" => $userID,
@@ -96,14 +96,14 @@ if ($event->type === 'checkout.session.completed') {
                     "stripeTime" => $stripeCreatedTimestamp,
                     "stripeRef" => $ticket->getOrderReference(),
                     "stripePaymentIntent" => $session->payment_intent ?? '',
-                    "status" => 'paid',
+                    "status" => Ticket::TICKET_STATUS_PAID,
                     "ticketType" => $ticketType,
                     "price" => $price,
                     "amount" => $amount
                 );
 
                 log_add("ticketorder", "handleticketpurchase", serialize($glLog));
-            
+            }
         }
     }
 }
