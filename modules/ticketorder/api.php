@@ -68,7 +68,7 @@ if ($event->type === 'checkout.session.completed') {
             }
 
             // some tickets have not been logged.
-            if (!$isTicketLogged($ticket->getOrderReference())) {
+           /*  if (!$isTicketLogged($ticket->getOrderReference())) {
                 $amount = 1;
                 $price = floor($ticketType->getPrice() * $amount);
 
@@ -86,6 +86,7 @@ if ($event->type === 'checkout.session.completed') {
                     $amount,
                     $session->payment_intent
                 );
+            } */
 
                 $glLog = array(
                     "userID" => $userID,
@@ -102,7 +103,7 @@ if ($event->type === 'checkout.session.completed') {
                 );
 
                 log_add("ticketorder", "handleticketpurchase", serialize($glLog));
-            }
+            
         }
     }
 }
