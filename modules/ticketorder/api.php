@@ -59,7 +59,7 @@ if ($event->type === 'checkout.session.completed') {
         foreach ($tickets as $ticket) {
             /** @var Ticket $ticket */
             //if (!$ticket->isPaid()) {
-                db_query("UPDATE $sql_prefix_tickets SET paid='yes', paidTime = '$now' WHERE orderReference = '$session->id'");
+                db_query("UPDATE $sql_prefix_tickets SET paid='yes', paidTime = UNIX_TIMESTAMP() WHERE orderReference = '$session->id'");
                 #$ticket->setPaid();
                 #$ticket->setPaidTime($now);
                 #$ticket->commitChanges();
