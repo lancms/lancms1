@@ -205,7 +205,7 @@ class TicketManager {
             $eventID = $sessioninfo->eventID;
         }
 
-        $result = db_query(sprintf("SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d AND ticketTypeID = %d", $sql_prefix, $eventID, $ticketTypeID));
+        $result = db_query(sprintf("SELECT * FROM `%s_ticketTypes` WHERE ticketTypeID = %d", $sql_prefix, $ticketTypeID));
         $num   = db_num($result);
 
         $ticketType = null;
