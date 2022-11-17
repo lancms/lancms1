@@ -123,9 +123,9 @@ class TicketManager {
         }
 
         $result = db_query(sprintf("SELECT * FROM `%s_tickets` WHERE `orderReference` = '%s'",
-            $sql_prefix, $eventID, db_escape($orderReference)));
+            $sql_prefix, db_escape($orderReference)));
         $num = db_num($result);
-
+        
         $tickets = array();
         if ($num > 0) {
             $i = 0;
