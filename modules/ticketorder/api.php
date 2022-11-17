@@ -80,7 +80,7 @@ if ($event->type === 'checkout.session.completed') {
                     $now->getTimestamp(),
                     $stripeCreatedTimestamp,
                     $ticket->getOrderReference(),
-                    Ticket::TICKET_STATUS_PAID,
+                    'paid',
                     $ticketType,
                     $price,
                     $amount,
@@ -96,7 +96,7 @@ if ($event->type === 'checkout.session.completed') {
                     "stripeTime" => $stripeCreatedTimestamp,
                     "stripeRef" => $ticket->getOrderReference(),
                     "stripePaymentIntent" => $session->payment_intent ?? '',
-                    "status" => Ticket::TICKET_STATUS_PAID,
+                    "status" => 'paid',
                     "ticketType" => $ticketType,
                     "price" => $price,
                     "amount" => $amount
