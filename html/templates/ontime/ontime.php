@@ -108,6 +108,21 @@ $assetsVersion = '?v=1.2.3';
                 <div class="clear"></div>
             </div>
         </div>
+        <?php
+        if ($envWarning) {
+        ?>
+        <div class="header" style="background-color: orange; padding: 0px;">
+          <div class="container">
+            <div class="logo">
+              <h1>
+                <?php echo $envWarning ?>
+              </h1>
+            </div>
+          </div>
+        </div>
+        <?php
+      }
+        ?>
 
         <div class="container page">
             <div class="left">
