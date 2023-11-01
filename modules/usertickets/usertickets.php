@@ -31,6 +31,19 @@ switch ($action) {
             $content .= "<p>Ugyldig parametere</p>";
         } else {
             $ticket = TicketManager::getInstance()->getTicket($ticketID);
+
+            if ($ticket === null) {
+                header ('Location: index.php?module=usertickets&msg=5');
+                die();
+            }
+
+            $ticketType = TicketManager::getInstance()->getTicketTypeByID($ticket->getTicketTypeID());
+
+            if ($ticketType === null || !$ticketType->allowChangingOwnerOrUser()) {
+                header ('Location: index.php?module=usertickets&msg=6');
+                die();
+            }
+
             $changeType = (isset($_GET['type']) ? $_GET['type'] : 'user');
 
             /* HANDLERS */
@@ -112,7 +125,7 @@ switch ($action) {
                 foreach ($tickets as $key => $ticket) {
                     if (($ticket instanceof Ticket) == false) continue;
 
-                    if ($ticket->getTicketID() == $ticketID) {
+                    if ($ticket->getTicketID() == $ticketID && !$ticket->isPaid()) {
                         $deleteTicket = $ticket;
                     }
                 }
@@ -148,7 +161,8 @@ switch ($action) {
                 foreach ($tickets as $key => $ticket) {
                     if (($ticket instanceof Ticket) == false) continue;
 
-                    if (in_array($ticket->getTicketID(), $ticketIDs)) {
+                    if (in_array($ticket->getTicketID(), $ticketIDs) && !$ticket->isPaid()) {
+
                         $ticketsDeleted++;
                         $ticket->deleteTicket();
                     }
@@ -383,6 +397,16 @@ switch ($action) {
                     $message = _("Ticket has been paid!");
                     break;
 
+                case 5:
+                    $message = _('Ticket can not be found');
+                    $messageType = "danger";
+                    break;
+
+                case 6:
+                    $message = _('Ticket ownership and user can not be changed');
+                    $messageType = "danger";
+                    break;
+
                 default:
                     break;
             }
@@ -476,8 +500,8 @@ switch ($action) {
                         <td>" . $ticket->getTicketID() . "</td>
                         <td>" . $ticketTypeName . "</td>
                         <td>
-                            " . $owner . (!$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span>" : "") . "<br />
-                            " . $user . (!$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>" : "") . "
+                            " . $owner . ($ticketType->allowChangingOwnerOrUser() && !$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=owner&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change owner") . "</a>]</span>" : "") . "<br />
+                            " . $user . ($ticketType->allowChangingOwnerOrUser() && !$isDeleted ? "&nbsp;<span class=\"small\">[<a href=\"?module=usertickets&amp;action=change&amp;type=user&amp;ticketID=" . $ticket->getTicketID() . "\">" . _("Change user") . "</a>]</span>" : "") . "
                         </td>
                         <td>" . $seat;
 

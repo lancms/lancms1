@@ -7,6 +7,10 @@
         <input type="hidden" name="pay_method" value="door" />
         <input type="hidden" name="ttID" value="{{ ticketType.getTicketTypeID() }}" />
 
+        {% for additionalTicketType in additionalTicketTypes %}
+            <input type="hidden" name="attID[]" value="{{ additionalTicketType.getTicketTypeID() }}" />
+        {% endfor %}
+
         <button type="button" class="btn btn-grey btn-small" onclick="window.location = '?module=ticketorder';">Avbryt</button>
         <button type="submit" class="btn btn-green btn-small">Fullfør</button>
     </form>

@@ -1,21 +1,42 @@
 <?php
 
+/**
+ * @var TicketType[] $additionalTicketTypes
+ */
+
 if (isset($_POST['select'], $_POST['pay_method_bla'])) {
     switch ($_POST['pay_method_bla']) {
         case 'stripe':
             $schemeAndHost = $request->getSchemeAndHttpHost();
 
-            \Stripe\Stripe::setApiKey($stripePaymentConfig["secretKey"]);
-            $session = \Stripe\Checkout\Session::create([
-                'payment_method_types' => ['card'],
-                'line_items' => [[
+            $lineItems = [
+                [
                     'name' => $ticketType->getName(),
                     'description' => $ticketType->getDescription(),
                     'amount' => $ticketType->getPrice() . "00",
                     'currency' => 'nok',
                     'quantity' => $amount,
-                ]],
-                'client_reference_id' => base64_encode($user->getUserID() . '|' . $ticketType->getTicketTypeID() . '|' . $amount),
+                ],
+            ];
+
+            $clientReferenceId = $user->getUserID() . '|' . $ticketType->getTicketTypeID() . '|' . $amount . '|';
+            foreach ($additionalTicketTypes as $additionalTicketType) {
+                $lineItems[] = [
+                    'name' => $additionalTicketType->getName(),
+                    'description' => $additionalTicketType->getDescription(),
+                    'amount' => $additionalTicketType->getPrice() . '00',
+                    'currency' => 'nok',
+                    'quantity' => 1,
+                ];
+                $clientReferenceId .= $additionalTicketType->getTicketTypeID() . ',';
+            }
+            $clientReferenceId = rtrim($clientReferenceId, ',|');
+
+            \Stripe\Stripe::setApiKey($stripePaymentConfig["secretKey"]);
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => $lineItems,
+                'client_reference_id' => base64_encode($clientReferenceId),
                 'success_url' => $schemeAndHost . '/?module=ticketorder&action=handleStripeSuccess&ttID=' . $ticketType->getTicketTypeID() . '&session_id={CHECKOUT_SESSION_ID}',
                 'cancel_url' => $schemeAndHost . '/?module=ticketorder&action=cancel',
             ]);
@@ -26,6 +47,11 @@ if (isset($_POST['select'], $_POST['pay_method_bla'])) {
 
         	// create pending tickets for this intent.
         	$newTicketMd5s = $user->validateAddTicketType($ticketType, $amount);
+
+            foreach ($additionalTicketTypes as $additionalTicketType) {
+                array_push($newTicketMd5s, ...$user->validateAddTicketType($additionalTicketType, 1));
+            }
+
         	$newTickets = $ticketManager->getTicketsByMD5($newTicketMd5s);
 
         	foreach ($newTickets as $newTicket) {
@@ -35,7 +61,6 @@ if (isset($_POST['select'], $_POST['pay_method_bla'])) {
         	}
 
             $content .= $twigEnvironment->render('ticketorder/preorder-stripe.twig', [
-        		'ticketType' => $ticketType,
         		'checkoutSessionId' => $session->id,
         		'stripePaymentConfigPrivateKey' => $stripePaymentConfig['privateKey'],
         	]);
@@ -44,6 +69,7 @@ if (isset($_POST['select'], $_POST['pay_method_bla'])) {
         case 'door':
             $content .= $twigEnvironment->render('ticketorder/preorder-door.twig', [
         		'ticketType' => $ticketType,
+                'additionalTicketTypes' => $additionalTicketTypes,
         	]);
             return;
 
@@ -56,6 +82,7 @@ $content .= $twigEnvironment->render('ticketorder/preorder.twig', [
     'priceNormal' => $priceNormal,
     'amount' => $amount,
     'ticketType' => $ticketType,
+    'additionalTicketTypes' => $additionalTicketTypes,
     'ticketOrderAllowPreorderPayOnArrival' => $ticketOrderAllowPreorderPayOnArrival,
 ]);
 

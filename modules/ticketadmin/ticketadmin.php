@@ -63,9 +63,19 @@ if(!isset($action) || $action == "editticket") {
     if($action == "editticket" && isset($_GET['editticket'])) {
         $qGetTicketInfo = db_query("SELECT * FROM ".$sql_prefix."_ticketTypes WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
         $rGetTicketInfo = db_fetch($qGetTicketInfo);
+        $qGetAdditionalTickets = db_query("SELECT rel.additionalTicketTypeID AS relID FROM {$sql_prefix}_ticketTypes_additional AS rel INNER JOIN {$sql_prefix}_ticketTypes AS tt ON tt.ticketTypeID = rel.additionalTicketTypeID WHERE rel.ticketTypeID = '" . db_escape($_GET['editticket']) . "'");
+        $rAdditionalTicketIds = array_map(
+            static function ($row) { return (int) $row->relID; },
+            db_fetch_all($qGetAdditionalTickets)
+        );
         $content .= "<form method=\"post\" action=\"?module=ticketadmin&amp;action=doeditticket&amp;editticket=".$_GET['editticket']."\">\n";
     } // end if action = editticket
-    else $content .= "<form method=\"post\" action=\"?module=ticketadmin&amp;action=addtickettype\">\n";
+    else {
+        $content .= "<form method=\"post\" action=\"?module=ticketadmin&amp;action=addtickettype\">\n";
+        $rAdditionalTicketIds = [];
+    }
+    $qAdditionalTickets = db_query("SELECT ticketTypeID,name FROM {$sql_prefix}_ticketTypes WHERE active = 1 AND allowSellingStandalone = 0 AND ticketTypeID != '" . db_escape((int) ($_GET['editticket'] ?? null)) . "' AND eventID = '" . db_escape($eventID) . "' ORDER BY name ASC");
+    $rAdditionalTickets = db_fetch_all($qAdditionalTickets);
     $content .= "<p class=\"nopad\"><input type=\"text\" name=\"name\" value='$rGetTicketInfo->name' /></p>\n";
     $content .= "</td><td>";
     $content .= lang("Name of ticket", "ticketadmin");
@@ -120,9 +130,35 @@ if(!isset($action) || $action == "editticket") {
     else $maxTickets = 0;
     $content .= " value='$maxTickets'";
     $content .= ">";
-    $content .= "</td><td>";
+    $content .= '</td><td>';
     $content .= lang("Max tickets to sell", "ticketadmin");
     $content .= "</td></tr><tr><td>\n";
+    $content .= '<input type="checkbox" name="allow_selling_standalone" value="1"';
+    if ($rGetTicketInfo->allowSellingStandalone) $content .= ' checked';
+    $content .= ' />';
+    $content .= '</td><td>';
+    $content .= lang('Allow selling as standalone?', 'ticketadmin');
+    $content .= "</td></tr><tr><td>\n";
+    $content .= '<input type="checkbox" name="allow_changing_owner_or_user" value="1"';
+    if ($rGetTicketInfo->allowChangingOwnerOrUser) $content .= ' checked';
+    $content .= ' />';
+    $content .= '</td><td>';
+    $content .= lang('Allow changing owner or user?', 'ticketadmin');
+    $content .= "</td></tr><tr><td>\n";
+    if (count($rAdditionalTickets) > 0) {
+        $content .= '<select name="additional_tickets[]" multiple>';
+        foreach ($rAdditionalTickets as $additionalTicket) {
+            $content .= '<option value="' . $additionalTicket->ticketTypeID . '"';
+            if (in_array((int)$additionalTicket->ticketTypeID, $rAdditionalTicketIds, true)) {
+                $content .= ' selected';
+            }
+            $content .= '>' . htmlspecialchars($additionalTicket->name) . '</option>';
+        }
+        $content .= '</select>';
+        $content .= '</td><td>';
+        $content .= lang('Additional tickets', 'ticketadmin');
+        $content .= "</td></tr><tr><td>\n";
+    }
     if($action == "editticket") $content .= "<input type=\"submit\" value='".lang("Edit tickettype", "ticketadmin")."' />\n";
     else $content .= "<p class=\"nopad\"><input type=\"submit\" value='".lang("Add tickettype", "ticketadmin")."' /></p>\n";
     $content .= "</form></td></tr></table>\n";
@@ -157,6 +193,8 @@ elseif($action == "addtickettype") {
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
+    $allowSellingStandalone = db_escape(filter_var($_POST['allow_selling_standalone'] ?? null, \FILTER_VALIDATE_BOOLEAN));
+    $allowChangingOwnerOrUser = db_escape(filter_var($_POST['allow_changing_owner_or_user'] ?? null, \FILTER_VALIDATE_BOOLEAN));
     if($_POST['allowSeating'] == 1) $allowSeating = 1;
     else $allowSeating = 0;
     if($_POST['active'] == 1) $active = 1;
@@ -170,14 +208,30 @@ elseif($action == "addtickettype") {
         type = '$type', 
         active = '$active',
 	maxTickets = '$maxTickets',
+	    allowSellingStandalone = '$allowSellingStandalone',
+	    allowChangingOwnerOrUser = '$allowChangingOwnerOrUser',
         eventID = '$eventID'");
+    $ticketTypeID = db_insert_id();
 
     $log_new['name'] = $name;
     $log_new['price'] = $price;
     $log_new['type'] = $type;
     $log_new['active'] = $active;
     $log_new['maxTickets'] = $maxTickets;
+    $log_new['allowSellingStandalone'] = $allowSellingStandalone;
+    $log_new['allowChangingOwnerOrUser'] = $allowChangingOwnerOrUser;
     log_add("ticketadmin", "addTicketType", serialize($log_new));
+
+    $additionalTicketIds = array_unique(array_map('intval', array_filter(
+        is_array($_POST['additional_tickets'] ?? null) ? $_POST['additional_tickets'] : [],
+        'is_numeric'
+    )));
+
+    if (count($additionalTicketIds) > 0) {
+        foreach ($additionalTicketIds as $additionalTicketId) {
+            db_query("INSERT INTO {$sql_prefix}_ticketTypes_additional(ticketTypeID, additionalTicketTypeID)VALUES('" . db_escape($ticketTypeID) . "', '" . db_escape($additionalTicketId) . "')");
+        }
+    }
 
     header("Location: ?module=ticketadmin");
 
@@ -189,6 +243,8 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
     $price = db_escape($_POST['price']);
     $type = db_escape($_POST['type']);
     $maxTickets = db_escape($_POST['maxTickets']);
+    $allowSellingStandalone = db_escape(filter_var($_POST['allow_selling_standalone'] ?? null, \FILTER_VALIDATE_BOOLEAN));
+    $allowChangingOwnerOrUser = db_escape(filter_var($_POST['allow_changing_owner_or_user'] ?? null, \FILTER_VALIDATE_BOOLEAN));
     if($_POST['allowSeating'] == 1) $allowSeating = 1;
     else $allowSeating = 0;
     if($_POST['active'] == 1) $active = 1;
@@ -201,6 +257,8 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
         type = '$type', 
         active = '$active',
         allowSeating = '$allowSeating',
+        allowSellingStandalone = '$allowSellingStandalone',
+        allowChangingOwnerOrUser = '$allowChangingOwnerOrUser',
 	maxTickets = '$maxTickets'
         WHERE ticketTypeID = '".db_escape($_GET['editticket'])."'");
     $log_new['name'] = $name;
@@ -209,6 +267,20 @@ elseif($action == "doeditticket" && !empty($_GET['editticket'])) {
     $log_new['allowSeating'] = $allowSeating;
     $log_new['active'] = $active;
     $log_new['maxTickets'] = $maxTickets;
+    $log_new['allowSellingStandalone'] = $allowSellingStandalone;
+    $log_new['allowChangingOwnerOrUser'] = $allowChangingOwnerOrUser;
+
+    $additionalTicketIds = array_unique(array_map('intval', array_filter(
+        is_array($_POST['additional_tickets'] ?? null) ? $_POST['additional_tickets'] : [],
+        'is_numeric'
+    )));
+
+    db_query("DELETE FROM {$sql_prefix}_ticketTypes_additional WHERE ticketTypeID = '" . db_escape($_GET['editticket']) . "'");
+    if (count($additionalTicketIds) > 0) {
+        foreach ($additionalTicketIds as $additionalTicketId) {
+            db_query("INSERT INTO {$sql_prefix}_ticketTypes_additional(ticketTypeID, additionalTicketTypeID)VALUES('" . db_escape($_GET['editticket']) . "', '" . db_escape($additionalTicketId) . "')");
+        }
+    }
 
     log_add("ticketadmin", "doEditTicket", serialize($log_new));
     header("Location: ?module=ticketadmin");

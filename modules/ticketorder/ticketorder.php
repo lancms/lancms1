@@ -97,7 +97,7 @@ switch ($action) {
         $availableTickets = $ticketType->getNumAvailable();
         $ticketIDs = array();
 
-        if (($ticketType instanceof TicketType) === false) {
+        if (($ticketType instanceof TicketType) === false || !$ticketType->isEnabled() || !$ticketType->allowSellingStandalone()) {
             header("Location: index.php?module=ticketorder&msg=9");
             die();
         }
@@ -105,9 +105,6 @@ switch ($action) {
         $orderInfo["ticketType"] = $ticketType->getTicketTypeID();
         $orderInfo["ticketTypeType"] = $ticketType->getType();
         $orderInfo["start_time"] = time();
-        $price = floor($ticketType->getPrice() * $amount);
-
-        $orderInfo["price"] = $price;
         $orderInfo["amount"] = $amount;
 
         $checkoutSessionId = $requestGet->get('session_id');
@@ -118,6 +115,19 @@ switch ($action) {
         $orderInfo["ticketMD5"] = array_map(function(Ticket $ticket): string {
             return $ticket->getMd5ID();
         }, $tickets);
+
+        $price = 0.0;
+
+        foreach ($tickets as $ticket) {
+            $ticketTicketType = $ticketManager->getTicketTypeByID($ticket->getTicketTypeID());
+            if ($ticketTicketType === null) {
+                die('Unable to find ticket type by id ' . $ticket->getTicketTypeID());
+            }
+
+            $price += floor($ticketType->getPrice() * $amount);
+        }
+
+        $orderInfo['price'] = floor($price);
 
         $_SESSION["orderInfo" . $sessioninfo->userID] = array_merge(
             $_SESSION["orderInfo" . $sessioninfo->userID] ?? [], $orderInfo);
@@ -142,7 +152,7 @@ switch ($action) {
         $availableTickets = $ticketType->getNumAvailable();
         $ticketIDs = array();
 
-        if ($ticketType instanceof TicketType === false) {
+        if (($ticketType instanceof TicketType) === false || !$ticketType->isEnabled() || !$ticketType->allowSellingStandalone()) {
             header("Location: index.php?module=ticketorder&msg=9");
             die();
         }
@@ -157,21 +167,28 @@ switch ($action) {
             die();
         }
 
+        $additionalTicketTypes = $ticketManager->getAdditionalTicketTypesForTicketType($ticketType);
+
         // Add the ticket now, and set as paid later!
-        $newTicketMd5 = $user->validateAddTicketType($ticketType, $amount);
-        if ($newTicketMd5 === false) {
+        $newTicketMd5s = $user->validateAddTicketType($ticketType, $amount);
+        if ($newTicketMd5s === false) {
             header("Location: index.php?module=ticketorder&msg=8");
             die();
+        }
+        $price = floor($ticketType->getPrice() * $amount);
+
+        foreach ($additionalTicketTypes as $additionalTicketType) {
+            array_push($newTicketMd5s, ...$user->validateAddTicketType($additionalTicketType, 1));
+            $price += $additionalTicketType->getPrice();
         }
 
         $orderInfo["ticketType"] = $ticketType->getTicketTypeID();
         $orderInfo["ticketTypeType"] = $ticketType->getType();
-        $orderInfo["ticketMD5"] = $newTicketMd5;
+        $orderInfo["ticketMD5"] = $newTicketMd5s;
         $orderInfo["start_time"] = time();
-        $price = floor($ticketType->getPrice() * $amount);
 
         $orderInfo["price"] = $price;
-        $orderInfo["amount"] = $amount;
+        $orderInfo["amount"] = $amount; // amount might be wrong since its only for the  "primary ticket type"
 
         $logPurchase = true;
 
@@ -268,6 +285,14 @@ switch ($action) {
         $ttID = $requestGet->has("ttID") ? $requestGet->getInt("ttID", -1) : -1;
         if ($ttID > 0) {
             $ticketType = $ticketManager->getTicketTypeByID($ttID);
+
+            if (!$ticketType || !$ticketType->isEnabled() || !$ticketType->allowSellingStandalone()) {
+                header("Location: index.php?module=ticketorder&msg=2");
+                die();
+            }
+
+            $additionalTicketTypes = $ticketManager->getAdditionalTicketTypesForTicketType($ticketType);
+
             $amount = $requestGet->has("amount") ? $requestGet->getInt("amount", 1) : 1;
             $canAmount = (isset($maxTicketsPrUser) && is_numeric($maxTicketsPrUser) ? intval($maxTicketsPrUser) : 1);
 
@@ -276,9 +301,24 @@ switch ($action) {
                 die();
             }
 
-            $_SESSION["orderInfo" . $sessioninfo->userID] = array("ttID" => $ttID, "amount" => $amount, "newTickets" => $newTicketMd5);
             $priceNormal = floor($ticketType->getPrice() * $amount);
+
+            foreach ($additionalTicketTypes as $additionalTicketType) {
+                $priceNormal += $additionalTicketType->getPrice();
+            }
+
             $price = $priceNormal . "00";
+
+            $_SESSION["orderInfo" . $sessioninfo->userID] = [
+                "ttID" => $ttID,
+                "amount" => $amount,
+                "newTickets" => $newTicketMd5,
+                'totalPrice' => $price,
+                'additionalTicketTypeIDs' => array_map(
+                    static fn (TicketType $ticketType): int => $ticketType->getTicketTypeID(),
+                    $additionalTicketTypes,
+                ),
+            ];
 
             if (file_exists(__DIR__ . "/types/" . $ticketType->getType() . ".php")) {
                 include __DIR__ . "/types/" . $ticketType->getType() . ".php";
@@ -296,8 +336,7 @@ switch ($action) {
     //==================================================================================
     // List tickets
     default:
-        $ticketTypes = $ticketManager->getTicketTypes();
-        $ticketTypes = array_filter($ticketTypes, "_filterTypes");
+        $ticketTypes = $ticketManager->getTicketTypes(null, null, true, true);
 
         // Message to user
         if (isset($_GET['msg']) && is_numeric($_GET['msg'])) {
@@ -336,10 +375,29 @@ switch ($action) {
             $content .= "<p>" . _("Choose a ticket to order.") . "</p>
             <div class=\"ticket-list\">";
             foreach ($ticketTypes as $key => $ticketType) {
+                $price = $ticketType->getPrice();
+                $additionalTickets = $ticketManager->getAdditionalTicketTypesForTicketType($ticketType);
+
+                foreach ($additionalTickets as $additionalTicketType) {
+                    $price += $additionalTicketType->getPrice();
+                }
 
                 $content .= "<div class=\"ticket\">
                 <div class=\"title\"><h3>" . $ticketType->getName() . "</h3></div>
                 <div class=\"description\">" . $ticketType->getDescription() . "</div>";
+
+                if (count($additionalTickets) > 0) {
+                    $content .= '<br /><div><strong>Ved kjøp av denne billetten medfølger:</strong></div><ul>';
+                    foreach ($additionalTickets as $additionalTicketType) {
+                        $content .= '<li>' . htmlspecialchars($additionalTicketType->getName()) . ' (' . number_format($additionalTicketType->getPrice(), 2, ',', ' ') . '  kr)';
+                        $description = $additionalTicketType->getDescription();
+                        if ($description !== '') {
+                            $content .= '<br /><span class="text-muted">' . nl2br(htmlspecialchars($description)) . '</span>';
+                        }
+                        $content .= '</li>';
+                    }
+                    $content .= '</ul>';
+                }
 
                 $content .= "<div class=\"order\">";
                 if ($user instanceof User) {
@@ -347,6 +405,7 @@ switch ($action) {
                     $available = $ticketType->getNumAvailable();
 
                     if ($available > 0 && $canOrderAmount > 0) {
+                        $content .= '<div style="font-size:150%; text-align:right">' . number_format($price, 2, ',', ' ') . ' kr</div>';
                         $content .= "<form action=\"index.php?\" method=\"get\">";
                         // If $maxTicketsPrUser is set print a select element up to the max amount set.
                         // Otherwise amount 1 is default.
@@ -382,10 +441,3 @@ switch ($action) {
 }
 
 $content .= "</div>";
-
-function _filterTypes(&$var) {
-    if ($var->isEnabled() == false)
-        return false;
-
-    return true;
-}

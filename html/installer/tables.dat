@@ -230,7 +230,16 @@ TABLE [prefix]_ticketTypes
 	price,		int(5),		,	,	0,
 	active,		tinyint(1),		,	,	1,
 	allowSeating,	tinyint(1),		,	,	1,
+	allowSellingStandalone,	tinyint(1),		,	,	1,
+	allowChangingOwnerOrUser,	tinyint(1),		,	,	1,
 	maxTickets,	int(5),		,	,	,		,
+}
+
+TABLE [prefix]_ticketTypes_additional
+{
+#	NAME		TYPE		KEY	NULL	DEFAULT		EXTRA
+	ticketTypeID	,	int(11),	UNI,	NOT NULL, ,
+	additionalTicketTypeID	,	int(11),	UNI,	NOT NULL, ,
 }
 
 TABLE [prefix]_ticketReseller

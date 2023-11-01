@@ -228,7 +228,7 @@ class TicketManager {
      * @param int $eventID If null then active event is used.
      * @return TicketType
      */
-    public function getTicketTypes($ids = null, $eventID=null) {
+    public function getTicketTypes($ids = null, $eventID=null, bool $onlyActive = false, bool $onlyAllowSellingStandalone = false) {
         global $sessioninfo, $sql_prefix;
 
         if ($eventID == null) {
@@ -236,10 +236,44 @@ class TicketManager {
         }
 
         $query = sprintf('SELECT * FROM `%s_ticketTypes` WHERE `eventID` = %d', $sql_prefix, $eventID);
+        if ($onlyActive) {
+            $query .= ' AND active = 1';
+        }
+        if ($onlyAllowSellingStandalone) {
+            $query .= ' AND allowSellingStandalone = 1';
+        }
 
         if ((is_array($ids)) && (count($ids) > 0)) {
             $query .= sprintf(' AND ticketTypeID IN (%s)', db_escape(implode(',', $ids)));
         }
+
+        $result = db_query($query);
+
+        $ticketTypes = array();
+        if (db_num($result) > 0) {
+            while($row = db_fetch_assoc($result)) {
+                $ticketTypes[] = (new TicketType($row['ticketTypeID']))->fillInfo($row);
+            }
+        }
+
+        return $ticketTypes;
+    }
+
+    /**
+     * @param TicketType $ticketType
+     * @return TicketType[]
+     */
+    public function getAdditionalTicketTypesForTicketType(TicketType $ticketType): array
+    {
+        global $sessioninfo, $sql_prefix;
+
+        if ($eventID == null) {
+            $eventID = $sessioninfo->eventID;
+        }
+
+        $query = sprintf('SELECT tt.* FROM `%1$s_ticketTypes` AS tt WHERE tt.eventID = %2$d AND tt.ticketTypeID IN(
+            SELECT att.additionalTicketTypeID FROM `%1$s_ticketTypes_additional` AS att WHERE att.ticketTypeID = %3$d
+        ) AND tt.active = 1 AND tt.allowSellingStandalone = 0', $sql_prefix, $eventID, $ticketType->getTicketTypeID());
 
         $result = db_query($query);
 
@@ -279,8 +313,8 @@ class TicketManager {
         $price = db_escape($price);
         $ticketID = db_escape($ticketID);
 
-        $query = sprintf("INSERT INTO `%s` (`ticketType`, `eventID`, `userID`, `ticketID`, `timestamp`, `externalTime`, `externalRef`, `externalRef2`, `price`, `amount`, `status`)
-VALUES (%d, %d, %d, '%s', %d, %d, '%s', '%s', %d, '%s');", db_prefix() . "_ticketLogs", $ticketType->getTicketTypeID(), $eventID, $userID, $ticketID,
+        $query = sprintf("INSERT INTO `%s`(`ticketType`, `eventID`, `userID`, `ticketID`, `timestamp`, `externalTime`, `externalRef`, `externalRef2`, `price`, `amount`, `status`)
+    VALUES (%d, %d, %d, '%s', %d, %d, '%s', '%s', %d, %d, '%s')", db_prefix() . "_ticketLogs", $ticketType->getTicketTypeID(), $eventID, $userID, $ticketID,
             $timestamp, $externalTime, $externalRef, $price, $amount, $status, db_escape($externalRef2));
 
         db_query($query);

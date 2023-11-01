@@ -117,6 +117,16 @@ class TicketType extends SqlObject {
         return $this->_getField("active", false, 3);
     }
 
+    public function allowSellingStandalone(): bool
+    {
+        return $this->_getField('allowSellingStandalone', false, 3);
+    }
+
+    public function allowChangingOwnerOrUser(): bool
+    {
+        return $this->_getField('allowChangingOwnerOrUser', false, 3);
+    }
+
     /**
      * Provides the max available tickets.
      *
